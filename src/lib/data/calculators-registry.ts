@@ -587,23 +587,26 @@ export const calculatorRegistry: CalculatorMeta[] = [
     name: "Hydronic Boiler & Baseboard Sizing Calculator",
     pillar: "heating-systems",
     route: "/calculators/boiler-size-calculator",
-    status: "planned",
-    launchPhase: 3,
-    riskLevel: "medium",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
     primaryKeyword: "boiler size calculator",
-    secondaryKeywords: ["hydronic heating calculator", "baseboard sizing", "radiator edr calculator"],
+    secondaryKeywords: ["hydronic heating calculator", "baseboard sizing", "radiator edr calculator", "boiler btu calculator", "cast iron radiator btu"],
     primaryIntent: "High Commercial / Hydronics",
     seoTitle: "Boiler Size Calculator — Hydronic Baseboard & EDR | HVACLogic",
     metaDescription: "Size residential hydronic heating boilers based on fin-tube baseboard linear footage, cast-iron radiator EDR, and indirect domestic hot water priority.",
     categoryName: "Heating Systems",
     categoryRoute: "/heating-systems",
     features: [
-      "Fin-tube baseboard linear footage heating load matching (550 BTU/hr per ft at 180°F)",
-      "Cast-iron radiator Equivalent Direct Radiation (EDR) calculation",
-      "Domestic Hot Water (DHW) indirect tank pickup allowance",
+      "Multi-method sizing engine: Fin-Tube Baseboard linear feet, Cast-Iron Radiator EDR, or Heat Loss (BTU/hr)",
+      "Hot water vs low-pressure steam rating conversion (150 vs 240 BTU/hr per sq ft EDR)",
+      "Domestic Hot Water (DHW) indirect tank pickup with priority zone controller override",
+      "I=B=R and AHRI Net Rating piping/pickup factors (1.15x water / 1.33x steam)",
+      "Interactive SVG hydronic piping loop schematic with boiler, expansion tank, and circulator",
+      "1-Click CSV engineering submittal export",
     ],
-    relatedCalculatorIds: ["furnace-size-calculator", "heat-loss-calculator"],
-    standards: ["ASHRAE"],
+    relatedCalculatorIds: ["heat-loss-calculator", "furnace-size-calculator", "heat-pump-size-calculator"],
+    standards: ["ASHRAE", "AHRI"],
     formulaVersion: "1.0.0",
     dataVersion: "1.0.0",
     lastEngineeringReview: "2026-08-19",
@@ -612,11 +615,19 @@ export const calculatorRegistry: CalculatorMeta[] = [
     testStatus: "validated",
     faqs: [
       {
-        question: "How many BTUs does a foot of baseboard produce?",
-        answer: "Standard residential copper fin-tube baseboard produces approximately 550 to 600 BTU/hr per linear foot with 180°F average water temperature."
+        question: "How many BTUs does one linear foot of fin-tube baseboard produce?",
+        answer: "Standard residential copper fin-tube baseboard produces approximately 550 to 600 BTU/hr per linear foot when operating at 180°F average water temperature. At lower condensing temperatures (e.g. 140°F), heat output drops to approximately 330 BTU/hr per linear foot."
+      },
+      {
+        question: "What is Radiator EDR (Equivalent Direct Radiation)?",
+        answer: "EDR measures the heating surface area of cast-iron radiators. In hydronic hot water systems (170°F–180°F), 1 sq ft of EDR produces 150 BTU/hr. In low-pressure steam systems (215°F), 1 sq ft of EDR produces 240 BTU/hr."
+      },
+      {
+        question: "How does DHW Priority affect boiler sizing?",
+        answer: "With a Priority Zone Relay, the boiler temporarily shuts off space heating circulators when the indirect water heater calls for heat. Because domestic hot water calls typically last under 15 minutes, the home does not cool down and the boiler does NOT require extra BTU capacity for domestic water."
       }
     ],
-    analyticsEvents: ["calculator_started", "result_generated", "share_clicked"]
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
   },
   {
     id: "garage-heater-sizing",

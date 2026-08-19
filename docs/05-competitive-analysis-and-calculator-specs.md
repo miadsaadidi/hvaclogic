@@ -302,6 +302,24 @@ This document records direct observations from live SERP audits across primary t
   * No presets for common construction vintages (1960s uninsulated vs 2020s tight envelope).
 * **HVAC Lab Opportunity**: Instant building vintage presets, conductive vs infiltration percentage breakdown, and equipment sizing recommendations (BTU/hr and kW).
 
+### Cluster G: Hydronic Heating Boilers & Radiator Sizing (`boiler size calculator`, `baseboard sizing`, `radiator edr calculator`)
+
+#### Competitor G1: Weil-McLain / SupplyHouse Boiler Sizing Guide
+* **Competitor URL**: `supplyhouse.com/boiler-sizing`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Simple rule-of-thumb square footage lookup table (e.g. 50 BTU/sq ft).
+  * Fails to support fin-tube baseboard linear footage or cast-iron radiator EDR measuring.
+  * Ignores indirect water heater domestic hot water (DHW) priority zoning switches.
+* **HVAC Lab Opportunity**: Multi-method boiler sizing engine supporting (1) Fin-Tube Baseboard Linear Footage, (2) Cast-Iron Radiator EDR (Hot Water & Steam), and (3) Heat Loss Load, with DHW Priority controller logic and standard AHRI / I=B=R Net Piping pick-up factors (1.15x).
+
+#### Competitor G2: Burnham / U.S. Boiler EDR Calculator
+* **Competitor URL**: `usboiler.net/edr-calculator`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Static PDF chart of radiator section dimensions with no live calculation.
+* **HVAC Lab Opportunity**: Live interactive EDR section accumulator (column, tube, wall radiators), hot water vs steam rating toggle, and visual hydronic loop schematic with boiler, expansion tank, and circulator pump.
+
 ---
 
 ## 3. The 10/10 Product Value Proposition
