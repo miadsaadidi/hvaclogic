@@ -3,6 +3,7 @@ import { Titillium_Web, Lora, Inter } from "next/font/google";
 import { UnitProvider } from "@/lib/providers/UnitContext";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { SiteFooter } from "@/components/navigation/SiteFooter";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -101,6 +102,7 @@ export default function RootLayout({
     >
       <body className="antialiased">
         <UnitProvider>
+          <ServiceWorkerRegister />
           <SiteHeader />
           <main id="main-content" style={{ minHeight: "calc(100vh - 160px)" }}>
             {children}

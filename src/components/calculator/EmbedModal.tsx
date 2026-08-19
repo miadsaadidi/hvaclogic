@@ -11,11 +11,13 @@ interface EmbedModalProps {
 
 export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalProps) {
   const [copied, setCopied] = useState(false);
+  const [height, setHeight] = useState("720");
+  const [showPreview, setShowPreview] = useState(false);
 
   if (!isOpen) return null;
 
   const embedUrl = `https://hvaclogic.org${toolRoute}?embed=true`;
-  const iframeCode = `<iframe src="${embedUrl}" width="100%" height="700" style="border:1px solid #2e3b52;border-radius:12px;max-width:960px;" title="${toolName} by HVAC Logic" loading="lazy"></iframe><p style="font-size:12px;color:#64748b;margin-top:4px;">Calculations by <a href="https://hvaclogic.org${toolRoute}" target="_blank" rel="noopener">HVAC Logic</a></p>`;
+  const iframeCode = `<iframe src="${embedUrl}" width="100%" height="${height}" style="border:1px solid #2e3b52;border-radius:12px;max-width:960px;width:100%;" title="${toolName} — HVACLogic" loading="lazy" allow="clipboard-write"></iframe>\n<p style="font-size:12px;color:#64748b;margin-top:6px;font-family:sans-serif;">Precision calculations powered by <a href="https://hvaclogic.org${toolRoute}" target="_blank" rel="noopener" style="color:#00d2ff;text-decoration:underline;">HVACLogic Engineering Suite</a></p>`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(iframeCode);
@@ -28,8 +30,8 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
       style={{
         position: "fixed",
         inset: 0,
-        backgroundColor: "rgba(0,0,0,0.75)",
-        backdropFilter: "blur(4px)",
+        backgroundColor: "rgba(0,0,0,0.8)",
+        backdropFilter: "blur(6px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -44,14 +46,21 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
           border: "1px solid var(--border-color)",
           borderRadius: "1rem",
           padding: "1.75rem",
-          maxWidth: "580px",
+          maxWidth: "640px",
           width: "100%",
-          boxShadow: "var(--shadow-lg)",
+          boxShadow: "0 20px 40px rgba(0, 0, 0, 0.6)",
+          maxHeight: "90vh",
+          overflowY: "auto",
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
-          <h3 style={{ fontSize: "1.25rem", fontWeight: 700 }}>Embed {toolName}</h3>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <span style={{ fontSize: "1.2rem" }}>&lt;/&gt;</span>
+            <h3 style={{ fontSize: "1.2rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
+              Embed {toolName}
+            </h3>
+          </div>
           <button
             onClick={onClose}
             style={{
@@ -60,6 +69,7 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
               color: "var(--text-muted)",
               fontSize: "1.5rem",
               cursor: "pointer",
+              lineHeight: 1,
             }}
             aria-label="Close modal"
           >
@@ -67,10 +77,46 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
           </button>
         </div>
 
-        <p style={{ fontSize: "0.875rem", color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          Embed this interactive calculator on your trade website, educational blog, or manufacturer portal:
+        <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "1.25rem", lineHeight: 1.5 }}>
+          Paste this responsive widget snippet into your website, contractor blog, LMS portal, or distributor intranet. 100% free with no API keys or database tracking required.
         </p>
 
+        {/* Height Selector & Preview Toggle */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", fontSize: "0.8125rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <label htmlFor="height-select" style={{ fontWeight: 600, color: "var(--ink)" }}>Widget Height:</label>
+            <select
+              id="height-select"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+              className="input-number"
+              style={{ height: "32px", width: "100px", padding: "0 0.5rem", fontSize: "0.8125rem" }}
+            >
+              <option value="600">600 px</option>
+              <option value="720">720 px</option>
+              <option value="850">850 px</option>
+              <option value="1000">1000 px</option>
+            </select>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowPreview(!showPreview)}
+            style={{
+              background: "none",
+              border: "none",
+              color: "var(--accent-cooling)",
+              fontSize: "0.8125rem",
+              fontWeight: 600,
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+          >
+            {showPreview ? "Hide Preview" : "Show Live Preview"}
+          </button>
+        </div>
+
+        {/* Snippet Code Box */}
         <textarea
           readOnly
           value={iframeCode}
@@ -80,29 +126,47 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
             background: "var(--bg-primary)",
             border: "1px solid var(--border-color)",
             borderRadius: "0.5rem",
-            padding: "0.75rem",
+            padding: "0.85rem",
             color: "var(--accent-cooling)",
             fontFamily: "monospace",
             fontSize: "0.75rem",
             marginBottom: "1.25rem",
             resize: "none",
+            lineHeight: 1.4,
           }}
         />
 
+        {/* Live Preview Box */}
+        {showPreview && (
+          <div style={{ marginBottom: "1.25rem", border: "1px solid var(--border-color)", borderRadius: "0.5rem", overflow: "hidden" }}>
+            <div style={{ background: "var(--bg-secondary)", padding: "0.4rem 0.75rem", fontSize: "0.72rem", color: "var(--text-muted)" }}>
+              Live Widget Preview:
+            </div>
+            <iframe
+              src={toolRoute}
+              width="100%"
+              height="380"
+              style={{ border: "none", width: "100%" }}
+              title={`Preview of ${toolName}`}
+            />
+          </div>
+        )}
+
         <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.75rem" }}>
-          <button onClick={onClose} className="action-btn">
-            Cancel
+          <button onClick={onClose} className="action-btn" type="button">
+            Close
           </button>
           <button
             onClick={handleCopy}
             className="action-btn"
+            type="button"
             style={{
               background: copied ? "var(--accent-success)" : "var(--accent-primary)",
               color: "#ffffff",
-              borderColor: "transparent",
+              borderColor: copied ? "var(--accent-success)" : "var(--accent-primary)",
             }}
           >
-            {copied ? "✓ Copied to Clipboard!" : "Copy Embed Code"}
+            {copied ? "✓ Copied Embed Code!" : "📋 Copy HTML Code"}
           </button>
         </div>
       </div>

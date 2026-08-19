@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { siteConfig } from "@/lib/site-config";
+import { SubmittalMeta } from "@/components/calculator/PrintSubmittalModal";
 
 interface PrintJobSubmittalProps {
   calculatorName: string;
@@ -12,6 +15,16 @@ export function PrintJobSubmittal({
   categoryName,
   governingStandard,
 }: PrintJobSubmittalProps) {
+  const [meta, setMeta] = useState<SubmittalMeta | null>(null);
+
+  useEffect(() => {
+    const handleSubmittalUpdate = (e: CustomEvent<SubmittalMeta>) => {
+      setMeta(e.detail);
+    };
+    window.addEventListener("hvaclogic:submittal-update" as any, handleSubmittalUpdate);
+    return () => window.removeEventListener("hvaclogic:submittal-update" as any, handleSubmittalUpdate);
+  }, []);
+
   const currentDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -33,7 +46,7 @@ export function PrintJobSubmittal({
               HVAC Mechanical Calculation Submittal
             </div>
             <p style={{ fontSize: "0.85rem", margin: "0.25rem 0 0", color: "#333333" }}>
-              {siteConfig.name} — Open-Access Deterministic Engineering Calculation Engine ({siteConfig.canonicalDomain})
+              {meta?.companyName ? `${meta.companyName} • Generated via ` : ""}{siteConfig.name} ({siteConfig.canonicalDomain})
             </p>
           </div>
           <div style={{ textAlign: "right" }}>
@@ -58,15 +71,15 @@ export function PrintJobSubmittal({
         >
           <div>
             <strong>PROJECT / JOB:</strong>
-            <div style={{ borderBottom: "1px dotted #888888", height: "20px", marginTop: "2px" }} />
+            <div style={{ fontWeight: 600, color: "#000" }}>{meta?.projectName || "_________________________"}</div>
           </div>
           <div>
             <strong>JOB LOCATION / SITE:</strong>
-            <div style={{ borderBottom: "1px dotted #888888", height: "20px", marginTop: "2px" }} />
+            <div style={{ fontWeight: 600, color: "#000" }}>{meta?.clientAddress || "_________________________"}</div>
           </div>
           <div>
             <strong>DESIGNER / TECHNICIAN:</strong>
-            <div style={{ borderBottom: "1px dotted #888888", height: "20px", marginTop: "2px" }} />
+            <div style={{ fontWeight: 600, color: "#000" }}>{meta?.technicianName || "_________________________"}</div>
           </div>
           <div>
             <strong>SYSTEM DISCIPLINE:</strong>
@@ -81,6 +94,12 @@ export function PrintJobSubmittal({
             <div>{governingStandard}</div>
           </div>
         </div>
+
+        {meta?.notes && (
+          <div style={{ marginTop: "0.75rem", fontSize: "0.8rem", background: "#f0f4f8", padding: "0.5rem 0.75rem", borderLeft: "3px solid #000" }}>
+            <strong>ENGINEERING NOTES:</strong> {meta.notes}
+          </div>
+        )}
       </div>
     </div>
   );

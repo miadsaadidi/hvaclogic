@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { EmbedModal } from "@/components/calculator/EmbedModal";
+import { PrintSubmittalModal, SubmittalMeta } from "@/components/calculator/PrintSubmittalModal";
 
 interface ActionButtonBarProps {
   toolRoute: string;
@@ -12,6 +13,7 @@ interface ActionButtonBarProps {
 export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButtonBarProps) {
   const [copied, setCopied] = useState(false);
   const [embedOpen, setEmbedOpen] = useState(false);
+  const [printOpen, setPrintOpen] = useState(false);
 
   const handleShare = () => {
     if (typeof window !== "undefined") {
@@ -21,9 +23,13 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
     }
   };
 
-  const handlePrint = () => {
+  const handlePrintConfirm = (meta: SubmittalMeta) => {
     if (typeof window !== "undefined") {
-      window.print();
+      window.dispatchEvent(new CustomEvent("hvaclogic:submittal-update", { detail: meta }));
+      setPrintOpen(false);
+      setTimeout(() => {
+        window.print();
+      }, 150);
     }
   };
 
@@ -34,14 +40,16 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
           onClick={handleShare}
           className="action-btn"
           title="Share calculation link with current values"
+          type="button"
         >
           {copied ? "✓ Copied Link!" : "🔗 Share Link"}
         </button>
 
         <button
-          onClick={handlePrint}
+          onClick={() => setPrintOpen(true)}
           className="action-btn"
           title="Print official calculation job submittal card"
+          type="button"
         >
           🖨️ Print Spec
         </button>
@@ -51,6 +59,7 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
             onClick={onExportCsv}
             className="action-btn"
             title="Export calculation results as CSV spreadsheet"
+            type="button"
           >
             📊 Export CSV
           </button>
@@ -60,6 +69,7 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
           onClick={() => setEmbedOpen(true)}
           className="action-btn"
           title="Embed this calculator on your website"
+          type="button"
         >
           &lt;/&gt; Embed Tool
         </button>
@@ -70,6 +80,15 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
         toolName={toolName}
         isOpen={embedOpen}
         onClose={() => setEmbedOpen(false)}
+      />
+
+      <PrintSubmittalModal
+        calculatorName={toolName}
+        categoryName="HVAC Engineering"
+        governingStandard="ASHRAE / ACCA"
+        isOpen={printOpen}
+        onClose={() => setPrintOpen(false)}
+        onPrint={handlePrintConfirm}
       />
     </>
   );
