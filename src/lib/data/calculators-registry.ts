@@ -225,6 +225,52 @@ export const calculatorRegistry: CalculatorMeta[] = [
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
   },
+  {
+    id: "filter-sizing-calculator",
+    name: "MERV Air Filter Sizing & Static Pressure Drop Sizer",
+    pillar: "airflow-ducts",
+    route: "/calculators/filter-sizing-calculator",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
+    primaryKeyword: "merv filter pressure drop calculator",
+    secondaryKeywords: ["hvac filter size calculator", "filter face velocity calculator", "merv 13 static pressure drop", "air filter cfm calculator"],
+    primaryIntent: "Commercial / Technical Sizing",
+    seoTitle: "MERV Filter Pressure Drop & Face Velocity Calculator | HVACLogic",
+    metaDescription: "Calculate HVAC air filter face velocity (FPM) and static pressure drops across 1-inch, 2-inch, and 4-inch deep MERV 8 to MERV 16 pleated media.",
+    categoryName: "Airflow & Ducts",
+    categoryRoute: "/airflow-ducts",
+    features: [
+      "Face Velocity (FPM = CFM / Area) compliance checks against ASHRAE 52.2 and ACCA Manual D",
+      "Initial clean static pressure drop and loaded filter resistance curves",
+      "Media depth derating: 1-inch vs 2-inch vs 4-inch deep pleats (cuts pressure drop up to 62%)",
+      "Single filter slot vs multi-grille return configurations (e.g. dual return grilles)",
+      "Interactive SVG air intake filter visualizer with face velocity gauge and pressure drop bar",
+    ],
+    relatedCalculatorIds: ["duct-friction-loss-calculator", "cfm-calculator", "ductulator"],
+    standards: ["ASHRAE", "ACCA"],
+    formulaVersion: "1.0.0",
+    dataVersion: "1.0.0",
+    lastEngineeringReview: "2026-08-19",
+    requiresReferenceDataset: false,
+    offlineEligible: true,
+    testStatus: "validated",
+    faqs: [
+      {
+        question: "What is the maximum recommended face velocity for an HVAC air filter?",
+        answer: "For standard 1-inch residential pleated filters, ACCA Manual D and ASHRAE recommend a maximum face velocity of 300 FPM (Feet Per Minute). Deep pleated 4-inch or 5-inch media filters can safely handle up to 450 to 500 FPM without excessive static pressure drop or particle blow-through."
+      },
+      {
+        question: "Does a 1-inch MERV 13 filter restrict airflow and damage furnaces?",
+        answer: "Yes, when installed in standard 1-inch filter grilles at high face velocities (>350 FPM), a 1-inch MERV 13 filter often creates 0.25 to 0.35 in. wg of static pressure drop on its own. This consumes over 50% of the entire blower static pressure budget, causing ECM blower motor overheating, limit switch tripping, and frozen evaporator coils."
+      },
+      {
+        question: "Why does a 4-inch deep media filter have lower pressure drop than a 1-inch filter?",
+        answer: "A 4-inch deep filter has up to 4 times more total pleated media surface area folded inside the same frame opening. This dramatically lowers the true air velocity passing through the filter fibers, cutting static pressure drop by up to 62% while lasting 6 to 12 months."
+      }
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
+  },
 
   // -------------------------------------------------------------
   // PILLAR 2: COOLING & LOAD SIZING

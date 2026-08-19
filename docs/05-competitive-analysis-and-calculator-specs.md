@@ -362,6 +362,16 @@ This document records direct observations from live SERP audits across primary t
   * No confined vs unconfined space volume threshold test ($50\text{ cu ft/1,000 BTU}$).
 * **HVAC Lab Opportunity**: Full NFPA 54 / National Fuel Gas Code and IFGC compliance engine supporting multi-appliance stacks, confined space threshold testing, vertical vs horizontal outdoor ducts, indoor 2-opening methods, metal/wood louver free area derating, and SVG mechanical room visualizer.
 
+### Cluster K: MERV Air Filter Sizing & Pressure Drop Sizer (`merv filter pressure drop calculator`, `hvac filter size calculator`, `filter face velocity calculator`)
+
+#### Competitor K1: FilterBuy & AirCycler Filter Pressure Drop Guides
+* **Competitor URL**: `filterbuy.com/resources/air-filter-pressure-drop`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Static descriptive articles warning about MERV 13 static pressure without an interactive calculation tool.
+  * No face velocity calculation (FPM = CFM / Area) or media thickness derating (1" vs 2" vs 4" media).
+* **HVAC Lab Opportunity**: Interactive filter sizing engine solving Face Velocity (FPM), initial clean pressure drop ($\Delta P_{\text{clean}}$), loaded dirty filter drop ($\Delta P_{\text{loaded}}$), 1" vs 2" vs 4" deep pleat media comparisons, and blower static pressure budget warnings.
+
 ---
 
 ## 3. The 10/10 Product Value Proposition
