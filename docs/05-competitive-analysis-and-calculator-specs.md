@@ -340,6 +340,16 @@ This document records direct observations from live SERP audits across primary t
   * No interactive calculation tool.
 * **HVAC Lab Opportunity**: Live interactive garage sizing tool with 1-car, 2-car, 3-car, and pole barn presets, overhead garage door R-value adjustments, and SVG suspended unit heater throw cone visualizer.
 
+### Cluster I: Duct Total Equivalent Length (TEL) & Friction Loss Sizer (`duct friction loss calculator`, `total equivalent length hvac`, `acca manual d friction rate`)
+
+#### Competitor I1: EngineeringToolBox Duct Fittings Loss Guide
+* **Competitor URL**: `engineeringtoolbox.com/duct-equivalent-length-d_1052.html`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Static text tables of fitting equivalent lengths.
+  * No interactive accumulator or calculation of Available Static Pressure (ASP) or Design Friction Rate (FR).
+* **HVAC Lab Opportunity**: Interactive Manual D fitting stack builder (elbows, takeoffs, dampers, boots), automatic Available Static Pressure solver ($\text{ASP} = \text{TESP} - \Delta P_{\text{devices}}$), and exact Design Friction Rate solver ($\text{FR} = \frac{\text{ASP} \times 100}{\text{TEL}}$).
+
 ---
 
 ## 3. The 10/10 Product Value Proposition

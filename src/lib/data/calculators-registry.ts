@@ -179,6 +179,52 @@ export const calculatorRegistry: CalculatorMeta[] = [
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "validation_error"]
   },
+  {
+    id: "duct-friction-loss-calculator",
+    name: "Duct Friction Loss & Total Equivalent Length (TEL) Sizer",
+    pillar: "airflow-ducts",
+    route: "/calculators/duct-friction-loss-calculator",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
+    primaryKeyword: "duct friction loss calculator",
+    secondaryKeywords: ["total equivalent length hvac", "acca manual d friction rate", "available static pressure calculator", "duct fitting equivalent length"],
+    primaryIntent: "Transactional / Professional Engineering",
+    seoTitle: "Duct Friction Loss & Total Equivalent Length (TEL) | HVACLogic",
+    metaDescription: "Calculate ACCA Manual D Total Equivalent Length (TEL), Available Static Pressure (ASP), and Design Friction Rate (FR) for residential duct design.",
+    categoryName: "Airflow & Ducts",
+    categoryRoute: "/airflow-ducts",
+    features: [
+      "ACCA Manual D Appendix 3 fitting accumulator (elbows, takeoffs, dampers, boots)",
+      "Available Static Pressure (ASP) solver accounting for wet coils, MERV filters, and registers",
+      "Exact Design Friction Rate (FR = (ASP * 100) / TEL) in.wg per 100 ft",
+      "Interactive SVG duct system schematic with static pressure drop gradient",
+      "Optimal vs High-Resistance fitting warnings (e.g. mitered no-vane elbow penalties)",
+    ],
+    relatedCalculatorIds: ["ductulator", "flex-duct-cfm-chart", "cfm-calculator"],
+    standards: ["ACCA", "ASHRAE", "SMACNA"],
+    formulaVersion: "1.0.0",
+    dataVersion: "1.0.0",
+    lastEngineeringReview: "2026-08-19",
+    requiresReferenceDataset: false,
+    offlineEligible: true,
+    testStatus: "validated",
+    faqs: [
+      {
+        question: "What is Total Equivalent Length (TEL) in duct design?",
+        answer: "Total Equivalent Length (TEL) represents the total aerodynamic resistance of the longest supply and return duct runs combined, converting fitting turbulence into equivalent feet of straight ductwork: TEL = Straight Length + Sum of Fitting Equivalent Lengths."
+      },
+      {
+        question: "How do you calculate Available Static Pressure (ASP)?",
+        answer: "Available Static Pressure is the static pressure remaining to push air through ductwork after deducting pressure drops across system components: ASP = Blower TESP - (Coil Drop + Filter Drop + Register Drops + Device Drops)."
+      },
+      {
+        question: "What is a good design friction rate for residential ductwork?",
+        answer: "Under ACCA Manual D guidelines, optimal residential friction rates fall between 0.06 and 0.12 in. wg per 100 ft. A friction rate below 0.05 requires excessively oversized ductwork, while above 0.15 causes high air velocity hiss and noise."
+      }
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
+  },
 
   // -------------------------------------------------------------
   // PILLAR 2: COOLING & LOAD SIZING
