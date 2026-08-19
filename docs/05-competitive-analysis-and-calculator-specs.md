@@ -283,6 +283,25 @@ This document records direct observations from live SERP audits across primary t
   * No visual cross-section of the wall/roof assembly or heat flux vector arrows.
 * **HVAC Lab Opportunity**: Interactive SVG cross-section visualizer displaying material layer textures, conductive heat transmission arrows, and indoor-to-outdoor temperature decay gradients.
 
+### Cluster F2: Whole-Building Heat Loss & Infiltration (`heat loss calculator`, `building heat loss calculator`)
+
+#### Competitor F2.1: Slant/Fin Heat Loss Calculator (Hydronic Explorer)
+* **Competitor URL**: `slantfin.com/heat-loss-calculator`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Legacy desktop Windows software or mobile app with tiny dialog forms.
+  * Lacks blower door air infiltration leakage modeling ($1.08 \times \text{CFM} \times \Delta T$).
+  * Cannot adjust window U-factors or SHGC ratings dynamically.
+* **HVAC Lab Opportunity**: Instant zero-install web application combining conductive envelope losses ($U \times A \times \Delta T$) across walls/ceilings/windows/slabs with blower door air leakage infiltration ($\text{ACH50} \rightarrow \text{ACH}_{\text{nat}}$), interactive SVG heat loss donut chart, and direct heating equipment handoffs.
+
+#### Competitor F2.2: BuildGreenSmart Building Heat Loss Estimator
+* **Competitor URL**: `buildgreensmart.com/heat-loss`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Simple spreadsheet-style table requiring manual U-factor entry.
+  * No presets for common construction vintages (1960s uninsulated vs 2020s tight envelope).
+* **HVAC Lab Opportunity**: Instant building vintage presets, conductive vs infiltration percentage breakdown, and equipment sizing recommendations (BTU/hr and kW).
+
 ---
 
 ## 3. The 10/10 Product Value Proposition

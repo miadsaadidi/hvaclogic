@@ -709,22 +709,24 @@ export const calculatorRegistry: CalculatorMeta[] = [
     name: "Building Heat Loss & Infiltration Calculator",
     pillar: "building-science",
     route: "/calculators/heat-loss-calculator",
-    status: "planned",
-    launchPhase: 3,
-    riskLevel: "medium",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
     primaryKeyword: "heat loss calculator",
-    secondaryKeywords: ["building heat loss calculator", "heat loss estimator"],
+    secondaryKeywords: ["building heat loss calculator", "heat loss estimator", "home heat loss calculator", "conductive heat loss"],
     primaryIntent: "Technical / Envelope & Infiltration",
     seoTitle: "Building Heat Loss Calculator — Conductive & Air Leakage | HVACLogic",
     metaDescription: "Calculate whole-building peak heat loss combining envelope conductive transmission (U * A * Delta T) and blower door air infiltration leakage.",
     categoryName: "Building Science",
     categoryRoute: "/building-science",
     features: [
-      "Conductive heat transmission across walls, ceilings, windows, and slabs",
-      "Air infiltration heat loss modeling using ACH50 or natural air change rates",
-      "Total peak heating demand in BTU/hr and kW",
+      "Conductive transmission heat loss solver across walls, ceilings, windows, doors, and foundation slabs",
+      "Air infiltration heat loss modeling using natural air changes per hour (ACHnat) and CFM leakage",
+      "Interactive SVG heat loss donut chart and envelope component percentage distribution",
+      "Heating equipment sizing recommendations (Furnace BTU/hr and Heat Pump Tonnage)",
+      "1-Click CSV engineering report submittal export",
     ],
-    relatedCalculatorIds: ["r-value-calculator", "btu-calculator", "boiler-size-calculator"],
+    relatedCalculatorIds: ["r-value-calculator", "btu-calculator", "furnace-size-calculator", "heat-pump-size-calculator"],
     standards: ["ASHRAE", "ACCA"],
     formulaVersion: "1.0.0",
     dataVersion: "1.0.0",
@@ -734,11 +736,19 @@ export const calculatorRegistry: CalculatorMeta[] = [
     testStatus: "validated",
     faqs: [
       {
-        question: "How is conductive heat loss calculated?",
-        answer: "Conductive heat loss follows Fourier's law: Q = U * A * Delta T, where U is the assembly U-factor, A is the surface area in square feet, and Delta T is the indoor-outdoor temperature difference."
+        question: "How is conductive envelope heat loss calculated?",
+        answer: "Conductive heat loss follows Fourier's law of thermal conduction: Q = U * A * Delta T, where U is the assembly U-factor (1 / R-value), A is surface area in square feet, and Delta T is the indoor-to-outdoor temperature difference."
+      },
+      {
+        question: "How does air infiltration affect building heat loss?",
+        answer: "Infiltration heat loss is calculated as Q = 1.08 * CFM * Delta T. In older unsealed homes (>10 ACH50), cold air infiltration can represent 30% to 45% of total winter heating demand."
+      },
+      {
+        question: "What is the difference between whole-building heat loss and heating equipment capacity?",
+        answer: "Heat loss is the exact rate of thermal energy leaving the structure under 99% design weather conditions. Heating equipment (furnaces or heat pumps) is typically sized with a 15% to 25% safety margin above peak heat loss (ACCA Manual S)."
       }
     ],
-    analyticsEvents: ["calculator_started", "result_generated", "share_clicked"]
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
   }
 ];
 
