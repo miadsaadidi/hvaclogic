@@ -6,6 +6,7 @@ import { DirectAnswerCard } from "@/components/seo/DirectAnswerCard";
 import { PageJumpNav } from "@/components/seo/PageJumpNav";
 import { StandardsBadge } from "@/components/seo/StandardsBadge";
 import { EngineeringReviewCard } from "@/components/seo/EngineeringReviewCard";
+import { RelatedCalculatorsGrid } from "@/components/seo/RelatedCalculatorsGrid";
 import { PrintJobSubmittal } from "@/components/calculator/PrintJobSubmittal";
 import { EmbedDetector } from "@/components/calculator/EmbedDetector";
 
@@ -111,7 +112,12 @@ export function CalculatorContainer({
 
         {/* SECTION 7: CONTEXTUAL TOPIC SILO FOOTER & STANDARDS */}
         <section id="related-tools" aria-label="Related Engineering Calculators" style={{ margin: "2rem 0" }}>
-          {relatedToolsSection}
+          {relatedToolsSection || (
+            <RelatedCalculatorsGrid
+              relatedIds={calculator.relatedCalculatorIds}
+              currentPillar={calculator.pillar}
+            />
+          )}
           <StandardsBadge standards={calculator.standards} />
         </section>
       </main>

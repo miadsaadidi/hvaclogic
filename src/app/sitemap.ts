@@ -33,9 +33,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // All 17 Calculators
   const calculatorEntries: MetadataRoute.Sitemap = calculatorRegistry.map((calc) => ({
     url: `${baseUrl}${calc.route}`,
-    lastModified,
-    changeFrequency: "monthly",
-    priority: calc.status === "production" ? 0.8 : 0.6,
+    lastModified: calc.lastEngineeringReview ? new Date(calc.lastEngineeringReview) : lastModified,
+    changeFrequency: "weekly",
+    priority: calc.status === "production" ? 0.85 : 0.6,
   }));
 
   // Authority & Policy Pages
