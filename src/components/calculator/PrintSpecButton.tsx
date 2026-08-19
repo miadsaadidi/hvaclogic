@@ -1,0 +1,33 @@
+"use client";
+
+import React from "react";
+
+export function PrintSpecButton() {
+  const handlePrint = () => {
+    if (typeof window !== "undefined") {
+      window.print();
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handlePrint}
+      className="action-btn"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.35rem",
+        fontSize: "0.8rem",
+      }}
+      title="Print Calculation Specification Sheet"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9" />
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+        <rect x="6" y="14" width="12" height="8" />
+      </svg>
+      <span>Print Spec</span>
+    </button>
+  );
+}

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64" fill="none">
+  <defs>
+    <linearGradient id="logoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#070a12" />
+    </linearGradient>
+    <linearGradient id="logoCoolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#00d2ff" />
+    </linearGradient>
+    <linearGradient id="logoHeatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8c42" />
+      <stop offset="100%" stop-color="#ff4500" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Icon Badge (48x48 centered at x=32, y=32) -->
+  <g transform="translate(4, 4)">
+    <rect width="56" height="56" rx="12" fill="url(#logoBgGrad)" stroke="#1e293b" stroke-width="1.2" />
+    <circle cx="28" cy="28" r="20" stroke="#334155" stroke-width="1" stroke-dasharray="2 3" opacity="0.6" />
+
+    <!-- Cooling Blade -->
+    <path
+      d="M 18 14 C 24 12 33 16 37 22 C 33 20 28 20 24 24 C 20 26 17 31 18 37 C 14 32 13 24 18 14 Z"
+      fill="url(#logoCoolGrad)"
+    />
+
+    <!-- Heating Blade -->
+    <path
+      d="M 38 42 C 32 44 23 40 19 34 C 23 36 28 36 32 32 C 36 30 39 25 38 19 C 42 24 43 32 38 42 Z"
+      fill="url(#logoHeatGrad)"
+    />
+
+    <!-- Core -->
+    <circle cx="28" cy="28" r="3.5" fill="#ffffff" />
+    <circle cx="28" cy="28" r="2" fill="#00d2ff" />
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(74, 0)">
+    <!-- "HVAC" in crisp white -->
+    <text x="0" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="#ffffff" letter-spacing="-0.5px">HVAC</text>
+
+    <!-- "Logic" in Coolant Cyan gradient -->
+    <text x="80" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="url(#logoCoolGrad)" letter-spacing="-0.5px">Logic</text>
+
+    <!-- Subtitle: .ORG • Engineering Calculators -->
+    <text x="1" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="1.5px">ENGINEERING CALCULATORS</text>
+  </g>
+</svg>
