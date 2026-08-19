@@ -33,7 +33,7 @@ export function SiteFooter() {
           {/* PILLAR 1 & 2 */}
           <div>
             <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
-              Airflow & Cooling
+              Airflow &amp; Cooling
             </h4>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/ductulator">Digital Ductulator</Link></li>
@@ -42,24 +42,26 @@ export function SiteFooter() {
               <li><Link href="/calculators/btu-calculator">BTU Load Master</Link></li>
               <li><Link href="/calculators/ac-tonnage-calculator">AC Tonnage Calculator</Link></li>
               <li><Link href="/calculators/ac-model-decoder">AC Model Decoder</Link></li>
+              <li><Link href="/calculators/mini-split-sizing">Mini-Split Multi-Zone</Link></li>
             </ul>
           </div>
 
           {/* PILLAR 3 & 4 */}
           <div>
             <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
-              Diagnostics & Heating
+              Diagnostics &amp; Heating
             </h4>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
-              <li><Link href="/calculators/superheat-subcooling-calculator">Superheat & Subcooling</Link></li>
+              <li><Link href="/calculators/superheat-subcooling-calculator">Superheat &amp; Subcooling</Link></li>
               <li><Link href="/calculators/pt-chart">Digital PT Chart</Link></li>
+              <li><Link href="/calculators/psychrometric-calculator">Psychrometric Calculator</Link></li>
               <li><Link href="/calculators/heat-pump-size-calculator">Heat Pump Sizer</Link></li>
               <li><Link href="/calculators/furnace-size-calculator">Furnace AFUE Sizer</Link></li>
-              <li><Link href="/calculators/boiler-size-calculator">Boiler & EDR Sizer</Link></li>
+              <li><Link href="/calculators/boiler-size-calculator">Boiler &amp; EDR Sizer</Link></li>
             </ul>
           </div>
 
-          {/* BUILDING SCIENCE & RESOURCES */}
+          {/* BUILDING SCIENCE & VENTILATION */}
           <div>
             <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
               Building Science

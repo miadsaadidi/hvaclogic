@@ -25,22 +25,22 @@ const CATEGORY_NAMES: Record<string, string> = {
 
 const EXTRA_KEYWORDS: Record<string, string[]> = {
   ductulator: ["duct sizing", "round duct", "rectangular duct", "friction rate", "cfm", "velocity", "fpm", "ashrae duct", "static pressure"],
+  "flex-duct-cfm-chart": ["flexible duct", "duct sag", "friction loss", "derating", "flex sizing", "compression"],
+  "cfm-calculator": ["airflow", "cfm per ton", "sensible heat", "latent heat", "air changes", "ach", "room cfm"],
+  "kitchen-hood-cfm": ["range hood cfm", "cooktop cfm", "makeup air damper", "island hood", "irc m1503.6", "kitchen ventilation"],
   "btu-calculator": ["manual j", "cooling load", "heating load", "sq ft", "heat loss", "heat gain", "tonnage sizing", "btu per hour"],
   "ac-tonnage-calculator": ["manual s", "ac size", "seer2", "operating cost", "climate zone", "room tons", "tonnage calculator"],
-  "superheat-subcooling-calculator": ["subcooling", "superheat", "r410a", "r454b", "r32", "txv", "piston", "orifice", "epa 608", "glide", "charge"],
-  "cfm-calculator": ["airflow", "cfm per ton", "sensible heat", "latent heat", "air changes", "ach", "room cfm"],
-  "flex-duct-cfm-chart": ["flexible duct", "duct sag", "friction loss", "derating", "flex sizing", "compression"],
-  "r-value-calculator": ["insulation", "u-factor", "wall assembly", "iecc", "r value", "thermal resistance", "energy code"],
   "ac-model-decoder": ["serial number", "model number", "carrier", "trane", "lennox", "goodman", "york", "decoded tons", "btu tonnage"],
+  "mini-split-sizing": ["ductless mini split", "multi zone", "inverter ac", "single zone", "heat pump ductless", "diversity ratio"],
+  "superheat-subcooling-calculator": ["subcooling", "superheat", "r410a", "r454b", "r32", "txv", "piston", "orifice", "epa 608", "glide", "charge"],
   "pt-chart": ["pressure temperature", "bubble point", "dew point", "saturation pressure", "r22", "r134a", "r404a", "r407c"],
-  "heat-pump-sizing-calculator": ["heat pump", "balance point", "hspf2", "cop", "supplemental heat", "dual fuel", "strip heat"],
-  "combustion-air-calculator": ["furnace combustion", "gas boiler", "nfpa 54", "confined space", "louvers", "makeup air"],
-  "duct-friction-loss-calculator": ["equivalent length", "fittings", "elbows", "dampers", "total equivalent length", "smacna"],
   "psychrometric-calculator": ["enthalpy", "wet bulb", "dry bulb", "relative humidity", "dew point", "grains of moisture", "humidity ratio"],
-  "filter-sizing-calculator": ["merv rating", "face velocity", "filter pressure drop", "air filter cfm", "filter area"],
-  "mini-split-sizing-calculator": ["ductless mini split", "multi zone", "inverter ac", "single zone", "heat pump ductless"],
-  "refrigerant-charge-calculator": ["line set adder", "factory charge", "liquid line ounces", "additional refrigerant", "weigh in charge"],
-  "refrigeration-cycle-diagnostics": ["delta t", "temperature drop", "evaporator delta", "condenser delta", "coil split", "hvac troubleshooting"],
+  "furnace-size-calculator": ["furnace btu", "afue efficiency", "condensing furnace", "gas furnace sizing", "input btu", "output btu"],
+  "heat-pump-size-calculator": ["heat pump", "balance point", "hspf2", "cop", "supplemental heat", "dual fuel", "strip heat", "cold climate"],
+  "boiler-size-calculator": ["hydronic boiler", "baseboard sizing", "radiator edr", "cast iron radiator", "dhw priority", "boiler btu"],
+  "garage-heater-sizing": ["garage heater", "shop heater", "modine hot dawg", "gas unit heater", "electric garage heater", "slab heat loss"],
+  "r-value-calculator": ["insulation", "u-factor", "wall assembly", "iecc", "r value", "thermal resistance", "energy code"],
+  "heat-loss-calculator": ["building heat loss", "envelope loss", "infiltration cfm", "ach", "whole home heat loss"],
 };
 
 export function CommandPalette() {
