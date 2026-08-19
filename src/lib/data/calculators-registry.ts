@@ -663,22 +663,24 @@ export const calculatorRegistry: CalculatorMeta[] = [
     name: "Insulation R-Value & U-Factor Calculator",
     pillar: "building-science",
     route: "/calculators/r-value-calculator",
-    status: "planned",
-    launchPhase: 2,
+    status: "production",
+    launchPhase: 1,
     riskLevel: "low",
     primaryKeyword: "r value for insulation",
-    secondaryKeywords: ["r value calculator", "u factor calculator", "thermal resistance"],
+    secondaryKeywords: ["r value calculator", "u factor calculator", "thermal resistance", "wall r value", "attic insulation r value"],
     primaryIntent: "Informational / Energy Code",
     seoTitle: "R-Value Calculator — Wall & Attic Insulation U-Factor | HVACLogic",
     metaDescription: "Build multi-layer wall, roof, and floor assemblies to calculate total R-value (R-total) and overall U-factor with IECC 2021/2024 climate zone compliance checks.",
     categoryName: "Building Science",
     categoryRoute: "/building-science",
     features: [
-      "Multi-layer assembly stack (siding, continuous foam, cavity insulation, drywall)",
-      "Total assembly thermal resistance R-total and overall U-factor (U = 1 / R)",
-      "IECC 2021/2024 energy code compliance verification across climate zones 1 through 7",
+      "Dynamic multi-layer assembly builder (siding, continuous foam, sheathing, cavity batt/spray foam, drywall, air films)",
+      "Total assembly thermal resistance R-total and overall U-factor (U = 1 / R_total)",
+      "IECC 2021 / 2024 Energy Code prescriptive minimum compliance checks (Climate Zones 1 to 7)",
+      "Interactive SVG cross-section visualizer showing thermal textures and indoor-to-outdoor temperature gradient",
+      "Annual heat loss transmission estimator (BTU/sq ft per year)",
     ],
-    relatedCalculatorIds: ["heat-loss-calculator", "btu-calculator"],
+    relatedCalculatorIds: ["btu-calculator", "furnace-size-calculator", "heat-pump-size-calculator"],
     standards: ["IECC", "ASHRAE"],
     formulaVersion: "1.0.0",
     dataVersion: "1.0.0",
@@ -688,11 +690,19 @@ export const calculatorRegistry: CalculatorMeta[] = [
     testStatus: "validated",
     faqs: [
       {
-        question: "How do you convert R-value to U-factor?",
-        answer: "U-factor is the reciprocal of total R-value: U = 1 / R_total. For example, an R-20 wall assembly has a U-factor of 1 / 20 = 0.050 BTU/hr·ft²·°F."
+        question: "How do you convert insulation R-value to U-factor?",
+        answer: "U-factor is the exact mathematical reciprocal of total assembly R-value: U = 1 / R_total. For example, an R-20 wall assembly has an overall U-factor of 1 / 20 = 0.050 BTU/hr·ft²·°F. Lower U-factors mean better thermal insulation."
+      },
+      {
+        question: "What is the difference between cavity insulation and continuous insulation (ci)?",
+        answer: "Cavity insulation sits between wood or steel studs (subject to thermal bridging through the studs). Continuous insulation (ci) runs uninterrupted across structural members (like exterior polyiso or XPS foam boards), preventing thermal bridging and drastically lowering overall assembly U-factor."
+      },
+      {
+        question: "What R-value is required by IECC 2021/2024 energy codes?",
+        answer: "For residential exterior walls in northern Climate Zones 4–8, IECC 2021/2024 requires a minimum of R-20+5ci (R-20 cavity + R-5 continuous foam) or R-13+10ci. In attics and ceilings, IECC mandates R-49 to R-60."
       }
     ],
-    analyticsEvents: ["calculator_started", "result_generated", "share_clicked"]
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
   },
   {
     id: "heat-loss-calculator",

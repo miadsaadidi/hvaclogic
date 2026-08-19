@@ -264,6 +264,25 @@ This document records direct observations from live SERP audits across primary t
   * App-only or paid software subscription required.
 * **HVAC Lab Opportunity**: 100% free, zero-login, client-side ASHRAE Fundamentals formulation with instant state point resolver.
 
+### Cluster F: Building Science & Insulation R-Value (`r value for insulation`, `r value calculator`, `u factor calculator`)
+
+#### Competitor F1: Insulation Institute R-Value Calculator
+* **Competitor URL**: `insulationinstitute.org/im-a-homeowner/about-insulation/how-much-do-you-need`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Basic static climate map showing recommended DOE levels (e.g. R-38 or R-49 in attics).
+  * Cannot construct multi-layer wall or roof assemblies (drywall + cavity + continuous foam + siding).
+  * Lacks $U$-factor calculation ($U = 1 / R_{\text{total}}$) or thermal bridging reduction modeling.
+* **HVAC Lab Opportunity**: Dynamic multi-layer assembly stack builder with 15+ standard construction materials, live $R_{\text{total}}$ and $U$-factor calculations, and **IECC 2021 / 2024 Climate Zone compliance badges (Zones 1–7)**.
+
+#### Competitor F2: CalculatorSoup / OmniCalculator R-Value
+* **Competitor URL**: `calculatorsoup.com/calculators/construction/r-value.php`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Generic arithmetic addition table with zero building science context.
+  * No visual cross-section of the wall/roof assembly or heat flux vector arrows.
+* **HVAC Lab Opportunity**: Interactive SVG cross-section visualizer displaying material layer textures, conductive heat transmission arrows, and indoor-to-outdoor temperature decay gradients.
+
 ---
 
 ## 3. The 10/10 Product Value Proposition
