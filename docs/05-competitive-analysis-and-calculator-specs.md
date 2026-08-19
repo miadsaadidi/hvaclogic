@@ -320,6 +320,26 @@ This document records direct observations from live SERP audits across primary t
   * Static PDF chart of radiator section dimensions with no live calculation.
 * **HVAC Lab Opportunity**: Live interactive EDR section accumulator (column, tube, wall radiators), hot water vs steam rating toggle, and visual hydronic loop schematic with boiler, expansion tank, and circulator pump.
 
+### Cluster H: Garage & Workshop Heater Sizing (`garage heater sizing calculator`, `garage heater btu calculator`, `shop heater sizing`)
+
+#### Competitor H1: Northern Tool / Mr. Heater Sizing Calculator
+* **Competitor URL**: `northerntool.com/shop/tools/heater-calculator`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Basic $\text{Volume} \times \Delta T \times \text{Insulation Factor}$ simplified equation.
+  * Completely ignores massive conductive slab edge perimeter heat loss ($F_p \times \text{Perimeter} \times \Delta T$).
+  * Fails to distinguish between attached garages (shared warm wall) vs detached exposed shops.
+  * No electrical circuit breaker sizing ($A = \frac{\text{Watts}}{240\text{V}}$) for electric unit heaters.
+* **HVAC Lab Opportunity**: Comprehensive garage envelope model accounting for uninsulated concrete slabs, overhead door perimeter leakage, attached vs detached wall buffering, freeze-protection ($50^\circ\text{F}$) vs workshop ($65^\circ\text{F}$) setpoints, and dual Gas Unit Heater (BTU/hr) vs Electric Forced-Air (kW / 240V Amps) equipment recommendations.
+
+#### Competitor H2: Modine Hot Dawg Sizing Guide
+* **Competitor URL**: `modinehvac.com/hot-dawg-garage-heater`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Static sizing chart with 30k, 45k, 60k, 75k, 100k, 125k unit tiers.
+  * No interactive calculation tool.
+* **HVAC Lab Opportunity**: Live interactive garage sizing tool with 1-car, 2-car, 3-car, and pole barn presets, overhead garage door R-value adjustments, and SVG suspended unit heater throw cone visualizer.
+
 ---
 
 ## 3. The 10/10 Product Value Proposition

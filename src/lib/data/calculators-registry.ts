@@ -634,23 +634,25 @@ export const calculatorRegistry: CalculatorMeta[] = [
     name: "Garage & Workshop Heater Sizing Calculator",
     pillar: "heating-systems",
     route: "/calculators/garage-heater-sizing",
-    status: "planned",
-    launchPhase: 3,
+    status: "production",
+    launchPhase: 1,
     riskLevel: "low",
     primaryKeyword: "garage heater sizing calculator",
-    secondaryKeywords: ["shop heater sizing", "garage heater btu calculator"],
+    secondaryKeywords: ["shop heater sizing", "garage heater btu calculator", "electric garage heater sizing", "gas garage heater btu"],
     primaryIntent: "Commercial / DIY Heating",
     seoTitle: "Garage Heater Sizing Calculator — Shop Heating BTU | HVACLogic",
     metaDescription: "Size gas unit heaters, forced-air electric heaters, and radiant tubes for attached and detached garages accounting for slab losses and door infiltration.",
     categoryName: "Heating Systems",
     categoryRoute: "/heating-systems",
     features: [
-      "1-car, 2-car, 3-car, and custom shop dimension geometry",
-      "Uninsulated concrete slab perimeter losses and overhead door infiltration",
-      "Gas unit heater (BTU) vs electric forced-air (kW) heater recommendations",
+      "1-car, 2-car, 2.5-car, 3-car, and custom pole barn shop dimension geometry",
+      "Concrete uninsulated slab edge perimeter conduction and overhead door thermal losses",
+      "Gas unit heater (30k–125k BTU/hr) vs electric forced-air (3kW–20kW / 240V Amps) recommendations",
+      "Interactive SVG garage cross-section visualizer with ceiling throw cone and heat loss flow vectors",
+      "Freeze-protection (50°F) vs active workshop comfort (65°F) setpoint modes",
     ],
-    relatedCalculatorIds: ["furnace-size-calculator", "heat-loss-calculator"],
-    standards: ["ASHRAE"],
+    relatedCalculatorIds: ["heat-loss-calculator", "furnace-size-calculator", "boiler-size-calculator"],
+    standards: ["ASHRAE", "ACCA"],
     formulaVersion: "1.0.0",
     dataVersion: "1.0.0",
     lastEngineeringReview: "2026-08-19",
@@ -660,10 +662,18 @@ export const calculatorRegistry: CalculatorMeta[] = [
     faqs: [
       {
         question: "What size heater do I need for a 2-car garage?",
-        answer: "A standard 2-car garage (approx. 450 to 576 sq ft) with average insulation typically requires a 30,000 to 45,000 BTU gas unit heater or a 7.5 to 10 kW electric heater."
+        answer: "A standard 2-car garage (approx. 480 to 576 sq ft) with average insulation in a cold climate typically requires a 30,000 to 45,000 BTU gas unit heater or a 5.0 to 7.5 kW electric heater (requiring a dedicated 30A to 40A 240V circuit)."
+      },
+      {
+        question: "Is a gas unit heater or electric heater better for a garage?",
+        answer: "Gas unit heaters (e.g. Modine Hot Dawg or Mr. Heater Big Maxx) have lower operating costs in cold climates and heat up uninsulated spaces much faster. Electric unit heaters have lower upfront installation costs (no gas line or chimney venting needed) but require heavy 240V electrical service."
+      },
+      {
+        question: "Why do uninsulated concrete garage slabs cause high heat loss?",
+        answer: "Concrete has very low thermal resistance (R-0.08 per inch). Uninsulated slab edges in contact with frozen ground act as a giant thermal heat sink, accounting for up to 35% of total winter garage heat loss."
       }
     ],
-    analyticsEvents: ["calculator_started", "result_generated", "share_clicked"]
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
   },
 
   // -------------------------------------------------------------
