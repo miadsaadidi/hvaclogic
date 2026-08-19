@@ -19,22 +19,22 @@ const CATEGORY_META: Record<string, { label: string; icon: string; color: string
 
 const CALCULATOR_METRICS: Record<string, { metric: string; icon: string }> = {
   ductulator: { metric: "Equal Friction • Round/Rect • Velocity", icon: "🌀" },
+  "flex-duct-cfm-chart": { metric: "Sag Derating • Friction • SMACNA", icon: "📏" },
+  "cfm-calculator": { metric: "Sensible Heat • 400 CFM/Ton • ACH", icon: "💨" },
+  "kitchen-hood-cfm": { metric: "Cooktop BTU • Island Hood • Make-Up Air", icon: "🍳" },
   "btu-calculator": { metric: "Manual J • Sq Ft • Tonnage Sizing", icon: "🏠" },
   "ac-tonnage-calculator": { metric: "Manual S • SEER2 • Cost Modeling", icon: "❄️" },
-  "superheat-subcooling-calculator": { metric: "TXV / Piston • NIST REFPROP PT", icon: "🔧" },
-  "cfm-calculator": { metric: "Sensible Heat • 400 CFM/Ton • ACH", icon: "💨" },
-  "flex-duct-cfm-chart": { metric: "Sag Derating • Friction • SMACNA", icon: "📏" },
-  "r-value-calculator": { metric: "Series/Parallel • U-Factor • IECC", icon: "🏢" },
   "ac-model-decoder": { metric: "Serial/Model • Nominal Tonnage", icon: "🔍" },
+  "mini-split-sizing": { metric: "Multi-Zone • Inverter Diversity", icon: "⚡" },
+  "superheat-subcooling-calculator": { metric: "TXV / Piston • NIST REFPROP PT", icon: "🔧" },
   "pt-chart": { metric: "Glide • Bubble/Dew • R-454B A2L", icon: "📊" },
-  "heat-pump-sizing-calculator": { metric: "Balance Point • HSPF2 • COP", icon: "🔥" },
-  "combustion-air-calculator": { metric: "NFPA 54 • Louvers • Makeup Air", icon: "🛡️" },
-  "duct-friction-loss-calculator": { metric: "Total Equivalent Length • TEL", icon: "📐" },
   "psychrometric-calculator": { metric: "Enthalpy • Wet Bulb • Humidity", icon: "💧" },
-  "filter-sizing-calculator": { metric: "MERV Rating • Face Velocity FPM", icon: "🛡️" },
-  "mini-split-sizing-calculator": { metric: "Multi-Zone • Inverter Sizing", icon: "⚡" },
-  "refrigerant-charge-calculator": { metric: "Lineset Adder • Factory Weigh-In", icon: "⚖️" },
-  "refrigeration-cycle-diagnostics": { metric: "Delta-T • Coil Temperature Split", icon: "🌡️" },
+  "furnace-size-calculator": { metric: "80% vs 96% AFUE • Blower CFM", icon: "🔥" },
+  "heat-pump-size-calculator": { metric: "Balance Point • ccASHP • Backup kW", icon: "⚡" },
+  "boiler-size-calculator": { metric: "Baseboard Ft • Radiator EDR • DHW", icon: "♨️" },
+  "garage-heater-sizing": { metric: "Slab Losses • Gas BTU • 240V Amps", icon: "🚗" },
+  "r-value-calculator": { metric: "Series/Parallel • U-Factor • IECC", icon: "🏢" },
+  "heat-loss-calculator": { metric: "Envelope Transmission • ACH Drafts", icon: "🏡" },
 };
 
 export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
@@ -195,6 +195,7 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
               <Link
                 key={calc.id}
                 href={calc.route}
+                className="powerlab-card-link"
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -250,25 +251,53 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                 )}
 
                 {/* Description */}
-                <p style={{ margin: 0, fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: 1.45, flex: 1 }}>
+                <p
+                  style={{
+                    fontSize: "0.8125rem",
+                    color: "var(--ink-secondary)",
+                    lineHeight: 1.45,
+                    margin: "0 0 1rem",
+                    flex: 1,
+                  }}
+                >
                   {calc.metaDescription}
                 </p>
 
-                {/* Launch Action Button */}
+                {/* Standards Badges */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem", marginBottom: "0.75rem" }}>
+                  {calc.standards.map((s) => (
+                    <span
+                      key={s}
+                      style={{
+                        fontSize: "0.68rem",
+                        fontWeight: 600,
+                        background: "rgba(255, 255, 255, 0.04)",
+                        color: "var(--text-muted)",
+                        border: "1px solid var(--border-color)",
+                        padding: "0.1rem 0.4rem",
+                        borderRadius: "3px",
+                      }}
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Bottom Action Row */}
                 <div
-                  className="action-btn"
                   style={{
-                    marginTop: "1.25rem",
-                    width: "100%",
-                    justifyContent: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    paddingTop: "0.65rem",
+                    borderTop: "1px solid var(--border-subtle)",
+                    fontSize: "0.78rem",
                     fontWeight: 700,
-                    fontSize: "0.8rem",
-                    background: "var(--surface-raised)",
-                    borderColor: "var(--border-color)",
-                    color: "var(--ink)",
+                    color: color,
                   }}
                 >
-                  Open Sizer & Calculator →
+                  <span>Launch Tool</span>
+                  <span>→</span>
                 </div>
               </Link>
             );

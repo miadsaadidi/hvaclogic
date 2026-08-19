@@ -3,7 +3,9 @@ import Link from "next/link";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { ConnectedSystemFlow } from "@/components/home/ConnectedSystemFlow";
 import { HomeSearchFilter } from "@/components/home/HomeSearchFilter";
+import { HomeStatsBar } from "@/components/home/HomeStatsBar";
 import { TrustBadges } from "@/components/home/TrustBadges";
+import { HomeFaqSection, HOMEPAGE_FAQS } from "@/components/home/HomeFaqSection";
 import { siteConfig } from "@/lib/site-config";
 
 export default function HomePage() {
@@ -36,6 +38,17 @@ export default function HomePage() {
           description: c.metaDescription,
         })),
       },
+      {
+        "@type": "FAQPage",
+        mainEntity: HOMEPAGE_FAQS.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      },
     ],
   };
 
@@ -52,7 +65,7 @@ export default function HomePage() {
           className="hero"
           style={{
             textAlign: "center",
-            padding: "2.5rem 1rem 1rem",
+            padding: "2.5rem 1rem 0.5rem",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -132,6 +145,9 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* HERO STATS RIBBON */}
+        <HomeStatsBar />
+
         {/* CONNECTED ECOSYSTEM FLOW SCHEMATIC */}
         <ConnectedSystemFlow />
 
@@ -150,6 +166,9 @@ export default function HomePage() {
 
         {/* TRUST & ENGINEERING TRANSPARENCY */}
         <TrustBadges />
+
+        {/* FREQUENTLY ASKED QUESTIONS */}
+        <HomeFaqSection />
 
         {/* SUPPORTING LINKS FOOTER SECTION */}
         <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", paddingBottom: "2rem" }}>
