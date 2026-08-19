@@ -12,6 +12,8 @@ const STANDARD_DESCRIPTIONS: Record<StandardId, string> = {
   DOE: "U.S. Department of Energy (DOE) Test Procedure",
   NIST: "NIST REFPROP Thermodynamic Database",
   HVI: "Home Ventilating Institute (HVI) 916 Standard",
+  NFPA: "National Fuel Gas Code (NFPA 54 / ANSI Z223.1)",
+  IFGC: "International Fuel Gas Code (IFGC Chapter 3)",
 };
 
 export function StandardsBadge({ standards }: { standards: StandardId[] }) {

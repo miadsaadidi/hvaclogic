@@ -350,6 +350,18 @@ This document records direct observations from live SERP audits across primary t
   * No interactive accumulator or calculation of Available Static Pressure (ASP) or Design Friction Rate (FR).
 * **HVAC Lab Opportunity**: Interactive Manual D fitting stack builder (elbows, takeoffs, dampers, boots), automatic Available Static Pressure solver ($\text{ASP} = \text{TESP} - \Delta P_{\text{devices}}$), and exact Design Friction Rate solver ($\text{FR} = \frac{\text{ASP} \times 100}{\text{TEL}}$).
 
+### Cluster J: Combustion Air & Confined Space Sizer (`combustion air calculator`, `nfpa 54 combustion air`, `confined space combustion air`)
+
+#### Competitor J1: GoodCalculators Combustion Air Calculator
+* **Competitor URL**: `goodcalculators.com/combustion-air-calculator`
+* **Last Reviewed**: 2026-08-19
+* **Measurable Observations**:
+  * Simple input of total BTU with fixed single opening output.
+  * Fails to support multi-appliance accumulation (e.g. Furnace + Water Heater + Boiler).
+  * Ignores metal vs wood louver free area reduction factors (75% metal vs 25% wood).
+  * No confined vs unconfined space volume threshold test ($50\text{ cu ft/1,000 BTU}$).
+* **HVAC Lab Opportunity**: Full NFPA 54 / National Fuel Gas Code and IFGC compliance engine supporting multi-appliance stacks, confined space threshold testing, vertical vs horizontal outdoor ducts, indoor 2-opening methods, metal/wood louver free area derating, and SVG mechanical room visualizer.
+
 ---
 
 ## 3. The 10/10 Product Value Proposition

@@ -16,6 +16,7 @@ const STANDARD_CITATIONS: Record<string, string> = {
   AHRI: "https://www.ahrinet.org",
   HVI: "https://www.hvi.org",
   NFPA: "https://www.nfpa.org/codes-and-standards/nfpa-54-standard-development/54",
+  IFGC: "https://codes.iccsafe.org/content/IFGC2024P1",
   DOE: "https://www.energy.gov/eere/buildings/building-technologies-office",
 };
 

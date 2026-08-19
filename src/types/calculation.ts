@@ -25,7 +25,9 @@ export type StandardId =
   | "IECC"
   | "DOE"
   | "NIST"
-  | "HVI";
+  | "HVI"
+  | "NFPA"
+  | "IFGC";
 
 export interface SchemaFAQ {
   question: string;

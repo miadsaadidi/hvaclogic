@@ -721,6 +721,52 @@ export const calculatorRegistry: CalculatorMeta[] = [
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
   },
+  {
+    id: "combustion-air-calculator",
+    name: "Combustion Air & Confined Space Sizer (NFPA 54 / IFGC)",
+    pillar: "heating-systems",
+    route: "/calculators/combustion-air-calculator",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
+    primaryKeyword: "combustion air calculator",
+    secondaryKeywords: ["nfpa 54 combustion air", "confined space combustion air", "furnace combustion air requirements", "water heater combustion air opening"],
+    primaryIntent: "High Commercial / Code Compliance",
+    seoTitle: "Combustion Air Calculator — NFPA 54 & IFGC Confined Space | HVACLogic",
+    metaDescription: "Calculate mechanical room confined space volume (50 cu ft/1,000 BTU) and size permanent combustion air openings for gas furnaces and water heaters.",
+    categoryName: "Heating Systems",
+    categoryRoute: "/heating-systems",
+    features: [
+      "NFPA 54 & IFGC standard 50 cu ft per 1,000 BTU/hr confined space threshold test",
+      "Multi-appliance gas input load accumulator (furnaces, boilers, water heaters, unit heaters)",
+      "4 standard NFPA 54 combustion air methods (Indoor 2 openings, Outdoor vertical 2 openings, Outdoor horizontal 2 openings, Outdoor single opening)",
+      "Louver free area derating (Metal 75% vs Wood 25%) and round duct diameter sizing",
+      "Interactive SVG mechanical room visualizer with upper/lower air intake ducts and volume gauge",
+    ],
+    relatedCalculatorIds: ["furnace-size-calculator", "boiler-size-calculator", "garage-heater-sizing"],
+    standards: ["NFPA", "IFGC", "ASHRAE"],
+    formulaVersion: "1.0.0",
+    dataVersion: "1.0.0",
+    lastEngineeringReview: "2026-08-19",
+    requiresReferenceDataset: false,
+    offlineEligible: true,
+    testStatus: "validated",
+    faqs: [
+      {
+        question: "What is a confined space according to NFPA 54 / IFGC?",
+        answer: "A confined space has an enclosed volume less than 50 cubic feet per 1,000 BTU/hr of the total combined input rating of all fuel-burning appliances installed in that room (e.g. an 80,000 BTU furnace + 40,000 BTU water heater requires at least 6,000 cu ft)."
+      },
+      {
+        question: "How do you size combustion air openings for indoor air?",
+        answer: "When drawing combustion air from adjacent indoor spaces, NFPA 54 requires two permanent openings: one within 12 inches of the top and one within 12 inches of the bottom of the enclosure. Each opening must have a minimum net free area of 1 sq in. per 1,000 BTU/hr (never less than 100 sq in. each)."
+      },
+      {
+        question: "Why do wood louvers require much larger openings than metal louvers?",
+        answer: "Wooden louvers have thicker slats that block airflow, providing only 20% to 25% net free area compared to 75% for thin metal louvers. Therefore, gross opening dimensions with wood louvers must be 4 times larger than the calculated net free area."
+      }
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
+  },
 
   // -------------------------------------------------------------
   // PILLAR 5: BUILDING SCIENCE & INSULATION
