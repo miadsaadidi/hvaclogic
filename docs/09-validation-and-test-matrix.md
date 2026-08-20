@@ -285,6 +285,16 @@ Layer 6: End-to-End Browser Tests (Mandatory Playwright test suite for EVERY cal
 
 ---
 
+### 21. `refrigerant-charge-calculator` (Initial Line-Set Weigh-In)
+* **Test IDs**: `GOLD-CHARGE-01` through `GOLD-CHARGE-03` | **E2E Spec**: `tests/e2e/refrigerant-charge.spec.ts`
+* **GOLD-CHARGE-01 — R-454B inventory delta**: 45 ft, 5/16 in liquid, 0.40 oz/ft, 9 oz factory inventory → **add 9.0 oz**; 100 oz nameplate → **109.0 oz initial target**.
+* **GOLD-CHARGE-02 — R-32 excess length**: 65 ft, 15 ft factory allowance, 0.58 oz/ft → **add 29.0 oz** and display the A2L notice.
+* **GOLD-CHARGE-03 — Custom OEM rate**: 45 ft, 15 ft allowance, 0.60 oz/ft, non-empty manual reference → **add 18.0 oz**; an empty reference must return `missing_manual_reference`.
+* **Boundary coverage**: Exact allowance, below-inventory recovery, maximum linear length, long-line warning, outdoor-unit vertical limits, invalid rate/base charge, unknown profile/pair, and unrounded fractional output.
+* **Shared workflow coverage**: URL hydration, CSV availability, dialog semantics/focus restoration, branded `?embed=true` preview, contractor metadata, and print-media result visibility.
+
+---
+
 ## 4. Cross-Tool Integration & Workflow Test Suite
 
 | Test ID | Workflow | Step 1 (Origin) | Transferred Parameters | Step 2 (Destination) | Verification Criteria |
@@ -307,4 +317,4 @@ npm run test
 ```bash
 npm run test:e2e
 ```
-*(Runs all 17 per-calculator E2E test specs on Chromium, Firefox, WebKit, and mobile viewport profiles).*
+*(Runs the per-calculator E2E specs across the configured desktop and mobile browser profiles.)*

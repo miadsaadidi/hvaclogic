@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface PrintSubmittalModalProps {
   calculatorName: string;
@@ -32,6 +32,17 @@ export function PrintSubmittalModal({
     companyName: "",
     notes: "",
   });
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -42,6 +53,7 @@ export function PrintSubmittalModal({
 
   return (
     <div
+      role="presentation"
       style={{
         position: "fixed",
         inset: 0,
@@ -56,6 +68,10 @@ export function PrintSubmittalModal({
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="print-dialog-title"
+        aria-describedby="print-dialog-description"
         style={{
           background: "var(--surface)",
           border: "1px solid var(--border-color)",
@@ -70,11 +86,12 @@ export function PrintSubmittalModal({
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <span style={{ fontSize: "1.2rem" }}>🖨️</span>
-            <h3 style={{ fontSize: "1.2rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
+            <h3 id="print-dialog-title" style={{ fontSize: "1.2rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
               Customize Client Job Submittal
             </h3>
           </div>
           <button
+            ref={closeButtonRef}
             onClick={onClose}
             style={{
               background: "none",
@@ -83,13 +100,13 @@ export function PrintSubmittalModal({
               fontSize: "1.5rem",
               cursor: "pointer",
             }}
-            aria-label="Close modal"
+            aria-label="Close print dialog"
           >
             ×
           </button>
         </div>
 
-        <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "1.25rem" }}>
+        <p id="print-dialog-description" style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "1.25rem" }}>
           Add project identification details to be printed on the official 1-page engineering submittal for <strong>{calculatorName}</strong> (optional):
         </p>
 
@@ -175,7 +192,7 @@ export function PrintSubmittalModal({
                 fontWeight: 700,
               }}
             >
-              🖨️ Generate &amp; Print PDF
+              Print / Save as PDF
             </button>
           </div>
         </form>

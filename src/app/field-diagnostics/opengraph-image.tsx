@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { ImageResponse } from "next/og";
 
 export const alt = "Field Diagnostics & Refrigerants — HVACLogic";

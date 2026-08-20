@@ -13,7 +13,7 @@ HVAC Lab adapts the proven architectural, component, and performance patterns of
 
 * **Framework**: Next.js 15 (App Router) + React 19 + TypeScript 5.9+.
 * **Styling**: Pure Vanilla CSS in `globals.css` with a centralized design token system (zero Tailwind runtime overhead).
-* **Rendering Strategy**: 100% Pre-rendered Static Pages (SSG) for all 17 calculator routes, category pillar hubs, and reference documentation.
+* **Rendering Strategy**: 100% Pre-rendered Static Pages (SSG) for all 21 calculator routes, category pillar hubs, and reference documentation.
 * **State Management**: React 19 hooks (`useState`, `useMemo`, `useCallback`) synchronized with URL search params via `window.history.replaceState`.
 * **Testing & QA**: Vitest for computational & unit test suites; Playwright for browser E2E workflows.
 

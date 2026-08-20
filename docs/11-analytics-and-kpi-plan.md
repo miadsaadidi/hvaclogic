@@ -51,7 +51,7 @@ HVAC Lab implements a **privacy-preserving telemetry framework** designed to mea
 │ • Monthly Organic Clicks & Sessions (Target: >50,000 monthly active users)             │
 │ • Top-3 Keyword Rankings in Airflow & Diagnostic clusters (Target: 15+ keywords)       │
 │ • Top-10 Keyword Rankings across all 33 core terms (Target: 25+ keywords)              │
-│ • Validated Indexed Calculator URLs (Target: 100% of 17 tools indexed without errors)  │
+│ • Validated Indexed Calculator URLs (Target: 100% of 21 tools indexed without errors)  │
 ├────────────────────────────────────────────────────────────────────────────────────────┤
 │ 2. PRODUCT ENGAGEMENT & FIELD UTILITY KPIS                                            │
 │ • Calculation Completion Rate: >= 85% of users who adjust an input view a valid output.│

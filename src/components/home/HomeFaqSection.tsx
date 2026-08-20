@@ -1,29 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
-export const HOMEPAGE_FAQS = [
-  {
-    question: "How do HVACLogic calculators compare to traditional rule-of-thumb charts?",
-    answer: "Traditional thumb rules (e.g. 500 sq ft per ton or 0.10 in.wg friction flat rates) often result in oversized equipment, poor dehumidification, noisy air ducts, and high utility bills. HVACLogic uses deterministic thermodynamic and fluid mechanics formulas directly derived from ASHRAE Fundamentals, ACCA Manual J/S/D, SMACNA, and NIST REFPROP datasets.",
-  },
-  {
-    question: "Are these engineering calculators 100% free and private to use?",
-    answer: "Yes. All computations execute 100% client-side inside your browser engine. We do not maintain any user database, require no logins or account creation, and store zero project calculation data on remote servers.",
-  },
-  {
-    question: "Which refrigerants are supported in the field diagnostics suite?",
-    answer: "Our pressure-temperature and superheat/subcooling charging engines support legacy and next-generation refrigerants—including R-454B (Opteon XL41 A2L), R-32, R-410A, R-22, R-134a, R-404A, and R-407C—with exact bubble and dew temperature glide modeling.",
-  },
-  {
-    question: "Can I export, print, or share calculation results with clients?",
-    answer: "Every calculator tool features an ActionButtonBar with 1-click CSV data export, a clean print-ready engineering submittal layout, and shareable permalinks that hydrate the exact calculation state via URL query parameters.",
-  },
-  {
-    question: "How does HVACLogic support building electrification and heat pumps?",
-    answer: "Our heating suite provides cold-climate heat pump balance point solvers, low-ambient capacity derate modeling down to -5°F, auxiliary electric backup heat strip sizing (kW), and hydronic baseboard / radiator EDR boiler sizing.",
-  },
-];
+import { HOMEPAGE_FAQS } from "@/lib/data/homepage-faqs";
 
 export function HomeFaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface EmbedModalProps {
   toolRoute: string;
@@ -13,6 +13,17 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
   const [copied, setCopied] = useState(false);
   const [height, setHeight] = useState("720");
   const [showPreview, setShowPreview] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -27,6 +38,7 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
 
   return (
     <div
+      role="presentation"
       style={{
         position: "fixed",
         inset: 0,
@@ -41,6 +53,10 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="embed-dialog-title"
+        aria-describedby="embed-dialog-description"
         style={{
           background: "var(--surface)",
           border: "1px solid var(--border-color)",
@@ -57,11 +73,12 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <span style={{ fontSize: "1.2rem" }}>&lt;/&gt;</span>
-            <h3 style={{ fontSize: "1.2rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
+            <h3 id="embed-dialog-title" style={{ fontSize: "1.2rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
               Embed {toolName}
             </h3>
           </div>
           <button
+            ref={closeButtonRef}
             onClick={onClose}
             style={{
               background: "none",
@@ -71,13 +88,13 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
               cursor: "pointer",
               lineHeight: 1,
             }}
-            aria-label="Close modal"
+            aria-label="Close embed dialog"
           >
             ×
           </button>
         </div>
 
-        <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "1.25rem", lineHeight: 1.5 }}>
+        <p id="embed-dialog-description" style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "1.25rem", lineHeight: 1.5 }}>
           Paste this responsive widget snippet into your website, contractor blog, LMS portal, or distributor intranet. 100% free with no API keys or database tracking required.
         </p>
 
@@ -143,7 +160,7 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
               Live Widget Preview:
             </div>
             <iframe
-              src={toolRoute}
+              src={`${toolRoute}?embed=true`}
               width="100%"
               height="380"
               style={{ border: "none", width: "100%" }}

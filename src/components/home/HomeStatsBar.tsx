@@ -4,7 +4,7 @@ import React from "react";
 
 export function HomeStatsBar() {
   const stats = [
-    { label: "Engineering Calculators", value: "17", icon: "🧮", detail: "Deterministic & Pure Math" },
+    { label: "Engineering Calculators", value: "21", icon: "🧮", detail: "Deterministic & Pure Math" },
     { label: "Core HVAC Pillars", value: "5", icon: "🏛️", detail: "Airflow to Building Science" },
     { label: "Client-Side Privacy", value: "100%", icon: "⚡", detail: "Zero Database Tracking" },
     { label: "Engineering Standards", value: "ASHRAE", icon: "📐", detail: "ACCA • EPA • NIST • IECC" },

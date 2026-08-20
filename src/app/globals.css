@@ -346,6 +346,39 @@ a:hover {
   box-shadow: 0 0 0 2px var(--accent-cooling-glow);
 }
 
+.range-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 7rem;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.range-input-row input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-primary);
+}
+
+.input-help {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.unit-badge,
+.metric-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  color: var(--accent-primary);
+  background: var(--bg-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
 /* Sliders */
 .range-slider {
   width: 100%;
@@ -393,6 +426,25 @@ a:hover {
   color: var(--text-muted);
   width: 100%;
   margin-bottom: 0.25rem;
+}
+
+.preset-chips-heading {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.reset-defaults-btn {
+  padding: 0;
+  border: 0;
+  color: var(--accent-primary);
+  background: transparent;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .preset-chip-btn {
@@ -620,6 +672,163 @@ svg text {
   justify-content: space-between;
   font-weight: 600;
   font-size: 0.875rem;
+}
+
+/* Refrigerant line-set charge calculator */
+.charge-mode-switch {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.custom-rate-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+}
+
+.custom-rate-fields legend {
+  padding: 0 0.35rem;
+  color: var(--accent-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.charge-inline-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.charge-validation-card,
+.charge-safety-callout,
+.charge-source-card,
+.charge-warning-list,
+.charge-final-step {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.charge-validation-card {
+  border-top: 4px solid var(--accent-warning);
+}
+
+.charge-validation-card h3,
+.charge-validation-card ul,
+.charge-source-card p,
+.charge-final-step p {
+  margin-bottom: 0;
+}
+
+.charge-safety-callout {
+  display: grid;
+  gap: 0.3rem;
+  border-left: 4px solid var(--accent-warning);
+  color: var(--ink-secondary);
+}
+
+.charge-safety-callout strong,
+.charge-final-step > strong {
+  color: var(--ink);
+}
+
+.charge-result--remove {
+  border-top-color: var(--accent-warning);
+}
+
+.charge-result--none {
+  border-top-color: var(--accent-success);
+}
+
+.refrigerant-charge-visualizer {
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 0.8rem;
+  background: var(--surface);
+}
+
+.refrigerant-charge-visualizer__header,
+.refrigerant-charge-visualizer__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+}
+
+.refrigerant-charge-visualizer__header > div {
+  display: grid;
+}
+
+.refrigerant-charge-visualizer svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--bg-primary);
+}
+
+.refrigerant-charge-visualizer__footer {
+  border-top: 1px solid var(--border-subtle);
+  color: var(--ink-secondary);
+  font-size: 0.75rem;
+}
+
+.charge-source-card {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 4px solid var(--accent-primary);
+}
+
+.charge-source-card a,
+.charge-final-step a {
+  color: var(--accent-primary);
+}
+
+.charge-warning-list {
+  border-left: 4px solid var(--accent-warning);
+}
+
+.charge-warning-list p {
+  margin: 0;
+}
+
+.charge-warning-list p + p {
+  margin-top: 0.6rem;
+}
+
+.charge-final-step {
+  border-top: 4px solid var(--accent-success);
+}
+
+.charge-final-step .handoff-card {
+  display: grid;
+  gap: 0.45rem;
+}
+
+@media (max-width: 620px) {
+  .range-input-row,
+  .charge-inline-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .charge-mode-switch {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .refrigerant-charge-visualizer__footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 /* Static Comparison Tables */
@@ -1118,6 +1327,11 @@ body.embed-mode {
 }
 
 /* Print Stylesheet */
+@page {
+  size: letter portrait;
+  margin: 0.4in;
+}
+
 @media print {
   body {
     background: #ffffff !important;
@@ -1128,11 +1342,38 @@ body.embed-mode {
   }
   .site-header,
   .site-footer,
+  .breadcrumb,
+  .calculator-header,
+  .direct-answer-card,
   .page-jump-nav,
   .action-button-bar,
   .mobile-result-bar,
-  .preset-chips-container {
+  .preset-chips-container,
+  .charge-mode-switch,
+  .input-panel,
+  #how-to-guide,
+  #sizing-matrix,
+  #worked-example,
+  #faq-section,
+  #related-tools,
+  .engineering-review-card {
     display: none !important;
+  }
+  .page,
+  .site-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .calculator-grid {
+    display: block !important;
+  }
+  .output-panel {
+    width: 100% !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: #ffffff !important;
   }
   .calculator-card,
   .direct-answer-card,
@@ -1143,6 +1384,27 @@ body.embed-mode {
     background: #ffffff !important;
     color: #000000 !important;
     page-break-inside: avoid;
+  }
+  .calculator-card {
+    margin: 0 !important;
+    padding: 0.2in !important;
+  }
+  .primary-result-card,
+  .secondary-result-item,
+  .charge-safety-callout,
+  .charge-source-card,
+  .charge-warning-list,
+  .charge-final-step,
+  .refrigerant-charge-visualizer {
+    color: #000000 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .primary-result-card .result-value {
+    color: #000000 !important;
+    background: none !important;
+    -webkit-text-fill-color: #000000 !important;
   }
 }
 

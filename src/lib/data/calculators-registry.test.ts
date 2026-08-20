@@ -5,13 +5,13 @@ import {
 } from "./calculators-registry";
 
 describe("calculator registry publication state", () => {
-  it("keeps the refrigerant charge calculator in development until release gates pass", () => {
+  it("publishes the validated refrigerant charge calculator after release gates pass", () => {
     const calculator = getCalculatorById("refrigerant-charge-calculator");
 
     expect(calculator).toBeDefined();
-    expect(calculator?.status).toBe("development");
-    expect(calculator?.testStatus).toBe("partial");
-    expect(publishedCalculators().map((item) => item.id)).not.toContain(
+    expect(calculator?.status).toBe("production");
+    expect(calculator?.testStatus).toBe("validated");
+    expect(publishedCalculators().map((item) => item.id)).toContain(
       "refrigerant-charge-calculator",
     );
   });

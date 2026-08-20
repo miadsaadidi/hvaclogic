@@ -50,7 +50,7 @@ To build HVAC Lab cleanly without wasted effort, regressions, or disconnected st
 ### Stage 0: Foundation & Core Infrastructure (Day 1)
 * **Goal**: Establish the rock-solid framework before building individual calculators so every tool inherits universal unit switching, pre-rendered schema, strict canonical defense, zero layout shift (CLS = 0), and 7-section content layouts.
 * **Core Deliverables**:
-  1. **Global Registry** (`src/lib/data/calculators-registry.ts`): Single source of truth containing metadata, routes, keywords, pillar groupings, standards, and schema FAQs for all 17 calculators.
+  1. **Global Registry** (`src/lib/data/calculators-registry.ts`): Single source of truth containing metadata, routes, keywords, pillar groupings, standards, and schema FAQs for all 21 calculators.
   2. **Unit System & LocalStorage Hooks**:
      * `src/lib/hooks/useLocalStorage.ts`: Type-safe browser storage persistence.
      * `src/lib/hooks/useUnitSystem.ts` & `UnitContext.tsx`: Universal reactive context handling Imperial $\leftrightarrow$ Metric conversions.
@@ -105,7 +105,7 @@ To build HVAC Lab cleanly without wasted effort, regressions, or disconnected st
 ---
 
 ### Stage 4: Advanced Diagnostics, Psychrometrics & Hydronics (P3)
-* **Goal**: Complete the 17-tool catalog with specialized engineering utilities.
+* **Goal**: Complete the original 17-tool catalog with specialized engineering utilities.
 
 | # | Calculator Route | Primary Target Keyword | Strategic Reason |
 | :---: | :--- | :--- | :--- |
@@ -114,6 +114,19 @@ To build HVAC Lab cleanly without wasted effort, regressions, or disconnected st
 | **15** | `/calculators/boiler-size-calculator` | `boiler size calculator` | **Hydronics Core**: Baseboard length, cast-iron EDR, and indirect DHW tank priority sizing. |
 | **16** | `/calculators/garage-heater-sizing` | `garage heater sizing calculator` | **Seasonal DIY**: Sizing unit and radiant infrared heaters for uninsulated shops accounting for slab losses. |
 | **17** | `/calculators/heat-loss-calculator` | `heat loss calculator` | **Envelope Sizing**: Blower door infiltration ($ACH_{50}$) and whole-structure conductive heat loss. |
+
+---
+
+### Stage 5: Field Workflow Expansion (Production)
+
+| # | Calculator Route | Workflow |
+| :---: | :--- | :--- |
+| **18** | `/calculators/duct-friction-loss-calculator` | Manual D total equivalent length, available static pressure, and friction-rate workflow. |
+| **19** | `/calculators/filter-sizing-calculator` | MERV media face velocity and static-pressure screening. |
+| **20** | `/calculators/combustion-air-calculator` | NFPA 54 / IFGC indoor and outdoor combustion-air sizing. |
+| **21** | `/calculators/refrigerant-charge-calculator` | Sourced OEM line-set initial weigh-in with final-charge handoff. |
+
+**Release record — 2026-08-20:** Calculator 21 released after sourced-profile math tests, desktop/mobile scoped E2E, shared embed/print tests, production build, and cold-offline verification.
 
 ---
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { EmbedModal } from "@/components/calculator/EmbedModal";
 import { PrintSubmittalModal, SubmittalMeta } from "@/components/calculator/PrintSubmittalModal";
 
@@ -14,6 +14,18 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
   const [copied, setCopied] = useState(false);
   const [embedOpen, setEmbedOpen] = useState(false);
   const [printOpen, setPrintOpen] = useState(false);
+  const embedTriggerRef = useRef<HTMLButtonElement>(null);
+  const printTriggerRef = useRef<HTMLButtonElement>(null);
+
+  const closeEmbed = () => {
+    setEmbedOpen(false);
+    requestAnimationFrame(() => embedTriggerRef.current?.focus());
+  };
+
+  const closePrint = () => {
+    setPrintOpen(false);
+    requestAnimationFrame(() => printTriggerRef.current?.focus());
+  };
 
   const handleShare = () => {
     if (typeof window !== "undefined") {
@@ -29,6 +41,7 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
       setPrintOpen(false);
       setTimeout(() => {
         window.print();
+        printTriggerRef.current?.focus();
       }, 150);
     }
   };
@@ -46,6 +59,7 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
         </button>
 
         <button
+          ref={printTriggerRef}
           onClick={() => setPrintOpen(true)}
           className="action-btn"
           title="Print official calculation job submittal card"
@@ -66,6 +80,7 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
         )}
 
         <button
+          ref={embedTriggerRef}
           onClick={() => setEmbedOpen(true)}
           className="action-btn"
           title="Embed this calculator on your website"
@@ -79,7 +94,7 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
         toolRoute={toolRoute}
         toolName={toolName}
         isOpen={embedOpen}
-        onClose={() => setEmbedOpen(false)}
+        onClose={closeEmbed}
       />
 
       <PrintSubmittalModal
@@ -87,7 +102,7 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
         categoryName="HVAC Engineering"
         governingStandard="ASHRAE / ACCA"
         isOpen={printOpen}
-        onClose={() => setPrintOpen(false)}
+        onClose={closePrint}
         onPrint={handlePrintConfirm}
       />
     </>

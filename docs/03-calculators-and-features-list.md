@@ -13,7 +13,7 @@ This document provides the canonical, authoritative specification for every calc
 
 ---
 
-## 2. Master Calculator Specifications (All 17 Calculators)
+## 2. Master Calculator Specifications (All 21 Calculators)
 
 ---
 
@@ -682,3 +682,38 @@ This document provides the canonical, authoritative specification for every calc
 * **Schema Strategy**: `WebApplication`, `BreadcrumbList`, `FAQPage`.
 * **Acceptance Tests**: `GOLD-LOSS-01` in [09-validation-and-test-matrix.md](./09-validation-and-test-matrix.md).
 * **Known Limitations**: Simplified infiltration estimation; blower door CFM50 multipoint depressurization test required for exact leakage measurement.
+
+---
+
+## 3. Production Expansion Modules (18–21)
+
+The production registry adds `duct-friction-loss-calculator`, `filter-sizing-calculator`, `combustion-air-calculator`, and `refrigerant-charge-calculator`. Their live registry records remain the canonical metadata source.
+
+### 21. `refrigerant-charge-calculator` — Refrigerant Line Set Charge & Weigh-In Calculator
+* **ID**: `refrigerant-charge-calculator`
+* **Name**: Refrigerant Line Set Charge & Weigh-In Calculator
+* **Route**: `/calculators/refrigerant-charge-calculator`
+* **Pillar**: `/field-diagnostics`
+* **Status**: `production` | **Launch Phase**: `1` | **Risk Level**: `Medium`
+* **Primary Keyword**: `refrigerant charge calculator`
+* **Secondary Keywords**: `line set charge calculator`, `additional refrigerant calculator`, `r454b charge calculator`, `r32 line set charge`
+* **Primary Persona**: Qualified HVAC installers, commissioning technicians, and service contractors
+* **Primary Intent**: Field Installation / Initial Weigh-In
+* **Purpose**: Calculates the manufacturer-specific initial line-set refrigerant adjustment without presenting a universal rate or replacing final commissioning.
+* **Inputs**: Mode, verified profile, exact line-size pair, actual linear length, vertical separation, outdoor-unit position, factory nameplate charge; custom mode additionally requires refrigerant, liquid/suction OD, factory allowance, OEM adder rate, and manual reference.
+* **Outputs**: Add/recover/no-adjustment action, raw and formatted charge adjustment, excess length, initial target charge, source identity, warnings, piping-limit note, safety group, and required final-charge procedure.
+* **Assumptions**: Uses either the selected OEM excess-length equation or inventory-delta equation; all raw math remains unrounded until display formatting.
+* **Calculation Method**: `SRC-CHARGE-01`, `SRC-CHARGE-02`, `SRC-CHARGE-03`.
+* **Engineering References**: Versioned profile sources in [08-engineering-source-register.md](./08-engineering-source-register.md).
+* **Validity Range**: Enforced per profile; custom mode is capped at 500 ft and cannot validate model-specific limits.
+* **Warnings**: Long-line thresholds, vertical limits, custom-source limitations, and A2L handling notice.
+* **Errors**: Rejects unknown profiles/pairs, out-of-range lengths/lifts, invalid rates/base charge, and custom mode without a manual reference.
+* **Safety Notes**: R-454B and R-32 are A2L refrigerants; use listed tools, procedures, ventilation, leak detection, recovery, and evacuation practices.
+* **URL Parameters**: `mode`, `profile`, `pair`, `length`, `lift`, `position`, `base_oz` plus custom-mode values.
+* **Cross-Tool Handoffs**: Sends the selected refrigerant to the superheat/subcooling calculator and PT chart for final verification.
+* **Offline Requirements**: Fully offline capable through the generated production service-worker precache.
+* **Accessibility Requirements**: Labeled linked range/number inputs, text-equivalent SVG, live results, keyboard-accessible dialogs, and responsive result summary.
+* **Analytics Events**: Registry-defined privacy-preserving interaction events only; calculation values remain client-side.
+* **Schema Strategy**: `WebApplication`, `BreadcrumbList`, `HowTo`, and `FAQPage`.
+* **Acceptance Tests**: Nine Vitest math cases and `tests/e2e/refrigerant-charge.spec.ts`, with shared action coverage in `tests/e2e/shared-actions.spec.ts`.
+* **Known Limitations**: Initial weigh-in only. Capacity-specific piping, equivalent length, accessories, oil management, occupied-space charge limits, and final charging remain governed by the exact equipment literature.

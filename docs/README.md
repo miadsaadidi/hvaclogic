@@ -2,7 +2,7 @@
 
 > **Documentation Suite Status**: Approved & Hardened  
 > **Version**: 1.0.0  
-> **Last Updated**: 2026-08-19  
+> **Last Updated**: 2026-08-20
 > **Canonical Domain**: `https://hvaclogic.org`
 
 ---
@@ -15,7 +15,7 @@ This directory contains the engineering contracts, source registers, validation 
 | :---: | :--- | :--- |
 | **01** | [01-keyword-research-master.md](./01-keyword-research-master.md) | 2,712 keyword dataset analysis, dataset provenance, advertiser competition vs SEO difficulty, CPC bids, and search intent taxonomy. |
 | **02** | [02-website-architecture-routing.md](./02-website-architecture-routing.md) | 5 flat category pillar hubs, canonical defense on URL params, anti-cannibalization routing, and Schema.org JSON-LD templates. |
-| **03** | [03-calculators-and-features-list.md](./03-calculators-and-features-list.md) | Canonical 22-field engineering specification contract for all 17 calculators across all launch phases. |
+| **03** | [03-calculators-and-features-list.md](./03-calculators-and-features-list.md) | Canonical 22-field engineering specification contract for all 21 calculators across all launch phases. |
 | **04** | [04-engineering-formulas-and-algorithms.md](./04-engineering-formulas-and-algorithms.md) | Universal numeric policy, Huebscher duct equations, NIST-referenced refrigerant PT interpolation, and ASHRAE psychrometric engine. |
 | **05** | [05-competitive-analysis-and-calculator-specs.md](./05-competitive-analysis-and-calculator-specs.md) | Timestamped SERP competitor evidence (CalcPanel, Ensign, Trane, ServiceTitan) and 10/10 product value propositions. |
 | **06** | [06-powerlab-inspired-system-specs.md](./06-powerlab-inspired-system-specs.md) | Next.js 15 App Router architecture, 10-tier page anatomy, `DirectAnswerCard`, `calculator-registry.ts`, and thermal design tokens. |

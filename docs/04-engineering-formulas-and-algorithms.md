@@ -9,7 +9,7 @@
 
 ## 1. Universal Numeric Policy & Computational Standards
 
-To guarantee mathematical consistency, avoid rounding drift, and prevent cascading conversion errors across all 17 calculators, HVAC Lab enforces a strict **Universal Numeric Policy**:
+To guarantee mathematical consistency, avoid rounding drift, and prevent cascading conversion errors across all 21 calculators, HVAC Lab enforces a strict **Universal Numeric Policy**:
 
 ### 1.1 Precision & Rounding Rules
 1. **Internal Representation**: All calculations execute in IEEE 754 double-precision 64-bit floating point.
@@ -220,3 +220,19 @@ function formatResult(brand: string, rawModel: string, code: number, confidence:
   };
 }
 ```
+
+---
+
+## 6. Refrigerant Line-Set Initial Weigh-In (`SRC-CHARGE-01`–`03`)
+
+The charge engine selects one of two manufacturer-defined methods. It never selects a rate from refrigerant type alone.
+
+### Excess-length method
+
+$$\Delta m = \max(0, L_{actual} - L_{factory})r_{OEM}$$
+
+### Inventory-delta method
+
+$$\Delta m = L_{actual}r_{OEM} - m_{factory-line}$$
+
+For either method, the initial target is $m_{target}=m_{nameplate}+\Delta m$. Negative inventory-delta results are preserved as a recovery instruction; no raw intermediate is rounded. The engine validates the selected profile's linear and vertical boundaries, returns structured errors for invalid state, and always returns the source and required final-charge procedure with a successful result.

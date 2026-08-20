@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // All 17 Calculators
+  // All published calculators
   const calculatorEntries: MetadataRoute.Sitemap = publishedCalculators().map((calc) => ({
     url: `${baseUrl}${calc.route}`,
     lastModified: calc.lastEngineeringReview ? new Date(calc.lastEngineeringReview) : lastModified,

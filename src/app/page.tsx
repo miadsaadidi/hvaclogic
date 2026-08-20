@@ -5,7 +5,8 @@ import { ConnectedSystemFlow } from "@/components/home/ConnectedSystemFlow";
 import { HomeSearchFilter } from "@/components/home/HomeSearchFilter";
 import { HomeStatsBar } from "@/components/home/HomeStatsBar";
 import { TrustBadges } from "@/components/home/TrustBadges";
-import { HomeFaqSection, HOMEPAGE_FAQS } from "@/components/home/HomeFaqSection";
+import { HomeFaqSection } from "@/components/home/HomeFaqSection";
+import { HOMEPAGE_FAQS } from "@/lib/data/homepage-faqs";
 import { siteConfig } from "@/lib/site-config";
 
 export default function HomePage() {
@@ -152,11 +153,11 @@ export default function HomePage() {
         {/* CONNECTED ECOSYSTEM FLOW SCHEMATIC */}
         <ConnectedSystemFlow />
 
-        {/* SEARCH & ALL 17 CALCULATORS */}
+        {/* SEARCH & ALL PUBLISHED CALCULATORS */}
         <div style={{ textAlign: "center", marginTop: "3rem", marginBottom: "1rem" }}>
           <p className="eyebrow">Complete Engineering Suite</p>
           <h2 style={{ fontSize: "1.75rem", fontWeight: 700, margin: "0.25rem 0" }}>
-            All 17 HVAC Engineering Calculators
+            All {calculators.length} HVAC Engineering Calculators
           </h2>
           <p style={{ color: "var(--text-muted)", fontSize: "0.95rem" }}>
             Select a category or search below to launch any calculator with prefilled engineering presets:
