@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { calculatorRegistry } from "@/lib/data/calculators-registry";
+import { getCalculatorsByPillar } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const CATEGORY_COLOR = "#10b981";
 
 export default function FieldDiagnosticsHub() {
-  const calculators = calculatorRegistry.filter((c) => c.pillar === "field-diagnostics");
+  const calculators = getCalculatorsByPillar("field-diagnostics");
 
   return (
     <main className="page site-container">

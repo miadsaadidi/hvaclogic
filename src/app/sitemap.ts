@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
-import { calculatorRegistry } from "@/lib/data/calculators-registry";
+import { publishedCalculators } from "@/lib/data/calculators-registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.canonicalDomain;
@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // All 17 Calculators
-  const calculatorEntries: MetadataRoute.Sitemap = calculatorRegistry.map((calc) => ({
+  const calculatorEntries: MetadataRoute.Sitemap = publishedCalculators().map((calc) => ({
     url: `${baseUrl}${calc.route}`,
     lastModified: calc.lastEngineeringReview ? new Date(calc.lastEngineeringReview) : lastModified,
     changeFrequency: "weekly",

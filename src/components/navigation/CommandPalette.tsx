@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { calculatorRegistry } from "@/lib/data/calculators-registry";
+import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { CalculatorMeta } from "@/types/calculation";
 
 interface SearchItem {
@@ -78,7 +78,7 @@ export function CommandPalette() {
 
   // Search items list
   const searchItems: SearchItem[] = useMemo(() => {
-    return calculatorRegistry.map((calc: CalculatorMeta) => {
+    return publishedCalculators().map((calc: CalculatorMeta) => {
       const extra = EXTRA_KEYWORDS[calc.id] || [];
       return {
         id: calc.id,

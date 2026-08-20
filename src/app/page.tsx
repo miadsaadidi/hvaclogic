@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { calculatorRegistry } from "@/lib/data/calculators-registry";
+import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { ConnectedSystemFlow } from "@/components/home/ConnectedSystemFlow";
 import { HomeSearchFilter } from "@/components/home/HomeSearchFilter";
 import { HomeStatsBar } from "@/components/home/HomeStatsBar";
@@ -9,6 +9,7 @@ import { HomeFaqSection, HOMEPAGE_FAQS } from "@/components/home/HomeFaqSection"
 import { siteConfig } from "@/lib/site-config";
 
 export default function HomePage() {
+  const calculators = publishedCalculators();
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -29,8 +30,8 @@ export default function HomePage() {
       {
         "@type": "ItemList",
         name: "HVAC Logic Engineering Calculators",
-        numberOfItems: calculatorRegistry.length,
-        itemListElement: calculatorRegistry.map((c, idx) => ({
+        numberOfItems: calculators.length,
+        itemListElement: calculators.map((c, idx) => ({
           "@type": "ListItem",
           position: idx + 1,
           name: c.name,
@@ -162,7 +163,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <HomeSearchFilter calculators={calculatorRegistry} />
+        <HomeSearchFilter calculators={calculators} />
 
         {/* TRUST & ENGINEERING TRANSPARENCY */}
         <TrustBadges />

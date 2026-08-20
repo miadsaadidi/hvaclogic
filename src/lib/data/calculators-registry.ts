@@ -578,6 +578,57 @@ export const calculatorRegistry: CalculatorMeta[] = [
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "unit_changed"]
   },
+  {
+    id: "refrigerant-charge-calculator",
+    name: "Refrigerant Line Set Charge & Weigh-In Calculator",
+    pillar: "field-diagnostics",
+    route: "/calculators/refrigerant-charge-calculator",
+    status: "development",
+    launchPhase: 1,
+    riskLevel: "medium",
+    primaryKeyword: "refrigerant charge calculator",
+    secondaryKeywords: [
+      "line set charge calculator",
+      "additional refrigerant calculator",
+      "r454b charge calculator",
+      "r32 line set charge",
+    ],
+    primaryIntent: "Field Installation / Initial Weigh-In",
+    seoTitle: "Refrigerant Line Set Charge Calculator | HVACLogic",
+    metaDescription: "Estimate the manufacturer-specified initial refrigerant weigh-in adjustment for R-454B, R-32, and R-410A line sets using sourced OEM profiles.",
+    categoryName: "Field Diagnostics",
+    categoryRoute: "/field-diagnostics",
+    features: [
+      "Versioned OEM charging profiles with exact source and model-family scope",
+      "R-454B, R-32, and R-410A initial line-set weigh-in calculations",
+      "Custom OEM-rate mode for equipment manuals not included in the profile library",
+      "Factory allowance, line-size, length, and vertical-limit validation",
+      "Final-charge verification handoff to superheat and subcooling diagnostics",
+    ],
+    relatedCalculatorIds: ["superheat-subcooling-calculator", "pt-chart", "ac-model-decoder"],
+    standards: ["EPA", "ASHRAE"],
+    formulaVersion: "1.0.0-development",
+    dataVersion: "1.0.0-development",
+    lastEngineeringReview: "2026-08-20",
+    requiresReferenceDataset: true,
+    offlineEligible: true,
+    testStatus: "partial",
+    faqs: [
+      {
+        question: "How is an initial line-set refrigerant adjustment calculated?",
+        answer: "Use the exact formula, factory allowance, and line-size rate published for the selected outdoor-unit family. HVACLogic treats this as an initial weigh-in estimate and requires the manufacturer's final charging procedure afterward.",
+      },
+      {
+        question: "Can one refrigerant adder rate be used for every R-454B or R-32 system?",
+        answer: "No. Rates and formulas vary by manufacturer, model family, line sizes, factory allowance, and installation limits. Select a verified OEM profile or enter the rate from the applicable equipment manual.",
+      },
+      {
+        question: "Does this calculator replace subcooling or superheat verification?",
+        answer: "No. The result is an initial weighed-in adjustment. Complete the final charge using the selected manufacturer's prescribed subcooling, superheat, approach, or automatic commissioning procedure.",
+      },
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"],
+  },
 
   // -------------------------------------------------------------
   // PILLAR 4: HEATING SYSTEMS & ELECTRIFICATION
@@ -918,4 +969,4 @@ export const getCalculatorById = (id: string) =>
   calculatorRegistry.find((c) => c.id === id);
 
 export const getCalculatorsByPillar = (pillar: string) =>
-  calculatorRegistry.filter((c) => c.pillar === pillar);
+  publishedCalculators().filter((c) => c.pillar === pillar);
