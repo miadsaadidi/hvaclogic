@@ -44,3 +44,5 @@ next-env.d.ts
 
 # local git worktrees
 /.worktrees/
+
+.vercel
