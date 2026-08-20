@@ -7,7 +7,7 @@
 
 ---
 
-## 📚 Complete 12-Document Master Index
+## 📚 Complete 13-Document Master Index
 
 This directory contains the engineering contracts, source registers, validation matrices, architectural blueprints, and SEO strategies for **HVAC Lab**.
 
@@ -25,3 +25,4 @@ This directory contains the engineering contracts, source registers, validation 
 | **10** | [10-implementation-roadmap.md](./10-implementation-roadmap.md) | 3-phase controlled launch roadmap, engineering risk classifications (Low, Medium, High), and release gate tracking matrix. |
 | **11** | [11-analytics-and-kpi-plan.md](./11-analytics-and-kpi-plan.md) | Privacy-preserving telemetry event dictionary, zero-PII policies, and 4-tier KPI framework (SEO, Product, Authority, Commercial). |
 | **12** | [12-quality-safety-accessibility.md](./12-quality-safety-accessibility.md) | Diagnostic decision-support guardrails, A2L/combustion safety notices, and WCAG 2.2 AA accessibility standards. |
+| **13** | [13-30-day-seo-authority-plan.md](./13-30-day-seo-authority-plan.md) | Day-by-day canonical launch, calculator quality, earned-authority outreach, measurement, and Month 2 admission plan. |
