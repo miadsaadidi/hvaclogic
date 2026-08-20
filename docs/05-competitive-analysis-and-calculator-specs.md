@@ -372,6 +372,34 @@ This document records direct observations from live SERP audits across primary t
   * No face velocity calculation (FPM = CFM / Area) or media thickness derating (1" vs 2" vs 4" media).
 * **HVAC Lab Opportunity**: Interactive filter sizing engine solving Face Velocity (FPM), initial clean pressure drop ($\Delta P_{\text{clean}}$), loaded dirty filter drop ($\Delta P_{\text{loaded}}$), 1" vs 2" vs 4" deep pleat media comparisons, and blower static pressure budget warnings.
 
+### Cluster L: Refrigerant Line Set Charge & Initial Weigh-In (`refrigerant charge calculator`, `line set charge calculator`, `r454b charge calculator`)
+
+#### Benchmark L1: ICP / Carrier R5A5S R-454B Product Data
+* **Primary Source**: `https://www.shareddocs.com/hvac/docs/1009/Public/00/R5A5S-01PD.pdf`
+* **Last Reviewed**: 2026-08-20
+* **Measurable Observations**:
+  * Uses an inventory-delta formula rather than a simple excess-length multiplier.
+  * Publishes separate R-454B rates for 1/4", 5/16", and 3/8" liquid lines and explicitly demonstrates both refrigerant addition and removal.
+  * Maximum equivalent length and vertical separation vary by capacity, line diameter, direction, and long-line accessories.
+
+#### Benchmark L2: Daikin Residential R-32 Long-Line Guide AG-TP-110
+* **Primary Source**: `https://daikincomfort.com/docs/default-source/dx5se/ag-tp-110.pdf`
+* **Last Reviewed**: 2026-08-20
+* **Measurable Observations**:
+  * Factory allowance is 15 linear feet.
+  * The adder rate changes with suction-line size even when the liquid line remains 3/8".
+  * The initial weigh-in must be followed by the guide's final charge adjustment.
+
+#### Benchmark L3: Daikin / Goodman Residential R-410A Long-Line Guide
+* **Primary Source**: `https://otmm.daikincomfort.com/adaptivemedia/rendition?id=207e0c2174af09bfc0523f9342c0ec1637aa4dbd`
+* **Last Reviewed**: 2026-08-20
+* **Measurable Observations**:
+  * Publishes a 0.60 oz/ft liquid-only baseline and more precise 0.63–0.78 oz/ft line-pair rates.
+  * Distinguishes linear length for charge from equivalent length for capacity and piping limits.
+  * Requires final charge adjustment after the initial weighed-in amount.
+
+* **HVACLogic Opportunity**: A profile-driven calculator that exposes the exact OEM source and model scope, supports an explicitly sourced custom-rate mode, blocks extrapolation beyond profile limits, and hands the technician to final superheat/subcooling verification.
+
 ---
 
 ## 3. The 10/10 Product Value Proposition
