@@ -4,9 +4,27 @@ import type { Metadata } from "next";
 import { getCalculatorsByPillar } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
+import { siteConfig } from "@/lib/site-config";
+
 export const metadata: Metadata = {
   title: "Field Diagnostics & Refrigerant Calculators — Target Superheat & PT Charts | HVACLogic",
   description: "Diagnose AC & heat pump charging, calculate target superheat and subcooling, reference NIST PT charts for R-410A and R-454B A2L refrigerants.",
+  alternates: {
+    canonical: `${siteConfig.canonicalDomain}/field-diagnostics`,
+  },
+  openGraph: {
+    title: "Field Diagnostics & Refrigerant Calculators — Target Superheat & PT Charts | HVACLogic",
+    description: "Diagnose AC & heat pump charging, calculate target superheat and subcooling, reference NIST PT charts for R-410A and R-454B A2L refrigerants.",
+    url: `${siteConfig.canonicalDomain}/field-diagnostics`,
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Field Diagnostics & Refrigerant Calculators — Target Superheat & PT Charts | HVACLogic",
+    description: "Diagnose AC & heat pump charging, calculate target superheat and subcooling, reference NIST PT charts for R-410A and R-454B A2L refrigerants.",
+  },
 };
 
 const CATEGORY_COLOR = "#10b981";

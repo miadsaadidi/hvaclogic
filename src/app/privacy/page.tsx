@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Privacy Policy & Zero-Database Architecture — HVACLogic",
   description: "Learn how HVACLogic protects your privacy with 100% client-side computation, zero user-account databases, and browser-local state isolation.",
-  alternates: { canonical: "/privacy" },
+  alternates: { canonical: `${siteConfig.canonicalDomain}/privacy` },
   openGraph: {
     title: "Privacy Policy — HVACLogic",
     description: "Learn how HVACLogic protects your privacy with 100% client-side computation and zero database tracking.",
@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy — HVACLogic",
+    description: "Learn how HVACLogic protects your privacy with 100% client-side computation and zero database tracking.",
   },
 };
 

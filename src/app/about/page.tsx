@@ -6,7 +6,7 @@ import { Logo } from "@/components/brand/Logo";
 export const metadata: Metadata = {
   title: "About HVACLogic — Deterministic HVAC & Building Science Suite",
   description: "Learn about HVACLogic: our mission to replace black-box sales estimators with open, peer-reviewed engineering calculators for HVAC engineers, technicians, and contractors.",
-  alternates: { canonical: "/about" },
+  alternates: { canonical: `${siteConfig.canonicalDomain}/about` },
   openGraph: {
     title: "About HVACLogic — Transparent HVAC Engineering System",
     description: "Replacing black-box sales estimators with open, deterministic HVAC calculation tools.",
@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About HVACLogic — Transparent HVAC Engineering System",
+    description: "Replacing black-box sales estimators with open, deterministic HVAC calculation tools.",
   },
 };
 

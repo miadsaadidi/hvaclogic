@@ -1,4 +1,4 @@
-import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { ConnectedSystemFlow } from "@/components/home/ConnectedSystemFlow";
@@ -8,6 +8,27 @@ import { TrustBadges } from "@/components/home/TrustBadges";
 import { HomeFaqSection } from "@/components/home/HomeFaqSection";
 import { HOMEPAGE_FAQS } from "@/lib/data/homepage-faqs";
 import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = {
+  title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+  description: siteConfig.description,
+  alternates: {
+    canonical: siteConfig.canonicalDomain,
+  },
+  openGraph: {
+    title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+    description: siteConfig.description,
+    url: siteConfig.canonicalDomain,
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+    description: siteConfig.description,
+  },
+};
 
 export default function HomePage() {
   const calculators = publishedCalculators();

@@ -183,7 +183,48 @@ Answer the user's technical question in the post itself. State assumptions and s
 
 ---
 
-## 6. KPI tracker
+## 6. High-Authority Target Site Mix & Daily 2–3 Posts Cadence
+
+To build compounding domain authority without triggering link-spam filters, HVACLogic maintains a disciplined daily rhythm of **2 to 3 targeted value-first posts / outreach pitches per day** (14 to 21 touches per week).
+
+### Target Site Distribution Mix
+
+```
+                        [ Daily 2–3 Posts & Outreach Mix ]
+                                       │
+    ┌──────────────────────────────────┼──────────────────────────────────┐
+    ▼                                  ▼                                  ▼
+[ Touch 1: Technical Forum / Q&A ] [ Touch 2: .EDU / Trade School ] [ Touch 3: Publisher / Directory ]
+ • HVAC-Talk                        • Vocational HVAC Labs             • ACHR News / HVAC School
+ • Reddit (r/HVAC, r/MEP)           • Community College Depts          • Engineering Tech Blogs
+ • GreenBuildingAdvisor             • Apprentice Training Centers      • AlternativeTo / ProductHunt
+```
+
+| Channel Type | Target Authority Sites / Platforms | Target Daily Cadence | Content & Engagement Focus |
+| :--- | :--- | :---: | :--- |
+| **Field Tech & Pro Forums** | • **HVAC-Talk** (`hvac-talk.com`)<br>• **GreenBuildingAdvisor** | 1 post every 1–2 days | Solve live engineering sizing questions (TEL friction rates, ECM static pressure drops, heat pump balance points). Provide the full mathematical proof inline; attach calculator permalink as optional calculation reference. |
+| **Targeted Subreddits** | • **`r/HVAC`** (Field Techs & Installers)<br>• **`r/MEPEngineering`** (Design Engineers)<br>• **`r/hvacadvice`** (Sizing & Quotes)<br>• **`r/refrigeration`** (P-T & Saturation)<br>• **`r/BuildingScience`** (R-Values & Loss) | 1 post/reply per day | Participate in threads discussing complex sizing, AC model number decoding, or A2L refrigerant charging rules. |
+| **.EDU & Vocational Labs** | • **Vocational Colleges** (Lincoln Tech, UTI)<br>• **Community College HVAC/R Depts**<br>• **Union Apprentice Training Centers** | 1 pitch per day | Email instructors introducing the 100% free, ungated calculation tools, transparent formulas, and printable PDF submittals for student lab sessions. |
+| **Industry Media & Blogs** | • **ACHR News** (*The News*)<br>• **HVAC School** (*Bryan Orr / HVACR School*)<br>• **Contracting Business**<br>• **Mechanical Design & Green Blogs** | 1 tailored pitch every 2 days | Propose interactive calculation widgets or worked examples to enhance existing articles on Manual D, A2L refrigerants, or Manual J heat loss. |
+| **Open Web & Software Registries** | • **AlternativeTo** (Alternative to McQuay Ductulator & Wrightsoft)<br>• **Product Hunt / Hacker News Show HN**<br>• **GitHub Engineering Open Registries** | 1 directory listing / showcase every 3–4 days | Establish foundational brand searches and indexation citations for the zero-tracking, open-access engineering suite. |
+
+---
+
+### Weekly 2–3 Posts Daily Execution Schedule
+
+| Day of Week | Touch 1: Community Q&A (Technical Reply) | Touch 2: Academic Outreach (.EDU Pitch) | Touch 3: Publisher & Directory Pitch |
+| :--- | :--- | :--- | :--- |
+| **Monday** | `r/HVAC` (Field diagnostic / PT chart problem) | Vocational College HVAC Department #1 | AlternativeTo / Software Directory Profile |
+| **Tuesday** | `HVAC-Talk` (Airflow / duct sizing / TEL thread) | Community College HVAC Instructor #1 | Technical HVAC Blogger / Substack Pitch #1 |
+| **Wednesday** | `r/MEPEngineering` (Manual J vs Manual D sizing) | State Apprenticeship Resource Coordinator #1 | HVAC School (*Bryan Orr*) Topic Suggestion |
+| **Thursday** | `r/hvacadvice` (AC model number decoding / tonnage) | Vocational College HVAC Department #2 | Independent Green Building / Envelope Blogger |
+| **Friday** | `r/refrigeration` (A2L / R-454B charge calculations) | Community College HVAC Instructor #2 | Trade Newsletter / ACHR News Editorial Desk |
+| **Saturday** | `GreenBuildingAdvisor` (Wall R-value / U-factor) | Union Training Center Director #1 | Product Hunt / Show HN Launch Preparation |
+| **Sunday** | `r/HVAC` or `HVAC-Talk` (Weekly troubleshooting thread) | Student Lab Resource Page Coordinator #1 | Review weekly replies & update outreach tracker |
+
+---
+
+## 7. KPI tracker
 
 Record baselines rather than filling unknown values with zero.
 
@@ -206,7 +247,7 @@ Record baselines rather than filling unknown values with zero.
 
 ---
 
-## 7. Execution artifacts
+## 8. Execution artifacts
 
 Store monthly evidence under a dated, non-secret workspace outside public site content or in an approved analytics system:
 
@@ -234,7 +275,7 @@ Do not commit Search Console exports containing account identifiers or private o
 
 ---
 
-## 8. Month 2 admission rules
+## 9. Month 2 admission rules
 
 Month 2 may add new supporting content or calculator work only when Month 1 evidence supports it.
 
@@ -249,7 +290,7 @@ Do not admit work solely because a keyword tool reports volume, a competitor has
 
 ---
 
-## 9. Definition of Month 1 completion
+## 10. Definition of Month 1 completion
 
 The plan is complete when:
 

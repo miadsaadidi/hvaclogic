@@ -4,9 +4,27 @@ import type { Metadata } from "next";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
+import { siteConfig } from "@/lib/site-config";
+
 export const metadata: Metadata = {
   title: "Airflow & Duct Sizing Calculators — HVAC Ductulators & CFM Tools | HVACLogic",
   description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
+  alternates: {
+    canonical: `${siteConfig.canonicalDomain}/airflow-ducts`,
+  },
+  openGraph: {
+    title: "Airflow & Duct Sizing Calculators — HVAC Ductulators & CFM Tools | HVACLogic",
+    description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
+    url: `${siteConfig.canonicalDomain}/airflow-ducts`,
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Airflow & Duct Sizing Calculators — HVAC Ductulators & CFM Tools | HVACLogic",
+    description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
+  },
 };
 
 const CATEGORY_COLOR = "#00d2ff";

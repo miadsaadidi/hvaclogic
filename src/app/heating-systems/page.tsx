@@ -4,9 +4,27 @@ import type { Metadata } from "next";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
+import { siteConfig } from "@/lib/site-config";
+
 export const metadata: Metadata = {
   title: "Heating & Heat Pump Calculators — Heat Pump Balance Point & AFUE Sizing | HVACLogic",
   description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
+  alternates: {
+    canonical: `${siteConfig.canonicalDomain}/heating-systems`,
+  },
+  openGraph: {
+    title: "Heating & Heat Pump Calculators — Heat Pump Balance Point & AFUE Sizing | HVACLogic",
+    description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
+    url: `${siteConfig.canonicalDomain}/heating-systems`,
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Heating & Heat Pump Calculators — Heat Pump Balance Point & AFUE Sizing | HVACLogic",
+    description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
+  },
 };
 
 const CATEGORY_COLOR = "#ff6b4a";

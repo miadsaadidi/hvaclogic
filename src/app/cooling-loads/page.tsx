@@ -4,9 +4,27 @@ import type { Metadata } from "next";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
+import { siteConfig } from "@/lib/site-config";
+
 export const metadata: Metadata = {
   title: "Cooling & Heat Load Calculators — ACCA Manual J/S Sizing Tools | HVACLogic",
   description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
+  alternates: {
+    canonical: `${siteConfig.canonicalDomain}/cooling-loads`,
+  },
+  openGraph: {
+    title: "Cooling & Heat Load Calculators — ACCA Manual J/S Sizing Tools | HVACLogic",
+    description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
+    url: `${siteConfig.canonicalDomain}/cooling-loads`,
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cooling & Heat Load Calculators — ACCA Manual J/S Sizing Tools | HVACLogic",
+    description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
+  },
 };
 
 const CATEGORY_COLOR = "#38bdf8";

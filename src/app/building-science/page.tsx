@@ -4,9 +4,27 @@ import type { Metadata } from "next";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
+import { siteConfig } from "@/lib/site-config";
+
 export const metadata: Metadata = {
   title: "Building Science & Insulation Calculators — R-Value & U-Factor Assembly Tools | HVACLogic",
   description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
+  alternates: {
+    canonical: `${siteConfig.canonicalDomain}/building-science`,
+  },
+  openGraph: {
+    title: "Building Science & Insulation Calculators — R-Value & U-Factor Assembly Tools | HVACLogic",
+    description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
+    url: `${siteConfig.canonicalDomain}/building-science`,
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Building Science & Insulation Calculators — R-Value & U-Factor Assembly Tools | HVACLogic",
+    description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
+  },
 };
 
 const CATEGORY_COLOR = "#8b5cf6";
