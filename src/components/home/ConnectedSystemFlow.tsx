@@ -3,6 +3,7 @@ import Link from "next/link";
 
 interface SystemNode {
   id: string;
+  step: string;
   category: string;
   title: string;
   metric: string;
@@ -15,8 +16,9 @@ interface SystemNode {
 const SYSTEM_NODES: SystemNode[] = [
   {
     id: "cooling-loads",
+    step: "01",
     category: "Cooling & Loads",
-    title: "1. Whole-Home Heat Load",
+    title: "Whole-Home Heat Load",
     metric: "BTU/hr • Sizing Tons",
     description: "Calculate sensible heat gains, solar transmission, and ACCA Manual J/S cooling equipment capacity.",
     icon: "🏠",
@@ -25,8 +27,9 @@ const SYSTEM_NODES: SystemNode[] = [
   },
   {
     id: "airflow-ducts",
+    step: "02",
     category: "Airflow & Ducts",
-    title: "2. Ductwork & Airflow Distribution",
+    title: "Ductwork & Airflow",
     metric: "CFM • Friction • FPM",
     description: "Size round and rectangular trunks, compute static friction loss, and derate flexible duct sag.",
     icon: "🌀",
@@ -35,8 +38,9 @@ const SYSTEM_NODES: SystemNode[] = [
   },
   {
     id: "field-diagnostics",
+    step: "03",
     category: "Field Diagnostics",
-    title: "3. Refrigeration Diagnostics",
+    title: "Refrigeration PT",
     metric: "Target SH • Actual SC",
     description: "Verify subcooling and target superheat against NIST REFPROP PT saturation curves for R-410A & R-454B.",
     icon: "🔧",
@@ -45,8 +49,9 @@ const SYSTEM_NODES: SystemNode[] = [
   },
   {
     id: "heating-systems",
+    step: "04",
     category: "Heating Systems",
-    title: "4. Heat Pump Electrification",
+    title: "Heat Pump Electrification",
     metric: "Balance Point • COP",
     description: "Size heat pumps, calculate heating balance points, and optimize winter supplemental heating.",
     icon: "🔥",
@@ -55,8 +60,9 @@ const SYSTEM_NODES: SystemNode[] = [
   },
   {
     id: "building-science",
+    step: "05",
     category: "Building Science",
-    title: "5. Thermal Envelope & Codes",
+    title: "Thermal Envelope",
     metric: "R-Value • U-Factor",
     description: "Calculate series and parallel wall assembly R-values complying with IECC climate zone energy codes.",
     icon: "🏢",
@@ -67,14 +73,14 @@ const SYSTEM_NODES: SystemNode[] = [
 
 export function ConnectedSystemFlow() {
   return (
-    <section style={{ marginTop: "2.5rem", marginBottom: "3rem" }}>
-      <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+    <section style={{ marginTop: "2.5rem", marginBottom: "3.5rem" }}>
+      <div style={{ textAlign: "center", marginBottom: "1.75rem" }}>
         <p className="eyebrow" style={{ marginBottom: "0.25rem" }}>The Connected HVAC Ecosystem</p>
-        <h2 style={{ fontSize: "1.55rem", fontWeight: 700, margin: "0 0 0.35rem" }}>
+        <h2 style={{ fontSize: "1.65rem", fontWeight: 700, margin: "0 0 0.4rem", letterSpacing: "-0.01em" }}>
           One Unified Building Science Architecture
         </h2>
-        <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", maxWidth: "680px", margin: "0 auto" }}>
-          Thermal load calculations, airflow distribution, refrigeration diagnostics, and envelope physics work in one continuous engineering chain:
+        <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", maxWidth: "680px", margin: "0 auto", lineHeight: 1.5 }}>
+          Thermal load calculations, airflow distribution, refrigeration diagnostics, and envelope physics work in one continuous engineering workflow:
         </p>
       </div>
 
@@ -89,33 +95,50 @@ export function ConnectedSystemFlow() {
           <Link
             key={node.id}
             href={node.href}
+            className="system-flow-card"
             style={{
               display: "flex",
               flexDirection: "column",
-              padding: "1.25rem",
+              padding: "1.35rem 1.25rem",
               borderRadius: "0.85rem",
               background: "var(--surface)",
               border: "1px solid var(--border-color)",
-              borderTop: `4px solid ${node.color}`,
+              borderTop: `3.5px solid ${node.color}`,
               textDecoration: "none",
               color: "inherit",
-              transition: "transform 0.15s ease, box-shadow 0.15s ease",
+              position: "relative",
             }}
           >
-            {/* Top Row: Category Label + Icon */}
+            {/* Top Row: Step Tag + Icon */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
-              <span
-                style={{
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                  color: node.color,
-                }}
-              >
-                {node.category}
-              </span>
-              <span style={{ fontSize: "1.4rem" }}>{node.icon}</span>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
+                <span
+                  style={{
+                    fontFamily: "ui-monospace, monospace",
+                    fontSize: "0.7rem",
+                    fontWeight: 800,
+                    padding: "0.1rem 0.35rem",
+                    borderRadius: "4px",
+                    background: `${node.color}20`,
+                    color: node.color,
+                    border: `1px solid ${node.color}40`,
+                  }}
+                >
+                  {node.step}
+                </span>
+                <span
+                  style={{
+                    fontSize: "0.72rem",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                    color: node.color,
+                  }}
+                >
+                  {node.category}
+                </span>
+              </div>
+              <span style={{ fontSize: "1.35rem" }}>{node.icon}</span>
             </div>
 
             {/* Title */}
@@ -130,9 +153,9 @@ export function ConnectedSystemFlow() {
                 alignSelf: "flex-start",
                 fontSize: "0.72rem",
                 fontWeight: 600,
-                background: `${node.color}15`,
+                background: `${node.color}12`,
                 color: node.color,
-                border: `1px solid ${node.color}30`,
+                border: `1px solid ${node.color}28`,
                 padding: "0.15rem 0.5rem",
                 borderRadius: "4px",
                 marginBottom: "0.65rem",
@@ -146,7 +169,7 @@ export function ConnectedSystemFlow() {
               {node.description}
             </p>
 
-            {/* Action Link Button */}
+            {/* Action Link Button with animated arrow */}
             <div
               style={{
                 marginTop: "1.1rem",
@@ -155,10 +178,11 @@ export function ConnectedSystemFlow() {
                 color: node.color,
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.25rem",
+                gap: "0.3rem",
               }}
             >
-              Explore Category →
+              <span>Explore Category</span>
+              <span className="flow-arrow">→</span>
             </div>
           </Link>
         ))}
@@ -166,3 +190,4 @@ export function ConnectedSystemFlow() {
     </section>
   );
 }
+

@@ -1,13 +1,16 @@
 # HVAC Logic — System Documentation Directory
 
 > **Documentation Suite Status**: Approved & Hardened  
+# HVAC Logic — System Documentation Directory
+
+> **Documentation Suite Status**: Approved & Hardened  
 > **Version**: 1.0.0  
 > **Last Updated**: 2026-08-20
 > **Canonical Domain**: `https://hvaclogic.org`
 
 ---
 
-## 📚 Complete 13-Document Master Index
+## 📚 Complete 14-Document Master Index
 
 This directory contains the engineering contracts, source registers, validation matrices, architectural blueprints, and SEO strategies for **HVAC Lab**.
 
@@ -26,3 +29,4 @@ This directory contains the engineering contracts, source registers, validation 
 | **11** | [11-analytics-and-kpi-plan.md](./11-analytics-and-kpi-plan.md) | Privacy-preserving telemetry event dictionary, zero-PII policies, and 4-tier KPI framework (SEO, Product, Authority, Commercial). |
 | **12** | [12-quality-safety-accessibility.md](./12-quality-safety-accessibility.md) | Diagnostic decision-support guardrails, A2L/combustion safety notices, and WCAG 2.2 AA accessibility standards. |
 | **13** | [13-30-day-seo-authority-plan.md](./13-30-day-seo-authority-plan.md) | Day-by-day canonical launch, calculator quality, earned-authority outreach, measurement, and Month 2 admission plan. |
+| **14** | [14-seo-progress-tracker.md](./14-seo-progress-tracker.md) | Active operational ledger with 30-day checklist, 40-prospect CRM pipeline, daily community posting log, and GSC indexation scorecard. |

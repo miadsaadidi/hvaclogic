@@ -11,7 +11,7 @@ export function HomeFaqSection() {
   };
 
   return (
-    <section style={{ margin: "3.5rem 0 2rem" }} aria-labelledby="faq-heading">
+    <section style={{ margin: "4rem 0 2.5rem" }} aria-labelledby="faq-heading">
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
         <p className="eyebrow" style={{ marginBottom: "0.25rem" }}>Engineering FAQ</p>
         <h2 id="faq-heading" style={{ fontSize: "1.65rem", fontWeight: 700, margin: "0 0 0.35rem" }}>
@@ -22,18 +22,19 @@ export function HomeFaqSection() {
         </p>
       </div>
 
-      <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+      <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "0.85rem" }}>
         {HOMEPAGE_FAQS.map((faq, idx) => {
           const isOpen = openIndex === idx;
           return (
             <div
               key={faq.question}
               style={{
-                borderRadius: "0.75rem",
+                borderRadius: "0.85rem",
                 background: "var(--surface)",
-                border: "1px solid var(--border-color)",
+                border: `1px solid ${isOpen ? "var(--accent-primary)" : "var(--border-color)"}`,
                 overflow: "hidden",
-                transition: "border-color 0.15s ease",
+                boxShadow: isOpen ? "0 4px 16px rgba(0, 210, 255, 0.08)" : "var(--shadow-sm)",
+                transition: "all 0.18s ease",
               }}
             >
               <button
@@ -42,7 +43,7 @@ export function HomeFaqSection() {
                 aria-expanded={isOpen}
                 style={{
                   width: "100%",
-                  padding: "1.1rem 1.25rem",
+                  padding: "1.15rem 1.35rem",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
@@ -50,33 +51,42 @@ export function HomeFaqSection() {
                   border: "none",
                   textAlign: "left",
                   color: "var(--ink)",
-                  fontWeight: 600,
-                  fontSize: "0.95rem",
+                  fontWeight: 650,
+                  fontSize: "0.98rem",
                   cursor: "pointer",
+                  gap: "1rem",
                 }}
               >
                 <span>{faq.question}</span>
                 <span
                   style={{
-                    fontSize: "1.2rem",
+                    width: "28px",
+                    height: "28px",
+                    borderRadius: "50%",
+                    background: isOpen ? "rgba(0, 210, 255, 0.15)" : "var(--bg-primary)",
+                    border: "1px solid var(--border-color)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    fontSize: "0.85rem",
                     color: "var(--accent-cooling)",
                     transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                    transition: "transform 0.2s ease",
-                    marginLeft: "0.75rem",
+                    transition: "transform 0.2s ease, background-color 0.2s ease",
                   }}
                 >
-                  ▾
+                  ▼
                 </span>
               </button>
               {isOpen && (
                 <div
                   style={{
-                    padding: "0 1.25rem 1.15rem",
+                    padding: "0.25rem 1.35rem 1.25rem",
                     color: "var(--ink-secondary)",
-                    fontSize: "0.875rem",
+                    fontSize: "0.88rem",
                     lineHeight: 1.6,
                     borderTop: "1px solid var(--border-subtle)",
-                    paddingTop: "0.85rem",
+                    paddingTop: "0.95rem",
                   }}
                 >
                   {faq.answer}
@@ -89,3 +99,4 @@ export function HomeFaqSection() {
     </section>
   );
 }
+

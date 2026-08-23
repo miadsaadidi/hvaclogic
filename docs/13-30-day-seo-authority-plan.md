@@ -92,7 +92,7 @@ Tiering controls execution order only. All 21 production calculators remain inde
 | **4** | Engineering + SEO | Audit structured data in rendered HTML. Keep accurate `WebSite`, `WebApplication`/`SoftwareApplication`, and `BreadcrumbList` entities. Keep visible FAQs for users, but remove FAQ rich-result expectations from tests and strategy. | Schema validator has no syntax errors or mismatches with visible content; breadcrumbs match canonical routes. |
 | **5** | Engineering | Run mobile and desktop PageSpeed Insights on homepage, one pillar, and four archetypes: lightweight calculator, chart-heavy calculator, diagnostic calculator, and long-form calculator. Review font loading, visualizer dimensions, main-thread work, and layout shifts. | Baseline sheet saved; critical regressions have owners; targets use LCP ≤2.5s, INP ≤200ms, CLS ≤0.1. |
 | **6** | Site owner + Engineering | Establish privacy-safe measurement. Record GSC/Bing baselines and verify any analytics events do not include query parameters or numeric calculation inputs. | Day 1 export folder and KPI sheet created; no PII or job data appears in telemetry. |
-| **7** | SEO | Submit the sitemap. Inspect and request indexing for the homepage, five pillars, and the eight Tier 1 calculators in a controlled sequence. Record Google's selected canonical where available. | Sitemap accepted; inspection status and request date recorded for every priority URL. |
+| **7** | SEO + SME | Publish the HVACLogic Academic Whitepaper to **Internet Archive (`archive.org` — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**. Submit the canonical sitemap. Inspect and request indexing for the homepage, five pillars, and the eight Tier 1 calculators. Record Google's selected canonical where available. | Academic pre-print published on Archive.org & Academia.edu; sitemap accepted; inspection status and request date recorded for every priority URL. |
 
 ### Week 2 — page quality, intent alignment, and internal authority flow
 
@@ -106,13 +106,13 @@ Tiering controls execution order only. All 21 production calculators remain inde
 | **13** | Design + SEO | Verify unique Open Graph images for homepage, pillars, and priority calculators. Check titles are legible at social-card size and image URLs use the canonical host. | Social preview checklist passes for the 14 priority URLs. |
 | **14** | QA | Re-crawl changed pages; compare raw HTML, metadata, schema, canonicals, and internal links. Run unit tests, typecheck, and targeted SEO assertions. | Week 2 release gate passes; changes deployed together and logged. |
 
-### Week 3 — useful distribution and earned-link outreach
+### Week 3 — useful distribution, academic outreach, and earned-link outreach
 
 | Day | Owner | Work | Deliverable and acceptance check |
 | :---: | :--- | :--- | :--- |
-| **15** | SEO + Editorial | Build the outreach kit: one-sentence product description, privacy statement, source policy, screenshots, three worked examples, and direct links to the most relevant calculator—not the homepage by default. | Reusable media/resource folder and outreach tracker ready. |
-| **16** | HVAC SME | Participate in two relevant community discussions where a calculation genuinely answers the question. Candidate communities include HVAC-Talk and carefully selected HVAC/HVAC-advice subreddits, subject to each community's rules. | Two useful, non-promotional answers logged; links included only where allowed and genuinely helpful. |
-| **17** | Outreach | Contact 8 vocational schools, apprenticeship programs, community-college HVAC labs, or instructor resource pages. Pitch the transparent formulas, worked examples, offline use, and printable job sheets. | Eight personalized contacts sent; page/topic fit recorded. |
+| **15** | SEO + Editorial | Build the outreach kit: one-sentence product description, privacy statement, source policy, screenshots, academic paper DOI link, printable job sheets, and direct calculator URLs. | Reusable media/resource folder and outreach tracker ready in [14-seo-progress-tracker.md](./14-seo-progress-tracker.md). |
+| **16** | HVAC SME | Participate in two relevant community discussions (HVAC-Talk / Reddit). Provide the full mathematical proof inline; attach calculator permalink as optional reference. | Two useful, non-promotional answers logged; links included only where allowed and genuinely helpful. |
+| **17** | Outreach | Contact 8 vocational schools, apprenticeship programs, community-college HVAC labs, or instructor resource pages. Pitch the transparent formulas, worked examples, offline use, and academic whitepaper. | Eight personalized contacts sent; page/topic fit recorded. |
 | **18** | Outreach | Contact 7 contractor training centers, commissioning organizations, building-science educators, or regional trade associations. Offer a reviewed resource suggestion, not a reciprocal-link exchange. | Seven personalized contacts sent; no bulk template blast. |
 | **19** | Outreach | Contact 5 engineering/HVAC publishers, newsletters, podcasts, or technical bloggers with one calculator-specific story: TEL/ASP, A2L line-set charging, ECM filter pressure, or combustion-air sizing. | Five tailored pitches sent with a concrete example and source notes. |
 | **20** | Engineering + Outreach | Review embed behavior. Position embeds as reader utility and referral distribution. The generated attribution must be visible, branded, and safely qualified; never require followed ranking credit. Ask publishers separately for an editorial resource citation only when deserved. | Embed demo works responsively; attribution policy passes spam review; five qualified embed prospects contacted. |
@@ -134,99 +134,132 @@ Tiering controls execution order only. All 21 production calculators remain inde
 
 ---
 
-## 5. Outreach messaging
+## 5. Ready-to-Use Outreach & Discussion Copy Templates
 
-### Trade-school or instructor resource pitch
+### A. Academic & Vocational Lab Instructor Pitch (.EDU Outreach)
 
 ```text
-Subject: Transparent HVAC calculation tools for [course or resource page]
+Subject: Open-access calculation tools & student lab sheets for [Course Name / Department]
 
-Hi [Name],
+Hi Professor/Instructor [Last Name],
 
-I found your [specific HVAC course/resource page] while reviewing training material for [specific topic].
+I came across your HVAC/R training materials for [Course Name, e.g., Air Distribution & Psychrometrics] at [Institution Name].
 
-HVACLogic provides free browser-based calculators that expose their formulas, units, assumptions, worked examples, and source standards. The tools run client-side without accounts or customer-job tracking and can be used offline in the field.
+We recently published an open-access engineering framework: "HVACLogic: A Deterministic Building Science and Thermodynamic Modeling Framework" (Archived on Internet Archive & Academia.edu), alongside a companion suite of 21 free, browser-based calculators:
+https://hvaclogic.org
 
-For your material on [topic], this calculator may be useful:
-[direct calculator URL]
+Key features designed specifically for student lab sessions:
+1. 100% Client-Side & Private: Zero user accounts, zero data harvesting, and no customer-job tracking.
+2. Transparent Equations: Every calculation displays the exact governing formulas (Colebrook-White, Darcy-Weisbach, ASHRAE psychrometrics, EPA bubble/dew glide) and step-by-step worked solutions.
+3. Offline & Printable: Operates fully offline in campus basements/labs and exports clean, printable PDF job cards for lab grading.
 
-The relevant method is [one-sentence method], with the source and limitations shown on the page. If it would help your students, you are welcome to link to it or embed it. No placement or followed link is required.
+For your upcoming module on [topic], this direct utility may be helpful for your students:
+[Direct Tool URL, e.g., https://hvaclogic.org/calculators/ductulator]
 
-Best,
-[Name]
+You are welcome to reference the tool or the open methodology paper in your course syllabus or lab handouts. No link or attribution is formally required.
+
+Best regards,
+
+[Your Name]
+HVACLogic Engineering Working Group
+https://hvaclogic.org
+```
+
+### B. Pro Forum Technical Response (HVAC-Talk / Reddit `r/HVAC` & `r/MEPEngineering`)
+
+```text
+Regarding the friction loss on your [e.g. 10-inch round branch line at 350 CFM]:
+
+Using the Colebrook-White friction model for standard galvanized sheet metal (roughness e = 0.0003 ft) at standard air density (0.075 lb/cu ft):
+- Air Velocity: V = Q / A = 350 / (pi * (5/12)^2) = 642 FPM
+- Velocity Pressure: Pv = (642 / 4005)^2 = 0.0257 in. wg
+- Reynolds Number: Re approx. 54,000 (fully turbulent)
+- Darcy Friction Factor: f = 0.0212
+- Friction Rate: FR = 0.062 in. wg per 100 ft
+
+This is well within the standard ACCA Manual D residential supply threshold (0.08 in. wg/100 ft) and SMACNA acoustic limits for residential branch ducts (<700 FPM).
+
+If you want to test different aspect ratios or equivalent rectangular sizes (e.g. 10x8 or 12x6), here is an interactive calculator that exposes the exact Colebrook and Huebscher formulas with live canvas cross-sections:
+https://hvaclogic.org/calculators/ductulator?cfm=350&friction=0.062
+```
+
+### C. Industry Media & Podcast Pitch (ACHR News / HVAC School / Bryan Orr)
+
+```text
+Subject: Interactive A2L refrigerant glide & line-set calculation resource for your readers
+
+Hi [Editor/Host Name],
+
+Your recent coverage on [Article Title / A2L refrigerant transition rules] was exceptionally clear and helpful for technicians in the field.
+
+As contractors navigate the transition from R-410A to R-454B and R-32, the primary jobsite hurdle has been calculating temperature glide across bubble and dew points, plus OEM line-set add-on charge rates beyond 15 ft.
+
+We built a free, zero-ad interactive diagnostic calculator that models saturation curves and weigh-in requirements:
+- Tool: https://hvaclogic.org/calculators/refrigerant-charge-calculator
+- Sourced Data Register: https://hvaclogic.org/methodology
+
+If helpful for your readers, you are welcome to embed the calculation widget or reference the worked scenario in future technical guides.
+
+Best regards,
+
+[Your Name]
 HVACLogic — https://hvaclogic.org
 ```
 
-### Technical publisher pitch
+### D. Software Directory Profile (AlternativeTo / Open Registries)
 
 ```text
-Subject: Interactive worked example for your [specific article/topic]
-
-Hi [Name],
-
-Your explanation of [specific point] is one of the clearer resources I found on the topic.
-
-We built an interactive HVACLogic calculator for [specific task]. It shows [specific differentiator], including the governing formula, units, and a worked example rather than hiding assumptions behind a result.
-
-Tool: [direct calculator URL]
-Method/source page: [relevant methodology or sources URL]
-
-If it improves the article for your readers, feel free to reference or embed it. I can also prepare a worked example using the scenario already discussed in your article.
-
-Best,
-[Name]
+Title: HVACLogic
+Tagline: Open-source, deterministic HVAC & building science engineering calculation suite.
+Description: 
+HVACLogic is a modern, fast, and privacy-preserving alternative to legacy software like McQuay Ductulator and Wrightsoft. It provides 21 client-side engineering tools covering air duct sizing (Colebrook-White & Huebscher), ACCA Manual J heating/cooling loads, SEER2 AC tonnage, A2L refrigerant charging, and ASHRAE psychrometrics.
+Key Features:
+- 100% Client-Side & Zero Tracking: Runs completely in your browser without transmitting project dimensions or customer data.
+- Full Offline PWA Support: Works reliably in mechanical rooms and basements without internet connectivity.
+- Transparent Engineering: Displays governing physics equations, LaTeX derivations, and worked examples for every calculation.
+- Printable PDF Submittals: Generate clean job submittal sheets and CSV datasets with one click.
+Website: https://hvaclogic.org
 ```
-
-### Community participation rule
-
-Answer the user's technical question in the post itself. State assumptions and safety limits. A calculator link is optional supporting material, never the entire answer. Do not post the same wording across communities, use optimized anchor text, or evade self-promotion rules.
 
 ---
 
-## 6. High-Authority Target Site Mix & Daily 2–3 Posts Cadence
+## 6. High-Authority Target Site Mix & Daily 5 Pro-Curiosity Emails Cadence
 
-To build compounding domain authority without triggering link-spam filters, HVACLogic maintains a disciplined daily rhythm of **2 to 3 targeted value-first posts / outreach pitches per day** (14 to 21 touches per week).
+To build compounding domain authority without triggering spam filters, HVACLogic maintains a disciplined daily rhythm of **5 targeted, peer-to-peer pro-curiosity emails per day** (35 high-impact touches per week) alongside open scientific preprint distribution.
 
-### Target Site Distribution Mix
+### The Pro-Curiosity Email Standard:
+* **No Spam Keywords**: Zero use of "free", "all-in-one", "suite", or promotional hype.
+* **Peer-to-Peer Engineering Dialect**: Speaks directly to physical modeling nuances (Colebrook-White friction factors, Huebscher equivalent diameter limits, A2L bubble vs dew point subcooling, flex duct sag derating).
+* **Intellectual Curiosity Hook**: Piques the recipient's curiosity by referencing their specific published work or challenging an industry calculation assumption.
+* **Single Contextual Link**: Focuses on the single most relevant calculator (e.g. `https://hvaclogic.org/calculators/ductulator`).
 
 ```
-                        [ Daily 2–3 Posts & Outreach Mix ]
-                                       │
-    ┌──────────────────────────────────┼──────────────────────────────────┐
-    ▼                                  ▼                                  ▼
-[ Touch 1: Technical Forum / Q&A ] [ Touch 2: .EDU / Trade School ] [ Touch 3: Publisher / Directory ]
- • HVAC-Talk                        • Vocational HVAC Labs             • ACHR News / HVAC School
- • Reddit (r/HVAC, r/MEP)           • Community College Depts          • Engineering Tech Blogs
- • GreenBuildingAdvisor             • Apprentice Training Centers      • AlternativeTo / ProductHunt
+                              [ Daily 5 Pro-Curiosity Outreach Mix ]
+                                                │
+         ┌────────────────────────┬─────────────┴────────────┬────────────────────────┐
+         ▼                        ▼                          ▼                        ▼
+  [ Touch 1: Trade Leader ] [ Touch 2: .EDU Dept ]    [ Touch 3: Trade Editor ] [ Touches 4-5: SME / Tech ]
+   • Bryan Orr (HVAC School) • Ferris State Univ       • ACHR News (Kyle G.)     • Gary McCreadie (HVAC Know It All)
+   • Allison Bailes (Energy) • Northern Virginia CC    • Contracting Business    • Bill Spohn (TruTech Tools)
 ```
-
-| Channel Type | Target Authority Sites / Platforms | Target Daily Cadence | Content & Engagement Focus |
-| :--- | :--- | :---: | :--- |
-| **Field Tech & Pro Forums** | • **HVAC-Talk** (`hvac-talk.com`)<br>• **GreenBuildingAdvisor** | 1 post every 1–2 days | Solve live engineering sizing questions (TEL friction rates, ECM static pressure drops, heat pump balance points). Provide the full mathematical proof inline; attach calculator permalink as optional calculation reference. |
-| **Targeted Subreddits** | • **`r/HVAC`** (Field Techs & Installers)<br>• **`r/MEPEngineering`** (Design Engineers)<br>• **`r/hvacadvice`** (Sizing & Quotes)<br>• **`r/refrigeration`** (P-T & Saturation)<br>• **`r/BuildingScience`** (R-Values & Loss) | 1 post/reply per day | Participate in threads discussing complex sizing, AC model number decoding, or A2L refrigerant charging rules. |
-| **.EDU & Vocational Labs** | • **Vocational Colleges** (Lincoln Tech, UTI)<br>• **Community College HVAC/R Depts**<br>• **Union Apprentice Training Centers** | 1 pitch per day | Email instructors introducing the 100% free, ungated calculation tools, transparent formulas, and printable PDF submittals for student lab sessions. |
-| **Industry Media & Blogs** | • **ACHR News** (*The News*)<br>• **HVAC School** (*Bryan Orr / HVACR School*)<br>• **Contracting Business**<br>• **Mechanical Design & Green Blogs** | 1 tailored pitch every 2 days | Propose interactive calculation widgets or worked examples to enhance existing articles on Manual D, A2L refrigerants, or Manual J heat loss. |
-| **Open Web & Software Registries** | • **AlternativeTo** (Alternative to McQuay Ductulator & Wrightsoft)<br>• **Product Hunt / Hacker News Show HN**<br>• **GitHub Engineering Open Registries** | 1 directory listing / showcase every 3–4 days | Establish foundational brand searches and indexation citations for the zero-tracking, open-access engineering suite. |
 
 ---
 
-### Weekly 2–3 Posts Daily Execution Schedule
+### Daily 5 Emails Execution Distribution
 
-| Day of Week | Touch 1: Community Q&A (Technical Reply) | Touch 2: Academic Outreach (.EDU Pitch) | Touch 3: Publisher & Directory Pitch |
-| :--- | :--- | :--- | :--- |
-| **Monday** | `r/HVAC` (Field diagnostic / PT chart problem) | Vocational College HVAC Department #1 | AlternativeTo / Software Directory Profile |
-| **Tuesday** | `HVAC-Talk` (Airflow / duct sizing / TEL thread) | Community College HVAC Instructor #1 | Technical HVAC Blogger / Substack Pitch #1 |
-| **Wednesday** | `r/MEPEngineering` (Manual J vs Manual D sizing) | State Apprenticeship Resource Coordinator #1 | HVAC School (*Bryan Orr*) Topic Suggestion |
-| **Thursday** | `r/hvacadvice` (AC model number decoding / tonnage) | Vocational College HVAC Department #2 | Independent Green Building / Envelope Blogger |
-| **Friday** | `r/refrigeration` (A2L / R-454B charge calculations) | Community College HVAC Instructor #2 | Trade Newsletter / ACHR News Editorial Desk |
-| **Saturday** | `GreenBuildingAdvisor` (Wall R-value / U-factor) | Union Training Center Director #1 | Product Hunt / Show HN Launch Preparation |
-| **Sunday** | `r/HVAC` or `HVAC-Talk` (Weekly troubleshooting thread) | Student Lab Resource Page Coordinator #1 | Review weekly replies & update outreach tracker |
+| Touch # | Target Category | Focus & Content Angle | Example Target |
+| :---: | :--- | :--- | :--- |
+| **Touch 1** | **Industry Thought Leader / Author** | Challenge a specific calculation heuristic (e.g. flex duct sag derating vs traditional ductulators). | Dr. Allison Bailes (*Energy Vanguard*) / Bryan Orr |
+| **Touch 2** | **.EDU / Vocational Faculty** | Open psychrometric & fluid mechanics formulations for student lab handouts. | Ferris State / Lincoln Tech / Wake Tech |
+| **Touch 3** | **Trade Press Editorial Desk** | Field diagnostic anomalies during the A2L refrigerant transition (dew vs bubble subcooling). | Kyle Gargaro (*ACHR News*) / Terry McIver (*Contracting Business*) |
+| **Touch 4** | **Instrumentation & Diagnostics SME** | Physical field measurements vs mathematical boundary conditions (high aspect ratio ducts). | Bill Spohn (*TruTech Tools*) / Gary McCreadie |
+| **Touch 5** | **Building Science & Hydronics SME** | Infiltration modeling ($ACH_{50}$ to CFM50) or hydronic baseboard EDR derating. | GreenBuildingAdvisor contributors / Dan Foley |
 
 ---
 
-## 7. KPI tracker
+## 7. KPI tracker & Operational Integration
 
-Record baselines rather than filling unknown values with zero.
+Track daily execution metrics directly in **[`docs/14-seo-progress-tracker.md`](./14-seo-progress-tracker.md)**.
 
 | Metric | Day 1 baseline | Day 15 | Day 30 | Decision rule |
 | :--- | :---: | :---: | :---: | :--- |

@@ -5,9 +5,9 @@
 
 ---
 
-## 📚 Complete Project Documentation Suite (12 Canonical Documents)
+## 📚 Complete Project Documentation Suite (14 Canonical Documents)
 
-All system documentation, keyword research, engineering formulas, architectural specs, and SEO strategies are indexed in the [`/docs`](./docs/README.md) directory:
+All system documentation, keyword research, engineering formulas, architectural specs, SEO strategies, and operational progress trackers are indexed in the [`/docs`](./docs/README.md) directory:
 
 | Document | Description | Relative Link |
 | :--- | :--- | :--- |
@@ -23,6 +23,8 @@ All system documentation, keyword research, engineering formulas, architectural 
 | **10. Phased Implementation Roadmap** | 3-phase launch roadmap, engineering risk classifications (Low, Medium, High), and release gate tracking matrix. | [10-implementation-roadmap.md](./docs/10-implementation-roadmap.md) |
 | **11. Analytics & KPI Plan** | Privacy-preserving telemetry event dictionary, zero-PII policies, and 4-tier KPI framework (SEO, Product, Authority, Commercial). | [11-analytics-and-kpi-plan.md](./docs/11-analytics-and-kpi-plan.md) |
 | **12. Quality, Safety & Accessibility** | Diagnostic decision-support guardrails, A2L/combustion safety notices, and WCAG 2.2 AA accessibility standards. | [12-quality-safety-accessibility.md](./docs/12-quality-safety-accessibility.md) |
+| **13. 30-Day SEO Authority Plan** | Day-by-day canonical launch, quality audits, academic pre-print release, earned authority outreach, and Month 2 rules. | [13-30-day-seo-authority-plan.md](./docs/13-30-day-seo-authority-plan.md) |
+| **14. SEO Progress Tracker** | Active operational ledger with 30-day checklist, 40-prospect CRM pipeline, daily community posting log, and GSC scorecard. | [14-seo-progress-tracker.md](./docs/14-seo-progress-tracker.md) |
 
 ---
 

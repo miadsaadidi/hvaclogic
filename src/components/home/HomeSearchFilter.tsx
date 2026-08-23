@@ -60,19 +60,31 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
   }, [calculators, searchQuery, selectedCategory]);
 
   return (
-    <section style={{ marginTop: "1rem", marginBottom: "3rem" }}>
-      {/* Search Header Input */}
-      <div style={{ maxWidth: "680px", margin: "0 auto 1.75rem", position: "relative" }}>
-        <div style={{ position: "relative" }}>
+    <section style={{ marginTop: "1.25rem", marginBottom: "3.5rem" }}>
+      {/* Search Header Input Bar */}
+      <div style={{ maxWidth: "720px", margin: "0 auto 1.5rem", position: "relative" }}>
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            background: "var(--surface)",
+            borderRadius: "9999px",
+            border: "1px solid var(--border-color)",
+            boxShadow: "0 4px 18px rgba(0, 0, 0, 0.16)",
+            transition: "all 0.2s ease",
+          }}
+          className="search-input-container"
+        >
           <span
             style={{
-              position: "absolute",
-              left: "16px",
-              top: "50%",
-              transform: "translateY(-50%)",
+              paddingLeft: "1.1rem",
+              paddingRight: "0.4rem",
               fontSize: "1.1rem",
               color: "var(--text-muted)",
               pointerEvents: "none",
+              display: "flex",
+              alignItems: "center",
             }}
           >
             🔍
@@ -85,35 +97,48 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
             aria-label="Search HVAC calculators"
             style={{
               width: "100%",
-              padding: "0.85rem 1rem 0.85rem 2.85rem",
-              borderRadius: "9999px",
-              border: "1px solid var(--border-color)",
-              background: "var(--surface)",
+              padding: "0.85rem 0.5rem 0.85rem 0.25rem",
+              background: "transparent",
+              border: "none",
               color: "var(--ink)",
               fontSize: "0.95rem",
               outline: "none",
-              boxShadow: "var(--shadow-sm)",
             }}
           />
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", paddingRight: "1rem" }}>
+            {searchQuery ? (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                style={{
+                  background: "none",
+                  border: "none",
+                  fontSize: "0.95rem",
+                  color: "var(--text-muted)",
+                  cursor: "pointer",
+                  padding: "0.2rem 0.4rem",
+                }}
+                aria-label="Clear search"
+              >
+                ✕
+              </button>
+            ) : (
+              <span className="search-shortcut-badge">
+                Ctrl K
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Live Filter / Result status badge */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.45rem 0.75rem 0" }}>
+          <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 500 }}>
+            Showing {filteredCalculators.length} of {calculators.length} engineering tools
+          </span>
           {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery("")}
-              style={{
-                position: "absolute",
-                right: "14px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                background: "none",
-                border: "none",
-                fontSize: "1rem",
-                color: "var(--text-muted)",
-                cursor: "pointer",
-              }}
-              aria-label="Clear search"
-            >
-              ✕
-            </button>
+            <span style={{ fontSize: "0.75rem", color: "var(--accent-cooling)", fontWeight: 600 }}>
+              Filtered by &ldquo;{searchQuery}&rdquo;
+            </span>
           )}
         </div>
       </div>
@@ -143,8 +168,8 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.4rem",
-                padding: "0.45rem 0.95rem",
+                gap: "0.45rem",
+                padding: "0.45rem 1rem",
                 borderRadius: "9999px",
                 fontSize: "0.8125rem",
                 fontWeight: isActive ? 700 : 500,
@@ -152,11 +177,24 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                 border: `1px solid ${isActive ? cat.color : "var(--border-color)"}`,
                 background: isActive ? cat.color : "var(--surface)",
                 color: isActive ? "#ffffff" : "var(--ink)",
-                transition: "all 0.15s ease",
+                boxShadow: isActive ? `0 4px 14px ${cat.color}35` : "var(--shadow-sm)",
+                transition: "all 0.18s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               <span>{cat.icon}</span>
-              <span>{cat.label} ({count})</span>
+              <span>{cat.label}</span>
+              <span
+                style={{
+                  fontSize: "0.72rem",
+                  padding: "0.05rem 0.4rem",
+                  borderRadius: "999px",
+                  background: isActive ? "rgba(0, 0, 0, 0.25)" : "var(--bg-primary)",
+                  color: isActive ? "#ffffff" : "var(--text-muted)",
+                  fontWeight: 700,
+                }}
+              >
+                {count}
+              </span>
             </button>
           );
         })}
@@ -167,23 +205,44 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
         <div
           style={{
             textAlign: "center",
-            padding: "3rem 1rem",
+            padding: "3.5rem 1.5rem",
             background: "var(--surface)",
             borderRadius: "0.85rem",
             border: "1px dashed var(--border-color)",
+            maxWidth: "600px",
+            margin: "0 auto",
           }}
         >
-          <p style={{ fontSize: "1.2rem", margin: "0 0 0.5rem" }}>🔍 No matching calculators found</p>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", margin: 0 }}>
+          <p style={{ fontSize: "1.3rem", margin: "0 0 0.5rem" }}>🔍 No matching calculators found</p>
+          <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", margin: "0 0 1.25rem" }}>
             Try searching for terms like &quot;ductulator&quot;, &quot;seer2&quot;, &quot;tonnage&quot;, &quot;superheat&quot;, &quot;r-value&quot;, or &quot;cfm&quot;.
           </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery("");
+              setSelectedCategory("all");
+            }}
+            style={{
+              padding: "0.5rem 1rem",
+              borderRadius: "0.5rem",
+              border: "1px solid var(--border-color)",
+              background: "var(--surface-raised)",
+              color: "var(--accent-cooling)",
+              fontWeight: 600,
+              fontSize: "0.85rem",
+              cursor: "pointer",
+            }}
+          >
+            Reset Filters
+          </button>
         </div>
       ) : (
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))",
-            gap: "1.25rem",
+            gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
+            gap: "1.35rem",
           }}
         >
           {filteredCalculators.map((calc) => {
@@ -203,10 +262,9 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                   borderRadius: "0.85rem",
                   background: "var(--surface)",
                   border: "1px solid var(--border-color)",
-                  borderTop: `4px solid ${color}`,
+                  borderTop: `3.5px solid ${color}`,
                   textDecoration: "none",
                   color: "inherit",
-                  transition: "transform 0.15s ease, box-shadow 0.15s ease",
                 }}
               >
                 {/* Top Row: Category Label + Icon */}
@@ -222,11 +280,11 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                   >
                     {calc.categoryName}
                   </span>
-                  <span style={{ fontSize: "1.4rem" }}>{meta?.icon ?? catInfo.icon}</span>
+                  <span style={{ fontSize: "1.35rem" }}>{meta?.icon ?? catInfo.icon}</span>
                 </div>
 
                 {/* Calculator Title */}
-                <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)" }}>
+                <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.08rem", fontWeight: 700, color: "var(--ink)" }}>
                   {calc.name}
                 </h3>
 
@@ -238,9 +296,9 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                       alignSelf: "flex-start",
                       fontSize: "0.72rem",
                       fontWeight: 600,
-                      background: `${color}15`,
+                      background: `${color}12`,
                       color: color,
-                      border: `1px solid ${color}30`,
+                      border: `1px solid ${color}28`,
                       padding: "0.15rem 0.5rem",
                       borderRadius: "4px",
                       marginBottom: "0.65rem",
@@ -253,7 +311,7 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                 {/* Description */}
                 <p
                   style={{
-                    fontSize: "0.8125rem",
+                    fontSize: "0.82rem",
                     color: "var(--ink-secondary)",
                     lineHeight: 1.45,
                     margin: "0 0 1rem",
@@ -289,15 +347,15 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    paddingTop: "0.65rem",
+                    paddingTop: "0.7rem",
                     borderTop: "1px solid var(--border-subtle)",
-                    fontSize: "0.78rem",
+                    fontSize: "0.8rem",
                     fontWeight: 700,
                     color: color,
                   }}
                 >
                   <span>Launch Tool</span>
-                  <span>→</span>
+                  <span className="card-arrow">→</span>
                 </div>
               </Link>
             );
@@ -307,3 +365,4 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
     </section>
   );
 }
+
