@@ -284,7 +284,7 @@ export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
                 </div>
 
                 {/* Calculator Title */}
-                <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.08rem", fontWeight: 700, color: "var(--ink)" }}>
+                <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.05rem", fontWeight: 600, color: "var(--ink)" }}>
                   {calc.name}
                 </h3>
 

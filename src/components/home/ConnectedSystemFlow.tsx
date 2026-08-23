@@ -142,7 +142,7 @@ export function ConnectedSystemFlow() {
             </div>
 
             {/* Title */}
-            <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)" }}>
+            <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.02rem", fontWeight: 600, color: "var(--ink)" }}>
               {node.title}
             </h3>
 

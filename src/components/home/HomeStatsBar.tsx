@@ -42,7 +42,7 @@ export function HomeStatsBar() {
         gap: "1rem",
         width: "100%",
         maxWidth: "1080px",
-        margin: "1.5rem auto 2.75rem",
+        margin: "1.25rem auto 2.25rem",
         position: "relative",
         zIndex: 1,
       }}
@@ -76,13 +76,13 @@ export function HomeStatsBar() {
               marginBottom: "0.35rem",
             }}
           >
-            <span style={{ fontSize: "1.25rem" }}>{s.icon}</span>
+            <span style={{ fontSize: "1.2rem" }}>{s.icon}</span>
             <span
               style={{
-                fontSize: "1.5rem",
-                fontWeight: 750,
+                fontSize: "1.375rem",
+                fontWeight: 550,
                 color: s.color,
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.01em",
                 fontVariantNumeric: "tabular-nums",
               }}
             >
@@ -91,19 +91,20 @@ export function HomeStatsBar() {
           </div>
           <div
             style={{
-              fontSize: "0.875rem",
-              fontWeight: 700,
+              fontSize: "0.85rem",
+              fontWeight: 500,
               color: "var(--ink)",
-              marginBottom: "0.2rem",
+              marginBottom: "0.15rem",
+              letterSpacing: "-0.005em",
             }}
           >
             {s.label}
           </div>
           <div
             style={{
-              fontSize: "0.74rem",
+              fontSize: "0.72rem",
               color: "var(--text-muted)",
-              fontWeight: 500,
+              fontWeight: 400,
               letterSpacing: "0.01em",
             }}
           >

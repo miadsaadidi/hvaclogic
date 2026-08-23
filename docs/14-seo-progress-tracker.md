@@ -172,4 +172,44 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 | `/calculators/ductulator` | 2D Canvas Tool | $<0.9\text{s}$ | $<30\text{ms}$ | $0.000$ | $96/100$ | $100/100$ | 2026-08-20 | `PASS` |
 | `/calculators/btu-calculator` | Multi-Input Tool | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $97/100$ | $100/100$ | 2026-08-20 | `PASS` |
 | `/calculators/pt-chart` | Interactive Chart | $<0.8\text{s}$ | $<20\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-20 | `PASS` |
-| `/calculators/superheat-subcooling-calculator`| Diagnostic Tool | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $97/100$ | $100/100$ | 2026-08-20 | `PASS` |
+| `/calculators/superheat-subcooling-calculator`| Diagnostic Tool | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-20 | `PASS` |
+
+---
+
+## 7. Google Search Console Historical Performance Milestones & Snapshots
+
+### 📊 Snapshot #1 — Launch Baseline (Day 1 to Day 3: Aug 19–21, 2026)
+
+* **Recorded Date**: 2026-08-23 (Data through 2026-08-21)
+* **Domain Age**: 72 hours post-launch
+* **Total Organic Impressions**: **119**
+* **Total Organic Clicks**: **0**
+* **Average CTR**: **0.0%**
+* **Average Ranking Position**: **60.1** (Standard Google Sandbox testing range)
+* **Total Active Ranked Queries**: **55 distinct keywords**
+
+#### A. Top 10 Seed Keywords by Impressions
+| # | Search Query | Impressions | Clicks | Primary Target Calculator | Target URL |
+| :---: | :--- | :---: | :---: | :--- | :--- |
+| **01** | `ductwork estimator` | 2 | 0 | Digital Ductulator | `/calculators/ductulator` |
+| **02** | `hvac load calculation` | 2 | 0 | BTU Heating & Cooling Load | `/calculators/btu-calculator` |
+| **03** | `cfm chart for flex duct` | 1 | 0 | Flex Duct CFM Chart | `/calculators/flex-duct-cfm-chart` |
+| **04** | `how many cfm is 8 inch flex` | 1 | 0 | Flex Duct CFM Chart | `/calculators/flex-duct-cfm-chart` |
+| **05** | `heat pump tonnage calculator` | 1 | 0 | Heat Pump Sizer & Balance Point | `/calculators/heat-pump-size-calculator` |
+| **06** | `404a pt chart` | 1 | 0 | Digital PT Chart | `/calculators/pt-chart` |
+| **07** | `ductulator` | 1 | 0 | Digital Ductulator | `/calculators/ductulator` |
+| **08** | `hvac ton calculator` | 1 | 0 | AC Tonnage & Room Capacity | `/calculators/ac-tonnage-calculator` |
+| **09** | `ground source heat pump area calculator` | 1 | 0 | Heat Pump Sizer | `/calculators/heat-pump-size-calculator` |
+| **10** | `how to tell what ton an ac unit is` | 1 | 0 | AC Model Decoder | `/calculators/ac-model-decoder` |
+
+#### B. Coverage & Technical Indexation Audit Status
+* **Page avec redirection (7)**: All 7 are non-canonical protocols or subdomains (`http://`, `http://www.`, `https://www.`) correctly redirecting (308) to `https://hvaclogic.org`.
+* **Autre page avec balise canonique correcte (1)**: Parameterized calculator state (`/calculators/ductulator?cfm=1200&friction=0.08`) correctly deduplicated by canonical tag.
+* **Explorée, actuellement non indexée (9)**: All 9 are static asset files (8 `.woff2` font files and 1 `manifest.webmanifest`), rendered for mobile audit but omitted from search engine SERPs by design.
+* **Détectée, actuellement non indexée (3)**: In Google's initial crawl queue for scheduled indexing.
+
+#### C. Milestone 2 Target (Day 14 Review — 2026-09-04)
+* [ ] Total impressions $\ge 1,000$
+* [ ] Total unique queries $\ge 150$
+* [ ] First organic clicks logged ($10\text{--}50\text{ clicks}$)
+* [ ] Tier 1 calculators (`ac-model-decoder`, `flex-duct-cfm-chart`, `ductulator`) entering Top 20 ranking positions.
