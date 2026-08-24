@@ -9,7 +9,7 @@ import "./globals.css";
 
 const titillium = Titillium_Web({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "900"],
+  weight: ["300", "400", "600", "700"],
   variable: "--font-titillium",
   display: "swap",
 });

@@ -67,7 +67,7 @@ export function RefrigerantChargeVisualizer({ output }: RefrigerantChargeVisuali
 
         <rect x="224" y="178" width="192" height="42" rx="8" fill="var(--bg-primary)" stroke={adjustmentColor} />
         <text x="320" y="196" textAnchor="middle" fill="var(--ink-secondary)" fontSize="10" fontWeight="700">INITIAL WEIGH-IN</text>
-        <text x="320" y="213" textAnchor="middle" fill={adjustmentColor} fontSize="15" fontWeight="800">
+        <text x="320" y="213" textAnchor="middle" fill={adjustmentColor} fontSize="15" fontWeight="700">
           {actionLabel}: {output.chargeAdjustmentFormatted}
         </text>
       </svg>

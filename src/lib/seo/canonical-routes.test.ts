@@ -112,4 +112,85 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
       expect(calc.formulaVersion).toBeDefined();
     });
   });
+
+  it("verifies Day 8 Keyword Reconciliation: 1-to-1 search intent mapping and zero cannibalization", () => {
+    const published = publishedCalculators();
+    const primaryKeywords = published.map((c) => c.primaryKeyword.toLowerCase().trim());
+
+    // 21 tools must map to 21 distinct primary search intents
+    const uniqueKeywords = new Set(primaryKeywords);
+    expect(uniqueKeywords.size).toBe(21);
+
+    // Explicitly verify distinct intent across related duct and airflow tools
+    const ductulator = published.find((c) => c.id === "ductulator");
+    const flexChart = published.find((c) => c.id === "flex-duct-cfm-chart");
+    const cfmCalc = published.find((c) => c.id === "cfm-calculator");
+    const ductFriction = published.find((c) => c.id === "duct-friction-loss-calculator");
+
+    expect(ductulator?.primaryKeyword).toBe("ductulator");
+    expect(flexChart?.primaryKeyword).toBe("flex duct cfm chart");
+    expect(cfmCalc?.primaryKeyword).toBe("air duct cfm calculator");
+    expect(ductFriction?.primaryKeyword).toBe("duct friction loss calculator");
+  });
+
+  it("verifies Day 11 Engineering Standards: all cited standards map to recognized organizations", () => {
+    const validOrgs = [
+      "ASHRAE",
+      "ACCA",
+      "SMACNA",
+      "EPA",
+      "AHRI",
+      "NFPA",
+      "IRC",
+      "IECC",
+      "ISO",
+      "UL",
+      "ASTM",
+      "CSA",
+      "BPI",
+      "HVI",
+      "ASME",
+      "OSHA",
+      "DOE",
+      "NIST",
+      "IFGC",
+    ];
+    const published = publishedCalculators();
+
+    published.forEach((calc) => {
+      expect(calc.standards.length).toBeGreaterThan(0);
+      calc.standards.forEach((std) => {
+        const hasValidOrg = validOrgs.some((org) => std.toUpperCase().includes(org));
+        expect(hasValidOrg).toBe(true);
+      });
+    });
+  });
+
+  it("verifies Day 9 Title and Meta Description length standards for Tier 1 tools", () => {
+    const tier1Ids = [
+      "ductulator",
+      "flex-duct-cfm-chart",
+      "cfm-calculator",
+      "duct-friction-loss-calculator",
+      "ac-model-decoder",
+      "superheat-subcooling-calculator",
+      "pt-chart",
+      "refrigerant-charge-calculator",
+    ];
+
+    const published = publishedCalculators();
+    const tier1Tools = published.filter((c) => tier1Ids.includes(c.id));
+
+    expect(tier1Tools.length).toBe(8);
+
+    tier1Tools.forEach((calc) => {
+      // Title must be between 35 and 65 chars to avoid truncation
+      expect(calc.seoTitle.length).toBeGreaterThanOrEqual(35);
+      expect(calc.seoTitle.length).toBeLessThanOrEqual(65);
+
+      // Meta Description must be between 100 and 165 chars for optimal SERP snippets
+      expect(calc.metaDescription.length).toBeGreaterThanOrEqual(100);
+      expect(calc.metaDescription.length).toBeLessThanOrEqual(165);
+    });
+  });
 });

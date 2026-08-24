@@ -129,7 +129,7 @@ export default function SourcesPage() {
           <span>🏛️</span>
           <span>Verified Citations &amp; Technical Standards</span>
         </div>
-        <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.2, margin: "0 0 1rem" }}>
+        <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.2, margin: "0 0 1rem" }}>
           Laboratory Sources &amp; Standards
         </h1>
         <p style={{ fontSize: "1.1rem", color: "var(--ink-secondary)", lineHeight: 1.6, maxWidth: "800px" }}>

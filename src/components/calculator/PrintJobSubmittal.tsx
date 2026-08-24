@@ -42,7 +42,7 @@ export function PrintJobSubmittal({
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div>
-            <div style={{ fontSize: "1.4rem", fontWeight: 800, margin: 0, textTransform: "uppercase", letterSpacing: "0.04em", color: "#000000" }}>
+            <div style={{ fontSize: "1.4rem", fontWeight: 700, margin: 0, textTransform: "uppercase", letterSpacing: "0.04em", color: "#000000" }}>
               HVAC Mechanical Calculation Submittal
             </div>
             <p style={{ fontSize: "0.85rem", margin: "0.25rem 0 0", color: "#333333" }}>

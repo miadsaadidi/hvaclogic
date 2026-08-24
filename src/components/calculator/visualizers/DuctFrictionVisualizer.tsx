@@ -100,7 +100,7 @@ export function DuctFrictionVisualizer({ output }: DuctFrictionVisualizerProps) 
 
           {/* Air Handler / Coil (Center) */}
           <rect x="130" y="75" width="70" height="55" fill="#0f172a" stroke="#00d2ff" strokeWidth="2" rx="3" />
-          <text x="165" y="98" fill="#00d2ff" fontSize="7.5" fontWeight="800" textAnchor="middle">
+          <text x="165" y="98" fill="#00d2ff" fontSize="7.5" fontWeight="700" textAnchor="middle">
             AIR HANDLER
           </text>
           <text x="165" y="110" fill="#cbd5e1" fontSize="6" fontWeight="600" textAnchor="middle">

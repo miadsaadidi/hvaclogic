@@ -320,7 +320,7 @@ export function GlossaryModal() {
                   >
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                       <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem" }}>
-                        <span style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--accent-cooling)" }}>
+                        <span style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--accent-cooling)" }}>
                           {item.term}
                         </span>
                         <span style={{ fontSize: "0.8rem", color: "var(--ink)", fontWeight: 600 }}>

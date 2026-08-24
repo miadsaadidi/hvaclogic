@@ -64,7 +64,7 @@ export function HeatLossDonutVisualizer({ breakdown }: { breakdown: LoadBreakdow
             alignItems: "center",
             justifyContent: "center",
             fontSize: "0.75rem",
-            fontWeight: 800,
+            fontWeight: 700,
             color: "var(--ink)",
           }}>
             <span>100%</span>

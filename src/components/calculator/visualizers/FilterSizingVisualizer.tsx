@@ -117,7 +117,7 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
           <text x="282" y="55" fill="#94a3b8" fontSize="6.5" fontWeight="600" textAnchor="middle">
             FACE VELOCITY
           </text>
-          <text x="282" y="80" fill={velColor} fontSize="14" fontWeight="800" textAnchor="middle">
+          <text x="282" y="80" fill={velColor} fontSize="14" fontWeight="700" textAnchor="middle">
             {output.faceVelocityFpm}
           </text>
           <text x="282" y="92" fill={velColor} fontSize="7" fontWeight="600" textAnchor="middle">
@@ -132,7 +132,7 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
           <text x="377" y="55" fill="#94a3b8" fontSize="6.5" fontWeight="600" textAnchor="middle">
             STATIC DROP
           </text>
-          <text x="377" y="80" fill={presColor} fontSize="14" fontWeight="800" textAnchor="middle">
+          <text x="377" y="80" fill={presColor} fontSize="14" fontWeight="700" textAnchor="middle">
             {output.initialCleanPressureDropInWg.toFixed(3)}&quot;
           </text>
           <text x="377" y="92" fill={presColor} fontSize="7" fontWeight="600" textAnchor="middle">

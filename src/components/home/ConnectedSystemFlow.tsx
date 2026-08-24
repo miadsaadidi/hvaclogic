@@ -116,7 +116,7 @@ export function ConnectedSystemFlow() {
                   style={{
                     fontFamily: "ui-monospace, monospace",
                     fontSize: "0.7rem",
-                    fontWeight: 800,
+                    fontWeight: 700,
                     padding: "0.1rem 0.35rem",
                     borderRadius: "4px",
                     background: `${node.color}20`,

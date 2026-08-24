@@ -105,7 +105,7 @@ export default async function GenericCalculatorPage({ params }: Props) {
             <span>Engineering Peer Review &amp; Specification</span>
           </div>
 
-          <h2 style={{ fontSize: "1.45rem", fontWeight: 800, color: "var(--ink)", marginBottom: "0.5rem" }}>
+          <h2 style={{ fontSize: "1.45rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
             {calculator.name}
           </h2>
 

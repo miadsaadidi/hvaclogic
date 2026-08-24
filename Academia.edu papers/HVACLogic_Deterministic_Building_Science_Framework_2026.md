@@ -3,8 +3,8 @@
 **Authors**: HVACLogic Engineering & Building Science Working Group  
 **Published**: August 2026  
 **Repository & Open Access**: [https://hvaclogic.org](https://hvaclogic.org)  
-**Permanent Open-Access Archive**: [https://archive.org/details/hvaclogic-deterministic-framework-2026](https://archive.org/details/hvaclogic-deterministic-framework-2026)  
-**Academic Registry**: Academia.edu & ResearchGate  
+**Permanent Open-Access Archive**: [https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260824](https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260824)  
+**Academic Registry**: [Academia.edu (Paper #172310808)](https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing) & ResearchGate  
 **Classification**: Mechanical Engineering, Building Physics, Fluid Dynamics, Thermal Sciences, Open-Source Computational Frameworks  
 
 ---

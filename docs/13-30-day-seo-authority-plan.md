@@ -227,11 +227,18 @@ Website: https://hvaclogic.org
 
 To build compounding domain authority without triggering spam filters, HVACLogic maintains a disciplined daily rhythm of **5 targeted, peer-to-peer pro-curiosity emails per day** (35 high-impact touches per week) alongside open scientific preprint distribution.
 
-### The Pro-Curiosity Email Standard:
-* **No Spam Keywords**: Zero use of "free", "all-in-one", "suite", or promotional hype.
-* **Peer-to-Peer Engineering Dialect**: Speaks directly to physical modeling nuances (Colebrook-White friction factors, Huebscher equivalent diameter limits, A2L bubble vs dew point subcooling, flex duct sag derating).
-* **Intellectual Curiosity Hook**: Piques the recipient's curiosity by referencing their specific published work or challenging an industry calculation assumption.
-* **Single Contextual Link**: Focuses on the single most relevant calculator (e.g. `https://hvaclogic.org/calculators/ductulator`).
+### The Pro-Curiosity Psychological Framework & Copywriting Protocol:
+
+1. **Strict Exclusion of Promotional & Spam Markers (Anti-Spam Filter)**:
+   * **Banned Words**: `"free"`, `"suite"`, `"all-in-one"`, `"revolutionary"`, `"best"`, `"check out"`, `"game-changer"`, `"partner with us"`, `"guest post"`, `"link exchange"`.
+   * **Banned Patterns**: No generic compliments, no corporate intros, no email tracking pixels, and no vague pitches.
+
+2. **Core Psychological Triggers & Cognitive Hooks**:
+   * **Cognitive Dissonance / Heuristic Contrast**: Challenges an entrenched field shortcut with physical reality (e.g., standard ductulators ignoring flexible duct wire-helix compression; midpoint PT charts failing on A2L temperature glide).
+   * **Peer-to-Peer Engineering Dialect**: Speaks as a practicing thermodynamics/fluid-mechanics peer (referencing Reynolds numbers, Darcy roughness $\varepsilon = 0.0003\text{ ft}$, Huebscher circular equivalency limits, sensible heat ratios).
+   * **Curiosity Gap via Specific Scenario**: Quotes an exact calculation scenario with real numbers rather than talking abstractly about features.
+   * **Frictionless Pre-Populated URL**: Embeds a single parameterized permalink that loads the exact numerical scenario discussed into the tool instantly.
+   * **Zero-Obligation / Disarming Close**: Explicitly frees the recipient from any duty to reply or link back, which counter-intuitively raises response rates by eliminating sales resistance.
 
 ```
                               [ Daily 5 Pro-Curiosity Outreach Mix ]
@@ -245,15 +252,15 @@ To build compounding domain authority without triggering spam filters, HVACLogic
 
 ---
 
-### Daily 5 Emails Execution Distribution
+### Daily 5 Emails Execution Distribution & Psychological Angles
 
-| Touch # | Target Category | Focus & Content Angle | Example Target |
+| Touch # | Target Category | Psychological Trigger & Technical Angle | Example Target |
 | :---: | :--- | :--- | :--- |
-| **Touch 1** | **Industry Thought Leader / Author** | Challenge a specific calculation heuristic (e.g. flex duct sag derating vs traditional ductulators). | Dr. Allison Bailes (*Energy Vanguard*) / Bryan Orr |
-| **Touch 2** | **.EDU / Vocational Faculty** | Open psychrometric & fluid mechanics formulations for student lab handouts. | Ferris State / Lincoln Tech / Wake Tech |
-| **Touch 3** | **Trade Press Editorial Desk** | Field diagnostic anomalies during the A2L refrigerant transition (dew vs bubble subcooling). | Kyle Gargaro (*ACHR News*) / Terry McIver (*Contracting Business*) |
-| **Touch 4** | **Instrumentation & Diagnostics SME** | Physical field measurements vs mathematical boundary conditions (high aspect ratio ducts). | Bill Spohn (*TruTech Tools*) / Gary McCreadie |
-| **Touch 5** | **Building Science & Hydronics SME** | Infiltration modeling ($ACH_{50}$ to CFM50) or hydronic baseboard EDR derating. | GreenBuildingAdvisor contributors / Dan Foley |
+| **Touch 1** | **Industry Thought Leader / Author** | **Heuristic Dissonance**: Challenge flexible duct compression derating vs rigid slide-rule assumptions. | Dr. Allison Bailes (*Energy Vanguard*) / Bryan Orr |
+| **Touch 2** | **.EDU / Vocational Faculty** | **Pedagogical Integrity**: Provide transparent Colebrook-White step-by-step derivations for student lab assignments with zero ad tracking. | Doug Zentz (*Ferris State*) / Lincoln Tech / UTI |
+| **Touch 3** | **Trade Press Editorial Desk** | **Industry Transition Friction**: Explain the dew-point vs bubble-point subcooling error trap on A2L R-454B systems. | Kyle Gargaro (*ACHR News*) / Terry McIver (*Contracting Business*) |
+| **Touch 4** | **Instrumentation SME / Podcast** | **Physical vs Theoretical Edge Cases**: Contrast aspect ratio limits (>4:1) with measured static pressure drop. | Bill Spohn (*TruTech Tools*) / Gary McCreadie |
+| **Touch 5** | **Building Science & Hydronics** | **First-Principles Modeling**: Challenge simplified CFM-per-sqft heuristics using multi-layer envelope $ACH_{50}$ infiltration physics. | Dan Foley / GreenBuildingAdvisor Contributors |
 
 ---
 

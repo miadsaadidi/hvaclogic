@@ -277,13 +277,13 @@ export function BtuCalculatorTool() {
           >
             <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderTop: "3px solid var(--accent-cooling)", borderRadius: "0.65rem", padding: "0.85rem" }}>
               <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "var(--accent-cooling)", textTransform: "uppercase" }}>❄️ Summer Cooling</div>
-              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--ink)", marginTop: "0.2rem" }}>{result.coolingTonnage} Ton System</div>
+              <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", marginTop: "0.2rem" }}>{result.coolingTonnage} Ton System</div>
               <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>AC or Heat Pump (Manual S)</div>
             </div>
 
             <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderTop: "3px solid var(--accent-heating)", borderRadius: "0.65rem", padding: "0.85rem" }}>
               <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "var(--accent-heating)", textTransform: "uppercase" }}>🔥 Winter Heating</div>
-              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--ink)", marginTop: "0.2rem" }}>{(result.recommendedFurnaceBtu / 1000).toFixed(0)}k BTU Furnace</div>
+              <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", marginTop: "0.2rem" }}>{(result.recommendedFurnaceBtu / 1000).toFixed(0)}k BTU Furnace</div>
               <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>96% AFUE Input Rating</div>
             </div>
           </div>

@@ -26,7 +26,7 @@ export default function NotFound() {
         <span>404 — Engineering Tool Not Found</span>
       </div>
 
-      <h1 style={{ fontSize: "2.5rem", fontWeight: 800, color: "var(--ink)", marginBottom: "1rem", letterSpacing: "-0.02em" }}>
+      <h1 style={{ fontSize: "2.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem", letterSpacing: "-0.02em" }}>
         Page or Calculation Module Missing
       </h1>
 

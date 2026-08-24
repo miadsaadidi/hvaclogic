@@ -75,7 +75,7 @@ export function GarageHeaterVisualizer({ output }: GarageHeaterVisualizerProps) 
 
           {/* SUSPENDED UNIT HEATER (Upper Right Ceiling Corner) */}
           <rect x="340" y="52" width="50" height="30" rx="3" fill="#1e293b" stroke="#ff6b00" strokeWidth="1.5" />
-          <text x="365" y="68" fill="#ff6b00" fontSize="7" fontWeight="800" textAnchor="middle">
+          <text x="365" y="68" fill="#ff6b00" fontSize="7" fontWeight="700" textAnchor="middle">
             UNIT HEATER
           </text>
           <text x="365" y="77" fill="#fff" fontSize="6" fontWeight="600" textAnchor="middle">

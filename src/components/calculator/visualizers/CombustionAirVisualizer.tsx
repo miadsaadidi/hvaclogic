@@ -76,7 +76,7 @@ export function CombustionAirVisualizer({ output }: CombustionAirVisualizerProps
 
           {/* Gas Furnace (Right) */}
           <rect x="230" y="55" width="65" height="85" fill="#1e293b" stroke="#ff6b4a" strokeWidth="1.5" rx="2" />
-          <text x="262" y="78" fill="#ff6b4a" fontSize="7.5" fontWeight="800" textAnchor="middle">
+          <text x="262" y="78" fill="#ff6b4a" fontSize="7.5" fontWeight="700" textAnchor="middle">
             GAS FURNACE
           </text>
           <text x="262" y="90" fill="#fff" fontSize="6.5" fontWeight="600" textAnchor="middle">
@@ -87,7 +87,7 @@ export function CombustionAirVisualizer({ output }: CombustionAirVisualizerProps
 
           {/* Gas Water Heater (Far Right) */}
           <rect x="320" y="65" width="55" height="75" fill="#1e293b" stroke="#38bdf8" strokeWidth="1.5" rx="2" />
-          <text x="347" y="85" fill="#38bdf8" fontSize="7" fontWeight="800" textAnchor="middle">
+          <text x="347" y="85" fill="#38bdf8" fontSize="7" fontWeight="700" textAnchor="middle">
             WATER HEATER
           </text>
           <text x="347" y="125" fontSize="10" textAnchor="middle">💧</text>

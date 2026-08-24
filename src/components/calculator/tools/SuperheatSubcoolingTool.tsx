@@ -543,7 +543,7 @@ export function SuperheatSubcoolingTool() {
                   <span>⏱️</span>
                   <span>EPA Stabilization Timer</span>
                 </div>
-                <div style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95rem", fontWeight: 800, color: timerSeconds === 0 ? "var(--accent-success)" : "var(--accent-cooling)" }}>
+                <div style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95rem", fontWeight: 700, color: timerSeconds === 0 ? "var(--accent-success)" : "var(--accent-cooling)" }}>
                   {timerSeconds === 0 ? "✓ Stabilized (15m)" : `${Math.floor(timerSeconds / 60)}:${(timerSeconds % 60).toString().padStart(2, "0")}`}
                 </div>
               </div>

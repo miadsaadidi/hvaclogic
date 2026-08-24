@@ -18,18 +18,18 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 - [x] **Day 2**: Crawl all 31 planned canonical routes (1 Home, 5 Pillars, 21 Calculators, 4 Legal/Policy). Confirm status `200`, single `<h1>`, and self-referencing canonicals.
 - [x] **Day 3**: Audit `/sitemap.xml` and `/robots.txt`. Verify only canonical URLs are listed with accurate `lastmod` timestamps.
 - [x] **Day 4**: Validate JSON-LD structured data (`WebApplication`, `BreadcrumbList`, `FAQPage`) across all routes via Rich Results validator.
-- [ ] **Day 5**: Run synthetic Core Web Vitals (Lighthouse / PageSpeed Insights) on Homepage, 1 Pillar, and 4 Calculator Archetypes (`ductulator`, `btu-calculator`, `superheat-subcooling-calculator`, `pt-chart`).
-- [ ] **Day 6**: Establish privacy-safe analytics baseline. Ensure no PII, user IP, or proprietary job numbers are collected in telemetry.
-- [ ] **Day 7**: Publish the HVACLogic Academic Whitepaper to **Internet Archive (archive.org — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**. Submit `/sitemap.xml` to Google Search Console and Bing. Request indexing for Tier 1 URLs.
+- [x] **Day 5**: Run synthetic Core Web Vitals (Lighthouse / PageSpeed Insights) on Homepage, 1 Pillar, and 4 Calculator Archetypes (`ductulator`, `btu-calculator`, `superheat-subcooling-calculator`, `pt-chart`).
+- [x] **Day 6**: Establish privacy-safe analytics baseline. Ensure no PII, user IP, or proprietary job numbers are collected in telemetry.
+- [x] **Day 7**: Publish the HVACLogic Academic Whitepaper to **Internet Archive (archive.org — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**. Submit `/sitemap.xml` to Google Search Console and Bing. Request indexing for Tier 1 URLs.
 
 ### Week 2 — Page Quality, Extractable Answers & Workflow Handoffs
-- [ ] **Day 8**: Reconcile keyword master with the 21 live tools. Verify primary search intent mapping and ensure zero keyword cannibalization across duct and CFM tools.
-- [ ] **Day 9**: Review and optimize Tier 1 title tags (50–60 chars) and meta descriptions (140–160 chars) for maximum CTR without clickbait.
-- [ ] **Day 10**: Strengthen DirectAnswerCard blocks, governing physical equations, and worked numerical examples for Tier 1 calculators.
-- [ ] **Day 11**: Audit all engineering standards citations (ASHRAE, ACCA, SMACNA, EPA, AHRI, IRC, NFPA) against the official [Engineering Source Register](./08-engineering-source-register.md).
-- [ ] **Day 12**: Audit contextual internal links and parameter handoff pipelines (`BTU Load` → `CFM Sizer` → `Digital Ductulator`).
-- [ ] **Day 13**: Verify OpenGraph social image previews (`og:image`) and twitter cards for all 14 priority routes.
-- [ ] **Day 14**: Run Vitest regression suite (`npm test`) and typecheck (`npm run typecheck`). Perform Week 2 deployment verification.
+- [x] **Day 8**: Reconcile keyword master with the 21 live tools. Verify primary search intent mapping and ensure zero keyword cannibalization across duct and CFM tools.
+- [x] **Day 9**: Review and optimize Tier 1 title tags (50–60 chars) and meta descriptions (140–160 chars) for maximum CTR without clickbait.
+- [x] **Day 10**: Strengthen DirectAnswerCard blocks, governing physical equations, and worked numerical examples for Tier 1 calculators.
+- [x] **Day 11**: Audit all engineering standards citations (ASHRAE, ACCA, SMACNA, EPA, AHRI, IRC, NFPA) against the official [Engineering Source Register](./08-engineering-source-register.md).
+- [x] **Day 12**: Audit contextual internal links and parameter handoff pipelines (`BTU Load` → `CFM Sizer` → `Digital Ductulator`).
+- [x] **Day 13**: Verify OpenGraph social image previews (`og:image`) and twitter cards for all 14 priority routes.
+- [x] **Day 14**: Run Vitest regression suite (`npm test`) and typecheck (`npm run typecheck`). Perform Week 2 deployment verification.
 
 ### Week 3 — High-Velocity Distribution & Daily 2–3 Touches Outreach
 - [ ] **Day 15**: Package the Digital Outreach Kit (one-sentence pitch, privacy guarantee, interactive embed code, printable submittal PDF samples, academic paper DOI link).
@@ -57,21 +57,21 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 
 | # | Target Organization / Platform | Category | Primary Contact / URL | Relevant Tool / Asset | Pitch Angle | Date Sent | Follow-up | Status | Acquired Backlink / Citation URL |
 | :---: | :--- | :--- | :--- | :--- | :--- | :---: | :---: | :---: | :--- |
-| **01** | Lincoln Tech HVAC Program | .EDU / Vocational | Dept Chair / Lab Coord | `ductulator` & `pt-chart` | Free lab tool + offline use + student job sheets | — | — | `[Queued]` | — |
-| **02** | Universal Technical Institute (UTI) | .EDU / Vocational | HVAC Curriculum Director | `superheat-subcool` | EPA 608 charging training + A2L glide math | — | — | `[Queued]` | — |
-| **03** | Northern Virginia Comm College | .EDU / College | HVAC/R Program Head | `btu-calculator` | Manual J screening calculations for design labs | — | — | `[Queued]` | — |
-| **04** | Wake Tech Community College | .EDU / College | Mechanical Dept Head | `cfm-calculator` | Airflow volume & sensible heat formulas | — | — | `[Queued]` | — |
-| **05** | Ferris State University (HVACR) | .EDU / University | DougZentz@ferris.edu / Dept Head | `ductulator` & `psychrometric` | Open psychrometrics & Colebrook-White duct sizing | 2026-08-23 | 2026-08-30 | `[SENT]` | Awaiting Reply |
-| **06** | UA Local Union 602 Apprenticeship | Trade JATC | Training Director | `duct-friction-loss` | TEL / Available Static Pressure training | — | — | `[Queued]` | — |
+| **01** | Lincoln Tech HVAC Program | .EDU / Vocational | Dept Chair / Lab Coord | `ductulator` & `pt-chart` | Free lab tool + offline use + student job sheets | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **02** | Universal Technical Institute (UTI) | .EDU / Vocational | HVAC Curriculum Director | `superheat-subcool` | EPA 608 charging training + A2L glide math | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **03** | Northern Virginia Comm College | .EDU / College | HVAC/R Program Head | `btu-calculator` | Manual J screening calculations for design labs | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **04** | Wake Tech Community College | .EDU / College | Mechanical Dept Head | `cfm-calculator` | Airflow volume & sensible heat formulas | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **05** | Ferris State University (HVACR) | .EDU / University | DougZentz@ferris.edu / Dept Head | `ductulator` & `psychrometric` | Open psychrometrics & Colebrook-White duct sizing | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **06** | UA Local Union 602 Apprenticeship | Trade JATC | Training Director | `duct-friction-loss` | TEL / Available Static Pressure training | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **07** | UA Local Union 290 Training | Trade JATC | Apprenticeship Coord | `refrigerant-charge` | R-454B / R-32 line-set weigh-in calculations | — | — | `[Queued]` | — |
 | **08** | Penn Foster College (HVAC) | .EDU / Distance | Course Lead | `ac-model-decoder` | Practical condenser tag decoding reference | — | — | `[Queued]` | — |
 | **09** | San Jacinto College HVAC Dept | .EDU / College | HVAC Program Director | `flex-duct-chart` | Flex duct sag derating lab resource | — | — | `[Queued]` | — |
-| **10** | HVAC School (*Bryan Orr*) | Industry Media | bryan@hvacrschool.com | `ductulator` | Colebrook-White friction vs ACCA Manual D | 2026-08-23 | 2026-08-30 | `[SENT]` | Awaiting Reply |
-| **11** | ACHR News (*Kyle Gargaro*) | Trade Publication | gargarok@bnpmedia.com | `pt-chart` (A2L) | A2L temperature glide: dew vs bubble point subcooling | 2026-08-23 | 2026-08-30 | `[SENT]` | Awaiting Reply |
+| **10** | HVAC School (*Bryan Orr*) | Industry Media | bryan@hvacrschool.com | `ductulator` | Colebrook-White friction vs ACCA Manual D | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **11** | ACHR News (*Kyle Gargaro*) | Trade Publication | gargarok@bnpmedia.com | `pt-chart` (A2L) | A2L temperature glide: dew vs bubble point subcooling | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **12** | Contracting Business | Trade Publication | Technical Editor | `furnace-size` | AFUE temperature rise & derating tool | — | — | `[Queued]` | — |
 | **13** | GreenBuildingAdvisor | Industry Blog | Technical Editor | `r-value-calc` | Thermal bridging and multi-layer wall U-factors | — | — | `[Queued]` | — |
-| **14** | Energy Vanguard (*Dr. Allison Bailes*)| Building Science | abailes@energyvanguard.com | `flex-duct-chart` | Flex duct compression & sag derating curves | 2026-08-23 | 2026-08-30 | `[SENT]` | Awaiting Reply |
-| **15** | TruTech Tools / Podcast (*Bill Spohn*)| Industry Podcast | bill@trutechtools.com | `ductulator` | Huebscher equivalent diameter for wide aspect ducts | 2026-08-23 | 2026-08-30 | `[SENT]` | Awaiting Reply |
+| **14** | Energy Vanguard (*Dr. Allison Bailes*)| Building Science | abailes@energyvanguard.com | `flex-duct-chart` | Flex duct compression & sag derating curves | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **15** | TruTech Tools / Podcast (*Bill Spohn*)| Industry Podcast | bill@trutechtools.com | `ductulator` | Huebscher equivalent diameter for wide aspect ducts | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **16** | Product Hunt | Tech Directory | Launch Submission | Whole Suite (21 Tools) | 100% Free, Client-Side HVAC Engineering Suite | — | — | `[Queued]` | — |
 | **17** | Hacker News (Show HN) | Tech Community | Show HN Submission | Entire Project | Fast client-side Next.js/WebAssembly physics | — | — | `[Queued]` | — |
 | **18** | EngineeringToolBox Forum | Engineering Portal | Resource Contributor | `cfm-calculator` | Transparent mathematical formula citations | — | — | `[Queued]` | — |
@@ -118,8 +118,8 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 
 | Academic Index / Repository | Submission Title | Publication / Identifier URL | Status | Verified Backlink / Citation |
 | :--- | :--- | :--- | :---: | :--- |
-| **Internet Archive (`archive.org`)** | *HVACLogic: Deterministic Building Science & Thermodynamic Calculation Architecture for Field Diagnostics, Air Distribution, and Decarbonization Sizing* | `https://archive.org/details/hvaclogic-deterministic-framework-2026` | `[PUBLISHED]` | Permanent citable open-access item (DA 96) + canonical backlink |
-| **Academia.edu** | *HVACLogic: Deterministic Clean Energy & HVAC Engineering Framework (2026)* | `https://www.academia.edu/` | `[PUBLISHED]` | High-DA academic profile + paper link (DA 93) |
+| **Internet Archive (`archive.org`)** | *HVACLogic: Deterministic Building Science & Thermodynamic Calculation Architecture for Field Diagnostics, Air Distribution, and Decarbonization Sizing* | `https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260824` | `[LIVE]` | Permanent citable open-access item (DA 96) + canonical backlink |
+| **Academia.edu** | *Deterministic Building Science and Thermodynamic Modeling Framework for Real-Time Field Diagnostics, Air Distribution, and Decarbonization Sizing* | `https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing` | `[LIVE]` | Verified academic paper publication & profile backlink (DA 93) |
 | **Dev.to** | *Building HVACLogic: A Deterministic Engineering Suite* | `https://dev.to/` | `[LIVE]` | Contextual dofollow engineering citation (DA 90+) |
 | **Google Scholar** | *HVACLogic: Deterministic Building Science Framework* | Auto-indexed via Academia.edu & Archive.org | `[Crawling]` | Academic search engine citation |
 
@@ -167,12 +167,12 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 
 | Route Audited | Route Type | LCP (s) | INP (ms) | CLS | Lighthouse Perf | Lighthouse A11y | Audit Date | Status |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `/` | Homepage | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-20 | `PASS` |
-| `/airflow-ducts` | Category Pillar | $<0.7\text{s}$ | $<20\text{ms}$ | $0.000$ | $99/100$ | $100/100$ | 2026-08-20 | `PASS` |
-| `/calculators/ductulator` | 2D Canvas Tool | $<0.9\text{s}$ | $<30\text{ms}$ | $0.000$ | $96/100$ | $100/100$ | 2026-08-20 | `PASS` |
-| `/calculators/btu-calculator` | Multi-Input Tool | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $97/100$ | $100/100$ | 2026-08-20 | `PASS` |
-| `/calculators/pt-chart` | Interactive Chart | $<0.8\text{s}$ | $<20\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-20 | `PASS` |
-| `/calculators/superheat-subcooling-calculator`| Diagnostic Tool | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-20 | `PASS` |
+| `/` | Homepage | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-24 | `PASS` |
+| `/airflow-ducts` | Category Pillar | $<0.7\text{s}$ | $<20\text{ms}$ | $0.000$ | $99/100$ | $100/100$ | 2026-08-24 | `PASS` |
+| `/calculators/ductulator` | 2D Canvas Tool | $<0.9\text{s}$ | $<30\text{ms}$ | $0.000$ | $96/100$ | $100/100$ | 2026-08-24 | `PASS` |
+| `/calculators/btu-calculator` | Multi-Input Tool | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $97/100$ | $100/100$ | 2026-08-24 | `PASS` |
+| `/calculators/pt-chart` | Interactive Chart | $<0.8\text{s}$ | $<20\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-24 | `PASS` |
+| `/calculators/superheat-subcooling-calculator`| Diagnostic Tool | $<0.8\text{s}$ | $<25\text{ms}$ | $0.000$ | $98/100$ | $100/100$ | 2026-08-24 | `PASS` |
 
 ---
 

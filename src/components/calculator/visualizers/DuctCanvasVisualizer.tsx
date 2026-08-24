@@ -123,7 +123,7 @@ export function DuctCanvasVisualizer({
     ctx.strokeRect(centerX - 50, centerY - 12, 100, 24);
 
     ctx.fillStyle = "#00d2ff";
-    ctx.font = "800 11px var(--font-titillium), 'Titillium Web', -apple-system, sans-serif";
+    ctx.font = "700 11px var(--font-titillium), 'Titillium Web', -apple-system, sans-serif";
     ctx.fillText(`Ø ${roundDiameter}" Round`, centerX, centerY + 4);
   }, [roundDiameter, width, height, velocityFpm, velocityCategory]);
 

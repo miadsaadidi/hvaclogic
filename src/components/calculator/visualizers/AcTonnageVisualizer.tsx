@@ -79,7 +79,7 @@ export function AcTonnageVisualizer({
           {/* 2. Compressor & Electrical Work (Center) */}
           <circle cx="250" cy="75" r="38" fill="var(--surface)" stroke="#eab308" strokeWidth="2" />
           <text x="250" y="68" fill="var(--ink)" fontSize="10" fontWeight="700" textAnchor="middle">COMPRESSOR</text>
-          <text x="250" y="82" fill="#eab308" fontSize="10" fontWeight="800" textAnchor="middle">
+          <text x="250" y="82" fill="#eab308" fontSize="10" fontWeight="700" textAnchor="middle">
             {electricalWatts.toLocaleString()} W
           </text>
           <text x="250" y="96" fill="var(--text-muted)" fontSize="8" textAnchor="middle">

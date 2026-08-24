@@ -59,7 +59,7 @@ export function Logo({ showTagline = true, size = "md" }: LogoProps) {
 
       {/* TEXT WORDMARK */}
       <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
-        <div style={{ fontSize: current.font, fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em" }}>
+        <div style={{ fontSize: current.font, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.03em" }}>
           HVAC<span style={{ color: "var(--accent-cooling)" }}>Logic</span>
         </div>
         {showTagline && (

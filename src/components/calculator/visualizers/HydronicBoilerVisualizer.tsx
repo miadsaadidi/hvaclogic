@@ -98,7 +98,7 @@ export function HydronicBoilerVisualizer({ output }: HydronicBoilerVisualizerPro
 
           {/* CIRCULATOR PUMP (Bottom Pipe) */}
           <circle cx="180" cy="125" r="10" fill="#10b981" stroke="#059669" strokeWidth="1.5" />
-          <text x="180" y="128" fill="#000" fontSize="8" fontWeight="800" textAnchor="middle">P</text>
+          <text x="180" y="128" fill="#000" fontSize="8" fontWeight="700" textAnchor="middle">P</text>
           <text x="180" y="110" fill="#10b981" fontSize="6.5" fontWeight="700" textAnchor="middle">CIRCULATOR</text>
         </svg>
       </div>
