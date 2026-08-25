@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { sanitizeTelemetryPayload, TelemetryEventName } from "./telemetry";
+import { sanitizeTelemetryPayload, trackTelemetryEvent, TelemetryEventName } from "./telemetry";
 
 describe("Day 6 — Privacy-Preserving Telemetry & Zero-PII Guardrails", () => {
   it("strips all customer PII, street addresses, and emails from payload", () => {
@@ -56,5 +56,31 @@ describe("Day 6 — Privacy-Preserving Telemetry & Zero-PII Guardrails", () => {
     expect(sanitized.calculatorId).toBe("pt-chart");
     expect((sanitized as any).referrerUrl).toBeUndefined();
     expect((sanitized as any).shareTarget).toBeUndefined();
+  });
+
+  it("forwards sanitized telemetry events to window.gtag when available", () => {
+    const gtagCalls: Array<{ command: string; eventName: string; params: any }> = [];
+    (globalThis as any).window = {
+      dispatchEvent: () => true,
+      gtag: (command: string, eventName: string, params: any) => {
+        gtagCalls.push({ command, eventName, params });
+      },
+    };
+
+    trackTelemetryEvent("preset_selected", {
+      calculatorId: "ductulator",
+      presetId: "main_trunk_1200",
+      customerName: "Secret Tech", // should be stripped by sanitizer
+    });
+
+    expect(gtagCalls).toHaveLength(1);
+    expect(gtagCalls[0]).toEqual({
+      command: "event",
+      eventName: "preset_selected",
+      params: {
+        calculatorId: "ductulator",
+        presetId: "main_trunk_1200",
+      },
+    });
   });
 });

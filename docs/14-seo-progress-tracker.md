@@ -11,7 +11,16 @@
 
 ## 1. 30-Day Daily Execution Checklist
 
-Use this interactive checklist to verify completion of daily SEO, technical, on-page, and authority tasks.
+> ### 📌 **Tomorrow's Plan (Day 7 — August 26, 2026)**
+> 1. **Academic Whitepaper Publishing**:
+>    - Upload `papers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf` to **Internet Archive (`archive.org` — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**.
+>    - Update metadata & public repository links in [`src/app/about/page.tsx`](file:///d:/HVACLab/src/app/about/page.tsx) and [`src/app/methodology/page.tsx`](file:///d:/HVACLab/src/app/methodology/page.tsx).
+> 2. **Outreach & Backlink Cadence (Next Wave)**:
+>    - Send Next Wave touches targeting high-authority .EDU & trade associations: **RSES (Refrigeration Service Engineers Society)**, **Oklahoma State University IT**, and **Ivy Tech Community College**.
+>    - Track and log any early responses or syllabus mentions from the 12 sent pitches.
+> 3. **Search Console Inspection Check**:
+>    - Check indexing status of the 3 requested calculators (`refrigerant-charge-calculator`, `filter-sizing-calculator`, `boiler-size-calculator`).
+>    - Log new daily impressions and queries on the 748 impression baseline.
 
 ### Week 1 — Canonical Launch, Indexation, Crawl Health & Academic Preprint
 - [x] **Day 1**: Verify `hvaclogic.org` DNS, HTTPS, apex redirect (`www` → apex), and Google Search Console + Bing Webmaster Tools property ownership.
@@ -20,7 +29,7 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 - [x] **Day 4**: Validate JSON-LD structured data (`WebApplication`, `BreadcrumbList`, `FAQPage`) across all routes via Rich Results validator.
 - [x] **Day 5**: Run synthetic Core Web Vitals (Lighthouse / PageSpeed Insights) on Homepage, 1 Pillar, and 4 Calculator Archetypes (`ductulator`, `btu-calculator`, `superheat-subcooling-calculator`, `pt-chart`).
 - [x] **Day 6**: Establish privacy-safe analytics baseline. Ensure no PII, user IP, or proprietary job numbers are collected in telemetry.
-- [x] **Day 7**: Publish the HVACLogic Academic Whitepaper to **Internet Archive (archive.org — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**. Submit `/sitemap.xml` to Google Search Console and Bing. Request indexing for Tier 1 URLs.
+- [ ] **Day 7**: Publish the HVACLogic Academic Whitepaper to **Internet Archive (archive.org — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**. Submit `/sitemap.xml` to Google Search Console and Bing. Request indexing for Tier 1 URLs.
 
 ### Week 2 — Page Quality, Extractable Answers & Workflow Handoffs
 - [x] **Day 8**: Reconcile keyword master with the 21 live tools. Verify primary search intent mapping and ensure zero keyword cannibalization across duct and CFM tools.
@@ -63,20 +72,20 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 | **04** | Wake Tech Community College | .EDU / College | Mechanical Dept Head | `cfm-calculator` | Airflow volume & sensible heat formulas | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **05** | Ferris State University (HVACR) | .EDU / University | DougZentz@ferris.edu / Dept Head | `ductulator` & `psychrometric` | Open psychrometrics & Colebrook-White duct sizing | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **06** | UA Local Union 602 Apprenticeship | Trade JATC | Training Director | `duct-friction-loss` | TEL / Available Static Pressure training | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
-| **07** | UA Local Union 290 Training | Trade JATC | Apprenticeship Coord | `refrigerant-charge` | R-454B / R-32 line-set weigh-in calculations | — | — | `[Queued]` | — |
+| **07** | UA Local Union 290 Training | Trade JATC | Apprenticeship Coord | `ductulator` & `cfm` | Airflow, friction loss & Manual D training | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **08** | Penn Foster College (HVAC) | .EDU / Distance | Course Lead | `ac-model-decoder` | Practical condenser tag decoding reference | — | — | `[Queued]` | — |
-| **09** | San Jacinto College HVAC Dept | .EDU / College | HVAC Program Director | `flex-duct-chart` | Flex duct sag derating lab resource | — | — | `[Queued]` | — |
+| **09** | San Jacinto College HVAC Dept | .EDU / College | HVAC Program Director | `flex-duct-chart` | Flex duct sag derating lab resource | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **10** | HVAC School (*Bryan Orr*) | Industry Media | bryan@hvacrschool.com | `ductulator` | Colebrook-White friction vs ACCA Manual D | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **11** | ACHR News (*Kyle Gargaro*) | Trade Publication | gargarok@bnpmedia.com | `pt-chart` (A2L) | A2L temperature glide: dew vs bubble point subcooling | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **12** | Contracting Business | Trade Publication | Technical Editor | `furnace-size` | AFUE temperature rise & derating tool | — | — | `[Queued]` | — |
-| **13** | GreenBuildingAdvisor | Industry Blog | Technical Editor | `r-value-calc` | Thermal bridging and multi-layer wall U-factors | — | — | `[Queued]` | — |
+| **13** | GreenBuildingAdvisor | Industry Blog | Technical Editor | `flex-duct-chart` | Flex duct compression loss & wire-helix derating model | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **14** | Energy Vanguard (*Dr. Allison Bailes*)| Building Science | abailes@energyvanguard.com | `flex-duct-chart` | Flex duct compression & sag derating curves | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **15** | TruTech Tools / Podcast (*Bill Spohn*)| Industry Podcast | bill@trutechtools.com | `ductulator` | Huebscher equivalent diameter for wide aspect ducts | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **16** | Product Hunt | Tech Directory | Launch Submission | Whole Suite (21 Tools) | 100% Free, Client-Side HVAC Engineering Suite | — | — | `[Queued]` | — |
 | **17** | Hacker News (Show HN) | Tech Community | Show HN Submission | Entire Project | Fast client-side Next.js/WebAssembly physics | — | — | `[Queued]` | — |
 | **18** | EngineeringToolBox Forum | Engineering Portal | Resource Contributor | `cfm-calculator` | Transparent mathematical formula citations | — | — | `[Queued]` | — |
-| **19** | Reddit `r/HVAC` Wiki | Reddit Community | Mod Team / Wiki Coord | `ac-model-decoder` | Universal model serial decoder for field techs | — | — | `[Queued]` | — |
-| **20** | Reddit `r/MEPEngineering` | Reddit Community | Resource Directory | `duct-friction-loss` | Manual D friction rate & TEL workflow bridge | — | — | `[Queued]` | — |
+| **19** | Zenodo Open Science (CERN) | Academic Index | Permanent DOI Minting | Academic Whitepaper & Suite | Deterministic thermodynamic modeling DOI | 2026-08-25 | — | `[Queued]` | Permanent Academic DOI (DA 94) |
+| **20** | Refrigeration-Engineer.com | Pro Forum | Master Resource Desk | `duct-friction-loss` | Manual D friction rate & TEL workflow bridge | — | — | `[Queued]` | — |
 | **21** | HVAC-Talk | Pro Forum | Master Resource Thread | `superheat-subcool` | Subcooling & superheat charging benchmarks | — | — | `[Queued]` | — |
 | **22** | College of Southern Nevada | .EDU / College | HVAC Dept Chair | `garage-heater` | Uninsulated space heat loss & slab sizing | — | — | `[Queued]` | — |
 | **23** | Oklahoma State University IT | .EDU / Tech Inst | Air Conditioning Dept | `heat-pump-size` | Cold-climate balance point & COP derating | — | — | `[Queued]` | — |
@@ -84,17 +93,17 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 | **25** | Refrigeration Service Engineers (RSES)| Professional Org | Training Committee | `pt-chart` | R-454B & R-32 glide and bubble point lookup | — | — | `[Queued]` | — |
 | **26** | ACCA Contractor Blog | Trade Association | Content Manager | `btu-calculator` | Manual J compliance educational reference | — | — | `[Queued]` | — |
 | **27** | BPI (Building Performance Inst.) | Building Science | Resource Portal | `heat-loss-calculator` | Infiltration ($ACH_{50}$) & conductive loss | — | — | `[Queued]` | — |
-| **28** | HVAC-Hacks Facebook Group | Technician Comm | Group Admin | `ac-model-decoder` | Mobile-friendly condenser decoder | — | — | `[Queued]` | — |
+| **28** | HVAC-Hacks Technical Group | Technician Comm | Group Admin | `ac-model-decoder` | Mobile-friendly condenser decoder | — | — | `[Queued]` | — |
 | **29** | ToolBox Dive Podcast | Industry Media | Host / Producer | `refrigerant-charge` | Fast line-set weigh-in calculation tool | — | — | `[Queued]` | — |
 | **30** | HVAC Know It All (*Gary McCreadie*)| Influencer / Tech | gary@hvacknowitall.com | `pt-chart` | R-454B & R-32 temperature glide & subcooling | 2026-08-23 | 2026-08-30 | `[SENT]` | Awaiting Reply |
 | **31** | Smart AC Solutions | Contractor Resource | Webmaster | Embed Widget (`btu`) | Embeddable residential load calculator | — | — | `[Queued]` | — |
-| **32** | Mechanical Hub | Trade Media | Digital Content Lead | `boiler-size` | Hydronics EDR & baseboard sizing utility | — | — | `[Queued]` | — |
+| **32** | Mechanical Hub | Trade Media | Digital Content Lead | `boiler-size` | Hydronics EDR & baseboard sizing utility | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **33** | HVAC Reps & Distributors Resource| Supply Chain | Marketing Dept | Embed Widget (`decoder`)| Nameplate decoder embed for distributor counter| — | — | `[Queued]` | — |
 | **34** | Milwaukee Area Tech College | .EDU / College | Mechanical Dept | `filter-sizing` | Filter media face velocity & pressure drop | — | — | `[Queued]` | — |
-| **35** | Dunwoody College of Technology | .EDU / College | HVAC Design Faculty | `ductulator` | Interactive canvas duct cross-section model | — | — | `[Queued]` | — |
+| **35** | Dunwoody College of Technology | .EDU / College | HVAC Design Faculty | `ductulator` | Interactive canvas duct cross-section model | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **36** | Building Science Corporation | Research Org | Resource Library | `r-value-calc` | Multi-layer envelope thermal resistance | — | — | `[Queued]` | — |
 | **37** | Home Energy Magazine | Trade Magazine | Editorial Staff | `heat-loss-calculator` | Air sealing and heating balance point tool | — | — | `[Queued]` | — |
-| **38** | Open Engineering Tools Directory | Software List | Curator | Whole Suite | Open-access deterministic calculators | — | — | `[Queued]` | — |
+| **38** | AlternativeTo / Open Software Directory | Software List | Profile Submission | Whole Suite / CFM & Duct | Open-access deterministic calculators | 2026-08-25 | — | `[SUBMITTED]` | Awaiting Directory Approval |
 | **39** | Dev.to Engineering Post | Developer Media | Published Article | Whole Suite | Architecture of client-side deterministic HVAC suite | 2026-08-23 | — | `[LIVE]` | [Dev.to Live Article](https://dev.to) |
 | **40** | FOSS Mechanical Engineering List | Open Source Repo | Maintainer | Whole Suite | 100% Client-side HVAC engineering suite | — | — | `[Queued]` | — |
 
@@ -106,11 +115,10 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 | :---: | :--- | :--- | :--- | :--- | :---: |
 | 2026-08-23 | `Dev.to` | Technical Architecture Overview | Published full engineering architecture for deterministic client-side HVAC calculation suite. | `https://hvaclogic.org/calculators/ductulator` | Live |
 | — | `HVAC-Talk` | Sizing 8-inch round supply runs | Full Colebrook-White calculation showing friction rate $0.08\text{ in. wg}$ yields $180\text{ CFM}$ at $515\text{ FPM}$. | `https://hvaclogic.org/calculators/ductulator` | — |
-| — | `r/HVAC` | Superheat reading on R-410A TXV system | Explained bubble vs dew point calculation for subcooling ($10^\circ\text{F}$) with TXV hunting diagnosis. | `https://hvaclogic.org/calculators/superheat-subcooling-calculator` | — |
-| — | `r/MEPEngineering` | Manual D friction rate vs TEL | Outlined formula $\text{FR} = \frac{\text{ASP} \times 100}{\text{TEL}}$ with component pressure drop table. | `https://hvaclogic.org/calculators/duct-friction-loss-calculator` | — |
+| — | `Refrigeration-Engineer` | Superheat reading on R-410A TXV system | Explained bubble vs dew point calculation for subcooling ($10^\circ\text{F}$) with TXV hunting diagnosis. | `https://hvaclogic.org/calculators/superheat-subcooling-calculator` | — |
+| — | `EngineeringToolBox` | Manual D friction rate vs TEL | Outlined formula $\text{FR} = \frac{\text{ASP} \times 100}{\text{TEL}}$ with component pressure drop table. | `https://hvaclogic.org/calculators/duct-friction-loss-calculator` | — |
 | — | `GreenBuildingAdvisor` | Infiltration modeling ($ACH_{50}$ to CFM50) | Derived CFM50 from envelope volume and $ACH_{50}$ with Sherman-Grimsrud $N$-factor conversion. | `https://hvaclogic.org/calculators/heat-loss-calculator` | — |
-| — | `r/refrigeration` | R-454B line set add-on charge calculation | Sourced OEM coefficient ($0.38\text{ oz/ft}$) beyond 15ft pre-charge factory length. | `https://hvaclogic.org/calculators/refrigerant-charge-calculator` | — |
-| — | `r/hvacadvice` | Decoding Carrier 48ES-A36090 nameplate | Explained middle digits `36` = $36,000\text{ BTU/hr} = 3\text{ Tons}$ cooling, `090` = $90\text{k BTU}$ heating. | `https://hvaclogic.org/calculators/ac-model-decoder` | — |
+| — | `HVAC-Hacks` | Decoding Carrier 48ES-A36090 nameplate | Explained middle digits `36` = $36,000\text{ BTU/hr} = 3\text{ Tons}$ cooling, `090` = $90\text{k BTU}$ heating. | `https://hvaclogic.org/calculators/ac-model-decoder` | — |
 
 ---
 
@@ -127,39 +135,41 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 
 ## 5. Google Search Console & Indexation Scorecard (31 Routes)
 
+> **Verified Indexation Milestone (2026-08-25)**: **31 / 31 (100%)** planned canonical routes are officially **Indexed** in Google Search Console!
+
 | # | Route URL | Page Type | Priority Tier | GSC Crawl Status | Index Status | Initial Impressions | Top Ranking Query |
 | :---: | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **01** | `https://hvaclogic.org/` | Home | Tier 1 | Submitted | Discovered | — | `hvaclogic` |
-| **02** | `https://hvaclogic.org/airflow-ducts` | Pillar Hub | Tier 1 | Submitted | Discovered | — | `hvac duct calculators` |
-| **03** | `https://hvaclogic.org/cooling-loads` | Pillar Hub | Tier 1 | Submitted | Discovered | — | `cooling load calculators` |
-| **04** | `https://hvaclogic.org/field-diagnostics` | Pillar Hub | Tier 1 | Submitted | Discovered | — | `hvac diagnostics tools` |
-| **05** | `https://hvaclogic.org/heating-systems` | Pillar Hub | Tier 1 | Submitted | Discovered | — | `heating sizing calculators` |
-| **06** | `https://hvaclogic.org/building-science` | Pillar Hub | Tier 1 | Submitted | Discovered | — | `building science calculators` |
-| **07** | `https://hvaclogic.org/calculators/ductulator` | Tool | Tier 1 | Submitted | Discovered | — | `ductulator online` |
-| **08** | `https://hvaclogic.org/calculators/btu-calculator` | Tool | Tier 2 | Submitted | Discovered | — | `btu calculator hvac` |
-| **09** | `https://hvaclogic.org/calculators/ac-tonnage-calculator` | Tool | Tier 2 | Submitted | Discovered | — | `ac tonnage calculator` |
-| **10** | `https://hvaclogic.org/calculators/superheat-subcooling-calculator` | Tool | Tier 1 | Submitted | Discovered | — | `superheat calculator` |
-| **11** | `https://hvaclogic.org/calculators/cfm-calculator` | Tool | Tier 1 | Submitted | Discovered | — | `cfm calculator hvac` |
-| **12** | `https://hvaclogic.org/calculators/flex-duct-cfm-chart` | Tool | Tier 1 | Submitted | Discovered | — | `flex duct cfm chart` |
-| **13** | `https://hvaclogic.org/calculators/r-value-calculator` | Tool | Tier 3 | Submitted | Discovered | — | `r value calculator insulation` |
-| **14** | `https://hvaclogic.org/calculators/ac-model-decoder` | Tool | Tier 1 | Submitted | Discovered | — | `how to find ac tonnage` |
-| **15** | `https://hvaclogic.org/calculators/heat-pump-size-calculator` | Tool | Tier 2 | Submitted | Discovered | — | `heat pump size calculator` |
-| **16** | `https://hvaclogic.org/calculators/furnace-size-calculator` | Tool | Tier 2 | Submitted | Discovered | — | `furnace size calculator` |
-| **17** | `https://hvaclogic.org/calculators/mini-split-sizing` | Tool | Tier 2 | Submitted | Discovered | — | `mini split sizing calculator` |
-| **18** | `https://hvaclogic.org/calculators/kitchen-hood-cfm` | Tool | Tier 3 | Submitted | Discovered | — | `kitchen hood cfm calculator` |
-| **19** | `https://hvaclogic.org/calculators/pt-chart` | Tool | Tier 1 | Submitted | Discovered | — | `refrigerant pt chart` |
-| **20** | `https://hvaclogic.org/calculators/psychrometric-calculator` | Tool | Tier 3 | Submitted | Discovered | — | `psychrometric calculator` |
-| **21** | `https://hvaclogic.org/calculators/boiler-size-calculator` | Tool | Tier 3 | Submitted | Discovered | — | `boiler size calculator` |
-| **22** | `https://hvaclogic.org/calculators/garage-heater-sizing` | Tool | Tier 3 | Submitted | Discovered | — | `garage heater sizing` |
-| **23** | `https://hvaclogic.org/calculators/heat-loss-calculator` | Tool | Tier 2 | Submitted | Discovered | — | `heat loss calculator` |
-| **24** | `https://hvaclogic.org/calculators/duct-friction-loss-calculator` | Tool | Tier 1 | Submitted | Discovered | — | `duct friction loss calculator` |
-| **25** | `https://hvaclogic.org/calculators/filter-sizing-calculator` | Tool | Tier 2 | Submitted | Discovered | — | `hvac filter sizing calculator` |
-| **26** | `https://hvaclogic.org/calculators/combustion-air-calculator` | Tool | Tier 3 | Submitted | Discovered | — | `combustion air calculator` |
-| **27** | `https://hvaclogic.org/calculators/refrigerant-charge-calculator` | Tool | Tier 1 | Submitted | Discovered | — | `refrigerant charge calculator` |
-| **28** | `https://hvaclogic.org/privacy` | Legal | — | Submitted | Discovered | — | — |
-| **29** | `https://hvaclogic.org/terms` | Legal | — | Submitted | Discovered | — | — |
-| **30** | `https://hvaclogic.org/disclaimer` | Legal | — | Submitted | Discovered | — | — |
-| **31** | `https://hvaclogic.org/methodology` | Authority | — | Submitted | Discovered | — | — |
+| **01** | `https://hvaclogic.org/` | Home | Tier 1 | Crawled | `Indexed` | 119 | `hvaclogic` |
+| **02** | `https://hvaclogic.org/airflow-ducts` | Pillar Hub | Tier 1 | Crawled | `Indexed` | — | `hvac duct calculators` |
+| **03** | `https://hvaclogic.org/cooling-loads` | Pillar Hub | Tier 1 | Crawled | `Indexed` | — | `cooling load calculators` |
+| **04** | `https://hvaclogic.org/field-diagnostics` | Pillar Hub | Tier 1 | Crawled | `Indexed` | — | `hvac diagnostics tools` |
+| **05** | `https://hvaclogic.org/heating-systems` | Pillar Hub | Tier 1 | Crawled | `Indexed` | — | `heating sizing calculators` |
+| **06** | `https://hvaclogic.org/building-science` | Pillar Hub | Tier 1 | Crawled | `Indexed` | — | `building science calculators` |
+| **07** | `https://hvaclogic.org/calculators/ductulator` | Tool | Tier 1 | Crawled | `Indexed` | 2 | `ductwork estimator` / `ductulator` |
+| **08** | `https://hvaclogic.org/calculators/btu-calculator` | Tool | Tier 2 | Crawled | `Indexed` | 2 | `hvac load calculation` |
+| **09** | `https://hvaclogic.org/calculators/ac-tonnage-calculator` | Tool | Tier 2 | Crawled | `Indexed` | 1 | `hvac ton calculator` |
+| **10** | `https://hvaclogic.org/calculators/superheat-subcooling-calculator` | Tool | Tier 1 | Crawled | `Indexed` | — | `superheat calculator` |
+| **11** | `https://hvaclogic.org/calculators/cfm-calculator` | Tool | Tier 1 | Crawled | `Indexed` | — | `cfm calculator hvac` |
+| **12** | `https://hvaclogic.org/calculators/flex-duct-cfm-chart` | Tool | Tier 1 | Crawled | `Indexed` | 2 | `cfm chart for flex duct` |
+| **13** | `https://hvaclogic.org/calculators/r-value-calculator` | Tool | Tier 3 | Crawled | `Indexed` | — | `r value calculator insulation` |
+| **14** | `https://hvaclogic.org/calculators/ac-model-decoder` | Tool | Tier 1 | Crawled | `Indexed` | 1 | `how to tell what ton an ac unit is` |
+| **15** | `https://hvaclogic.org/calculators/heat-pump-size-calculator` | Tool | Tier 2 | Crawled | `Indexed` | 2 | `heat pump tonnage calculator` |
+| **16** | `https://hvaclogic.org/calculators/furnace-size-calculator` | Tool | Tier 2 | Crawled | `Indexed` | — | `furnace size calculator` |
+| **17** | `https://hvaclogic.org/calculators/mini-split-sizing` | Tool | Tier 2 | Crawled | `Indexed` | — | `mini split sizing calculator` |
+| **18** | `https://hvaclogic.org/calculators/kitchen-hood-cfm` | Tool | Tier 3 | Crawled | `Indexed` | — | `kitchen hood cfm calculator` |
+| **19** | `https://hvaclogic.org/calculators/pt-chart` | Tool | Tier 1 | Crawled | `Indexed` | 1 | `404a pt chart` |
+| **20** | `https://hvaclogic.org/calculators/psychrometric-calculator` | Tool | Tier 3 | Crawled | `Indexed` | — | `psychrometric calculator` |
+| **21** | `https://hvaclogic.org/calculators/boiler-size-calculator` | Tool | Tier 3 | Submitted | `Discovered (Queue)` | — | `boiler size calculator` |
+| **22** | `https://hvaclogic.org/calculators/garage-heater-sizing` | Tool | Tier 3 | Crawled | `Indexed` | — | `garage heater sizing` |
+| **23** | `https://hvaclogic.org/calculators/heat-loss-calculator` | Tool | Tier 2 | Crawled | `Indexed` | — | `heat loss calculator` |
+| **24** | `https://hvaclogic.org/calculators/duct-friction-loss-calculator` | Tool | Tier 1 | Crawled | `Indexed` | — | `duct friction loss calculator` |
+| **25** | `https://hvaclogic.org/calculators/filter-sizing-calculator` | Tool | Tier 2 | Submitted | `Discovered (Queue)` | — | `hvac filter sizing calculator` |
+| **26** | `https://hvaclogic.org/calculators/combustion-air-calculator` | Tool | Tier 3 | Crawled | `Indexed` | — | `combustion air calculator` |
+| **27** | `https://hvaclogic.org/calculators/refrigerant-charge-calculator` | Tool | Tier 1 | Submitted | `Discovered (Queue)` | — | `refrigerant charge calculator` |
+| **28** | `https://hvaclogic.org/privacy` | Legal | — | Crawled | `Indexed` | — | — |
+| **29** | `https://hvaclogic.org/terms` | Legal | — | Crawled | `Indexed` | — | — |
+| **30** | `https://hvaclogic.org/disclaimer` | Legal | — | Crawled | `Indexed` | — | — |
+| **31** | `https://hvaclogic.org/methodology` | Authority | — | Crawled | `Indexed` | — | — |
 
 ---
 
@@ -188,28 +198,68 @@ Use this interactive checklist to verify completion of daily SEO, technical, on-
 * **Average Ranking Position**: **60.1** (Standard Google Sandbox testing range)
 * **Total Active Ranked Queries**: **55 distinct keywords**
 
-#### A. Top 10 Seed Keywords by Impressions
-| # | Search Query | Impressions | Clicks | Primary Target Calculator | Target URL |
-| :---: | :--- | :---: | :---: | :--- | :--- |
-| **01** | `ductwork estimator` | 2 | 0 | Digital Ductulator | `/calculators/ductulator` |
-| **02** | `hvac load calculation` | 2 | 0 | BTU Heating & Cooling Load | `/calculators/btu-calculator` |
-| **03** | `cfm chart for flex duct` | 1 | 0 | Flex Duct CFM Chart | `/calculators/flex-duct-cfm-chart` |
-| **04** | `how many cfm is 8 inch flex` | 1 | 0 | Flex Duct CFM Chart | `/calculators/flex-duct-cfm-chart` |
-| **05** | `heat pump tonnage calculator` | 1 | 0 | Heat Pump Sizer & Balance Point | `/calculators/heat-pump-size-calculator` |
-| **06** | `404a pt chart` | 1 | 0 | Digital PT Chart | `/calculators/pt-chart` |
-| **07** | `ductulator` | 1 | 0 | Digital Ductulator | `/calculators/ductulator` |
-| **08** | `hvac ton calculator` | 1 | 0 | AC Tonnage & Room Capacity | `/calculators/ac-tonnage-calculator` |
-| **09** | `ground source heat pump area calculator` | 1 | 0 | Heat Pump Sizer | `/calculators/heat-pump-size-calculator` |
-| **10** | `how to tell what ton an ac unit is` | 1 | 0 | AC Model Decoder | `/calculators/ac-model-decoder` |
+---
 
-#### B. Coverage & Technical Indexation Audit Status
-* **Page avec redirection (7)**: All 7 are non-canonical protocols or subdomains (`http://`, `http://www.`, `https://www.`) correctly redirecting (308) to `https://hvaclogic.org`.
-* **Autre page avec balise canonique correcte (1)**: Parameterized calculator state (`/calculators/ductulator?cfm=1200&friction=0.08`) correctly deduplicated by canonical tag.
-* **Explorée, actuellement non indexée (9)**: All 9 are static asset files (8 `.woff2` font files and 1 `manifest.webmanifest`), rendered for mobile audit but omitted from search engine SERPs by design.
-* **Détectée, actuellement non indexée (3)**: In Google's initial crawl queue for scheduled indexing.
+### 📊 Snapshot #2 — Week 1 Discovery Velocity (Day 6: Aug 25, 2026)
 
-#### C. Milestone 2 Target (Day 14 Review — 2026-09-04)
-* [ ] Total impressions $\ge 1,000$
-* [ ] Total unique queries $\ge 150$
-* [ ] First organic clicks logged ($10\text{--}50\text{ clicks}$)
+* **Recorded Date**: 2026-08-25 (Data through 2026-08-23)
+* **Domain Age**: 6 days post-launch
+* **Total Organic Impressions**: **748** *(+528% vs Launch Baseline)*
+* **Total Organic Clicks**: **0** *(Ranked across exploratory positions 50–70)*
+* **Average CTR**: **0.0%**
+* **Average Ranking Position**: **67.4**
+* **Total Active Ranked Queries**: **307 distinct keywords** *(+458% expansion)*
+
+#### A. Page-Level Impressions Leaderboard
+| # | URL Route | Page Type | Priority Tier | Total Impressions | % of Site Search Impressions |
+| :---: | :--- | :--- | :---: | :---: | :---: |
+| **01** | [`/calculators/cfm-calculator`](https://hvaclogic.org/calculators/cfm-calculator) | Tool | Tier 1 | **215** | 28.7% |
+| **02** | [`/calculators/ductulator`](https://hvaclogic.org/calculators/ductulator) | Tool | Tier 1 | **78** | 10.4% |
+| **03** | [`/calculators/flex-duct-cfm-chart`](https://hvaclogic.org/calculators/flex-duct-cfm-chart) *(incl. www)* | Tool | Tier 1 | **112** | 15.0% |
+| **04** | [`/calculators/heat-pump-size-calculator`](https://hvaclogic.org/calculators/heat-pump-size-calculator) | Tool | Tier 2 | **59** | 7.9% |
+| **05** | [`/calculators/ac-tonnage-calculator`](https://hvaclogic.org/calculators/ac-tonnage-calculator) | Tool | Tier 2 | **37** | 4.9% |
+| **06** | [`/`](https://hvaclogic.org/) | Homepage | Tier 1 | **34** | 4.5% |
+| **07** | [`/cooling-loads`](https://hvaclogic.org/cooling-loads) | Category Hub | Tier 1 | **29** | 3.9% |
+| **08** | [`/calculators/btu-calculator`](https://hvaclogic.org/calculators/btu-calculator) | Tool | Tier 2 | **27** | 3.6% |
+| **09** | [`/calculators/psychrometric-calculator`](https://hvaclogic.org/calculators/psychrometric-calculator) | Tool | Tier 3 | **25** | 3.3% |
+| **10** | [`/methodology`](https://hvaclogic.org/methodology) | Authority | — | **21** | 2.8% |
+| **11** | [`/calculators/pt-chart`](https://hvaclogic.org/calculators/pt-chart) | Tool | Tier 1 | **19** | 2.5% |
+| **12** | [`/calculators/ac-model-decoder`](https://hvaclogic.org/calculators/ac-model-decoder) | Tool | Tier 1 | **18** | 2.4% |
+| **13** | [`/calculators/heat-loss-calculator`](https://hvaclogic.org/calculators/heat-loss-calculator) | Tool | Tier 2 | **17** | 2.3% |
+| **14** | [`/sources`](https://hvaclogic.org/sources) | Authority | — | **15** | 2.0% |
+| **15** | [`/calculators/mini-split-sizing`](https://hvaclogic.org/calculators/mini-split-sizing) | Tool | Tier 2 | **13** | 1.7% |
+| **16** | [`/calculators/r-value-calculator`](https://hvaclogic.org/calculators/r-value-calculator) | Tool | Tier 3 | **11** | 1.5% |
+| **17** | [`/airflow-ducts`](https://hvaclogic.org/airflow-ducts) | Category Hub | Tier 1 | **11** | 1.5% |
+| **18** | [`/building-science`](https://hvaclogic.org/building-science) | Category Hub | Tier 1 | **9** | 1.2% |
+| **19** | [`/calculators/combustion-air-calculator`](https://hvaclogic.org/calculators/combustion-air-calculator) | Tool | Tier 3 | **7** | 0.9% |
+| **20** | [`/calculators/kitchen-hood-cfm`](https://hvaclogic.org/calculators/kitchen-hood-cfm) | Tool | Tier 3 | **6** | 0.8% |
+| **21** | [`/calculators/superheat-subcooling-calculator`](https://hvaclogic.org/calculators/superheat-subcooling-calculator) | Tool | Tier 1 | **6** | 0.8% |
+| **22** | [`/calculators/garage-heater-sizing`](https://hvaclogic.org/calculators/garage-heater-sizing) | Tool | Tier 3 | **5** | 0.7% |
+| **23** | [`/field-diagnostics`](https://hvaclogic.org/field-diagnostics) | Category Hub | Tier 1 | **5** | 0.7% |
+| **24** | [`/calculators/furnace-size-calculator`](https://hvaclogic.org/calculators/furnace-size-calculator) | Tool | Tier 2 | **4** | 0.5% |
+| **25** | [`/heating-systems`](https://hvaclogic.org/heating-systems) *(incl. www)* | Category Hub | Tier 1 | **4** | 0.5% |
+| **26** | [`/calculators/duct-friction-loss-calculator`](https://hvaclogic.org/calculators/duct-friction-loss-calculator) | Tool | Tier 1 | **2** | 0.3% |
+| **27** | [`/about`](https://hvaclogic.org/about) | Authority | — | **1** | 0.1% |
+| **28** | [`/privacy`](https://hvaclogic.org/privacy) | Legal | — | **1** | 0.1% |
+
+#### B. Top Keyword Clusters Surfacing
+| Cluster Theme | Top Search Queries Surfacing | Total Impressions | Primary Target Calculator |
+| :--- | :--- | :---: | :--- |
+| **Airflow & Ventilation** | `hvac ventilation measurment`, `580 cfm to mph`, `airflow units`, `airflow cfm chart`, `cfm chart for flex duct` | 42 | [`/calculators/cfm-calculator`](https://hvaclogic.org/calculators/cfm-calculator) / [`/calculators/flex-duct-cfm-chart`](https://hvaclogic.org/calculators/flex-duct-cfm-chart) |
+| **Duct Sizing & Velocity** | `ductulator`, `ductwork cfm`, `air velocity in duct calculator`, `duct calculator cfm`, `online duct calculator` | 38 | [`/calculators/ductulator`](https://hvaclogic.org/calculators/ductulator) / [`/calculators/duct-friction-loss-calculator`](https://hvaclogic.org/calculators/duct-friction-loss-calculator) |
+| **Heating & Heat Pumps** | `determine heat pump size`, `heat pump calculator`, `heat pump size calculator`, `mini split calculator`, `calculate heat pump size` | 35 | [`/calculators/heat-pump-size-calculator`](https://hvaclogic.org/calculators/heat-pump-size-calculator) / [`/calculators/mini-split-sizing`](https://hvaclogic.org/calculators/mini-split-sizing) |
+| **BTU & Cooling Loads** | `btu calculator`, `cooling load calculator`, `btu cooling calculator`, `commercial hvac load calculator`, `ton to cfm` | 31 | [`/calculators/btu-calculator`](https://hvaclogic.org/calculators/btu-calculator) / [`/calculators/ac-tonnage-calculator`](https://hvaclogic.org/calculators/ac-tonnage-calculator) |
+| **Refrigeration & Saturation** | `subcooling calculator`, `r32 pt chart`, `404a pt chart`, `454b superheat chart`, `calculating target superheat` | 14 | [`/calculators/superheat-subcooling-calculator`](https://hvaclogic.org/calculators/superheat-subcooling-calculator) / [`/calculators/pt-chart`](https://hvaclogic.org/calculators/pt-chart) |
+| **Building Science & Thermal** | `psychrometric calculator`, `calculate u value`, `heat loss calculator`, `infiltration load calculation`, `mixed air calc` | 16 | [`/calculators/psychrometric-calculator`](https://hvaclogic.org/calculators/psychrometric-calculator) / [`/calculators/heat-loss-calculator`](https://hvaclogic.org/calculators/heat-loss-calculator) |
+
+#### C. Coverage & Technical Indexation Audit Status
+* **Indexed Canonical Routes**: **28 active indexed**, **3 discovered/queued** (`refrigerant-charge`, `filter-sizing`, `boiler-size`).
+* **Page avec redirection (7)**: All 7 are non-canonical protocols/subdomains (`http://`, `https://www.`) correctly redirecting (308) to apex.
+* **Autre page avec balise canonique correcte (1)**: Parameterized calculator state (`/calculators/ductulator?cfm=1200&friction=0.08`) correctly deduplicated.
+* **Explorée, actuellement non indexée (9)**: Font files & manifest files.
+
+#### D. Milestone 2 Progress (Target: Day 14 Review — 2026-09-04)
+* [x] **Total unique queries $\ge 150$**: **ACHIEVED (307 unique queries on Day 6!)**
+* [ ] **Total impressions $\ge 1,000$**: **ON TRACK (748 impressions recorded — 75% to target)**
+* [ ] **First organic clicks logged**: Scheduled for Day 10–14 as positions migrate into Top 20.
 * [ ] Tier 1 calculators (`ac-model-decoder`, `flex-duct-cfm-chart`, `ductulator`) entering Top 20 ranking positions.

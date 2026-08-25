@@ -89,6 +89,13 @@ export function sanitizeTelemetryPayload(payload: Record<string, any>): Telemetr
   return sanitized;
 }
 
+declare global {
+  interface Window {
+    dataLayer?: any[];
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 /**
  * Dispatches an anonymous, privacy-safe analytics event.
  */
@@ -100,7 +107,7 @@ export function trackTelemetryEvent(
 
   const cleanPayload = sanitizeTelemetryPayload(payload);
 
-  // Example: dispatch to window custom event for privacy-safe integration
+  // Dispatch to window custom event for privacy-safe integration
   const event = new CustomEvent("hvaclogic:telemetry", {
     detail: {
       event: eventName,
@@ -110,5 +117,11 @@ export function trackTelemetryEvent(
   });
 
   window.dispatchEvent(event);
+
+  // Forward sanitized event to Google Analytics 4 (gtag.js) if available
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, cleanPayload);
+  }
+
   return true;
 }
