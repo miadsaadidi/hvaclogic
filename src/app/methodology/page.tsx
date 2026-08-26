@@ -173,6 +173,48 @@ export default function MethodologyPage() {
         </div>
       </section>
 
+      {/* Academic Research & Preprint Citation */}
+      <section style={{ padding: "1.75rem", borderRadius: "0.85rem", background: "rgba(0, 210, 255, 0.04)", border: "1px solid rgba(0, 210, 255, 0.2)", borderLeft: "4px solid var(--accent-cooling)", marginBottom: "3.5rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+          <span style={{ fontSize: "1.25rem" }}>📚</span>
+          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
+            Academic Research &amp; Open Scientific Preprint
+          </h2>
+        </div>
+        <p style={{ fontSize: "0.875rem", color: "var(--ink-secondary)", lineHeight: 1.6, margin: "0 0 1rem" }}>
+          The complete mathematical framework and numerical validations powering HVACLogic are published in the open scientific literature:
+        </p>
+        <div style={{ background: "var(--surface)", padding: "1rem 1.25rem", borderRadius: "0.5rem", border: "1px solid var(--border-color)", marginBottom: "1rem", fontFamily: "var(--font-mono, monospace)", fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
+          <strong>Citation:</strong> HVACLogic Engineering Working Group (2026). <em>Deterministic Building Science and Thermodynamic Modeling Framework for Real-Time Field Diagnostics, Air Distribution, and Decarbonization Sizing</em>. Permanent Open-Access Preprint.
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", fontSize: "0.85rem" }}>
+          <a
+            href="/papers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", color: "var(--accent-cooling)", fontWeight: 600, textDecoration: "none" }}
+          >
+            <span>📄 Download Whitepaper PDF ↗</span>
+          </a>
+          <a
+            href="https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", color: "var(--accent-cooling)", fontWeight: 600, textDecoration: "none" }}
+          >
+            <span>🏛️ View on Internet Archive (DA 96) ↗</span>
+          </a>
+          <a
+            href="https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", color: "var(--accent-cooling)", fontWeight: 600, textDecoration: "none" }}
+          >
+            <span>🎓 View on Academia.edu (DA 93) ↗</span>
+          </a>
+        </div>
+      </section>
+
       {/* Internal Navigation Handoff */}
       <footer style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.9rem" }}>
         <Link href="/sources" style={{ fontWeight: 600 }}>View Laboratory Sources &amp; Standards →</Link>

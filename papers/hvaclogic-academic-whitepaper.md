@@ -5,7 +5,7 @@
 **Date:** August 2026  
 **Canonical Repository & Open Suite:** [https://hvaclogic.org](https://hvaclogic.org)  
 **Permanent Archive Identifiers:**  
-- Internet Archive: `https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260824`  
+- Internet Archive: `https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826`  
 - Academia.edu: `https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing`  
 - License: Creative Commons Attribution 4.0 International (CC-BY 4.0)
 

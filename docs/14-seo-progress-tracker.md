@@ -29,16 +29,16 @@
 - [x] **Day 4**: Validate JSON-LD structured data (`WebApplication`, `BreadcrumbList`, `FAQPage`) across all routes via Rich Results validator.
 - [x] **Day 5**: Run synthetic Core Web Vitals (Lighthouse / PageSpeed Insights) on Homepage, 1 Pillar, and 4 Calculator Archetypes (`ductulator`, `btu-calculator`, `superheat-subcooling-calculator`, `pt-chart`).
 - [x] **Day 6**: Establish privacy-safe analytics baseline. Ensure no PII, user IP, or proprietary job numbers are collected in telemetry.
-- [ ] **Day 7**: Publish the HVACLogic Academic Whitepaper to **Internet Archive (archive.org — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**. Submit `/sitemap.xml` to Google Search Console and Bing. Request indexing for Tier 1 URLs.
+- [x] **Day 7**: Publish the HVACLogic Academic Whitepaper to **Internet Archive (archive.org — DA 96)**, **Academia.edu (DA 93)**, and **ResearchGate**. Submit `/sitemap.xml` to Google Search Console and Bing. Request indexing for Tier 1 URLs. Verified public PDF access at `/papers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf` and updated citations across `/about` and `/methodology`.
 
-### Week 2 — Page Quality, Extractable Answers & Workflow Handoffs
-- [x] **Day 8**: Reconcile keyword master with the 21 live tools. Verify primary search intent mapping and ensure zero keyword cannibalization across duct and CFM tools.
-- [x] **Day 9**: Review and optimize Tier 1 title tags (50–60 chars) and meta descriptions (140–160 chars) for maximum CTR without clickbait.
-- [x] **Day 10**: Strengthen DirectAnswerCard blocks, governing physical equations, and worked numerical examples for Tier 1 calculators.
-- [x] **Day 11**: Audit all engineering standards citations (ASHRAE, ACCA, SMACNA, EPA, AHRI, IRC, NFPA) against the official [Engineering Source Register](./08-engineering-source-register.md).
-- [x] **Day 12**: Audit contextual internal links and parameter handoff pipelines (`BTU Load` → `CFM Sizer` → `Digital Ductulator`).
-- [x] **Day 13**: Verify OpenGraph social image previews (`og:image`) and twitter cards for all 14 priority routes.
-- [x] **Day 14**: Run Vitest regression suite (`npm test`) and typecheck (`npm run typecheck`). Perform Week 2 deployment verification.
+### Week 2 — Page Quality, Extractable Answers & Pillar Guides Rollout
+- [x] **Day 8**: Reconcile keyword master & zero-cannibalization audit. Deploy **Pillar Guide 1: Air Distribution & Duct Hydraulics Master Guide** on [`/airflow-ducts`](file:///d:/HVACLab/src/app/airflow-ducts/page.tsx).
+- [ ] **Day 9**: Optimize Tier 1 title tags & meta descriptions. Deploy **Pillar Guide 2: ACCA Manual J & S Cooling Load Sizing Guide** on [`/cooling-loads`](file:///d:/HVACLab/src/app/cooling-loads/page.tsx).
+- [ ] **Day 10**: Strengthen DirectAnswerCard blocks & numerical examples. Deploy **Pillar Guide 3: Heating & Electrification Engineering Guide** on [`/heating-systems`](file:///d:/HVACLab/src/app/heating-systems/page.tsx).
+- [ ] **Day 11**: Audit engineering standards citations. Deploy **Pillar Guide 4: Field Diagnostics & A2L Refrigerant Transition Guide** on [`/field-diagnostics`](file:///d:/HVACLab/src/app/field-diagnostics/page.tsx).
+- [ ] **Day 12**: Audit contextual internal links & handoffs. Deploy **Pillar Guide 5: Psychrometric & Building Science Thermal Guide** on [`/building-science`](file:///d:/HVACLab/src/app/building-science/page.tsx).
+- [ ] **Day 13**: Verify OpenGraph social image previews (`og:image`) and twitter cards for all 14 priority routes.
+- [ ] **Day 14**: Run Vitest regression suite (`npm test`) and typecheck (`npm run typecheck`). Perform Week 2 deployment verification.
 
 ### Week 3 — High-Velocity Distribution & Daily 2–3 Touches Outreach
 - [ ] **Day 15**: Package the Digital Outreach Kit (one-sentence pitch, privacy guarantee, interactive embed code, printable submittal PDF samples, academic paper DOI link).
@@ -88,9 +88,9 @@
 | **20** | Refrigeration-Engineer.com | Pro Forum | Master Resource Desk | `duct-friction-loss` | Manual D friction rate & TEL workflow bridge | — | — | `[Queued]` | — |
 | **21** | HVAC-Talk | Pro Forum | Master Resource Thread | `superheat-subcool` | Subcooling & superheat charging benchmarks | — | — | `[Queued]` | — |
 | **22** | College of Southern Nevada | .EDU / College | HVAC Dept Chair | `garage-heater` | Uninsulated space heat loss & slab sizing | — | — | `[Queued]` | — |
-| **23** | Oklahoma State University IT | .EDU / Tech Inst | Air Conditioning Dept | `heat-pump-size` | Cold-climate balance point & COP derating | — | — | `[Queued]` | — |
-| **24** | Ivy Tech Community College | .EDU / College | HVAC Technology Lead | `combustion-air` | NFPA 54 indoor/outdoor air compliance | — | — | `[Queued]` | — |
-| **25** | Refrigeration Service Engineers (RSES)| Professional Org | Training Committee | `pt-chart` | R-454B & R-32 glide and bubble point lookup | — | — | `[Queued]` | — |
+| **23** | Oklahoma State University IT | .EDU / Tech Inst | Air Conditioning Dept | `heat-pump-size` | Cold-climate balance point & COP derating | 2026-08-26 | 2026-09-02 | `[SENT]` | Awaiting Reply |
+| **24** | Ivy Tech Community College | .EDU / College | HVAC Technology Lead | `combustion-air` | NFPA 54 indoor/outdoor air compliance | 2026-08-26 | 2026-09-02 | `[SENT]` | Awaiting Reply |
+| **25** | Refrigeration Service Engineers (RSES)| Professional Org | Training Committee | `pt-chart` | R-454B & R-32 glide and bubble point lookup | 2026-08-26 | 2026-09-02 | `[SENT]` | Awaiting Reply |
 | **26** | ACCA Contractor Blog | Trade Association | Content Manager | `btu-calculator` | Manual J compliance educational reference | — | — | `[Queued]` | — |
 | **27** | BPI (Building Performance Inst.) | Building Science | Resource Portal | `heat-loss-calculator` | Infiltration ($ACH_{50}$) & conductive loss | — | — | `[Queued]` | — |
 | **28** | HVAC-Hacks Technical Group | Technician Comm | Group Admin | `ac-model-decoder` | Mobile-friendly condenser decoder | — | — | `[Queued]` | — |
@@ -126,7 +126,7 @@
 
 | Academic Index / Repository | Submission Title | Publication / Identifier URL | Status | Verified Backlink / Citation |
 | :--- | :--- | :--- | :---: | :--- |
-| **Internet Archive (`archive.org`)** | *HVACLogic: Deterministic Building Science & Thermodynamic Calculation Architecture for Field Diagnostics, Air Distribution, and Decarbonization Sizing* | `https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260824` | `[LIVE]` | Permanent citable open-access item (DA 96) + canonical backlink |
+| **Internet Archive (`archive.org`)** | *HVACLogic: Deterministic Building Science & Thermodynamic Calculation Architecture for Field Diagnostics, Air Distribution, and Decarbonization Sizing* | `https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826` | `[LIVE]` | Permanent citable open-access item (DA 96) + canonical backlink |
 | **Academia.edu** | *Deterministic Building Science and Thermodynamic Modeling Framework for Real-Time Field Diagnostics, Air Distribution, and Decarbonization Sizing* | `https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing` | `[LIVE]` | Verified academic paper publication & profile backlink (DA 93) |
 | **Dev.to** | *Building HVACLogic: A Deterministic Engineering Suite* | `https://dev.to/` | `[LIVE]` | Contextual dofollow engineering citation (DA 90+) |
 | **Google Scholar** | *HVACLogic: Deterministic Building Science Framework* | Auto-indexed via Academia.edu & Archive.org | `[Crawling]` | Academic search engine citation |

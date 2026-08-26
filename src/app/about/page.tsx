@@ -109,7 +109,15 @@ export default function AboutPage() {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", fontSize: "0.85rem" }}>
           <a
-            href="https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260824"
+            href="/papers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", color: "var(--accent-cooling)", fontWeight: 600, textDecoration: "none" }}
+          >
+            <span>📄 Download Whitepaper PDF ↗</span>
+          </a>
+          <a
+            href="https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826"
             target="_blank"
             rel="noopener noreferrer"
             style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", color: "var(--accent-cooling)", fontWeight: 600, textDecoration: "none" }}
