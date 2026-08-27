@@ -7,23 +7,32 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Heating & Heat Pump Calculators — Heat Pump Balance Point & AFUE Sizing | HVACLogic",
+  title: "Heating & Heat Pump Sizing Calculators | HVACLogic",
   description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/heating-systems`,
   },
   openGraph: {
-    title: "Heating & Heat Pump Calculators — Heat Pump Balance Point & AFUE Sizing | HVACLogic",
+    title: "Heating & Heat Pump Sizing Calculators | HVACLogic",
     description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
     url: `${siteConfig.canonicalDomain}/heating-systems`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Heating & Heat Pump Sizing Calculators — HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Heating & Heat Pump Calculators — Heat Pump Balance Point & AFUE Sizing | HVACLogic",
+    title: "Heating & Heat Pump Sizing Calculators | HVACLogic",
     description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

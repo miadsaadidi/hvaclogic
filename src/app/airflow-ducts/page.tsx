@@ -7,23 +7,32 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Airflow & Duct Sizing Calculators — HVAC Ductulators & CFM Tools | HVACLogic",
+  title: "Airflow & Duct Sizing Calculators | HVACLogic",
   description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/airflow-ducts`,
   },
   openGraph: {
-    title: "Airflow & Duct Sizing Calculators — HVAC Ductulators & CFM Tools | HVACLogic",
+    title: "Airflow & Duct Sizing Calculators | HVACLogic",
     description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
     url: `${siteConfig.canonicalDomain}/airflow-ducts`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Airflow & Duct Sizing Calculators — HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Airflow & Duct Sizing Calculators — HVAC Ductulators & CFM Tools | HVACLogic",
+    title: "Airflow & Duct Sizing Calculators | HVACLogic",
     description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

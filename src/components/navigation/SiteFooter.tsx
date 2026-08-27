@@ -30,47 +30,51 @@ export function SiteFooter() {
             </div>
           </div>
 
-          {/* PILLAR 1 & 2 */}
+          {/* PILLAR 1: AIRFLOW & DUCTS */}
           <div>
             <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
-              Airflow &amp; Cooling
+              <Link href="/airflow-ducts" style={{ color: "inherit", textDecoration: "none" }}>Airflow &amp; Ducts →</Link>
             </p>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.45rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/ductulator">Digital Ductulator</Link></li>
               <li><Link href="/calculators/flex-duct-cfm-chart">Flex Duct CFM Chart</Link></li>
               <li><Link href="/calculators/cfm-calculator">HVAC CFM Sizer</Link></li>
+              <li><Link href="/calculators/duct-friction-loss-calculator">Duct Friction Loss (TEL)</Link></li>
+              <li><Link href="/calculators/filter-sizing-calculator">MERV Filter Pressure Drop</Link></li>
+              <li><Link href="/calculators/kitchen-hood-cfm">Kitchen Hood CFM Sizer</Link></li>
+            </ul>
+          </div>
+
+          {/* PILLAR 2 & 3: COOLING & DIAGNOSTICS */}
+          <div>
+            <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
+              <Link href="/cooling-loads" style={{ color: "inherit", textDecoration: "none" }}>Cooling</Link> &amp; <Link href="/field-diagnostics" style={{ color: "inherit", textDecoration: "none" }}>Diagnostics →</Link>
+            </p>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.45rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/btu-calculator">BTU Load Master</Link></li>
               <li><Link href="/calculators/ac-tonnage-calculator">AC Tonnage Calculator</Link></li>
               <li><Link href="/calculators/ac-model-decoder">AC Model Decoder</Link></li>
               <li><Link href="/calculators/mini-split-sizing">Mini-Split Multi-Zone</Link></li>
-            </ul>
-          </div>
-
-          {/* PILLAR 3 & 4 */}
-          <div>
-            <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
-              Diagnostics &amp; Heating
-            </p>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/superheat-subcooling-calculator">Superheat &amp; Subcooling</Link></li>
               <li><Link href="/calculators/pt-chart">Digital PT Chart</Link></li>
               <li><Link href="/calculators/psychrometric-calculator">Psychrometric Calculator</Link></li>
-              <li><Link href="/calculators/heat-pump-size-calculator">Heat Pump Sizer</Link></li>
-              <li><Link href="/calculators/furnace-size-calculator">Furnace AFUE Sizer</Link></li>
-              <li><Link href="/calculators/boiler-size-calculator">Boiler &amp; EDR Sizer</Link></li>
+              <li><Link href="/calculators/refrigerant-charge-calculator">Refrigerant Line Set Charge</Link></li>
             </ul>
           </div>
 
-          {/* BUILDING SCIENCE & VENTILATION */}
+          {/* PILLAR 4 & 5: HEATING & BUILDING SCIENCE */}
           <div>
             <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
-              Building Science
+              <Link href="/heating-systems" style={{ color: "inherit", textDecoration: "none" }}>Heating</Link> &amp; <Link href="/building-science" style={{ color: "inherit", textDecoration: "none" }}>Building Science →</Link>
             </p>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.45rem", fontSize: "0.8125rem" }}>
+              <li><Link href="/calculators/heat-pump-size-calculator">Heat Pump Sizer</Link></li>
+              <li><Link href="/calculators/furnace-size-calculator">Furnace AFUE Sizer</Link></li>
+              <li><Link href="/calculators/boiler-size-calculator">Boiler &amp; EDR Sizer</Link></li>
+              <li><Link href="/calculators/garage-heater-sizing">Garage Heater Sizer</Link></li>
+              <li><Link href="/calculators/combustion-air-calculator">Combustion Air Sizer</Link></li>
               <li><Link href="/calculators/r-value-calculator">Insulation R-Value</Link></li>
               <li><Link href="/calculators/heat-loss-calculator">Heat Loss Calculator</Link></li>
-              <li><Link href="/calculators/garage-heater-sizing">Garage Heater Sizer</Link></li>
-              <li><Link href="/calculators/kitchen-hood-cfm">Kitchen Hood CFM</Link></li>
             </ul>
           </div>
 

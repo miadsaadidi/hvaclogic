@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Laboratory Sources & Engineering Standards — HVACLogic",
-  description: "Official scientific and industry standards powering HVACLogic: ASHRAE Handbook of Fundamentals, ACCA Manuals J/S/D/T, SMACNA, EPA Section 608, AHRI 210/240, and IECC 2024.",
+  description: "Official standards powering HVACLogic: ASHRAE Handbook, ACCA Manuals J/S/D, SMACNA, EPA Section 608, AHRI 210/240, and NIST REFPROP.",
   alternates: { canonical: `${siteConfig.canonicalDomain}/sources` },
   openGraph: {
     title: "Laboratory Sources & Standards — HVACLogic",
@@ -13,11 +13,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "HVACLogic Laboratory Sources & Standards",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Laboratory Sources & Standards — HVACLogic",
     description: "Scientific and industry references informing HVACLogic deterministic calculation engines.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

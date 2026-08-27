@@ -183,14 +183,14 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
 
     expect(tier1Tools.length).toBe(8);
 
-    tier1Tools.forEach((calc) => {
-      // Title must be between 35 and 65 chars to avoid truncation
+    published.forEach((calc) => {
+      // Title strictly <= 60 chars to comply with Ahrefs and Google SERP desktop limits
       expect(calc.seoTitle.length).toBeGreaterThanOrEqual(35);
-      expect(calc.seoTitle.length).toBeLessThanOrEqual(65);
+      expect(calc.seoTitle.length).toBeLessThanOrEqual(60);
 
-      // Meta Description must be between 100 and 165 chars for optimal SERP snippets
+      // Meta Description strictly <= 160 chars for optimal SERP snippets without Ahrefs warnings
       expect(calc.metaDescription.length).toBeGreaterThanOrEqual(100);
-      expect(calc.metaDescription.length).toBeLessThanOrEqual(165);
+      expect(calc.metaDescription.length).toBeLessThanOrEqual(160);
     });
   });
 });

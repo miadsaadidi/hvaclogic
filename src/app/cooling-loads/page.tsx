@@ -7,23 +7,32 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Cooling & Heat Load Calculators — ACCA Manual J/S Sizing Tools | HVACLogic",
+  title: "Cooling & Heat Load Calculators — Manual J/S | HVACLogic",
   description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/cooling-loads`,
   },
   openGraph: {
-    title: "Cooling & Heat Load Calculators — ACCA Manual J/S Sizing Tools | HVACLogic",
+    title: "Cooling & Heat Load Calculators — Manual J/S | HVACLogic",
     description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
     url: `${siteConfig.canonicalDomain}/cooling-loads`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Cooling & Heat Load Calculators — HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cooling & Heat Load Calculators — ACCA Manual J/S Sizing Tools | HVACLogic",
+    title: "Cooling & Heat Load Calculators — Manual J/S | HVACLogic",
     description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

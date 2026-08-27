@@ -5,23 +5,32 @@ import { siteConfig } from "@/lib/site-config";
 import { CodeFormulaBlock } from "@/components/seo/CodeFormulaBlock";
 
 export const metadata: Metadata = {
-  title: "Engineering Calculation Methodology & Physical Models | HVACLogic",
+  title: "Engineering Methodology & Physical Models | HVACLogic",
   description: "Scientific documentation of HVACLogic calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/methodology`,
   },
   openGraph: {
-    title: "Engineering Calculation Methodology & Physical Models | HVACLogic",
+    title: "Engineering Methodology & Physical Models | HVACLogic",
     description: "Scientific documentation of HVACLogic calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
     url: `${siteConfig.canonicalDomain}/methodology`,
     siteName: "HVACLogic",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "HVACLogic Engineering Methodology",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Engineering Calculation Methodology & Physical Models | HVACLogic",
+    title: "Engineering Methodology & Physical Models | HVACLogic",
     description: "Scientific documentation of HVACLogic calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

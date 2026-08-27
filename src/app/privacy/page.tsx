@@ -13,11 +13,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "HVACLogic Privacy Policy",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy — HVACLogic",
     description: "Learn how HVACLogic protects your privacy with 100% client-side computation and zero database tracking.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

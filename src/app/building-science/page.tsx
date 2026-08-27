@@ -7,23 +7,32 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Building Science & Insulation Calculators — R-Value & U-Factor Assembly Tools | HVACLogic",
+  title: "Building Science & Insulation Calculators | HVACLogic",
   description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/building-science`,
   },
   openGraph: {
-    title: "Building Science & Insulation Calculators — R-Value & U-Factor Assembly Tools | HVACLogic",
+    title: "Building Science & Insulation Calculators | HVACLogic",
     description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
     url: `${siteConfig.canonicalDomain}/building-science`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Building Science & Insulation Calculators — HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Building Science & Insulation Calculators — R-Value & U-Factor Assembly Tools | HVACLogic",
+    title: "Building Science & Insulation Calculators | HVACLogic",
     description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

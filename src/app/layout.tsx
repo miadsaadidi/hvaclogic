@@ -79,13 +79,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.canonicalDomain,
     siteName: siteConfig.name,
-    title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+    title: "HVAC Logic — Engineering Calculators & Building Science",
     description: siteConfig.description,
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+    title: "HVAC Logic — Engineering Calculators & Building Science",
     description: siteConfig.description,
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 
