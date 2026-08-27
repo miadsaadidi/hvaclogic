@@ -49,6 +49,8 @@ next-env.d.ts
 
 # secrets & keys
 accesskeys.txt
+accesstokens.txt
+*token*
 *.key
 *.token
 *.credentials
@@ -56,3 +58,5 @@ accesskeys.txt
 # internal strategy, crm & private docs
 /docs/
 /papers/
+
+.vercel
