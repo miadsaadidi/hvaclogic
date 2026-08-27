@@ -32,9 +32,9 @@ export function SiteFooter() {
 
           {/* PILLAR 1 & 2 */}
           <div>
-            <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
               Airflow &amp; Cooling
-            </h4>
+            </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/ductulator">Digital Ductulator</Link></li>
               <li><Link href="/calculators/flex-duct-cfm-chart">Flex Duct CFM Chart</Link></li>
@@ -48,9 +48,9 @@ export function SiteFooter() {
 
           {/* PILLAR 3 & 4 */}
           <div>
-            <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
               Diagnostics &amp; Heating
-            </h4>
+            </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/superheat-subcooling-calculator">Superheat &amp; Subcooling</Link></li>
               <li><Link href="/calculators/pt-chart">Digital PT Chart</Link></li>
@@ -63,9 +63,9 @@ export function SiteFooter() {
 
           {/* BUILDING SCIENCE & VENTILATION */}
           <div>
-            <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--ink)", marginBottom: "0.75rem" }}>
               Building Science
-            </h4>
+            </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/r-value-calculator">Insulation R-Value</Link></li>
               <li><Link href="/calculators/heat-loss-calculator">Heat Loss Calculator</Link></li>
@@ -76,9 +76,9 @@ export function SiteFooter() {
 
           {/* STANDARDS & AUTHORITY */}
           <div>
-            <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--accent-cooling)", marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.8125rem", fontWeight: 700, textTransform: "uppercase", color: "var(--accent-cooling)", marginBottom: "0.75rem" }}>
               Standards &amp; Trust
-            </h4>
+            </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
               <li><Link href="/methodology" style={{ fontWeight: 600 }}>📐 Calculation Methodology</Link></li>
               <li><Link href="/sources" style={{ fontWeight: 600 }}>🏛️ Laboratory Sources &amp; Codes</Link></li>

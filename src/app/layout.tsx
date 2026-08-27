@@ -39,7 +39,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.canonicalDomain),
   title: {
-    default: "HVAC Logic — Engineering Calculators & Building Science Suite",
+    default: "HVAC Logic — Engineering Calculators & Building Science",
     template: "%s | HVAC Logic",
   },
   description: siteConfig.description,

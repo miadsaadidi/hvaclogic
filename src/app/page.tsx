@@ -10,13 +10,13 @@ import { HOMEPAGE_FAQS } from "@/lib/data/homepage-faqs";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+  title: "HVAC Logic — Engineering Calculators & Building Science",
   description: siteConfig.description,
   alternates: {
     canonical: siteConfig.canonicalDomain,
   },
   openGraph: {
-    title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+    title: "HVAC Logic — Engineering Calculators & Building Science",
     description: siteConfig.description,
     url: siteConfig.canonicalDomain,
     siteName: siteConfig.name,
@@ -25,8 +25,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC Logic — Engineering Calculators & Building Science Suite",
+    title: "HVAC Logic — Engineering Calculators & Building Science",
     description: siteConfig.description,
+  },
+  other: {
+    "article:published_time": "2026-08-15T08:00:00Z",
+    "article:modified_time": "2026-08-27T20:00:00Z",
   },
 };
 
@@ -37,6 +41,7 @@ export default function HomePage() {
     "@graph": [
       {
         "@type": "WebSite",
+        "@id": `${siteConfig.canonicalDomain}/#website`,
         name: siteConfig.name,
         url: siteConfig.canonicalDomain,
         description: siteConfig.description,
@@ -47,6 +52,20 @@ export default function HomePage() {
             urlTemplate: `${siteConfig.canonicalDomain}/?q={search_term_string}`,
           },
           "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${siteConfig.canonicalDomain}/#webpage`,
+        url: siteConfig.canonicalDomain,
+        name: "HVAC Logic — Engineering Calculators & Building Science",
+        description: siteConfig.description,
+        datePublished: "2026-08-15T08:00:00+00:00",
+        dateModified: "2026-08-27T20:00:00+00:00",
+        "inLanguage": "en-US",
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": `${siteConfig.canonicalDomain}/#website`,
         },
       },
       {

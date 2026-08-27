@@ -16,7 +16,7 @@ export function resolveSiteUrl({ configuredUrl, projectProductionUrl, deployment
 export const siteConfig = {
   name: "HVAC Logic",
   tagline: "Engineering-Grade HVAC & Building Science Calculators",
-  description: "Transparent, accurate engineering calculators for airflow, duct sizing, cooling loads, heat pumps, and field diagnostics.",
+  description: "Transparent, peer-reviewed engineering calculators for HVAC airflow, duct sizing, cooling loads, heat pumps & field diagnostics. 100% free & client-side.",
   url: "https://hvaclogic.org",
   canonicalDomain: "https://hvaclogic.org",
 } as const;
