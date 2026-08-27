@@ -33,7 +33,7 @@
 
 ### Week 2 — Page Quality, Extractable Answers & Pillar Guides Rollout
 - [x] **Day 8**: Reconcile keyword master & zero-cannibalization audit. Deploy **Pillar Guide 1: Air Distribution & Duct Hydraulics Master Guide** on [`/airflow-ducts`](file:///d:/HVACLab/src/app/airflow-ducts/page.tsx).
-- [ ] **Day 9**: Optimize Tier 1 title tags & meta descriptions. Deploy **Pillar Guide 2: ACCA Manual J & S Cooling Load Sizing Guide** on [`/cooling-loads`](file:///d:/HVACLab/src/app/cooling-loads/page.tsx).
+- [x] **Day 9**: Optimize Tier 1 title tags & meta descriptions (`cfm-calculator`, `flex-duct-cfm-chart`, `ductulator`). Deploy **Pillar Guide 2: ACCA Manual J & S Cooling Load Sizing Guide** on [`/cooling-loads`](file:///d:/HVACLab/src/app/cooling-loads/page.tsx).
 - [ ] **Day 10**: Strengthen DirectAnswerCard blocks & numerical examples. Deploy **Pillar Guide 3: Heating & Electrification Engineering Guide** on [`/heating-systems`](file:///d:/HVACLab/src/app/heating-systems/page.tsx).
 - [ ] **Day 11**: Audit engineering standards citations. Deploy **Pillar Guide 4: Field Diagnostics & A2L Refrigerant Transition Guide** on [`/field-diagnostics`](file:///d:/HVACLab/src/app/field-diagnostics/page.tsx).
 - [ ] **Day 12**: Audit contextual internal links & handoffs. Deploy **Pillar Guide 5: Psychrometric & Building Science Thermal Guide** on [`/building-science`](file:///d:/HVACLab/src/app/building-science/page.tsx).
@@ -71,13 +71,13 @@
 | **03** | Northern Virginia Comm College | .EDU / College | HVAC/R Program Head | `btu-calculator` | Manual J screening calculations for design labs | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **04** | Wake Tech Community College | .EDU / College | Mechanical Dept Head | `cfm-calculator` | Airflow volume & sensible heat formulas | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **05** | Ferris State University (HVACR) | .EDU / University | DougZentz@ferris.edu / Dept Head | `ductulator` & `psychrometric` | Open psychrometrics & Colebrook-White duct sizing | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
-| **06** | UA Local Union 602 Apprenticeship | Trade JATC | Training Director | `duct-friction-loss` | TEL / Available Static Pressure training | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
+| **06** | UA Local Union 602 Apprenticeship | Trade JATC | info@602training.org | `duct-friction-loss` | TEL / Available Static Pressure training (corrected MX) | 2026-08-27 | 2026-09-03 | `[RESENT]` | Resent to verified training domain |
 | **07** | UA Local Union 290 Training | Trade JATC | Apprenticeship Coord | `ductulator` & `cfm` | Airflow, friction loss & Manual D training | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **08** | Penn Foster College (HVAC) | .EDU / Distance | Course Lead | `ac-model-decoder` | Practical condenser tag decoding reference | — | — | `[Queued]` | — |
 | **09** | San Jacinto College HVAC Dept | .EDU / College | HVAC Program Director | `flex-duct-chart` | Flex duct sag derating lab resource | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **10** | HVAC School (*Bryan Orr*) | Industry Media | bryan@hvacrschool.com | `ductulator` | Colebrook-White friction vs ACCA Manual D | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **11** | ACHR News (*Kyle Gargaro*) | Trade Publication | gargarok@bnpmedia.com | `pt-chart` (A2L) | A2L temperature glide: dew vs bubble point subcooling | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
-| **12** | Contracting Business | Trade Publication | Technical Editor | `furnace-size` | AFUE temperature rise & derating tool | — | — | `[Queued]` | — |
+| **12** | Contracting Business | Trade Publication | Nicole Krawcke (nkrawcke@endeavorb2b.com) | Whole Suite & `cooling-loads` | Deterministic client-side engineering tools for contractors | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
 | **13** | GreenBuildingAdvisor | Industry Blog | Technical Editor | `flex-duct-chart` | Flex duct compression loss & wire-helix derating model | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **14** | Energy Vanguard (*Dr. Allison Bailes*)| Building Science | abailes@energyvanguard.com | `flex-duct-chart` | Flex duct compression & sag derating curves | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
 | **15** | TruTech Tools / Podcast (*Bill Spohn*)| Industry Podcast | bill@trutechtools.com | `ductulator` | Huebscher equivalent diameter for wide aspect ducts | 2026-08-24 | 2026-08-31 | `[SENT]` | Awaiting Reply |
@@ -87,22 +87,22 @@
 | **19** | Zenodo Open Science (CERN) | Academic Index | Permanent DOI Minting | Academic Whitepaper & Suite | Deterministic thermodynamic modeling DOI | 2026-08-25 | — | `[Queued]` | Permanent Academic DOI (DA 94) |
 | **20** | Refrigeration-Engineer.com | Pro Forum | Master Resource Desk | `duct-friction-loss` | Manual D friction rate & TEL workflow bridge | — | — | `[Queued]` | — |
 | **21** | HVAC-Talk | Pro Forum | Master Resource Thread | `superheat-subcool` | Subcooling & superheat charging benchmarks | — | — | `[Queued]` | — |
-| **22** | College of Southern Nevada | .EDU / College | HVAC Dept Chair | `garage-heater` | Uninsulated space heat loss & slab sizing | — | — | `[Queued]` | — |
+| **22** | College of Southern Nevada | .EDU / College | James Bull (james.bull@csn.edu) | `btu-calculator` & `cooling-loads` | Desert climate Manual J & Manual S AC sizing labs | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
 | **23** | Oklahoma State University IT | .EDU / Tech Inst | Air Conditioning Dept | `heat-pump-size` | Cold-climate balance point & COP derating | 2026-08-26 | 2026-09-02 | `[SENT]` | Awaiting Reply |
 | **24** | Ivy Tech Community College | .EDU / College | HVAC Technology Lead | `combustion-air` | NFPA 54 indoor/outdoor air compliance | 2026-08-26 | 2026-09-02 | `[SENT]` | Awaiting Reply |
 | **25** | Refrigeration Service Engineers (RSES)| Professional Org | Training Committee | `pt-chart` | R-454B & R-32 glide and bubble point lookup | 2026-08-26 | 2026-09-02 | `[SENT]` | Awaiting Reply |
-| **26** | ACCA Contractor Blog | Trade Association | Content Manager | `btu-calculator` | Manual J compliance educational reference | — | — | `[Queued]` | — |
-| **27** | BPI (Building Performance Inst.) | Building Science | Resource Portal | `heat-loss-calculator` | Infiltration ($ACH_{50}$) & conductive loss | — | — | `[Queued]` | — |
-| **28** | HVAC-Hacks Technical Group | Technician Comm | Group Admin | `ac-model-decoder` | Mobile-friendly condenser decoder | — | — | `[Queued]` | — |
-| **29** | ToolBox Dive Podcast | Industry Media | Host / Producer | `refrigerant-charge` | Fast line-set weigh-in calculation tool | — | — | `[Queued]` | — |
+| **26** | ACCA (Air Conditioning Contractors)| Trade Association | Wes Davis (wes.davis@acca.org) | `cooling-loads` & `btu-calculator`| Open-access ACCA Manual J/D/S compliance & education | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
+| **27** | BPI (Building Performance Inst.) | Building Science | Amanda Hatherly (ahatherly@bpi.org / hello@bpi.org) | `heat-loss-calculator` & `cooling-loads` | Open-access envelope infiltration ($ACH_{50}$) & heat loss screening | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
+| **28** | Texas A&M Energy Systems Lab (ESL) | .EDU / Research Lab | Dr. Charles Culp (cculp@tamu.edu) | `flex-duct-chart` & `ductulator` | ASHRAE RP-1333 flex duct derating model & whitepaper citation | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
+| **29** | Purdue Univ. Herrick Laboratories | .EDU / Research Lab | Prof. Davide Ziviani (dziviani@purdue.edu) | `pt-chart` & `superheat-subcool` | Low-GWP A2L refrigerant thermodynamics & academic whitepaper | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
 | **30** | HVAC Know It All (*Gary McCreadie*)| Influencer / Tech | gary@hvacknowitall.com | `pt-chart` | R-454B & R-32 temperature glide & subcooling | 2026-08-23 | 2026-08-30 | `[SENT]` | Awaiting Reply |
-| **31** | Smart AC Solutions | Contractor Resource | Webmaster | Embed Widget (`btu`) | Embeddable residential load calculator | — | — | `[Queued]` | — |
+| **31** | Penn State Dept of Architectural Eng| .EDU / University | Prof. William Bahnfleth (wpb5@psu.edu) | `cfm-calculator` & `ductulator` | Transparent deterministic building science & ASHRAE air modeling | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
 | **32** | Mechanical Hub | Trade Media | Digital Content Lead | `boiler-size` | Hydronics EDR & baseboard sizing utility | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
-| **33** | HVAC Reps & Distributors Resource| Supply Chain | Marketing Dept | Embed Widget (`decoder`)| Nameplate decoder embed for distributor counter| — | — | `[Queued]` | — |
-| **34** | Milwaukee Area Tech College | .EDU / College | Mechanical Dept | `filter-sizing` | Filter media face velocity & pressure drop | — | — | `[Queued]` | — |
+| **33** | UIUC Air Conditioning & Refrig. Ctr | .EDU / Research Ctr | Prof. Craig Bradshaw (crbrad@illinois.edu) | `pt-chart` & `superheat-subcool` | Open thermodynamic modeling for low-GWP refrigerants & heat pumps | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
+| **34** | Milwaukee Area Tech College | .EDU / College | MCT Dept (mctpathway@matc.edu / apprenticeships@matc.edu) | `filter-sizing` & `ductulator` | Filter media face velocity, pressure drop & duct sizing labs | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
 | **35** | Dunwoody College of Technology | .EDU / College | HVAC Design Faculty | `ductulator` | Interactive canvas duct cross-section model | 2026-08-25 | 2026-09-01 | `[SENT]` | Awaiting Reply |
 | **36** | Building Science Corporation | Research Org | Resource Library | `r-value-calc` | Multi-layer envelope thermal resistance | — | — | `[Queued]` | — |
-| **37** | Home Energy Magazine | Trade Magazine | Editorial Staff | `heat-loss-calculator` | Air sealing and heating balance point tool | — | — | `[Queued]` | — |
+| **37** | Building Performance Association (BPA)| Building Science Org | Katie Miller (kmiller@building-performance.org)| `heat-loss-calculator` & `r-value-calculator` | Open-access building science & infiltration ($ACH_{50}$) modeling | 2026-08-27 | 2026-09-03 | `[SENT]` | Awaiting Reply |
 | **38** | AlternativeTo / Open Software Directory | Software List | Profile Submission | Whole Suite / CFM & Duct | Open-access deterministic calculators | 2026-08-25 | — | `[SUBMITTED]` | Awaiting Directory Approval |
 | **39** | Dev.to Engineering Post | Developer Media | Published Article | Whole Suite | Architecture of client-side deterministic HVAC suite | 2026-08-23 | — | `[LIVE]` | [Dev.to Live Article](https://dev.to) |
 | **40** | FOSS Mechanical Engineering List | Open Source Repo | Maintainer | Whole Suite | 100% Client-side HVAC engineering suite | — | — | `[Queued]` | — |
@@ -130,6 +130,7 @@
 | **Academia.edu** | *Deterministic Building Science and Thermodynamic Modeling Framework for Real-Time Field Diagnostics, Air Distribution, and Decarbonization Sizing* | `https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing` | `[LIVE]` | Verified academic paper publication & profile backlink (DA 93) |
 | **Dev.to** | *Building HVACLogic: A Deterministic Engineering Suite* | `https://dev.to/` | `[LIVE]` | Contextual dofollow engineering citation (DA 90+) |
 | **Google Scholar** | *HVACLogic: Deterministic Building Science Framework* | Auto-indexed via Academia.edu & Archive.org | `[Crawling]` | Academic search engine citation |
+| **Journal of Open Source Software (JOSS)** | *HVACLogic: Deterministic Building Science and Thermodynamic Modeling Framework* | `https://joss.theoj.org/` | `[QUEUED SUBMISSION]` | Formal Peer-Reviewed Research Software Journal, Official Minted DOI, Scopus/WoS Indexation, Diamond Open Access |
 
 ---
 

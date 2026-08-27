@@ -15,8 +15,8 @@ export const calculatorRegistry: CalculatorMeta[] = [
     primaryKeyword: "ductulator",
     secondaryKeywords: ["duct sizing calculator", "mcquay duct sizer", "air duct design calculator", "duct sizer"],
     primaryIntent: "Transactional / Professional Engineering",
-    seoTitle: "Ductulator & Air Duct Sizing (Equal Friction) | HVACLogic",
-    metaDescription: "Professional online ductulator for HVAC engineers and technicians. Size round, rectangular, and flat oval ductwork using standard equal friction equations.",
+    seoTitle: "Ductulator — Online HVAC Duct Sizing Calculator | HVACLogic",
+    metaDescription: "Free online ductulator for HVAC engineers. Size round, rectangular & oval ducts via equal friction (Colebrook-White). Real-time 2D visualizer.",
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
     features: [
@@ -61,8 +61,8 @@ export const calculatorRegistry: CalculatorMeta[] = [
     primaryKeyword: "flex duct cfm chart",
     secondaryKeywords: ["hvac ductwork sizing chart", "duct sizing chart", "flex duct sizing", "cfm chart for duct"],
     primaryIntent: "Navigational / Field Lookup",
-    seoTitle: "Flex Duct CFM Chart & Ductwork Sizing | HVACLogic",
-    metaDescription: "Interactive flexible duct CFM capacity chart across standard diameters (4\" to 20\") with real-world installation sag and compression derating.",
+    seoTitle: "Flex Duct CFM Chart — 4\" to 20\" Airflow Sizing | HVACLogic",
+    metaDescription: "Interactive flexible duct CFM capacity chart for 4\" to 20\" round ducts. Compare airflow across 0.05–0.15\" wg friction rates with installation sag derating.",
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
     features: [
@@ -102,8 +102,8 @@ export const calculatorRegistry: CalculatorMeta[] = [
     primaryKeyword: "air duct cfm calculator",
     secondaryKeywords: ["cfm calculator hvac", "cfm chart for duct", "sensible heat airflow"],
     primaryIntent: "Technical / Sizing",
-    seoTitle: "HVAC CFM Calculator — Airflow & Sensible Heat | HVACLogic",
-    metaDescription: "Calculate HVAC airflow (CFM) using the sensible heat equation, duct velocity and area, room air changes per hour (ACH), or cooling tonnage rules.",
+    seoTitle: "HVAC CFM Calculator — Airflow & Duct Sizing | HVACLogic",
+    metaDescription: "Calculate HVAC airflow (CFM) from duct size, air velocity (FPM), sensible heat load (1.08 × ΔT), or room ACH. Free client-side precision.",
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
     features: [
