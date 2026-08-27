@@ -46,3 +46,9 @@ next-env.d.ts
 /.worktrees/
 
 .vercel
+
+# secrets & keys
+accesskeys.txt
+*.key
+*.token
+*.credentials
