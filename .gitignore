@@ -52,3 +52,7 @@ accesskeys.txt
 *.key
 *.token
 *.credentials
+
+# internal strategy, crm & private docs
+/docs/
+papers/PowerLab*
