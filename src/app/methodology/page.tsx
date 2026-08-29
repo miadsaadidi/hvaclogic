@@ -131,7 +131,16 @@ export default function MethodologyPage() {
           />
 
           <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5, marginTop: "1rem", margin: 0 }}>
-            Flexible duct calculations incorporate SMACNA field compression factors (0% to 30% compression), increasing friction loss by up to 2.2× to prevent airflow choking in unstraightened flex installations.
+            Flexible duct calculations incorporate empirical compression and sag derating factors from{" "}
+            <a
+              href="https://technologyportal.ashrae.org/Report/Detail/583"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}
+            >
+              ASHRAE Research Project RP-1333
+            </a>{" "}
+            (Culp et al., Texas A&amp;M ESL) and SMACNA guidelines (0% to 30% compression), modeling up to a 2.2&times; friction factor penalty to prevent airflow choking in unstraightened flex installations.
           </p>
         </div>
 

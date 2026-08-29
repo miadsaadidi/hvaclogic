@@ -49,6 +49,13 @@ const STANDARDS_LIST: StandardItem[] = [
     link: "https://www.ashrae.org",
   },
   {
+    code: "ASHRAE RP-1333",
+    organization: "ASHRAE & Energy Systems Laboratory (Texas A&M)",
+    title: "Air Duct Friction Losses for Flexible Ductwork (Research Project 1333)",
+    description: "Landmark research by Dr. Charles H. Culp, P.E., Ph.D. et al. establishing empirical fluid friction and boundary-layer turbulence penalties across 4% to 30% flexible duct compression and sag.",
+    link: "https://technologyportal.ashrae.org/Report/Detail/583",
+  },
+  {
     code: "ACCA Manual J",
     organization: "Air Conditioning Contractors of America",
     title: "Manual J (8th Edition) — Residential Load Calculation",

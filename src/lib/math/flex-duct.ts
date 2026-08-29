@@ -1,7 +1,10 @@
 /**
  * HVACLogic Flexible Duct CFM & Friction Computational Engine
- * Implements ADC (Air Diffusion Council) Flexible Duct Performance Standards,
- * ACCA Manual D (3rd Edition), and ASHRAE Fundamentals Chapter 21.
+ * Implements:
+ * - ASHRAE Research Project RP-1333 (Culp, Haberl, Medina): "Air Duct Friction Losses for Flexible Ductwork"
+ *   URL: https://technologyportal.ashrae.org/Report/Detail/583
+ * - ADC (Air Diffusion Council) Flexible Duct Performance Standards
+ * - ACCA Manual D (3rd Edition) & SMACNA Flexible Duct Construction Standards
  */
 
 export const STANDARD_FLEX_DIAMETERS = [4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20] as const;

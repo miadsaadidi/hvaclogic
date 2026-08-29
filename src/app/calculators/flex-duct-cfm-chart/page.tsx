@@ -36,7 +36,7 @@ export default function FlexDuctCfmChartPage() {
       calculator={calculator}
       directAnswer="A standard 6-inch flexible duct carries approximately 75 to 85 CFM at a 0.08 to 0.10 in. wg friction rate under proper installation tension. An 8-inch flex duct delivers 150 to 190 CFM, while a 10-inch flex duct handles 300 to 345 CFM. Unstretched flex duct with 15% attic sag loses approximately 22% of its rated airflow capacity."
       formulaSnippet="Q_flex = Q_galv * (1 / (Sag_Friction_Multiplier)^0.54) | Max_Hanger_Spacing = 4_ft"
-      authorityCitation="Air Diffusion Council (ADC) Flexible Duct Performance & ACCA Manual D"
+      authorityCitation="ASHRAE RP-1333 (Culp et al.), Air Diffusion Council (ADC) & ACCA Manual D"
       toolComponent={<FlexDuctChartTool />}
       methodologySection={
         <>
@@ -49,26 +49,44 @@ export default function FlexDuctCfmChartPage() {
               variables={[
                 { symbol: "Q_flex", label: "Derated Field Airflow", description: "Delivered volumetric airflow in flexible duct accounting for core sag and compression", unit: "CFM" },
                 { symbol: "Q_straight", label: "Fully Stretched Airflow", description: "Rated catalog airflow at zero compression (100% factory tension)", unit: "CFM" },
-                { symbol: "F_multiplier", label: "ADC Friction Factor", description: "Empirical friction penalty (1.00 for 0% sag, 1.15 for 4% sag, 1.60 for 15% sag, 2.20 for 30% sag)", unit: "Dimensionless" },
+                { symbol: "F_multiplier", label: "RP-1333 / ADC Friction Factor", description: "Empirical friction penalty (1.00 for 0% sag, 1.15 for 4% sag, 1.60 for 15% sag, 2.20 for 30% sag)", unit: "Dimensionless" },
                 { symbol: "C_sag", label: "Capacity Derate Factor", description: "Fractional capacity multiplier derived from Darcy-Weisbach flow exponent", unit: "Multiplier" },
               ]}
-              notes="Flexible duct must never be compressed or bunched. Always install with maximum 4% tension and support with 1.5-inch wide hanger straps every 4 feet."
-              sourceStandard="Air Diffusion Council (ADC) 5th Edition & SMACNA Flexible Duct Standard"
+              notes="Flexible duct must never be compressed or bunched. Always install with maximum 4% tension, support with 1.5-inch wide hanger straps every 4 feet, and seal with heat-rated UL 181 mastic."
+              sourceStandard="ASHRAE Research Project RP-1333 (Culp et al., Texas A&M ESL), ADC 5th Edition & SMACNA"
             />
           </div>
 
           <div style={{ marginTop: "1.5rem", lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
             <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              How Installation Sag Affects Airflow Delivery
+              How Installation Sag &amp; Longitudinal Compression Restrict Airflow Delivery
             </h3>
             <p>
-              Unlike rigid galvanized steel sheet metal, flexible duct contains a spiral wire helix and a corrugated inner plastic liner. When flex duct is allowed to sag between ceiling joists:
+              Unlike rigid galvanized steel sheet metal, flexible duct contains an internal helical wire coil encased in a flexible polymer membrane. As established by the definitive laboratory measurements of Dr. Charles H. Culp, P.E., Ph.D. and the Energy Systems Laboratory at Texas A&amp;M University in{" "}
+              <a
+                href="https://technologyportal.ashrae.org/Report/Detail/583"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--accent-cooling)", textDecoration: "underline", fontWeight: 600 }}
+              >
+                ASHRAE Research Project RP-1333 (&quot;Air Duct Friction Losses for Flexible Ductwork&quot;)
+              </a>
+              , longitudinal compression severely disrupts boundary-layer fluid flow:
             </p>
             <ul>
-              <li><strong>4% Sag (Code Compliant):</strong> Properly supported with straps every 4 ft causes minimal friction loss (~7% CFM reduction).</li>
-              <li><strong>15% Sag (Common Attic Defect):</strong> Unsupported runs droop 2 to 3 inches between trusses, creating internal turbulent eddies and increasing friction by <strong>60%</strong> (22% loss in delivered CFM).</li>
-              <li><strong>30% Sag (Severe Choking):</strong> Bunched or kinked ductwork chokes airflow by <strong>35% to 45%</strong>, causing hot/cold spots and high blower static pressure.</li>
+              <li><strong>4% Sag / Compression (Code Installed Tension):</strong> When stretched taut and hung with 1.5-inch straps every 4 ft, core corrugations remain shallow, causing minor friction increase (~1.15&times; multiplier, ~7% CFM loss).</li>
+              <li><strong>15% Sag / Compression (Common Attic Defect):</strong> Unsupported runs droop 2 to 3 inches between ceiling joists, generating intense internal turbulent vortexes that increase friction by <strong>60%</strong> (22% loss in delivered CFM).</li>
+              <li><strong>30% Sag / Unstretched (Severe Choking):</strong> When installers in a hurry fail to pull runs taut—or even leave flexible duct partially compressed in its original shipping bag—effective friction spikes by <strong>2.20&times;</strong>, choking airflow by 35% to 45% and starving downstream diffusers.</li>
             </ul>
+
+            <div style={{ marginTop: "1rem", padding: "0.85rem 1rem", borderRadius: "0.5rem", background: "rgba(245, 158, 11, 0.08)", border: "1px solid rgba(245, 158, 11, 0.25)" }}>
+              <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#f59e0b", marginBottom: "0.25rem" }}>
+                ⚠️ Critical Field Failure Mode: Hot Attic Adhesive Breakdown
+              </div>
+              <p style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", margin: 0, lineHeight: 1.5 }}>
+                Field investigations documented by Dr. Culp highlight another severe hazard: standard duct taping glue quickly loses its adhesion properties inside hot unconditioned attics (120&deg;F–150&deg;F+). Over time, tape seals peel away, causing supply ducts to dump air-conditioned airflow directly into the attic or negative-pressure returns to ingest attic insulation dust and unconditioned air. Always seal connections with mastic and UL 181-rated mechanical clamp bands.
+              </p>
+            </div>
           </div>
         </>
       }

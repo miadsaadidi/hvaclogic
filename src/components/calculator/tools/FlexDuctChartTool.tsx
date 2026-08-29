@@ -232,15 +232,16 @@ export function FlexDuctChartTool() {
             </select>
           </div>
 
-          {/* SMACNA Installation Rules */}
+          {/* SMACNA & ASHRAE RP-1333 Installation Rules */}
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-subtle)", borderRadius: "0.5rem", padding: "0.75rem" }}>
             <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", marginBottom: "0.3rem" }}>
-              📋 SMACNA Flexible Duct Best Practices:
+              📋 Installation Rules (SMACNA &amp; ASHRAE RP-1333):
             </div>
             <ul style={{ paddingLeft: "1.1rem", margin: 0, fontSize: "0.72rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
               <li>Support flexible duct with minimum 1.5&quot; wide hanger straps every <strong>4 feet</strong>.</li>
               <li>Maximum allowable sag between supports is <strong>0.5 inches per foot</strong> of span.</li>
-              <li>Always pull flexible duct taut with 4% maximum installation tension.</li>
+              <li>Always pull flexible duct fully taut (4% code tension); never leave bunched or partly inside shipping bags.</li>
+              <li>Attic heat degrades standard tape adhesives; seal joints with UL 181-rated mastic and mechanical clamps to prevent attic leaks.</li>
             </ul>
           </div>
         </div>
