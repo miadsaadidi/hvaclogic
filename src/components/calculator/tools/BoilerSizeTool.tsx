@@ -13,6 +13,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { HydronicBoilerVisualizer } from "@/components/calculator/visualizers/HydronicBoilerVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   {
@@ -177,6 +180,7 @@ export function BoilerSizeTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* METHOD & MEDIUM SELECTORS */}
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
@@ -432,6 +436,8 @@ export function BoilerSizeTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["AHRI Hydronics (I=B=R)", "ASME Boiler Code", "ACCA Manual S®"]} />
+
           {/* HYDRONIC LOOP SVG VISUALIZER */}
           <HydronicBoilerVisualizer output={output} />
 
@@ -458,6 +464,9 @@ export function BoilerSizeTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

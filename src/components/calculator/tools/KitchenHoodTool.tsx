@@ -12,6 +12,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { KitchenHoodVisualizer } from "@/components/calculator/visualizers/KitchenHoodVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const KITCHEN_PRESETS = [
   { label: "🍳 30\" Standard Gas", type: "gas" as CooktopType, width: 30, btu: 45000, mounting: "wall" as HoodMountingType, ductLen: 10, elbows: 1 },
@@ -124,6 +127,7 @@ export function KitchenHoodTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* COOKTOP TYPE & MOUNTING */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
             <div className="form-group">
@@ -314,6 +318,8 @@ export function KitchenHoodTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["IRC Section M1503.6", "HVI Standard 916", "ASHRAE Standard 62.2"]} />
+
           {/* KITCHEN HOOD SVG VISUALIZER */}
           <KitchenHoodVisualizer output={output} cooktopType={cooktopType} mountingType={mountingType} />
 
@@ -340,6 +346,9 @@ export function KitchenHoodTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

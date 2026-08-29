@@ -17,6 +17,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { CfmAirflowVisualizer } from "@/components/calculator/visualizers/CfmAirflowVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 export function CfmCalculatorTool() {
   const { getParam, updateParam } = useHydrateParams();
@@ -155,6 +158,7 @@ export function CfmCalculatorTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* MODE 1: DUCT & VELOCITY */}
           {mode === "duct-velocity" && (
             <>
@@ -611,6 +615,8 @@ export function CfmCalculatorTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ASHRAE 62.1 / 62.2", "ACCA Manual D®", "California Title 24"]} />
+
           {/* REACTIVE VISUALIZER */}
           <CfmAirflowVisualizer result={result} />
 
@@ -647,6 +653,9 @@ export function CfmCalculatorTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

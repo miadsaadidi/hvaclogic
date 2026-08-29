@@ -17,6 +17,9 @@ import { useUnitSystem } from "@/lib/hooks/useUnitSystem";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { RefrigerantChargeVisualizer } from "@/components/calculator/visualizers/RefrigerantChargeVisualizer";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 type ChargeMode = RefrigerantChargeInput["mode"];
 
@@ -278,6 +281,7 @@ export function RefrigerantChargeTool() {
 
       <div className="calculator-grid">
         <div className="input-panel">
+          <CalculatorTrustPill />
           {mode === "oem_profile" ? (
             <>
               <div className="form-group">
@@ -364,6 +368,8 @@ export function RefrigerantChargeTool() {
                 <p>{result.output.liquidLineOd} liquid · {result.output.suctionLineOd} suction · {result.output.adderRateOzPerFt} oz/ft</p>
               </div>
 
+              <StandardsBadge standards={["OEM Subcooling Charging Charts", "EPA Section 608", "AHRI 210/240"]} />
+
               <div className="secondary-results-grid">
                 <div className="secondary-result-item"><span>Factory allowance</span><strong>{displayLength(result.output.factoryAllowanceFt)} {lengthUnit}</strong></div>
                 <div className="secondary-result-item"><span>Excess linear length</span><strong>{displayLength(result.output.excessLengthFt)} {lengthUnit}</strong></div>
@@ -397,6 +403,7 @@ export function RefrigerantChargeTool() {
             </>
           )}
 
+          <GooglePreferredBanner />
           <ActionButtonBar toolRoute="/calculators/refrigerant-charge-calculator" toolName="Refrigerant Line Set Charge & Weigh-In Calculator" onExportCsv={result.ok ? exportCsv : undefined} />
         </div>
       </div>

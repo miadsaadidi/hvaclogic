@@ -10,6 +10,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { PsychrometricVisualizer } from "@/components/calculator/visualizers/PsychrometricVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 type InputMode = "db_rh" | "db_wb" | "db_dp";
 
@@ -121,6 +124,7 @@ export function PsychrometricTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* INPUT PAIR SELECTOR */}
           <div className="form-group">
             <label htmlFor="mode-select">
@@ -313,6 +317,8 @@ export function PsychrometricTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ASHRAE Standard 55", "Hyland-Wexler Formulations", "ASHRAE Fundamentals Ch. 1"]} />
+
           {/* PSYCHROMETRIC SVG STATE VISUALIZER */}
           <PsychrometricVisualizer output={output} />
 
@@ -337,6 +343,9 @@ export function PsychrometricTool() {
               <div className="item-value">{output.airDensityLbPerCuFt} lb/cu ft</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

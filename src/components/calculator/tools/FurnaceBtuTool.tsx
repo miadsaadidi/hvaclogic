@@ -15,6 +15,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { FurnaceFlameVisualizer } from "@/components/calculator/visualizers/FurnaceFlameVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const FURNACE_PRESETS = [
   { label: "🏡 1,500 sq ft (Mid-Atlantic Zone 3)", sqft: 1500, zone: 3 as HeatingClimateZone, ceiling: 8, insulation: "average" as InsulationGrade, afue: 96 },
@@ -125,6 +128,7 @@ export function FurnaceBtuTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* SQUARE FOOTAGE */}
           <div className="form-group">
             <label htmlFor="sqft-input">
@@ -291,6 +295,8 @@ export function FurnaceBtuTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ACCA Manual S®", "DOE 10 CFR 430", "AHRI Ratings"]} />
+
           {/* COMBUSTION FLAME VISUALIZER */}
           <FurnaceFlameVisualizer output={output} />
 
@@ -319,6 +325,9 @@ export function FurnaceBtuTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

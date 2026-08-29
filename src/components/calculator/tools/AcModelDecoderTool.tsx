@@ -7,6 +7,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { DataPlateVisualizer } from "@/components/calculator/visualizers/DataPlateVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 export function AcModelDecoderTool() {
   const { getParam, updateParam } = useHydrateParams();
@@ -107,6 +110,7 @@ export function AcModelDecoderTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* BRAND SELECTOR */}
           <div className="form-group">
             <label htmlFor="brand-select">
@@ -218,6 +222,8 @@ export function AcModelDecoderTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["AHRI Standard 210/240", "OEM Data Plate Standards"]} />
+
           {/* RATING PLATE VISUALIZER */}
           <DataPlateVisualizer decoded={decoded} />
 
@@ -242,6 +248,9 @@ export function AcModelDecoderTool() {
               <div className="item-value" style={{ fontSize: "0.85rem" }}>{decoded.electricalVoltage}</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

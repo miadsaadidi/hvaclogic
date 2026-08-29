@@ -14,6 +14,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { FlexDuctSagVisualizer } from "@/components/calculator/visualizers/FlexDuctSagVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 export function FlexDuctChartTool() {
   const { getParam, updateParam } = useHydrateParams();
@@ -120,6 +123,7 @@ export function FlexDuctChartTool() {
       <div className="calculator-grid">
         {/* INPUT & QUICK SIZING FINDER PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* QUICK SIZING FINDER CARD */}
           <div
             style={{
@@ -275,6 +279,8 @@ export function FlexDuctChartTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ASHRAE RP-1333 (Culp et al.)", "SMACNA Flexible Duct", "ADC 5th Ed"]} />
+
           {/* CATENARY SAG VISUALIZER */}
           <FlexDuctSagVisualizer sagPercent={selectedSag} activeDiameter={activeRow.diameterInches} />
 
@@ -297,6 +303,9 @@ export function FlexDuctChartTool() {
               <div className="item-value">{activeRow.cfmAt015} CFM</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

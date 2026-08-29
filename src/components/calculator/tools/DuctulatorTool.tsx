@@ -8,6 +8,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { DuctCanvasVisualizer } from "@/components/calculator/visualizers/DuctCanvasVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   { label: "1.5 Ton Trunk (600 CFM)", cfm: 600, friction: 0.08 },
@@ -133,6 +136,7 @@ export function DuctulatorTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* CFM INPUT */}
           <div className="form-group">
             <label htmlFor="cfm-input">
@@ -306,6 +310,8 @@ export function DuctulatorTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ASHRAE Fundamentals Ch. 21", "SMACNA 4th Ed", "ACCA Manual D®"]} />
+
           {/* 2D CANVAS CROSS-SECTION */}
           <DuctCanvasVisualizer
             roundDiameter={result.roundDiameter}
@@ -339,6 +345,9 @@ export function DuctulatorTool() {
               <div className="item-value">{result.aspectRatio}:1</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

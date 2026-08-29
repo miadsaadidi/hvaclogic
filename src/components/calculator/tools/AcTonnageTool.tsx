@@ -8,6 +8,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { AcTonnageVisualizer } from "@/components/calculator/visualizers/AcTonnageVisualizer";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   { label: "1,200 sq ft (Moderate)", area: 1200, climate: "moderate" },
@@ -106,6 +109,7 @@ export function AcTonnageTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* AREA INPUT */}
           <div className="form-group">
             <label htmlFor="ac-area-input">
@@ -262,6 +266,8 @@ export function AcTonnageTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ACCA Manual J®", "ACCA Manual S®", "AHRI Standard 210/240"]} />
+
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
@@ -313,6 +319,9 @@ export function AcTonnageTool() {
             floorAreaSqFt={area}
             climateZone={climate}
           />
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

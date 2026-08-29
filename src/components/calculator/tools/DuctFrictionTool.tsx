@@ -13,6 +13,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { DuctFrictionVisualizer } from "@/components/calculator/visualizers/DuctFrictionVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   {
@@ -211,6 +214,7 @@ export function DuctFrictionTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* STATIC PRESSURE BUDGET (TESP vs COMPONENTS) */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
@@ -454,6 +458,8 @@ export function DuctFrictionTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ACCA Manual D®", "ASHRAE Fundamentals Ch. 21", "SMACNA"]} />
+
           {/* REACTIVE VISUALIZER */}
           <DuctFrictionVisualizer output={output} />
 
@@ -478,6 +484,9 @@ export function DuctFrictionTool() {
               <div className="item-value">{output.totalReturnLengthFt} ft</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

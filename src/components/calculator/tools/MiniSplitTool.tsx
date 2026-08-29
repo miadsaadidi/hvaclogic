@@ -10,6 +10,9 @@ import {
 import { MiniSplitMultiZoneVisualizer } from "@/components/calculator/visualizers/MiniSplitMultiZoneVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const DEFAULT_ROOMS: MiniSplitRoom[] = [
   { id: "1", name: "Master Bedroom", sqft: 240, sunExposure: "south", insulation: "good", ceilingHeight: "standard" },
@@ -133,6 +136,7 @@ export function MiniSplitTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL: DYNAMIC ROOM BUILDER */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
             <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--ink)" }}>
               Custom Zones ({rooms.length}/5)
@@ -299,6 +303,8 @@ export function MiniSplitTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["AHRI Standard 1230", "ACCA Manual S®", "ASHRAE Standard 90.1"]} />
+
           {/* MULTI-ZONE SVG SCHEMATIC VISUALIZER */}
           <MiniSplitMultiZoneVisualizer output={output} />
 
@@ -323,6 +329,9 @@ export function MiniSplitTool() {
               <div className="item-value">{output.connectedCapacityRatioPercent}% Ratio</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

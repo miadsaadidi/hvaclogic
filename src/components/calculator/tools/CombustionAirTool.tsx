@@ -13,6 +13,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { CombustionAirVisualizer } from "@/components/calculator/visualizers/CombustionAirVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   {
@@ -170,6 +173,7 @@ export function CombustionAirTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* APPLIANCE BTU LOADS */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
@@ -336,6 +340,8 @@ export function CombustionAirTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["NFPA 54 (National Fuel Gas)", "IFGC Section 304", "ASHRAE Standard 62.2"]} />
+
           {/* REACTIVE VISUALIZER */}
           <CombustionAirVisualizer output={output} />
 
@@ -373,6 +379,9 @@ export function CombustionAirTool() {
               ))}
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

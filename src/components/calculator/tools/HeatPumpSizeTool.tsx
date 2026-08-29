@@ -12,6 +12,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { HeatPumpBalanceVisualizer } from "@/components/calculator/visualizers/HeatPumpBalanceVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const HEAT_PUMP_PRESETS = [
   { label: "❄️ Cold-Climate Inverter (3T)", tons: 3.0, type: "inverter_cold_climate" as HeatPumpCompressorType, outdoorDesign: 5, heatLoss: 42000, coolingLoad: 32000 },
@@ -121,6 +124,7 @@ export function HeatPumpSizeTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* TONNAGE & COMPRESSOR */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: "0.75rem" }}>
             <div className="form-group">
@@ -305,6 +309,8 @@ export function HeatPumpSizeTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ACCA Manual S®", "AHRI 210/240", "NEEP Cold-Climate (ccASHP)"]} />
+
           {/* BALANCE POINT INTERSECTION VISUALIZER */}
           <HeatPumpBalanceVisualizer output={output} />
 
@@ -331,6 +337,9 @@ export function HeatPumpSizeTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

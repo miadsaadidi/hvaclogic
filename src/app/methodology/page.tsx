@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { CodeFormulaBlock } from "@/components/seo/CodeFormulaBlock";
+import { CitationExportButton } from "@/components/seo/CitationExportButton";
 
 export const metadata: Metadata = {
   title: "Engineering Methodology & Physical Models | HVACLogic",
@@ -230,6 +231,7 @@ export default function MethodologyPage() {
           >
             <span>🎓 View on Academia.edu (DA 93) ↗</span>
           </a>
+          <CitationExportButton />
         </div>
       </section>
 

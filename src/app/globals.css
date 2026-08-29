@@ -1587,5 +1587,91 @@ body.embed-mode {
   border-color: var(--border-subtle);
 }
 
+/* ==========================================================================
+   PRINT SPECIFICATION SHEET WATERMARK & MOAT (@media print)
+   ========================================================================== */
+@media print {
+  /* Hide non-printable web UI elements */
+  nav,
+  header.site-header,
+  footer.site-footer,
+  .action-button-bar,
+  .preset-chips-container,
+  .charge-mode-switch,
+  .mobile-result-bar,
+  .google-preferred-banner,
+  .handoff-card,
+  button,
+  .theme-toggle,
+  .breadcrumb {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .site-container,
+  .calculator-card,
+  .calculator-grid,
+  .input-panel,
+  .output-panel {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    display: block !important;
+  }
+
+  .print-submittal-header {
+    display: block !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .primary-result-card {
+    border: 2px solid #000000 !important;
+    background: #f8fafc !important;
+    color: #000000 !important;
+    page-break-inside: avoid !important;
+    margin: 1rem 0 !important;
+    padding: 1rem !important;
+  }
+
+  .primary-result-card * {
+    color: #000000 !important;
+  }
+
+  /* Running Watermark Header and Footer */
+  body::before {
+    content: "HVACLogic Engineering Calculation Submittal • https://hvaclogic.org • Peer-Reviewed Physics";
+    display: block;
+    text-align: center;
+    font-size: 8pt;
+    font-weight: 700;
+    color: #475569;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  body::after {
+    content: "Verified Calculation Record generated on https://hvaclogic.org • Free & Open-Access Client-Side Physics • Governed by ASHRAE / ACCA Standards";
+    display: block;
+    text-align: center;
+    font-size: 8pt;
+    color: #64748b;
+    border-top: 1px solid #cbd5e1;
+    padding-top: 8px;
+    margin-top: 24px;
+  }
+}
+
 
 

@@ -9,6 +9,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { RefrigerantCircuitVisualizer } from "@/components/calculator/visualizers/RefrigerantCircuitVisualizer";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const CHARGING_PRESETS = [
   {
@@ -240,6 +243,7 @@ export function SuperheatSubcoolingTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* REFRIGERANT SELECTOR */}
           <div className="form-group">
             <label htmlFor="refrig-select">
@@ -453,6 +457,8 @@ export function SuperheatSubcoolingTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["EPA Section 608 Protocol", "AHRI 210/240", "NIST REFPROP V10"]} />
+
           {/* DUAL GAUGE NUMERICAL RESULTS */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
@@ -589,6 +595,9 @@ export function SuperheatSubcoolingTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

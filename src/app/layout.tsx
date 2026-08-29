@@ -127,6 +127,39 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Schema.org Organization & WebSite entity graph */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${siteConfig.canonicalDomain}/#organization`,
+                  name: siteConfig.name,
+                  url: siteConfig.canonicalDomain,
+                  logo: `${siteConfig.canonicalDomain}/icon.svg`,
+                  description: "Deterministic HVAC engineering calculation suite and building science platform.",
+                  sameAs: [
+                    "https://www.trustpilot.com/review/hvaclogic.org",
+                    "https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826",
+                    "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${siteConfig.canonicalDomain}/#website`,
+                  url: siteConfig.canonicalDomain,
+                  name: siteConfig.name,
+                  publisher: {
+                    "@id": `${siteConfig.canonicalDomain}/#organization`,
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="antialiased">
         <UnitProvider>

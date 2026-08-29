@@ -8,6 +8,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { HeatLossDonutVisualizer } from "@/components/calculator/visualizers/HeatLossDonutVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   { label: "1,500 sq ft Home (Zone 4)", area: 1500, zone: "zone_4" },
@@ -114,6 +117,7 @@ export function BtuCalculatorTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* AREA INPUT */}
           <div className="form-group">
             <label htmlFor="area-input">
@@ -266,6 +270,8 @@ export function BtuCalculatorTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ACCA Manual J® (8th Ed)", "ASHRAE Fundamentals Ch. 18"]} />
+
           {/* DUAL EQUIPMENT SIZING MATCH CARD */}
           <div
             style={{
@@ -310,6 +316,9 @@ export function BtuCalculatorTool() {
 
           {/* DONUT BREAKDOWN */}
           <HeatLossDonutVisualizer breakdown={result.breakdown} />
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTONS */}
           <ActionButtonBar

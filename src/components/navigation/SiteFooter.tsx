@@ -88,6 +88,23 @@ export function SiteFooter() {
               <li><Link href="/sources" style={{ fontWeight: 600 }}>🏛️ Laboratory Sources &amp; Codes</Link></li>
               <li><Link href="/about" style={{ fontWeight: 600 }}>ℹ️ About HVACLogic</Link></li>
               <li><Link href="/privacy" style={{ fontWeight: 600 }}>🔒 Privacy Policy</Link></li>
+              <li>
+                <a
+                  href="https://www.trustpilot.com/review/hvaclogic.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontWeight: 600,
+                    color: "var(--accent-success, #10b981)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.3rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>★ Review on Trustpilot</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>

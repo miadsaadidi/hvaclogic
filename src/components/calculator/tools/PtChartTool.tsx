@@ -16,6 +16,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { RefrigerantGaugeVisualizer } from "@/components/calculator/visualizers/RefrigerantGaugeVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 export function PtChartTool() {
   const { getParam, updateParam } = useHydrateParams();
@@ -129,6 +132,7 @@ export function PtChartTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* LOOKUP MODE TOGGLE */}
           <div style={{ display: "flex", gap: "0.45rem", marginBottom: "1rem" }}>
             <button
@@ -325,6 +329,8 @@ export function PtChartTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["NIST REFPROP V10", "EPA Section 608", "ASHRAE Standard 34"]} />
+
           {/* MANIFOLD GAUGE VISUALIZER */}
           <RefrigerantGaugeVisualizer output={output} />
 
@@ -349,6 +355,9 @@ export function PtChartTool() {
               <div className="item-value">{output.refrigerant.gwp} GWP</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

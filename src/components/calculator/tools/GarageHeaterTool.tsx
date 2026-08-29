@@ -13,6 +13,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { GarageHeaterVisualizer } from "@/components/calculator/visualizers/GarageHeaterVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   {
@@ -157,6 +160,7 @@ export function GarageHeaterTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* PRESET & CEILING HEIGHT */}
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
@@ -350,6 +354,8 @@ export function GarageHeaterTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ASHRAE Fundamentals Ch. 18", "DOE Infiltration Standards", "NFPA 54"]} />
+
           {/* GARAGE HEATER SVG VISUALIZER */}
           <GarageHeaterVisualizer output={output} />
 
@@ -378,6 +384,9 @@ export function GarageHeaterTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

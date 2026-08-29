@@ -14,6 +14,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { FilterSizingVisualizer } from "@/components/calculator/visualizers/FilterSizingVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   {
@@ -179,6 +182,7 @@ export function FilterSizingTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* SYSTEM CFM */}
           <div className="form-group" style={{ marginBottom: "0.5rem" }}>
             <label htmlFor="cfm-input">
@@ -384,6 +388,8 @@ export function FilterSizingTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ASHRAE Standard 52.2 (MERV)", "ACCA Manual D®", "ASHRAE Standard 241"]} />
+
           {/* REACTIVE VISUALIZER */}
           <FilterSizingVisualizer output={output} />
 
@@ -410,6 +416,9 @@ export function FilterSizingTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

@@ -14,6 +14,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { RValueAssemblyVisualizer } from "@/components/calculator/visualizers/RValueAssemblyVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const DEFAULT_WALL_LAYERS: MaterialLayer[] = [
   { id: "1", materialKey: "drywall_half_inch", name: "1/2\" Drywall", thicknessInches: 0.5, rValuePerInch: 0.9, calculatedRValue: 0.45 },
@@ -177,6 +180,7 @@ export function RValueTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL: LAYER STACK BUILDER */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* ASSEMBLY & CLIMATE ZONE SELECTORS */}
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem", marginBottom: "0.75rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
@@ -380,6 +384,8 @@ export function RValueTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ASHRAE Fundamentals Ch. 25", "IECC 2021 / 2024", "DOE Building Technologies"]} />
+
           {/* R-VALUE SVG CROSS SECTION VISUALIZER */}
           <RValueAssemblyVisualizer output={output} layers={layers} />
 
@@ -404,6 +410,9 @@ export function RValueTool() {
               <div className="item-value">{output.annualHeatLossBtuPerSqFt.toLocaleString()} BTU/ft²</div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar

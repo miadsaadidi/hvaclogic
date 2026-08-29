@@ -45,6 +45,10 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
           "@type": "Organization",
           name: "HVACLogic Engineering Standards Committee",
           url: siteConfig.canonicalDomain,
+          sameAs: [
+            "https://www.trustpilot.com/review/hvaclogic.org",
+            "https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826",
+          ],
         },
         reviewedBy: {
           "@type": "Person",
@@ -53,6 +57,10 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
           worksFor: {
             "@type": "Organization",
             name: "HVACLogic Peer Review Board",
+            url: siteConfig.canonicalDomain,
+            sameAs: [
+              "https://www.trustpilot.com/review/hvaclogic.org",
+            ],
           },
         },
         citation: citations,

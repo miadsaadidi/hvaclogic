@@ -14,6 +14,9 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { BuildingHeatLossVisualizer } from "@/components/calculator/visualizers/BuildingHeatLossVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
+import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
+import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
+import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const PRESETS = [
   {
@@ -168,6 +171,7 @@ export function HeatLossTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
+          <CalculatorTrustPill />
           {/* FLOOR AREA & OUTDOOR DESIGN TEMP */}
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
@@ -347,6 +351,8 @@ export function HeatLossTool() {
             </div>
           </div>
 
+          <StandardsBadge standards={["ACCA Manual J® (8th Ed)", "ASHRAE Standard 90.1", "ASHRAE Standard 90.2"]} />
+
           {/* BUILDING HEAT LOSS SVG VISUALIZER */}
           <BuildingHeatLossVisualizer output={output} />
 
@@ -377,6 +383,9 @@ export function HeatLossTool() {
               </div>
             </div>
           </div>
+
+          {/* GOOGLE PREFERRED SOURCE BANNER */}
+          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
