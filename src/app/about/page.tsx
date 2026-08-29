@@ -137,44 +137,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Community & Field Verification on Trustpilot */}
-      <section style={{ padding: "1.75rem", borderRadius: "0.85rem", background: "rgba(16, 185, 129, 0.04)", border: "1px solid rgba(16, 185, 129, 0.25)", borderLeft: "4px solid var(--accent-success, #10b981)", marginBottom: "3.5rem" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-          <span style={{ fontSize: "1.25rem" }}>⭐</span>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
-            Industry Peer Review &amp; Field Verification
-          </h2>
-        </div>
-        <p style={{ fontSize: "0.875rem", color: "var(--ink-secondary)", lineHeight: 1.6, margin: "0 0 1rem" }}>
-          HVACLogic relies on public feedback and peer audits from mechanical engineers, licensed HVAC technicians, trade instructors, and building inspectors. Our profile is publicly verified on Trustpilot:
-        </p>
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem" }}>
-          <a
-            href="https://www.trustpilot.com/review/hvaclogic.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              background: "#10b981",
-              color: "#ffffff",
-              fontWeight: 700,
-              fontSize: "0.875rem",
-              padding: "0.6rem 1.2rem",
-              borderRadius: "0.5rem",
-              textDecoration: "none",
-              boxShadow: "0 2px 4px rgba(16, 185, 129, 0.2)",
-            }}
-          >
-            <span>★ Read Reviews or Rate HVACLogic on Trustpilot ↗</span>
-          </a>
-          <span style={{ fontSize: "0.8rem", color: "var(--ink-secondary)" }}>
-            100% transparent user &amp; professional reviews
-          </span>
-        </div>
-      </section>
-
       {/* Supporting Links Footer Section */}
       <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", textAlign: "center" }}>
         <p style={{ fontSize: "0.9rem", color: "var(--ink-secondary)" }}>
