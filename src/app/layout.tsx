@@ -127,6 +127,8 @@ export default function RootLayout({
             `,
           }}
         />
+      </head>
+      <body className="antialiased">
         {/* Schema.org Organization & WebSite entity graph */}
         <script
           type="application/ld+json"
@@ -160,8 +162,6 @@ export default function RootLayout({
             }),
           }}
         />
-      </head>
-      <body className="antialiased">
         <UnitProvider>
           <ServiceWorkerRegister />
           <SiteHeader />

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { CalculatorMeta } from "@/types/calculation";
 
@@ -47,7 +47,6 @@ export function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Keyboard shortcut listener (Ctrl+K or ⌘+K)
@@ -107,7 +106,9 @@ export function CommandPalette() {
 
   const handleSelect = (route: string) => {
     setIsOpen(false);
-    router.push(route);
+    if (typeof window !== "undefined") {
+      window.location.href = route;
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -222,13 +223,15 @@ export function CommandPalette() {
                 </div>
               ) : (
                 filteredResults.map((item, idx) => (
-                  <div
+                  <Link
                     key={item.id}
+                    href={item.route}
                     className={`command-palette-item ${idx === selectedIndex ? "selected" : ""}`}
-                    onClick={() => handleSelect(item.route)}
+                    onClick={() => setIsOpen(false)}
                     onMouseEnter={() => setSelectedIndex(idx)}
+                    style={{ textDecoration: "none", color: "inherit" }}
                   >
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.15rem", minWidth: 0 }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.15rem", minWidth: 0, flex: 1 }}>
                       <span className="item-name" style={{ fontWeight: 700, fontSize: "0.9rem" }}>
                         {item.name}
                       </span>
@@ -249,7 +252,7 @@ export function CommandPalette() {
                     }}>
                       {item.categoryName}
                     </span>
-                  </div>
+                  </Link>
                 ))
               )}
             </div>
