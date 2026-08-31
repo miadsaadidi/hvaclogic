@@ -10,12 +10,14 @@ tags:
   - A2L Refrigerants
   - ACCA Manual J
 authors:
-  - name: Miad Inside
+  - name: Miad Saadidi
+    orcid: 0009-0008-4501-7590
     affiliation: 1
 affiliations:
   - name: Open Building Science & Thermodynamic Modeling Initiative
     index: 1
-date: 27 August 2026
+date: 31 August 2026
+version: 0.1.0
 bibliography: paper.bib
 ---
 
@@ -35,6 +37,16 @@ Historically, mechanical practitioners and building science researchers have had
 `HVACLogic` bridges this critical gap by providing an open, deterministic first-principles layer. It computes exact thermodynamic, hydraulic, and envelope boundaries instantaneously. These deterministic evaluations serve both as accessible field screening tools for technicians and as robust prior parameter bounds for dynamic simulation toolchains.
 
 Furthermore, the ongoing phase-in of zeotropic A2L refrigerant blends such as R-454B introduces non-negligible temperature glides ($1.5^\circ\text{F}$ to $8.0^\circ\text{F}$ between bubble and dew points). Legacy single-curve pressure-temperature (PT) charts produce substantial subcooling and superheat charging errors. `HVACLogic` addresses this industry-wide challenge by implementing discrete dual-curve saturation thermodynamics cross-validated against NIST datasets.
+
+# State of the field
+
+Computational tools in building science and HVAC engineering generally fall into distinct architectural paradigms, each presenting practical limitations for field practitioners, researchers, and trade education:
+
+1. **Heavyweight Dynamic Simulation Engines**: Comprehensive simulation platforms such as EnergyPlus, DOE-2, and Modelica-based toolchains (e.g., `AixCaliBuHA` [@Wuellhorst2022]) model complex transient multi-zone building physics. While indispensable for whole-building annual energy analysis, these engines carry heavy installation footprints, require compiled C/Fortran/Python runtimes, and demand significant computational overhead. They are fundamentally unsuited for instantaneous field diagnostics, equipment commissioning, or interactive web-based educational exploration.
+2. **Scientific Thermodynamic Libraries**: High-precision thermophysical property engines such as `CoolProp` [@Bell2014] and specialized psychrometric packages such as `PsychroLib` [@Meyer2019] provide rigorous formulations for fluid properties. However, they operate primarily as backend scripting libraries (C++, Python, MATLAB) rather than turnkey engineering workflows. Practitioners must write glue code to link thermodynamic property lookups to practical duct friction loss (Colebrook-White, Huebscher), ACCA Manual J/S sizing boundaries, or zeotropic A2L temperature glide compensation.
+3. **Proprietary Commercial Sizing Suites**: Commercial desktop suites (e.g., Wrightsoft Right-Suite Universal, Carrier HAP, Trane TRACE) dominate professional design. These platforms rely on closed-source, "black-box" implementations with proprietary safety margins, expensive per-seat recurring licenses, and cloud backends that ingest sensitive building and customer data. Furthermore, legacy suites often approximate zeotropic A2L refrigerants (e.g., R-454B) using single mid-point saturation curves, introducing critical charging and subcooling errors in the field.
+
+`HVACLogic` establishes an open-source, deterministic computational layer bridging pure thermodynamic properties and applied mechanical engineering workflows. By implementing standards-compliant formulations directly in TypeScript, `HVACLogic` provides zero-latency client-side execution, offline-first reliability, complete code auditability, and zero privacy exposure.
 
 # Mathematical Formulations & Core Capabilities
 
@@ -94,13 +106,51 @@ The mathematical modules were benchmarked against reference test datasets from A
 | **R-454B Bubble** | $p = 118.0\text{ psig}$ | $T_{\text{bubble}} = 40.20^\circ\text{F}$ | $T_{\text{bubble}} = 40.18^\circ\text{F}$ | $-0.05\%$ | `VALIDATED` |
 | **Envelope Loss** | $R\text{-}13$ Wall, $2000\text{ sq ft}$, $\Delta T = 50^\circ\text{F}$ | $7,692.0\text{ BTU/hr}$ | $7,692.3\text{ BTU/hr}$ | $0.00\%$ | `VALIDATED` |
 
-# Software Architecture & Quality Assurance
+# Software design
 
-`HVACLogic` is built with modern software engineering standards:
-* **Stateless Pure Functions**: Mathematical routines are pure, decoupled from the DOM, and individually importable.
-* **Automated Unit Testing**: The test harness comprises 95 automated unit tests executed via Vitest with $<5\text{s}$ execution time.
-* **URL Parameter State Hydration**: Calculations synchronize inputs bidirectionally with URL search parameters (e.g. `?cfm=1200&friction=0.08`), enabling reproducible sharing without database persistence.
-* **Universal Accessibility**: Compliant with WCAG 2.1 AA accessibility guidelines, reactive SVG/Canvas visualizers, and offline PWA service workers.
+`HVACLogic` is architected as a modular, layered system strictly separating mathematical physics from user interface presentation and state management:
+
+```
+┌────────────────────────────────────────────────────────┐
+│          Presentation & Web Visualization Layer        │
+│  - React 19 Server/Client Components                   │
+│  - Reactive Vector Visualizers (SVG / Canvas)          │
+│  - Accessible Form Controls (WCAG 2.1 AA Compliant)    │
+└───────────────────────────▲────────────────────────────┘
+                            │ (Unidirectional Props)
+┌───────────────────────────┴────────────────────────────┐
+│         State Management & URL Synchronization        │
+│  - Bidirectional Query Parameter Serializers           │
+│  - Dual-Unit Conversion Bridge (IP ⇄ SI)               │
+│  - PWA Service Worker Cache & Offline Storage          │
+└───────────────────────────▲────────────────────────────┘
+                            │ (Pure Function Invocations)
+┌───────────────────────────┴────────────────────────────┐
+│            Pure Mathematical Physics Engine            │
+│  - src/lib/math/ductulator.ts                          │
+│  - src/lib/math/refrigerants.ts                        │
+│  - src/lib/math/cooling-load.ts                        │
+│  - src/lib/math/psychrometrics.ts                      │
+└────────────────────────────────────────────────────────┘
+```
+
+The system comprises three core design pillars:
+* **Stateless Pure Functional Core**: All engineering formulations reside in `src/lib/math/` as zero-dependency TypeScript functions. Functions operate strictly on strongly typed immutable input interfaces and return deterministic result records. This decoupled design allows the computation engine to be integrated into Node.js automated workflows, serverless APIs, or standalone CLI utilities without browser or DOM dependencies.
+* **Deterministic URL Parameter Hydration**: Rather than storing project calculations in a remote database, calculation state is serialized bidirectionally into URL search parameters (e.g., `?cfm=1200&friction=0.08&duct_type=round`). This achieves instant state sharing, reproducible engineering submittals, and bookmarking while providing a 100% client-side privacy guarantee.
+* **Reactive Vector Schemas & Accessibility**: Every computational module couples its numerical results to a live reactive SVG visualizer (e.g., dynamic duct cross-sections, refrigerant pressure-enthalpy cycles, psychrometric state charts). All components meet WCAG 2.1 AA accessibility standards with full keyboard operability, explicit ARIA labels, and high-contrast color tokens.
+* **Automated Unit Testing**: The codebase includes an automated test harness executed via Vitest, achieving sub-second test execution across all mathematical modules to prevent regression during refactoring.
+
+# Research impact statement
+
+`HVACLogic` directly impacts building science research, decarbonization policy, and engineering education:
+
+* **Tightly Bounded Priors for Simulation Calibration**: Building energy model calibration platforms such as `AixCaliBuHA` [@Wuellhorst2022] frequently experience ill-posed optimization spaces when estimating unknown building parameters. `HVACLogic` provides instantaneous, deterministic envelope and hydraulic screening metrics that researchers can employ as physics-based *prior parameter bounds*, accelerating optimization convergence in Modelica and FMU workflows.
+* **Empirical Support for Heat Pump Electrification**: As building stocks transition from fossil-fuel combustion to cold-climate inverter heat pumps, oversizing penalties (short-cycling, poor dehumidification, increased grid peak demand) severely compromise decarbonization goals. `HVACLogic` provides accessible, open Manual S compliance boundary checks and balance-point sizing calculators, empowering researchers and municipal efficiency programs to audit real-world installations against field degradation.
+* **A2L Refrigerant Transition Training & Safety**: The phase-down of hydrofluorocarbons (HFCs) mandates the deployment of mildly flammable A2L refrigerants with significant temperature glides. `HVACLogic` provides an open, reference-grade calculation engine for educational institutions, vocational trade schools, and laboratory technicians to accurately compute subcooling and superheat charging tolerances without relying on black-box commercial apps.
+
+# AI usage disclosure
+
+In accordance with JOSS publication policies, the author discloses that Large Language Model (LLM) tools (Anthropic Claude and Google Gemini) were utilized during the development of this project for code scaffolding, repetitive test case parameterization, and documentation drafting. All scientific formulations, thermodynamic equations, mathematical proofs, empirical model calibrations (Darcy-Weisbach, Colebrook-White, Huebscher, RP-1333, Hyland-Wexler), and benchmark verification tables were authored, reviewed, and validated against primary standards (ASHRAE, ACCA, SMACNA, NIST) by the author.
 
 # Availability & Documentation
 
@@ -109,3 +159,4 @@ The mathematical modules were benchmarked against reference test datasets from A
 * Source Code Repository: [https://github.com/miadsaadidi/hvaclogic](https://github.com/miadsaadidi/hvaclogic)
 
 # References
+
