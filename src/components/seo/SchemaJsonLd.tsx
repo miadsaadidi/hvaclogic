@@ -36,7 +36,7 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         url: canonicalUrl,
         description: calculator.metaDescription,
         applicationCategory: "UtilitiesApplication",
-        operatingSystem: "All",
+        operatingSystem: "All (Modern Web Browsers, iOS, Android, macOS, Windows)",
         browserRequirements: "Requires JavaScript. Requires HTML5 Canvas/SVG.",
         isAccessibleForFree: true,
         softwareVersion: calculator.formulaVersion,

@@ -397,13 +397,17 @@ export function GarageHeaterTool() {
 
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
-            <div className="handoff-title">Next Step in Heating Equipment Sizing</div>
-            <Link href="/calculators/heat-loss-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Calculate Whole-Home Thermal Heat Loss &amp; Infiltration</span>
+            <div className="handoff-title">Next Steps in Heating &amp; Equipment Sizing</div>
+            <Link href="/calculators/btu-calculator" style={{ marginBottom: "0.5rem" }}>
+              <span>Size Residential Room &amp; House BTU Heating Capacity</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/furnace-size-calculator">
+            <Link href="/calculators/furnace-size-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Compare Gas Unit Heaters vs High-Efficiency Furnaces</span>
+              <span>→</span>
+            </Link>
+            <Link href="/calculators/heat-loss-calculator">
+              <span>Calculate Whole-Home Thermal Heat Loss &amp; Infiltration</span>
               <span>→</span>
             </Link>
           </div>

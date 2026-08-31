@@ -373,6 +373,10 @@ export function PtChartTool() {
               <span>Diagnose TXV Subcooling &amp; Fixed Orifice Superheat ({output.refrigerant.id.toUpperCase()})</span>
               <span>→</span>
             </Link>
+            <Link href="/calculators/refrigerant-charge-calculator" style={{ marginBottom: "0.5rem" }}>
+              <span>Calculate Refrigerant Line Set Weigh-In Charge Adjustment</span>
+              <span>→</span>
+            </Link>
             <Link href="/calculators/ac-model-decoder">
               <span>Decode Air Conditioner Data Plate &amp; Factory Charge</span>
               <span>→</span>

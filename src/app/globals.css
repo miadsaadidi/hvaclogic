@@ -450,15 +450,26 @@ a:hover {
 .preset-chip-btn {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.7rem;
-  border-radius: 0.45rem;
-  font-size: 0.75rem;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.5rem;
+  font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
   background: var(--surface);
   border: 1px solid var(--border-color);
   color: var(--ink-secondary);
   transition: all 140ms ease;
+  touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+  .preset-chip-btn {
+    min-height: 44px;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.82rem;
+  }
 }
 
 .preset-chip-btn:hover {
