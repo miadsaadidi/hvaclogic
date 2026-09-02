@@ -11,6 +11,7 @@ import { AcTonnageVisualizer } from "@/components/calculator/visualizers/AcTonna
 import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
+import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
 
 const PRESETS = [
   { label: "1,200 sq ft (Moderate)", area: 1200, climate: "moderate" },
@@ -110,6 +111,20 @@ export function AcTonnageTool() {
         {/* INPUT PANEL */}
         <div className="input-panel">
           <CalculatorTrustPill />
+          <AshraeClimateSelector
+            compact={true}
+            onSelectLocation={(loc) => {
+              let mappedClimate = "moderate";
+              if (loc.summerDb04 >= 100) mappedClimate = "extreme_heat";
+              else if (loc.summerDb04 >= 92 && loc.summerWb04 >= 75) mappedClimate = "hot_humid";
+              else if (loc.summerDb04 >= 90) mappedClimate = "warm";
+              else if (loc.summerDb04 <= 82) mappedClimate = "cool";
+
+              setClimate(mappedClimate);
+              updateParam("climate", mappedClimate);
+              updateParam("loc", loc.id);
+            }}
+          />
           {/* AREA INPUT */}
           <div className="form-group">
             <label htmlFor="ac-area-input">

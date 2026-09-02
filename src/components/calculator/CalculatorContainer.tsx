@@ -58,7 +58,7 @@ export function CalculatorContainer({
         <header className="calculator-header">
           <span className="eyebrow">{calculator.categoryName}</span>
           <h1>{calculator.name}</h1>
-          <p className="intro">{calculator.metaDescription}</p>
+          <p className="intro speakable-definition">{calculator.metaDescription}</p>
         </header>
 
         {/* DIRECT ANSWER CARD FOR FEATURED SNIPPETS */}

@@ -112,6 +112,9 @@ export default function RootLayout({
       className={`${titillium.variable} ${lora.variable} ${inter.variable}`}
     >
       <head>
+        {/* LLM & AI Crawler Grounding Manifests */}
+        <link rel="help" type="text/markdown" href="/llms.txt" title="LLM Grounding Manifest" />
+        <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Full Engineering Mathematical Models" />
         {/* Google tag (gtag.js) */}
         <script
           async

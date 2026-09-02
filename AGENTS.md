@@ -1,7 +1,8 @@
 # HVACLogic Engineering & Testing Guidelines
 
 ## Agent Communication & Execution Rules
-- **Direct Answers to Questions**: When the user asks a question, answer it directly in plain text. **DO NOT** run scripts, compile code, generate files, or take automated actions unless the user gives an explicit request to do so.
+- **Direct Answers to Questions (NO UNREQUESTED ACTIONS)**: When the user asks an informational or diagnostic question (e.g., *"did we activate this option?"*, *"do we show X?"*, *"is Y working?"*), provide a direct, concise status report in plain text (e.g., *"Yes, X is enabled, but Y is not configured yet. Next steps would be..."*). **DO NOT** treat questions as implicit authorization to start coding, run scripts, compile code, generate files, or take automated actions. If an action is appropriate, propose it and ask for explicit confirmation first.
+- **"Push to Vercel" Directive**: When the user instructs *"push to vercel"*, it strictly means running the direct Vercel CLI production deployment (`npx vercel --prod --token $env:VERCEL_TOKEN --yes`), **NOT** pushing commits to Git/GitHub. Git pushes are only performed when explicitly told *"push to git"* or *"push to github"*.
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 

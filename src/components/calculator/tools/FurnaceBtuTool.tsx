@@ -18,6 +18,7 @@ import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
+import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
 
 const FURNACE_PRESETS = [
   { label: "🏡 1,500 sq ft (Mid-Atlantic Zone 3)", sqft: 1500, zone: 3 as HeatingClimateZone, ceiling: 8, insulation: "average" as InsulationGrade, afue: 96 },
@@ -129,6 +130,21 @@ export function FurnaceBtuTool() {
         {/* INPUT PANEL */}
         <div className="input-panel">
           <CalculatorTrustPill />
+          <AshraeClimateSelector
+            compact={true}
+            onSelectLocation={(loc) => {
+              let mappedZone: HeatingClimateZone = 3;
+              if (loc.winterDb99 <= -10) mappedZone = 5;
+              else if (loc.winterDb99 <= 5) mappedZone = 4;
+              else if (loc.winterDb99 <= 20) mappedZone = 3;
+              else if (loc.winterDb99 <= 35) mappedZone = 2;
+              else mappedZone = 1;
+
+              setClimateZone(mappedZone);
+              updateParam("zone", mappedZone);
+              updateParam("loc", loc.id);
+            }}
+          />
           {/* SQUARE FOOTAGE */}
           <div className="form-group">
             <label htmlFor="sqft-input">

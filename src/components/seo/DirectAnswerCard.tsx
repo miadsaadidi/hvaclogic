@@ -23,7 +23,7 @@ export function DirectAnswerCard({
         <span>Target Sizing Definition • {targetKeyword}</span>
       </div>
 
-      <p className="answer-text" style={{ fontSize: "0.85rem", lineHeight: 1.55, color: "var(--ink-secondary)" }}>
+      <p className="answer-text speakable-summary" style={{ fontSize: "0.85rem", lineHeight: 1.55, color: "var(--ink-secondary)" }}>
         {directAnswer}
       </p>
 

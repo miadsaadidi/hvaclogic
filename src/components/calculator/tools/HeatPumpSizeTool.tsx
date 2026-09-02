@@ -15,6 +15,7 @@ import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
+import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
 
 const HEAT_PUMP_PRESETS = [
   { label: "❄️ Cold-Climate Inverter (3T)", tons: 3.0, type: "inverter_cold_climate" as HeatPumpCompressorType, outdoorDesign: 5, heatLoss: 42000, coolingLoad: 32000 },
@@ -125,6 +126,14 @@ export function HeatPumpSizeTool() {
         {/* INPUT PANEL */}
         <div className="input-panel">
           <CalculatorTrustPill />
+          <AshraeClimateSelector
+            compact={true}
+            onSelectLocation={(loc) => {
+              setOutdoorDesign(loc.winterDb99);
+              updateParam("design", loc.winterDb99);
+              updateParam("loc", loc.id);
+            }}
+          />
           {/* TONNAGE & COMPRESSOR */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: "0.75rem" }}>
             <div className="form-group">

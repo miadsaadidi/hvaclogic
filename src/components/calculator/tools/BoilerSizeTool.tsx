@@ -16,6 +16,7 @@ import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
+import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
 
 const PRESETS = [
   {
@@ -181,6 +182,12 @@ export function BoilerSizeTool() {
         {/* INPUT PANEL */}
         <div className="input-panel">
           <CalculatorTrustPill />
+          <AshraeClimateSelector
+            compact={true}
+            onSelectLocation={(loc) => {
+              updateParam("loc", loc.id);
+            }}
+          />
           {/* METHOD & MEDIUM SELECTORS */}
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>

@@ -34,6 +34,13 @@ export interface SchemaFAQ {
   answer: string;
 }
 
+export interface HowToStep {
+  stepNumber: number;
+  title: string;
+  instruction: string;
+  tip?: string;
+}
+
 export interface FormulaVariable {
   symbol: string;
   label: string;
@@ -73,5 +80,7 @@ export interface CalculatorMeta {
   testStatus: "not-started" | "partial" | "validated";
 
   faqs: SchemaFAQ[];
+  howToSteps?: HowToStep[];
   analyticsEvents: string[];
 }
+

@@ -3,19 +3,31 @@
 import React, { useRef, useState } from "react";
 import { EmbedModal } from "@/components/calculator/EmbedModal";
 import { PrintSubmittalModal, SubmittalMeta } from "@/components/calculator/PrintSubmittalModal";
+import { ForumReportModal } from "@/components/calculator/ForumReportModal";
 
 interface ActionButtonBarProps {
   toolRoute: string;
   toolName: string;
   onExportCsv?: () => void;
+  diagnosticSummary?: Record<string, string | number>;
+  governingStandard?: string;
 }
 
-export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButtonBarProps) {
+export function ActionButtonBar({
+  toolRoute,
+  toolName,
+  onExportCsv,
+  diagnosticSummary,
+  governingStandard,
+}: ActionButtonBarProps) {
   const [copied, setCopied] = useState(false);
   const [embedOpen, setEmbedOpen] = useState(false);
   const [printOpen, setPrintOpen] = useState(false);
+  const [forumOpen, setForumOpen] = useState(false);
+
   const embedTriggerRef = useRef<HTMLButtonElement>(null);
   const printTriggerRef = useRef<HTMLButtonElement>(null);
+  const forumTriggerRef = useRef<HTMLButtonElement>(null);
 
   const closeEmbed = () => {
     setEmbedOpen(false);
@@ -25,6 +37,11 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
   const closePrint = () => {
     setPrintOpen(false);
     requestAnimationFrame(() => printTriggerRef.current?.focus());
+  };
+
+  const closeForum = () => {
+    setForumOpen(false);
+    requestAnimationFrame(() => forumTriggerRef.current?.focus());
   };
 
   const handleShare = () => {
@@ -52,10 +69,20 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
         <button
           onClick={handleShare}
           className="action-btn"
-          title="Share calculation link with current values"
+          title="Share direct calculation permalink with current input parameters"
           type="button"
         >
           {copied ? "✓ Copied Link!" : "🔗 Share Link"}
+        </button>
+
+        <button
+          ref={forumTriggerRef}
+          onClick={() => setForumOpen(true)}
+          className="action-btn"
+          title="Generate formatted diagnostic calculation snippet for forums (Markdown, BBCode, Text)"
+          type="button"
+        >
+          📋 Forum Report
         </button>
 
         <button
@@ -90,6 +117,15 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
         </button>
       </div>
 
+      <ForumReportModal
+        toolRoute={toolRoute}
+        toolName={toolName}
+        isOpen={forumOpen}
+        onClose={closeForum}
+        diagnosticSummary={diagnosticSummary}
+        governingStandard={governingStandard}
+      />
+
       <EmbedModal
         toolRoute={toolRoute}
         toolName={toolName}
@@ -108,3 +144,4 @@ export function ActionButtonBar({ toolRoute, toolName, onExportCsv }: ActionButt
     </>
   );
 }
+
