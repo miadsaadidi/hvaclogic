@@ -14,7 +14,7 @@ interface GooglePreferredBannerProps {
  * Keep as `false` while pending in Google Publisher Center / Preferred Sources directory.
  * Flipping this to `true` activates the banner across ALL calculators site-wide simultaneously!
  */
-export const GOOGLE_PREFERRED_ACTIVE = false;
+export const GOOGLE_PREFERRED_ACTIVE = true;
 
 export function GooglePreferredBanner({
   className = "",

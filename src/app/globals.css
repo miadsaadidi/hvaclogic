@@ -1598,6 +1598,19 @@ body.embed-mode {
   border-color: var(--border-subtle);
 }
 
+.google-pin-button:hover {
+  border-color: var(--accent-cooling) !important;
+  background: var(--surface-raised) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15) !important;
+}
+
+.google-preferred-banner:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15) !important;
+  border-color: var(--accent-cooling) !important;
+}
+
 /* ==========================================================================
    PRINT SPECIFICATION SHEET WATERMARK & MOAT (@media print)
    ========================================================================== */

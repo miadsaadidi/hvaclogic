@@ -1,5 +1,10 @@
 # HVACLogic Engineering & Testing Guidelines
 
+## Agent Communication & Execution Rules
+- **Direct Answers to Questions**: When the user asks a question, answer it directly in plain text. **DO NOT** run scripts, compile code, generate files, or take automated actions unless the user gives an explicit request to do so.
+- **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
+- **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
+
 ## Testing Protocol & Velocity Rules
 
 ### 1. Small Updates & UI Refinements
@@ -40,3 +45,29 @@ When creating ANY new calculator module, follow the complete checklist defined i
 4. **Tool UI Component**: `src/components/calculator/tools/<ToolName>.tsx` (Presets with Reset Defaults, dual range+number inputs, UnitSystem toggle, URL hydration, ActionButtonBar, and Downstream Handoff Card).
 5. **Page Layout**: `src/app/calculators/<slug>/page.tsx` (7-section SEO architecture using `CalculatorContainer`, metadata + canonical + openGraph, `FormulaCard`, `HvacFlowDiagram`, HTML matrix table, and worked numerical example).
 6. **E2E Test Spec**: `tests/e2e/<slug>.spec.ts` (Playwright suite covering layout, live calculations, presets, URL params, and downstream links).
+
+---
+
+## Medium Technical Publishing & Authority Guidelines
+
+When authoring or updating technical editorial content for syndication on Medium (`medium.com` — DA 96), follow the rules codified in:
+👉 [`docs/MEDIUM-EDITORIAL-GUIDELINES.md`](file:///d:/HVACLab/docs/MEDIUM-EDITORIAL-GUIDELINES.md)
+👉 Operations Ledger: [`docs/15-medium-publishing-and-interlinking-tracker.md`](file:///d:/HVACLab/docs/15-medium-publishing-and-interlinking-tracker.md)
+
+---
+
+## Excluded Channels & Strict Platform Policies
+
+### 🚫 STRICTLY BANNED PLATFORMS (NEVER SUGGEST OR USE):
+1. **Reddit (`reddit.com` / `r/...`)**: Strictly banned. Never propose Reddit posts, community comments, or threads.
+2. **Zenodo (`zenodo.org`)**: Strictly banned due to irrecoverable network 403 blocks.
+3. **ResearchGate (`researchgate.net`)**: Strictly banned due to mandatory predefined institutional email barriers.
+4. **Figshare (`figshare.com`)**: Strictly banned due to account/platform publishing errors.
+5. **wikiHow (`wikihow.com`)**: Strictly banned due to consumer DIY mismatch and nofollow policy.
+
+### ✅ APPROVED DISTRIBUTION & ACADEMIC REPOSITORIES ONLY:
+1. **Medium (`medium.com` — DA 96)**: For all 15 technical engineering teardown articles.
+2. **Academia.edu (`academia.edu` — DA 93)**: For verified academic whitepaper publication & profile backlink ([Paper #172310808](https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing)).
+3. **Internet Archive (`archive.org` — DA 96)**: For permanent open monograph repository & preprint citations.
+
+
