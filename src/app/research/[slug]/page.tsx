@@ -139,14 +139,14 @@ export default async function ResearchPaperPage({ params }: PageProps) {
               display: "inline-flex",
               alignItems: "center",
               gap: "0.45rem",
-              background: "var(--accent-cooling)",
-              color: "#000000",
+              background: "#0284c7",
+              color: "#ffffff",
               fontWeight: 700,
               fontSize: "0.88rem",
               padding: "0.6rem 1.25rem",
               borderRadius: "0.45rem",
               textDecoration: "none",
-              boxShadow: "var(--shadow-sm)",
+              boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
             }}
           >
             <span>📄</span>

@@ -99,8 +99,8 @@ export default function ResearchHubPage() {
         </p>
       </header>
 
-      {/* Whitepapers List */}
-      <section style={{ display: "flex", flexDirection: "column", gap: "2rem", marginBottom: "4rem" }}>
+      {/* Whitepapers List - 2 Column Grid */}
+      <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: "1.75rem", marginBottom: "4rem" }}>
         {RESEARCH_PAPERS.map((paper) => (
           <article
             key={paper.slug}
@@ -111,94 +111,100 @@ export default function ResearchHubPage() {
               borderRadius: "0.75rem",
               padding: "1.75rem 2rem",
               boxShadow: "var(--shadow-sm)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
               transition: "transform 0.2s ease, box-shadow 0.2s ease",
             }}
           >
-            {/* Metadata Badges */}
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", marginBottom: "0.85rem" }}>
-              <span
-                style={{
-                  background: "var(--bg-secondary)",
-                  color: "var(--accent-cooling)",
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  padding: "0.2rem 0.55rem",
-                  borderRadius: "4px",
-                  border: "1px solid var(--border-color)",
-                  fontFamily: "var(--font-mono, monospace)",
-                }}
-              >
-                {paper.reportNumber}
-              </span>
-              <span
-                style={{
-                  background: "rgba(167, 139, 250, 0.1)",
-                  color: "#a78bfa",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  padding: "0.2rem 0.55rem",
-                  borderRadius: "4px",
-                }}
-              >
-                DOI: {paper.doi}
-              </span>
-              <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginLeft: "auto" }}>
-                Published: {paper.publicationDate}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h2 style={{ fontSize: "1.45rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem", lineHeight: 1.3 }}>
-              <Link
-                href={`/research/${paper.slug}`}
-                style={{ color: "var(--ink)", textDecoration: "none", transition: "color 0.15s ease" }}
-              >
-                {paper.title}
-              </Link>
-            </h2>
-
-            {/* Abstract */}
-            <p style={{ fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
-              {paper.abstract}
-            </p>
-
-            {/* Standards Enforced */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.25rem" }}>
-              {paper.governingStandards.map((std) => (
+            <div>
+              {/* Metadata Badges */}
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", marginBottom: "0.85rem" }}>
                 <span
-                  key={std}
                   style={{
-                    fontSize: "0.72rem",
-                    padding: "0.2rem 0.5rem",
+                    background: "var(--bg-secondary)",
+                    color: "var(--accent-cooling)",
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
+                    padding: "0.2rem 0.55rem",
                     borderRadius: "4px",
-                    background: "var(--bg-primary)",
                     border: "1px solid var(--border-color)",
-                    color: "var(--text-muted)",
+                    fontFamily: "var(--font-mono, monospace)",
                   }}
                 >
-                  🏛️ {std}
+                  {paper.reportNumber}
                 </span>
-              ))}
+                <span
+                  style={{
+                    background: "rgba(167, 139, 250, 0.1)",
+                    color: "#a78bfa",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    padding: "0.2rem 0.55rem",
+                    borderRadius: "4px",
+                  }}
+                >
+                  DOI: {paper.doi}
+                </span>
+                <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginLeft: "auto" }}>
+                  {paper.publicationDate}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.65rem", lineHeight: 1.35 }}>
+                <Link
+                  href={`/research/${paper.slug}`}
+                  style={{ color: "var(--ink)", textDecoration: "none", transition: "color 0.15s ease" }}
+                >
+                  {paper.title}
+                </Link>
+              </h2>
+
+              {/* Abstract */}
+              <p style={{ fontSize: "0.92rem", color: "var(--ink-secondary)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
+                {paper.abstract}
+              </p>
+
+              {/* Standards Enforced */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.5rem" }}>
+                {paper.governingStandards.map((std) => (
+                  <span
+                    key={std}
+                    style={{
+                      fontSize: "0.72rem",
+                      padding: "0.2rem 0.5rem",
+                      borderRadius: "4px",
+                      background: "var(--bg-primary)",
+                      border: "1px solid var(--border-color)",
+                      color: "var(--text-muted)",
+                    }}
+                  >
+                    🏛️ {std}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Action Links */}
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", paddingTop: "1rem", borderTop: "1px solid var(--border-color)" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.75rem", paddingTop: "1rem", borderTop: "1px solid var(--border-color)" }}>
               <Link
                 href={`/research/${paper.slug}`}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "0.4rem",
-                  background: "var(--accent-cooling)",
-                  color: "#000000",
+                  background: "#0284c7",
+                  color: "#ffffff",
                   fontWeight: 700,
                   fontSize: "0.85rem",
                   padding: "0.55rem 1.15rem",
                   borderRadius: "0.45rem",
                   textDecoration: "none",
+                  boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
                 }}
               >
-                Read Technical Paper Online →
+                Read Paper Online →
               </Link>
 
               <a
