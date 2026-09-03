@@ -3,11 +3,11 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy & Zero-Database Architecture — HVACLogic",
+  title: "Privacy Policy & Zero-Data Architecture",
   description: "Learn how HVACLogic protects your privacy with 100% client-side computation, zero user-account databases, and browser-local state isolation.",
   alternates: { canonical: `${siteConfig.canonicalDomain}/privacy` },
   openGraph: {
-    title: "Privacy Policy — HVACLogic",
+    title: "Privacy Policy & Zero-Data Architecture",
     description: "Learn how HVACLogic protects your privacy with 100% client-side computation and zero database tracking.",
     url: `${siteConfig.canonicalDomain}/privacy`,
     siteName: siteConfig.name,

@@ -7,13 +7,13 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Cooling & Heat Load Calculators — Manual J/S | HVACLogic",
+  title: "Cooling & Heat Load Calculators",
   description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/cooling-loads`,
   },
   openGraph: {
-    title: "Cooling & Heat Load Calculators — Manual J/S | HVACLogic",
+    title: "Cooling & Heat Load Calculators",
     description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
     url: `${siteConfig.canonicalDomain}/cooling-loads`,
     siteName: siteConfig.name,
@@ -58,12 +58,14 @@ export default function CoolingLoadsHub() {
       </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
+      <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
+        Available Cooling &amp; Load Calculators
+      </h2>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))",
           gap: "1.25rem",
-          marginTop: "2rem",
           marginBottom: "3rem",
         }}
       >

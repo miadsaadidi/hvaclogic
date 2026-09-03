@@ -5,21 +5,30 @@ import { Logo } from "@/components/brand/Logo";
 import { CitationExportButton } from "@/components/seo/CitationExportButton";
 
 export const metadata: Metadata = {
-  title: "About HVACLogic — Deterministic HVAC & Building Science Suite",
-  description: "Learn about HVACLogic: our mission to replace black-box sales estimators with open, peer-reviewed engineering calculators for HVAC engineers, technicians, and contractors.",
+  title: "About Us & Engineering Mission",
+  description: "About HVACLogic: open, peer-reviewed engineering calculators replacing black-box sales estimators for HVAC engineers, technicians, and contractors.",
   alternates: { canonical: `${siteConfig.canonicalDomain}/about` },
   openGraph: {
-    title: "About HVACLogic — Transparent HVAC Engineering System",
+    title: "About Us & Engineering Mission",
     description: "Replacing black-box sales estimators with open, deterministic HVAC calculation tools.",
     url: `${siteConfig.canonicalDomain}/about`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "About HVACLogic — Transparent HVAC Engineering",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About HVACLogic — Transparent HVAC Engineering System",
+    title: "About Us & Engineering Mission",
     description: "Replacing black-box sales estimators with open, deterministic HVAC calculation tools.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

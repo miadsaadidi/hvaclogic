@@ -79,16 +79,25 @@ export function CalculatorContainer({
 
         {/* SECTION 3: ENGINEERING METHODOLOGY & DERIVATIONS */}
         <section id="how-to-guide" aria-label="Engineering Methodology and Calculations" style={{ margin: "3rem 0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0 0 1.5rem", color: "var(--ink)" }}>
+            Engineering Methodology &amp; Governing Equations
+          </h2>
           {methodologySection}
         </section>
 
         {/* SECTION 4: STATIC HTML REFERENCE COMPARISON TABLE */}
         <section id="sizing-matrix" aria-label="Standard Engineering Reference Table" style={{ margin: "3rem 0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0 0 1.25rem", color: "var(--ink)" }}>
+            Standard Engineering Reference Matrix
+          </h2>
           {comparisonTableSection}
         </section>
 
         {/* SECTION 5: WORKED NUMERICAL SIZING EXAMPLE */}
         <section id="worked-example" aria-label="Worked Engineering Sizing Example" style={{ margin: "3rem 0" }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0 0 1.25rem", color: "var(--ink)" }}>
+            Worked Engineering Sizing Example
+          </h2>
           {workedExampleSection}
         </section>
 

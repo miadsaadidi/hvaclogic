@@ -7,13 +7,13 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Field Diagnostics & Refrigerant Calculators | HVACLogic",
+  title: "Field Diagnostics & Refrigerant Calculators",
   description: "Diagnose AC & heat pump charging, calculate target superheat and subcooling, reference NIST PT charts for R-410A and R-454B A2L refrigerants.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/field-diagnostics`,
   },
   openGraph: {
-    title: "Field Diagnostics & Refrigerant Calculators | HVACLogic",
+    title: "Field Diagnostics & Refrigerant Calculators",
     description: "Diagnose AC & heat pump charging, calculate target superheat and subcooling, reference NIST PT charts for R-410A and R-454B A2L refrigerants.",
     url: `${siteConfig.canonicalDomain}/field-diagnostics`,
     siteName: siteConfig.name,
@@ -58,12 +58,14 @@ export default function FieldDiagnosticsHub() {
       </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
+      <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
+        Available Diagnostic &amp; Refrigeration Calculators
+      </h2>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))",
           gap: "1.25rem",
-          marginTop: "2rem",
           marginBottom: "3rem",
         }}
       >

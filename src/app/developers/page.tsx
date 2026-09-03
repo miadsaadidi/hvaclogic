@@ -5,18 +5,32 @@ import { siteConfig } from "@/lib/site-config";
 import { publishedCalculators } from "@/lib/data/calculators-registry";
 
 export const metadata: Metadata = {
-  title: "Developer API & AI Agent Integration | HVACLogic",
+  title: "Developer API & AI Agent Integration",
   description: "OpenAPI 3.1 specification, deterministic thermodynamic formulas, and tool manifest for AI agents, Custom GPTs, and building engineering software.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/developers`,
   },
   openGraph: {
-    title: "Developer API & AI Tool Manifest | HVACLogic",
+    title: "Developer API & AI Tool Manifest",
     description: "Connect AI agents and HVAC calculation tools to HVACLogic's deterministic building science algorithms.",
     url: `${siteConfig.canonicalDomain}/developers`,
-    siteName: "HVACLogic",
+    siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "HVACLogic Developer API & AI Integration",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Developer API & AI Tool Manifest",
+    description: "Deterministic HVAC engineering API & AI agent tool manifests.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

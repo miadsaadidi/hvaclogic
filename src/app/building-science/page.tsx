@@ -7,13 +7,13 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Building Science & Insulation Calculators | HVACLogic",
+  title: "Building Science & Insulation Calculators",
   description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/building-science`,
   },
   openGraph: {
-    title: "Building Science & Insulation Calculators | HVACLogic",
+    title: "Building Science & Insulation Calculators",
     description: "Calculate wall assembly R-values, continuous insulation U-factors, and envelope heat loss complying with IECC and ASHRAE Standard 90.1.",
     url: `${siteConfig.canonicalDomain}/building-science`,
     siteName: siteConfig.name,
@@ -58,12 +58,14 @@ export default function BuildingScienceHub() {
       </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
+      <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
+        Available Building Science Calculators
+      </h2>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))",
           gap: "1.25rem",
-          marginTop: "2rem",
           marginBottom: "3rem",
         }}
       >

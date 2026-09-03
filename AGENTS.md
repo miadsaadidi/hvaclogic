@@ -19,6 +19,36 @@
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 
+---
+
+## Mandatory Outreach Email Protocol (4-Pillar Scientific Curiosity Framework)
+
+> [!IMPORTANT]
+> **MANDATORY PRE-REQUISITE**: Before drafting ANY outreach or follow-up email, the agent MUST review and strictly enforce the following 4-pillar psychological blueprint. Any email using generic marketing, promotional buzzwords ("free", "best", "revolutionary"), or direct backlink requests is STRICTLY FORBIDDEN.
+
+### The 4 Pillars of High-Response Peer Outreach:
+1. **Pillar 1: Cognitive Dissonance / The Empirical Anomaly (The Read/Click Trigger)**:
+   - **Never pitch features or promote the platform.**
+   - Lead immediately with a stark, calculated numerical anomaly comparing a beloved trade rule-of-thumb against rigorous fundamental physics (e.g., 55% duct friction delta at 1,200 CFM; 2.2°F subcooling error on zeotropic A2L temperature glide; 1.7x pressure penalty under 15% longitudinal flex duct sag).
+   - This creates an irresistible scientific *curiosity gap* that compels the researcher, professor, or technical director to investigate.
+2. **Pillar 2: In-Group Technical Tribal Signal (Zero Marketing Vocabulary)**:
+   - **Strictly Banned Words**: *"free", "revolutionary", "best", "promo", "check out our site", "all-in-one", "solution"*.
+   - **Required Engineering Signals**: Use precise, peer-level mechanical terminology: $Re$, $\varepsilon$, Newton-Raphson iterations, Darcy-Weisbach, NIST REFPROP, Hyland-Wexler, Huebscher aspect ratios, AHRI 210/240.
+   - Immediately establishes peer credibility in under 3 seconds.
+3. **Pillar 3: 1-Click Proof-of-Work Verification (Pre-Hydrated URL as "Exhibit A")**:
+   - **Never link to a generic homepage or landing page.**
+   - Always link directly to the specific calculator with pre-hydrated URL search parameters reflecting the exact numerical anomaly discussed in the text (e.g. `https://hvaclogic.org/calculators/ductulator?cfm=1200&friction=0.08`).
+   - The link functions strictly as undeniable mathematical evidence ("Exhibit A"), not a promotional CTA.
+4. **Pillar 4: The Benjamin Franklin Authority Consultation**:
+   - **Never ask for backlinks, shares, directory listings, or curriculum additions.**
+   - Conclude with a targeted, open-ended question soliciting their specialized expert or pedagogical opinion on the observed anomaly.
+   - Validates their professional authority and naturally provokes a substantive reply.
+
+### Technical & Stylistic Constraints for All Emails:
+- **Signature**: Always sign strictly as **`Miad S.`**
+- **No Em-Dashes**: Never use em-dashes (`—`). Use standard hyphens (`-`), commas, or periods.
+- **Length**: Strictly under 120 words (compact, dense peer-to-peer communication).
+
 ## Testing Protocol & Velocity Rules
 
 ### 1. Small Updates & UI Refinements
@@ -82,6 +112,7 @@ When authoring or updating technical editorial content for syndication on Medium
 ### ✅ APPROVED DISTRIBUTION & ACADEMIC REPOSITORIES ONLY:
 1. **Medium (`medium.com` — DA 96)**: For all 15 technical engineering teardown articles.
 2. **Academia.edu (`academia.edu` — DA 93)**: For verified academic whitepaper publication & profile backlink ([Paper #172310808](https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing)).
-3. **Internet Archive (`archive.org` — DA 96)**: For permanent open monograph repository & preprint citations.
+3. **DEV Community (`dev.to` — DA 82 / DR 82)**: For technical architecture, TypeScript mathematical physics engines, 100% client-side zero-database design, and developer syndication with dofollow contextual backlinking.
+4. **Internet Archive (`archive.org` — DA 96)**: For permanent open monograph repository & preprint citations.
 
 

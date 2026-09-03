@@ -26,9 +26,9 @@ export function RelatedCalculatorsGrid({ relatedIds, currentPillar }: RelatedCal
     <div style={{ margin: "2rem 0 1.5rem" }}>
       <div style={{ marginBottom: "1rem" }}>
         <p className="eyebrow" style={{ marginBottom: "0.2rem" }}>Connected Engineering Workflow</p>
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
+        <h2 style={{ fontSize: "1.35rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
           Related Engineering Calculators
-        </h3>
+        </h2>
       </div>
 
       <div

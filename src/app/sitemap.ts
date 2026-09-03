@@ -43,7 +43,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Authority & Policy Pages
-  const authorityRoutes = ["/methodology", "/sources", "/about", "/privacy", "/glossary", "/developers"];
+  const authorityRoutes = [
+    "/methodology",
+    "/sources",
+    "/about",
+    "/privacy",
+    "/glossary",
+    "/developers",
+    "/ashrae-climatic-data",
+  ];
   const authorityEntries: MetadataRoute.Sitemap = authorityRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: SITE_RELEASE_DATE,
