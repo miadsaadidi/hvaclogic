@@ -184,6 +184,7 @@ export function CombustionAirTool() {
               <input
                 id="furnace-input"
                 type="number"
+                inputMode="decimal"
                 step={5000}
                 min={0}
                 max={500000}
@@ -205,6 +206,7 @@ export function CombustionAirTool() {
               <input
                 id="waterhtr-input"
                 type="number"
+                inputMode="decimal"
                 step={2000}
                 min={0}
                 max={200000}
@@ -229,6 +231,7 @@ export function CombustionAirTool() {
               <input
                 id="boiler-input"
                 type="number"
+                inputMode="decimal"
                 step={10000}
                 min={0}
                 max={1000000}
@@ -268,6 +271,7 @@ export function CombustionAirTool() {
               <input
                 id="room-l"
                 type="number"
+                inputMode="decimal"
                 min={3}
                 max={100}
                 value={roomLength}
@@ -280,6 +284,7 @@ export function CombustionAirTool() {
               <input
                 id="room-w"
                 type="number"
+                inputMode="decimal"
                 min={3}
                 max={100}
                 value={roomWidth}
@@ -292,6 +297,7 @@ export function CombustionAirTool() {
               <input
                 id="room-h"
                 type="number"
+                inputMode="decimal"
                 min={6}
                 max={25}
                 value={roomHeight}

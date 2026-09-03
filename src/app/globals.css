@@ -341,6 +341,13 @@ a:hover {
   transition: all 140ms ease;
 }
 
+@media (max-width: 768px) {
+  .input-number {
+    height: 46px;
+    font-size: 16px !important; /* Prevents unwanted iOS auto-zoom on input focus */
+  }
+}
+
 .input-number:focus {
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 2px var(--accent-cooling-glow);
@@ -388,6 +395,14 @@ a:hover {
   outline: none;
   -webkit-appearance: none;
   cursor: pointer;
+  touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+  .range-slider {
+    height: 8px;
+    margin: 0.5rem 0;
+  }
 }
 
 .range-slider::-webkit-slider-thumb {
@@ -400,6 +415,13 @@ a:hover {
   box-shadow: 0 0 8px var(--accent-cooling-glow);
   cursor: pointer;
   transition: transform 120ms ease;
+}
+
+@media (max-width: 768px) {
+  .range-slider::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .range-slider::-webkit-slider-thumb:hover {

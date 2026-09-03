@@ -1,0 +1,103 @@
+# HVACLogic: Complete Deterministic Engineering Formulation Directory
+
+> HVACLogic (https://hvaclogic.org) is an open thermodynamic and building science computing suite. This document details the mathematical formulations, physical equations, and empirical constants utilized across the platform.
+
+## 1. Airflow & Fluid Mechanics Formulas
+
+### Sensible Heat Airflow Equation
+CFM = Q_sensible / (1.08 * delta_T)
+Where:
+- CFM = Volumetric airflow rate in cubic feet per minute
+- Q_sensible = Sensible heat transfer rate in BTU/h
+- 1.08 = Standard air density constant = 60 min/hr * 0.075 lb/cu ft * 0.24 BTU/(lb * degF)
+- delta_T = Temperature differential across coil / heat exchanger in degrees Fahrenheit
+
+### Latent Heat Airflow Equation
+CFM = Q_latent / (4840 * delta_W)
+Where:
+- Q_latent = Latent heat transfer rate in BTU/h
+- 4840 = Standard air psychrometric constant = 60 min/hr * 0.075 lb/cu ft * 1076 BTU/lb (latent heat of vaporization) / 7000 grains/lb
+- delta_W = Humidity ratio difference in grains of moisture per pound of dry air (gr/lb)
+
+### Total Heat Airflow Equation
+CFM = Q_total / (4.5 * delta_h)
+Where:
+- Q_total = Total (enthalpy) heat transfer rate in BTU/h
+- 4.5 = Air mass rate constant = 60 min/hr * 0.075 lb/cu ft
+- delta_h = Specific enthalpy difference in BTU per pound of dry air (BTU/lb)
+
+### Colebrook-White Friction Factor Equation for Ductwork
+1 / sqrt(f) = -2.0 * log10((epsilon / (3.7 * D_h)) + (2.51 / (Re * sqrt(f))))
+Where:
+- f = Darcy-Weisbach friction factor (dimensionless)
+- epsilon = Absolute roughness of duct material (e.g. 0.0003 ft for galvanized sheet metal, 0.003 ft for flexible wire-helix duct)
+- D_h = Hydraulic diameter in feet = 4 * Area / Perimeter
+- Re = Reynolds number = (velocity * D_h) / kinematic_viscosity
+
+### Huebscher Equivalent Circular Diameter Formula
+D_e = 1.30 * (a * b)^0.625 / (a + b)^0.25
+Where:
+- D_e = Equivalent circular duct diameter in inches
+- a = Rectangular duct length/width in inches
+- b = Rectangular duct height in inches
+
+### Duct Total Equivalent Length (TEL) & Static Pressure Loss
+TEL = L_straight + Sum(C_fitting * L_eq)
+delta_P_total = Friction_Rate * (TEL / 100)
+Where:
+- TEL = Total Equivalent Length in feet
+- L_straight = Physical measured length of straight duct run
+- C_fitting = ACCA Manual D / SMACNA fitting dynamic loss coefficient
+- Friction_Rate = Available static pressure drop per 100 feet (in. wg / 100 ft)
+
+## 2. Refrigeration & Field Diagnostics Formulas
+
+### Target Superheat Equation (Fixed Metering Orifice / Piston)
+Target_Superheat = (3 * T_indoor_wb - 80 - T_outdoor_db) / 2
+Where:
+- T_indoor_wb = Indoor entering wet-bulb temperature (deg F)
+- T_outdoor_db = Outdoor condenser entering dry-bulb temperature (deg F)
+- Valid operating range: Indoor WB 50-70 deg F, Outdoor DB 55-115 deg F
+
+### Measured Superheat & Subcooling Equations
+Superheat = T_suction_line - T_evaporator_saturation
+Subcooling = T_condenser_saturation - T_liquid_line
+Where:
+- T_suction_line = Measured physical pipe temperature at compressor suction service valve
+- T_evaporator_saturation = Dew point saturation temperature at measured suction pressure
+- T_condenser_saturation = Bubble point saturation temperature at measured liquid head pressure
+- T_liquid_line = Measured physical pipe temperature at liquid service valve
+
+### A2L Refrigerant Transition Saturation Models
+HVACLogic implements Martin-Hou and Refprop-derived pressure-temperature polynomial fits for low-GWP A2L refrigerants:
+- R-454B (Opteon XL41, GWP = 466, 68.9% R-32 / 31.1% R-1234yf blend, temperature glide ~1.5 deg F)
+- R-32 (Difluoromethane, GWP = 675, single-component zero glide)
+- R-410A (Near-azeotropic blend, legacy GWP = 2088)
+
+## 3. Heating & Decarbonization Models
+
+### Heat Pump Thermal Balance Point
+Q_heat_pump(T_ambient) = Q_building_heat_loss(T_ambient)
+Where:
+- Q_heat_pump(T_ambient) = Heat pump delivered heating capacity at ambient temperature T_ambient (accounting for compressor inverter scaling and defrost penalty derates)
+- Q_building_heat_loss(T_ambient) = Envelope conductive and infiltration load = (UA_total + 1.08 * CFM_infiltration) * (T_indoor_setpoint - T_ambient)
+- Thermal Balance Point = The exact ambient dry-bulb temperature below which auxiliary supplemental heat (electric resistance strips or fossil fuel furnace) must cycle on.
+
+### Hydronic Flow Rate Equation
+GPM = Q_boiler / (500 * delta_T_water)
+Where:
+- GPM = Water circulation flow rate in gallons per minute
+- Q_boiler = Net hydronic heating output in BTU/h
+- 500 = Water mass and specific heat constant = 8.33 lb/gal * 60 min/hr * 1.0 BTU/(lb * deg F)
+- delta_T_water = Water supply to return temperature difference (typically 20 deg F for standard boilers, 30-40 deg F for condensing systems)
+
+## 4. Building Science & Envelope Transmission
+
+### Overall Thermal Transmittance (U-Factor)
+U = 1 / (R_outside_film + Sum(R_material_layers) + R_air_cavity + R_inside_film)
+Q_envelope = Sum(U_i * Area_i) * (T_indoor_design - T_outdoor_design)
+
+## Canonical Access
+- Suite Portal: https://hvaclogic.org
+- Documentation & Physical Models: https://hvaclogic.org/methodology
+- Scientific Sources: https://hvaclogic.org/sources
