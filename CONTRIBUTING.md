@@ -3,17 +3,19 @@
 Thank you for your interest in contributing to **HVACLogic**! We welcome contributions from building scientists, mechanical engineers, software developers, and HVAC/R technicians.
 
 ## How to Contribute
-
+ 
 1. **Reporting Bugs & Suggesting Calculations**:
    * Open an issue in the [GitHub Issues](https://github.com/miadsaadidi/hvaclogic/issues) tracker.
    * Provide the physical formula, standard reference (e.g., ASHRAE, ACCA, SMACNA, NIST), and numerical test vectors.
 
-2. **Submitting Pull Requests**:
-   * Fork the repository and create a feature branch (`git checkout -b feature/new-calculation`).
-   * Add pure mathematical functions under `src/lib/math/<name>.ts`.
-   * Add automated unit tests under `src/lib/math/<name>.test.ts`.
-   * Verify all tests pass: `npm test` and `npm run typecheck`.
-   * Submit a PR describing your mathematical formulation and test benchmarks.
+2. **Submitting Updates**:
+   * **Small Tweaks**: Simple copy fixes or minor CSS adjustments can be committed directly to `main`.
+   * **Medium & Large Updates (New Pages, Features, Calculators)**:
+     * Create a descriptive feature branch (`git checkout -b feat/<slug>`).
+     * Add pure mathematical functions under `src/lib/math/<slug>.ts` with comprehensive unit tests under `src/lib/math/<slug>.test.ts`.
+     * Verify all test gates pass: `npm test` (100% passing) and `npm run typecheck` (0 errors).
+     * Open a Pull Request on GitHub. Vercel will automatically generate a live **Preview URL** for browser inspection.
+     * Leave PRs open for a realistic review window (2 to 24 hours) before merging into `main`. Merging into `main` automatically triggers production deployment.
 
 ## Code of Conduct
 

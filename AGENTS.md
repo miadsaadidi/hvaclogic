@@ -2,10 +2,13 @@
 
 ## Agent Communication & Execution Rules
 - **Direct Answers to Questions (NO UNREQUESTED ACTIONS)**: When the user asks an informational or diagnostic question (e.g., *"did we activate this option?"*, *"do we show X?"*, *"is Y working?"*), provide a direct, concise status report in plain text (e.g., *"Yes, X is enabled, but Y is not configured yet. Next steps would be..."*). **DO NOT** treat questions as implicit authorization to start coding, run scripts, compile code, generate files, or take automated actions. If an action is appropriate, propose it and ask for explicit confirmation first.
-- **"Push to Vercel" Directive**: When the user instructs *"push to vercel"*, it strictly means running the direct Vercel CLI production deployment (`npx vercel --prod --token $env:VERCEL_TOKEN --yes`), **NOT** pushing commits to Git/GitHub. Git pushes are only performed when explicitly told *"push to git"* or *"push to github"*.
-- **GitHub PR Workflow & Validation Gate for Substantive Updates**:
-  - **Applicability**: For consistent/substantive updates (e.g., new calculators, math/algorithm refactors, comprehensive guide systems—not trivial UI/copy tweaks).
-  - **Branching**: Create descriptive feature branches (`feat/calculator-<slug>`, `refactor/<module>`, `docs/<guide-topic>`).
+- **GitHub PR & Vercel Automated Deployment Workflow**:
+  - **Scale Thresholds**:
+    - **Small Tweaks (No PR required)**: Direct commits to `main` for simple text/copy corrections, minor CSS refinements, or small single-file bug fixes.
+    - **Medium / Large Updates (MANDATORY PR)**: Create a dedicated feature branch (`feat/<topic>`, `refactor/<module>`, `docs/<topic>`) and open a GitHub Pull Request for multi-feature additions, new pages/routes, new calculators, major mathematical refactors, or schema architectures.
+  - **Automated Vercel Deployments**:
+    - Pushing to a feature branch automatically triggers an isolated **Vercel Preview Deployment**.
+    - Merging a PR into `main` automatically triggers the **Vercel Production Deployment** to `hvaclogic.org` (zero manual CLI deployment required).
   - **Pre-PR Verification Gate (MANDATORY)**:
     1. `npm test` (Vitest unit tests 100% passing).
     2. `npm run typecheck` (TypeScript zero compilation errors).
