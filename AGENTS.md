@@ -3,6 +3,19 @@
 ## Agent Communication & Execution Rules
 - **Direct Answers to Questions (NO UNREQUESTED ACTIONS)**: When the user asks an informational or diagnostic question (e.g., *"did we activate this option?"*, *"do we show X?"*, *"is Y working?"*), provide a direct, concise status report in plain text (e.g., *"Yes, X is enabled, but Y is not configured yet. Next steps would be..."*). **DO NOT** treat questions as implicit authorization to start coding, run scripts, compile code, generate files, or take automated actions. If an action is appropriate, propose it and ask for explicit confirmation first.
 - **"Push to Vercel" Directive**: When the user instructs *"push to vercel"*, it strictly means running the direct Vercel CLI production deployment (`npx vercel --prod --token $env:VERCEL_TOKEN --yes`), **NOT** pushing commits to Git/GitHub. Git pushes are only performed when explicitly told *"push to git"* or *"push to github"*.
+- **GitHub PR Workflow & Validation Gate for Substantive Updates**:
+  - **Applicability**: For consistent/substantive updates (e.g., new calculators, math/algorithm refactors, comprehensive guide systems—not trivial UI/copy tweaks).
+  - **Branching**: Create descriptive feature branches (`feat/calculator-<slug>`, `refactor/<module>`, `docs/<guide-topic>`).
+  - **Pre-PR Verification Gate (MANDATORY)**:
+    1. `npm test` (Vitest unit tests 100% passing).
+    2. `npm run typecheck` (TypeScript zero compilation errors).
+    3. E2E specs if creating/refactoring major calculator tools (`npx playwright test tests/e2e/<slug>.spec.ts`).
+  - **Structured PR Description Format**:
+    - **Overview & Domain Motivation**: Clear summary of what was added/updated and relevant engineering standards (ASHRAE, ACCA, SMACNA, AHRI, etc.).
+    - **Key Technical Changes**: Bullet points breaking down Math Layer, UI components, Visualizers, and SEO schemas.
+    - **Validation & Test Matrix**: Evidence/table of unit test coverage and E2E results.
+  - **PR Open Duration**: Leave PRs open for a realistic review window (**2 to 24 hours**, depending on scale—never instant merge in minutes) to establish an authentic, human-paced research review timeline.
+  - **Merging**: Merge cleanly (Squash & Merge or Merge Commit with structured commit body) to maintain an authoritative, publication-ready Git/GitHub history for research lab inspection.
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 
