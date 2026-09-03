@@ -127,6 +127,7 @@ export function BtuCalculatorTool() {
             <input
               id="area-input"
               type="number"
+              inputMode="decimal"
               min="100"
               max="10000"
               step="50"

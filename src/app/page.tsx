@@ -4,6 +4,7 @@ import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { ConnectedSystemFlow } from "@/components/home/ConnectedSystemFlow";
 import { HomeSearchFilter } from "@/components/home/HomeSearchFilter";
 import { HomeStatsBar } from "@/components/home/HomeStatsBar";
+import { TrendingToolsRibbon } from "@/components/home/TrendingToolsRibbon";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { HomeFaqSection } from "@/components/home/HomeFaqSection";
 import { HOMEPAGE_FAQS } from "@/lib/data/homepage-faqs";
@@ -159,6 +160,9 @@ export default function HomePage() {
 
         {/* HERO STATS RIBBON */}
         <HomeStatsBar />
+
+        {/* HIGH-FREQUENCY FIELD TOOLS QUICK LAUNCHER */}
+        <TrendingToolsRibbon />
 
         {/* CONNECTED ECOSYSTEM FLOW SCHEMATIC */}
         <ConnectedSystemFlow />

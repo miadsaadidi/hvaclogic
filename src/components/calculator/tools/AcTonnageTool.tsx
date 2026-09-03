@@ -134,6 +134,7 @@ export function AcTonnageTool() {
             <input
               id="ac-area-input"
               type="number"
+              inputMode="decimal"
               min="100"
               max="8000"
               step="50"

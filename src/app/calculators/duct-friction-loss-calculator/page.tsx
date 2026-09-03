@@ -59,6 +59,19 @@ export default function DuctFrictionLossPage() {
 
           <div style={{ marginTop: "1.5rem", lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
             <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.5rem" }}>
+              What is Duct TEL (Total Equivalent Length)?
+            </h3>
+            <p>
+              In HVAC engineering, <strong>Total Equivalent Length (TEL)</strong> represents the total aerodynamic resistance of the longest, most restrictive supply and return duct runs combined. Every bend, elbow, tee, damper, and transition causes internal turbulence that restricts airflow far more than straight sheet metal. TEL converts this fitting turbulence into an equivalent length of straight duct:
+            </p>
+            <p style={{ background: "var(--surface-raised)", borderLeft: "3px solid var(--accent)", padding: "0.6rem 0.9rem", margin: "0.75rem 0", borderRadius: "0 4px 4px 0" }}>
+              <strong>TEL Formula:</strong> <code>TEL = (Straight Supply Run + Supply Fitting Equivalent Feet) + (Straight Return Run + Return Fitting Equivalent Feet)</code>
+            </p>
+            <p>
+              A standard home might have only 100 feet of physical straight ductwork, but poor fittings (like unvaned mitered 90° elbows adding 45 equivalent feet each) can easily drive the system&apos;s TEL to <strong>350 or 450 feet</strong>, severely reducing available friction rate.
+            </p>
+
+            <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
               Why Manual D Available Static Pressure (ASP) Matters
             </h3>
             <p>

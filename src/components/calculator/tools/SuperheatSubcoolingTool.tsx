@@ -305,6 +305,7 @@ export function SuperheatSubcoolingTool() {
                 <input
                   id="suction-p-input"
                   type="number"
+                  inputMode="decimal"
                   min="5"
                   max="600"
                   step="1"
@@ -323,6 +324,7 @@ export function SuperheatSubcoolingTool() {
                 <input
                   id="suction-t-input"
                   type="number"
+                  inputMode="decimal"
                   min="-20"
                   max="120"
                   step="0.5"
@@ -349,6 +351,7 @@ export function SuperheatSubcoolingTool() {
                 <input
                   id="liquid-p-input"
                   type="number"
+                  inputMode="decimal"
                   min="20"
                   max="650"
                   step="1"
@@ -367,6 +370,7 @@ export function SuperheatSubcoolingTool() {
                 <input
                   id="liquid-t-input"
                   type="number"
+                  inputMode="decimal"
                   min="40"
                   max="160"
                   step="0.5"
@@ -394,6 +398,7 @@ export function SuperheatSubcoolingTool() {
                   <input
                     id="wb-in-input"
                     type="number"
+                    inputMode="decimal"
                     min="50"
                     max="76"
                     step="0.5"
@@ -408,6 +413,7 @@ export function SuperheatSubcoolingTool() {
                   <input
                     id="db-out-input"
                     type="number"
+                    inputMode="decimal"
                     min="55"
                     max="115"
                     step="1"

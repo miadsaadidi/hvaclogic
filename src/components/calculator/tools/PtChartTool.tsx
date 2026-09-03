@@ -170,6 +170,7 @@ export function PtChartTool() {
                 <input
                   id="pressure-input"
                   type="number"
+                  inputMode="decimal"
                   min={0}
                   max={650}
                   step={0.5}
@@ -199,6 +200,7 @@ export function PtChartTool() {
                 <input
                   id="temp-input"
                   type="number"
+                  inputMode="decimal"
                   min={-40}
                   max={160}
                   step={0.5}

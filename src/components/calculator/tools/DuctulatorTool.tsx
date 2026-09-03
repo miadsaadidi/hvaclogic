@@ -147,6 +147,7 @@ export function DuctulatorTool() {
               <input
                 id="cfm-input"
                 type="number"
+                inputMode="decimal"
                 min="10"
                 max="50000"
                 step="10"
@@ -179,6 +180,7 @@ export function DuctulatorTool() {
               <input
                 id="friction-input"
                 type="number"
+                inputMode="decimal"
                 min="0.01"
                 max="1.0"
                 step="0.01"

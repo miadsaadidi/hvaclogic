@@ -1,0 +1,47 @@
+# HVACLogic: Deterministic HVAC & Building Science Suite
+
+> HVACLogic (https://hvaclogic.org) provides open-access, client-side engineering calculation tools, physical models, and reference data for mechanical engineers, HVAC contractors, and building science researchers. All algorithms are grounded in deterministic formulas from ASHRAE, ACCA, SMACNA, NFPA, and EPA standards. Zero telemetry data leakage, 100% client-side precision.
+
+## Core Pillars & Calculator Directory
+
+### 1. Airflow & Duct Sizing (/airflow-ducts)
+- [Digital Ductulator & Sizer](https://hvaclogic.org/calculators/ductulator): Size round, rectangular, and flat-oval ducts using Colebrook-White friction and Huebscher equivalent diameter equations.
+- [Flex Duct CFM Sizing Chart](https://hvaclogic.org/calculators/flex-duct-cfm-chart): 4-inch to 20-inch flexible duct CFM capacity matrix across 0.05 to 0.15 in. wg friction rates with installation sag/compression derating.
+- [HVAC CFM Calculator](https://hvaclogic.org/calculators/cfm-calculator): Calculate sensible and latent airflow requirements (CFM = Q_sensible / (1.08 * delta_T)) and duct velocity.
+- [Duct Friction Loss & TEL Sizer](https://hvaclogic.org/calculators/duct-friction-loss-calculator): Calculate total duct system static pressure drop using Total Equivalent Length (TEL) and ACCA Manual D fitting loss coefficients.
+- [MERV Filter Sizing & Face Velocity](https://hvaclogic.org/calculators/filter-sizing): Filter face velocity, dust holding capacity, and clean pressure drop across MERV 8 to MERV 16 media.
+- [Kitchen Range Hood CFM Sizer](https://hvaclogic.org/calculators/kitchen-hood-cfm): Sizing kitchen exhaust ventilation per HVI, IRC M1503, and ASHRAE 62.2 standards with makeup air thresholds.
+
+### 2. Cooling & Heat Load Sizing (/cooling-loads)
+- [AC Tonnage Calculator](https://hvaclogic.org/calculators/ac-tonnage-calculator): Precise residential and commercial cooling tonnage sizing based on square footage, climate zone, ceiling height, and window solar heat gain.
+- [AC Model Number & Tonnage Decoder](https://hvaclogic.org/calculators/ac-model-decoder): Instant model nomenclature decoder for Carrier, Trane, Lennox, Goodman, Daikin, Rheem, and ICP condensing units to determine nominal tonnage and SEER2 ratings.
+- [BTU Calculator & AC Heat Load](https://hvaclogic.org/calculators/btu-calculator): Room-by-room sensible and latent heat load calculation matching ACCA Manual J methodologies.
+- [Mini-Split Sizing Calculator](https://hvaclogic.org/calculators/mini-split-sizing): Multi-zone inverter heat pump capacity, head unit allocation, and diversity factor sizing.
+
+### 3. Field Diagnostics & Refrigerants (/field-diagnostics)
+- [Refrigerant PT Chart (2026 Edition)](https://hvaclogic.org/calculators/pt-chart): Saturated vapor and liquid pressure-temperature curves for low-GWP A2L refrigerants (R-454B, R-32), A1 blends (R-410A, R-404A, R-134a), and natural refrigerants (R-717, R-290).
+- [Superheat & Subcooling Calculator](https://hvaclogic.org/calculators/superheat-subcooling-calculator): Target superheat calculation (non-bleed fixed orifice) and target subcooling (TXV/EEV) for accurate field charging diagnostics.
+- [Psychrometric Calculator](https://hvaclogic.org/calculators/psychrometric-calculator): Real-time moist air thermodynamic properties (enthalpy, humidity ratio, dew point, wet-bulb, dry-bulb, specific volume) using ASHRAE Hyland-Wexler formulations.
+- [Refrigerant Line Set Sizer](https://hvaclogic.org/calculators/refrigerant-charge-calculator): Additional refrigerant trim charge, oil return velocity, and suction/liquid line pressure drop estimation.
+
+### 4. Heating Systems & Decarbonization (/heating-systems)
+- [Heat Pump Sizing & Thermal Balance Point](https://hvaclogic.org/calculators/heat-pump-size-calculator): Balance point determination, auxiliary electric strip staging, and COP derating across sub-zero ambient temperatures.
+- [Furnace Sizing Calculator](https://hvaclogic.org/calculators/furnace-size-calculator): AFUE efficiency comparison (80% vs 96%+ condensing), BTU input/output sizing, and high-altitude derate factors.
+- [Hydronic Boiler Sizing](https://hvaclogic.org/calculators/boiler-sizing): Baseboard radiation linear footage, Equivalent Direct Radiation (EDR) cast iron radiator sizing, and water flow rate (GPM = BTU / (500 * delta_T)).
+- [Garage Heater Sizing](https://hvaclogic.org/calculators/garage-heater-sizing): Heating BTU requirements for detached/attached garages considering slab heat loss, infiltration, and door opening recovery.
+- [Combustion Air Sizer](https://hvaclogic.org/calculators/combustion-air-calculator): NFPA 54 / ANSI Z223.1 and IFGC Section 304 compliance for confined space combustion air (indoor air, 2-opening outdoor air, single-opening outdoor air, engineered fan-assisted systems).
+
+### 5. Building Science & Envelope (/building-science)
+- [Building Heat Loss Calculator](https://hvaclogic.org/calculators/heat-loss-calculator): Envelope conductive heat transmission (U * A * delta_T) and infiltration heat loss per ASHRAE Fundamentals.
+- [R-Value & U-Factor Assembly Calculator](https://hvaclogic.org/calculators/r-value-calculator): Multi-layer thermal resistance and overall heat transfer coefficient calculations for walls, attics, and continuous insulation (IECC compliance).
+
+## Standards & Reference Frameworks
+- ASHRAE Handbook of Fundamentals (2021/2025)
+- ACCA Manual D (Duct Design), Manual J (Residential Load), Manual S (Equipment Selection)
+- SMACNA HVAC Duct Construction Standards
+- NFPA 54 / ANSI Z223.1 National Fuel Gas Code
+- AHRI Standard 210/240 & EPA Clean Air Act Title VI (A2L Refrigerant Transition)
+
+## Contact & Citation
+- Domain: https://hvaclogic.org
+- Academic Citation Monograph: https://www.academia.edu/172310808/
