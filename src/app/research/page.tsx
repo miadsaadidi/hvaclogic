@@ -50,25 +50,46 @@ export default function ResearchHubPage() {
 
       {/* Hero Header */}
       <header style={{ marginBottom: "3rem", borderBottom: "1px solid var(--border-color)", paddingBottom: "2rem" }}>
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            padding: "0.3rem 0.85rem",
-            borderRadius: "9999px",
-            background: "rgba(56, 189, 248, 0.1)",
-            border: "1px solid rgba(56, 189, 248, 0.25)",
-            color: "var(--accent-cooling)",
-            fontSize: "0.78rem",
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            marginBottom: "1rem",
-          }}
-        >
-          <span>🎓</span>
-          <span>Academic Preprints &amp; Open Educational Resources (OER)</span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.3rem 0.85rem",
+              borderRadius: "9999px",
+              background: "rgba(56, 189, 248, 0.1)",
+              border: "1px solid rgba(56, 189, 248, 0.25)",
+              color: "var(--accent-cooling)",
+              fontSize: "0.78rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+            }}
+          >
+            <span>🎓</span>
+            <span>Academic Preprints &amp; Open Educational Resources (OER)</span>
+          </div>
+
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.45rem",
+              padding: "0.3rem 0.85rem",
+              borderRadius: "9999px",
+              background: "rgba(16, 185, 129, 0.1)",
+              border: "1px solid rgba(16, 185, 129, 0.25)",
+              color: "var(--accent-success)",
+              fontSize: "0.78rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+            }}
+          >
+            <span>🛡️</span>
+            <span>CC BY 4.0 Open Access</span>
+          </div>
         </div>
         <h1 style={{ fontSize: "2.35rem", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: "0.75rem", lineHeight: 1.2 }}>
           Engineering Research &amp; Technical Whitepapers
