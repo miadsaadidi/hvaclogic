@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { siteConfig } from "@/lib/site-config";
 
 interface EmbedModalProps {
   toolRoute: string;
@@ -27,8 +28,10 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
 
   if (!isOpen) return null;
 
-  const embedUrl = `https://hvaclogic.org${toolRoute}?embed=true`;
-  const iframeCode = `<iframe src="${embedUrl}" width="100%" height="${height}" style="border:1px solid #2e3b52;border-radius:12px;max-width:960px;width:100%;" title="${toolName} — HVACLogic" loading="lazy" allow="clipboard-write"></iframe>\n<p style="font-size:12px;color:#64748b;margin-top:6px;font-family:sans-serif;">Free HVAC calculations verified against ASHRAE &amp; ACCA standards by <a href="https://hvaclogic.org${toolRoute}" target="_blank" rel="noopener" style="color:#00d2ff;text-decoration:underline;font-weight:600;">HVACLogic Engineering Suite</a></p>`;
+  const slug = toolRoute.replace(/^\/calculators\//, "");
+  const embedUrl = `${siteConfig.canonicalDomain}/embed/${slug}`;
+  const canonicalToolUrl = `${siteConfig.canonicalDomain}${toolRoute}`;
+  const iframeCode = `<iframe src="${embedUrl}" width="100%" height="${height}" style="border:1px solid #2e3b52;border-radius:12px;max-width:960px;width:100%;" title="${toolName} — HVACLogic" loading="lazy" allow="clipboard-write"></iframe>\n<p style="font-size:12px;color:#64748b;margin-top:6px;font-family:sans-serif;">Free HVAC calculations verified against ASHRAE &amp; ACCA standards by <a href="${canonicalToolUrl}" target="_blank" rel="noopener" style="color:#00d2ff;text-decoration:underline;font-weight:600;">HVACLogic Engineering Suite</a></p>`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(iframeCode);

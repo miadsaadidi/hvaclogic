@@ -116,9 +116,12 @@ export function SiteFooter() {
               Standards &amp; Trust
             </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
+              <li><Link href="/research" style={{ fontWeight: 600, color: "var(--accent-cooling)" }}>🎓 Research &amp; Whitepapers</Link></li>
+              <li><Link href="/standards" style={{ fontWeight: 600 }}>📜 Standards &amp; Codes Matrix</Link></li>
               <li><Link href="/ashrae-climatic-data" style={{ fontWeight: 600 }}>📍 ASHRAE Climatic Design Data</Link></li>
               <li><Link href="/methodology" style={{ fontWeight: 600 }}>📐 Calculation Methodology</Link></li>
               <li><Link href="/sources" style={{ fontWeight: 600 }}>🏛️ Laboratory Sources &amp; Codes</Link></li>
+              <li><Link href="/developers" style={{ fontWeight: 600 }}>🔌 API &amp; Embed Widgets</Link></li>
               <li><Link href="/about" style={{ fontWeight: 600 }}>ℹ️ About HVACLogic</Link></li>
               <li><Link href="/privacy" style={{ fontWeight: 600 }}>🔒 Privacy Policy</Link></li>
               <li>

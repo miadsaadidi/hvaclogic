@@ -213,6 +213,30 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
           url: `${canonicalUrl}#step-${s.stepNumber || idx + 1}`,
         })),
       },
+      {
+        "@type": "Dataset",
+        "@id": `${canonicalUrl}#dataset`,
+        name: `${calculator.name} Deterministic Reference Dataset`,
+        description: `Deterministic dataset and physical loss matrix for ${calculator.name} governed by ${calculator.standards.join(" and ")}.`,
+        url: canonicalUrl,
+        license: "https://creativecommons.org/licenses/by/4.0/",
+        isAccessibleForFree: true,
+        creator: {
+          "@type": "Organization",
+          name: "HVACLogic Open-Access Building Science Research Group",
+          url: siteConfig.canonicalDomain,
+        },
+        variableMeasured: calculator.features,
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": `${canonicalUrl}#sourcecode`,
+        name: `${calculator.name} Deterministic Engine`,
+        programmingLanguage: "TypeScript",
+        runtimePlatform: "Modern Web Browsers (ECMAScript 2022+)",
+        codeRepository: "https://github.com/miadsaadidi/hvaclogic",
+        license: "https://opensource.org/licenses/MIT",
+      },
     ],
   };
 

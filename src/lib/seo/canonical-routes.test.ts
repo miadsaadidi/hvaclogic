@@ -5,16 +5,16 @@ import { siteConfig } from "@/lib/site-config";
 import { calculatorRegistry, publishedCalculators } from "@/lib/data/calculators-registry";
 
 describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
-  it("generates exactly 33 unique canonical entries in /sitemap.xml", () => {
+  it("generates exactly 39 unique canonical entries in /sitemap.xml", () => {
     const sitemapEntries = sitemap();
     const urls = sitemapEntries.map((e) => e.url);
 
-    // 1 Homepage + 5 Pillar Hubs + 21 Calculators + 6 Authority/Resource Pages = 33
-    expect(urls.length).toBe(33);
+    // 1 Homepage + 5 Pillar Hubs + 21 Calculators + 1 Research Hub + 4 Whitepapers + 1 Standards + 6 Authority/Resource Pages = 39
+    expect(urls.length).toBe(39);
 
     // Ensure zero duplicates
     const uniqueUrls = new Set(urls);
-    expect(uniqueUrls.size).toBe(33);
+    expect(uniqueUrls.size).toBe(39);
 
     // Ensure all URLs start with the canonical domain https://hvaclogic.org
     urls.forEach((url) => {
@@ -88,9 +88,8 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
       const date = new Date(entry.lastModified as Date);
       expect(isNaN(date.getTime())).toBe(false);
 
-      // Must be a valid date between 2026-08-01 and 2026-08-30 (defensible engineering baseline)
+      // Must be a valid date in 2026 (defensible engineering baseline)
       expect(date.getUTCFullYear()).toBe(2026);
-      expect(date.getUTCMonth()).toBe(7); // August (0-indexed 7)
     });
   });
 

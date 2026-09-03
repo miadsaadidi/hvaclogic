@@ -16,6 +16,7 @@ import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
+import { StepDerivationDrawer, DerivationStep } from "@/components/calculator/StepDerivationDrawer";
 
 const PRESETS = [
   {
@@ -485,6 +486,38 @@ export function DuctFrictionTool() {
             </div>
           </div>
 
+          {/* STEP-BY-STEP MATHEMATICAL DERIVATION INSPECTOR */}
+          <StepDerivationDrawer
+            toolName="Duct Friction Loss & ACCA Manual D Friction Rate Sizing"
+            governingStandard="ACCA Manual D (3rd Edition) & ASHRAE Fundamentals Ch. 21"
+            steps={[
+              {
+                stepNumber: 1,
+                title: "Calculate Available Static Pressure (ASP)",
+                formulaLatex: "\\text{ASP} = \\text{TESP} - (\\Delta P_{\\text{coil}} + \\Delta P_{\\text{filter}})",
+                substitutionLatex: `\\text{ASP} = ${tesp.toFixed(2)} - (${coilDrop.toFixed(2)} + ${filterDrop.toFixed(2)})`,
+                resultText: `${output.availableStaticPressureAspInWg.toFixed(3)} in.wg`,
+                governingStandard: "ACCA Manual D Section 3",
+              },
+              {
+                stepNumber: 2,
+                title: "Determine Total Equivalent Length (TEL)",
+                formulaLatex: "\\text{TEL} = L_{\\text{supply}} + \\sum \\text{EL}_{\\text{supply fittings}} + L_{\\text{return}} + \\sum \\text{EL}_{\\text{return fittings}}",
+                substitutionLatex: `\\text{TEL} = ${output.totalSupplyLengthFt} + ${output.totalReturnLengthFt}`,
+                resultText: `${output.totalEquivalentLengthTelFt} ft`,
+                governingStandard: "ACCA Manual D Fitting Tables",
+              },
+              {
+                stepNumber: 3,
+                title: "Compute Design Friction Rate (FR)",
+                formulaLatex: "\\text{FR} = \\frac{\\text{ASP} \\times 100}{\\text{TEL}}",
+                substitutionLatex: `\\text{FR} = \\frac{${output.availableStaticPressureAspInWg.toFixed(3)} \\times 100}{${output.totalEquivalentLengthTelFt}}`,
+                resultText: `${output.designFrictionRateFr.toFixed(3)} in.wg / 100 ft`,
+                governingStandard: "ACCA Manual D Eq. 3-1",
+              },
+            ]}
+          />
+
           {/* GOOGLE PREFERRED SOURCE BANNER */}
           <GooglePreferredBanner />
 
@@ -492,6 +525,26 @@ export function DuctFrictionTool() {
           <ActionButtonBar
             toolRoute="/calculators/duct-friction-loss-calculator"
             toolName="Duct Friction Loss & Total Equivalent Length (TEL) Sizer"
+            governingStandard="ACCA Manual D (3rd Edition)"
+            inputs={{
+              "Blower TESP": `${tesp} in.wg`,
+              "Coil Pressure Drop": `${coilDrop} in.wg`,
+              "Filter Pressure Drop": `${filterDrop} in.wg`,
+              "Supply Straight Run": `${supplyStraight} ft`,
+              "Return Straight Run": `${returnStraight} ft`,
+              "Smooth 90° Elbows": smoothElbows,
+              "Mitered 90° Elbows": miteredElbows,
+              "Conical Takeoffs": conicalTakeoffs,
+              "Register Boots": boots,
+            }}
+            outputs={{
+              "Available Static Pressure (ASP)": `${output.availableStaticPressureAspInWg.toFixed(3)} in.wg`,
+              "Total Equivalent Length (TEL)": `${output.totalEquivalentLengthTelFt} ft`,
+              "Supply Trunk TEL": `${output.totalSupplyLengthFt} ft`,
+              "Return Trunk TEL": `${output.totalReturnLengthFt} ft`,
+              "Design Friction Rate": `${output.designFrictionRateFr.toFixed(3)} in.wg/100ft`,
+              "Sizing Evaluation": output.frictionRateStatus,
+            }}
             onExportCsv={handleExportCsv}
           />
 

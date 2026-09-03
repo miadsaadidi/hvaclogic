@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import { EmbedModal } from "@/components/calculator/EmbedModal";
 import { PrintSubmittalModal, SubmittalMeta } from "@/components/calculator/PrintSubmittalModal";
 import { ForumReportModal } from "@/components/calculator/ForumReportModal";
+import { CopyForAiButton } from "@/components/calculator/CopyForAiButton";
+import { ResearchDataExportModal } from "@/components/calculator/ResearchDataExportModal";
 
 interface ActionButtonBarProps {
   toolRoute: string;
@@ -11,6 +13,8 @@ interface ActionButtonBarProps {
   onExportCsv?: () => void;
   diagnosticSummary?: Record<string, string | number>;
   governingStandard?: string;
+  inputs?: Record<string, string | number>;
+  outputs?: Record<string, string | number>;
 }
 
 export function ActionButtonBar({
@@ -18,16 +22,20 @@ export function ActionButtonBar({
   toolName,
   onExportCsv,
   diagnosticSummary,
-  governingStandard,
+  governingStandard = "ASHRAE / ACCA",
+  inputs,
+  outputs,
 }: ActionButtonBarProps) {
   const [copied, setCopied] = useState(false);
   const [embedOpen, setEmbedOpen] = useState(false);
   const [printOpen, setPrintOpen] = useState(false);
   const [forumOpen, setForumOpen] = useState(false);
+  const [exportModalOpen, setExportModalOpen] = useState(false);
 
   const embedTriggerRef = useRef<HTMLButtonElement>(null);
   const printTriggerRef = useRef<HTMLButtonElement>(null);
   const forumTriggerRef = useRef<HTMLButtonElement>(null);
+  const exportTriggerRef = useRef<HTMLButtonElement>(null);
 
   const closeEmbed = () => {
     setEmbedOpen(false);
@@ -42,6 +50,11 @@ export function ActionButtonBar({
   const closeForum = () => {
     setForumOpen(false);
     requestAnimationFrame(() => forumTriggerRef.current?.focus());
+  };
+
+  const closeExportModal = () => {
+    setExportModalOpen(false);
+    requestAnimationFrame(() => exportTriggerRef.current?.focus());
   };
 
   const handleShare = () => {
@@ -63,6 +76,9 @@ export function ActionButtonBar({
     }
   };
 
+  const effectiveInputs = inputs || diagnosticSummary || {};
+  const effectiveOutputs = outputs || diagnosticSummary || {};
+
   return (
     <>
       <div className="action-button-bar" role="toolbar" aria-label="Tool actions">
@@ -74,6 +90,13 @@ export function ActionButtonBar({
         >
           {copied ? "✓ Copied Link!" : "🔗 Share Link"}
         </button>
+
+        <CopyForAiButton
+          toolName={toolName}
+          governingStandard={governingStandard}
+          inputs={effectiveInputs}
+          outputs={effectiveOutputs}
+        />
 
         <button
           ref={forumTriggerRef}
@@ -95,16 +118,21 @@ export function ActionButtonBar({
           🖨️ Print Spec
         </button>
 
-        {onExportCsv && (
-          <button
-            onClick={onExportCsv}
-            className="action-btn"
-            title="Export calculation results as CSV spreadsheet"
-            type="button"
-          >
-            📊 Export CSV
-          </button>
-        )}
+        <button
+          ref={exportTriggerRef}
+          onClick={() => {
+            if (onExportCsv && !inputs && !outputs) {
+              onExportCsv();
+            } else {
+              setExportModalOpen(true);
+            }
+          }}
+          className="action-btn"
+          title="Export research calculation data as CSV spreadsheet or Schema.org JSON"
+          type="button"
+        >
+          📊 Export Data
+        </button>
 
         <button
           ref={embedTriggerRef}
@@ -133,10 +161,19 @@ export function ActionButtonBar({
         onClose={closeEmbed}
       />
 
+      <ResearchDataExportModal
+        toolName={toolName}
+        isOpen={exportModalOpen}
+        onClose={closeExportModal}
+        governingStandard={governingStandard}
+        inputs={effectiveInputs}
+        outputs={effectiveOutputs}
+      />
+
       <PrintSubmittalModal
         calculatorName={toolName}
         categoryName="HVAC Engineering"
-        governingStandard="ASHRAE / ACCA"
+        governingStandard={governingStandard}
         isOpen={printOpen}
         onClose={closePrint}
         onPrint={handlePrintConfirm}
