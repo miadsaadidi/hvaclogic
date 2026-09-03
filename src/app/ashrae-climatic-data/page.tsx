@@ -6,18 +6,34 @@ import { ashraeClimaticDataset } from "@/lib/data/ashrae-climatic-data";
 import { ClimaticDataTable } from "./ClimaticDataTable";
 
 export const metadata: Metadata = {
-  title: "ASHRAE Climatic Design Conditions (50 US States & Canada) | HVACLogic",
+  title: "ASHRAE Climatic Design Conditions",
   description:
-    "Comprehensive ASHRAE 99% winter heating and 0.4% summer cooling design temperatures for all 50 US states and Canadian metros. ACCA Manual J & ASHRAE 90.1 weather data.",
+    "ASHRAE 99% winter heating and 0.4% summer cooling design temperatures for all 50 US states and Canadian metros. ACCA Manual J & 90.1 climatic weather data.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/ashrae-climatic-data`,
   },
   openGraph: {
-    title: "ASHRAE Climatic Design Conditions Database | HVACLogic",
+    title: "ASHRAE Climatic Design Conditions Database",
     description:
       "Searchable weather data for 50 US states: 99% Winter DB, 0.4% Summer DB, Coincident WB, and IECC Climate Zones for HVAC load sizing.",
     url: `${siteConfig.canonicalDomain}/ashrae-climatic-data`,
+    siteName: siteConfig.name,
+    locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "ASHRAE Climatic Design Conditions — HVACLogic",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ASHRAE Climatic Design Conditions Database",
+    description: "Searchable meteorological design conditions for 50 US states.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

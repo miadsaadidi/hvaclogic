@@ -56,6 +56,7 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         name: calculator.name,
         url: canonicalUrl,
         description: calculator.metaDescription,
+        image: `${siteConfig.canonicalDomain}/opengraph-image`,
         applicationCategory: "UtilitiesApplication",
         operatingSystem: "All (Modern Web Browsers, iOS, Android, macOS, Windows)",
         browserRequirements: "Requires JavaScript. Requires HTML5 Canvas/SVG.",
@@ -90,9 +91,14 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
       {
         "@type": "TechArticle",
         "@id": `${canonicalUrl}#article`,
-        headline: calculator.seoTitle,
+        headline: calculator.name,
         description: calculator.metaDescription,
         url: canonicalUrl,
+        image: [`${siteConfig.canonicalDomain}/opengraph-image`],
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": canonicalUrl,
+        },
         datePublished: "2026-01-15",
         dateModified: calculator.lastEngineeringReview || "2026-08-19",
         inLanguage: "en-US",
@@ -167,6 +173,7 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         "@id": `${canonicalUrl}#howto`,
         name: `How to Calculate ${calculator.name}`,
         description: `Step-by-step calculation and engineering sizing procedure for ${calculator.name} in accordance with ${calculator.standards.join(" / ")} standards.`,
+        image: `${siteConfig.canonicalDomain}/opengraph-image`,
         totalTime: "PT2M",
         estimatedCost: {
           "@type": "MonetaryAmount",
@@ -211,6 +218,7 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
           name: s.title,
           text: s.instruction,
           url: `${canonicalUrl}#step-${s.stepNumber || idx + 1}`,
+          image: `${siteConfig.canonicalDomain}/opengraph-image`,
         })),
       },
       {

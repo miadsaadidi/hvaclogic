@@ -3,11 +3,11 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Laboratory Sources & Engineering Standards — HVACLogic",
+  title: "Laboratory Sources & Engineering Standards",
   description: "Official standards powering HVACLogic: ASHRAE Handbook, ACCA Manuals J/S/D, SMACNA, EPA Section 608, AHRI 210/240, and NIST REFPROP.",
   alternates: { canonical: `${siteConfig.canonicalDomain}/sources` },
   openGraph: {
-    title: "Laboratory Sources & Standards — HVACLogic",
+    title: "Laboratory Sources & Standards",
     description: "Scientific and industry references informing HVACLogic deterministic calculation engines.",
     url: `${siteConfig.canonicalDomain}/sources`,
     siteName: siteConfig.name,

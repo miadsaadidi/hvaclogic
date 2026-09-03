@@ -7,13 +7,13 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Heating & Heat Pump Sizing Calculators | HVACLogic",
+  title: "Heating & Heat Pump Sizing Calculators",
   description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/heating-systems`,
   },
   openGraph: {
-    title: "Heating & Heat Pump Sizing Calculators | HVACLogic",
+    title: "Heating & Heat Pump Sizing Calculators",
     description: "Calculate heat pump balance points, furnace sizing, combustion air requirements, and boiler EDR loads for residential and commercial heating.",
     url: `${siteConfig.canonicalDomain}/heating-systems`,
     siteName: siteConfig.name,
@@ -58,12 +58,14 @@ export default function HeatingSystemsHub() {
       </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
+      <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
+        Available Heating &amp; Heat Pump Calculators
+      </h2>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))",
           gap: "1.25rem",
-          marginTop: "2rem",
           marginBottom: "3rem",
         }}
       >

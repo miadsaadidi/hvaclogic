@@ -6,23 +6,32 @@ import { GLOSSARY_TERMS } from "@/lib/data/glossary-terms";
 import { GlossaryExplorer } from "./GlossaryExplorer";
 
 export const metadata: Metadata = {
-  title: "HVAC & Building Science Engineering Glossary | HVACLogic",
+  title: "HVAC & Building Science Engineering Glossary",
   description: "Comprehensive engineering glossary of thermodynamic, airflow, refrigeration, and building science terminology defined by ASHRAE, ACCA, and AHRI standards.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/glossary`,
   },
   openGraph: {
-    title: "HVAC & Building Science Engineering Glossary | HVACLogic",
+    title: "HVAC & Building Science Engineering Glossary",
     description: "Definitive technical glossary for HVAC engineers, technicians, and building scientists covering CFM, SEER2, Superheat, Enthalpy, and A2L refrigerants.",
     url: `${siteConfig.canonicalDomain}/glossary`,
-    siteName: "HVACLogic",
+    siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "HVAC & Building Science Engineering Glossary — HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC & Building Science Engineering Glossary | HVACLogic",
+    title: "HVAC & Building Science Engineering Glossary",
     description: "Standardized thermodynamic and airflow terminology definitions.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

@@ -86,6 +86,7 @@ export default function HomePage() {
           "@type": "ListItem",
           position: idx + 1,
           name: c.name,
+          item: new URL(c.route, siteConfig.canonicalDomain).toString(),
           url: new URL(c.route, siteConfig.canonicalDomain).toString(),
           description: c.metaDescription,
         })),

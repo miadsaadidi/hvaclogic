@@ -6,16 +6,16 @@ import { CodeFormulaBlock } from "@/components/seo/CodeFormulaBlock";
 import { CitationExportButton } from "@/components/seo/CitationExportButton";
 
 export const metadata: Metadata = {
-  title: "Engineering Methodology & Physical Models | HVACLogic",
-  description: "Scientific documentation of HVACLogic calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
+  title: "Engineering Methodology & Formulas",
+  description: "Scientific documentation of calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/methodology`,
   },
   openGraph: {
-    title: "Engineering Methodology & Physical Models | HVACLogic",
-    description: "Scientific documentation of HVACLogic calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
+    title: "Engineering Methodology & Formulas",
+    description: "Scientific documentation of calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
     url: `${siteConfig.canonicalDomain}/methodology`,
-    siteName: "HVACLogic",
+    siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
     images: [

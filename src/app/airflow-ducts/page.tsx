@@ -7,13 +7,13 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Airflow & Duct Sizing Calculators | HVACLogic",
+  title: "Airflow & Duct Sizing Calculators",
   description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/airflow-ducts`,
   },
   openGraph: {
-    title: "Airflow & Duct Sizing Calculators | HVACLogic",
+    title: "Airflow & Duct Sizing Calculators",
     description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
     url: `${siteConfig.canonicalDomain}/airflow-ducts`,
     siteName: siteConfig.name,
@@ -58,12 +58,14 @@ export default function AirflowDuctsHub() {
       </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
+      <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
+        Available Airflow &amp; Duct Calculators
+      </h2>
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))",
           gap: "1.25rem",
-          marginTop: "2rem",
           marginBottom: "3rem",
         }}
       >
