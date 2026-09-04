@@ -22,6 +22,14 @@
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 - **Separate Copyable Blocks for Metadata**: Whenever providing metadata, tags, titles, descriptions, or form fields for publishing (e.g. Medium, Dev.to, Academia.edu), ALWAYS output **each individual field in its own separate, dedicated code block** for instant 1-click copying. NEVER group multiple fields into a single shared block.
+- **Mandatory Multi-File Inspection for SEO & Daily Operations Inquiries**: When asked "what is today's SEO plan?", "what's next in SEO?", or for any operational schedule/status:
+  - **NEVER** answer from memory or provide a fixed/partial list.
+  - **MANDATORY FILE INSPECTION**: The agent MUST explicitly inspect all 4 operational tracker files using view tools before generating the answer:
+    1. [`docs/14-seo-progress-tracker.md`](./docs/14-seo-progress-tracker.md) (Daily on-page checklist, outreach CRM, GSC scorecard)
+    2. [`docs/15-medium-publishing-and-interlinking-tracker.md`](./docs/15-medium-publishing-and-interlinking-tracker.md) (Medium 15-article calendar)
+    3. [`docs/DEV-TO-EDITORIAL-GUIDELINES.md`](./docs/DEV-TO-EDITORIAL-GUIDELINES.md) (DEV.to 8-article calendar)
+    4. [`docs/13-30-day-seo-authority-plan.md`](./docs/13-30-day-seo-authority-plan.md) (Academia.edu & preprint schedule)
+  - Dynamically synthesize and report every deliverable scheduled for that date across all 4 files (Medium, DEV.to, Academia.edu, On-Page, Outreach CRM).
 
 ---
 
