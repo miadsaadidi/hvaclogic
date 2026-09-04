@@ -21,6 +21,7 @@
     - **Outcome**: The PR is marked **Closed / Merged** in GitHub history, the temporary branch is deleted from GitHub and Vercel Active Branches, and Vercel automatically deploys `main` to **Production (`hvaclogic.org`)**.
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
+- **Separate Copyable Blocks for Metadata**: Whenever providing metadata, tags, titles, descriptions, or form fields for publishing (e.g. Medium, Dev.to, Academia.edu), ALWAYS output **each individual field in its own separate, dedicated code block** for instant 1-click copying. NEVER group multiple fields into a single shared block.
 
 ---
 
