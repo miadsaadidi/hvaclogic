@@ -2,23 +2,23 @@
 
 ## Agent Communication & Execution Rules
 - **Direct Answers to Questions (NO UNREQUESTED ACTIONS)**: When the user asks an informational or diagnostic question (e.g., *"did we activate this option?"*, *"do we show X?"*, *"is Y working?"*), provide a direct, concise status report in plain text (e.g., *"Yes, X is enabled, but Y is not configured yet. Next steps would be..."*). **DO NOT** treat questions as implicit authorization to start coding, run scripts, compile code, generate files, or take automated actions. If an action is appropriate, propose it and ask for explicit confirmation first.
-- **GitHub PR & Vercel Automated Deployment Workflow**:
+- **GitHub PR & Vercel Automated Deployment Lifecycle**:
   - **Scale Thresholds**:
     - **Small Tweaks (No PR required)**: Direct commits to `main` for simple text/copy corrections, minor CSS refinements, or small single-file bug fixes.
     - **Medium / Large Updates (MANDATORY PR)**: Create a dedicated feature branch (`feat/<topic>`, `refactor/<module>`, `docs/<topic>`) and open a GitHub Pull Request for multi-feature additions, new pages/routes, new calculators, major mathematical refactors, or schema architectures.
-  - **Automated Vercel Deployments**:
-    - Pushing to a feature branch automatically triggers an isolated **Vercel Preview Deployment**.
-    - Merging a PR into `main` automatically triggers the **Vercel Production Deployment** to `hvaclogic.org` (zero manual CLI deployment required).
-  - **Pre-PR Verification Gate (MANDATORY)**:
+  - **Step 1: Pre-PR Verification Gate (MANDATORY)**:
     1. `npm test` (Vitest unit tests 100% passing).
     2. `npm run typecheck` (TypeScript zero compilation errors).
     3. E2E specs if creating/refactoring major calculator tools (`npx playwright test tests/e2e/<slug>.spec.ts`).
-  - **Structured PR Description Format**:
-    - **Overview & Domain Motivation**: Clear summary of what was added/updated and relevant engineering standards (ASHRAE, ACCA, SMACNA, AHRI, etc.).
-    - **Key Technical Changes**: Bullet points breaking down Math Layer, UI components, Visualizers, and SEO schemas.
-    - **Validation & Test Matrix**: Evidence/table of unit test coverage and E2E results.
-  - **PR Open Duration**: Leave PRs open for a realistic review window (**2 to 24 hours**, depending on scale—never instant merge in minutes) to establish an authentic, human-paced research review timeline.
-  - **Merging**: Merge cleanly (Squash & Merge or Merge Commit with structured commit body) to maintain an authoritative, publication-ready Git/GitHub history for research lab inspection.
+  - **Step 2: Push & IMMEDIATE Formal PR Creation (MANDATORY)**:
+    - Push the branch to `origin`: `git push -u origin feat/<slug>`.
+    - **IMMEDIATELY OPEN THE FORMAL GITHUB PR**: Never stop at pushing the raw branch. The agent must immediately create the formal Pull Request on GitHub via API/CLI so that it appears as **Open** in the GitHub Pull Requests tab with structured domain motivation, technical changes, and test verification.
+  - **Step 3: PR Open Duration**:
+    - Leave PRs open for a realistic review window (**2 to 24 hours**, depending on scale—never instant merge in minutes) to establish an authentic, human-paced research review timeline.
+    - Vercel automatically deploys an isolated **Preview Deployment** linked to the PR.
+  - **Step 4: Clean Merge & Branch Cleanup**:
+    - Merge via GitHub PR merge (or fast-forward with immediate remote branch deletion `git push origin --delete feat/<slug>`).
+    - **Outcome**: The PR is marked **Closed / Merged** in GitHub history, the temporary branch is deleted from GitHub and Vercel Active Branches, and Vercel automatically deploys `main` to **Production (`hvaclogic.org`)**.
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 
