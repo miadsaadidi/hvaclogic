@@ -6,14 +6,14 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Heating, Heat Pump & Electrification Calculators | HVACLogic",
-  description: "Calculate cold-climate heat pump balance points, furnace sizing, combustion air requirements (NFPA 54), and boiler EDR loads adhering to ACCA Manual J/S and AHRI 210/240.",
+  title: "Heating & Heat Pump Calculators",
+  description: "Calculate cold-climate heat pump balance points, furnace sizing, NFPA 54 combustion air, and boiler loads adhering to ACCA Manual J/S and AHRI standards.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/heating-systems`,
   },
   openGraph: {
-    title: "Heating, Heat Pump & Electrification Calculators | HVACLogic",
-    description: "Calculate cold-climate heat pump balance points, furnace sizing, combustion air requirements (NFPA 54), and boiler EDR loads adhering to ACCA Manual J/S and AHRI 210/240.",
+    title: "Heating & Heat Pump Calculators",
+    description: "Calculate cold-climate heat pump balance points, furnace sizing, NFPA 54 combustion air, and boiler loads adhering to ACCA Manual J/S and AHRI standards.",
     url: `${siteConfig.canonicalDomain}/heating-systems`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Heating, Heat Pump & Electrification Calculators | HVACLogic",
-    description: "Calculate cold-climate heat pump balance points, furnace sizing, combustion air requirements (NFPA 54), and boiler EDR loads adhering to ACCA Manual J/S and AHRI 210/240.",
+    title: "Heating & Heat Pump Calculators",
+    description: "Calculate cold-climate heat pump balance points, furnace sizing, NFPA 54 combustion air, and boiler loads adhering to ACCA Manual J/S and AHRI standards.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };

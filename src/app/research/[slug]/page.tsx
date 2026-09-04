@@ -25,15 +25,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = `${siteConfig.canonicalDomain}/research/${paper.slug}`;
   const pdfFullUrl = `${siteConfig.canonicalDomain}${paper.pdfUrl}`;
 
+  const metaTitle = paper.seoTitle || paper.title;
+  const metaDescription = paper.seoDescription || paper.abstract;
+
   return {
-    title: `${paper.title} — Technical Report | HVACLogic`,
-    description: paper.abstract,
+    title: metaTitle,
+    description: metaDescription,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${paper.title} — Technical Report | HVACLogic`,
-      description: paper.abstract,
+      title: metaTitle,
+      description: metaDescription,
       url: canonicalUrl,
       siteName: "HVACLogic",
       type: "article",
@@ -42,8 +45,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${paper.title} | HVACLogic Research`,
-      description: paper.abstract,
+      title: metaTitle,
+      description: metaDescription,
     },
     // Highwire Press metadata for Google Scholar and Semantic Scholar indexing
     other: {
@@ -280,9 +283,9 @@ export default async function ResearchPaperPage({ params }: PageProps) {
               }}
             >
               <div>
-                <h4 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.4rem" }}>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.4rem" }}>
                   {c.name}
-                </h4>
+                </h3>
                 <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.5, marginBottom: "1rem" }}>
                   {c.description}
                 </p>
@@ -323,9 +326,9 @@ export default async function ResearchPaperPage({ params }: PageProps) {
         </p>
 
         <div style={{ marginBottom: "1.25rem" }}>
-          <h4 style={{ fontSize: "0.82rem", fontWeight: 700, textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.4rem" }}>
+          <h3 style={{ fontSize: "0.82rem", fontWeight: 700, textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.4rem" }}>
             APA Format:
-          </h4>
+          </h3>
           <pre
             style={{
               margin: 0,
@@ -345,9 +348,9 @@ export default async function ResearchPaperPage({ params }: PageProps) {
         </div>
 
         <div>
-          <h4 style={{ fontSize: "0.82rem", fontWeight: 700, textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.4rem" }}>
+          <h3 style={{ fontSize: "0.82rem", fontWeight: 700, textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.4rem" }}>
             BibTeX Entry:
-          </h4>
+          </h3>
           <pre
             style={{
               margin: 0,

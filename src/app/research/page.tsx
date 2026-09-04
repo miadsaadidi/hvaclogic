@@ -5,14 +5,14 @@ import { siteConfig } from "@/lib/site-config";
 import { RESEARCH_PAPERS } from "@/lib/data/research-papers";
 
 export const metadata: Metadata = {
-  title: "Engineering Research & Technical Whitepapers | HVACLogic",
-  description: "Peer-referenced open access technical whitepapers and mathematical frameworks for building science, heat pump thermodynamics, duct aerodynamics, and ventilation mass-balance.",
+  title: "Research & Technical Whitepapers",
+  description: "Open-access technical whitepapers and mathematical frameworks for building science, heat pump thermodynamics, duct aerodynamics, and ventilation mass balance.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/research`,
   },
   openGraph: {
-    title: "Engineering Research & Technical Whitepapers | HVACLogic",
-    description: "Peer-referenced open access technical whitepapers and mathematical frameworks for building science, heat pump thermodynamics, duct aerodynamics, and ventilation mass-balance.",
+    title: "Research & Technical Whitepapers",
+    description: "Open-access technical whitepapers and mathematical frameworks for building science, heat pump thermodynamics, duct aerodynamics, and ventilation mass balance.",
     url: `${siteConfig.canonicalDomain}/research`,
     siteName: "HVACLogic",
     locale: "en_US",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Engineering Research & Technical Whitepapers | HVACLogic",
-    description: "Peer-referenced open access technical whitepapers and mathematical frameworks for building science, heat pump thermodynamics, duct aerodynamics, and ventilation mass-balance.",
+    title: "Research & Technical Whitepapers",
+    description: "Open-access technical whitepapers and mathematical frameworks for building science, heat pump thermodynamics, duct aerodynamics, and ventilation mass balance.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
@@ -242,9 +242,9 @@ export default function ResearchHubPage() {
           marginTop: "2rem",
         }}
       >
-        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.75rem" }}>
+        <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.75rem" }}>
           🎓 Academic &amp; Vocational Curriculum Integration (OER)
-        </h3>
+        </h2>
         <p style={{ fontSize: "0.92rem", color: "var(--text-muted)", lineHeight: 1.6, marginBottom: "1rem" }}>
           HVACLogic research preprints and deterministic computational engines are engineered for direct adoption into university mechanical engineering syllabi (ABET accredited), trade school apprenticeship programs (UA, RSES, NATE, HVAC Excellence), and peer research:
         </p>

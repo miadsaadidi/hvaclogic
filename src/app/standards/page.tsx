@@ -6,13 +6,13 @@ import { ENGINEERING_STANDARDS } from "@/lib/data/standards-matrix";
 import { CodeFormulaBlock } from "@/components/seo/CodeFormulaBlock";
 
 export const metadata: Metadata = {
-  title: "HVAC Engineering Standards & Code Compliance Matrix | HVACLogic",
+  title: "Standards & Code Compliance Matrix",
   description: "Cross-reference index linking ASHRAE, ACCA, SMACNA, AHRI, and EPA engineering codes directly to HVACLogic calculation engines and mathematical equations.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/standards`,
   },
   openGraph: {
-    title: "HVAC Engineering Standards & Code Compliance Matrix | HVACLogic",
+    title: "Standards & Code Compliance Matrix",
     description: "Cross-reference index linking ASHRAE, ACCA, SMACNA, AHRI, and EPA engineering codes directly to HVACLogic calculation engines.",
     url: `${siteConfig.canonicalDomain}/standards`,
     siteName: "HVACLogic",

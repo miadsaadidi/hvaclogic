@@ -74,6 +74,7 @@ export function CalculatorContainer({
 
         {/* SECTION 2: INTERACTIVE TOOL UI */}
         <section id="calculator-tool" aria-label="Interactive Calculator Tool">
+          <h2 className="sr-only">Interactive Calculator &amp; Visualizer</h2>
           {toolComponent}
         </section>
 

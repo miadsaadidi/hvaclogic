@@ -13,6 +13,8 @@ export interface CompanionCalculator {
 export interface ResearchPaper {
   slug: string;
   title: string;
+  seoTitle?: string;
+  seoDescription?: string;
   subtitle: string;
   abstract: string;
   keyFindings: string[];
@@ -32,6 +34,8 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "vapor-compression-kinetics-heat-pump-derating",
     title: "Thermal Degradation Kinetics, Auxiliary Electric Resistance Staging, and Seasonal HSPF2/COP Derating in Cold-Climate Air-Source Heat Pumps",
+    seoTitle: "Heat Pump Derating & Cold-Climate COP",
+    seoDescription: "Thermodynamic analysis of cold-climate heat pump COP derating, auxiliary electric resistance strip staging, and seasonal HSPF2 performance.",
     subtitle: "A thermodynamic evaluation of vapor-compression Carnot limits, refrigeration enthalpy drops, coefficient of performance (COP) nonlinear decline, and auxiliary resistance energy staging.",
     abstract: "A rigorous thermodynamic evaluation of cold-climate air-source heat pump (ccASHP) performance across sub-freezing ambient temperature spectra (-20°C to +10°C / -4°F to +50°F). Models vapor-compression Carnot limits, refrigeration enthalpy drops, coefficient of performance (COP) nonlinear derating curves, defrost cycle parasitic loads, and the operational cost dynamics of staging auxiliary electric resistance strip heat (COP 1.0) versus dual-fuel configurations.",
     keyFindings: [
@@ -99,6 +103,8 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "non-linear-duct-friction-loss-fitting-penalties",
     title: "Non-Linear Friction Loss Dynamics, Equivalent Length Fitting Penalties, and Dynamic Pressure Drops in Residential Duct Systems",
+    seoTitle: "Duct Friction Loss & Fitting Pressure Drops",
+    seoDescription: "Hydrodynamic modeling of Darcy-Weisbach duct friction, Colebrook-White roughness regimes, and ACCA Manual D equivalent length fitting penalties.",
     subtitle: "A hydrodynamic fluid flow analysis of Darcy-Weisbach friction modeling, Colebrook-White roughness regimes, and ACCA Manual D equivalent length aerodynamic penalties.",
     abstract: "A mathematical investigation of air distribution fluid mechanics in forced-air HVAC duct systems. Evaluates non-linear Darcy-Weisbach wall shear stress, Colebrook-White transitional flow friction factors, dynamic velocity pressure dissipation, and ACCA Manual D equivalent length (EL) dynamic loss penalties across standard sheet metal, spiral, and un-tensioned flexible duct configurations.",
     keyFindings: [
@@ -166,6 +172,8 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "thermal-envelope-infiltration-building-heat-loss",
     title: "Deterministic Building Science & Dynamic Enclosure Infiltration Modeling for Residential Space Heating and Decarbonization Sizing",
+    seoTitle: "Envelope Infiltration & Building Heat Loss",
+    seoDescription: "Deterministic building science framework for residential heating loads, envelope infiltration modeling, and Manual J decarbonization sizing.",
     subtitle: "A multi-component thermodynamic study of conduction, fenestration solar heat gain coefficients (SHGC), and pressure-driven envelope infiltration loads under ACCA Manual J.",
     abstract: "Presents a deterministic building science modeling framework for residential peak heating and cooling loads under ACCA Manual J (8th Edition) and ASHRAE Fundamentals. Analyzes conductive transmission matrices across composite multi-layer wall assemblies, fenestration U-factor/SHGC ratings, stack-effect pressure infiltration, and ground-coupled sub-grade slab thermal losses.",
     keyFindings: [
@@ -233,6 +241,8 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "effective-dilution-iaq-ventilation-mass-balance",
     title: "Effective Outdoor Air Dilution, Continuous Infiltration Credit, and Multi-Zone Mass-Balance Modeling under ASHRAE 62.2",
+    seoTitle: "IAQ Mass Balance & Dilution Ventilation",
+    seoDescription: "Mass-balance analysis of mechanical ventilation rates, continuous infiltration credits, and ASHRAE 62.2 / 62.1 indoor air quality compliance.",
     subtitle: "A mass-balance analysis of residential mechanical ventilation rates, dwelling volume air changes, and continuous versus intermittent exhaust fan duty cycles.",
     abstract: "Evaluates indoor air quality (IAQ) mechanical ventilation compliance under ASHRAE Standard 62.2-2022 and ASHRAE Standard 62.1. Examines total required ventilation rate equations ($Q_{\\text{tot}}$), continuous natural infiltration credits ($Q_{\\text{inf}}$), dwelling area square footage factors, bedroom occupancy allowances, and fan runtime efficacy adjustments for balanced ERV/HRV energy recovery ventilators.",
     keyFindings: [

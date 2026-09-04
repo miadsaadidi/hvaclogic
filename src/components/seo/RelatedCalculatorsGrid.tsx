@@ -74,9 +74,9 @@ export function RelatedCalculatorsGrid({ relatedIds, currentPillar }: RelatedCal
                 </span>
               </div>
 
-              <h4 style={{ margin: "0 0 0.35rem", fontSize: "0.98rem", fontWeight: 700, color: "var(--ink)" }}>
+              <h3 style={{ margin: "0 0 0.35rem", fontSize: "0.98rem", fontWeight: 700, color: "var(--ink)" }}>
                 {c.name}
-              </h4>
+              </h3>
 
               <p
                 style={{
