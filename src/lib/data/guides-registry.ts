@@ -259,7 +259,7 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         description: "Factory trim and extended length weigh-in sizer.",
       },
     ],
-    status: "scheduled",
+    status: "published",
     scheduledDate: "2026-09-05",
     color: "#10b981",
     icon: "🔧",
