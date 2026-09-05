@@ -22,6 +22,7 @@
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 - **Separate Copyable Blocks for Metadata**: Whenever providing metadata, tags, titles, descriptions, or form fields for publishing (e.g. Medium, Dev.to, Academia.edu), ALWAYS output **each individual field in its own separate, dedicated code block** for instant 1-click copying. NEVER group multiple fields into a single shared block.
+- **Strategic Discussion & Brainstorming First (NO PREMATURE METADATA DUMPS)**: When the user brings up a new platform, idea, or distribution channel, ALWAYS start by exploring and analyzing the platform, discussing strategic angles, and brainstorming options together. NEVER jump directly to generating final publishing metadata blocks or copyable forms until the user explicitly agrees on the strategy and requests publishing details.
 - **Mandatory Multi-File Inspection for SEO & Daily Operations Inquiries**: When asked "what is today's SEO plan?", "what's next in SEO?", or for any operational schedule/status:
   - **NEVER** answer from memory or provide a fixed/partial list.
   - **MANDATORY FILE INSPECTION**: The agent MUST explicitly inspect all 4 operational tracker files using view tools before generating the answer:
@@ -126,5 +127,6 @@ When authoring or updating technical editorial content for syndication on Medium
 2. **Academia.edu (`academia.edu` — DA 93)**: For verified academic whitepaper publication & profile backlink ([Paper #172310808](https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing)).
 3. **DEV Community (`dev.to` — DA 82 / DR 82)**: For technical architecture, TypeScript mathematical physics engines, 100% client-side zero-database design, and developer syndication with dofollow contextual backlinking.
 4. **Internet Archive (`archive.org` — DA 96)**: For permanent open monograph repository & preprint citations.
+5. **OER Commons (`oercommons.org` — DA 84 / DR 84)**: For Open Educational Resources & Higher-Ed/CTE Courseware indexing ([Course Resource](https://oercommons.org/courses/hvaclogic-deterministic-building-science-thermodynamic-modeling-suite)).
 
 
