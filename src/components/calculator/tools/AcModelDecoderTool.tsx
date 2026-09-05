@@ -127,7 +127,9 @@ export function AcModelDecoderTool() {
               <option value="auto">✨ Auto-Detect from Model Prefix</option>
               <option value="Carrier">Carrier / Bryant / Payne</option>
               <option value="Trane">Trane / American Standard</option>
-              <option value="Goodman">Goodman / Amana / Daikin</option>
+              <option value="Goodman">Goodman / Amana</option>
+              <option value="Daikin">Daikin</option>
+              <option value="ICP">ICP / Heil / Tempstar / Comfortmaker</option>
               <option value="Lennox">Lennox / Armstrong / Ducane</option>
               <option value="Rheem">Rheem / Ruud / WeatherKing</option>
               <option value="York">York / Coleman / Luxaire</option>
@@ -145,7 +147,7 @@ export function AcModelDecoderTool() {
               type="text"
               value={modelInput}
               onChange={(e) => handleModelChange(e.target.value)}
-              placeholder="e.g. 24ACC636A003, 4TTR4036, GSX14036..."
+              placeholder="e.g. 24ACC636A003, 4TTR4036, GSX14036, NXA636..."
               className="input-number"
               style={{ textTransform: "uppercase", letterSpacing: "0.05em", fontWeight: 700 }}
               aria-label="AC Model Number input"
@@ -166,13 +168,13 @@ export function AcModelDecoderTool() {
               type="text"
               value={serialInput}
               onChange={(e) => handleSerialChange(e.target.value)}
-              placeholder="e.g. 3218E12345, 1805123456..."
+              placeholder="e.g. 3218E12345, 1805123456, E193512345..."
               className="input-number"
               style={{ textTransform: "uppercase", letterSpacing: "0.05em" }}
               aria-label="AC Serial Number input for manufacture date"
             />
             <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.25rem", display: "block" }}>
-              Enables exact manufacture year &amp; build week extraction.
+              Enables exact manufacture year &amp; build week extraction (Carrier, Trane, Goodman, ICP, Rheem, Lennox).
             </span>
           </div>
 
@@ -181,14 +183,56 @@ export function AcModelDecoderTool() {
             <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", marginBottom: "0.35rem" }}>
               Standard BTU Digits Quick Key:
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.35rem", fontSize: "0.7rem", color: "var(--ink-secondary)" }}>
-              <div><strong>18</strong> = 1.5 Tons</div>
-              <div><strong>24</strong> = 2.0 Tons</div>
-              <div><strong>30</strong> = 2.5 Tons</div>
-              <div><strong>36</strong> = 3.0 Tons</div>
-              <div><strong>42</strong> = 3.5 Tons</div>
-              <div><strong>48</strong> = 4.0 Tons</div>
-              <div><strong>60</strong> = 5.0 Tons</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.35rem", fontSize: "0.7rem", color: "var(--ink-secondary)" }}>
+              <button
+                type="button"
+                onClick={() => handleModelChange(modelInput.replace(/18|24|30|36|42|48|60|018|024|030|036|042|048|060/, "18"))}
+                style={{ background: "var(--surface-raised)", border: "1px solid var(--border-subtle)", borderRadius: "4px", padding: "0.2rem 0.35rem", cursor: "pointer", textAlign: "left", fontSize: "0.68rem" }}
+              >
+                <strong>18</strong> = 1.5T
+              </button>
+              <button
+                type="button"
+                onClick={() => handleModelChange(modelInput.replace(/18|24|30|36|42|48|60|018|024|030|036|042|048|060/, "24"))}
+                style={{ background: "var(--surface-raised)", border: "1px solid var(--border-subtle)", borderRadius: "4px", padding: "0.2rem 0.35rem", cursor: "pointer", textAlign: "left", fontSize: "0.68rem" }}
+              >
+                <strong>24</strong> = 2.0T
+              </button>
+              <button
+                type="button"
+                onClick={() => handleModelChange(modelInput.replace(/18|24|30|36|42|48|60|018|024|030|036|042|048|060/, "30"))}
+                style={{ background: "var(--surface-raised)", border: "1px solid var(--border-subtle)", borderRadius: "4px", padding: "0.2rem 0.35rem", cursor: "pointer", textAlign: "left", fontSize: "0.68rem" }}
+              >
+                <strong>30</strong> = 2.5T
+              </button>
+              <button
+                type="button"
+                onClick={() => handleModelChange(modelInput.replace(/18|24|30|36|42|48|60|018|024|030|036|042|048|060/, "36"))}
+                style={{ background: "var(--surface-raised)", border: "1px solid var(--border-subtle)", borderRadius: "4px", padding: "0.2rem 0.35rem", cursor: "pointer", textAlign: "left", fontSize: "0.68rem" }}
+              >
+                <strong>36</strong> = 3.0T
+              </button>
+              <button
+                type="button"
+                onClick={() => handleModelChange(modelInput.replace(/18|24|30|36|42|48|60|018|024|030|036|042|048|060/, "42"))}
+                style={{ background: "var(--surface-raised)", border: "1px solid var(--border-subtle)", borderRadius: "4px", padding: "0.2rem 0.35rem", cursor: "pointer", textAlign: "left", fontSize: "0.68rem" }}
+              >
+                <strong>42</strong> = 3.5T
+              </button>
+              <button
+                type="button"
+                onClick={() => handleModelChange(modelInput.replace(/18|24|30|36|42|48|60|018|024|030|036|042|048|060/, "48"))}
+                style={{ background: "var(--surface-raised)", border: "1px solid var(--border-subtle)", borderRadius: "4px", padding: "0.2rem 0.35rem", cursor: "pointer", textAlign: "left", fontSize: "0.68rem" }}
+              >
+                <strong>48</strong> = 4.0T
+              </button>
+              <button
+                type="button"
+                onClick={() => handleModelChange(modelInput.replace(/18|24|30|36|42|48|60|018|024|030|036|042|048|060/, "60"))}
+                style={{ background: "var(--surface-raised)", border: "1px solid var(--border-subtle)", borderRadius: "4px", padding: "0.2rem 0.35rem", cursor: "pointer", textAlign: "left", fontSize: "0.68rem" }}
+              >
+                <strong>60</strong> = 5.0T
+              </button>
             </div>
           </div>
         </div>

@@ -51,6 +51,22 @@ describe("AC Model & Serial Number Decoder Engine", () => {
     expect(res.brand).toContain("York");
   });
 
+  it("decodes Daikin DX14SA036 model correctly", () => {
+    const res = decodeAcModel("DX14SA0361AA", "1904123456");
+    expect(res.nominalTonnage).toBe(3.0);
+    expect(res.nominalBtu).toBe(36000);
+    expect(res.brand).toBe("Daikin");
+    expect(res.manufactureYear).toBe(2019);
+  });
+
+  it("decodes ICP Heil NXA636 model and serial correctly", () => {
+    const res = decodeAcModel("NXA636GKA100", "E193512345");
+    expect(res.nominalTonnage).toBe(3.0);
+    expect(res.nominalBtu).toBe(36000);
+    expect(res.brand).toContain("ICP");
+    expect(res.manufactureYear).toBe(2019);
+  });
+
   it("correctly identifies non-standard universal models via heuristic fallback", () => {
     const res = decodeAcModel("CUSTOM-048-XYZ");
     expect(res.nominalTonnage).toBe(4.0);

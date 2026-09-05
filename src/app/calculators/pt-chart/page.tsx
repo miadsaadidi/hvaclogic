@@ -34,7 +34,7 @@ export default function PtChartPage() {
   return (
     <CalculatorContainer
       calculator={calculator}
-      directAnswer="A refrigerant Pressure-Temperature (PT) chart maps the exact saturation temperature of a refrigerant at a given pressure. For standard R-410A systems, a typical 40°F evaporator coil operates at 118 PSIG, and a 110°F condenser operates at 365 PSIG. For next-generation A2L R-454B systems, 40°F saturation occurs at 115 PSIG."
+      directAnswer="A refrigerant Pressure-Temperature (PT) chart maps the exact saturation temperature of a refrigerant at any given pressure. For next-generation A2L R-454B (Opteon XL41), a standard 40°F evaporator coil operates at 115.5 PSIG (dew point), and a 110°F condenser operates at 365.2 PSIG (bubble point). For pure R-32, 40°F saturation occurs at 119.0 PSIG. For legacy R-410A systems, 40°F saturation occurs at 118.0 PSIG."
       formulaSnippet="T_sat = f(P_gauge, Refrigerant_NIST) | PSIA = PSIG + 14.696 | Glide = T_dew - T_bubble"
       authorityCitation="NIST REFPROP Thermodynamic Formulations & AHRI Standard 700"
       toolComponent={<PtChartTool />}

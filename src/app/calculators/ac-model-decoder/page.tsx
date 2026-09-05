@@ -59,17 +59,80 @@ export default function AcModelDecoderPage() {
 
           <div style={{ marginTop: "1.5rem", lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
             <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              How to Read Serial Numbers for Age &amp; Manufacture Date
+              How to Read Serial Numbers for Age &amp; Manufacture Date by Brand
             </h3>
             <p>
-              HVAC serial numbers encode the exact <strong>year and calendar week</strong> of factory production. For example:
+              HVAC serial numbers encode the exact <strong>year and calendar week</strong> of factory production. Use the rules below for major brands:
             </p>
             <ul>
-              <li><strong>Carrier / Bryant:</strong> First 2 digits = Week, 3rd & 4th digits = Year (e.g. <code>3218E12345</code> = 32nd week of 2018).</li>
-              <li><strong>Goodman / Amana:</strong> First 2 digits = Year, 3rd & 4th digits = Month (e.g. <code>1805123456</code> = May 2018).</li>
+              <li><strong>Carrier / Bryant / Payne:</strong> First 2 digits = Week, 3rd &amp; 4th digits = Year (e.g. <code>3218E12345</code> = 32nd week of 2018).</li>
+              <li><strong>Goodman / Amana / Daikin:</strong> First 2 digits = Year, 3rd &amp; 4th digits = Month (e.g. <code>1805123456</code> = May 2018; <code>1904...</code> = April 2019).</li>
+              <li><strong>ICP / Heil / Tempstar / Comfortmaker:</strong> Plant letter followed by 2 digits year and 2 digits week (e.g. <code>E193512345</code> = 35th week of 2019).</li>
               <li><strong>Trane / American Standard:</strong> First 2 digits = Year, followed by week (e.g. <code>19324M234F</code> = 2019).</li>
-              <li><strong>Rheem / Ruud:</strong> Plant letter followed by 2 digits week and 2 digits year (e.g. <code>W341912345</code> = Week 34 of 2019).</li>
+              <li><strong>Rheem / Ruud / WeatherKing:</strong> Plant letter followed by 2 digits week and 2 digits year (e.g. <code>W341912345</code> = Week 34 of 2019).</li>
+              <li><strong>Lennox / Armstrong:</strong> First 2 digits = Plant code, 3rd &amp; 4th digits = Year (e.g. <code>1919D12345</code> = Year 2019; <code>5818M...</code> = 2018).</li>
+              <li><strong>York / Coleman / Luxaire:</strong> 3rd letter or 2nd/3rd characters encode year in Johnson Controls date code tables.</li>
             </ul>
+
+            <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", marginTop: "1.5rem", marginBottom: "0.5rem" }}>
+              Manufacturer Model Prefix &amp; Nomenclature Guide
+            </h3>
+            <div className="scenario-table" style={{ marginTop: "0.5rem" }}>
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Brand Family</th>
+                    <th scope="col">AC Model Prefix</th>
+                    <th scope="col">Heat Pump Prefix</th>
+                    <th scope="col">Tonnage Digits Position</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Carrier / Bryant</strong></td>
+                    <td><code>24AAA, 24ACC, 24VNA</code></td>
+                    <td><code>25HNB, 25VNA</code></td>
+                    <td>Digits 6–7 (e.g., 24ACC6<strong>36</strong>)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Trane / Amer. Std</strong></td>
+                    <td><code>4TTR, 4TTX, 4TTV</code></td>
+                    <td><code>4TWR, 4TWX, 4TWV</code></td>
+                    <td>Digits 5–7 (e.g., 4TTR40<strong>36</strong>)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Goodman / Daikin</strong></td>
+                    <td><code>GSX14, GSX16, DX14SA</code></td>
+                    <td><code>GSZ14, GSZ16, DZ16SA</code></td>
+                    <td>Digits 6–8 (e.g., GSX140<strong>36</strong>1)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ICP / Heil / Tempstar</strong></td>
+                    <td><code>NXA6, N4A4, H4A4, C4A4</code></td>
+                    <td><code>NXH6, N4H4, H4H4</code></td>
+                    <td>Digits 4–5 (e.g., NXA6<strong>36</strong>G)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lennox</strong></td>
+                    <td><code>14ACX, XC14, ML14XC1</code></td>
+                    <td><code>14HPX, XP14, XP21</code></td>
+                    <td>Hyphenated / 3 digits (e.g., 14ACX-<strong>036</strong>)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Rheem / Ruud</strong></td>
+                    <td><code>RA14, RA16, RA17</code></td>
+                    <td><code>RP14, RP15, RP16</code></td>
+                    <td>Digits 5–6 (e.g., RA16<strong>36</strong>AJ)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>York / Coleman</strong></td>
+                    <td><code>YCG, YCS, TC3, TC7</code></td>
+                    <td><code>YZG, YZS, TH4</code></td>
+                    <td>Digits 4–5 (e.g., YCG<strong>36</strong>B21)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </>
       }

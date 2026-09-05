@@ -120,6 +120,27 @@ export function FlexDuctChartTool() {
         })}
       </div>
 
+      {/* QUICK DIAMETER SHORTCUT PILLS */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem", margin: "0.5rem 0 1rem", alignItems: "center" }}>
+        <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--ink-secondary)", textTransform: "uppercase" }}>Quick Diameters:</span>
+        {[4, 5, 6, 7, 8, 10, 12, 14, 16, 18, 20].map((dia) => (
+          <button
+            key={dia}
+            type="button"
+            onClick={() => {
+              setActiveDiameter(dia);
+              updateParam("diameter", dia);
+              const found = matrix.rows.find((r) => r.diameterInches === dia);
+              if (found) setTargetCfm(found.cfmAt008);
+            }}
+            className={`preset-chip-btn ${activeDiameter === dia ? "active" : ""}`}
+            style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
+          >
+            {dia}&quot; Round
+          </button>
+        ))}
+      </div>
+
       <div className="calculator-grid">
         {/* INPUT & QUICK SIZING FINDER PANEL */}
         <div className="input-panel">

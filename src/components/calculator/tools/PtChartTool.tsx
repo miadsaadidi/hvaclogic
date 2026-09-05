@@ -123,10 +123,66 @@ export function PtChartTool() {
             onClick={() => handleRefChange(r.id)}
             className={`preset-chip-btn ${selectedRef === r.id ? "active" : ""}`}
             type="button"
+            style={r.safetyClass === "A2L" ? { borderColor: "rgba(16, 185, 129, 0.4)", fontWeight: 700 } : {}}
           >
-            {r.id.toUpperCase()} {r.safetyClass === "A2L" ? "(A2L Low-GWP)" : ""}
+            {r.id.toUpperCase()} {r.safetyClass === "A2L" ? "⚡ (A2L)" : ""}
           </button>
         ))}
+      </div>
+
+      {/* QUICK PRESET SCENARIOS */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", margin: "0.5rem 0 1rem", alignItems: "center" }}>
+        <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--ink-secondary)", textTransform: "uppercase" }}>Quick Presets:</span>
+        <button
+          type="button"
+          onClick={() => {
+            handleRefChange("r454b");
+            setLookupMode("pressure_to_temp");
+            setCurveType("dew");
+            handlePressureChange(115.5);
+          }}
+          className="preset-chip-btn"
+          style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
+        >
+          ❄️ R-454B Evaporator (40°F / 115.5 psig)
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            handleRefChange("r454b");
+            setLookupMode("pressure_to_temp");
+            setCurveType("bubble");
+            handlePressureChange(365.2);
+          }}
+          className="preset-chip-btn"
+          style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
+        >
+          🔥 R-454B Condenser (110°F / 365.2 psig)
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            handleRefChange("r32");
+            setLookupMode("pressure_to_temp");
+            handlePressureChange(119.0);
+          }}
+          className="preset-chip-btn"
+          style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
+        >
+          ⚡ R-32 Evaporator (40°F / 119.0 psig)
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            handleRefChange("r410a");
+            setLookupMode("pressure_to_temp");
+            handlePressureChange(118.0);
+          }}
+          className="preset-chip-btn"
+          style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
+        >
+          🏢 R-410A Baseline (40°F / 118.0 psig)
+        </button>
       </div>
 
       <div className="calculator-grid">
@@ -406,6 +462,16 @@ export function PtChartTool() {
           >
             📥 Download Full CSV Matrix
           </button>
+        </div>
+
+        <div style={{ marginTop: "1rem", marginBottom: "1.25rem", padding: "1rem 1.25rem", borderRadius: "0.65rem", background: "rgba(16, 185, 129, 0.08)", border: "1px solid rgba(16, 185, 129, 0.25)", fontSize: "0.82rem" }}>
+          <div style={{ fontWeight: 700, color: "#10b981", display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.3rem" }}>
+            <span>🔧</span>
+            <span>A2L EPA 608 Zeotropic Glide Diagnostic Notice:</span>
+          </div>
+          <p style={{ margin: 0, color: "var(--ink)", lineHeight: 1.5 }}>
+            For R-454B systems, always calculate <strong>Subcooling using the Bubble Point</strong> and <strong>Superheat using the Dew Point</strong> to avoid the 2.2°F diagnostic charging error. Read the comprehensive <Link href="/field-diagnostics" style={{ color: "#10b981", fontWeight: 700, textDecoration: "underline" }}>Field Diagnostics &amp; A2L Transition Master Guide →</Link>
+          </p>
         </div>
 
         <div className="scenario-table">
