@@ -306,6 +306,74 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.com/research/effective-dilution-iaq-ventilation-mass-balance}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Effective Outdoor Air Dilution, Continuous Infiltration Credit, and Multi-Zone Mass-Balance Modeling under ASHRAE 62.2 (Technical Report No. HL-TR-2026-IAQ04). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.172310811`
+  },
+  {
+    slug: "thermodynamic-modeling-a2l-refrigerant-glide-r454b",
+    title: "Thermodynamic Phase-Equilibrium and Non-Linear Temperature Glide Modeling of Next-Generation Zeotropic A2L Refrigerants (R-454B & R-32)",
+    subtitle: "An applied thermodynamics study of vapor-liquid phase equilibrium, bubble and dew saturation boundaries, and systemic charging diagnostics under the EPA AIM Act.",
+    abstract: "Under global climate regulations, including the Kigali Amendment to the Montreal Protocol and the U.S. EPA American Innovation and Manufacturing (AIM) Act, the HVAC/R industry is undergoing a mandatory phase-down of legacy hydrofluorocarbons (HFCs), specifically R-410A. The dominant replacement refrigerants entering residential and commercial heat pump systems are ASHRAE Class A2L lower-flammability fluids: R-454B and R-32. This paper presents an exact thermodynamic phase-equilibrium modeling framework calibrated against NIST REFPROP 10.0 extended Helmholtz-energy formulations. We derive the discrete mathematical boundaries separating bubble-point liquidus curves from dew-point vaporus curves, formulate the exact differential governing equations for superheat and subcooling diagnostics, and quantify the empirical consequences of legacy trade heuristics.",
+    keyFindings: [
+      "Evaluating liquid-line subcooling on R-454B systems using the saturated vapor (dew-point) curve introduces a systemic mathematical error of +2.2°F (+1.22°C), resulting in an 8.5% refrigerant undercharge.",
+      "Operating undercharged zeotropic systems elevates compressor discharge temperatures by up to +14.2°F (+7.9°C), risking ester lubricant thermal breakdown and degrading seasonal COP by 5.4%.",
+      "Single-component A2L refrigerants (R-32) exhibit zero temperature glide and identical bubble/dew saturation states, whereas zeotropic binary blends (R-454B: 68.9% R-32 / 31.1% R-1234yf) display non-linear temperature glide between 1.5°F and 2.5°F.",
+      "Differential fractionation during slow vapor-phase leaks shifts remaining liquid mass fractions toward R-1234yf, causing minor glide expansion (<0.4°F) while maintaining Class A2L lower flammability margins."
+    ],
+    governingStandards: [
+      "EPA AIM Act (40 CFR Part 84)",
+      "ASHRAE Standard 34-2022 (Designation and Safety Classification of Refrigerants)",
+      "ASHRAE Standard 15-2022 (Safety Standard for Refrigeration Systems)",
+      "AHRI Standard 210/240-2023",
+      "NIST Standard Reference Database 23 (REFPROP 10.0)"
+    ],
+    formulas: [
+      {
+        title: "Helmholtz Free Energy Residual Formulation",
+        latex: "\\alpha(\\delta, \\tau, \\mathbf{x}) = \\alpha^0(\\delta, \\tau, \\mathbf{x}) + \\alpha^r(\\delta, \\tau, \\mathbf{x}) = \\sum_{i=1}^m x_i \\alpha_i^0(\\delta_i, \\tau_i) + \\sum_{i=1}^m x_i \\ln x_i + \\alpha^r(\\delta, \\tau, \\mathbf{x})",
+        explanation: "Fundamental multi-fluid thermodynamic state equation defining residual free energy from reduced density, inverse reduced temperature, and constituent mole fractions."
+      },
+      {
+        title: "Zeotropic Phase-Change Temperature Glide",
+        latex: "\\Delta T_{\\text{glide}}(P) = T_{\\text{dew}}(P, \\mathbf{y}) - T_{\\text{bubble}}(P, \\mathbf{x})",
+        explanation: "Quantifies the temperature variance between saturated vapor and saturated liquid boundaries at constant absolute saturation pressure."
+      },
+      {
+        title: "Governing Diagnostic Equations for Zeotropic Systems",
+        latex: "\\text{SC}_{\\text{zeo}} = T_{\\text{bubble}}(P_{\\text{liquid}}) - T_{\\text{line,liquid}}, \\quad \\text{SH}_{\\text{zeo}} = T_{\\text{line,vapor}} - T_{\\text{dew}}(P_{\\text{suction}})",
+        explanation: "Strict differential thermodynamic relations requiring bubble-point saturation for condenser subcooling and dew-point saturation for evaporator superheat."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-04",
+    doi: "10.7910/DVN/SR1NZO",
+    reportNumber: "HL-TR-2026-A2L05",
+    pdfUrl: "/whitepapers/Thermodynamic_Modeling_A2L_Refrigerant_Glide_R454B.pdf",
+    companionCalculators: [
+      {
+        name: "A2L Refrigerant PT Chart (R-454B, R-32, R-410A)",
+        route: "/calculators/pt-chart",
+        description: "Interactive saturation pressure-temperature chart with dual bubble and dew curves."
+      },
+      {
+        name: "Refrigerant Superheat & Subcooling Calculator",
+        route: "/calculators/superheat-subcooling-calculator",
+        description: "Validate evaporator superheat and condenser subcooling with exact zeotropic glide compensation."
+      },
+      {
+        name: "Refrigerant Charge & Add-On Line-Set Calculator",
+        route: "/calculators/refrigerant-charge-calculator",
+        description: "Compute factory weigh-in charges and long line-set liquid additions."
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_a2l_glide,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {Thermodynamic Phase-Equilibrium and Non-Linear Temperature Glide Modeling of Next-Generation Zeotropic A2L Refrigerants (R-454B and R-32)},
+  institution = {HVACLogic Open-Access Building Science Monograph Series},
+  year = {2026},
+  number = {HL-TR-2026-A2L05},
+  doi = {10.7910/DVN/SR1NZO},
+  url = {https://hvaclogic.com/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). Thermodynamic Phase-Equilibrium and Non-Linear Temperature Glide Modeling of Next-Generation Zeotropic A2L Refrigerants (R-454B and R-32) (Technical Report No. HL-TR-2026-A2L05). HVACLogic Open-Access Building Science. https://doi.org/10.7910/DVN/SR1NZO`
   }
 ];
 
