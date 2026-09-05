@@ -23,7 +23,7 @@ const DEFAULT_ROOMS: MiniSplitRoom[] = [
 export function MiniSplitTool() {
   const [rooms, setRooms] = useState<MiniSplitRoom[]>(DEFAULT_ROOMS);
 
-  const handlePresetSelect = (presetType: "3-zone" | "2-zone" | "4-zone" | "1-zone") => {
+  const handlePresetSelect = (presetType: "3-zone" | "2-zone" | "4-zone" | "garage" | "1-zone") => {
     if (presetType === "3-zone") {
       setRooms([
         { id: "1", name: "Master Bedroom", sqft: 240, sunExposure: "south", insulation: "good", ceilingHeight: "standard" },
@@ -42,11 +42,19 @@ export function MiniSplitTool() {
         { id: "3", name: "Master Bedroom", sqft: 260, sunExposure: "south", insulation: "good", ceilingHeight: "standard" },
         { id: "4", name: "Guest Bedroom", sqft: 170, sunExposure: "north", insulation: "average", ceilingHeight: "standard" },
       ]);
+    } else if (presetType === "garage") {
+      setRooms([
+        { id: "1", name: "2-Car Garage Workshop", sqft: 500, sunExposure: "west", insulation: "poor", ceilingHeight: "high" },
+      ]);
     } else {
       setRooms([
         { id: "1", name: "Studio Living Area", sqft: 400, sunExposure: "average", insulation: "average", ceilingHeight: "standard" },
       ]);
     }
+  };
+
+  const handleApplyTemplate = (roomId: string, template: { name: string; sqft: number; sunExposure: MiniSplitRoom["sunExposure"]; insulation: MiniSplitRoom["insulation"]; ceilingHeight: MiniSplitRoom["ceilingHeight"] }) => {
+    setRooms(rooms.map((r) => (r.id === roomId ? { ...r, ...template } : r)));
   };
 
   const handleAddRoom = () => {
@@ -128,8 +136,11 @@ export function MiniSplitTool() {
         <button onClick={() => handlePresetSelect("4-zone")} className={`preset-chip-btn ${rooms.length === 4 ? "active" : ""}`} type="button">
           🏰 4-Zone Large Home
         </button>
-        <button onClick={() => handlePresetSelect("1-zone")} className={`preset-chip-btn ${rooms.length === 1 ? "active" : ""}`} type="button">
-          🏠 1-Zone Single Room
+        <button onClick={() => handlePresetSelect("garage")} className={`preset-chip-btn ${rooms.length === 1 && rooms[0]?.name.toLowerCase().includes("garage") ? "active" : ""}`} type="button">
+          🚗 Garage Workshop (500 sq ft)
+        </button>
+        <button onClick={() => handlePresetSelect("1-zone")} className={`preset-chip-btn ${rooms.length === 1 && !rooms[0]?.name.toLowerCase().includes("garage") ? "active" : ""}`} type="button">
+          🏠 1-Zone Studio / ADU
         </button>
       </div>
 
@@ -173,7 +184,7 @@ export function MiniSplitTool() {
                   padding: "0.75rem",
                 }}
               >
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
                   <input
                     type="text"
                     value={room.name}
@@ -222,6 +233,38 @@ export function MiniSplitTool() {
                       </button>
                     )}
                   </div>
+                </div>
+
+                {/* QUICK ROOM TYPE TEMPLATES */}
+                <div style={{ display: "flex", gap: "0.25rem", flexWrap: "wrap", marginBottom: "0.5rem" }}>
+                  <button
+                    type="button"
+                    onClick={() => handleApplyTemplate(room.id, { name: "Bedroom", sqft: 180, sunExposure: "average", insulation: "average", ceilingHeight: "standard" })}
+                    style={{ fontSize: "0.65rem", padding: "0.1rem 0.35rem", background: "var(--surface)", border: "1px solid var(--border-subtle)", borderRadius: "3px", cursor: "pointer", color: "var(--text-muted)" }}
+                  >
+                    🛏️ Bed (180sf)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleApplyTemplate(room.id, { name: "Master Suite", sqft: 320, sunExposure: "south", insulation: "good", ceilingHeight: "standard" })}
+                    style={{ fontSize: "0.65rem", padding: "0.1rem 0.35rem", background: "var(--surface)", border: "1px solid var(--border-subtle)", borderRadius: "3px", cursor: "pointer", color: "var(--text-muted)" }}
+                  >
+                    👑 Master (320sf)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleApplyTemplate(room.id, { name: "Living Room", sqft: 500, sunExposure: "west", insulation: "average", ceilingHeight: "standard" })}
+                    style={{ fontSize: "0.65rem", padding: "0.1rem 0.35rem", background: "var(--surface)", border: "1px solid var(--border-subtle)", borderRadius: "3px", cursor: "pointer", color: "var(--text-muted)" }}
+                  >
+                    🛋️ Living (500sf)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleApplyTemplate(room.id, { name: "Garage Workshop", sqft: 500, sunExposure: "west", insulation: "poor", ceilingHeight: "high" })}
+                    style={{ fontSize: "0.65rem", padding: "0.1rem 0.35rem", background: "var(--surface)", border: "1px solid var(--border-subtle)", borderRadius: "3px", cursor: "pointer", color: "var(--text-muted)" }}
+                  >
+                    🚗 Garage (500sf)
+                  </button>
                 </div>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: "0.5rem" }}>

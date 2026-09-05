@@ -34,7 +34,7 @@ export default function MiniSplitSizingPage() {
   return (
     <CalculatorContainer
       calculator={calculator}
-      directAnswer="To size a multi-zone ductless mini-split system, first calculate each room's cooling load (typically 20 to 30 BTU/sq ft adjusted for sun exposure and insulation) and match it to a standard indoor head (6k, 9k, 12k, 18k, or 24k BTU). Then size the outdoor multi-port inverter condenser to support 100% to 130% total connected indoor capacity to take advantage of inverter diversity."
+      directAnswer="To size a multi-zone ductless mini-split system, first calculate each room's cooling load (20 to 30 BTU/sq ft for insulated living spaces; 35 to 45 BTU/sq ft for uninsulated garages or sunrooms) and match it to a standard indoor head (6k, 9k, 12k, 18k, or 24k BTU). Then size the outdoor multi-port inverter condenser to support 100% to 130% total connected indoor capacity to leverage inverter diversity."
       formulaSnippet="Room_BTU = Area * 25 * F_sun * F_ins | Condenser_BTU = ceil(Total_Indoor_BTU / 1.30) to standard size"
       authorityCitation="AHRI Standard 1230 (Multi-Split Air Conditioners) & ACCA Manual J (Residential Load Sizing)"
       toolComponent={<MiniSplitTool />}
@@ -49,7 +49,7 @@ export default function MiniSplitSizingPage() {
               variables={[
                 { symbol: "Q_room", label: "Individual Room Heat Gain", description: "Sensible and latent thermal cooling load for a single isolated zone", unit: "BTU/hr" },
                 { symbol: "F_sun", label: "Solar Exposure Multiplier", description: "0.95 for North; 1.00 for Average; 1.10 for South; 1.15 for intense West afternoon sun", unit: "Multiplier" },
-                { symbol: "F_ins", label: "Building Envelope Insulation", description: "0.90 for tight double-pane construction; 1.15 for older uninsulated drafty rooms", unit: "Multiplier" },
+                { symbol: "F_ins", label: "Building Envelope Insulation", description: "0.90 for tight double-pane construction; 1.15 to 1.30 for uninsulated garages/sunrooms", unit: "Multiplier" },
                 { symbol: "Q_head_matched", label: "Standard Indoor Head Size", description: "Commercial head unit capacity: 6,000; 9,000; 12,000; 18,000; or 24,000 BTU/hr", unit: "BTU/hr" },
                 { symbol: "Diversity_Ratio", label: "Inverter Connected Ratio", description: "Total connected indoor capacity divided by outdoor unit capacity (100% to 130% optimal)", unit: "% Ratio" },
               ]}
@@ -60,7 +60,19 @@ export default function MiniSplitSizingPage() {
 
           <div style={{ marginTop: "1.5rem", lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
             <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              Understanding Inverter Diversity &amp; Over-Subscription
+              Special Sizing Rules for Garages, Workshops &amp; Sunrooms
+            </h3>
+            <p>
+              Garages and workshops exhibit dramatically higher thermal loads than standard bedrooms due to concrete slab thermal mass, uninsulated overhead sectional doors, and roof radiant heat:
+            </p>
+            <ul>
+              <li><strong>1-Car Garage (200–300 sq ft):</strong> Requires <strong>9,000 to 12,000 BTU</strong> (35–45 BTU/sq ft).</li>
+              <li><strong>2-Car Garage (400–550 sq ft):</strong> Requires <strong>18,000 to 24,000 BTU</strong> (1.5 to 2.0 Tons).</li>
+              <li><strong>3-Car Garage / Workshop (600–900 sq ft):</strong> Requires <strong>24,000 to 36,000 BTU</strong> (2.0 to 3.0 Tons).</li>
+            </ul>
+
+            <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginTop: "1.5rem", marginBottom: "0.5rem" }}>
+              Understanding Inverter Diversity &amp; Over-Subscription (AHRI 1230)
             </h3>
             <p>
               Unlike traditional single-stage AC systems that require rigid 1:1 capacity matching, multi-zone mini-split inverters allow <strong>100% to 130% connected indoor capacity</strong>:
@@ -114,11 +126,18 @@ export default function MiniSplitSizingPage() {
                 <td>4-Way Ceiling Cassette</td>
               </tr>
               <tr>
-                <td><strong>Great Room / Garage Studio</strong></td>
+                <td><strong>2-Car Garage Workshop</strong></td>
+                <td>400–550 sq ft</td>
+                <td>16,000–22,000 BTU</td>
+                <td>18,000–24,000 BTU (1.5–2T)</td>
+                <td>Wall Mount / Console</td>
+              </tr>
+              <tr>
+                <td><strong>Great Room / 3-Car Garage Studio</strong></td>
                 <td>650–1,000 sq ft</td>
-                <td>16,250–25,000 BTU</td>
-                <td>24,000 BTU (2.0T)</td>
-                <td>Ceiling Cassette / Console</td>
+                <td>20,000–32,000 BTU</td>
+                <td>24,000–36,000 BTU (2.0–3T)</td>
+                <td>Ceiling Cassette / Multi-Head</td>
               </tr>
             </tbody>
           </table>

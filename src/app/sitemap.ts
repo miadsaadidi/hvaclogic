@@ -43,6 +43,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: calc.status === "production" ? 0.85 : 0.6,
   }));
 
+  // Guides Hub
+  const guidesHubEntry: MetadataRoute.Sitemap[0] = {
+    url: `${baseUrl}/guides`,
+    lastModified: SITE_RELEASE_DATE,
+    changeFrequency: "weekly",
+    priority: 0.9,
+  };
+
   // Research Hub & Whitepapers
   const researchHubEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/research`,
@@ -87,6 +95,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     rootEntry,
     ...pillarEntries,
     ...calculatorEntries,
+    guidesHubEntry,
     researchHubEntry,
     ...researchPaperEntries,
     standardsEntry,

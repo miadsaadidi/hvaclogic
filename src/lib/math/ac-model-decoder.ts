@@ -30,12 +30,14 @@ export interface ModelPreset {
 }
 
 export const POPULAR_MODEL_PRESETS: ModelPreset[] = [
-  { brand: "Carrier", model: "24ACC636A003", serial: "3218E12345", label: "Carrier 3.0 Ton (24ACC636)" },
-  { brand: "Trane", model: "4TTR4036L1000AA", serial: "19324M234F", label: "Trane 3.0 Ton (4TTR4036)" },
-  { brand: "Goodman", model: "GSX140361KB", serial: "1805123456", label: "Goodman 3.0 Ton (GSX14036)" },
-  { brand: "Lennox", model: "14ACX-036-230", serial: "1919D12345", label: "Lennox 3.0 Ton (14ACX-036)" },
-  { brand: "Rheem", model: "RA1636AJ1NA", serial: "W341912345", label: "Rheem 3.0 Ton (RA1636)" },
-  { brand: "York", model: "YCG36B21S", serial: "W0M9123456", label: "York 3.0 Ton (YCG36B21)" },
+  { brand: "Carrier", model: "24ACC636A003", serial: "3218E12345", label: "Carrier 3.0T (24ACC636)" },
+  { brand: "Trane", model: "4TTR4036L1000AA", serial: "19324M234F", label: "Trane 3.0T (4TTR4036)" },
+  { brand: "Goodman", model: "GSX140361KB", serial: "1805123456", label: "Goodman 3.0T (GSX14036)" },
+  { brand: "Daikin", model: "DX14SA0361AA", serial: "1904123456", label: "Daikin 3.0T (DX14SA036)" },
+  { brand: "ICP / Heil", model: "NXA636GKA100", serial: "E193512345", label: "Heil/ICP 3.0T (NXA636)" },
+  { brand: "Lennox", model: "14ACX-036-230", serial: "1919D12345", label: "Lennox 3.0T (14ACX-036)" },
+  { brand: "Rheem", model: "RA1636AJ1NA", serial: "W341912345", label: "Rheem 3.0T (RA1636)" },
+  { brand: "York", model: "YCG36B21S", serial: "W0M9123456", label: "York 3.0T (YCG36B21)" },
 ];
 
 /**
@@ -87,7 +89,28 @@ export function decodeSerialNumber(serial: string, brandHint?: string): { year?:
     }
   }
 
-  // Pattern 3: Trane / American Standard (YearWeekYear..., e.g. 19324M234F -> Year 2019, Week 32)
+  // Pattern 3: Letter + 4 digits (ICP/Heil vs Rheem/Ruud)
+  const letterPrefixedMatch = s.match(/^[A-Z](\d{2})(\d{2})\d{3,}/);
+  if (letterPrefixedMatch) {
+    const d1 = parseInt(letterPrefixedMatch[1], 10);
+    const d2 = parseInt(letterPrefixedMatch[2], 10);
+    const maxTwoDigitYear = (new Date().getFullYear() % 100) + 1; // e.g. 27
+
+    // Case A: ICP/Heil (Year first, then Week, e.g. E1935... -> Year 19, Week 35)
+    // If d1 is a valid year (<= maxTwoDigitYear or >= 70) and d2 is a valid week (1-53) and d1 != d2
+    if ((d1 <= maxTwoDigitYear || d1 >= 70) && d2 >= 1 && d2 <= 53 && d1 <= 30) {
+      const fullYear = d1 >= 70 ? 1900 + d1 : 2000 + d1;
+      return { year: fullYear, week: d2, decade: `${Math.floor(fullYear / 10) * 10}s` };
+    }
+
+    // Case B: Rheem/Ruud (Week first, then Year, e.g. W3419... -> Week 34, Year 19)
+    if (d1 >= 1 && d1 <= 53 && (d2 <= maxTwoDigitYear || d2 >= 70)) {
+      const fullYear = d2 >= 70 ? 1900 + d2 : 2000 + d2;
+      return { year: fullYear, week: d1, decade: `${Math.floor(fullYear / 10) * 10}s` };
+    }
+  }
+
+  // Pattern 4: Trane / American Standard (YearWeekYear..., e.g. 19324M234F -> Year 2019, Week 32)
   const traneMatch = s.match(/^(\d{2})(\d{2})[A-Z0-9]/);
   if (traneMatch) {
     const yr = parseInt(traneMatch[1], 10);
@@ -95,15 +118,12 @@ export function decodeSerialNumber(serial: string, brandHint?: string): { year?:
     return { year: fullYear, decade: `${Math.floor(fullYear / 10) * 10}s` };
   }
 
-  // Pattern 4: Rheem / Ruud (e.g. W341912345 -> Plant W, Week 34, Year 2019)
-  const rheemMatch = s.match(/^[A-Z](\d{2})(\d{2})/);
-  if (rheemMatch) {
-    const week = parseInt(rheemMatch[1], 10);
-    const yr = parseInt(rheemMatch[2], 10);
-    if (week >= 1 && week <= 53) {
-      const fullYear = yr >= 70 ? 1900 + yr : 2000 + yr;
-      return { year: fullYear, week, decade: `${Math.floor(fullYear / 10) * 10}s` };
-    }
+  // Pattern 5: Lennox (PlantPlant + YearYear + Letter, e.g. 1919D12345 -> Year 2019 or 5818M12345 -> Year 2018)
+  const lennoxMatch = s.match(/^(\d{2})(\d{2})[A-Z]/);
+  if (lennoxMatch) {
+    const yr = parseInt(lennoxMatch[2], 10);
+    const fullYear = yr >= 70 ? 1900 + yr : 2000 + yr;
+    return { year: fullYear, decade: `${Math.floor(fullYear / 10) * 10}s` };
   }
 
   return {};
@@ -273,7 +293,34 @@ export function decodeAcModel(rawModel: string, rawSerial?: string, selectedBran
     }
   }
 
-  // 6. YORK / COLEMAN / LUXAIRE
+  // 6. ICP / HEIL / TEMPSTAR / COMFORTMAKER / ARCOAIRE
+  else if (
+    cleanModel.startsWith("NXA") ||
+    cleanModel.startsWith("N4A") ||
+    cleanModel.startsWith("H4A") ||
+    cleanModel.startsWith("T4A") ||
+    cleanModel.startsWith("C4A") ||
+    cleanModel.startsWith("N4H") ||
+    cleanModel.startsWith("H4H") ||
+    selectedBrand === "ICP" ||
+    selectedBrand === "Heil" ||
+    selectedBrand === "Tempstar"
+  ) {
+    detectedBrand = "ICP / Heil / Tempstar";
+    brandFamily = "International Comfort Products (Carrier Corp)";
+    equipmentType = cleanModel.includes("H") ? "Heat Pump" : "Air Conditioner (Condenser)";
+
+    const capMatch = cleanModel.match(/^[A-Z0-9]{3,4}(\d{2})/);
+    if (capMatch && CAPACITY_DIGITS_MAP[capMatch[1]]) {
+      tonnageDigits = capMatch[1];
+      tonnage = CAPACITY_DIGITS_MAP[tonnageDigits].tons;
+      btu = CAPACITY_DIGITS_MAP[tonnageDigits].btu;
+      confidence = "high";
+      explanation = `ICP/Heil/Tempstar nomenclature: Digits '${tonnageDigits}' indicate ${btu.toLocaleString()} BTU (${tonnage} Ton nominal).`;
+    }
+  }
+
+  // 7. YORK / COLEMAN / LUXAIRE
   // Pattern: YCG36B21S or YCS36 or TC3B36
   else if (cleanModel.startsWith("YC") || cleanModel.startsWith("TC") || cleanModel.startsWith("CC") || cleanModel.startsWith("AC") || selectedBrand === "York") {
     detectedBrand = "York / Coleman / Luxaire";
@@ -290,7 +337,7 @@ export function decodeAcModel(rawModel: string, rawSerial?: string, selectedBran
     }
   }
 
-  // 7. GENERIC UNIVERSAL REGEX HEURISTIC
+  // 8. GENERIC UNIVERSAL REGEX HEURISTIC
   // Look for any 018, 024, 030, 036, 042, 048, 060 or 18, 24, 30, 36, 42, 48, 60 inside model
   if (confidence !== "high") {
     const genericMatch = cleanModel.match(/(?:0?(18|24|30|36|42|48|60))/);

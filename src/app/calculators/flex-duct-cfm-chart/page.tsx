@@ -34,7 +34,7 @@ export default function FlexDuctCfmChartPage() {
   return (
     <CalculatorContainer
       calculator={calculator}
-      directAnswer="A standard 6-inch flexible duct carries approximately 75 to 85 CFM at a 0.08 to 0.10 in. wg friction rate under proper installation tension. An 8-inch flex duct delivers 150 to 190 CFM, while a 10-inch flex duct handles 300 to 345 CFM. Unstretched flex duct with 15% attic sag loses approximately 22% of its rated airflow capacity."
+      directAnswer="Flexible duct CFM capacity at standard 0.08 in. wg friction rate (proper 4% tension): 4-inch = 35 CFM, 5-inch = 55 CFM, 6-inch = 80 CFM, 7-inch = 115 CFM, 8-inch = 160 CFM, 10-inch = 290 CFM, 12-inch = 460 CFM, 14-inch = 690 CFM, 16-inch = 960 CFM, 18-inch = 1,300 CFM, and 20-inch = 1,720 CFM. Under 15% longitudinal attic sag, subtract 22% delivered airflow."
       formulaSnippet="Q_flex = Q_galv * (1 / (Sag_Friction_Multiplier)^0.54) | Max_Hanger_Spacing = 4_ft"
       authorityCitation="ASHRAE RP-1333 (Culp et al.), Air Diffusion Council (ADC) & ACCA Manual D"
       toolComponent={<FlexDuctChartTool />}

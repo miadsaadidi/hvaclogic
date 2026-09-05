@@ -7,6 +7,7 @@ import { HomeStatsBar } from "@/components/home/HomeStatsBar";
 import { TrendingToolsRibbon } from "@/components/home/TrendingToolsRibbon";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { HomeFaqSection } from "@/components/home/HomeFaqSection";
+import { HomeGuidesSection } from "@/components/home/HomeGuidesSection";
 import { HOMEPAGE_FAQS } from "@/lib/data/homepage-faqs";
 import { siteConfig } from "@/lib/site-config";
 
@@ -156,6 +157,10 @@ export default function HomePage() {
               <span>🏢</span>
               <span>Building Science</span>
             </Link>
+            <Link href="/guides" className="hero-jump-pill" style={{ borderColor: "rgba(0, 210, 255, 0.35)", background: "rgba(0, 210, 255, 0.08)", color: "var(--accent-cooling)" }}>
+              <span>📚</span>
+              <span>Guides Hub</span>
+            </Link>
           </div>
         </section>
 
@@ -181,6 +186,9 @@ export default function HomePage() {
 
         <HomeSearchFilter calculators={calculators} />
 
+        {/* FEATURED ENGINEERING GUIDES SECTION */}
+        <HomeGuidesSection />
+
         {/* TRUST & ENGINEERING TRANSPARENCY */}
         <TrustBadges />
 
@@ -193,6 +201,9 @@ export default function HomePage() {
             <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.05em", marginRight: "0.25rem" }}>
               Explore Hubs:
             </span>
+            <Link href="/guides" className="hero-jump-pill" style={{ color: "var(--accent-cooling)", fontWeight: 700 }}>
+              <span>📚</span> Master Guides
+            </Link>
             <Link href="/airflow-ducts" className="hero-jump-pill">
               <span>🌀</span> Airflow &amp; Ducts
             </Link>

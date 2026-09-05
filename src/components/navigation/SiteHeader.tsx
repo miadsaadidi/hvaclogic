@@ -46,6 +46,26 @@ export function SiteHeader() {
           {/* SEARCH COMMAND PALETTE */}
           <CommandPalette />
 
+          {/* GUIDES HUB LINK */}
+          <Link
+            href="/guides"
+            className="action-btn header-extra-util"
+            style={{
+              height: "36px",
+              padding: "0 0.65rem",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              textDecoration: "none",
+              color: "var(--ink)",
+              alignItems: "center",
+              gap: "0.3rem",
+            }}
+            title="Browse all 8 HVAC engineering guides"
+          >
+            <span>📚</span>
+            <span>Guides</span>
+          </Link>
+
           {/* UNIT CONVERTER POPUP (Desktop & Tablet) */}
           <div className="header-extra-util">
             <UnitConverterModal />
@@ -120,6 +140,13 @@ export function SiteHeader() {
             <GlossaryModal />
           </div>
 
+          <Link
+            href="/guides"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{ fontWeight: 700, color: "var(--accent-cooling)", display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <span>📚</span> Master Engineering Guides
+          </Link>
           <Link
             href="/airflow-ducts"
             onClick={() => setMobileMenuOpen(false)}

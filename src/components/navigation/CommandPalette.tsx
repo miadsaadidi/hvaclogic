@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { publishedCalculators } from "@/lib/data/calculators-registry";
+import { ENGINEERING_GUIDES } from "@/lib/data/guides-registry";
 import { CalculatorMeta } from "@/types/calculation";
 
 interface SearchItem {
@@ -77,7 +78,7 @@ export function CommandPalette() {
 
   // Search items list
   const searchItems: SearchItem[] = useMemo(() => {
-    return publishedCalculators().map((calc: CalculatorMeta) => {
+    const calcItems: SearchItem[] = publishedCalculators().map((calc: CalculatorMeta) => {
       const extra = EXTRA_KEYWORDS[calc.id] || [];
       return {
         id: calc.id,
@@ -89,6 +90,29 @@ export function CommandPalette() {
         keywords: [calc.name.toLowerCase(), calc.metaDescription.toLowerCase(), ...(calc.secondaryKeywords || []), ...extra],
       };
     });
+
+    const guideItems: SearchItem[] = [
+      {
+        id: "guides-hub",
+        name: "Engineering Guides Hub",
+        category: "guides",
+        categoryName: "Guides & Protocols",
+        route: "/guides",
+        description: "Comprehensive directory of all 8 HVAC engineering guides and field protocols.",
+        keywords: ["guides", "protocols", "handbook", "manual", "standards", "acca", "ashrae"],
+      },
+      ...ENGINEERING_GUIDES.map((g) => ({
+        id: `guide-${g.slug}`,
+        name: `📚 ${g.shortTitle}`,
+        category: "guides",
+        categoryName: `Guide: ${g.category}`,
+        route: g.targetRoute,
+        description: g.summary,
+        keywords: [g.title.toLowerCase(), g.shortTitle.toLowerCase(), g.category.toLowerCase(), ...g.standards.map((s) => s.toLowerCase()), "guide", "protocol"],
+      })),
+    ];
+
+    return [...calcItems, ...guideItems];
   }, []);
 
   // Filtered results
