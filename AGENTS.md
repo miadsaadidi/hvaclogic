@@ -1,7 +1,29 @@
 # HVACLogic Engineering & Testing Guidelines
 
-## Agent Communication & Execution Rules
-- **Direct Answers to Questions (NO UNREQUESTED ACTIONS)**: When the user asks an informational or diagnostic question (e.g., *"did we activate this option?"*, *"do we show X?"*, *"is Y working?"*), provide a direct, concise status report in plain text (e.g., *"Yes, X is enabled, but Y is not configured yet. Next steps would be..."*). **DO NOT** treat questions as implicit authorization to start coding, run scripts, compile code, generate files, or take automated actions. If an action is appropriate, propose it and ask for explicit confirmation first.
+## Universal Interaction Protocol (Mandatory across ALL Conversations & Domains)
+- **Rule 1: Always Present Options First, Never Jump to Execution**:
+  Whenever the user brings up a topic, asks a question, requests daily tasks, or provides an open-ended prompt (e.g., *"what should we do today"*, *"next guides"*, *"refactor calculator X"*, *"SEO status"*, *"fix performance"*):
+  - **Action**: Provide a concise, numbered breakdown of proposed actions or options (1 to N) with brief context.
+  - **Stop Condition**: Ask for explicit user direction (e.g., *"Which of these would you like to tackle: all, specific numbers (e.g., 1 & 3), or a different direction?"*).
+  - **Strict Prohibition**: **DO NOT** generate full code, draft long copy, create/modify files, or start executing until the user reviews and confirms.
+- **Rule 2: Execution Only on Explicit Command or Confirmation**:
+  Drafting code, writing full articles/emails, refactoring files, or running implementation tasks is **strictly locked** until the user explicitly replies with confirmation (e.g., *"Do 1 and 3"*, *"Approved"*, *"Proceed"*, *"Write the code"*).
+- **Rule 3: Direct Answers to Questions (NO UNREQUESTED ACTIONS)**:
+  When the user asks an informational or status/diagnostic question (e.g., *"did we activate this option?"*, *"do we show X?"*, *"is Y working?"*), provide a direct, concise status report in plain text (e.g., *"Yes, X is enabled, but Y is not configured yet. Next steps would be..."*). **DO NOT** treat questions as implicit authorization to start coding, run scripts, compile code, generate files, or take automated actions. If an action is appropriate, propose it and ask for explicit confirmation first.
+- **Rule 4: Zero Presumptive Over-Generation**:
+  Never assume a broad prompt or topic keyword is a command to generate all possible outputs immediately. Always treat the first turn as a triage, discovery, and alignment step.
+- **Rule 5: Strict 1-Email-At-A-Time & Ordered Presentation (NEVER BUNDLE EMAILS)**:
+  Whenever drafting or presenting outreach or follow-up emails:
+  - Output **STRICTLY ONE EMAIL AT ONCE PER TURN**. Never output multiple emails together.
+  - **MANDATORY PRESENTATION ORDER**: Always output the fields in this exact order:
+    1. **Recipient Email** (in its own copyable code block)
+    2. **Subject** (in its own copyable code block)
+    3. **Body** (in its own copyable code block)
+  - **Stop Condition**: Present exactly 1 email following this sequence, then STOP and wait for user review/approval before proceeding to the next email.
+- **Rule 6: Outreach & Distribution Email Context**:
+  In outreach discussions, "distribution" refers to peer outreach emails to new institutions/targets, not third-party web submissions or directories unless explicitly specified.
+
+## Engineering, Publishing & Operations Rules
 - **GitHub PR & Vercel Automated Deployment Lifecycle**:
   - **Scale Thresholds**:
     - **Small Tweaks (No PR required)**: Direct commits to `main` for simple text/copy corrections, minor CSS refinements, or small single-file bug fixes.
@@ -61,6 +83,8 @@
 - **Signature**: Always sign strictly as **`Miad S.`**
 - **No Em-Dashes**: Never use em-dashes (`—`). Use standard hyphens (`-`), commas, or periods.
 - **Length**: Strictly under 120 words (compact, dense peer-to-peer communication).
+- **Delivery Cadence**: Strictly ONE email at a time per turn. Never bundle multiple emails together.
+- **Mandatory Field Sequence**: Always present each email in this exact order: 1) Recipient Email, 2) Subject, 3) Body, with each in its own dedicated copyable code block.
 
 ## Testing Protocol & Velocity Rules
 

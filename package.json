@@ -1,7 +1,29 @@
 {
   "name": "hvac-logic",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "https://hvaclogic.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miadsaadidi/hvaclogic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miadsaadidi/hvaclogic/issues"
+  },
+  "author": "Miad S.",
+  "license": "MIT",
+  "keywords": [
+    "hvac",
+    "building-science",
+    "thermodynamics",
+    "psychrometrics",
+    "duct-sizing",
+    "manual-j",
+    "manual-d",
+    "heat-pump",
+    "refrigeration",
+    "engineering-calculators"
+  ],
   "scripts": {
     "predev": "node scripts/generate-service-worker.mjs",
     "dev": "next dev --turbopack",

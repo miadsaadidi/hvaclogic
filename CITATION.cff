@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use HVACLogic in academic research, coursework, or engineering audits, please cite it using the metadata below."
+title: "HVACLogic: Deterministic Building Science & Thermodynamic Calculation Suite"
+authors:
+  - family-names: "Saadidi"
+    given-names: "Miad"
+    orcid: "https://orcid.org/0009-0008-4501-7590"
+version: 1.0.0
+date-released: 2026-09-05
+url: "https://hvaclogic.org"
+repository-code: "https://github.com/miadsaadidi/hvaclogic"
+license: MIT
+keywords:
+  - "HVAC"
+  - "building science"
+  - "thermodynamics"
+  - "psychrometrics"
+  - "fluid dynamics"
+  - "duct design"
+  - "refrigeration"
+  - "heat pumps"
+abstract: "An open-source, deterministic computational engineering suite for building science, fluid dynamics, psychrometrics, and HVAC/R field diagnostics executing 100% client-side in the browser."
