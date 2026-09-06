@@ -54,7 +54,7 @@
     4. [`docs/DEV-TO-EDITORIAL-GUIDELINES.md`](./docs/DEV-TO-EDITORIAL-GUIDELINES.md) (DEV.to 8-article calendar)
     5. [`docs/13-30-day-seo-authority-plan.md`](./docs/13-30-day-seo-authority-plan.md) (Academia.edu & preprint schedule)
   - **Operational Rule for "What do we have in SEO plan today?"**: Immediately check the current local date against `docs/16-master-authority-and-syndication-calendar.md` and cross-reference `docs/14-seo-progress-tracker.md`. Return a concise, direct bulleted list reporting:
-    - **Active publication slots for today**: Medium (DA 96), Dev.to (DA 91), Academia.edu (DA 93), Internet Archive (DA 99), OER Commons/Educational Hubs (DA 76+), and Harvard Dataverse (DA 93) on Thursdays.
+    - **Active publication slots for today**: Medium (DA 96), Dev.to (DA 91), Academia.edu (DA 93), Internet Archive (DA 99), OER Commons/Educational Hubs (DA 76+), and Harvard Dataverse (DA 93) & SSRN (DA 92) on Thursdays.
     - **Due outreach follow-ups for today**: Check Sent Dates in the Outreach CRM table and list all contacts due for their 7-day follow-up (`Sent Date + 7 Days`).
   - **Strict 7-Day Outreach Follow-Up Protocol**: Direct email outreach batches operate under a strict 7-day follow-up rule: send exactly 1 polite, value-added follow-up 7 days after the initial email (`Sent Date + 7 Days`), then stop permanently. Zero secondary follow-ups. If no reply, close ticket.
   - **Dynamic Topics & Titles**: Exact publication titles, subjects, and datasets are decided on the day of publication according to active technical priorities (never hardcode fixed content prematurely).
@@ -158,5 +158,6 @@ When authoring or updating technical editorial content for syndication on Medium
 4. **Internet Archive (`archive.org` — DA 96)**: For permanent open monograph repository & preprint citations.
 5. **OER Commons (`oercommons.org` — DA 84 / DR 84)**: For Open Educational Resources & Higher-Ed/CTE Courseware indexing ([Course Resource](https://oercommons.org/courses/hvaclogic-deterministic-building-science-thermodynamic-modeling-suite)).
 6. **Harvard Dataverse (`dataverse.harvard.edu` — DA 93)**: For weekly open benchmark dataset deposits minting permanent DataCite DOIs ([Dataverse DOI 10.7910/DVN/SR1NZO](https://doi.org/10.7910/DVN/SR1NZO)).
+7. **SSRN (`ssrn.com` — DA 92 / Elsevier)**: For working papers, building energy & decarbonization modeling, and computational engineering frameworks minting permanent Crossref DOIs.
 
 
