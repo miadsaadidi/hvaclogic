@@ -9,12 +9,12 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
     const sitemapEntries = sitemap();
     const urls = sitemapEntries.map((e) => e.url);
 
-    // 1 Homepage + 5 Pillar Hubs + 21 Calculators + 1 Guides Hub + 1 Research Hub + 5 Whitepapers + 1 Standards + 7 Authority/Resource Pages = 42
-    expect(urls.length).toBe(42);
+    // 1 Homepage + 5 Pillar Hubs + 21 Calculators + 1 Guides Hub + 1 Research Hub + 5 Whitepapers + 1 Standards + 8 Authority/Resource/Policy Pages = 43
+    expect(urls.length).toBe(43);
 
     // Ensure zero duplicates
     const uniqueUrls = new Set(urls);
-    expect(uniqueUrls.size).toBe(42);
+    expect(uniqueUrls.size).toBe(43);
 
     // Ensure all URLs start with the canonical domain https://hvaclogic.org
     urls.forEach((url) => {
