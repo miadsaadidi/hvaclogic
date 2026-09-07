@@ -134,18 +134,20 @@ export default function ResearchHubPage() {
                 >
                   {paper.reportNumber}
                 </span>
-                <span
-                  style={{
-                    background: "rgba(167, 139, 250, 0.1)",
-                    color: "#a78bfa",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    padding: "0.2rem 0.55rem",
-                    borderRadius: "4px",
-                  }}
-                >
-                  DOI: {paper.doi}
-                </span>
+                {paper.doi && (
+                  <span
+                    style={{
+                      background: "rgba(167, 139, 250, 0.1)",
+                      color: "#a78bfa",
+                      fontSize: "0.75rem",
+                      fontWeight: 600,
+                      padding: "0.2rem 0.55rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    DOI: {paper.doi}
+                  </span>
+                )}
                 <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginLeft: "auto" }}>
                   {paper.publicationDate}
                 </span>
@@ -187,7 +189,7 @@ export default function ResearchHubPage() {
             </div>
 
             {/* Action Links */}
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.75rem", paddingTop: "1rem", borderTop: "1px solid var(--border-color)" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", paddingTop: "1rem", borderTop: "1px solid var(--border-color)" }}>
               <Link
                 href={`/research/${paper.slug}`}
                 style={{
@@ -227,6 +229,48 @@ export default function ResearchHubPage() {
                 <span>📄</span>
                 <span>Download PDF</span>
               </a>
+
+              {paper.repositories?.map((repo) => (
+                <a
+                  key={repo.url}
+                  href={repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    background:
+                      repo.platform === "academia"
+                        ? "rgba(185, 28, 28, 0.08)"
+                        : repo.platform === "figshare"
+                        ? "rgba(14, 165, 233, 0.08)"
+                        : "rgba(168, 85, 247, 0.08)",
+                    color:
+                      repo.platform === "academia"
+                        ? "var(--accent-danger, #ef4444)"
+                        : repo.platform === "figshare"
+                        ? "var(--accent-cooling, #00d2ff)"
+                        : "#a78bfa",
+                    border: `1px solid ${
+                      repo.platform === "academia"
+                        ? "rgba(239, 68, 68, 0.25)"
+                        : repo.platform === "figshare"
+                        ? "rgba(0, 210, 255, 0.25)"
+                        : "rgba(167, 139, 250, 0.25)"
+                    }`,
+                    fontWeight: 600,
+                    fontSize: "0.82rem",
+                    padding: "0.55rem 0.95rem",
+                    borderRadius: "0.45rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : "🌐"}</span>
+                  <span>{repo.platform === "academia" ? "Academia.edu" : repo.platform === "figshare" ? "Figshare" : "Harvard Dataverse"}</span>
+                  <span style={{ fontSize: "0.75rem", opacity: 0.8 }}>↗</span>
+                </a>
+              ))}
             </div>
           </article>
         ))}
