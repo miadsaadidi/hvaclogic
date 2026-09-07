@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cooling & Heat Load Calculators — Manual J/S | HVACLogic",
+    title: "Cooling & Heat Load Calculators — Manual J/S",
     description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Engineering Methodology & Physical Models | HVACLogic",
+    title: "Engineering Methodology & Physical Models",
     description: "Scientific documentation of HVACLogic calculation engines: Darcy-Colebrook fluid mechanics, ACCA Manual J/S thermal models, and NIST REFPROP saturation thermodynamics.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },

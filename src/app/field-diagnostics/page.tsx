@@ -6,14 +6,14 @@ import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Field Diagnostics & A2L Refrigerant Sizing | HVACLogic",
+  title: "Field Diagnostics & A2L Refrigerant Sizing",
   description:
     "Diagnostic superheat and subcooling formulas, EPA 608 A2L temperature glide compensation, and NIST REFPROP saturation curves for R-410A and R-454B.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/field-diagnostics`,
   },
   openGraph: {
-    title: "Field Diagnostics & A2L Refrigerant Sizing | HVACLogic",
+    title: "Field Diagnostics & A2L Refrigerant Sizing",
     description:
       "Diagnostic superheat and subcooling formulas, EPA 608 A2L temperature glide compensation, and NIST REFPROP saturation curves for R-410A and R-454B.",
     url: `${siteConfig.canonicalDomain}/field-diagnostics`,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Field Diagnostics & A2L Refrigerant Sizing | HVACLogic",
+    title: "Field Diagnostics & A2L Refrigerant Sizing",
     description:
       "Diagnostic superheat and subcooling formulas, EPA 608 A2L temperature glide compensation, and NIST REFPROP saturation curves for R-410A and R-454B.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
