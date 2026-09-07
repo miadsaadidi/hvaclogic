@@ -5,14 +5,14 @@ import { ENGINEERING_GUIDES } from "@/lib/data/guides-registry";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "HVAC Engineering Guides & Field Sizing Protocols | HVACLogic",
+  title: "HVAC Engineering Guides & Field Sizing Protocols",
   description:
     "Comprehensive on-page engineering guides covering ACCA Manual D duct hydraulics, Manual J cooling loads, heat pump cold-climate balance points, A2L refrigerant glide, and building science physics.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/guides`,
   },
   openGraph: {
-    title: "HVAC Engineering Guides & Field Sizing Protocols | HVACLogic",
+    title: "HVAC Engineering Guides & Field Sizing Protocols",
     description:
       "Comprehensive on-page engineering guides covering ACCA Manual D duct hydraulics, Manual J cooling loads, heat pump cold-climate balance points, A2L refrigerant glide, and building science physics.",
     url: `${siteConfig.canonicalDomain}/guides`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC Engineering Guides & Field Sizing Protocols | HVACLogic",
+    title: "HVAC Engineering Guides & Field Sizing Protocols",
     description:
       "Comprehensive on-page engineering guides covering ACCA Manual D duct hydraulics, Manual J cooling loads, heat pump cold-climate balance points, A2L refrigerant glide, and building science physics.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],

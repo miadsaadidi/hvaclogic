@@ -59,9 +59,9 @@ export const calculatorRegistry: CalculatorMeta[] = [
     launchPhase: 1,
     riskLevel: "low",
     primaryKeyword: "flex duct cfm chart",
-    secondaryKeywords: ["flex duct cfm chart", "flexible duct air flow chart", "6 flex duct cfm", "8 flex duct cfm", "14 flex duct cfm", "cfm chart for flex duct"],
+    secondaryKeywords: ["flex duct cfm chart", "flexible duct air flow chart", "6 flex duct cfm", "8 flex duct cfm", "14 flex duct cfm", "cfm chart for flex duct", "flexible duct air flow chart"],
     primaryIntent: "Navigational / Field Lookup",
-    seoTitle: "Flex Duct CFM Chart: 4\" to 20\" Sizing Guide",
+    seoTitle: "Flex Duct CFM Chart: 4\" to 20\" Airflow Sizing Guide",
     metaDescription: "Interactive flexible duct CFM chart for 4\" to 20\" round ducts. Compare airflow across 0.05 to 0.15 in. wg friction rates with sag and compression derating.",
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
@@ -71,7 +71,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
       "Dynamic sag slider adjusting capacity for 0%, 4%, 15%, and 30% compression",
       "One-click printable 1-page PDF reference card for truck clipboards",
     ],
-    relatedCalculatorIds: ["ductulator", "cfm-calculator"],
+    relatedCalculatorIds: ["ductulator", "cfm-calculator", "duct-friction-loss-calculator", "filter-sizing-calculator"],
     standards: ["ACCA", "ASHRAE"],
     formulaVersion: "1.0.0",
     dataVersion: "1.0.0",
@@ -87,6 +87,10 @@ export const calculatorRegistry: CalculatorMeta[] = [
       {
         question: "How many CFM can an 8-inch flex duct handle?",
         answer: "An 8-inch flexible duct carries approximately 150 to 160 CFM at a 0.10 in. wg friction rate, making it suitable for larger bedrooms or living room supply runs."
+      },
+      {
+        question: "How does flexible duct installation sag impact air flow capacity?",
+        answer: "According to ASHRAE Research Project RP-1333, just 4% to 15% longitudinal compression or 2 inches of duct sag increases the fluid friction factor by over 170%, dropping airflow delivery by up to 50% compared to rigid metal ductwork."
       }
     ],
     analyticsEvents: ["calculator_started", "preset_selected", "print_exported", "csv_exported"]
@@ -190,7 +194,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
     primaryKeyword: "duct friction loss calculator",
     secondaryKeywords: ["duct friction loss calculator", "duct tel meaning", "what is duct tel", "total equivalent length hvac", "acca manual d friction rate", "available static pressure calculator"],
     primaryIntent: "Transactional / Professional Engineering",
-    seoTitle: "Duct Friction Loss & TEL Sizer: Manual D",
+    seoTitle: "Duct Friction Loss & TEL Calculator (ACCA Manual D)",
     metaDescription: "Calculate ACCA Manual D Total Equivalent Length (TEL), Available Static Pressure (ASP), and Design Friction Rate (FR) for residential HVAC duct design.",
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
@@ -211,8 +215,8 @@ export const calculatorRegistry: CalculatorMeta[] = [
     testStatus: "validated",
     faqs: [
       {
-        question: "What is Total Equivalent Length (TEL) in duct design?",
-        answer: "Total Equivalent Length (TEL) represents the total aerodynamic resistance of the longest supply and return duct runs combined, converting fitting turbulence into equivalent feet of straight ductwork: TEL = Straight Length + Sum of Fitting Equivalent Lengths."
+        question: "What is Duct TEL and what does it mean in HVAC sizing?",
+        answer: "In HVAC duct sizing, duct TEL stands for Total Equivalent Length. It quantifies the dynamic friction resistance of all elbows, transitions, tees, dampers, and registers converted into equivalent linear feet of straight ductwork. TEL is the denominator in ACCA Manual D's friction rate equation: FR = (ASP × 100) / TEL."
       },
       {
         question: "How do you calculate Available Static Pressure (ASP)?",
@@ -502,7 +506,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
     primaryKeyword: "pt chart",
     secondaryKeywords: ["454b pt chart", "refrigerant pt chart", "454b pressure temperature chart", "r454b pressure temp chart", "a2l refrigerant pressure chart", "r32 pt chart", "r410a pt chart"],
     primaryIntent: "Navigational / Field Lookup",
-    seoTitle: "Refrigerant PT Chart (2026): R-454B & R-32",
+    seoTitle: "A2L Refrigerant PT Chart: R-454B, R-32 & R-410A",
     metaDescription: "Interactive digital Pressure-Temperature chart for R-454B, R-32, R-410A, R-22 and 30+ refrigerants. Instant bubble and dew point saturation curves for 2026 A2L.",
     categoryName: "Field Diagnostics",
     categoryRoute: "/field-diagnostics",
@@ -512,7 +516,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
       "Discrete Bubble Point (liquid) and Dew Point (vapor) curves for zeotropic blends",
       "Unit toggle: psig, psia, bar, kPa <-> °F, °C",
     ],
-    relatedCalculatorIds: ["superheat-subcooling-calculator", "psychrometric-calculator"],
+    relatedCalculatorIds: ["superheat-subcooling-calculator", "psychrometric-calculator", "refrigerant-charge-calculator"],
     standards: ["NIST", "EPA", "ASHRAE"],
     formulaVersion: "1.0.0",
     dataVersion: "1.0.0",
@@ -528,6 +532,10 @@ export const calculatorRegistry: CalculatorMeta[] = [
       {
         question: "What is temperature glide in zeotropic refrigerants like R-454B and R-407C?",
         answer: "Temperature glide is the temperature difference between the bubble point (where evaporation starts) and dew point (where condensation finishes) at a constant pressure."
+      },
+      {
+        question: "What is the typical operating pressure for R-454B on high and low sides?",
+        answer: "At typical summer operating conditions (45°F evaporating and 115°F condensing), R-454B operates around 125 to 135 psig suction pressure and 375 to 395 psig liquid head pressure, which is roughly 5% lower than R-410A."
       }
     ],
     analyticsEvents: ["calculator_started", "result_generated", "unit_changed"]
@@ -642,7 +650,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
     launchPhase: 1,
     riskLevel: "low",
     primaryKeyword: "heat pump size calculator",
-    secondaryKeywords: ["heat pump sizing", "cold climate heat pump sizing", "heat pump balance point", "heat pump vs heat loss", "auxiliary heat strip sizing"],
+    secondaryKeywords: ["heat pump sizing", "cold climate heat pump sizing", "heat pump balance point", "heat pump vs heat loss", "auxiliary heat strip sizing", "heat strip size in kw calculator"],
     primaryIntent: "Commercial / Electrification",
     seoTitle: "Heat Pump Sizing & Thermal Balance Point",
     metaDescription: "Calculate heat pump thermal balance point, cold-climate low-ambient heating capacity (47°F, 17°F, -5°F), and auxiliary electric backup heat strip sizing.",
@@ -673,8 +681,8 @@ export const calculatorRegistry: CalculatorMeta[] = [
         answer: "Cold-climate air-source heat pumps (ccASHP) use advanced variable-speed inverter compressors, flash vapor injection, and larger outdoor coils to maintain 75% to 100% of their rated heating capacity down to -5°F (-20°C)."
       },
       {
-        question: "What size auxiliary heat strip do I need for my heat pump?",
-        answer: "Auxiliary heat strips are sized to cover the exact heating deficit between the building's heat loss at winter design temperature and the heat pump's output: kW = (Design Heat Loss - Heat Pump Output @ Design) / 3,412.14."
+        question: "How do you calculate heat strip size in kW for a heat pump?",
+        answer: "To calculate heat strip size in kW, determine the heating deficit between your home's total design heat loss and the heat pump's capacity at the winter design temperature: Heat Strip kW = (Building Heat Loss BTU/hr - Heat Pump Output @ Design Temp BTU/hr) / 3,412.14."
       }
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
@@ -827,9 +835,9 @@ export const calculatorRegistry: CalculatorMeta[] = [
     launchPhase: 1,
     riskLevel: "low",
     primaryKeyword: "combustion air calculator",
-    secondaryKeywords: ["nfpa 54 combustion air", "confined space combustion air", "furnace combustion air requirements", "water heater combustion air opening"],
+    secondaryKeywords: ["nfpa 54 combustion air", "confined space combustion air", "furnace combustion air requirements", "water heater combustion air opening", "combustion air sizing chart"],
     primaryIntent: "High Commercial / Code Compliance",
-    seoTitle: "Combustion Air Sizer — NFPA 54 & IFGC Spaces",
+    seoTitle: "Combustion Air Sizing Chart & Calculator: NFPA 54",
     metaDescription: "Size mechanical room combustion air openings per NFPA 54 and IFGC. Instant 50 cu ft/1,000 BTU confined space test and indoor/outdoor louver duct sizing.",
     categoryName: "Heating Systems",
     categoryRoute: "/heating-systems",
@@ -860,6 +868,10 @@ export const calculatorRegistry: CalculatorMeta[] = [
       {
         question: "Why do wood louvers require much larger openings than metal louvers?",
         answer: "Wooden louvers have thicker slats that block airflow, providing only 20% to 25% net free area compared to 75% for thin metal louvers. Therefore, gross opening dimensions with wood louvers must be 4 times larger than the calculated net free area."
+      },
+      {
+        question: "What does the NFPA 54 combustion air sizing chart require for outdoor vertical ducts?",
+        answer: "When supplying combustion air directly from the outdoors through vertical ducts, NFPA 54 specifies two permanent openings, each sized at a minimum of 1 sq in. per 4,000 BTU/hr of total appliance input rating."
       }
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]

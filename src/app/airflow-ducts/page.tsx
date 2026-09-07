@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Airflow & Duct Sizing Calculators | HVACLogic",
+    title: "Airflow & Duct Sizing Calculators",
     description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },

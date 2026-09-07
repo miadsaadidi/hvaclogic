@@ -14,11 +14,11 @@ describe("Engineering Guides Registry", () => {
     expect(guides.length).toBe(8);
   });
 
-  it("has 4 published guides and 4 scheduled guides in the roadmap", () => {
+  it("has 5 published guides and 3 scheduled guides in the roadmap", () => {
     const published = getPublishedGuides();
     const scheduled = getScheduledGuides();
-    expect(published.length).toBe(4);
-    expect(scheduled.length).toBe(4);
+    expect(published.length).toBe(5);
+    expect(scheduled.length).toBe(3);
   });
 
   it("verifies every guide contains valid titles, routes, standards, and companion calculators", () => {
