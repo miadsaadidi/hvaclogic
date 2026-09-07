@@ -38,9 +38,11 @@
   - **Step 3: PR Open Duration**:
     - Leave PRs open for a realistic review window (**2 to 24 hours**, depending on scale—never instant merge in minutes) to establish an authentic, human-paced research review timeline.
     - Vercel automatically deploys an isolated **Preview Deployment** linked to the PR.
-  - **Step 4: Clean Merge & Branch Cleanup**:
-    - Merge via GitHub PR merge (or fast-forward with immediate remote branch deletion `git push origin --delete feat/<slug>`).
-    - **Outcome**: The PR is marked **Closed / Merged** in GitHub history, the temporary branch is deleted from GitHub and Vercel Active Branches, and Vercel automatically deploys `main` to **Production (`hvaclogic.org`)**.
+  - **Step 4: Clean Online Merge, Vercel Webhook & Preview Cleanup**:
+    - **Merge Online via GitHub API / Web (MANDATORY)**: NEVER merge feature branches locally and force-push. Always trigger the merge directly on GitHub (`PUT /repos/.../pulls/{number}/merge` or the GitHub PR web interface) so that GitHub dispatches the formal `pull_request.closed` and production `push` webhooks directly to Vercel.
+    - **Verify Vercel Webhook & Production Build**: Immediately verify via Vercel API that Vercel registered the production deployment for `main` and monitors it until reaching `READY` on `hvaclogic.org`.
+    - **Purge Stale Preview Deployments via Vercel API**: Immediately query Vercel deployments for `feat/<slug>` and delete all associated preview deployments via `DELETE /v13/deployments/{id}` so that stale branch cards never remain pinned on the Vercel project dashboard.
+    - **Local Sync & Branch Deletion**: Switch local checkout back to `main`, run `git pull origin main`, delete the local feature branch (`git branch -d feat/<slug>`), and confirm remote deletion (`git push origin --delete feat/<slug>` if not already deleted by GitHub).
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 - **Separate Copyable Blocks for Metadata**: Whenever providing metadata, tags, titles, descriptions, or form fields for publishing (e.g. Medium, Dev.to, Academia.edu), ALWAYS output **each individual field in its own separate, dedicated code block** for instant 1-click copying. NEVER group multiple fields into a single shared block.
