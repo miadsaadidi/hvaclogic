@@ -10,6 +10,13 @@ export interface CompanionCalculator {
   description: string;
 }
 
+export interface ResearchRepositoryLink {
+  platform: "academia" | "figshare" | "dataverse" | "ssrn" | "archive";
+  label: string;
+  url: string;
+  badge?: string;
+}
+
 export interface ResearchPaper {
   slug: string;
   title: string;
@@ -22,9 +29,10 @@ export interface ResearchPaper {
   formulas: ResearchPaperFormula[];
   authors: string[];
   publicationDate: string; // ISO format e.g. "2026-01-15"
-  doi: string;
+  doi?: string;
   reportNumber: string;
   pdfUrl: string;
+  repositories?: ResearchRepositoryLink[];
   companionCalculators: CompanionCalculator[];
   bibtex: string;
   apa: string;
@@ -69,9 +77,16 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-01-15",
-    doi: "10.6084/m9.figshare.172310808",
     reportNumber: "HL-TR-2026-HP01",
     pdfUrl: "/whitepapers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93",
+      },
+    ],
     companionCalculators: [
       {
         name: "Heat Pump Running Cost Calculator",
@@ -95,10 +110,9 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-HP01},
-  doi = {10.6084/m9.figshare.172310808},
   url = {https://hvaclogic.com/research/vapor-compression-kinetics-heat-pump-derating}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Thermal Degradation Kinetics, Auxiliary Electric Resistance Staging, and Seasonal HSPF2/COP Derating in Cold-Climate Air-Source Heat Pumps (Technical Report No. HL-TR-2026-HP01). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.172310808`
+    apa: `HVACLogic Research Group, & S., M. (2026). Thermal Degradation Kinetics, Auxiliary Electric Resistance Staging, and Seasonal HSPF2/COP Derating in Cold-Climate Air-Source Heat Pumps (Technical Report No. HL-TR-2026-HP01). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
   },
   {
     slug: "non-linear-duct-friction-loss-fitting-penalties",
@@ -138,9 +152,16 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-01-28",
-    doi: "10.6084/m9.figshare.172310809",
     reportNumber: "HL-TR-2026-DUCT02",
     pdfUrl: "/whitepapers/hvaclogic_un_tensioned_airflow_paper.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93",
+      },
+    ],
     companionCalculators: [
       {
         name: "Duct Airflow & Friction Rate Sizing Calculator",
@@ -164,10 +185,9 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-DUCT02},
-  doi = {10.6084/m9.figshare.172310809},
   url = {https://hvaclogic.com/research/non-linear-duct-friction-loss-fitting-penalties}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Non-Linear Friction Loss Dynamics, Equivalent Length Fitting Penalties, and Dynamic Pressure Drops in Residential Duct Systems (Technical Report No. HL-TR-2026-DUCT02). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.172310809`
+    apa: `HVACLogic Research Group, & S., M. (2026). Non-Linear Friction Loss Dynamics, Equivalent Length Fitting Penalties, and Dynamic Pressure Drops in Residential Duct Systems (Technical Report No. HL-TR-2026-DUCT02). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
   },
   {
     slug: "thermal-envelope-infiltration-building-heat-loss",
@@ -207,9 +227,16 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-02-10",
-    doi: "10.6084/m9.figshare.172310810",
     reportNumber: "HL-TR-2026-ENV03",
     pdfUrl: "/whitepapers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93",
+      },
+    ],
     companionCalculators: [
       {
         name: "Residential Heat Loss Calculator (Manual J)",
@@ -233,10 +260,9 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-ENV03},
-  doi = {10.6084/m9.figshare.172310810},
   url = {https://hvaclogic.com/research/thermal-envelope-infiltration-building-heat-loss}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Deterministic Building Science & Dynamic Enclosure Infiltration Modeling for Residential Space Heating and Decarbonization Sizing (Technical Report No. HL-TR-2026-ENV03). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.172310810`
+    apa: `HVACLogic Research Group, & S., M. (2026). Deterministic Building Science & Dynamic Enclosure Infiltration Modeling for Residential Space Heating and Decarbonization Sizing (Technical Report No. HL-TR-2026-ENV03). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
   },
   {
     slug: "effective-dilution-iaq-ventilation-mass-balance",
@@ -276,9 +302,16 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-02-24",
-    doi: "10.6084/m9.figshare.172310811",
     reportNumber: "HL-TR-2026-IAQ04",
     pdfUrl: "/whitepapers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93",
+      },
+    ],
     companionCalculators: [
       {
         name: "CFM Airflow & Duct Velocity Calculator",
@@ -302,10 +335,9 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-IAQ04},
-  doi = {10.6084/m9.figshare.172310811},
   url = {https://hvaclogic.com/research/effective-dilution-iaq-ventilation-mass-balance}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Effective Outdoor Air Dilution, Continuous Infiltration Credit, and Multi-Zone Mass-Balance Modeling under ASHRAE 62.2 (Technical Report No. HL-TR-2026-IAQ04). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.172310811`
+    apa: `HVACLogic Research Group, & S., M. (2026). Effective Outdoor Air Dilution, Continuous Infiltration Credit, and Multi-Zone Mass-Balance Modeling under ASHRAE 62.2 (Technical Report No. HL-TR-2026-IAQ04). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
   },
   {
     slug: "thermodynamic-modeling-a2l-refrigerant-glide-r454b",
@@ -347,6 +379,20 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     doi: "10.7910/DVN/SR1NZO",
     reportNumber: "HL-TR-2026-A2L05",
     pdfUrl: "/whitepapers/Thermodynamic_Modeling_A2L_Refrigerant_Glide_R454B.pdf",
+    repositories: [
+      {
+        platform: "dataverse",
+        label: "View on Harvard Dataverse",
+        url: "https://doi.org/10.7910/DVN/SR1NZO",
+        badge: "DA 93",
+      },
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93",
+      },
+    ],
     companionCalculators: [
       {
         name: "A2L Refrigerant PT Chart (R-454B, R-32, R-410A)",
@@ -374,6 +420,132 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.com/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Thermodynamic Phase-Equilibrium and Non-Linear Temperature Glide Modeling of Next-Generation Zeotropic A2L Refrigerants (R-454B and R-32) (Technical Report No. HL-TR-2026-A2L05). HVACLogic Open-Access Building Science. https://doi.org/10.7910/DVN/SR1NZO`
+  },
+  {
+    slug: "ashrae-hyland-wexler-moist-air-psychrometrics",
+    title: "Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics",
+    seoTitle: "ASHRAE Hyland-Wexler Psychrometric Formulations",
+    seoDescription: "Governing ASHRAE Hyland-Wexler saturation polynomials, logarithmic dew point inversion, and numerical energy-balance bisection wet-bulb solvers.",
+    subtitle: "A computational thermodynamics evaluation of Hyland-Wexler moist air saturation polynomials, logarithmic dew-point inversion, and numerical energy-balance wet-bulb convergence.",
+    abstract: "Accurate evaluation of moist air thermodynamic properties is fundamental to building energy simulation, Sensible Heat Ratio (SHR) load splitting, and HVAC equipment sizing. Simplified quadratic approximations or linear psychrometric shortcuts introduce significant cumulative errors (often exceeding 5% to 8%) when applied across non-standard barometric elevations and elevated moisture contents. This monograph details the mathematical implementation of governing ASHRAE Fundamentals (Chapter 1) Hyland-Wexler formulations for saturation vapor pressure across liquid water (32°F to 392°F) and sub-freezing ice (-148°F to 32°F). We establish the numerical inversion framework for dew-point determination via logarithmic pressure polynomials and derive a 1D numerical energy-balance bisection solver for wet-bulb equilibrium convergence without closed-form algebraic solutions. Complete algorithmic architectures for humidity ratio (W), grains of moisture per pound of dry air, specific enthalpy (h), specific volume (v), and moist air density (rho) are validated against experimental thermodynamic tables.",
+    keyFindings: [
+      "Neglecting barometric altitude decay in high-elevation regions (e.g., Denver, CO at 5,280 ft, 12.15 psia) creates a 17.3% density over-prediction and systematic fan mass-flow sizing deficits.",
+      "Linear psychrometric approximations introduce up to 8.4% error in humidity ratio (W) and latent enthalpy calculations during peak summer conditions (95°F DB / 78°F WB).",
+      "Numerical bisection energy-balance solver for wet-bulb temperature converges to within 0.01°F in fewer than 25 iterations without external numerical library overhead.",
+      "Maintaining indoor absolute moisture below 65 grains/lb (55°F dew point at 75°F DB) prevents dust mite proliferation and structural condensation risk under ASHRAE Standard 55."
+    ],
+    governingStandards: [
+      "ASHRAE Handbook of Fundamentals (Chapter 1: Psychrometrics)",
+      "ASHRAE Standard 55-2023 (Thermal Environmental Conditions for Human Occupancy)",
+      "ACCA Manual J (8th Edition: Residential Load Calculation)",
+      "NIST Standard Reference Database 23 (REFPROP 10.0)"
+    ],
+    formulas: [
+      {
+        title: "Hyland-Wexler Saturation Vapor Pressure Over Liquid Water",
+        latex: "\\ln(P_{ws}) = \\frac{C_8}{T} + C_9 + C_{10}T + C_{11}T^2 + C_{12}T^3 + C_{13}\\ln(T)",
+        explanation: "Governing ASHRAE polynomial formulation computing absolute saturation vapor pressure over absolute Rankine temperature (32°F to 392°F)."
+      },
+      {
+        title: "Humidity Ratio and Absolute Moisture Grain Weight",
+        latex: "W = 0.621945 \\cdot \\left[ \\frac{P_w}{P_{atm} - P_w} \\right], \\quad W_{grains} = W \\times 7000",
+        explanation: "Calculates mass ratio of water vapor per unit mass of dry air and converts to standard engineering grains per pound."
+      },
+      {
+        title: "Numerical Energy-Balance Wet-Bulb Equilibrium",
+        latex: "W = \\frac{(1093 - 0.556 T_{wb})W_{s,wb} - 0.24(T_{db} - T_{wb})}{1093 + 0.444 T_{db} - T_{wb}}",
+        explanation: "Dynamic adiabatic saturation equilibrium equation solved iteratively via 1D bisection root-finding to within 0.01°F convergence."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-07",
+    doi: "10.6084/m9.figshare.33456928",
+    reportNumber: "HL-TR-2026-PSY04",
+    pdfUrl: "/whitepapers/hvaclogic_psychrometrics_hyland_wexler_paper.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/174361730/Thermodynamic_Formulations_of_ASHRAE_Hyland_Wexler_Moist_Air_Psychrometrics_and_Numerical_Energy_Balance_Solvers_for_Building_Sizing_and_Field_Diagnostics",
+        badge: "DA 93",
+      },
+      {
+        platform: "figshare",
+        label: "Read on Figshare",
+        url: "https://figshare.com/articles/dataset/ASHRAE_Hyland-Wexler_Moist_Air_Psychrometric_Benchmark_Dataset_420_Thermodynamic_State_Points_Across_Sea-Level_and_Elevated_Altitudes/33456928?file=68285407",
+        badge: "DA 91",
+      },
+    ],
+    companionCalculators: [
+      {
+        name: "Psychrometric & Moist Air Calculator",
+        route: "/calculators/psychrometric-calculator",
+        description: "Interactive psychrometric state evaluation using pure ASHRAE Hyland-Wexler formulations."
+      },
+      {
+        name: "Residential Heat Loss Calculator (Manual J)",
+        route: "/calculators/heat-loss-calculator",
+        description: "Whole-building conductive and infiltration heating load sizing per ACCA Manual J."
+      },
+      {
+        name: "AC & Heat Pump Tonnage Calculator",
+        route: "/calculators/ac-tonnage-calculator",
+        description: "Determine sensible and latent thermal capacity requirements per Manual J rules."
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_psychrometrics,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics},
+  institution = {HVACLogic Open-Access Building Science Monograph Series},
+  year = {2026},
+  number = {HL-TR-2026-PSY04},
+  doi = {10.6084/m9.figshare.33456928},
+  url = {https://hvaclogic.com/research/ashrae-hyland-wexler-moist-air-psychrometrics}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics (Technical Report No. HL-TR-2026-PSY04). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33456928`
+  }
+];
+
+export interface ResearchDataset {
+  slug: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  doi: string;
+  repository: string;
+  repositoryUrl: string;
+  format: string;
+  downloadUrl: string;
+  publicationDate: string;
+  recordCount: number;
+}
+
+export const RESEARCH_DATASETS: ResearchDataset[] = [
+  {
+    slug: "ashrae-hyland-wexler-psychrometric-benchmark-dataset",
+    title: "ASHRAE Hyland-Wexler Moist Air Psychrometric Benchmark Dataset",
+    subtitle: "420 verified thermodynamic state points across standard sea-level and elevated altitude barometric regimes.",
+    description: "Comprehensive benchmark matrix tabulating dry bulb, relative humidity, barometric pressure, saturation pressure, vapor pressure, dew point, numerical wet bulb, humidity ratio (grains/lb), enthalpy, specific volume, and air density.",
+    doi: "10.6084/m9.figshare.33456928",
+    repository: "Figshare",
+    repositoryUrl: "https://figshare.com/articles/dataset/ASHRAE_Hyland-Wexler_Moist_Air_Psychrometric_Benchmark_Dataset_420_Thermodynamic_State_Points_Across_Sea-Level_and_Elevated_Altitudes/33456928?file=68285407",
+    format: "CSV",
+    downloadUrl: "/datasets/hvaclogic_ashrae_hyland_wexler_psychrometric_benchmark.csv",
+    publicationDate: "2026-09-07",
+    recordCount: 420
+  },
+  {
+    slug: "zeotropic-a2l-refrigerant-phase-equilibrium-dataset",
+    title: "Thermodynamic Phase-Equilibrium and Temperature Glide Modeling of A2L Refrigerants (R-454B & R-32)",
+    subtitle: "Saturation pressure-temperature equilibrium matrix and zeotropic glide compensation curves.",
+    description: "NIST REFPROP-benchmarked saturation curves for R-454B and R-32 evaluating bubble-point subcooling and dew-point superheat across sub-freezing to high-ambient condensing regimes.",
+    doi: "10.7910/DVN/SR1NZO",
+    repository: "Harvard Dataverse",
+    repositoryUrl: "https://doi.org/10.7910/DVN/SR1NZO",
+    format: "Tabular / Replication Data",
+    downloadUrl: "https://doi.org/10.7910/DVN/SR1NZO",
+    publicationDate: "2026-09-04",
+    recordCount: 150
   }
 ];
 
@@ -384,3 +556,4 @@ export function getResearchPaperBySlug(slug: string): ResearchPaper | undefined 
 export function getAllResearchPaperSlugs(): string[] {
   return RESEARCH_PAPERS.map((p) => p.slug);
 }
+

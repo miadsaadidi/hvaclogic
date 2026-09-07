@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
-import { RESEARCH_PAPERS } from "@/lib/data/research-papers";
+import { RESEARCH_PAPERS, RESEARCH_DATASETS } from "@/lib/data/research-papers";
 
 export const metadata: Metadata = {
   title: "Research & Technical Whitepapers",
@@ -134,18 +134,20 @@ export default function ResearchHubPage() {
                 >
                   {paper.reportNumber}
                 </span>
-                <span
-                  style={{
-                    background: "rgba(167, 139, 250, 0.1)",
-                    color: "#a78bfa",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    padding: "0.2rem 0.55rem",
-                    borderRadius: "4px",
-                  }}
-                >
-                  DOI: {paper.doi}
-                </span>
+                {paper.doi && (
+                  <span
+                    style={{
+                      background: "rgba(167, 139, 250, 0.1)",
+                      color: "#a78bfa",
+                      fontSize: "0.75rem",
+                      fontWeight: 600,
+                      padding: "0.2rem 0.55rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    DOI: {paper.doi}
+                  </span>
+                )}
                 <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginLeft: "auto" }}>
                   {paper.publicationDate}
                 </span>
@@ -187,7 +189,7 @@ export default function ResearchHubPage() {
             </div>
 
             {/* Action Links */}
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.75rem", paddingTop: "1rem", borderTop: "1px solid var(--border-color)" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", paddingTop: "1rem", borderTop: "1px solid var(--border-color)" }}>
               <Link
                 href={`/research/${paper.slug}`}
                 style={{
@@ -227,9 +229,169 @@ export default function ResearchHubPage() {
                 <span>📄</span>
                 <span>Download PDF</span>
               </a>
+
+              {paper.repositories?.map((repo) => (
+                <a
+                  key={repo.url}
+                  href={repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    background:
+                      repo.platform === "academia"
+                        ? "rgba(185, 28, 28, 0.08)"
+                        : repo.platform === "figshare"
+                        ? "rgba(14, 165, 233, 0.08)"
+                        : "rgba(168, 85, 247, 0.08)",
+                    color:
+                      repo.platform === "academia"
+                        ? "var(--accent-danger, #ef4444)"
+                        : repo.platform === "figshare"
+                        ? "var(--accent-cooling, #00d2ff)"
+                        : "#a78bfa",
+                    border: `1px solid ${
+                      repo.platform === "academia"
+                        ? "rgba(239, 68, 68, 0.25)"
+                        : repo.platform === "figshare"
+                        ? "rgba(0, 210, 255, 0.25)"
+                        : "rgba(167, 139, 250, 0.25)"
+                    }`,
+                    fontWeight: 600,
+                    fontSize: "0.82rem",
+                    padding: "0.55rem 0.95rem",
+                    borderRadius: "0.45rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : "🌐"}</span>
+                  <span>{repo.platform === "academia" ? "Academia.edu" : repo.platform === "figshare" ? "Figshare" : "Harvard Dataverse"}</span>
+                  <span style={{ fontSize: "0.75rem", opacity: 0.8 }}>↗</span>
+                </a>
+              ))}
             </div>
           </article>
         ))}
+      </section>
+
+      {/* Open Benchmark Datasets & Replication Repositories */}
+      <section style={{ marginBottom: "3.5rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.75rem" }}>
+          <span style={{ fontSize: "1.25rem" }}>📊</span>
+          <h2 style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.01em", margin: 0 }}>
+            Open Benchmark Datasets &amp; Replication Repositories
+          </h2>
+        </div>
+        <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", maxWidth: "800px", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+          Verified empirical tabular datasets and replication packages registered with persistent DataCite DOIs across Harvard Dataverse and Figshare. Freely accessible for university courseware, computational fluid dynamics (CFD) benchmarking, and building energy modeling.
+        </p>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))", gap: "1.5rem" }}>
+          {RESEARCH_DATASETS.map((ds) => (
+            <div
+              key={ds.slug}
+              style={{
+                background: "var(--surface)",
+                border: "1px solid var(--border-color)",
+                borderTop: "4px solid #10b981",
+                borderRadius: "0.75rem",
+                padding: "1.5rem 1.75rem",
+                boxShadow: "var(--shadow-sm)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
+                  <span
+                    style={{
+                      background: "rgba(16, 185, 129, 0.1)",
+                      color: "#10b981",
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      padding: "0.15rem 0.5rem",
+                      borderRadius: "4px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    {ds.repository}
+                  </span>
+                  <span
+                    style={{
+                      background: "var(--bg-secondary)",
+                      color: "var(--ink-secondary)",
+                      fontSize: "0.72rem",
+                      fontWeight: 600,
+                      padding: "0.15rem 0.5rem",
+                      borderRadius: "4px",
+                      border: "1px solid var(--border-color)",
+                      fontFamily: "var(--font-mono, monospace)",
+                    }}
+                  >
+                    DOI: {ds.doi}
+                  </span>
+                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginLeft: "auto" }}>
+                    {ds.recordCount} Records &bull; {ds.format}
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.45rem", lineHeight: 1.35 }}>
+                  {ds.title}
+                </h3>
+                <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.5, marginBottom: "0.85rem" }}>
+                  {ds.subtitle}
+                </p>
+                <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55, marginBottom: "1.25rem" }}>
+                  {ds.description}
+                </p>
+              </div>
+
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", paddingTop: "0.85rem", borderTop: "1px solid var(--border-color)" }}>
+                <a
+                  href={ds.repositoryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    background: "#10b981",
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "0.8rem",
+                    padding: "0.45rem 1rem",
+                    borderRadius: "0.4rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>View Repository on {ds.repository} →</span>
+                </a>
+                <a
+                  href={ds.downloadUrl}
+                  download
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    background: "transparent",
+                    color: "var(--ink)",
+                    border: "1px solid var(--border-color)",
+                    fontWeight: 600,
+                    fontSize: "0.8rem",
+                    padding: "0.45rem 1rem",
+                    borderRadius: "0.4rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>📥 Download {ds.format}</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Curriculum & Academic Integration */}

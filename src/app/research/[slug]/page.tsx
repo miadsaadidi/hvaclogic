@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       citation_author: paper.authors.join("; "),
       citation_publication_date: paper.publicationDate.replace(/-/g, "/"),
       citation_pdf_url: pdfFullUrl,
-      citation_doi: paper.doi,
+      ...(paper.doi ? { citation_doi: paper.doi } : {}),
       citation_technical_report_number: paper.reportNumber,
       citation_publisher: "HVACLogic Open-Access Building Science Monograph Series",
     },
@@ -105,18 +105,20 @@ export default async function ResearchPaperPage({ params }: PageProps) {
           >
             {paper.reportNumber}
           </span>
-          <span
-            style={{
-              background: "rgba(167, 139, 250, 0.1)",
-              color: "#a78bfa",
-              fontSize: "0.78rem",
-              fontWeight: 600,
-              padding: "0.25rem 0.65rem",
-              borderRadius: "4px",
-            }}
-          >
-            DOI: {paper.doi}
-          </span>
+          {paper.doi && (
+            <span
+              style={{
+                background: "rgba(167, 139, 250, 0.1)",
+                color: "#a78bfa",
+                fontSize: "0.78rem",
+                fontWeight: 600,
+                padding: "0.25rem 0.65rem",
+                borderRadius: "4px",
+              }}
+            >
+              DOI: {paper.doi}
+            </span>
+          )}
           <span style={{ fontSize: "0.82rem", color: "var(--text-muted)" }}>
             Published: {paper.publicationDate}
           </span>
@@ -135,26 +137,85 @@ export default async function ResearchPaperPage({ params }: PageProps) {
             By <strong style={{ color: "var(--ink)" }}>{paper.authors.join(" • ")}</strong>
           </div>
 
-          <a
-            href={paper.pdfUrl}
-            download
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.45rem",
-              background: "#0284c7",
-              color: "#ffffff",
-              fontWeight: 700,
-              fontSize: "0.88rem",
-              padding: "0.6rem 1.25rem",
-              borderRadius: "0.45rem",
-              textDecoration: "none",
-              boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
-            }}
-          >
-            <span>📄</span>
-            <span>Download Official PDF Whitepaper</span>
-          </a>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.65rem" }}>
+            <a
+              href={paper.pdfUrl}
+              download
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.45rem",
+                background: "#0284c7",
+                color: "#ffffff",
+                fontWeight: 700,
+                fontSize: "0.88rem",
+                padding: "0.6rem 1.25rem",
+                borderRadius: "0.45rem",
+                textDecoration: "none",
+                boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
+              }}
+            >
+              <span>📄</span>
+              <span>Download Official PDF Whitepaper</span>
+            </a>
+
+            {paper.repositories?.map((repo) => (
+              <a
+                key={repo.url}
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.45rem",
+                  background:
+                    repo.platform === "academia"
+                      ? "rgba(185, 28, 28, 0.12)"
+                      : repo.platform === "figshare"
+                      ? "rgba(14, 165, 233, 0.12)"
+                      : "rgba(168, 85, 247, 0.12)",
+                  color:
+                    repo.platform === "academia"
+                      ? "var(--accent-danger, #ef4444)"
+                      : repo.platform === "figshare"
+                      ? "var(--accent-cooling, #00d2ff)"
+                      : "#a78bfa",
+                  border: `1px solid ${
+                    repo.platform === "academia"
+                      ? "rgba(239, 68, 68, 0.35)"
+                      : repo.platform === "figshare"
+                      ? "rgba(0, 210, 255, 0.35)"
+                      : "rgba(167, 139, 250, 0.35)"
+                  }`,
+                  fontWeight: 700,
+                  fontSize: "0.85rem",
+                  padding: "0.6rem 1.15rem",
+                  borderRadius: "0.45rem",
+                  textDecoration: "none",
+                  transition: "all 0.15s ease",
+                }}
+              >
+                <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : "🌐"}</span>
+                <span>{repo.label}</span>
+                {repo.badge && (
+                  <span
+                    style={{
+                      fontSize: "0.7rem",
+                      padding: "1px 5px",
+                      borderRadius: "3px",
+                      background: "rgba(255, 255, 255, 0.12)",
+                      border: "1px solid rgba(255, 255, 255, 0.15)",
+                      marginLeft: "0.2rem",
+                    }}
+                  >
+                    {repo.badge}
+                  </span>
+                )}
+                <span style={{ fontSize: "0.8rem", opacity: 0.8 }}>↗</span>
+              </a>
+            ))}
+          </div>
         </div>
       </header>
 

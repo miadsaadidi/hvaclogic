@@ -150,8 +150,7 @@ When authoring or updating technical editorial content for syndication on Medium
 1. **Reddit (`reddit.com` / `r/...`)**: Strictly banned. Never propose Reddit posts, community comments, or threads.
 2. **Zenodo (`zenodo.org`)**: Strictly banned due to irrecoverable network 403 blocks.
 3. **ResearchGate (`researchgate.net`)**: Strictly banned due to mandatory predefined institutional email barriers.
-4. **Figshare (`figshare.com`)**: Strictly banned due to account/platform publishing errors.
-5. **wikiHow (`wikihow.com`)**: Strictly banned due to consumer DIY mismatch and nofollow policy.
+4. **wikiHow (`wikihow.com`)**: Strictly banned due to consumer DIY mismatch and nofollow policy.
 
 ### ✅ APPROVED DISTRIBUTION & ACADEMIC REPOSITORIES ONLY:
 1. **Medium (`medium.com` — DA 96)**: For all 15 technical engineering teardown articles.
@@ -161,5 +160,6 @@ When authoring or updating technical editorial content for syndication on Medium
 5. **OER Commons (`oercommons.org` — DA 84 / DR 84)**: For Open Educational Resources & Higher-Ed/CTE Courseware indexing ([Course Resource](https://oercommons.org/courses/hvaclogic-deterministic-building-science-thermodynamic-modeling-suite)).
 6. **Harvard Dataverse (`dataverse.harvard.edu` — DA 93)**: For weekly open benchmark dataset deposits minting permanent DataCite DOIs ([Dataverse DOI 10.7910/DVN/SR1NZO](https://doi.org/10.7910/DVN/SR1NZO)).
 7. **SSRN (`ssrn.com` — DA 92 / Elsevier)**: For working papers, building energy & decarbonization modeling, and computational engineering frameworks minting permanent Crossref DOIs.
+8. **Figshare (`figshare.com` — DA 91)**: For open benchmark datasets minting permanent DataCite DOIs ([Figshare DOI 10.6084/m9.figshare.33456928](https://doi.org/10.6084/m9.figshare.33456928)). Use `dataset` item type exclusively.
 
 

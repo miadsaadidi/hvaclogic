@@ -1,17 +1,30 @@
 import { describe, it, expect } from "vitest";
-import { RESEARCH_PAPERS, getResearchPaperBySlug, getAllResearchPaperSlugs } from "./research-papers";
+import {
+  RESEARCH_PAPERS,
+  RESEARCH_DATASETS,
+  getResearchPaperBySlug,
+  getAllResearchPaperSlugs,
+} from "./research-papers";
 
 describe("Research Papers Registry", () => {
-  it("should have at least 4 peer-referenced whitepapers", () => {
-    expect(RESEARCH_PAPERS.length).toBeGreaterThanOrEqual(4);
+  it("should have at least 5 peer-referenced whitepapers", () => {
+    expect(RESEARCH_PAPERS.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("should have registered research datasets with valid DOIs", () => {
+    expect(RESEARCH_DATASETS.length).toBeGreaterThanOrEqual(2);
+    const figshareDs = RESEARCH_DATASETS.find((d) => d.repository === "Figshare");
+    expect(figshareDs).toBeDefined();
+    expect(figshareDs?.doi).toBe("10.6084/m9.figshare.33456928");
+    expect(figshareDs?.downloadUrl).toBe("/datasets/hvaclogic_ashrae_hyland_wexler_psychrometric_benchmark.csv");
   });
 
   it("should return valid paper by slug", () => {
-    const slug = "vapor-compression-kinetics-heat-pump-derating";
+    const slug = "ashrae-hyland-wexler-moist-air-psychrometrics";
     const paper = getResearchPaperBySlug(slug);
     expect(paper).toBeDefined();
-    expect(paper?.title).toContain("Thermal Degradation Kinetics");
-    expect(paper?.doi).toContain("10.6084/m9.figshare");
+    expect(paper?.title).toContain("Thermodynamic Formulations");
+    expect(paper?.doi).toBe("10.6084/m9.figshare.33456928");
     expect(paper?.pdfUrl).toBeDefined();
     expect(paper?.formulas.length).toBeGreaterThan(0);
     expect(paper?.governingStandards.length).toBeGreaterThan(0);
@@ -31,6 +44,17 @@ describe("Research Papers Registry", () => {
       expect(paper.apa).toContain(paper.reportNumber);
       expect(paper.keyFindings.length).toBeGreaterThanOrEqual(3);
       expect(paper.companionCalculators.length).toBeGreaterThanOrEqual(1);
+    });
+  });
+
+  it("should contain verified academic repository links for each paper", () => {
+    RESEARCH_PAPERS.forEach((paper) => {
+      expect(paper.repositories).toBeDefined();
+      expect(paper.repositories!.length).toBeGreaterThanOrEqual(1);
+      paper.repositories!.forEach((repo) => {
+        expect(repo.url).toMatch(/^https?:\/\//);
+        expect(repo.label.length).toBeGreaterThan(0);
+      });
     });
   });
 });
