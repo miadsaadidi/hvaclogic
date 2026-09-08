@@ -381,12 +381,6 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     pdfUrl: "/whitepapers/Thermodynamic_Modeling_A2L_Refrigerant_Glide_R454B.pdf",
     repositories: [
       {
-        platform: "dataverse",
-        label: "View on Harvard Dataverse",
-        url: "https://doi.org/10.7910/DVN/SR1NZO",
-        badge: "DA 93",
-      },
-      {
         platform: "academia",
         label: "Read on Academia.edu",
         url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
@@ -541,9 +535,9 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     description: "NIST REFPROP-benchmarked saturation curves for R-454B and R-32 evaluating bubble-point subcooling and dew-point superheat across sub-freezing to high-ambient condensing regimes.",
     doi: "10.7910/DVN/SR1NZO",
     repository: "Harvard Dataverse",
-    repositoryUrl: "https://doi.org/10.7910/DVN/SR1NZO",
+    repositoryUrl: "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SR1NZO",
     format: "Tabular / Replication Data",
-    downloadUrl: "https://doi.org/10.7910/DVN/SR1NZO",
+    downloadUrl: "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SR1NZO",
     publicationDate: "2026-09-04",
     recordCount: 150
   }

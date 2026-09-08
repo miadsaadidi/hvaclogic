@@ -35,7 +35,7 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
 
     expect(mainRule?.userAgent).toBe("*");
     expect(mainRule?.allow).toBe("/");
-    expect(mainRule?.disallow).toEqual(["/api/"]);
+    expect(mainRule?.disallow).toEqual(["/api/", "/embed/"]);
   });
 
   it("verifies all 21 production calculators have valid SEO metadata and standards", () => {
