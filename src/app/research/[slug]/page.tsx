@@ -267,7 +267,7 @@ export default async function ResearchPaperPage({ params }: PageProps) {
         <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.75rem" }}>
           Governing Industry Standards &amp; Codes
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "0.75rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: "0.75rem" }}>
           {paper.governingStandards.map((std) => (
             <div
               key={std}
@@ -328,7 +328,7 @@ export default async function ResearchPaperPage({ params }: PageProps) {
         <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
           Companion Calculation Engines &amp; Simulation Models
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "1rem" }}>
           {paper.companionCalculators.map((c) => (
             <div
               key={c.route}

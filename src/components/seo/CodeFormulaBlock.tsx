@@ -109,7 +109,7 @@ export function CodeFormulaBlock({ formula, title = "physics_equation.math", bad
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#f59e0b", display: "inline-block" }} />
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981", display: "inline-block" }} />
           </div>
-          <span style={{ fontSize: "0.68rem", color: "#94a3b8", fontWeight: 600, letterSpacing: "0.03em", marginLeft: "0.25rem" }}>
+          <span style={{ fontSize: "0.68rem", color: "#94a3b8", fontWeight: 600, letterSpacing: "0.03em", marginLeft: "0.25rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "min(200px, 40vw)" }}>
             {title}
           </span>
         </div>

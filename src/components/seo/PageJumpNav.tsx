@@ -8,8 +8,8 @@ interface JumpSection {
 
 const DEFAULT_SECTIONS: JumpSection[] = [
   { id: "calculator-tool", label: "Interactive Tool", icon: "⚡" },
+  { id: "how-to-guide", label: "Methodology", icon: "📐" },
   { id: "sizing-matrix", label: "Sizing Matrix", icon: "📋" },
-  { id: "how-to-guide", label: "How-To Guide", icon: "📐" },
   { id: "formula-math", label: "Formulas & Physics", icon: "🔬" },
   { id: "worked-example", label: "Worked Example", icon: "🧮" },
   { id: "faq-section", label: "FAQ", icon: "❓" },
