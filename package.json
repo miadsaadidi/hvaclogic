@@ -37,7 +37,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:offline": "playwright test --config=playwright.offline.config.ts",
-    "indexnow": "node scripts/ping-indexnow.mjs"
+    "indexnow": "node scripts/ping-indexnow.mjs",
+    "git:sync": "git checkout main && git pull origin main && git remote prune origin"
   },
   "dependencies": {
     "next": "15.1.12",
