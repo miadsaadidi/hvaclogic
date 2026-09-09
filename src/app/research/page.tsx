@@ -100,7 +100,7 @@ export default function ResearchHubPage() {
       </header>
 
       {/* Whitepapers List - 2 Column Grid */}
-      <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: "1.75rem", marginBottom: "4rem" }}>
+      <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))", gap: "1.75rem", marginBottom: "4rem" }}>
         {RESEARCH_PAPERS.map((paper) => (
           <article
             key={paper.slug}
@@ -267,7 +267,7 @@ export default function ResearchHubPage() {
                   }}
                 >
                   <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : "🌐"}</span>
-                  <span>{repo.platform === "academia" ? "Academia.edu" : repo.platform === "figshare" ? "Figshare" : "Harvard Dataverse"}</span>
+                  <span>{repo.label || (repo.platform === "academia" ? "Academia.edu" : repo.platform === "figshare" ? "View Dataset" : "Harvard Dataverse")}</span>
                   <span style={{ fontSize: "0.75rem", opacity: 0.8 }}>↗</span>
                 </a>
               ))}
@@ -288,7 +288,7 @@ export default function ResearchHubPage() {
           Verified empirical tabular datasets and replication packages registered with persistent DataCite DOIs across Harvard Dataverse and Figshare. Freely accessible for university courseware, computational fluid dynamics (CFD) benchmarking, and building energy modeling.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))", gap: "1.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))", gap: "1.5rem" }}>
           {RESEARCH_DATASETS.map((ds) => (
             <div
               key={ds.slug}
@@ -350,44 +350,61 @@ export default function ResearchHubPage() {
               </div>
 
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", paddingTop: "0.85rem", borderTop: "1px solid var(--border-color)" }}>
-                <a
-                  href={ds.repositoryUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.35rem",
-                    background: "#10b981",
-                    color: "#ffffff",
-                    fontWeight: 700,
-                    fontSize: "0.8rem",
-                    padding: "0.45rem 1rem",
-                    borderRadius: "0.4rem",
-                    textDecoration: "none",
-                  }}
-                >
-                  <span>View Repository on {ds.repository} →</span>
-                </a>
-                <a
-                  href={ds.downloadUrl}
-                  download
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.35rem",
-                    background: "transparent",
-                    color: "var(--ink)",
-                    border: "1px solid var(--border-color)",
-                    fontWeight: 600,
-                    fontSize: "0.8rem",
-                    padding: "0.45rem 1rem",
-                    borderRadius: "0.4rem",
-                    textDecoration: "none",
-                  }}
-                >
-                  <span>📥 Download {ds.format}</span>
-                </a>
+                {ds.repositoryUrl && (
+                  <a
+                    href={ds.repositoryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      background: "#10b981",
+                      color: "#ffffff",
+                      fontWeight: 700,
+                      fontSize: "0.8rem",
+                      padding: "0.45rem 1rem",
+                      borderRadius: "0.4rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <span>View Repository on {ds.repository} →</span>
+                  </a>
+                )}
+                {ds.downloadUrl ? (
+                  <a
+                    href={ds.downloadUrl}
+                    download
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      background: "transparent",
+                      color: "var(--ink)",
+                      border: "1px solid var(--border-color)",
+                      fontWeight: 600,
+                      fontSize: "0.8rem",
+                      padding: "0.45rem 1rem",
+                      borderRadius: "0.4rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <span>📥 Download {ds.format}</span>
+                  </a>
+                ) : !ds.repositoryUrl && (
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.35rem",
+                      color: "var(--text-muted)",
+                      fontSize: "0.8rem",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    🏛️ Accession deposit registered • Public accession pending on {ds.repository}
+                  </span>
+                )}
               </div>
             </div>
           ))}

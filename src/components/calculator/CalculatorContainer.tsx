@@ -61,22 +61,22 @@ export function CalculatorContainer({
           <p className="intro speakable-definition">{calculator.metaDescription}</p>
         </header>
 
-        {/* DIRECT ANSWER CARD FOR FEATURED SNIPPETS */}
+        {/* SECTION 2: INTERACTIVE TOOL UI — IMMEDIATELY VISIBLE (ZERO SCROLL) */}
+        <section id="calculator-tool" aria-label="Interactive Calculator Tool">
+          <h2 className="sr-only">Interactive Calculator &amp; Visualizer</h2>
+          {toolComponent}
+        </section>
+
+        {/* STICKY PAGE JUMP NAV */}
+        <PageJumpNav />
+
+        {/* DIRECT ANSWER CARD FOR FEATURED SNIPPETS & GOVERNING EQUATIONS */}
         <DirectAnswerCard
           targetKeyword={calculator.primaryKeyword}
           directAnswer={directAnswer}
           formulaSnippet={formulaSnippet}
           authorityCitation={authorityCitation}
         />
-
-        {/* STICKY PAGE JUMP NAV */}
-        <PageJumpNav />
-
-        {/* SECTION 2: INTERACTIVE TOOL UI */}
-        <section id="calculator-tool" aria-label="Interactive Calculator Tool">
-          <h2 className="sr-only">Interactive Calculator &amp; Visualizer</h2>
-          {toolComponent}
-        </section>
 
         {/* SECTION 3: ENGINEERING METHODOLOGY & DERIVATIONS */}
         <section id="how-to-guide" aria-label="Engineering Methodology and Calculations" style={{ margin: "3rem 0" }}>

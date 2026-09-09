@@ -465,7 +465,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       },
       {
         platform: "figshare",
-        label: "Read on Figshare",
+        label: "View Dataset (Figshare)",
         url: "https://figshare.com/articles/dataset/ASHRAE_Hyland-Wexler_Moist_Air_Psychrometric_Benchmark_Dataset_420_Thermodynamic_State_Points_Across_Sea-Level_and_Elevated_Altitudes/33456928?file=68285407",
         badge: "DA 91",
       },
@@ -507,9 +507,9 @@ export interface ResearchDataset {
   description: string;
   doi: string;
   repository: string;
-  repositoryUrl: string;
+  repositoryUrl?: string;
   format: string;
-  downloadUrl: string;
+  downloadUrl?: string;
   publicationDate: string;
   recordCount: number;
 }
@@ -535,9 +535,7 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     description: "NIST REFPROP-benchmarked saturation curves for R-454B and R-32 evaluating bubble-point subcooling and dew-point superheat across sub-freezing to high-ambient condensing regimes.",
     doi: "10.7910/DVN/SR1NZO",
     repository: "Harvard Dataverse",
-    repositoryUrl: "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SR1NZO",
     format: "Tabular / Replication Data",
-    downloadUrl: "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SR1NZO",
     publicationDate: "2026-09-04",
     recordCount: 150
   }

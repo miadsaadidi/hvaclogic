@@ -158,7 +158,7 @@ export default function BuildingScienceHub() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(285px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 285px), 1fr))",
             gap: "1.25rem",
             marginBottom: "3rem",
           }}
