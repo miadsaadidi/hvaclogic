@@ -51,6 +51,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   };
 
+  // Calculators Directory Hub
+  const calculatorsHubEntry: MetadataRoute.Sitemap[0] = {
+    url: `${baseUrl}/calculators`,
+    lastModified: SITE_RELEASE_DATE,
+    changeFrequency: "weekly",
+    priority: 0.95,
+  };
+
   // Research Hub & Whitepapers
   const researchHubEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/research`,
@@ -94,6 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     rootEntry,
     ...pillarEntries,
+    calculatorsHubEntry,
     ...calculatorEntries,
     guidesHubEntry,
     researchHubEntry,
