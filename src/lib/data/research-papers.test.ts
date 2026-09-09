@@ -7,16 +7,19 @@ import {
 } from "./research-papers";
 
 describe("Research Papers Registry", () => {
-  it("should have at least 5 peer-referenced whitepapers", () => {
-    expect(RESEARCH_PAPERS.length).toBeGreaterThanOrEqual(5);
+  it("should have at least 6 peer-referenced whitepapers", () => {
+    expect(RESEARCH_PAPERS.length).toBeGreaterThanOrEqual(6);
   });
 
   it("should have registered research datasets with valid DOIs", () => {
-    expect(RESEARCH_DATASETS.length).toBeGreaterThanOrEqual(2);
-    const figshareDs = RESEARCH_DATASETS.find((d) => d.repository === "Figshare");
+    expect(RESEARCH_DATASETS.length).toBeGreaterThanOrEqual(3);
+    const figshareDs = RESEARCH_DATASETS.find((d) => d.doi === "10.6084/m9.figshare.33456928");
     expect(figshareDs).toBeDefined();
-    expect(figshareDs?.doi).toBe("10.6084/m9.figshare.33456928");
     expect(figshareDs?.downloadUrl).toBe("/datasets/hvaclogic_ashrae_hyland_wexler_psychrometric_benchmark.csv");
+
+    const hpDs = RESEARCH_DATASETS.find((d) => d.doi === "10.6084/m9.figshare.33477430");
+    expect(hpDs).toBeDefined();
+    expect(hpDs?.downloadUrl).toBe("/datasets/hvaclogic_cold_climate_heat_pump_cop_benchmark.csv");
   });
 
   it("should return valid paper by slug", () => {

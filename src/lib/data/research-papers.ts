@@ -497,6 +497,89 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.com/research/ashrae-hyland-wexler-moist-air-psychrometrics}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics (Technical Report No. HL-TR-2026-PSY04). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33456928`
+  },
+  {
+    slug: "cold-climate-heat-pump-balance-point-lab",
+    title: "Interactive Engineering Lab: Thermodynamic Modeling of Cold-Climate Heat Pump Balance Points, Inverter COP Deratings, and Supplemental Electric Resistance Loads",
+    seoTitle: "Heat Pump Balance Point & COP Lab Monograph",
+    seoDescription: "Laboratory courseware and benchmark dataset on inverter heat pump COP derating curves, latent defrost penalties, and thermal balance point solutions.",
+    subtitle: "A computational laboratory framework for modeling non-linear vapor-compression heating deratings, defrost cycle penalties (30°F to 38°F), and electric resistance staging.",
+    abstract: "As building electrification accelerates, air-source heat pump (ASHP) systems must provide primary space heating across extreme sub-freezing ambient temperatures. Unlike combustion furnaces whose thermal heat output remains invariant to outdoor temperature, the heating capacity and Coefficient of Performance (COP) of vapor-compression heat pumps degrade monotonically as outdoor temperatures fall. This interactive laboratory exercise guides engineering and technology students through the quantitative analysis of cold-climate inverter-driven heat pump dynamics. Students formulate building envelope heat loss lines, overlay variable-speed compressor heating capacity curves across -15°F to 55°F (-26°C to 13°C), calculate the exact thermodynamic thermal balance point, evaluate latent defrost degradation penalties between 30°F and 38°F, and quantify supplemental electric resistance strip sizing (COP = 1.0) to prevent winter grid peaks.",
+    keyFindings: [
+      "Inverter heat pump thermal balance point (T_bal) determines whether seasonal electric bills remain affordable; undersizing equipment forces 10 kW resistance strips to engage at 36°F rather than 14°F.",
+      "Latent defrost cycle degradation causes the lowest operational COP (1.85–2.20) to occur between 30°F and 38°F due to repeated reverse-cycle hot-gas coil defrost sequences.",
+      "Cold-climate inverters maintaining 80%+ rated capacity at -5°F reduce winter peak electrical demand by up to 68% compared to single-stage baseline heat pumps.",
+      "Sizing heat pumps strictly on summer cooling capacity creates severe winter capacity deficits, requiring oversized auxiliary resistance banks that overload electrical panels."
+    ],
+    governingStandards: [
+      "AHRI Standard 210/240-2023 (Unitary Air-Conditioner and Air-Source Heat Pump Equipment)",
+      "NEEP Cold Climate Air-Source Heat Pump Specification (Version 4.0)",
+      "ACCA Manual S (Residential Equipment Selection, 2nd Edition)",
+      "ACCA Manual J (Residential Load Calculation, 8th Edition)"
+    ],
+    formulas: [
+      {
+        title: "Thermal Balance Point Intersection",
+        latex: "q_{\\text{loss}}(T_{bal}) = q_{hp,max}(T_{bal}) \\implies (UA_{eff} + 1.08 \\cdot CFM_{inf})(T_{indoor} - T_{bal}) = q_{hp,max}(T_{bal})",
+        explanation: "Equilibrium condition where building envelope heat loss demand precisely equals maximum heat pump heating output."
+      },
+      {
+        title: "Defrost Cycle Degradation Penalty",
+        latex: "q_{hp,effective}(T_{oa}) = q_{hp,gross}(T_{oa}) \\cdot Factor_{defrost}(T_{oa}), \\quad Factor_{defrost} \\in [0.85, 1.00]",
+        explanation: "Empirical derating factor accounting for frost formation on outdoor coil fins and thermal energy consumed during reverse-cycle de-icing."
+      },
+      {
+        title: "Supplemental Electric Resistance Strip Requirement",
+        latex: "kW_{aux} = \\frac{q_{\\text{loss}}(T_{oa}) - q_{hp,max}(T_{oa})}{3412.142}",
+        explanation: "Direct electrical deficit in kilowatts required when ambient outdoor temperatures fall below the thermal balance point."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-09",
+    doi: "10.6084/m9.figshare.33477430",
+    reportNumber: "HL-TR-2026-HP02",
+    pdfUrl: "/whitepapers/Student_Lab_01_Heat_Pump_Balance_Point_Thermodynamics.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/175267664/Interactive_Engineering_Lab_Thermodynamic_Modeling_of_Cold_Climate_Heat_Pump_Balance_Points_Inverter_COP_Deratings_and_Supplemental_Electric_Resistance_Loads",
+        badge: "DA 93",
+      },
+      {
+        platform: "figshare",
+        label: "View Dataset (Figshare)",
+        url: "https://figshare.com/articles/dataset/Cold-Climate_Heat_Pump_COP_Derating_Heating_Load_Balance_Point_Dataset_360_Simulation_Points_Across_Variable_Ambient_Temperatures_-15_F_to_50_F_/33477430?file=68350960",
+        badge: "DA 91",
+      },
+    ],
+    companionCalculators: [
+      {
+        name: "Heat Pump Sizing & Balance Point Calculator",
+        route: "/calculators/heat-pump-size-calculator",
+        description: "Interactive heat pump sizing, balance point simulation, and cold-climate COP curve evaluation."
+      },
+      {
+        name: "Residential Heat Loss Calculator (Manual J)",
+        route: "/calculators/heat-loss-calculator",
+        description: "Whole-building envelope conductive and infiltration heating load sizing per ACCA Manual J."
+      },
+      {
+        name: "ACCA Manual J Cooling Load & BTU Calculator",
+        route: "/calculators/btu-calculator",
+        description: "Calculate peak heating and cooling loads with sensible and latent splits."
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_hp_balance_lab,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {Interactive Engineering Lab: Thermodynamic Modeling of Cold-Climate Heat Pump Balance Points, Inverter COP Deratings, and Supplemental Electric Resistance Loads},
+  institution = {HVACLogic Open-Access Building Science Monograph Series},
+  year = {2026},
+  number = {HL-TR-2026-HP02},
+  doi = {10.6084/m9.figshare.33477430},
+  url = {https://hvaclogic.com/research/cold-climate-heat-pump-balance-point-lab}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). Interactive Engineering Lab: Thermodynamic Modeling of Cold-Climate Heat Pump Balance Points, Inverter COP Deratings, and Supplemental Electric Resistance Loads (Technical Report No. HL-TR-2026-HP02). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33477430`
   }
 ];
 
@@ -527,6 +610,19 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     downloadUrl: "/datasets/hvaclogic_ashrae_hyland_wexler_psychrometric_benchmark.csv",
     publicationDate: "2026-09-07",
     recordCount: 420
+  },
+  {
+    slug: "cold-climate-heat-pump-cop-balance-point-dataset",
+    title: "Cold-Climate Heat Pump COP Derating & Heating Load Balance Point Dataset",
+    subtitle: "240 deterministic simulation points across variable ambient temperatures (-15°F to 55°F).",
+    description: "Multi-parameter performance matrix modeling variable-speed compressor capacity retention, COP degradation, latent defrost penalties, thermal balance point intersections, and supplemental electric resistance heating strip requirements.",
+    doi: "10.6084/m9.figshare.33477430",
+    repository: "Figshare",
+    repositoryUrl: "https://figshare.com/articles/dataset/Cold-Climate_Heat_Pump_COP_Derating_Heating_Load_Balance_Point_Dataset_360_Simulation_Points_Across_Variable_Ambient_Temperatures_-15_F_to_50_F_/33477430?file=68350960",
+    format: "CSV",
+    downloadUrl: "/datasets/hvaclogic_cold_climate_heat_pump_cop_benchmark.csv",
+    publicationDate: "2026-09-09",
+    recordCount: 240
   },
   {
     slug: "zeotropic-a2l-refrigerant-phase-equilibrium-dataset",
