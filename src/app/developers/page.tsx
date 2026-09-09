@@ -152,6 +152,74 @@ export default function DevelopersPage() {
             Explore /glossary ↗
           </Link>
         </div>
+
+        <div
+          style={{
+            backgroundColor: "var(--surface, #111827)",
+            border: "1px solid var(--border-subtle, rgba(255, 255, 255, 0.1))",
+            borderTop: "4px solid #a855f7",
+            borderRadius: "8px",
+            padding: "1.25rem",
+          }}
+        >
+          <div style={{ fontSize: "1.25rem", marginBottom: "0.5rem" }}>🌐 Open Source & Ecosystem</div>
+          <p style={{ fontSize: "0.875rem", color: "var(--ink-secondary, #9ca3af)", lineHeight: 1.5, marginBottom: "1rem" }}>
+            Audit source code, review benchmarks, and track releases across verified open-source directories.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+            <a
+              href="https://github.com/miadsaadidi/hvaclogic"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                padding: "0.4rem 0.75rem",
+                borderRadius: "4px",
+                backgroundColor: "rgba(168, 85, 247, 0.15)",
+                color: "#c084fc",
+                fontSize: "0.8125rem",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://sourceforge.net/projects/hvaclogic/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                padding: "0.4rem 0.75rem",
+                borderRadius: "4px",
+                backgroundColor: "rgba(168, 85, 247, 0.15)",
+                color: "#c084fc",
+                fontSize: "0.8125rem",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              SourceForge ↗
+            </a>
+            <a
+              href="https://www.saashub.com/hvac-logic"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                padding: "0.4rem 0.75rem",
+                borderRadius: "4px",
+                backgroundColor: "rgba(168, 85, 247, 0.15)",
+                color: "#c084fc",
+                fontSize: "0.8125rem",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              SaaSHub ↗
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Integration Code Examples */}

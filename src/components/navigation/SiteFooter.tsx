@@ -127,6 +127,39 @@ export function SiteFooter() {
               <li><Link href="/privacy" style={{ fontWeight: 600 }}>🔒 Privacy Policy</Link></li>
               <li>
                 <a
+                  href="https://github.com/miadsaadidi/hvaclogic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontWeight: 600 }}
+                  title="HVACLogic Open Source GitHub Repository"
+                >
+                  🐙 GitHub Repository
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://sourceforge.net/projects/hvaclogic/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontWeight: 600 }}
+                  title="HVACLogic on SourceForge"
+                >
+                  ⚡ SourceForge Project
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.saashub.com/hvac-logic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontWeight: 600 }}
+                  title="HVACLogic on SaaSHub"
+                >
+                  🌐 SaaSHub Directory
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://www.google.com/preferences/source?q=hvaclogic.org"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -153,7 +186,15 @@ export function SiteFooter() {
           color: "var(--text-muted)",
         }}>
           <div>
-            © {new Date().getFullYear()} HVAC Logic (hvaclogic.org). Open-access engineering calculators.
+            <div>© {new Date().getFullYear()} HVAC Logic (hvaclogic.org). Open-access engineering calculators.</div>
+            <div style={{ marginTop: "0.4rem", display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+              <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>Open Ecosystem:</span>
+              <a href="https://github.com/miadsaadidi/hvaclogic" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-cooling)", textDecoration: "none" }}>GitHub</a>
+              <span>•</span>
+              <a href="https://sourceforge.net/projects/hvaclogic/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-cooling)", textDecoration: "none" }}>SourceForge</a>
+              <span>•</span>
+              <a href="https://www.saashub.com/hvac-logic" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-cooling)", textDecoration: "none" }}>SaaSHub</a>
+            </div>
           </div>
           <div style={{ maxWidth: "600px", textAlign: "right" }}>
             Disclaimer: Calculations are provided for engineering screening and estimating purposes. Consult governing local building codes (IRC, IBC, IMC, IECC) and licensed mechanical engineers for permitted construction designs.
