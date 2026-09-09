@@ -22,6 +22,8 @@
   - **Stop Condition**: Present exactly 1 email following this sequence, then STOP and wait for user review/approval before proceeding to the next email.
 - **Rule 6: Outreach & Distribution Email Context**:
   In outreach discussions, "distribution" refers to peer outreach emails to new institutions/targets, not third-party web submissions or directories unless explicitly specified.
+- **Rule 7: Mandatory Trigger for 'Dofollow links'**:
+  Whenever the user asks *"Dofollow links"* or requests the high-authority dofollow checklist, immediately inspect and present the master action list from [`docs/HIGH-AUTHORITY-DOFOLLOW-CHECKLIST.md`](./docs/HIGH-AUTHORITY-DOFOLLOW-CHECKLIST.md) directly and concisely.
 
 ## Engineering, Publishing & Operations Rules
 - **GitHub PR & Vercel Automated Deployment Lifecycle**:
