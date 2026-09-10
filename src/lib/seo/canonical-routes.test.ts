@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
+import fs from "fs";
+import path from "path";
 import sitemap from "@/app/sitemap";
 import robots from "@/app/robots";
+import nextConfig from "../../../next.config";
 import { siteConfig } from "@/lib/site-config";
 import { calculatorRegistry, publishedCalculators } from "@/lib/data/calculators-registry";
+import { constructCanonicalUrl } from "@/lib/seo/metadata-helper";
 
 describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
   it("generates exactly 42 unique canonical entries in /sitemap.xml", () => {
@@ -191,5 +195,70 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
       expect(calc.metaDescription.length).toBeGreaterThanOrEqual(100);
       expect(calc.metaDescription.length).toBeLessThanOrEqual(160);
     });
+  });
+
+  it("verifies constructCanonicalUrl strictly enforces fully-qualified absolute canonical URLs", () => {
+    // Root handling
+    expect(constructCanonicalUrl("")).toBe("https://hvaclogic.org");
+    expect(constructCanonicalUrl("/")).toBe("https://hvaclogic.org");
+    expect(constructCanonicalUrl("https://hvaclogic.org")).toBe("https://hvaclogic.org");
+    expect(constructCanonicalUrl("https://hvaclogic.org/")).toBe("https://hvaclogic.org");
+
+    // Relative path normalization
+    expect(constructCanonicalUrl("/calculators")).toBe("https://hvaclogic.org/calculators");
+    expect(constructCanonicalUrl("calculators/ductulator")).toBe("https://hvaclogic.org/calculators/ductulator");
+    expect(constructCanonicalUrl("/airflow-ducts/")).toBe("https://hvaclogic.org/airflow-ducts");
+
+    // Query parameters and fragment stripping
+    expect(constructCanonicalUrl("/calculators/ductulator?cfm=1200&friction=0.08")).toBe(
+      "https://hvaclogic.org/calculators/ductulator"
+    );
+    expect(constructCanonicalUrl("/standards#ashrae")).toBe("https://hvaclogic.org/standards");
+  });
+
+  it("verifies next.config headers inject production security headers", async () => {
+    if (nextConfig.headers) {
+      const headerRules = await nextConfig.headers();
+      expect(headerRules.length).toBeGreaterThan(0);
+
+      const catchAllRule = headerRules.find((r: any) => r.source === "/:path*");
+      expect(catchAllRule).toBeDefined();
+
+      const headers = catchAllRule?.headers || [];
+      const nosniff = headers.find((h: any) => h.key === "X-Content-Type-Options");
+      const referrer = headers.find((h: any) => h.key === "Referrer-Policy");
+
+      expect(nosniff?.value).toBe("nosniff");
+      expect(referrer?.value).toBe("strict-origin-when-cross-origin");
+    }
+  });
+
+  it("verifies IndexNow key file hygiene: exactly 32 hex characters with zero trailing whitespace", () => {
+    const keyPath = path.resolve(__dirname, "../../../public/c74812a83e024b48bc29737190d7945e.txt");
+    expect(fs.existsSync(keyPath)).toBe(true);
+
+    const keyContent = fs.readFileSync(keyPath, "utf8");
+    expect(keyContent.length).toBe(32);
+    expect(/^[a-f0-9]{32}$/.test(keyContent)).toBe(true);
+    expect(keyContent).toBe("c74812a83e024b48bc29737190d7945e");
+  });
+
+  it("verifies all sitemap entries have valid, defined Date timestamps mapped to categories", () => {
+    const sitemapEntries = sitemap();
+
+    sitemapEntries.forEach((entry) => {
+      expect(entry.lastModified).toBeDefined();
+      expect(entry.lastModified instanceof Date).toBe(true);
+      const timestamp = (entry.lastModified as Date).getTime();
+      expect(isNaN(timestamp)).toBe(false);
+
+      // Verify year is 2026
+      expect((entry.lastModified as Date).getUTCFullYear()).toBe(2026);
+    });
+
+    // Check homepage deterministic timestamp
+    const homepage = sitemapEntries.find((e) => e.url === siteConfig.canonicalDomain);
+    expect(homepage).toBeDefined();
+    expect((homepage?.lastModified as Date).toISOString()).toBe("2026-08-28T00:00:00.000Z");
   });
 });

@@ -3,8 +3,17 @@ import { siteConfig } from "@/lib/site-config";
 import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { RESEARCH_PAPERS } from "@/lib/data/research-papers";
 
-// Fixed release baseline date to ensure defensible, non-volatile sitemap lastmod timestamps
-const SITE_RELEASE_DATE = new Date("2026-08-20T00:00:00.000Z");
+// Deterministic content release & revision milestones (prevents volatile daily jitter while signaling crawl priority)
+const RELEASE_MILESTONES = {
+  HOMEPAGE: new Date("2026-08-28T00:00:00.000Z"),
+  CALCULATORS_HUB: new Date("2026-08-28T00:00:00.000Z"),
+  PILLAR_HUBS: new Date("2026-08-26T00:00:00.000Z"),
+  GUIDES_HUB: new Date("2026-08-26T00:00:00.000Z"),
+  RESEARCH_HUB: new Date("2026-08-26T00:00:00.000Z"),
+  STANDARDS_COMPLIANCE: new Date("2026-08-25T00:00:00.000Z"),
+  AUTHORITY_PAGES: new Date("2026-08-24T00:00:00.000Z"),
+  CALCULATOR_BASELINE: new Date("2026-08-20T00:00:00.000Z"),
+};
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.canonicalDomain;
@@ -12,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Root Homepage
   const rootEntry: MetadataRoute.Sitemap[0] = {
     url: baseUrl,
-    lastModified: SITE_RELEASE_DATE,
+    lastModified: RELEASE_MILESTONES.HOMEPAGE,
     changeFrequency: "weekly",
     priority: 1.0,
   };
@@ -28,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const pillarEntries: MetadataRoute.Sitemap = pillarRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: SITE_RELEASE_DATE,
+    lastModified: RELEASE_MILESTONES.PILLAR_HUBS,
     changeFrequency: "weekly",
     priority: 0.9,
   }));
@@ -38,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${calc.route}`,
     lastModified: calc.lastEngineeringReview
       ? new Date(`${calc.lastEngineeringReview}T00:00:00.000Z`)
-      : SITE_RELEASE_DATE,
+      : RELEASE_MILESTONES.CALCULATOR_BASELINE,
     changeFrequency: "weekly",
     priority: calc.status === "production" ? 0.85 : 0.6,
   }));
@@ -46,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Guides Hub
   const guidesHubEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/guides`,
-    lastModified: SITE_RELEASE_DATE,
+    lastModified: RELEASE_MILESTONES.GUIDES_HUB,
     changeFrequency: "weekly",
     priority: 0.9,
   };
@@ -54,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Calculators Directory Hub
   const calculatorsHubEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/calculators`,
-    lastModified: SITE_RELEASE_DATE,
+    lastModified: RELEASE_MILESTONES.CALCULATORS_HUB,
     changeFrequency: "weekly",
     priority: 0.95,
   };
@@ -62,7 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Research Hub & Whitepapers
   const researchHubEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/research`,
-    lastModified: SITE_RELEASE_DATE,
+    lastModified: RELEASE_MILESTONES.RESEARCH_HUB,
     changeFrequency: "weekly",
     priority: 0.9,
   };
@@ -77,7 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Standards Matrix
   const standardsEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/standards`,
-    lastModified: SITE_RELEASE_DATE,
+    lastModified: RELEASE_MILESTONES.STANDARDS_COMPLIANCE,
     changeFrequency: "monthly",
     priority: 0.8,
   };
@@ -94,7 +103,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   const authorityEntries: MetadataRoute.Sitemap = authorityRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: SITE_RELEASE_DATE,
+    lastModified:
+      route === "/methodology" || route === "/sources"
+        ? RELEASE_MILESTONES.STANDARDS_COMPLIANCE
+        : RELEASE_MILESTONES.AUTHORITY_PAGES,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
