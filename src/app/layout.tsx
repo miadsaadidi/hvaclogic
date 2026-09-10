@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     template: "%s | HVAC Logic",
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: siteConfig.canonicalDomain,
+  },
   keywords: [
     "ductulator",
     "btu calculator",
