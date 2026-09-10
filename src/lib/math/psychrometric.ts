@@ -26,6 +26,23 @@ export interface PsychrometricOutput {
   saturationPressurePsia: number;
   atmosphericPressurePsia: number;
   comfortZoneStatus: "Ideal Comfort (ASHRAE 55)" | "Dry / Low Humidity" | "Humid / Sticky" | "Cold / Unconditioned" | "Hot / Overheating";
+  // Academic & Elevation Benchmark Outputs
+  seaLevelHumidityRatioGrainsPerLb: number;
+  seaLevelEnthalpyBtuPerLb: number;
+  seaLevelDivergencePercent: number; // Percentage delta vs unadjusted sea-level chart
+  lewisRelationFactor: number; // Evaporative skin mass-transfer scaling factor (P0 / Patm)
+  enhancementFactor: number; // ASHRAE RP-1485 virial enhancement factor f(p, T)
+}
+
+/**
+ * Calculates the ASHRAE RP-1485 virial enhancement factor f(p, T) for moist air.
+ * Accounts for real-gas intermolecular interactions (Dalton ideal gas approximation assumes f = 1.0).
+ */
+export function getEnhancementFactor(patmPsia: number, tempF: number): number {
+  // At p -> 0 (vacuum), f -> 1.0. At 1 atm (14.696 psia) and 75°F, f ~ 1.0041
+  const pNormalized = Math.max(0, patmPsia) / 14.696;
+  const tempCorrection = 1.2e-5 * (tempF - 75);
+  return 1 + pNormalized * (0.0041 + tempCorrection);
 }
 
 /**
@@ -203,6 +220,20 @@ export function calculatePsychrometrics(input: PsychrometricInput): Psychrometri
     comfortZoneStatus = "Humid / Sticky";
   }
 
+  // 8. Academic & Elevation Benchmark Calculations
+  const pSea = 14.696;
+  const safePwSea = Math.min(pSea * 0.95, pw);
+  const seaLevelW = (0.621945 * safePwSea) / (pSea - safePwSea);
+  const seaLevelHumidityRatioGrainsPerLb = Math.round(seaLevelW * 7000 * 10) / 10;
+  const seaLevelEnthalpyBtuPerLb =
+    Math.round((0.24 * tdb + seaLevelW * (1061 + 0.444 * tdb)) * 100) / 100;
+  const seaLevelDivergencePercent =
+    altitude > 0 && seaLevelW > 0
+      ? Math.round(((humidityRatioLbPerLb - seaLevelW) / seaLevelW) * 1000) / 10
+      : 0;
+  const lewisRelationFactor = Math.round((14.696 / patm) * 100) / 100;
+  const enhancementFactor = Math.round(getEnhancementFactor(patm, tdb) * 10000) / 10000;
+
   return {
     dryBulbF: tdb,
     wetBulbF,
@@ -217,5 +248,10 @@ export function calculatePsychrometrics(input: PsychrometricInput): Psychrometri
     saturationPressurePsia: Math.round(pws * 1000) / 1000,
     atmosphericPressurePsia: Math.round(patm * 100) / 100,
     comfortZoneStatus,
+    seaLevelHumidityRatioGrainsPerLb,
+    seaLevelEnthalpyBtuPerLb,
+    seaLevelDivergencePercent,
+    lewisRelationFactor,
+    enhancementFactor,
   };
 }
