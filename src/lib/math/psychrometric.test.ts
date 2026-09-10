@@ -3,6 +3,7 @@ import {
   calculatePsychrometrics,
   getBarometricPressurePsia,
   getSaturationVaporPressurePsia,
+  getEnhancementFactor,
 } from "./psychrometric";
 
 describe("ASHRAE Moist Air Psychrometric Engine", () => {
@@ -23,6 +24,9 @@ describe("ASHRAE Moist Air Psychrometric Engine", () => {
     expect(res.specificEnthalpyBtuPerLb).toBeGreaterThan(27.5);
     expect(res.specificEnthalpyBtuPerLb).toBeLessThan(28.5);
     expect(res.comfortZoneStatus).toBe("Ideal Comfort (ASHRAE 55)");
+    expect(res.seaLevelDivergencePercent).toBe(0);
+    expect(res.lewisRelationFactor).toBe(1);
+    expect(res.enhancementFactor).toBeCloseTo(1.0041, 3);
   });
 
   it("calculates summer entering coil state (80°F DB, 67°F WB)", () => {
@@ -48,4 +52,33 @@ describe("ASHRAE Moist Air Psychrometric Engine", () => {
     expect(seaLevelP).toBeCloseTo(14.696, 2);
     expect(denverP).toBeCloseTo(12.10, 1); // ~12.10 psia in Denver (5,280 ft)
   });
+
+  it("evaluates academic elevation benchmark & sea-level divergence at 5,280 ft (Denver)", () => {
+    const res = calculatePsychrometrics({
+      dryBulbF: 75,
+      relativeHumidityPercent: 50,
+      altitudeFeet: 5280,
+    });
+
+    // At 5,280 ft, humidity ratio is ~79.7 grains/lb vs 64.9 grains/lb at sea level (~22.8% to 23.5% divergence)
+    expect(res.seaLevelDivergencePercent).toBeGreaterThan(21.0);
+    expect(res.seaLevelDivergencePercent).toBeLessThan(25.0);
+    // Lewis relation scaling factor is ~1.21x (faster skin evaporation at elevation)
+    expect(res.lewisRelationFactor).toBeGreaterThan(1.18);
+    expect(res.lewisRelationFactor).toBeLessThan(1.24);
+    // Real-gas enhancement factor remains slightly above 1.0
+    expect(res.enhancementFactor).toBeGreaterThan(1.002);
+    expect(res.enhancementFactor).toBeLessThan(1.005);
+  });
+
+  it("computes virial enhancement factor f(p, T) within ASHRAE RP-1485 physical bounds", () => {
+    const fSeaLevel = getEnhancementFactor(14.696, 75);
+    const fDenver = getEnhancementFactor(12.1, 75);
+    const fVacuum = getEnhancementFactor(0, 75);
+
+    expect(fSeaLevel).toBeCloseTo(1.0041, 4);
+    expect(fDenver).toBeLessThan(fSeaLevel);
+    expect(fVacuum).toBe(1.0);
+  });
 });
+
