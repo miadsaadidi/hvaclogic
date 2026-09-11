@@ -34,7 +34,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         summary: "Mandates minimum SEER2, HSPF2, EER2, and COP metrics for air-cooled, water-cooled, and heat pump unitary packages.",
         governingEquation: "\\text{COP} = \\frac{\\text{SEER2}}{3.41214}, \\quad \\text{EER2} = \\frac{\\text{Net Capacity (BTU/h)}}{\\text{Total Power (W)}}",
         applicableCalculators: [
-          { name: "Heat Pump Running Cost Calculator", route: "/calculators/heat-pump-cost-calculator" },
+          { name: "Heat Pump Running Cost Calculator", route: "/calculators/heat-pump-size-calculator" },
           { name: "AC Running Cost Calculator", route: "/calculators/ac-tonnage-calculator" }
         ]
       },
@@ -72,7 +72,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         title: "Local Mechanical Exhaust Airflow Requirements",
         summary: "Mandates 100 CFM intermittent / 25 CFM continuous for kitchens and 50 CFM intermittent / 20 CFM continuous for bathrooms.",
         applicableCalculators: [
-          { name: "Kitchen Exhaust Hood CFM Calculator", route: "/calculators/kitchen-hood-cfm-calculator" }
+          { name: "Kitchen Exhaust Hood CFM Calculator", route: "/calculators/kitchen-hood-cfm" }
         ]
       }
     ]
@@ -92,7 +92,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         governingEquation: "Q_{\\text{cond}} = \\sum (U \\times A \\times \\Delta T)",
         applicableCalculators: [
           { name: "Residential Heat Loss Calculator (Manual J)", route: "/calculators/heat-loss-calculator" },
-          { name: "Furnace BTU Sizing Calculator", route: "/calculators/furnace-btu-calculator" },
+          { name: "Furnace BTU Sizing Calculator", route: "/calculators/furnace-size-calculator" },
           { name: "Insulation R-Value to U-Value Calculator", route: "/calculators/r-value-calculator" }
         ]
       },
@@ -103,7 +103,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         governingEquation: "Q_{\\text{infil}} = 1.08 \\times \\text{CFM}_{\\text{infil}} \\times (T_{\\text{indoor}} - T_{\\text{outdoor}})",
         applicableCalculators: [
           { name: "Residential Heat Loss Calculator", route: "/calculators/heat-loss-calculator" },
-          { name: "Garage Heater BTU Calculator", route: "/calculators/garage-heater-calculator" }
+          { name: "Garage Heater BTU Calculator", route: "/calculators/garage-heater-sizing" }
         ]
       }
     ]
@@ -122,7 +122,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         summary: "Determines allowable friction rate per 100 ft by subtracting internal and external component pressure drops from blower total external static.",
         governingEquation: "\\text{FR} = \\frac{(\\text{ESP} - \\Delta P_{\\text{components}}) \\times 100}{\\text{TEL}}",
         applicableCalculators: [
-          { name: "Duct Airflow & Friction Rate Sizing Calculator", route: "/calculators/duct-sizing-calculator" },
+          { name: "Duct Airflow & Friction Rate Sizing Calculator", route: "/calculators/ductulator" },
           { name: "Duct Friction Loss & Pressure Drop Calculator", route: "/calculators/duct-friction-loss-calculator" },
           { name: "Filter Sizing & Pressure Drop Calculator", route: "/calculators/filter-sizing-calculator" }
         ]
@@ -133,7 +133,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         summary: "Applies non-linear friction multipliers for un-tensioned flex duct and limits branch runout velocities to prevent air turbulence noise.",
         governingEquation: "V = \\frac{\\text{CFM}}{A_{\\text{duct}}} = \\frac{\\text{CFM} \\times 144}{\\pi \\times (D/2)^2}",
         applicableCalculators: [
-          { name: "Flexible Duct Sizing Chart & CFM Calculator", route: "/calculators/flex-duct-sizing-calculator" },
+          { name: "Flexible Duct Sizing Chart & CFM Calculator", route: "/calculators/flex-duct-cfm-chart" },
           { name: "CFM Airflow & Duct Velocity Calculator", route: "/calculators/cfm-calculator" }
         ]
       }
@@ -153,7 +153,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         summary: "Limits total cooling capacity to 115% of calculated Manual J load (or 125% for variable-capacity heat pumps) to guarantee latent dehumidification.",
         applicableCalculators: [
           { name: "AC & Heat Pump Tonnage Calculator", route: "/calculators/ac-tonnage-calculator" },
-          { name: "Mini-Split Multi-Zone Sizing Calculator", route: "/calculators/mini-split-calculator" }
+          { name: "Mini-Split Multi-Zone Sizing Calculator", route: "/calculators/mini-split-sizing" }
         ]
       }
     ]
@@ -172,7 +172,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         summary: "Defines maximum aspect ratios ($W/H \\le 4:1$) and hydraulic diameter equivalencies to maintain structural rigidity under static pressure.",
         governingEquation: "D_e = \\frac{1.30 \\times (a \\times b)^{0.625}}{(a + b)^{0.25}}",
         applicableCalculators: [
-          { name: "Duct Airflow & Friction Rate Sizing Calculator", route: "/calculators/duct-sizing-calculator" },
+          { name: "Duct Airflow & Friction Rate Sizing Calculator", route: "/calculators/ductulator" },
           { name: "Duct Friction Loss Calculator", route: "/calculators/duct-friction-loss-calculator" }
         ]
       }
@@ -191,7 +191,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         title: "Part-Load Rating & Multi-Stage Compressor Curves",
         summary: "Defines seasonal HSPF2 and SEER2 performance weighting across temperature bins (47°F, 35°F, 17°F, and 5°F).",
         applicableCalculators: [
-          { name: "Heat Pump Running Cost Calculator", route: "/calculators/heat-pump-cost-calculator" },
+          { name: "Heat Pump Running Cost Calculator", route: "/calculators/heat-pump-size-calculator" },
           { name: "AC Model Number Decoder", route: "/calculators/ac-model-decoder" }
         ]
       }
@@ -213,7 +213,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         applicableCalculators: [
           { name: "Refrigerant Charge Adjustment Calculator", route: "/calculators/refrigerant-charge-calculator" },
           { name: "Refrigerant Superheat & Subcooling Calculator", route: "/calculators/superheat-subcooling-calculator" },
-          { name: "Refrigerant PT Chart & Saturation Calculator", route: "/calculators/pt-chart-calculator" }
+          { name: "Refrigerant PT Chart & Saturation Calculator", route: "/calculators/pt-chart" }
         ]
       }
     ]

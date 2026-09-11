@@ -7,14 +7,14 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "HVAC Engineering Guides & Field Sizing Protocols",
   description:
-    "Comprehensive on-page engineering guides covering ACCA Manual D duct hydraulics, Manual J cooling loads, heat pump cold-climate balance points, A2L refrigerant glide, and building science physics.",
+    "Engineering guides covering ACCA Manual D duct sizing, Manual J cooling loads, cold-climate heat pump balance points, and A2L refrigerant glide physics.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/guides`,
   },
   openGraph: {
     title: "HVAC Engineering Guides & Field Sizing Protocols",
     description:
-      "Comprehensive on-page engineering guides covering ACCA Manual D duct hydraulics, Manual J cooling loads, heat pump cold-climate balance points, A2L refrigerant glide, and building science physics.",
+      "Engineering guides covering ACCA Manual D duct sizing, Manual J cooling loads, cold-climate heat pump balance points, and A2L refrigerant glide physics.",
     url: `${siteConfig.canonicalDomain}/guides`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.canonicalDomain}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "HVAC Engineering Guides & Sizing Protocols — HVACLogic",
+        alt: "HVAC Engineering Guides & Sizing Protocols - HVACLogic",
       },
     ],
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HVAC Engineering Guides & Field Sizing Protocols",
     description:
-      "Comprehensive on-page engineering guides covering ACCA Manual D duct hydraulics, Manual J cooling loads, heat pump cold-climate balance points, A2L refrigerant glide, and building science physics.",
+      "Engineering guides covering ACCA Manual D duct sizing, Manual J cooling loads, cold-climate heat pump balance points, and A2L refrigerant glide physics.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };

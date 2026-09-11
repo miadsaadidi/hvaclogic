@@ -116,7 +116,8 @@ export function SiteFooter() {
               Standards &amp; Trust
             </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
-              <li><Link href="/guides" style={{ fontWeight: 600, color: "var(--accent-cooling)" }}>📚 Master Engineering Guides</Link></li>
+              <li><Link href="/calculators" style={{ fontWeight: 700, color: "var(--accent-cooling)" }}>🧮 All 21 Calculators Directory</Link></li>
+              <li><Link href="/guides" style={{ fontWeight: 600 }}>📚 Master Engineering Guides</Link></li>
               <li><Link href="/research" style={{ fontWeight: 600 }}>🎓 Research &amp; Whitepapers</Link></li>
               <li><Link href="/standards" style={{ fontWeight: 600 }}>📜 Standards &amp; Codes Matrix</Link></li>
               <li><Link href="/ashrae-climatic-data" style={{ fontWeight: 600 }}>📍 ASHRAE Climatic Design Data</Link></li>

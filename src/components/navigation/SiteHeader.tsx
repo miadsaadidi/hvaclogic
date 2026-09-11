@@ -46,6 +46,26 @@ export function SiteHeader() {
           {/* SEARCH COMMAND PALETTE */}
           <CommandPalette />
 
+          {/* ALL CALCULATORS DIRECTORY LINK */}
+          <Link
+            href="/calculators"
+            className="action-btn header-extra-util"
+            style={{
+              height: "36px",
+              padding: "0 0.65rem",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              textDecoration: "none",
+              color: "var(--ink)",
+              alignItems: "center",
+              gap: "0.3rem",
+            }}
+            title="Browse all 21 HVAC engineering calculators"
+          >
+            <span>🧮</span>
+            <span>Calculators</span>
+          </Link>
+
           {/* GUIDES HUB LINK */}
           <Link
             href="/guides"
@@ -140,6 +160,13 @@ export function SiteHeader() {
             <GlossaryModal />
           </div>
 
+          <Link
+            href="/calculators"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{ fontWeight: 700, color: "var(--accent-cooling)", display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <span>🧮</span> All 21 Calculators Directory
+          </Link>
           <Link
             href="/guides"
             onClick={() => setMobileMenuOpen(false)}

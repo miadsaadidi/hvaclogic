@@ -89,8 +89,8 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     companionCalculators: [
       {
-        name: "Heat Pump Running Cost Calculator",
-        route: "/calculators/heat-pump-cost-calculator",
+        name: "Heat Pump Sizing & Running Cost Calculator",
+        route: "/calculators/heat-pump-size-calculator",
         description: "Simulate seasonal electrical consumption, balance point strip heat staging, and dual-fuel operating costs."
       },
       {
@@ -164,8 +164,8 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     companionCalculators: [
       {
-        name: "Duct Airflow & Friction Rate Sizing Calculator",
-        route: "/calculators/duct-sizing-calculator",
+        name: "Digital Ductulator Sizing Tool",
+        route: "/calculators/ductulator",
         description: "Size round and rectangular ducts using ACCA Manual D and SMACNA friction charts."
       },
       {
@@ -175,7 +175,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       },
       {
         name: "Flexible Duct Sizing Chart & CFM Calculator",
-        route: "/calculators/flex-duct-sizing-calculator",
+        route: "/calculators/flex-duct-cfm-chart",
         description: "Evaluate airflow capacity derating across flexible duct compression ratios."
       }
     ],
@@ -245,7 +245,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       },
       {
         name: "Furnace BTU & Sizing Calculator",
-        route: "/calculators/furnace-btu-calculator",
+        route: "/calculators/furnace-size-calculator",
         description: "Calculate AFUE-corrected furnace input and output heating requirements."
       },
       {
@@ -325,7 +325,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       },
       {
         name: "Kitchen Exhaust Hood CFM Calculator",
-        route: "/calculators/kitchen-hood-cfm-calculator",
+        route: "/calculators/kitchen-hood-cfm",
         description: "Size range hood exhaust and makeup air requirements."
       }
     ],
@@ -342,6 +342,8 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "thermodynamic-modeling-a2l-refrigerant-glide-r454b",
     title: "Thermodynamic Phase-Equilibrium and Non-Linear Temperature Glide Modeling of Next-Generation Zeotropic A2L Refrigerants (R-454B & R-32)",
+    seoTitle: "A2L Refrigerant Glide Modeling & Diagnostics",
+    seoDescription: "Phase-equilibrium and temperature glide modeling for R-454B and R-32 systems, calibrated against NIST REFPROP formulations under the EPA AIM Act.",
     subtitle: "An applied thermodynamics study of vapor-liquid phase equilibrium, bubble and dew saturation boundaries, and systemic charging diagnostics under the EPA AIM Act.",
     abstract: "Under global climate regulations, including the Kigali Amendment to the Montreal Protocol and the U.S. EPA American Innovation and Manufacturing (AIM) Act, the HVAC/R industry is undergoing a mandatory phase-down of legacy hydrofluorocarbons (HFCs), specifically R-410A. The dominant replacement refrigerants entering residential and commercial heat pump systems are ASHRAE Class A2L lower-flammability fluids: R-454B and R-32. This paper presents an exact thermodynamic phase-equilibrium modeling framework calibrated against NIST REFPROP 10.0 extended Helmholtz-energy formulations. We derive the discrete mathematical boundaries separating bubble-point liquidus curves from dew-point vaporus curves, formulate the exact differential governing equations for superheat and subcooling diagnostics, and quantify the empirical consequences of legacy trade heuristics.",
     keyFindings: [

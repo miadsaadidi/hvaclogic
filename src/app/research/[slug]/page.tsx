@@ -25,8 +25,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = `${siteConfig.canonicalDomain}/research/${paper.slug}`;
   const pdfFullUrl = `${siteConfig.canonicalDomain}${paper.pdfUrl}`;
 
-  const metaTitle = paper.seoTitle || paper.title;
-  const metaDescription = paper.seoDescription || paper.abstract;
+  const rawTitle = paper.seoTitle || paper.title;
+  const metaTitle = rawTitle.length > 58 ? rawTitle.slice(0, 55) + "..." : rawTitle;
+
+  const rawDesc = paper.seoDescription || paper.abstract;
+  const metaDescription = rawDesc.length > 155 ? rawDesc.slice(0, 152) + "..." : rawDesc;
 
   return {
     title: metaTitle,
@@ -42,11 +45,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: paper.publicationDate,
       authors: paper.authors,
+      images: [
+        {
+          url: `${siteConfig.canonicalDomain}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: metaTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
+      images: [`${siteConfig.canonicalDomain}/opengraph-image`],
     },
     // Highwire Press metadata for Google Scholar and Semantic Scholar indexing
     other: {
@@ -431,6 +443,75 @@ export default async function ResearchPaperPage({ params }: PageProps) {
           </pre>
         </div>
       </section>
+
+      {/* Structured Data JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "ScholarlyArticle",
+                "@id": `${siteConfig.canonicalDomain}/research/${paper.slug}#article`,
+                headline: paper.title,
+                description: paper.abstract,
+                url: `${siteConfig.canonicalDomain}/research/${paper.slug}`,
+                datePublished: paper.publicationDate,
+                dateModified: paper.publicationDate,
+                author: paper.authors.map((authorName) => ({
+                  "@type": "Person",
+                  name: authorName,
+                })),
+                publisher: {
+                  "@type": "Organization",
+                  name: "HVAC Logic",
+                  url: siteConfig.canonicalDomain,
+                  logo: {
+                    "@type": "ImageObject",
+                    url: `${siteConfig.canonicalDomain}/icon.svg`,
+                  },
+                },
+                image: [`${siteConfig.canonicalDomain}/opengraph-image`],
+                mainEntityOfPage: {
+                  "@type": "WebPage",
+                  "@id": `${siteConfig.canonicalDomain}/research/${paper.slug}`,
+                },
+                inLanguage: "en-US",
+                about: paper.governingStandards.map((standard) => ({
+                  "@type": "Thing",
+                  name: standard,
+                })),
+                citation: paper.governingStandards,
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": `${siteConfig.canonicalDomain}/research/${paper.slug}#breadcrumbs`,
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: siteConfig.canonicalDomain,
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Research",
+                    item: `${siteConfig.canonicalDomain}/research`,
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: paper.reportNumber,
+                    item: `${siteConfig.canonicalDomain}/research/${paper.slug}`,
+                  },
+                ],
+              },
+            ],
+          }),
+        }}
+      />
     </div>
   );
 }

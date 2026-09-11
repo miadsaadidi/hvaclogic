@@ -15,6 +15,13 @@ const CANONICAL_ROUTES = [
   "/heating-systems",
   "/field-diagnostics",
   "/building-science",
+  "/calculators",
+  "/guides",
+  "/research",
+  "/standards",
+  "/developers",
+  "/glossary",
+  "/ashrae-climatic-data",
   "/methodology",
   "/sources",
   "/about",
@@ -40,6 +47,13 @@ const CANONICAL_ROUTES = [
   "/calculators/combustion-air-calculator",
   "/calculators/r-value-calculator",
   "/calculators/heat-loss-calculator",
+  "/research/vapor-compression-kinetics-heat-pump-derating",
+  "/research/non-linear-duct-friction-loss-fitting-penalties",
+  "/research/thermal-envelope-infiltration-building-heat-loss",
+  "/research/effective-dilution-iaq-ventilation-mass-balance",
+  "/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b",
+  "/research/ashrae-hyland-wexler-moist-air-psychrometrics",
+  "/research/cold-climate-heat-pump-balance-point-lab",
 ];
 
 async function pingIndexNow() {
