@@ -12,13 +12,15 @@ import { HOMEPAGE_FAQS } from "@/lib/data/homepage-faqs";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "HVAC Logic — Engineering Calculators & Building Science",
+  title: {
+    absolute: "HVAC Logic - Engineering Calculators & Building Science",
+  },
   description: siteConfig.description,
   alternates: {
     canonical: siteConfig.canonicalDomain,
   },
   openGraph: {
-    title: "HVAC Logic — Engineering Calculators & Building Science",
+    title: "HVAC Logic - Engineering Calculators & Building Science",
     description: siteConfig.description,
     url: siteConfig.canonicalDomain,
     siteName: siteConfig.name,
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC Logic — Engineering Calculators & Building Science",
+    title: "HVAC Logic - Engineering Calculators & Building Science",
     description: siteConfig.description,
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },

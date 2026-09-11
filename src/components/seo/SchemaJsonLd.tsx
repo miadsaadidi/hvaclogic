@@ -234,6 +234,13 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
           name: "HVACLogic Open-Access Building Science Research Group",
           url: siteConfig.canonicalDomain,
         },
+        distribution: [
+          {
+            "@type": "DataDownload",
+            encodingFormat: "text/csv",
+            contentUrl: `${canonicalUrl}?format=csv`,
+          },
+        ],
         variableMeasured: calculator.features,
       },
       {

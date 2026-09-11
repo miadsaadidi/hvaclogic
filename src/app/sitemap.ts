@@ -111,6 +111,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Academic PDF Whitepapers & Monographs
+  const paperPdfEntries: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/papers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf`,
+      lastModified: new Date("2026-08-25T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/papers/hvaclogic_psychrometrics_hyland_wexler_paper.pdf`,
+      lastModified: new Date("2026-09-07T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/papers/Thermodynamic_Modeling_A2L_Refrigerant_Glide_R454B_publication.pdf`,
+      lastModified: new Date("2026-09-05T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+  ];
+
   return [
     rootEntry,
     ...pillarEntries,
@@ -119,6 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guidesHubEntry,
     researchHubEntry,
     ...researchPaperEntries,
+    ...paperPdfEntries,
     standardsEntry,
     ...authorityEntries,
   ];
