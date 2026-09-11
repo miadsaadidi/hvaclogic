@@ -582,6 +582,83 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.com/research/cold-climate-heat-pump-balance-point-lab}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Interactive Engineering Lab: Thermodynamic Modeling of Cold-Climate Heat Pump Balance Points, Inverter COP Deratings, and Supplemental Electric Resistance Loads (Technical Report No. HL-TR-2026-HP02). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33477430`
+  },
+  {
+    slug: "deterministic-vapor-compression-refrigerant-mass-sizing",
+    title: "Deterministic Vapor-Compression Refrigerant Mass Sizing and Liquid Line Displacement Mechanics for Next-Generation Low-GWP Split Systems",
+    seoTitle: "Refrigerant Mass Sizing & Liquid Line Displacement",
+    seoDescription: "Closed-form mathematical formulations for split-system refrigerant mass charge addition, liquid line displacement, and hydrostatic lift penalties.",
+    subtitle: "Closed-form governing equations for refrigerant line-set mass addition, ASTM B280 liquid line displacement, and hydrostatic elevation lift penalties under ASHRAE Standard 15.",
+    abstract: "With the global implementation of the AIM Act and Kigali Amendment, vapor-compression building systems are rapidly transitioning from legacy hydrofluorocarbons to mildly flammable lower-GWP A2L alternatives (R-454B and R-32). This paper derives the deterministic governing formulations for refrigerant line-set mass addition, liquid line volumetric displacement, and hydrostatic vertical column corrections across residential and commercial split installations.",
+    keyFindings: [
+      "Liquid line volumetric displacement accounts for 85%–92% of required field charge additions beyond factory allowances, scaling linearly with ASTM B280 internal cross-sectional area.",
+      "Vertical liquid risers over 20 ft impose a hydrostatic downward pressure drop of 0.433 * SG psi/ft, risking premature flash gas at the expansion device without mass compensation.",
+      "ASHRAE Standard 15 flammability compliance mandates strict charge mass verification to ensure releasable volume never exceeds 25% of the Lower Flammability Limit (LFL).",
+      "Suction risers exceeding 25 ft require mandatory inverted oil traps and minimum gas velocities of 1,500 FPM to ensure continuous polyolester (POE) oil return to the compressor."
+    ],
+    governingStandards: [
+      "ASHRAE Standard 15-2022",
+      "ASHRAE Standard 34-2022",
+      "AHRI Standard 210/240-2023",
+      "EPA Clean Air Act Section 608"
+    ],
+    formulas: [
+      {
+        title: "Net Line-Set Mass Addition",
+        latex: "\\Delta m = \\max(0, L_{\\text{actual}} - L_{\\text{allowance}}) \\cdot R_{\\text{adder}} + \\Delta m_{\\text{vertical}}",
+        explanation: "Calculates required additional field refrigerant mass based on physical line length beyond factory pre-charged limits."
+      },
+      {
+        title: "Liquid Tube Cross-Sectional Area",
+        latex: "A_{\\text{int}} = \\frac{\\pi}{4} (OD - 2 \\cdot t_{\\text{wall}})^2",
+        explanation: "Calculates internal volumetric displacement capacity of ASTM B280 seamless copper tubing."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-11",
+    reportNumber: "HL-TR-2026-REF01",
+    pdfUrl: "/papers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/175390832/Deterministic_Vapor_Compression_Refrigerant_Mass_Sizing_and_Liquid_Line_Displacement_Mechanics_for_Next_Generation_Low_GWP_Split_Systems",
+        badge: "DA 93",
+      },
+      {
+        platform: "figshare",
+        label: "View Benchmark Dataset (Figshare)",
+        url: "https://doi.org/10.6084/m9.figshare.33640444",
+        badge: "DA 91",
+      }
+    ],
+    companionCalculators: [
+      {
+        name: "Refrigerant Mass Charge Calculator",
+        route: "/calculators/refrigerant-charge-calculator",
+        description: "Calculate line-set liquid mass addition, factory allowances, and oil trap requirements."
+      },
+      {
+        name: "Superheat & Subcooling Calculator",
+        route: "/calculators/superheat-subcooling-calculator",
+        description: "Diagnose operating charge with A2L zeotropic temperature glide compensation."
+      },
+      {
+        name: "A2L Refrigerant PT Chart",
+        route: "/calculators/pt-chart",
+        description: "Interactive saturation pressure-temperature lookup for low-GWP refrigerants."
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_refrigerant_charge,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {Deterministic Vapor-Compression Refrigerant Mass Sizing and Liquid Line Displacement Mechanics for Next-Generation Low-GWP Split Systems},
+  institution = {HVACLogic Open-Access Building Science Monograph Series},
+  year = {2026},
+  number = {HL-TR-2026-REF01},
+  doi = {10.6084/m9.figshare.33640444},
+  url = {https://hvaclogic.org/research/deterministic-vapor-compression-refrigerant-mass-sizing}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). Deterministic Vapor-Compression Refrigerant Mass Sizing and Liquid Line Displacement Mechanics for Next-Generation Low-GWP Split Systems (Technical Report No. HL-TR-2026-REF01). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33640444`
   }
 ];
 
@@ -636,6 +713,19 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     format: "Tabular / Replication Data",
     publicationDate: "2026-09-04",
     recordCount: 150
+  },
+  {
+    slug: "next-generation-low-gwp-refrigerant-charge-benchmark-dataset",
+    title: "Next-Generation Low-GWP Refrigerant Line-Set Mass Addition & Velocity Gradient Benchmark Dataset",
+    subtitle: "816 deterministic calculation points modeling liquid refrigerant mass addition and hydrostatic elevation lift penalties.",
+    description: "Multi-parameter engineering benchmark evaluating low-GWP A2L blends (R-454B, R-32) and legacy R-410A across standardized ASTM B280 liquid line diameters (1/4\", 5/16\", 3/8\", 1/2\"), line-set lengths from 15 ft to 150 ft, and vertical elevation risers up to 45 ft with oil trap flags.",
+    doi: "10.6084/m9.figshare.33640444",
+    repository: "Figshare",
+    repositoryUrl: "https://doi.org/10.6084/m9.figshare.33640444",
+    format: "CSV",
+    downloadUrl: "/datasets/refrigerant_mass_charge_benchmark_dataset_2026.csv",
+    publicationDate: "2026-09-11",
+    recordCount: 816
   }
 ];
 
