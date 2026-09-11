@@ -8,14 +8,14 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Building Science & Insulation Calculators",
   description:
-    "Psychrometric moist air thermodynamics, ASHRAE Hyland-Wexler formulations, parallel-path wall R-value thermal bridging, and LBNL Sherman-Grimsrud infiltration modeling.",
+    "Psychrometric moist air thermodynamics, ASHRAE Hyland-Wexler equations, parallel-path wall R-value bridging, and Sherman-Grimsrud infiltration.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/building-science`,
   },
   openGraph: {
     title: "Building Science & Insulation Calculators",
     description:
-      "Psychrometric moist air thermodynamics, ASHRAE Hyland-Wexler formulations, parallel-path wall R-value thermal bridging, and LBNL Sherman-Grimsrud infiltration modeling.",
+      "Psychrometric moist air thermodynamics, ASHRAE Hyland-Wexler equations, parallel-path wall R-value bridging, and Sherman-Grimsrud infiltration.",
     url: `${siteConfig.canonicalDomain}/building-science`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: `${siteConfig.canonicalDomain}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Building Science & Insulation Calculators — HVACLogic",
+        alt: "Building Science & Insulation Calculators - HVACLogic",
       },
     ],
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Building Science & Insulation Calculators",
     description:
-      "Psychrometric moist air thermodynamics, ASHRAE Hyland-Wexler formulations, parallel-path wall R-value thermal bridging, and LBNL Sherman-Grimsrud infiltration modeling.",
+      "Psychrometric moist air thermodynamics, ASHRAE Hyland-Wexler equations, parallel-path wall R-value bridging, and Sherman-Grimsrud infiltration.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
