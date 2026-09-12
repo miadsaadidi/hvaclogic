@@ -153,6 +153,7 @@ When authoring or updating technical editorial content for syndication on Medium
 2. **Zenodo (`zenodo.org`)**: Strictly banned due to irrecoverable network 403 blocks.
 3. **ResearchGate (`researchgate.net`)**: Strictly banned due to mandatory predefined institutional email barriers.
 4. **wikiHow (`wikihow.com`)**: Strictly banned due to consumer DIY mismatch and nofollow policy.
+5. **SkillsCommons (`skillscommons.org`)**: Strictly banned due to locked contributor onboarding forms and closed direct submission intake.
 
 ### ✅ APPROVED DISTRIBUTION & ACADEMIC REPOSITORIES ONLY:
 1. **Medium (`medium.com` — DA 96)**: For all 15 technical engineering teardown articles.

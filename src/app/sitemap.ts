@@ -131,6 +131,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/papers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf`,
+      lastModified: new Date("2026-09-11T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 
   return [
