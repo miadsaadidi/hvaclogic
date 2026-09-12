@@ -154,6 +154,7 @@ When authoring or updating technical editorial content for syndication on Medium
 3. **ResearchGate (`researchgate.net`)**: Strictly banned due to mandatory predefined institutional email barriers.
 4. **wikiHow (`wikihow.com`)**: Strictly banned due to consumer DIY mismatch and nofollow policy.
 5. **SkillsCommons (`skillscommons.org`)**: Strictly banned due to locked contributor onboarding forms and closed direct submission intake.
+6. **Authorea (`authorea.com`)**: Direct standalone submissions are temporarily disabled by Wiley (accessible only via participating Wiley journal submissions opting in to "Under Review").
 
 ### ✅ APPROVED DISTRIBUTION & ACADEMIC REPOSITORIES ONLY:
 1. **Medium (`medium.com` — DA 96)**: For all 15 technical engineering teardown articles.
@@ -162,9 +163,10 @@ When authoring or updating technical editorial content for syndication on Medium
 4. **Internet Archive (`archive.org` — DA 96)**: For permanent open monograph repository & preprint citations.
 5. **OER Commons (`oercommons.org` — DA 84 / DR 84)**: For Open Educational Resources & Higher-Ed/CTE Courseware indexing ([Course Resource](https://oercommons.org/courses/hvaclogic-deterministic-building-science-thermodynamic-modeling-suite)).
 6. **Harvard Dataverse (`dataverse.harvard.edu` — DA 93)**: For weekly open benchmark dataset deposits minting permanent DataCite DOIs ([Dataverse DOI 10.7910/DVN/SR1NZO](https://doi.org/10.7910/DVN/SR1NZO)).
-7. **SSRN (`ssrn.com` — DA 92 / Elsevier)**: For working papers, building energy & decarbonization modeling, and computational engineering frameworks minting permanent Crossref DOIs.
+7. **SSRN (`ssrn.com` / Elsevier)**: For empirical observational studies only (Note: SSRN editorial guidelines explicitly exclude software frameworks and computational models).
 8. **Figshare (`figshare.com` — DA 91)**: For open benchmark datasets minting permanent DataCite DOIs ([Figshare DOI 10.6084/m9.figshare.33456928](https://doi.org/10.6084/m9.figshare.33456928)). Use `dataset` item type exclusively.
 9. **Hashnode (`hashnode.dev` — DA 84 / DR 84)**: For developer engineering architecture, TypeScript client-side algorithms, and recurring 2-day developer syndication with dofollow contextual backlinking (`https://hvaclogic.hashnode.dev/`).
+10. **engrXiv (`engrxiv.org` — DA 91 / DR 89)**: Open Engineering Archive for mechanical engineering, thermodynamics, and building science preprints minting permanent Crossref DOIs (`10.31224/...`). Currently in Production ([Submission #8215](https://engrxiv.org/preprint/view/8215)).
 
 
 
