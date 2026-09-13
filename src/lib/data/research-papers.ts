@@ -11,7 +11,7 @@ export interface CompanionCalculator {
 }
 
 export interface ResearchRepositoryLink {
-  platform: "academia" | "figshare" | "dataverse" | "ssrn" | "archive";
+  platform: "academia" | "figshare" | "dataverse" | "ssrn" | "archive" | "huggingface";
   label: string;
   url: string;
   badge?: string;
@@ -659,6 +659,95 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.org/research/deterministic-vapor-compression-refrigerant-mass-sizing}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Deterministic Vapor-Compression Refrigerant Mass Sizing and Liquid Line Displacement Mechanics for Next-Generation Low-GWP Split Systems (Technical Report No. HL-TR-2026-REF01). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33640444`
+  },
+  {
+    slug: "student-lab-building-envelope-thermal-transmission",
+    title: "Student Laboratory Manual: Building Envelope Thermal Transmission, Fenestration SHGC Modeling, and Infiltration Sizing per ACCA Manual J",
+    seoTitle: "Building Envelope Thermal Transmission Lab Manual",
+    seoDescription: "Undergraduate laboratory manual and deterministic calculations for building envelope U-factors, fenestration SHGC, and ACH50 infiltration sizing per Manual J.",
+    subtitle: "An interactive engineering laboratory curriculum contrasting 1975 versus 2025 IECC envelopes and demonstrating the physical failure of empirical 1-ton-per-500-sq-ft shortcuts.",
+    abstract: "Accurate determination of residential peak cooling and heating thermal loads is fundamental to mechanical equipment selection, indoor humidity control, and decarbonization. This laboratory manual guides engineering and technology students through the quantitative formulation of multi-layer Fourier conduction, fenestration solar heat gains (SHGC), and pressure-driven blower door air leakage (ACH50) normalized via Sherman-Grimsrud LBL correlation factors. A comparative case study of a 2,500 sq ft home illustrates why legacy contractor heuristics oversize equipment by 80% to 120%, resulting in short-cycling and latent moisture extraction failure.",
+    keyFindings: [
+      "Legacy rules of thumb (1 ton / 500 sq ft) specify 5.0 tons for a 2,500 sq ft modern home whose true Manual J peak cooling load is only 2.20 tons (a 127% oversizing error).",
+      "Continuous exterior polyisocyanurate insulation (R-5) combined with dense-pack cavity batt reduces whole-wall assembly U-factor from 0.143 to 0.038 BTU/(hr·ft²·°F), a 73% conductive load reduction.",
+      "Upgrading fenestration to Low-E Argon units (U-0.28, SHGC 0.22) cuts direct solar radiative heat gain by 73% on west-facing glazing exposures.",
+      "Blower door tightness improvements from 9.5 ACH50 to 2.0 ACH50 with balanced mechanical ventilation decrease sensible infiltration loads by 79% while protecting indoor relative humidity."
+    ],
+    governingStandards: [
+      "ACCA Manual J (8th Edition)",
+      "ASHRAE Handbook — Fundamentals (2021)",
+      "IECC 2021 / 2024 Residential Energy Provisions",
+      "ASTM E779 Standard Test Method for Determining Air Leakage Rate by Fan Pressurization"
+    ],
+    formulas: [
+      {
+        title: "Multi-Layer Assembly Thermal Resistance & Reciprocal U-Factor",
+        latex: "U_{\\text{assembly}} = \\frac{1}{R_{\\text{si}} + \\sum_{i=1}^n \\frac{x_i}{k_i} + R_{\\text{cavity}} + R_{\\text{se}}}",
+        explanation: "Evaluates overall heat transmittance across composite wall or ceiling assemblies by inverting total series-parallel thermal resistance."
+      },
+      {
+        title: "Fenestration Conductive and Solar Radiation Heat Gain",
+        latex: "Q_{\\text{fenestration}} = U \\cdot A \\cdot (T_{\\text{outdoor}} - T_{\\text{indoor}}) + A \\cdot \\text{SHGC} \\cdot E_{\\text{solar}} \\cdot \\text{IAC}",
+        explanation: "Decouples conductive temperature differential heat transfer from direct and diffuse solar irradiance transmitted through glazing."
+      },
+      {
+        title: "Pressure-Driven Natural Infiltration Heat Load",
+        latex: "Q_{\\text{inf, sensible}} = 1.08 \\cdot \\left(\\frac{\\text{ACH}_{50} \\cdot V_{\\text{building}}}{60 \\cdot N}\\right) \\cdot (T_{\\text{outdoor}} - T_{\\text{indoor}})",
+        explanation: "Converts empirical blower door depressurization metrics (ACH50 at 50 Pa) into continuous natural design infiltration CFM via climate-specific LBL correlation factors."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-13",
+    reportNumber: "HL-LAB-2026-ENV02",
+    pdfUrl: "/whitepapers/Student_Lab_02_Building_Envelope_Thermal_Transmission.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/175459983/Student_Laboratory_Manual_Building_Envelope_Thermal_Transmission_Fenestration_SHGC_Modeling_and_Infiltration_Sizing_per_ACCA_Manual_J",
+        badge: "DA 93",
+      },
+      {
+        platform: "archive",
+        label: "Internet Archive Monograph",
+        url: "https://archive.org/details/hl-lab-2026-env02-student-laboratory-manual-building-envelope-thermal-transmi",
+        badge: "DA 96",
+      },
+      {
+        platform: "huggingface",
+        label: "Hugging Face Dataset (DOI 10.57967/hf/10401)",
+        url: "https://doi.org/10.57967/hf/10401",
+        badge: "DA 91",
+      },
+      {
+        platform: "figshare",
+        label: "Figshare Dataset (DOI 10.6084/m9.figshare.33702643)",
+        url: "https://doi.org/10.6084/m9.figshare.33702643",
+        badge: "DA 91",
+      }
+    ],
+    companionCalculators: [
+      {
+        name: "Heating & Cooling BTU Load Calculator",
+        route: "/calculators/btu-calculator",
+        description: "Calculate whole-house heating and cooling loads, room-by-room CFM, and Manual J sensible/latent distributions."
+      },
+      {
+        name: "Wall & Roof Assembly R-Value Calculator",
+        route: "/calculators/r-value-calculator",
+        description: "Determine multi-layer composite assembly U-factors, thermal bridging, and insulation R-values."
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_student_lab_02,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {Student Laboratory Manual: Building Envelope Thermal Transmission, Fenestration SHGC Modeling, and Infiltration Sizing per ACCA Manual J},
+  institution = {HVACLogic Open Educational Resources & Monograph Series},
+  year = {2026},
+  number = {HL-LAB-2026-ENV02},
+  doi = {10.57967/hf/10401},
+  url = {https://hvaclogic.org/research/student-lab-building-envelope-thermal-transmission}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). Student Laboratory Manual: Building Envelope Thermal Transmission, Fenestration SHGC Modeling, and Infiltration Sizing per ACCA Manual J (Courseware Report No. HL-LAB-2026-ENV02). HVACLogic Open Educational Resources. https://doi.org/10.57967/hf/10401`
   }
 ];
 
@@ -726,6 +815,32 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     downloadUrl: "/datasets/refrigerant_mass_charge_benchmark_dataset_2026.csv",
     publicationDate: "2026-09-11",
     recordCount: 816
+  },
+  {
+    slug: "building-envelope-thermal-transmission-benchmark-dataset",
+    title: "Building Envelope Thermal Transmission, Fenestration SHGC & Infiltration Benchmark Matrix (Figshare)",
+    subtitle: "540 deterministic state vectors across ASHRAE Climate Zones 2–6 evaluating conduction, solar gains, and ACH50 infiltration.",
+    description: "Multi-parameter residential building science benchmark calculating Fourier conductive transmission across composite wall and roof assemblies, fenestration Solar Heat Gain Coefficients (SHGC), and pressure-driven envelope infiltration per ACCA Manual J (8th Edition).",
+    doi: "10.6084/m9.figshare.33702643",
+    repository: "Figshare",
+    repositoryUrl: "https://doi.org/10.6084/m9.figshare.33702643",
+    format: "CSV",
+    downloadUrl: "/datasets/building_envelope_thermal_transmission_benchmark_dataset_2026.csv",
+    publicationDate: "2026-09-13",
+    recordCount: 540
+  },
+  {
+    slug: "building-envelope-thermal-transmission-huggingface-dataset",
+    title: "Building Envelope Thermal Transmission & Infiltration Benchmark Matrix (Hugging Face)",
+    subtitle: "540 deterministic state vectors across ASHRAE Climate Zones 2–6 on Hugging Face Datasets.",
+    description: "Hugging Face Open Dataset repository containing 540 deterministic engineering vectors evaluating Fourier conduction, solar SHGC, and ACH50 infiltration sizing under ACCA Manual J (8th Edition). Includes complete dataset card, column dictionary, and automated Python / Pandas loading scripts.",
+    doi: "10.57967/hf/10401",
+    repository: "Hugging Face",
+    repositoryUrl: "https://huggingface.co/datasets/miadinside/building-envelope-thermal-transmission-benchmark-2026",
+    format: "CSV / JSON",
+    downloadUrl: "/datasets/building_envelope_thermal_transmission_benchmark_dataset_2026.csv",
+    publicationDate: "2026-09-13",
+    recordCount: 540
   }
 ];
 

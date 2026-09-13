@@ -186,18 +186,30 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                       ? "rgba(185, 28, 28, 0.12)"
                       : repo.platform === "figshare"
                       ? "rgba(14, 165, 233, 0.12)"
+                      : repo.platform === "huggingface"
+                      ? "rgba(234, 179, 8, 0.12)"
+                      : repo.platform === "archive"
+                      ? "rgba(100, 116, 139, 0.12)"
                       : "rgba(168, 85, 247, 0.12)",
                   color:
                     repo.platform === "academia"
                       ? "var(--accent-danger, #ef4444)"
                       : repo.platform === "figshare"
                       ? "var(--accent-cooling, #00d2ff)"
+                      : repo.platform === "huggingface"
+                      ? "#f59e0b"
+                      : repo.platform === "archive"
+                      ? "#94a3b8"
                       : "#a78bfa",
                   border: `1px solid ${
                     repo.platform === "academia"
                       ? "rgba(239, 68, 68, 0.35)"
                       : repo.platform === "figshare"
                       ? "rgba(0, 210, 255, 0.35)"
+                      : repo.platform === "huggingface"
+                      ? "rgba(245, 158, 11, 0.35)"
+                      : repo.platform === "archive"
+                      ? "rgba(148, 163, 184, 0.35)"
                       : "rgba(167, 139, 250, 0.35)"
                   }`,
                   fontWeight: 700,
@@ -208,7 +220,7 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                   transition: "all 0.15s ease",
                 }}
               >
-                <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : "🌐"}</span>
+                <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : repo.platform === "huggingface" ? "🤗" : repo.platform === "archive" ? "🏛️" : "🌐"}</span>
                 <span>{repo.label}</span>
                 {repo.badge && (
                   <span

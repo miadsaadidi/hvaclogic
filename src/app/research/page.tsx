@@ -245,18 +245,30 @@ export default function ResearchHubPage() {
                         ? "rgba(185, 28, 28, 0.08)"
                         : repo.platform === "figshare"
                         ? "rgba(14, 165, 233, 0.08)"
+                        : repo.platform === "huggingface"
+                        ? "rgba(234, 179, 8, 0.1)"
+                        : repo.platform === "archive"
+                        ? "rgba(100, 116, 139, 0.1)"
                         : "rgba(168, 85, 247, 0.08)",
                     color:
                       repo.platform === "academia"
                         ? "var(--accent-danger, #ef4444)"
                         : repo.platform === "figshare"
                         ? "var(--accent-cooling, #00d2ff)"
+                        : repo.platform === "huggingface"
+                        ? "#f59e0b"
+                        : repo.platform === "archive"
+                        ? "#94a3b8"
                         : "#a78bfa",
                     border: `1px solid ${
                       repo.platform === "academia"
                         ? "rgba(239, 68, 68, 0.25)"
                         : repo.platform === "figshare"
                         ? "rgba(0, 210, 255, 0.25)"
+                        : repo.platform === "huggingface"
+                        ? "rgba(245, 158, 11, 0.3)"
+                        : repo.platform === "archive"
+                        ? "rgba(148, 163, 184, 0.3)"
                         : "rgba(167, 139, 250, 0.25)"
                     }`,
                     fontWeight: 600,
@@ -266,8 +278,8 @@ export default function ResearchHubPage() {
                     textDecoration: "none",
                   }}
                 >
-                  <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : "🌐"}</span>
-                  <span>{repo.label || (repo.platform === "academia" ? "Academia.edu" : repo.platform === "figshare" ? "View Dataset" : "Harvard Dataverse")}</span>
+                  <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : repo.platform === "huggingface" ? "🤗" : repo.platform === "archive" ? "🏛️" : "🌐"}</span>
+                  <span>{repo.label || (repo.platform === "academia" ? "Academia.edu" : repo.platform === "figshare" ? "View Dataset" : repo.platform === "huggingface" ? "Hugging Face" : repo.platform === "archive" ? "Internet Archive" : "Harvard Dataverse")}</span>
                   <span style={{ fontSize: "0.75rem", opacity: 0.8 }}>↗</span>
                 </a>
               ))}

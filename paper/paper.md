@@ -154,9 +154,17 @@ In accordance with JOSS publication policies, the author discloses that Large La
 
 # Availability & Documentation
 
-`HVACLogic` is released under the MIT Open Source License. The full source code, test suites, and interactive web suite are available at:
+`HVACLogic` is released under the MIT Open Source License. The full source code, test suites, companion benchmark datasets, and interactive web suite are available at:
 * Canonical Web Platform: [https://hvaclogic.org](https://hvaclogic.org)
 * Source Code Repository: [https://github.com/miadsaadidi/hvaclogic](https://github.com/miadsaadidi/hvaclogic)
+* Open Benchmark Datasets & Replication Matrices (DataCite DOIs):
+  * Hugging Face Datasets: [*Building Envelope Thermal Transmission Benchmark Matrix (540 Vectors)*](https://huggingface.co/datasets/miadinside/building-envelope-thermal-transmission-benchmark-2026) (DOI: [`10.57967/hf/10401`](https://doi.org/10.57967/hf/10401))
+  * Figshare Repository: [*Building Envelope Thermal Transmission Matrix (540 Vectors)*](https://doi.org/10.6084/m9.figshare.33702643) (DOI: [`10.6084/m9.figshare.33702643`](https://doi.org/10.6084/m9.figshare.33702643))
+  * Figshare Repository: [*Next-Generation Low-GWP Refrigerant Line-Set Mass Sizing (816 Vectors)*](https://doi.org/10.6084/m9.figshare.33640444) (DOI: [`10.6084/m9.figshare.33640444`](https://doi.org/10.6084/m9.figshare.33640444))
+  * Harvard Dataverse: [*Zeotropic A2L Refrigerant Phase-Equilibrium Replication Data*](https://doi.org/10.7910/DVN/SR1NZO) (DOI: [`10.7910/DVN/SR1NZO`](https://doi.org/10.7910/DVN/SR1NZO))
+* Open Educational Resources & Laboratory Manuals:
+  * Academia.edu: [*Student Laboratory Manual: Building Envelope Thermal Transmission, Fenestration SHGC, and Infiltration Sizing per ACCA Manual J*](https://www.academia.edu/175459983/Student_Laboratory_Manual_Building_Envelope_Thermal_Transmission_Fenestration_SHGC_Modeling_and_Infiltration_Sizing_per_ACCA_Manual_J)
+  * Internet Archive: [*Permanent Monograph Archive (hl-lab-2026-env02)*](https://archive.org/details/hl-lab-2026-env02-student-laboratory-manual-building-envelope-thermal-transmi)
 
 # References
 
