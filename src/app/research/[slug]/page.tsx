@@ -190,6 +190,8 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                       ? "rgba(234, 179, 8, 0.12)"
                       : repo.platform === "archive"
                       ? "rgba(100, 116, 139, 0.12)"
+                      : repo.platform === "ssrn"
+                      ? "rgba(234, 88, 12, 0.12)"
                       : "rgba(168, 85, 247, 0.12)",
                   color:
                     repo.platform === "academia"
@@ -200,6 +202,8 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                       ? "#f59e0b"
                       : repo.platform === "archive"
                       ? "#94a3b8"
+                      : repo.platform === "ssrn"
+                      ? "#ea580c"
                       : "#a78bfa",
                   border: `1px solid ${
                     repo.platform === "academia"
@@ -210,6 +214,8 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                       ? "rgba(245, 158, 11, 0.35)"
                       : repo.platform === "archive"
                       ? "rgba(148, 163, 184, 0.35)"
+                      : repo.platform === "ssrn"
+                      ? "rgba(234, 88, 12, 0.35)"
                       : "rgba(167, 139, 250, 0.35)"
                   }`,
                   fontWeight: 700,
@@ -220,7 +226,7 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                   transition: "all 0.15s ease",
                 }}
               >
-                <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : repo.platform === "huggingface" ? "🤗" : repo.platform === "archive" ? "🏛️" : "🌐"}</span>
+                <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : repo.platform === "huggingface" ? "🤗" : repo.platform === "archive" ? "🏛️" : repo.platform === "ssrn" ? "📑" : "🌐"}</span>
                 <span>{repo.label}</span>
                 {repo.badge && (
                   <span

@@ -455,7 +455,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-09-07",
-    doi: "10.6084/m9.figshare.33456928",
+    doi: "10.2139/ssrn.7430738",
     reportNumber: "HL-TR-2026-PSY04",
     pdfUrl: "/whitepapers/hvaclogic_psychrometrics_hyland_wexler_paper.pdf",
     repositories: [
@@ -464,6 +464,12 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
         label: "Read on Academia.edu",
         url: "https://www.academia.edu/174361730/Thermodynamic_Formulations_of_ASHRAE_Hyland_Wexler_Moist_Air_Psychrometrics_and_Numerical_Energy_Balance_Solvers_for_Building_Sizing_and_Field_Diagnostics",
         badge: "DA 93",
+      },
+      {
+        platform: "ssrn",
+        label: "Read on SSRN",
+        url: "https://ssrn.com/abstract=7430738",
+        badge: "DA 92",
       },
       {
         platform: "figshare",
@@ -490,15 +496,16 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       }
     ],
     bibtex: `@techreport{hvaclogic_2026_psychrometrics,
-  author = {{HVACLogic Research Group} and S., Miad},
+  author = {{HVACLogic Research Group} and Saadidi, Miad},
   title = {Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics},
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-PSY04},
-  doi = {10.6084/m9.figshare.33456928},
-  url = {https://hvaclogic.com/research/ashrae-hyland-wexler-moist-air-psychrometrics}
+  doi = {10.2139/ssrn.7430738},
+  url = {https://hvaclogic.com/research/ashrae-hyland-wexler-moist-air-psychrometrics},
+  note = {Available at SSRN: https://ssrn.com/abstract=7430738}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics (Technical Report No. HL-TR-2026-PSY04). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33456928`
+    apa: `HVACLogic Research Group, & Saadidi, M. (2026). Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics (Technical Report No. HL-TR-2026-PSY04). HVACLogic Open-Access Building Science. SSRN Electronic Journal. https://doi.org/10.2139/ssrn.7430738`
   },
   {
     slug: "cold-climate-heat-pump-balance-point-lab",

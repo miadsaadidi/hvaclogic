@@ -34,9 +34,33 @@ export const metadata: Metadata = {
   },
 };
 
+// Helpers for compact display
+const formatStandard = (std: string) => {
+  return std.replace(/\s*\([^)]*\)/g, "").trim();
+};
+
+const getRepoShortLabel = (repo: { platform: string; label?: string }) => {
+  switch (repo.platform) {
+    case "figshare":
+      return "Figshare";
+    case "ssrn":
+      return "SSRN";
+    case "academia":
+      return "Academia";
+    case "huggingface":
+      return "Hugging Face";
+    case "archive":
+      return "Archive";
+    case "dataverse":
+      return "Dataverse";
+    default:
+      return repo.label || "Repository";
+  }
+};
+
 export default function ResearchHubPage() {
   return (
-    <div className="site-container page" style={{ padding: "2.5rem 1.5rem", maxWidth: "1200px", margin: "0 auto" }}>
+    <div className="site-container page" style={{ padding: "2.5rem 1.5rem", maxWidth: "1320px", margin: "0 auto" }}>
       {/* Breadcrumb Header */}
       <nav aria-label="Breadcrumb" style={{ marginBottom: "1.5rem" }}>
         <ol style={{ display: "flex", gap: "0.5rem", listStyle: "none", padding: 0, fontSize: "0.85rem", color: "var(--text-muted)" }}>
@@ -49,19 +73,19 @@ export default function ResearchHubPage() {
       </nav>
 
       {/* Hero Header */}
-      <header style={{ marginBottom: "3rem", borderBottom: "1px solid var(--border-color)", paddingBottom: "2rem" }}>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1rem" }}>
+      <header style={{ marginBottom: "2.5rem", borderBottom: "1px solid var(--border-color)", paddingBottom: "1.75rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.85rem" }}>
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: "0.5rem",
-              padding: "0.3rem 0.85rem",
+              padding: "0.25rem 0.75rem",
               borderRadius: "9999px",
               background: "rgba(56, 189, 248, 0.1)",
               border: "1px solid rgba(56, 189, 248, 0.25)",
               color: "var(--accent-cooling)",
-              fontSize: "0.78rem",
+              fontSize: "0.74rem",
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.05em",
@@ -76,12 +100,12 @@ export default function ResearchHubPage() {
               display: "inline-flex",
               alignItems: "center",
               gap: "0.45rem",
-              padding: "0.3rem 0.85rem",
+              padding: "0.25rem 0.75rem",
               borderRadius: "9999px",
               background: "rgba(16, 185, 129, 0.1)",
               border: "1px solid rgba(16, 185, 129, 0.25)",
               color: "var(--accent-success)",
-              fontSize: "0.78rem",
+              fontSize: "0.74rem",
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.05em",
@@ -91,25 +115,32 @@ export default function ResearchHubPage() {
             <span>CC BY 4.0 Open Access</span>
           </div>
         </div>
-        <h1 style={{ fontSize: "2.35rem", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: "0.75rem", lineHeight: 1.2 }}>
+        <h1 style={{ fontSize: "2.1rem", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: "0.5rem", lineHeight: 1.2 }}>
           Engineering Research &amp; Technical Whitepapers
         </h1>
-        <p style={{ fontSize: "1.1rem", color: "var(--text-muted)", maxWidth: "850px", lineHeight: 1.6, margin: 0 }}>
+        <p style={{ fontSize: "1rem", color: "var(--text-muted)", maxWidth: "900px", lineHeight: 1.55, margin: 0 }}>
           Peer-referenced technical reports, mathematical modeling frameworks, and building science preprints published by the HVACLogic Open Engineering Research Group. All papers are open-access under Creative Commons CC BY 4.0 and indexed with citable DOIs for academic courseware, engineering syllabus adoption, and vocational training.
         </p>
       </header>
 
-      {/* Whitepapers List - 2 Column Grid */}
-      <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))", gap: "1.75rem", marginBottom: "4rem" }}>
+      {/* Whitepapers List - 3-Column Responsive Grid */}
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 350px), 1fr))",
+          gap: "1.25rem",
+          marginBottom: "3.5rem",
+        }}
+      >
         {RESEARCH_PAPERS.map((paper) => (
           <article
             key={paper.slug}
             style={{
               background: "var(--surface)",
               border: "1px solid var(--border-color)",
-              borderTop: "4px solid var(--accent-cooling)",
-              borderRadius: "0.75rem",
-              padding: "1.75rem 2rem",
+              borderTop: "3px solid var(--accent-cooling)",
+              borderRadius: "0.65rem",
+              padding: "1.25rem 1.25rem",
               boxShadow: "var(--shadow-sm)",
               display: "flex",
               flexDirection: "column",
@@ -119,14 +150,14 @@ export default function ResearchHubPage() {
           >
             <div>
               {/* Metadata Badges */}
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", marginBottom: "0.85rem" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.4rem", marginBottom: "0.65rem" }}>
                 <span
                   style={{
                     background: "var(--bg-secondary)",
                     color: "var(--accent-cooling)",
-                    fontSize: "0.75rem",
+                    fontSize: "0.7rem",
                     fontWeight: 700,
-                    padding: "0.2rem 0.55rem",
+                    padding: "0.15rem 0.45rem",
                     borderRadius: "4px",
                     border: "1px solid var(--border-color)",
                     fontFamily: "var(--font-mono, monospace)",
@@ -139,74 +170,116 @@ export default function ResearchHubPage() {
                     style={{
                       background: "rgba(167, 139, 250, 0.1)",
                       color: "#a78bfa",
-                      fontSize: "0.75rem",
+                      fontSize: "0.7rem",
                       fontWeight: 600,
-                      padding: "0.2rem 0.55rem",
+                      padding: "0.15rem 0.45rem",
                       borderRadius: "4px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      maxWidth: "160px",
                     }}
+                    title={`DOI: ${paper.doi}`}
                   >
                     DOI: {paper.doi}
                   </span>
                 )}
-                <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginLeft: "auto" }}>
+                <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginLeft: "auto" }}>
                   {paper.publicationDate}
                 </span>
               </div>
 
               {/* Title */}
-              <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.65rem", lineHeight: 1.35 }}>
+              <h2
+                style={{
+                  fontSize: "1.08rem",
+                  fontWeight: 700,
+                  color: "var(--ink)",
+                  marginBottom: "0.45rem",
+                  lineHeight: 1.35,
+                  minHeight: "2.7rem",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
                 <Link
                   href={`/research/${paper.slug}`}
                   style={{ color: "var(--ink)", textDecoration: "none", transition: "color 0.15s ease" }}
+                  title={paper.title}
                 >
                   {paper.title}
                 </Link>
               </h2>
 
-              {/* Abstract */}
-              <p style={{ fontSize: "0.92rem", color: "var(--ink-secondary)", lineHeight: 1.6, marginBottom: "1.25rem" }}>
+              {/* Abstract - Clamped to 3 lines */}
+              <p
+                style={{
+                  fontSize: "0.84rem",
+                  color: "var(--ink-secondary)",
+                  lineHeight: 1.45,
+                  marginBottom: "0.85rem",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  minHeight: "3.65rem",
+                }}
+              >
                 {paper.abstract}
               </p>
 
-              {/* Standards Enforced */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.5rem" }}>
+              {/* Standards Enforced - Compact Code-Only Badges */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem", marginBottom: "1rem" }}>
                 {paper.governingStandards.map((std) => (
                   <span
                     key={std}
                     style={{
-                      fontSize: "0.72rem",
-                      padding: "0.2rem 0.5rem",
+                      fontSize: "0.67rem",
+                      padding: "0.15rem 0.4rem",
                       borderRadius: "4px",
                       background: "var(--bg-primary)",
                       border: "1px solid var(--border-color)",
                       color: "var(--text-muted)",
+                      whiteSpace: "nowrap",
                     }}
+                    title={std}
                   >
-                    🏛️ {std}
+                    🏛️ {formatStandard(std)}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Action Links */}
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", paddingTop: "1rem", borderTop: "1px solid var(--border-color)" }}>
+            {/* Action Links - Micro Buttons */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: "0.4rem",
+                paddingTop: "0.75rem",
+                borderTop: "1px solid var(--border-color)",
+              }}
+            >
               <Link
                 href={`/research/${paper.slug}`}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "0.4rem",
+                  gap: "0.25rem",
                   background: "#0284c7",
                   color: "#ffffff",
                   fontWeight: 700,
-                  fontSize: "0.85rem",
-                  padding: "0.55rem 1.15rem",
-                  borderRadius: "0.45rem",
+                  fontSize: "0.76rem",
+                  padding: "0.32rem 0.75rem",
+                  borderRadius: "0.375rem",
                   textDecoration: "none",
-                  boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
+                  boxShadow: "0 1px 2px rgba(2, 132, 199, 0.25)",
                 }}
               >
-                Read Paper Online →
+                Read →
               </Link>
 
               <a
@@ -215,19 +288,20 @@ export default function ResearchHubPage() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "0.4rem",
-                  background: "transparent",
-                  color: "var(--ink)",
-                  border: "1px solid var(--border-color)",
-                  fontWeight: 600,
-                  fontSize: "0.85rem",
-                  padding: "0.55rem 1.15rem",
-                  borderRadius: "0.45rem",
+                  gap: "0.25rem",
+                  background: "rgba(239, 68, 68, 0.08)",
+                  color: "#ef4444",
+                  border: "1px solid rgba(239, 68, 68, 0.3)",
+                  fontWeight: 700,
+                  fontSize: "0.76rem",
+                  padding: "0.32rem 0.65rem",
+                  borderRadius: "0.375rem",
                   textDecoration: "none",
                 }}
+                title="Download PDF"
               >
-                <span>📄</span>
-                <span>Download PDF</span>
+                <span>📥</span>
+                <span>PDF</span>
               </a>
 
               {paper.repositories?.map((repo) => (
@@ -239,7 +313,7 @@ export default function ResearchHubPage() {
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: "0.35rem",
+                    gap: "0.25rem",
                     background:
                       repo.platform === "academia"
                         ? "rgba(185, 28, 28, 0.08)"
@@ -249,6 +323,8 @@ export default function ResearchHubPage() {
                         ? "rgba(234, 179, 8, 0.1)"
                         : repo.platform === "archive"
                         ? "rgba(100, 116, 139, 0.1)"
+                        : repo.platform === "ssrn"
+                        ? "rgba(234, 88, 12, 0.08)"
                         : "rgba(168, 85, 247, 0.08)",
                     color:
                       repo.platform === "academia"
@@ -259,6 +335,8 @@ export default function ResearchHubPage() {
                         ? "#f59e0b"
                         : repo.platform === "archive"
                         ? "#94a3b8"
+                        : repo.platform === "ssrn"
+                        ? "#ea580c"
                         : "#a78bfa",
                     border: `1px solid ${
                       repo.platform === "academia"
@@ -269,18 +347,20 @@ export default function ResearchHubPage() {
                         ? "rgba(245, 158, 11, 0.3)"
                         : repo.platform === "archive"
                         ? "rgba(148, 163, 184, 0.3)"
+                        : repo.platform === "ssrn"
+                        ? "rgba(234, 88, 12, 0.3)"
                         : "rgba(167, 139, 250, 0.25)"
                     }`,
                     fontWeight: 600,
-                    fontSize: "0.82rem",
-                    padding: "0.55rem 0.95rem",
-                    borderRadius: "0.45rem",
+                    fontSize: "0.74rem",
+                    padding: "0.32rem 0.55rem",
+                    borderRadius: "0.375rem",
                     textDecoration: "none",
                   }}
                 >
-                  <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : repo.platform === "huggingface" ? "🤗" : repo.platform === "archive" ? "🏛️" : "🌐"}</span>
-                  <span>{repo.label || (repo.platform === "academia" ? "Academia.edu" : repo.platform === "figshare" ? "View Dataset" : repo.platform === "huggingface" ? "Hugging Face" : repo.platform === "archive" ? "Internet Archive" : "Harvard Dataverse")}</span>
-                  <span style={{ fontSize: "0.75rem", opacity: 0.8 }}>↗</span>
+                  <span>{repo.platform === "academia" ? "🎓" : repo.platform === "figshare" ? "📊" : repo.platform === "huggingface" ? "🤗" : repo.platform === "archive" ? "🏛️" : repo.platform === "ssrn" ? "📑" : "🌐"}</span>
+                  <span>{getRepoShortLabel(repo)}</span>
+                  <span style={{ fontSize: "0.68rem", opacity: 0.8 }}>↗</span>
                 </a>
               ))}
             </div>
@@ -292,24 +372,30 @@ export default function ResearchHubPage() {
       <section style={{ marginBottom: "3.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.75rem" }}>
           <span style={{ fontSize: "1.25rem" }}>📊</span>
-          <h2 style={{ fontSize: "1.75rem", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.01em", margin: 0 }}>
+          <h2 style={{ fontSize: "1.65rem", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.01em", margin: 0 }}>
             Open Benchmark Datasets &amp; Replication Repositories
           </h2>
         </div>
-        <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", maxWidth: "800px", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+        <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", maxWidth: "850px", lineHeight: 1.55, marginBottom: "1.5rem" }}>
           Verified empirical tabular datasets and replication packages registered with persistent DataCite DOIs across Harvard Dataverse and Figshare. Freely accessible for university courseware, computational fluid dynamics (CFD) benchmarking, and building energy modeling.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))", gap: "1.5rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 350px), 1fr))",
+            gap: "1.25rem",
+          }}
+        >
           {RESEARCH_DATASETS.map((ds) => (
             <div
               key={ds.slug}
               style={{
                 background: "var(--surface)",
                 border: "1px solid var(--border-color)",
-                borderTop: "4px solid #10b981",
-                borderRadius: "0.75rem",
-                padding: "1.5rem 1.75rem",
+                borderTop: "3px solid #10b981",
+                borderRadius: "0.65rem",
+                padding: "1.25rem 1.25rem",
                 boxShadow: "var(--shadow-sm)",
                 display: "flex",
                 flexDirection: "column",
@@ -317,14 +403,14 @@ export default function ResearchHubPage() {
               }}
             >
               <div>
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.4rem", marginBottom: "0.65rem" }}>
                   <span
                     style={{
                       background: "rgba(16, 185, 129, 0.1)",
                       color: "#10b981",
-                      fontSize: "0.72rem",
+                      fontSize: "0.68rem",
                       fontWeight: 700,
-                      padding: "0.15rem 0.5rem",
+                      padding: "0.15rem 0.45rem",
                       borderRadius: "4px",
                       textTransform: "uppercase",
                     }}
@@ -335,33 +421,83 @@ export default function ResearchHubPage() {
                     style={{
                       background: "var(--bg-secondary)",
                       color: "var(--ink-secondary)",
-                      fontSize: "0.72rem",
+                      fontSize: "0.68rem",
                       fontWeight: 600,
-                      padding: "0.15rem 0.5rem",
+                      padding: "0.15rem 0.45rem",
                       borderRadius: "4px",
                       border: "1px solid var(--border-color)",
                       fontFamily: "var(--font-mono, monospace)",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      maxWidth: "150px",
                     }}
+                    title={`DOI: ${ds.doi}`}
                   >
                     DOI: {ds.doi}
                   </span>
-                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginLeft: "auto" }}>
-                    {ds.recordCount} Records &bull; {ds.format}
+                  <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginLeft: "auto" }}>
+                    {ds.recordCount} pts
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.45rem", lineHeight: 1.35 }}>
+                <h3
+                  style={{
+                    fontSize: "1.02rem",
+                    fontWeight: 700,
+                    color: "var(--ink)",
+                    marginBottom: "0.4rem",
+                    lineHeight: 1.35,
+                    minHeight: "2.7rem",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                  title={ds.title}
+                >
                   {ds.title}
                 </h3>
-                <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.5, marginBottom: "0.85rem" }}>
+                <p
+                  style={{
+                    fontSize: "0.82rem",
+                    color: "var(--text-muted)",
+                    lineHeight: 1.45,
+                    marginBottom: "0.5rem",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
                   {ds.subtitle}
                 </p>
-                <p style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.55, marginBottom: "1.25rem" }}>
+                <p
+                  style={{
+                    fontSize: "0.82rem",
+                    color: "var(--ink-secondary)",
+                    lineHeight: 1.45,
+                    marginBottom: "1rem",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    minHeight: "3.55rem",
+                  }}
+                >
                   {ds.description}
                 </p>
               </div>
 
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.6rem", paddingTop: "0.85rem", borderTop: "1px solid var(--border-color)" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  paddingTop: "0.75rem",
+                  borderTop: "1px solid var(--border-color)",
+                }}
+              >
                 {ds.repositoryUrl && (
                   <a
                     href={ds.repositoryUrl}
@@ -370,17 +506,17 @@ export default function ResearchHubPage() {
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "0.35rem",
+                      gap: "0.25rem",
                       background: "#10b981",
                       color: "#ffffff",
                       fontWeight: 700,
-                      fontSize: "0.8rem",
-                      padding: "0.45rem 1rem",
-                      borderRadius: "0.4rem",
+                      fontSize: "0.76rem",
+                      padding: "0.32rem 0.75rem",
+                      borderRadius: "0.375rem",
                       textDecoration: "none",
                     }}
                   >
-                    <span>View Repository on {ds.repository} →</span>
+                    <span>{ds.repository} →</span>
                   </a>
                 )}
                 {ds.downloadUrl ? (
@@ -390,31 +526,32 @@ export default function ResearchHubPage() {
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "0.35rem",
+                      gap: "0.25rem",
                       background: "transparent",
                       color: "var(--ink)",
                       border: "1px solid var(--border-color)",
                       fontWeight: 600,
-                      fontSize: "0.8rem",
-                      padding: "0.45rem 1rem",
-                      borderRadius: "0.4rem",
+                      fontSize: "0.76rem",
+                      padding: "0.32rem 0.65rem",
+                      borderRadius: "0.375rem",
                       textDecoration: "none",
                     }}
                   >
-                    <span>📥 Download {ds.format}</span>
+                    <span>📥</span>
+                    <span>{ds.format}</span>
                   </a>
                 ) : !ds.repositoryUrl && (
                   <span
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "0.35rem",
+                      gap: "0.25rem",
                       color: "var(--text-muted)",
-                      fontSize: "0.8rem",
+                      fontSize: "0.74rem",
                       fontStyle: "italic",
                     }}
                   >
-                    🏛️ Accession deposit registered • Public accession pending on {ds.repository}
+                    🏛️ Accession pending on {ds.repository}
                   </span>
                 )}
               </div>
