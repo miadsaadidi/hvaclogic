@@ -66,6 +66,10 @@
     - **Due outreach follow-ups for today**: Check Sent Dates in the Outreach CRM table and list all contacts due for their 7-day follow-up (`Sent Date + 7 Days`).
   - **Strict 7-Day Outreach Follow-Up Protocol**: Direct email outreach batches operate under a strict 7-day follow-up rule: send exactly 1 polite, value-added follow-up 7 days after the initial email (`Sent Date + 7 Days`), then stop permanently. Zero secondary follow-ups. If no reply, close ticket.
   - **Dynamic Topics & Titles**: Exact publication titles, subjects, and datasets are decided on the day of publication according to active technical priorities (never hardcode fixed content prematurely).
+  - **Mandatory Daily Execution Sequence (STRICT ORDER — NEVER ALTER)**:
+    Whenever executing daily syndication and publishing operations, ALWAYS follow this exact sequential order:
+    `1. DEV.to` -> `2. Hashnode` -> `3. Medium` -> `4. Academia.edu` -> `5. Figshare` -> `6. Internet Archive` -> `7. Hugging Face / Benchmark Datasets` -> `8. X (Twitter)`.
+    Execute strictly one platform at a time. Present the deliverable, wait for user confirmation/posting, and then advance to the next platform in the sequence.
 
 ---
 
@@ -161,8 +165,8 @@ When authoring or updating technical editorial content for syndication on Medium
 6. **Authorea (`authorea.com`)**: Direct standalone submissions are temporarily disabled by Wiley (accessible only via participating Wiley journal submissions opting in to "Under Review").
 
 ### ✅ APPROVED DISTRIBUTION & ACADEMIC REPOSITORIES ONLY:
-1. **DEV Community (`dev.to` — DA 82 / DR 82)**: Deliver in strict 5 Single-Zone delivery format (Title, max 4 Tags, 1-sentence Description, 16:9 Image Prompt in `public/images/`, and Full Body in single 4-backtick ````markdown block with YAML frontmatter containing explicit `canonical_url`). **CRITICAL MATH RULE**: NO raw LaTeX (`$$...$$` or `\text{}`); use native Unicode (`Δ`, `±`, `×`, `°C`, `²`) or monospaced blocks. Focus on typed TypeScript calculation engines and Vitest unit tests. Contextual inline links only. Follow [`docs/DEV-TO-EDITORIAL-GUIDELINES.md`](./docs/DEV-TO-EDITORIAL-GUIDELINES.md).
-2. **Hashnode (`hashnode.dev` — DA 84 / DR 84)**: Deliver strictly in the 10-step Hashnode UI sequence (Attribution & Series, Title, Subtitle, Cover Image in `public/images/`, Body in single 4-backtick block with KaTeX math and 2–3 contextual backlinks, Topics/Tags each in its OWN standalone copyable code block, Slug, Canonical URL, SEO Title ≤ 60 chars / Desc ≤ 150 chars, and Bot Review Appeal Snippet). Zero marketing clichés, NO em dashes (`—`). Follow [`docs/HASHNODE-EDITORIAL-GUIDELINES.md`](./docs/HASHNODE-EDITORIAL-GUIDELINES.md).
+1. **DEV Community (`dev.to` — DA 82 / DR 82)**: Deliver in strict 6-step ordered sequence: 1) Title, 2) Tags (max 4), 3) Image Prompt, 4) Image Alt, 5) Body (in a single 4-backtick ````markdown block with YAML frontmatter), 6) Canonical URL. **CRITICAL MATH RULE**: NO raw LaTeX (`$$...$$` or `\text{}`); use native Unicode (`Δ`, `±`, `×`, `°C`, `²`) or monospaced blocks. Focus on typed TypeScript calculation engines and Vitest unit tests. Contextual inline links only. Follow [`docs/DEV-TO-EDITORIAL-GUIDELINES.md`](./docs/DEV-TO-EDITORIAL-GUIDELINES.md).
+2. **Hashnode (`hashnode.dev` — DA 84 / DR 84)**: Deliver strictly in the 8-step sequential order: 1) Title, 2) Subtitle, 3) Cover Image in `public/images/`, 4) Body (single 4-backtick block with KaTeX math and 2–3 contextual backlinks), 5) Slug, 6) Tags (each in its OWN standalone copyable code block), 7) SEO (Title ≤ 60 chars / Desc ≤ 150 chars), 8) Canonical URL. Zero marketing clichés, NO em dashes (`—`). Follow [`docs/HASHNODE-EDITORIAL-GUIDELINES.md`](./docs/HASHNODE-EDITORIAL-GUIDELINES.md).
 3. **Medium (`medium.com` — DA 96)**: Deliver strictly in the 9-step Medium publishing flow (Title, Subtitle, Cover Image in `public/images/`, Alt Text, Full Body in single 4-backtick block with clean Unicode math, 5 comma-separated Tags, SEO Title ≤ 60 chars / Desc 140–155 chars, Custom Story Link slug, and Canonical URL). **Mandatory 3-Tier Link Budget**: Tier 1 (1–2 internal calculator/guide links), Tier 2 (1–3 authoritative external standards: ASHRAE, DOE, AHRI, IEEE, NEMA, NEC, NREL), Tier 3 (0–1 sister Medium article link). Zero marketing clichés, NO em dashes (`—`). Follow [`docs/MEDIUM-EDITORIAL-GUIDELINES.md`](./docs/MEDIUM-EDITORIAL-GUIDELINES.md).
 4. **Academia.edu (`academia.edu` — DA 93)**: Alternate every 2 days between Technical Whitepapers (`Preprint / Working Paper`) and Student Lab Manuals / Problem Sets (`Teaching Documents / Course Material`). Final sentence of every abstract MUST contain the permanent canonical tool URL. Deliver strictly in 10-step upload sequence (Files, Title, Abstract, Publication, Year 2026, DOI, Authors, Tags, Section, and Post-Upload "Text to Post" Modal announcement block without em dashes). Follow [`docs/ACADEMIA-EDU-PUBLISHING-TEMPLATE.md`](./docs/ACADEMIA-EDU-PUBLISHING-TEMPLATE.md).
 5. **Figshare (`figshare.com` — DA 91)**: **STRICT NON-NEGOTIABLE RULE: BENCHMARK DATASETS ONLY** (`.csv`, `.tsv`, `.json` to mint DataCite DOIs). Never upload papers or PDFs to Figshare. Deliver in 9-step upload sequence (Files, Title `Benchmark Matrix: ...`, Authors, Categories, Item Type strictly `Dataset`, Keywords, Description with field-by-field schema dictionary, Structured References with ID/URL, Title, Type: URL, and CC BY 4.0 License). Follow [`docs/FIGSHARE-PUBLISHING-GUIDELINES.md`](./docs/FIGSHARE-PUBLISHING-GUIDELINES.md).
@@ -171,6 +175,47 @@ When authoring or updating technical editorial content for syndication on Medium
 8. **Harvard Dataverse (`dataverse.harvard.edu` — DA 93)**: For weekly open benchmark dataset deposits minting permanent DataCite DOIs ([Dataverse DOI 10.7910/DVN/SR1NZO](https://doi.org/10.7910/DVN/SR1NZO)).
 9. **SSRN (`ssrn.com` / Elsevier)**: For empirical observational studies only (Note: SSRN editorial guidelines explicitly exclude software frameworks and computational models). Follow [`docs/SSRN-PUBLISHING-GUIDELINES.md`](./docs/SSRN-PUBLISHING-GUIDELINES.md).
 10. **engrXiv (`engrxiv.org` — DA 91 / DR 89)**: Open Engineering Archive for mechanical engineering, thermodynamics, and building science preprints minting permanent Crossref DOIs (`10.31224/...`). Currently in Production ([Submission #8215](https://engrxiv.org/preprint/view/8215)). Follow [`docs/ENGRXIV-PUBLISHING-GUIDELINES.md`](./docs/ENGRXIV-PUBLISHING-GUIDELINES.md).
+11. **Hugging Face (`huggingface.co` — DA 91 / DR 92)**: Deterministic engineering benchmark datasets strictly in tabular `.csv` format to mint permanent DataCite DOIs (`10.57967/hf/...`). Deliver standard YAML metadata frontmatter, schema dictionary, and canonical tool backlinks. Follow [`docs/HUGGINGFACE-PUBLISHING-GUIDELINES.md`](./docs/HUGGINGFACE-PUBLISHING-GUIDELINES.md).
+12. **MERLOT (`merlot.org` — DA 75 / DR 79)**: California State University System Higher-Ed OER Catalog. Catalog individual interactive calculator modules and simulation workbenches under Mechanical Engineering and Workforce Development. Handle domain duplicate warning via "Continue with Submission". Follow [`docs/MERLOT-PUBLISHING-GUIDELINES.md`](./docs/MERLOT-PUBLISHING-GUIDELINES.md).
+
+---
+
+## X (Twitter) Crawl Acceleration Engine & Social Distribution Protocol
+
+### 1. Objective & Crawler Acceleration Mechanism
+We use our dedicated X account as a real-time crawl acceleration engine for peer-reviewed papers, benchmark datasets, and technical deep-dives:
+`Bot crawls X post in real-time` -> `Visits publication link (Academia / Figshare / Hashnode / DEV.to / Hugging Face / MERLOT)` -> `Discovers backlink pointing to hvaclogic` -> `Registers backlink & updates DA/DR in Ahrefs, OpenSEO & Google`.
+
+### 2. Cadence & Strict Delivery Constraints
+- **Cadence**: Strictly **2 posts per day**:
+  - **Slot 1 (Morning / Academic)**: Highlights a paper (Academia.edu), benchmark dataset DOI (Figshare / Hugging Face), or OER lab (MERLOT).
+  - **Slot 2 (Afternoon / Technical)**: Highlights an engineering deep-dive or tool implementation (DEV.to or Hashnode).
+- **Strictly ONE Deliverable at a Time**: Never bundle multiple days or both slots into one response. Output Slot 1, wait for the user to post it on X, then output Slot 2.
+- **Dynamic Intake Protocol**: Whenever a new paper, dataset, or technical article is published:
+  1. Record the asset in [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](./docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md) with an immutable ID.
+  2. Automatically append it to the tail of the rolling queue in [`docs/outreach/ROLLING_PUBLICATION_QUEUE.md`](./docs/outreach/ROLLING_PUBLICATION_QUEUE.md).
+
+### 3. Single Source of Truth (SSOT) Anti-Hallucination Gate
+- **Hard Rule**: Before drafting any X post, verify the asset against [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](./docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md). If a link is not in the registry card, it is physically forbidden from appearing in your output.
+- **Strict Link Budgets**:
+  - **Technical Articles (DEV.to / Hashnode)**: Strictly **1 single link** (Article URL). Adding Archive.org, DOIs, or PDF links is STRICTLY FORBIDDEN.
+  - **Datasets (Figshare & Hugging Face)**: Strictly **1 single link** (DataCite DOI). Adding Archive.org is STRICTLY FORBIDDEN.
+  - **Academic Papers (Academia.edu)**: Primary Academia link (+ optional Archive.org mirror ONLY if an identical preprint exists on Archive.org).
+  - **Educational Hubs (MERLOT / OER Commons)**: Strictly **1 single link** (Verified catalog entry URL).
+
+### 4. Standard X Editorial Delivery Template (3 Components)
+Every X post deliverable must be formatted strictly into these 3 components:
+1. **Post Text (Copy & paste directly into X tweet box)**:
+   - **Title / Hook**: 1-line curiosity-driven physical anomaly or engineering paradox hook (never a dry academic label).
+   - **Small Description**: 1 concise sentence explaining the physical mechanism or concrete numbers. Zero marketing fluff, NO em dashes (`—`).
+   - **Links**: Clean URL(s) following the strict link budget above.
+   - **Tags**: 3–4 clean engineering hashtags (e.g., #HVAC #Thermodynamics #Engineering).
+   - *Total character limit*: Must stay strictly under 280 characters on X.
+2. **Image (Attach to tweet)**:
+   - Provide the exact local file path to a dedicated 16:9 engineering visualization, chart, or schematic.
+3. **Alt Text (Optional)**:
+   - 1 concise sentence describing the chart for image accessibility and image search indexing (pasted into the "Add description" field on X).
+
 
 
 

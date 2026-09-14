@@ -27,7 +27,7 @@ describe("Research Papers Registry", () => {
     const paper = getResearchPaperBySlug(slug);
     expect(paper).toBeDefined();
     expect(paper?.title).toContain("Thermodynamic Formulations");
-    expect(paper?.doi).toBe("10.6084/m9.figshare.33456928");
+    expect(paper?.doi).toBe("10.2139/ssrn.7430738");
     expect(paper?.pdfUrl).toBeDefined();
     expect(paper?.formulas.length).toBeGreaterThan(0);
     expect(paper?.governingStandards.length).toBeGreaterThan(0);
