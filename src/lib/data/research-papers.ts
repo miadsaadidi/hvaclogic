@@ -11,7 +11,7 @@ export interface CompanionCalculator {
 }
 
 export interface ResearchRepositoryLink {
-  platform: "academia" | "figshare" | "dataverse" | "ssrn" | "archive" | "huggingface";
+  platform: "academia" | "figshare" | "dataverse" | "ssrn" | "archive" | "huggingface" | "bibsonomy";
   label: string;
   url: string;
   badge?: string;
