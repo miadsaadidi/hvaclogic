@@ -167,25 +167,6 @@ export default function AcTonnageCalculatorPage() {
           </div>
         </>
       }
-      relatedToolsSection={
-        <div style={{ marginBottom: "2rem" }}>
-          <h2>Related Cooling & Sizing Tools</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem", marginTop: "1rem" }}>
-            <Link href="/calculators/ac-model-decoder" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>AC Model Number Decoder</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Decode Carrier, Trane, Goodman, and Lennox serial plates to identify existing tonnage.</p>
-            </Link>
-            <Link href="/calculators/btu-calculator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>BTU Heat Load Calculator</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Detailed Manual J room-by-room sensible and latent heat load calculation.</p>
-            </Link>
-            <Link href="/calculators/cfm-calculator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>HVAC CFM Airflow Sizer</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Determine exact supply airflow volume based on cooling tonnage and sensible heat.</p>
-            </Link>
-          </div>
-        </div>
-      }
     />
   );
 }

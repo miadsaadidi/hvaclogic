@@ -220,7 +220,82 @@ export default function DevelopersPage() {
             </a>
           </div>
         </div>
+
+        <div
+          style={{
+            backgroundColor: "var(--surface, #111827)",
+            border: "1px solid var(--border-subtle, rgba(255, 255, 255, 0.1))",
+            borderTop: "4px solid #38bdf8",
+            borderRadius: "8px",
+            padding: "1.25rem",
+          }}
+        >
+          <div style={{ fontSize: "1.25rem", marginBottom: "0.5rem" }}>&lt;/&gt; Embeddable Widgets</div>
+          <p style={{ fontSize: "0.875rem", color: "var(--ink-secondary, #9ca3af)", lineHeight: 1.5, marginBottom: "1rem" }}>
+            Drop lightweight, responsive client-side calculation widgets directly into blogs, LMS portals, or contractor intranets.
+          </p>
+          <a
+            href="/embed/ductulator"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              padding: "0.4rem 0.85rem",
+              borderRadius: "4px",
+              backgroundColor: "rgba(56, 189, 248, 0.15)",
+              color: "var(--accent, #38bdf8)",
+              fontSize: "0.8125rem",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
+            Preview /embed/ductulator ↗
+          </a>
+        </div>
       </div>
+
+      {/* Responsive Embed Widget Section */}
+      <section style={{ marginBottom: "3rem" }}>
+        <h2 style={{ fontSize: "1.5rem", color: "var(--ink-primary, #f9fafb)", marginBottom: "0.5rem" }}>
+          Responsive Iframe Embed Widgets
+        </h2>
+        <p style={{ color: "var(--ink-secondary, #9ca3af)", fontSize: "0.9375rem", lineHeight: 1.6, marginBottom: "1rem" }}>
+          All 21 HVACLogic calculators are available as standalone embed widgets at <code>/embed/[slug]</code>. Embeds execute 100% client-side physics, include zero trackers or third-party cookies, and adapt smoothly to mobile and desktop viewports.
+        </p>
+
+        <div
+          style={{
+            backgroundColor: "var(--surface-secondary, #0a0f1d)",
+            border: "1px solid var(--border-subtle, rgba(255, 255, 255, 0.1))",
+            borderRadius: "8px",
+            padding: "1.25rem",
+            fontFamily: "monospace",
+            fontSize: "0.8125rem",
+            color: "var(--ink-primary, #e2e8f0)",
+            overflowX: "auto",
+            lineHeight: 1.5,
+          }}
+        >
+          <pre style={{ margin: 0 }}>
+{`<!-- Standard HVACLogic Calculator Embed Snippet -->
+<iframe
+  src="https://hvaclogic.org/embed/ductulator"
+  width="100%"
+  height="720"
+  style="border: 1px solid #2e3b52; border-radius: 12px; max-width: 960px; width: 100%;"
+  title="Digital Ductulator — HVACLogic"
+  loading="lazy"
+  allow="clipboard-write">
+</iframe>
+<p style="font-size: 12px; color: #64748b; margin-top: 6px; font-family: sans-serif;">
+  Free HVAC calculations verified against ASHRAE & ACCA standards by 
+  <a href="https://hvaclogic.org/calculators/ductulator" target="_blank" rel="noopener" style="color: #00d2ff; text-decoration: underline; font-weight: 600;">
+    HVACLogic Engineering Suite
+  </a>
+</p>`}
+          </pre>
+        </div>
+      </section>
 
       {/* Integration Code Examples */}
       <section style={{ marginBottom: "3rem" }}>

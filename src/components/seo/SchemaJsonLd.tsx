@@ -119,7 +119,7 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         },
         publisher: {
           "@type": "Organization",
-          name: "HVAC Logic",
+          name: "HVACLogic",
           url: siteConfig.canonicalDomain,
           logo: {
             "@type": "ImageObject",
@@ -220,28 +220,6 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
           url: `${canonicalUrl}#step-${s.stepNumber || idx + 1}`,
           image: `${siteConfig.canonicalDomain}/opengraph-image`,
         })),
-      },
-      {
-        "@type": "Dataset",
-        "@id": `${canonicalUrl}#dataset`,
-        name: `${calculator.name} Deterministic Reference Dataset`,
-        description: `Deterministic dataset and physical loss matrix for ${calculator.name} governed by ${calculator.standards.join(" and ")}.`,
-        url: canonicalUrl,
-        license: "https://creativecommons.org/licenses/by/4.0/",
-        isAccessibleForFree: true,
-        creator: {
-          "@type": "Organization",
-          name: "HVACLogic Open-Access Building Science Research Group",
-          url: siteConfig.canonicalDomain,
-        },
-        distribution: [
-          {
-            "@type": "DataDownload",
-            encodingFormat: "text/csv",
-            contentUrl: `${canonicalUrl}?format=csv`,
-          },
-        ],
-        variableMeasured: calculator.features,
       },
       {
         "@type": "SoftwareSourceCode",

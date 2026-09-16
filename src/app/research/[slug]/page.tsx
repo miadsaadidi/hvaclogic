@@ -473,22 +473,34 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                 "@type": "ScholarlyArticle",
                 "@id": `${siteConfig.canonicalDomain}/research/${paper.slug}#article`,
                 headline: paper.title,
+                name: paper.title,
                 description: paper.abstract,
                 url: `${siteConfig.canonicalDomain}/research/${paper.slug}`,
                 datePublished: paper.publicationDate,
                 dateModified: paper.publicationDate,
+                ...(paper.doi
+                  ? {
+                      identifier: paper.doi,
+                      sameAs: `https://doi.org/${paper.doi}`,
+                    }
+                  : {}),
                 author: paper.authors.map((authorName) => ({
                   "@type": "Person",
                   name: authorName,
                 })),
                 publisher: {
                   "@type": "Organization",
-                  name: "HVAC Logic",
+                  name: "HVACLogic Open-Access Building Science Monograph Series",
                   url: siteConfig.canonicalDomain,
                   logo: {
                     "@type": "ImageObject",
                     url: `${siteConfig.canonicalDomain}/icon.svg`,
                   },
+                },
+                encoding: {
+                  "@type": "MediaObject",
+                  contentUrl: `${siteConfig.canonicalDomain}${paper.pdfUrl}`,
+                  encodingFormat: "application/pdf",
                 },
                 image: [`${siteConfig.canonicalDomain}/opengraph-image`],
                 mainEntityOfPage: {
@@ -496,6 +508,8 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                   "@id": `${siteConfig.canonicalDomain}/research/${paper.slug}`,
                 },
                 inLanguage: "en-US",
+                license: "https://creativecommons.org/licenses/by/4.0/",
+                isAccessibleForFree: true,
                 about: paper.governingStandards.map((standard) => ({
                   "@type": "Thing",
                   name: standard,

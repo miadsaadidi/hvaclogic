@@ -82,5 +82,11 @@ export interface CalculatorMeta {
   faqs: SchemaFAQ[];
   howToSteps?: HowToStep[];
   analyticsEvents: string[];
+
+  // Genuine Scientific & Educational Artifact Links
+  researchSlug?: string;
+  oerModuleUrl?: string;
+  datasetUrl?: string;
+  datasetSlug?: string;
 }
 

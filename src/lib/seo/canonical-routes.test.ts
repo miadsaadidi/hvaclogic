@@ -9,22 +9,23 @@ import { calculatorRegistry, publishedCalculators } from "@/lib/data/calculators
 import { constructCanonicalUrl } from "@/lib/seo/metadata-helper";
 
 describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
-  it("generates exactly 50 unique canonical entries in /sitemap.xml", () => {
+  it("generates exactly 59 unique canonical entries in /sitemap.xml", () => {
     const sitemapEntries = sitemap();
     const urls = sitemapEntries.map((e) => e.url);
 
-    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 21 Calculators + 1 Guides Hub + 1 Research Hub + 6 Research Papers + 4 Academic PDF Whitepapers + 1 Standards + 7 Authority/Resource/Policy Pages = 51
-    expect(urls.length).toBe(51);
+    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 21 Calculators + 1 Guides Hub + 1 Research Hub + 9 Research Papers + 1 Datasets Hub + 6 Datasets + 7 Academic PDF Whitepapers + 1 Standards + 7 Authority/Resource/Policy Pages = 61
+    expect(urls.length).toBe(61);
 
     // Ensure zero duplicates
     const uniqueUrls = new Set(urls);
-    expect(uniqueUrls.size).toBe(51);
+    expect(uniqueUrls.size).toBe(61);
 
     // Ensure all URLs start with the canonical domain https://hvaclogic.org
     urls.forEach((url) => {
       expect(url.startsWith(siteConfig.canonicalDomain)).toBe(true);
       expect(url.includes("?")).toBe(false); // Zero search param pollution
       expect(url.endsWith("/")).toBe(false); // Clean URLs with no trailing slash
+      expect(url.includes("/papers/")).toBe(false); // Zero legacy /papers/ URLs (all standardized to /whitepapers/)
     });
   });
 

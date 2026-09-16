@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Laboratory Exercise: Deterministic Duct Aerodynamics & Friction Sizing</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1 { color: #0f172a; font-size: 24px; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 20px; }
+    h2 { color: #0369a1; font-size: 18px; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+    h3 { color: #0f172a; font-size: 15px; margin-top: 16px; margin-bottom: 8px; }
+    p, li { font-size: 14px; color: #334155; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13px; }
+    th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; }
+    th { background-color: #f1f5f9; color: #0f172a; font-weight: 600; }
+    tr:nth-child(even) { background-color: #f8fafc; }
+    .callout { background-color: #f0f9ff; border-left: 4px solid #0284c7; padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+    .formula-box { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 16px; margin: 14px 0; border-radius: 6px; font-family: "Courier New", Courier, monospace; font-size: 15px; font-weight: 600; color: #0f172a; }
+    a { color: #0284c7; text-decoration: underline; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<h1>Student Laboratory Exercise: Deterministic Duct Aerodynamics & Friction Sizing</h1>
+
+<h2>1. Pedagogical Learning Objectives</h2>
+<p>Upon successful completion of this laboratory module, students will be able to:</p>
+<ul>
+  <li><strong>Formulate</strong> the Darcy-Weisbach friction equation and Colebrook-White implicit friction factor relation across laminar, transitional, and fully rough turbulent flow regimes (Re = 2,000 to 100,000).</li>
+  <li><strong>Quantify</strong> hydraulic diameter (D<sub>h</sub>) and Huebscher equivalent rectangular duct diameter (D<sub>e</sub>) across varying duct aspect ratios (1:1 to 4:1).</li>
+  <li><strong>Evaluate</strong> friction loss discrepancies between classical 0.10 in. wg / 100 ft equal friction sliding rules and exact numerical solutions at varying air densities.</li>
+  <li><strong>Benchmark</strong> flexible duct sag and compression derating penalties against SMACNA and ASHRAE standard duct runs.</li>
+</ul>
+
+<h2>2. Theoretical Background & Mathematical Physics</h2>
+<p>Airflow pressure loss in straight ductwork is governed by the Darcy-Weisbach formulation:</p>
+
+<div class="formula-box">
+  ΔP = f · (L / D<sub>h</sub>) · (ρ · V² / 2)
+</div>
+
+<p>Where:</p>
+<ul>
+  <li><strong>ΔP</strong> = Total friction pressure loss (Pa or in. wg)</li>
+  <li><strong>f</strong> = Darcy friction factor (dimensionless)</li>
+  <li><strong>L</strong> = Total duct length (m or ft)</li>
+  <li><strong>D<sub>h</sub></strong> = Hydraulic diameter = 4A / P</li>
+  <li><strong>V</strong> = Mean air velocity (m/s or FPM)</li>
+  <li><strong>ρ</strong> = Standard air density (0.075 lb/cu ft at standard temperature and pressure)</li>
+</ul>
+
+<p>The friction factor <strong>f</strong> is determined iteratively via the Colebrook-White implicit equation:</p>
+
+<div class="formula-box">
+  1 / √f = -2 · log₁₀ [ (ε / (3.7 · D<sub>h</sub>)) + (2.51 / (Re · √f)) ]
+</div>
+
+<p>Where:</p>
+<ul>
+  <li><strong>ε</strong> = Material absolute surface roughness (0.0003 ft for galvanized sheet metal, 0.003 ft for wire-helix flexible duct)</li>
+  <li><strong>Re</strong> = Reynolds number = (ρ · V · D<sub>h</sub>) / μ</li>
+  <li><strong>μ</strong> = Dynamic viscosity of air (1.21 × 10⁻⁵ lb/ft·s at 70°F)</li>
+</ul>
+
+<h2>3. Laboratory Apparatus & Interactive Simulation Workbench</h2>
+<p>Students execute numerical airflow measurements using the validated deterministic engine:</p>
+<div class="callout">
+  <strong>Primary Simulation Instrument:</strong><br>
+  Open the live simulation instrument at <a href="https://hvaclogic.org/calculators/ductulator?cfm=1200&friction=0.08" target="_blank" rel="noopener">HVACLogic Deterministic Duct Aerodynamics & Friction Workbench</a>.
+</div>
+
+<h2>4. Step-by-Step Experimental Protocol</h2>
+<ol>
+  <li><strong>Step 1</strong>: Set airflow volume to 1,200 CFM and duct shape to Round. Input standard galvanized steel roughness (0.0003 ft). Record calculated velocity (FPM), round diameter (inches), velocity pressure (in. wg), and friction rate per 100 ft.</li>
+  <li><strong>Step 2</strong>: Switch to Rectangular duct geometry with a 12-inch fixed height. Compute the Huebscher equivalent rectangular width and observe the aspect ratio effect on static pressure drop.</li>
+  <li><strong>Step 3</strong>: Modify material roughness to Flexible Duct (ε = 0.003 ft) under 15% uncompressed sag. Record the dramatic +55% to +70% surge in total friction loss compared to rigid sheet metal at identical CFM.</li>
+</ol>
+
+<h2>5. Student Data Collection Matrix</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Operating Scenario</th>
+      <th>Duct Geometry</th>
+      <th>Velocity [FPM]</th>
+      <th>Velocity Press. [in. wg]</th>
+      <th>Friction Rate [in. wg / 100 ft]</th>
+      <th>Flow Regime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Scenario 1: Rigid Round Sheet Metal</strong></td>
+      <td>14" Round (1,200 CFM)</td>
+      <td>1,123 FPM</td>
+      <td>0.078 in. wg</td>
+      <td>0.080 in. wg / 100 ft</td>
+      <td>Re ≈ 137,000 (Turbulent)</td>
+    </tr>
+    <tr>
+      <td><strong>Scenario 2: Rectangular Sheet Metal</strong></td>
+      <td>18" x 10" Rect (1,200 CFM)</td>
+      <td>960 FPM</td>
+      <td>0.057 in. wg</td>
+      <td>0.065 in. wg / 100 ft</td>
+      <td>D<sub>e</sub> = 14.3 in.</td>
+    </tr>
+    <tr>
+      <td><strong>Scenario 3: Wire-Helix Flex (15% Sag)</strong></td>
+      <td>14" Flex (1,200 CFM)</td>
+      <td>1,123 FPM</td>
+      <td>0.078 in. wg</td>
+      <td>0.142 in. wg / 100 ft</td>
+      <td>+77.5% Friction Penalty</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Post-Lab Analytical Assessment</h2>
+<ol>
+  <li><strong>Aspect Ratio & Wetted Perimeter</strong>: Explain why the Huebscher equivalent diameter equation yields a larger cross-sectional area for rectangular ducts compared to equivalent round ducts at identical friction rates and flow volumes.</li>
+  <li><strong>Turbulent Eddies in Flexible Ducting</strong>: In flexible duct installations, why does un-tensioned installation and compression create localized turbulence eddies that dwarf standard boundary-layer friction?</li>
+  <li><strong>Elevation Air Density Correction</strong>: How does high-elevation installation (e.g. Denver, CO at 5,280 ft where air density drops to 0.062 lb/cu ft) alter the required CFM to deliver equivalent sensible heating/cooling capacity?</li>
+</ol>
+
+<h2>7. Instructor Notes & Pedagogical Solutions Guide</h2>
+<div class="callout">
+  <p><strong>Estimated Duration</strong>: 60 minutes in laboratory session or independent coursework.</p>
+  <p><strong>Prerequisites</strong>: Fluid mechanics fundamentals, conservation of mass (Q = A · V), Reynolds number definition.</p>
+  <p><strong>Key Takeaway</strong>: Standard residential sliding rules assume rigid smooth sheet metal and will drastically undersize flexible duct runs if sag deratings are neglected.</p>
+</div>
+
+</body>
+</html>

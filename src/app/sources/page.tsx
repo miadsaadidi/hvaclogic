@@ -114,14 +114,54 @@ const STANDARDS_LIST: StandardItem[] = [
 ];
 
 export default function SourcesPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ItemPage",
+        "@id": `${siteConfig.canonicalDomain}/sources#page`,
+        name: "Laboratory Sources & Engineering Standards",
+        description: "Official standards powering HVACLogic: ASHRAE Handbook, ACCA Manuals J/S/D, SMACNA, EPA Section 608, AHRI 210/240, and NIST REFPROP.",
+        url: `${siteConfig.canonicalDomain}/sources`,
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": `${siteConfig.canonicalDomain}/#website`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteConfig.canonicalDomain}/sources#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.canonicalDomain,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Data Sources & Standards",
+            item: `${siteConfig.canonicalDomain}/sources`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
-    <article className="page site-container" style={{ maxWidth: "1080px", margin: "0 auto", padding: "2rem 1.5rem 5rem" }}>
-      {/* Breadcrumbs */}
-      <nav className="breadcrumb" aria-label="Breadcrumb" style={{ marginBottom: "1.5rem" }}>
-        <Link href="/">Home</Link>
-        <span aria-hidden="true">/</span>
-        <span aria-current="page">Data Sources &amp; Standards</span>
-      </nav>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <article className="page site-container" style={{ maxWidth: "1080px", margin: "0 auto", padding: "2rem 1.5rem 5rem" }}>
+        {/* Breadcrumbs */}
+        <nav className="breadcrumb" aria-label="Breadcrumb" style={{ marginBottom: "1.5rem" }}>
+          <Link href="/">Home</Link>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Data Sources &amp; Standards</span>
+        </nav>
 
       {/* Header */}
       <header style={{ marginBottom: "2.5rem" }}>
@@ -212,9 +252,165 @@ export default function SourcesPage() {
         </div>
       </section>
 
+      {/* Calculation Hubs & Research Directory Section */}
+      <section style={{ marginBottom: "3.5rem" }}>
+        <h2 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0 0 1.25rem" }}>
+          Explore Standards-Backed Calculation Hubs &amp; Research
+        </h2>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "1rem",
+          }}
+        >
+          <Link
+            href="/airflow-ducts"
+            className="powerlab-card-link"
+            style={{
+              padding: "1rem 1.25rem",
+              borderRadius: "0.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderTop: "3px solid #00d2ff",
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", margin: "0 0 0.25rem" }}>
+              Airflow &amp; Ducts →
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", margin: 0 }}>
+              Ductulator, flex duct CFM, and ACCA Manual D friction solvers.
+            </p>
+          </Link>
+
+          <Link
+            href="/cooling-loads"
+            className="powerlab-card-link"
+            style={{
+              padding: "1rem 1.25rem",
+              borderRadius: "0.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderTop: "3px solid #38bdf8",
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", margin: "0 0 0.25rem" }}>
+              Cooling &amp; Loads →
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", margin: 0 }}>
+              ACCA Manual J cooling loads, AC tonnage, and mini-split sizing.
+            </p>
+          </Link>
+
+          <Link
+            href="/field-diagnostics"
+            className="powerlab-card-link"
+            style={{
+              padding: "1rem 1.25rem",
+              borderRadius: "0.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderTop: "3px solid #10b981",
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", margin: "0 0 0.25rem" }}>
+              Field Diagnostics →
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", margin: 0 }}>
+              Superheat/subcooling, A2L PT chart, and psychrometric state points.
+            </p>
+          </Link>
+
+          <Link
+            href="/heating-systems"
+            className="powerlab-card-link"
+            style={{
+              padding: "1rem 1.25rem",
+              borderRadius: "0.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderTop: "3px solid #ff6b4a",
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", margin: "0 0 0.25rem" }}>
+              Heating Systems →
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", margin: 0 }}>
+              Heat pump balance points, furnace AFUE, boilers, and NFPA 54.
+            </p>
+          </Link>
+
+          <Link
+            href="/building-science"
+            className="powerlab-card-link"
+            style={{
+              padding: "1rem 1.25rem",
+              borderRadius: "0.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderTop: "3px solid #8b5cf6",
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", margin: "0 0 0.25rem" }}>
+              Building Science →
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", margin: 0 }}>
+              Building heat loss, infiltration leakage, and R-value assembly U-factors.
+            </p>
+          </Link>
+
+          <Link
+            href="/research"
+            className="powerlab-card-link"
+            style={{
+              padding: "1rem 1.25rem",
+              borderRadius: "0.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderTop: "3px solid #a78bfa",
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", margin: "0 0 0.25rem" }}>
+              Research &amp; Monograph Hub →
+            </h3>
+            <p style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", margin: 0 }}>
+              Open-access engineering monographs, lab manuals, and datasets.
+            </p>
+          </Link>
+        </div>
+      </section>
+
       {/* Supporting Links Footer Section */}
       <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", textAlign: "center" }}>
         <p style={{ fontSize: "0.9rem", color: "var(--ink-secondary)" }}>
+          <Link href="/ashrae-climatic-data">ASHRAE Climatic Design Conditions →</Link>
+          <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
+          <Link href="/standards">Standards Matrix →</Link>
+          <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
           <Link href="/methodology">View Engineering Methodology →</Link>
           <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
           <Link href="/about">About HVACLogic →</Link>
@@ -223,5 +419,6 @@ export default function SourcesPage() {
         </p>
       </section>
     </article>
+    </>
   );
 }

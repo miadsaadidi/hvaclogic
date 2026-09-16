@@ -33,6 +33,8 @@ export interface EngineeringGuide {
   keyEquations: GuideEquation[];
   keyTakeaways: string[];
   companionCalculators: CompanionCalculator[];
+  companionResearch?: CompanionCalculator[];
+  companionDatasets?: CompanionCalculator[];
   status: "published" | "scheduled";
   scheduledDate: string; // ISO date format "YYYY-MM-DD"
   color: string;
@@ -91,6 +93,13 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         description: "Available static pressure and equivalent length solver.",
       },
     ],
+    companionResearch: [
+      {
+        name: "Duct Friction & Fitting Penalties",
+        route: "/research/non-linear-duct-friction-loss-fitting-penalties",
+        description: "Fluid flow analysis of Darcy-Weisbach and Colebrook-White friction.",
+      },
+    ],
     status: "published",
     scheduledDate: "2026-08-28",
     color: "#00d2ff",
@@ -145,6 +154,25 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         name: "AC Model Decoder",
         route: "/calculators/ac-model-decoder",
         description: "Decode tonnage and electrical specs from serial tags.",
+      },
+    ],
+    companionResearch: [
+      {
+        name: "Building Science & Infiltration Modeling",
+        route: "/research/thermal-envelope-infiltration-building-heat-loss",
+        description: "Manual J envelope conduction and stack-effect infiltration.",
+      },
+      {
+        name: "Building Envelope Student Lab",
+        route: "/research/student-lab-building-envelope-thermal-transmission",
+        description: "Student lab monograph on conduction and SHGC.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "Building Envelope Benchmark Matrix",
+        route: "/datasets/building-envelope-thermal-transmission",
+        description: "540 state vectors across Climate Zones 1–7.",
       },
     ],
     status: "published",
@@ -203,6 +231,30 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         description: "Hydronic baseboard and cast-iron radiation.",
       },
     ],
+    companionResearch: [
+      {
+        name: "Cold-Climate Heat Pump Derating",
+        route: "/research/vapor-compression-kinetics-heat-pump-derating",
+        description: "Carnot limits, COP decline, and auxiliary resistance staging.",
+      },
+      {
+        name: "Heat Pump Balance Point Lab",
+        route: "/research/cold-climate-heat-pump-balance-point-lab",
+        description: "Engineering courseware and balance point simulation.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "Heat Pump COP Derating Dataset",
+        route: "/datasets/cold-climate-heat-pump-cop-derating",
+        description: "240 simulation points across -15°F to 50°F.",
+      },
+      {
+        name: "Combustion Air Sizing Dataset",
+        route: "/datasets/combustion-air-confined-space",
+        description: "540 vectors per NFPA 54 and IFGC 304.",
+      },
+    ],
     status: "published",
     scheduledDate: "2026-08-30",
     color: "#f97316",
@@ -257,6 +309,25 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         name: "Refrigerant Line Set Charge",
         route: "/calculators/refrigerant-charge-calculator",
         description: "Factory trim and extended length weigh-in sizer.",
+      },
+    ],
+    companionResearch: [
+      {
+        name: "A2L Refrigerant Glide Modeling",
+        route: "/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b",
+        description: "NIST REFPROP phase equilibrium and diagnostic equations.",
+      },
+      {
+        name: "Refrigerant Mass Sizing Mechanics",
+        route: "/research/deterministic-vapor-compression-refrigerant-mass-sizing",
+        description: "ASTM B280 liquid line displacement and hydrostatic head.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "Refrigerant Mass Charge Dataset",
+        route: "/datasets/refrigerant-mass-charge-low-gwp",
+        description: "816 scenarios across R-454B, R-32, R-410A, and R-134a.",
       },
     ],
     status: "published",
@@ -315,6 +386,30 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         description: "Whole-building conductive and infiltration loss.",
       },
     ],
+    companionResearch: [
+      {
+        name: "ASHRAE Hyland-Wexler Psychrometrics",
+        route: "/research/ashrae-hyland-wexler-moist-air-psychrometrics",
+        description: "Moist air saturation polynomials and numerical wet-bulb solver.",
+      },
+      {
+        name: "Building Science & Infiltration Modeling",
+        route: "/research/thermal-envelope-infiltration-building-heat-loss",
+        description: "Conductive matrices and stack-effect infiltration.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "Psychrometric Benchmark Dataset",
+        route: "/datasets/ashrae-hyland-wexler-psychrometric-benchmark",
+        description: "420 thermodynamic state points.",
+      },
+      {
+        name: "Building Envelope Benchmark Matrix",
+        route: "/datasets/building-envelope-thermal-transmission",
+        description: "540 scenario vectors across Climate Zones 1–7.",
+      },
+    ],
     status: "published",
     scheduledDate: "2026-09-07",
     color: "#8b5cf6",
@@ -364,6 +459,25 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         name: "HVAC CFM Sizer",
         route: "/calculators/cfm-calculator",
         description: "Room volume and air exchange rate calculator.",
+      },
+    ],
+    companionResearch: [
+      {
+        name: "IAQ Ventilation & Dilution Mass-Balance",
+        route: "/research/effective-dilution-iaq-ventilation-mass-balance",
+        description: "ASHRAE 62.2 outdoor air exchange and mass balance.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "Kitchen Exhaust Benchmark Dataset",
+        route: "/datasets/kitchen-hood-exhaust-makeup-air",
+        description: "433 empirical kitchen exhaust and make-up air vectors.",
+      },
+      {
+        name: "Combustion Air Sizing Dataset",
+        route: "/datasets/combustion-air-confined-space",
+        description: "540 vectors per NFPA 54 and IFGC 304.",
       },
     ],
     status: "scheduled",
@@ -417,6 +531,18 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         description: "Target airflow and velocity calculator.",
       },
     ],
+    companionResearch: [
+      {
+        name: "Duct Friction Loss & Fitting Penalties",
+        route: "/research/non-linear-duct-friction-loss-fitting-penalties",
+        description: "Hydrodynamic friction modeling and available static pressure.",
+      },
+      {
+        name: "IAQ Ventilation & Dilution Mass-Balance",
+        route: "/research/effective-dilution-iaq-ventilation-mass-balance",
+        description: "Contaminant dilution and air filtration balance.",
+      },
+    ],
     status: "scheduled",
     scheduledDate: "2026-09-08",
     color: "#ec4899",
@@ -466,6 +592,30 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
         name: "BTU Load Master",
         route: "/calculators/btu-calculator",
         description: "Room-by-room Manual J cooling and heating loads.",
+      },
+    ],
+    companionResearch: [
+      {
+        name: "Cold-Climate Heat Pump Derating",
+        route: "/research/vapor-compression-kinetics-heat-pump-derating",
+        description: "Compressor kinetics and modulation deratings.",
+      },
+      {
+        name: "Refrigerant Mass Sizing Mechanics",
+        route: "/research/deterministic-vapor-compression-refrigerant-mass-sizing",
+        description: "Line-set liquid mass addition and oil trap requirements.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "Heat Pump COP Derating Dataset",
+        route: "/datasets/cold-climate-heat-pump-cop-derating",
+        description: "Inverter modulation and balance point curves.",
+      },
+      {
+        name: "Refrigerant Mass Charge Dataset",
+        route: "/datasets/refrigerant-mass-charge-low-gwp",
+        description: "Line-set sizing and oil trap flags.",
       },
     ],
     status: "scheduled",

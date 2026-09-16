@@ -163,7 +163,7 @@ export function EmbedModal({ toolRoute, toolName, isOpen, onClose }: EmbedModalP
               Live Widget Preview:
             </div>
             <iframe
-              src={`${toolRoute}?embed=true`}
+              src={embedUrl}
               width="100%"
               height="380"
               style={{ border: "none", width: "100%" }}

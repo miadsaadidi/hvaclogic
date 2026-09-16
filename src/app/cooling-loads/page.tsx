@@ -41,21 +41,73 @@ const CATEGORY_COLOR = "#38bdf8";
 export default function CoolingLoadsHub() {
   const calculators = calculatorRegistry.filter((c) => c.pillar === "cooling-loads");
 
-  return (
-    <main className="page site-container">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link href="/">Home</Link>
-        <span>/</span>
-        <span aria-current="page">Cooling &amp; Loads</span>
-      </nav>
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${siteConfig.canonicalDomain}/cooling-loads#collection`,
+        name: "Cooling & Load Sizing Calculators",
+        description: "Calculate whole-home heating & cooling BTU requirements, central AC tonnage, and mini-split room loads using ACCA Manual J and Manual S standards.",
+        url: `${siteConfig.canonicalDomain}/cooling-loads`,
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": `${siteConfig.canonicalDomain}/#website`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteConfig.canonicalDomain}/cooling-loads#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.canonicalDomain,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Cooling & Loads",
+            item: `${siteConfig.canonicalDomain}/cooling-loads`,
+          },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        name: "Cooling & Load Sizing Calculators",
+        numberOfItems: calculators.length,
+        itemListElement: calculators.map((calc, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: calc.name,
+          url: `${siteConfig.canonicalDomain}${calc.route}`,
+          description: calc.metaDescription,
+        })),
+      },
+    ],
+  };
 
-      <header className="calculator-header">
-        <span className="eyebrow">Category Hub</span>
-        <h1>Cooling &amp; Load Sizing Calculators</h1>
-        <p className="intro">
-          Size residential air conditioning equipment, heat pumps, and ductless mini-splits adhering strictly to ACCA Manual J (8th Edition) and Manual S equipment selection protocols.
-        </p>
-      </header>
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <main className="page site-container">
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <span>/</span>
+          <span aria-current="page">Cooling &amp; Loads</span>
+        </nav>
+
+        <header className="calculator-header">
+          <span className="eyebrow">Category Hub</span>
+          <h1>Cooling &amp; Load Sizing Calculators</h1>
+          <p className="intro">
+            Size residential air conditioning equipment, heat pumps, and ductless mini-splits adhering strictly to ACCA Manual J (8th Edition) and Manual S equipment selection protocols.
+          </p>
+        </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
       <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
@@ -643,5 +695,6 @@ export default function CoolingLoadsHub() {
         </div>
       </section>
     </main>
+    </>
   );
 }

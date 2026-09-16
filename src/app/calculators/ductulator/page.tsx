@@ -48,9 +48,9 @@ export default function DuctulatorPage() {
           </p>
 
           <ol style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
-            <li><strong>Determine Design Airflow (CFM)</strong>: Calculate required airflow based on room sensible heat load (CFM = BTU / (1.08 × ΔT)) or standard nominal cooling rules (400 CFM/ton).</li>
-            <li><strong>Select Target Friction Rate</strong>: Standard residential supply trunks use 0.08 to 0.10 in. wg per 100 ft. Return trunks use 0.05 to 0.08 in. wg to lower air velocity and reduce sound transmission.</li>
-            <li><strong>Calculate Equivalent Round Diameter (De)</strong>: Use the Colebrook-Darcy aerodynamic equation to determine the minimum round diameter.</li>
+            <li><strong>Determine Design Airflow (CFM)</strong>: Calculate required airflow based on room sensible heat load (<code>CFM = BTU / (1.08 × ΔT)</code>) or the <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM Sizer</Link> (400 CFM/ton).</li>
+            <li><strong>Select Target Friction Rate</strong>: Standard residential supply trunks use <strong>0.08 to 0.10 in. wg per 100 ft</strong>. Return trunks use 0.05 to 0.08 in. wg. Cross-reference available static pressure in the <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link>.</li>
+            <li><strong>Calculate Equivalent Round Diameter (De)</strong>: Use the Colebrook-Darcy aerodynamic equation to determine the minimum round diameter. For flexible duct runouts, cross-check the <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flex Duct Sizing Chart</Link>.</li>
             <li><strong>Convert to Rectangular Fabrication Dimensions</strong>: Apply Huebscher&apos;s formula to determine rectangular trunk width and height while maintaining an aspect ratio below 4:1 to prevent turbulence and corner friction losses.</li>
           </ol>
 
@@ -198,25 +198,6 @@ export default function DuctulatorPage() {
             </p>
           </div>
         </>
-      }
-      relatedToolsSection={
-        <div style={{ marginBottom: "2rem" }}>
-          <h2>Related Airflow & Cooling Calculators</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem", marginTop: "1rem" }}>
-            <Link href="/calculators/flex-duct-cfm-chart" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>Flex Duct CFM Chart</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Filterable flexible duct airflow capacities with installation sag derating.</p>
-            </Link>
-            <Link href="/calculators/cfm-calculator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>HVAC CFM Sizer</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Calculate required CFM airflow from sensible heat load and temperature rise.</p>
-            </Link>
-            <Link href="/calculators/btu-calculator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>BTU Load Master</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Estimate whole-home heating and cooling loads to feed your duct sizing design.</p>
-            </Link>
-          </div>
-        </div>
       }
     />
   );

@@ -26,6 +26,7 @@ import { RValueTool } from "@/components/calculator/tools/RValueTool";
 import { PsychrometricTool } from "@/components/calculator/tools/PsychrometricTool";
 import { PtChartTool } from "@/components/calculator/tools/PtChartTool";
 import { AcModelDecoderTool } from "@/components/calculator/tools/AcModelDecoderTool";
+import { BtuCalculatorTool } from "@/components/calculator/tools/BtuCalculatorTool";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -58,48 +59,66 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function renderToolComponent(id: string) {
   switch (id) {
+    // Airflow & Ducts
     case "ductulator":
       return <DuctulatorTool />;
-    case "ac-tonnage-calculator":
-      return <AcTonnageTool />;
-    case "heat-loss-calculator":
-      return <HeatLossTool />;
-    case "superheat-subcooling-calculator":
-      return <SuperheatSubcoolingTool />;
-    case "duct-friction-loss-calculator":
-      return <DuctFrictionTool />;
-    case "cfm-calculator":
-      return <CfmCalculatorTool />;
     case "flex-duct-cfm-chart":
     case "flex-duct-sizing-calculator":
       return <FlexDuctChartTool />;
-    case "refrigerant-charge-calculator":
-      return <RefrigerantChargeTool />;
-    case "furnace-btu-calculator":
-      return <FurnaceBtuTool />;
-    case "heat-pump-cost-calculator":
-    case "heat-pump-sizing-calculator":
-      return <HeatPumpSizeTool />;
-    case "boiler-size-calculator":
-      return <BoilerSizeTool />;
-    case "garage-heater-calculator":
-      return <GarageHeaterTool />;
-    case "mini-split-sizing-calculator":
-      return <MiniSplitTool />;
-    case "filter-sizing-calculator":
-      return <FilterSizingTool />;
+    case "cfm-calculator":
+      return <CfmCalculatorTool />;
+    case "kitchen-hood-cfm":
     case "kitchen-hood-cfm-calculator":
       return <KitchenHoodTool />;
-    case "combustion-air-calculator":
-      return <CombustionAirTool />;
-    case "r-value-calculator":
-      return <RValueTool />;
-    case "psychrometric-calculator":
-      return <PsychrometricTool />;
-    case "pt-chart-calculator":
-      return <PtChartTool />;
+    case "duct-friction-loss-calculator":
+      return <DuctFrictionTool />;
+    case "filter-sizing-calculator":
+      return <FilterSizingTool />;
+
+    // Cooling & Loads
+    case "btu-calculator":
+      return <BtuCalculatorTool />;
+    case "ac-tonnage-calculator":
+      return <AcTonnageTool />;
     case "ac-model-decoder":
       return <AcModelDecoderTool />;
+    case "mini-split-sizing":
+    case "mini-split-sizing-calculator":
+      return <MiniSplitTool />;
+
+    // Field Diagnostics
+    case "superheat-subcooling-calculator":
+      return <SuperheatSubcoolingTool />;
+    case "pt-chart":
+    case "pt-chart-calculator":
+      return <PtChartTool />;
+    case "psychrometric-calculator":
+      return <PsychrometricTool />;
+    case "refrigerant-charge-calculator":
+      return <RefrigerantChargeTool />;
+
+    // Heating Systems
+    case "heat-pump-size-calculator":
+    case "heat-pump-sizing-calculator":
+    case "heat-pump-cost-calculator":
+      return <HeatPumpSizeTool />;
+    case "furnace-size-calculator":
+    case "furnace-btu-calculator":
+      return <FurnaceBtuTool />;
+    case "boiler-size-calculator":
+      return <BoilerSizeTool />;
+    case "garage-heater-sizing":
+    case "garage-heater-calculator":
+      return <GarageHeaterTool />;
+    case "combustion-air-calculator":
+      return <CombustionAirTool />;
+
+    // Building Science
+    case "r-value-calculator":
+      return <RValueTool />;
+    case "heat-loss-calculator":
+      return <HeatLossTool />;
+
     default:
       return <DuctulatorTool />;
   }

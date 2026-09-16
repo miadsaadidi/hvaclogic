@@ -41,21 +41,73 @@ const CATEGORY_COLOR = "#00d2ff";
 export default function AirflowDuctsHub() {
   const calculators = calculatorRegistry.filter((c) => c.pillar === "airflow-ducts");
 
-  return (
-    <main className="page site-container">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link href="/">Home</Link>
-        <span>/</span>
-        <span aria-current="page">Airflow &amp; Ducts</span>
-      </nav>
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${siteConfig.canonicalDomain}/airflow-ducts#collection`,
+        name: "Airflow & Duct Sizing Calculators",
+        description: "Free online ductulators, CFM airflow calculators, and flexible duct sizing charts built for HVAC technicians and mechanical design engineers.",
+        url: `${siteConfig.canonicalDomain}/airflow-ducts`,
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": `${siteConfig.canonicalDomain}/#website`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteConfig.canonicalDomain}/airflow-ducts#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.canonicalDomain,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Airflow & Ducts",
+            item: `${siteConfig.canonicalDomain}/airflow-ducts`,
+          },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        name: "Airflow & Duct Sizing Calculators",
+        numberOfItems: calculators.length,
+        itemListElement: calculators.map((calc, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: calc.name,
+          url: `${siteConfig.canonicalDomain}${calc.route}`,
+          description: calc.metaDescription,
+        })),
+      },
+    ],
+  };
 
-      <header className="calculator-header">
-        <span className="eyebrow">Category Hub</span>
-        <h1>Airflow &amp; Duct Sizing Calculators</h1>
-        <p className="intro">
-          Design, balance, and size residential and commercial HVAC air distribution systems using standard equal friction equations (ASHRAE/SMACNA/ACCA).
-        </p>
-      </header>
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <main className="page site-container">
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <span>/</span>
+          <span aria-current="page">Airflow &amp; Ducts</span>
+        </nav>
+
+        <header className="calculator-header">
+          <span className="eyebrow">Category Hub</span>
+          <h1>Airflow &amp; Duct Sizing Calculators</h1>
+          <p className="intro">
+            Design, balance, and size residential and commercial HVAC air distribution systems using standard equal friction equations (ASHRAE/SMACNA/ACCA).
+          </p>
+        </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
       <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
@@ -581,6 +633,7 @@ export default function AirflowDuctsHub() {
         </div>
       </section>
     </main>
+    </>
   );
 }
 

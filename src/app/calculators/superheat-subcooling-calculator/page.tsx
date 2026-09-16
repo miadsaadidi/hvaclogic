@@ -151,25 +151,6 @@ export default function SuperheatSubcoolingPage() {
           </div>
         </>
       }
-      relatedToolsSection={
-        <div style={{ marginBottom: "2rem" }}>
-          <h2>Related Field Diagnostic Tools</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem", marginTop: "1rem" }}>
-            <Link href="/calculators/pt-chart" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>Refrigerant PT Chart</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Interactive saturation pressure-temperature curves for R-454B, R-32, R-410A, and R-22.</p>
-            </Link>
-            <Link href="/calculators/ac-model-decoder" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>AC Model Number Decoder</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Verify factory refrigerant charge and nominal tonnage from equipment nameplates.</p>
-            </Link>
-            <Link href="/calculators/btu-calculator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>BTU Load Master Sizer</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Calculate heating and cooling capacity requirements for proper equipment sizing.</p>
-            </Link>
-          </div>
-        </div>
-      }
     />
   );
 }

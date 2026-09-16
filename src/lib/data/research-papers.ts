@@ -624,7 +624,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-09-11",
     reportNumber: "HL-TR-2026-REF01",
-    pdfUrl: "/papers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf",
+    pdfUrl: "/whitepapers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf",
     repositories: [
       {
         platform: "academia",
