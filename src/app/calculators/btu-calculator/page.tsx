@@ -49,7 +49,7 @@ export default function BtuCalculatorPage() {
 
           <ol style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
             <li><strong>Calculate Conditioned Volume</strong>: Determine floor square footage and ceiling height. Cathedral or vaulted ceilings increase air volume requiring higher heating and cooling capacity.</li>
-            <li><strong>Determine Design Temperature Differences (ΔT)</strong>: Cross-reference your local IECC Climate Zone to establish summer cooling design temperatures (typically 90°F to 105°F) and winter heating design temperatures (0°F to 30°F).</li>
+            <li><strong>Determine Design Temperature Differences (ΔT)</strong>: Cross-reference <Link href="/ashrae-climatic-data" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>ASHRAE 99% / 0.4% Climatic Design Conditions</Link> or your local IECC Climate Zone to establish summer cooling design temperatures (typically 90°F to 105°F) and winter heating design temperatures (0°F to 30°F).</li>
             <li><strong>Calculate Sensible Envelope Heat Gain (Q = U × A × ΔT)</strong>: Sum transmission losses through exterior walls, attic ceilings, window glass, and slab foundations.</li>
             <li><strong>Add Internal Heat Gains & Latent Dehumidification</strong>: Account for human metabolism (approx. 230 BTU sensible + 200 BTU latent per occupant) plus cooking appliances and lighting.</li>
           </ol>
@@ -169,25 +169,6 @@ export default function BtuCalculatorPage() {
             </p>
           </div>
         </>
-      }
-      relatedToolsSection={
-        <div style={{ marginBottom: "2rem" }}>
-          <h2>Related Sizing Calculators</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1rem", marginTop: "1rem" }}>
-            <Link href="/calculators/ac-tonnage-calculator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>AC Tonnage Calculator</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Compare SEER2 efficiency ratings and calculate annual electricity operating costs.</p>
-            </Link>
-            <Link href="/calculators/cfm-calculator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>HVAC CFM Sizer</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Determine the exact supply airflow CFM required to satisfy your calculated BTU load.</p>
-            </Link>
-            <Link href="/calculators/ductulator" style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1rem", textDecoration: "none" }}>
-              <h3 style={{ fontSize: "1rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.25rem" }}>Digital Ductulator</h3>
-              <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary)" }}>Size the ductwork required to deliver your system&apos;s design airflow volume.</p>
-            </Link>
-          </div>
-        </div>
       }
     />
   );

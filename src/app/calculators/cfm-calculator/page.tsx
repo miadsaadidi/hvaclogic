@@ -42,119 +42,134 @@ export default function CfmCalculatorPage() {
         <>
           <HvacFlowDiagram category="airflow" />
 
-          <div style={{ marginTop: "1.5rem" }}>
-            <FormulaCard
-              title="Fundamental CFM Airflow & Fluid Dynamics Equations"
-              formula="CFM = FPM * (Area_sq_in / 144) | CFM = Q_sensible / (1.08 * ΔT)"
-              variables={[
-                { symbol: "CFM", label: "Volumetric Airflow Rate", description: "Standard volumetric air delivery at sea level density", unit: "CFM (ft³/min)" },
-                { symbol: "FPM", label: "Air Velocity", description: "Average linear fluid speed inside duct or grille core", unit: "FPM (ft/min)" },
-                { symbol: "Area", label: "Duct Cross-Section", description: "Internal free open cross-sectional flow area", unit: "sq in or sq ft" },
-                { symbol: "Q_sensible", label: "Sensible Heat Load", description: "Pure dry-bulb cooling or heating load requirement", unit: "BTU/hr" },
-                { symbol: "1.08", label: "Air Heat Capacity Factor", description: "Constant derived from standard air density (0.075 lb/ft³) × specific heat (0.24 BTU/lb·°F) × 60 min/hr", unit: "Constant" },
-                { symbol: "ΔT", label: "Temperature Split", description: "Air temperature difference across the heat exchanger (18–22°F for AC, 30–60°F for heating)", unit: "°F" },
-              ]}
-              notes="All air calculations assume standard atmospheric air density (0.075 lb/ft³). For high-altitude installations above 3,000 ft, derate density factor accordingly."
-              sourceStandard="ASHRAE Standard 62.1 & ACCA Manual D (3rd Edition)"
-            />
-          </div>
+          <h2>How to Calculate HVAC Airflow (CFM) Across System Types</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            Airflow volume in HVAC systems is quantified in <strong>Cubic Feet per Minute (CFM)</strong>. Correct airflow ensures proper heat exchange across cooling evaporators and heating coils, prevents coil icing, and maintains rated equipment SEER2/AFUE efficiency.
+          </p>
 
-          <div style={{ marginTop: "1.5rem", lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
-            <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              Air Changes Per Hour (ACH) Sizing Guidelines
-            </h3>
-            <p>
-              Different residential and commercial occupancy zones require specific hourly air turnover rates to maintain indoor air quality (IAQ) and thermal comfort:
-            </p>
-            <ul>
-              <li><strong>Living Rooms &amp; Bedrooms:</strong> 4 to 6 ACH (provides standard conditioned comfort and low noise).</li>
-              <li><strong>Kitchens &amp; Cooking Zones:</strong> 7 to 8 ACH (clears cooking odors and moisture buildup).</li>
-              <li><strong>Bathrooms &amp; High Humidity:</strong> 8 to 10 ACH (rapid exhaust of water vapor to prevent mildew).</li>
-              <li><strong>Commercial Conference Rooms:</strong> 8 to 12 ACH (ensures adequate fresh air delivery for dense occupancies).</li>
-            </ul>
-          </div>
+          <ol style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+            <li><strong>Thermal Sensible Heat Method (Coil Sizing)</strong>: When sizing by thermal heat transfer, use the fundamental sensible heat equation: <code>CFM = Sensible BTU / (1.08 × ΔT)</code>. For standard air conditioning with a 20°F coil delta-T, this equates to 400 CFM per ton of cooling.</li>
+            <li><strong>Fluid Velocity &amp; Area Method (Duct Airflow)</strong>: When measuring in-duct velocity with an anemometer or pitot tube, calculate volumetric flow as: <code>CFM = Velocity (FPM) × Free Duct Area (sq ft)</code>. Connect to the <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> to solve duct dimensions.</li>
+            <li><strong>Room Air Turnover Method (ACH Method)</strong>: For ventilation and dilution requirements per ASHRAE Standard 62.1/62.2, calculate total volume (Length × Width × Ceiling Height) and multiply by desired Air Changes per Hour: <code>CFM = (Volume × ACH) / 60</code>.</li>
+            <li><strong>Nominal AC Tonnage Rule</strong>: Standard residential systems operate at <strong>400 CFM/ton</strong> in moderate climates, 350 CFM/ton in humid zones (for enhanced latent dehumidification), and 450 CFM/ton in dry arid climates.</li>
+          </ol>
+
+          <FormulaCard
+            title="Fundamental CFM Airflow & Fluid Dynamics Equations"
+            formula="\text{CFM} = \text{FPM} \cdot \frac{\text{Area}_{\text{sq in}}}{144} \quad | \quad \text{CFM} = \frac{Q_{\text{sensible}}}{1.08 \cdot \Delta T} \quad | \quad \text{CFM} = \frac{\text{Volume} \cdot \text{ACH}}{60}"
+            variables={[
+              { symbol: "\\text{CFM}", label: "Volumetric Airflow Rate", description: "Standard volumetric air delivery at sea level density (0.075 lb/ft³)", unit: "CFM (ft³/min)" },
+              { symbol: "\\text{FPM}", label: "Air Velocity", description: "Average linear fluid speed inside duct or register face", unit: "FPM (ft/min)" },
+              { symbol: "\\text{Area}", label: "Duct Cross-Section", description: "Internal free open cross-sectional flow area (Area = Width × Height)", unit: "sq in or sq ft" },
+              { symbol: "Q_{\\text{sensible}}", label: "Sensible Heat Load", description: "Pure dry-bulb cooling or heating load requirement", unit: "BTU/hr" },
+              { symbol: "1.08", label: "Air Heat Capacity Factor", description: "Constant: air density (0.075 lb/ft³) × specific heat (0.24 BTU/lb·°F) × 60 min/hr", unit: "Constant" },
+              { symbol: "\\Delta T", label: "Temperature Difference", description: "Air temperature drop across cooling coil (18–22°F) or rise across furnace (30–60°F)", unit: "°F" },
+            ]}
+            notes="All air calculations assume standard dry air density (0.075 lb/ft³) at sea level. For high-altitude installations above 3,000 ft, derate the 1.08 constant by the barometric pressure ratio."
+            sourceStandard="ASHRAE Standard 62.1 & ACCA Manual D (3rd Edition)"
+          />
         </>
       }
       comparisonTableSection={
-        <div className="scenario-table">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">AC Cooling Capacity</th>
-                <th scope="col">Standard Airflow (400 CFM/ton)</th>
-                <th scope="col">Humid Climate (350 CFM/ton)</th>
-                <th scope="col">Dry Climate (450 CFM/ton)</th>
-                <th scope="col">Recommended Main Trunk Size</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>1.5 Tons (18,000 BTU)</strong></td>
-                <td>600 CFM</td>
-                <td>525 CFM</td>
-                <td>675 CFM</td>
-                <td>10&quot; Round / 12x8&quot; Rect</td>
-              </tr>
-              <tr>
-                <td><strong>2.0 Tons (24,000 BTU)</strong></td>
-                <td>800 CFM</td>
-                <td>700 CFM</td>
-                <td>900 CFM</td>
-                <td>12&quot; Round / 14x8&quot; Rect</td>
-              </tr>
-              <tr>
-                <td><strong>2.5 Tons (30,000 BTU)</strong></td>
-                <td>1,000 CFM</td>
-                <td>875 CFM</td>
-                <td>1,125 CFM</td>
-                <td>12&quot; Round / 16x8&quot; Rect</td>
-              </tr>
-              <tr>
-                <td><strong>3.0 Tons (36,000 BTU)</strong></td>
-                <td>1,200 CFM</td>
-                <td>1,050 CFM</td>
-                <td>1,350 CFM</td>
-                <td>14&quot; Round / 18x8&quot; Rect</td>
-              </tr>
-              <tr>
-                <td><strong>3.5 Tons (42,000 BTU)</strong></td>
-                <td>1,400 CFM</td>
-                <td>1,225 CFM</td>
-                <td>1,575 CFM</td>
-                <td>14&quot; Round / 20x8&quot; Rect</td>
-              </tr>
-              <tr>
-                <td><strong>4.0 Tons (48,000 BTU)</strong></td>
-                <td>1,600 CFM</td>
-                <td>1,400 CFM</td>
-                <td>1,800 CFM</td>
-                <td>16&quot; Round / 22x8&quot; Rect</td>
-              </tr>
-              <tr>
-                <td><strong>5.0 Tons (60,000 BTU)</strong></td>
-                <td>2,000 CFM</td>
-                <td>1,750 CFM</td>
-                <td>2,250 CFM</td>
-                <td>18&quot; Round / 24x10&quot; Rect</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <>
+          <h2>Nominal AC Cooling Tonnage to Airflow (CFM) Benchmark Matrix</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem" }}>
+            Design airflow benchmarks and recommended duct trunk sizes across nominal residential equipment sizes:
+          </p>
+
+          <div className="scenario-table">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">AC Cooling Capacity</th>
+                  <th scope="col">Standard Airflow (400 CFM/ton)</th>
+                  <th scope="col">Humid Climate (350 CFM/ton)</th>
+                  <th scope="col">Dry Arid (450 CFM/ton)</th>
+                  <th scope="col">Recommended Main Supply Trunk</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1.5 Tons (18,000 BTU)</strong></td>
+                  <td>600 CFM</td>
+                  <td>525 CFM</td>
+                  <td>675 CFM</td>
+                  <td>10&quot; Round / 12&quot; × 8&quot; Rect</td>
+                </tr>
+                <tr>
+                  <td><strong>2.0 Tons (24,000 BTU)</strong></td>
+                  <td>800 CFM</td>
+                  <td>700 CFM</td>
+                  <td>900 CFM</td>
+                  <td>12&quot; Round / 14&quot; × 8&quot; Rect</td>
+                </tr>
+                <tr>
+                  <td><strong>2.5 Tons (30,000 BTU)</strong></td>
+                  <td>1,000 CFM</td>
+                  <td>875 CFM</td>
+                  <td>1,125 CFM</td>
+                  <td>12&quot; Round / 16&quot; × 8&quot; Rect</td>
+                </tr>
+                <tr>
+                  <td><strong>3.0 Tons (36,000 BTU)</strong></td>
+                  <td>1,200 CFM</td>
+                  <td>1,050 CFM</td>
+                  <td>1,350 CFM</td>
+                  <td>14&quot; Round / 18&quot; × 8&quot; Rect</td>
+                </tr>
+                <tr>
+                  <td><strong>3.5 Tons (42,000 BTU)</strong></td>
+                  <td>1,400 CFM</td>
+                  <td>1,225 CFM</td>
+                  <td>1,575 CFM</td>
+                  <td>14&quot; Round / 20&quot; × 8&quot; Rect</td>
+                </tr>
+                <tr>
+                  <td><strong>4.0 Tons (48,000 BTU)</strong></td>
+                  <td>1,600 CFM</td>
+                  <td>1,400 CFM</td>
+                  <td>1,800 CFM</td>
+                  <td>16&quot; Round / 22&quot; × 8&quot; Rect</td>
+                </tr>
+                <tr>
+                  <td><strong>5.0 Tons (60,000 BTU)</strong></td>
+                  <td>2,000 CFM</td>
+                  <td>1,750 CFM</td>
+                  <td>2,250 CFM</td>
+                  <td>18&quot; Round / 24&quot; × 10&quot; Rect</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </>
       }
       workedExampleSection={
-        <div style={{ lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
-          <p>
-            <strong>Scenario:</strong> Sizing airflow for a 3-ton residential heat pump in a moderate climate requiring 24,000 BTU/hr sensible cooling at a 20&deg;F coil temperature drop (&Delta;T).
+        <>
+          <h2>Worked Example: Sizing Airflow for a 3-Ton Residential Heat Pump</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            <strong>Scenario:</strong> Calculate the design airflow requirement for a 3.0 Ton central heat pump system in a moderate climate with <strong>24,000 BTU/hr sensible cooling load</strong> and an entering/leaving coil air temperature split of <strong>20.0°F</strong>.
           </p>
-          <div style={{ background: "var(--surface-raised)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem", marginTop: "1rem" }}>
-            <h4 style={{ color: "var(--ink)", margin: "0 0 0.5rem", fontWeight: 600 }}>Calculation Steps:</h4>
-            <ol style={{ paddingLeft: "1.2rem", margin: 0 }}>
-              <li><strong>Thermal Sensible Equation:</strong> CFM = 24,000 / (1.08 × 20) = <strong>1,111 CFM</strong>.</li>
-              <li><strong>Nominal Tonnage Cross-Check:</strong> 3.0 Tons × 400 CFM/ton = <strong>1,200 CFM</strong>.</li>
-              <li><strong>Duct Air Velocity Verification:</strong> Across a 14-inch round supply trunk (Area = 1.069 sq ft), air velocity is 1,200 / 1.069 = <strong>1,122 FPM</strong> (well within SMACNA residential trunk noise limits).</li>
-            </ol>
+
+          <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.25rem", color: "var(--ink)" }}>
+            <p><strong>Step 1: Calculate Thermal Sensible Airflow</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              CFM = Sensible BTU / (1.08 * Delta T) = 24,000 / (1.08 * 20.0) = 1,111 CFM
+            </p>
+
+            <p><strong>Step 2: Compare with Nominal Cooling Tonnage Rule</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              Nominal Airflow = 3.0 Tons * 400 CFM/ton = 1,200 CFM (Provides 89 CFM safety margin for coil moisture removal)
+            </p>
+
+            <p><strong>Step 3: Size Main Duct Cross-Section</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0" }}>
+              Across a 14-inch round duct (Area = 1.069 sq ft): Velocity = 1,200 / 1.069 = 1,122 FPM
+            </p>
+            <p style={{ color: "var(--ink-secondary)", marginTop: "0.5rem" }}>
+              ✓ <strong>Conclusion:</strong> 1,200 CFM provides balanced cooling and dehumidification. Connect to the <Link href="/calculators/filter-sizing-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>MERV Filter Sizing Calculator</Link> to ensure return air velocity stays below 300 FPM.
+            </p>
           </div>
-        </div>
+        </>
       }
     />
   );

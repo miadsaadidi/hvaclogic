@@ -2,7 +2,8 @@ import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
-import { RESEARCH_PAPERS, RESEARCH_DATASETS } from "@/lib/data/research-papers";
+import { RESEARCH_PAPERS } from "@/lib/data/research-papers";
+import { BENCHMARK_DATASETS } from "@/lib/data/datasets";
 
 export const metadata: Metadata = {
   title: "Research & Technical Whitepapers",
@@ -387,7 +388,7 @@ export default function ResearchHubPage() {
             gap: "1.25rem",
           }}
         >
-          {RESEARCH_DATASETS.map((ds) => (
+          {BENCHMARK_DATASETS.map((ds) => (
             <div
               key={ds.slug}
               style={{
@@ -415,27 +416,28 @@ export default function ResearchHubPage() {
                       textTransform: "uppercase",
                     }}
                   >
-                    {ds.repository}
+                    {ds.format}
                   </span>
-                  <span
-                    style={{
-                      background: "var(--bg-secondary)",
-                      color: "var(--ink-secondary)",
-                      fontSize: "0.68rem",
-                      fontWeight: 600,
-                      padding: "0.15rem 0.45rem",
-                      borderRadius: "4px",
-                      border: "1px solid var(--border-color)",
-                      fontFamily: "var(--font-mono, monospace)",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                      maxWidth: "150px",
-                    }}
-                    title={`DOI: ${ds.doi}`}
-                  >
-                    DOI: {ds.doi}
-                  </span>
+                  {ds.primaryDoi && (
+                    <span
+                      style={{
+                        background: "rgba(167, 139, 250, 0.1)",
+                        color: "#a78bfa",
+                        fontSize: "0.68rem",
+                        fontWeight: 600,
+                        padding: "0.15rem 0.45rem",
+                        borderRadius: "4px",
+                        fontFamily: "var(--font-mono, monospace)",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        maxWidth: "150px",
+                      }}
+                      title={`DOI: ${ds.primaryDoi}`}
+                    >
+                      DOI: {ds.primaryDoi}
+                    </span>
+                  )}
                   <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginLeft: "auto" }}>
                     {ds.recordCount} pts
                   </span>
@@ -456,7 +458,12 @@ export default function ResearchHubPage() {
                   }}
                   title={ds.title}
                 >
-                  {ds.title}
+                  <Link
+                    href={`/datasets/${ds.slug}`}
+                    style={{ color: "var(--ink)", textDecoration: "none" }}
+                  >
+                    {ds.title}
+                  </Link>
                 </h3>
                 <p
                   style={{
@@ -498,62 +505,70 @@ export default function ResearchHubPage() {
                   borderTop: "1px solid var(--border-color)",
                 }}
               >
-                {ds.repositoryUrl && (
+                <Link
+                  href={`/datasets/${ds.slug}`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.25rem",
+                    background: "#10b981",
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    fontSize: "0.76rem",
+                    padding: "0.32rem 0.75rem",
+                    borderRadius: "0.375rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>Explore →</span>
+                </Link>
+
+                <a
+                  href={`/datasets/${ds.filename}`}
+                  download
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.25rem",
+                    background: "transparent",
+                    color: "var(--ink)",
+                    border: "1px solid var(--border-color)",
+                    fontWeight: 600,
+                    fontSize: "0.76rem",
+                    padding: "0.32rem 0.65rem",
+                    borderRadius: "0.375rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span>📥</span>
+                  <span>CSV</span>
+                </a>
+
+                {ds.repositories.map((repo) => (
                   <a
-                    href={ds.repositoryUrl}
+                    key={repo.url}
+                    href={repo.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "0.25rem",
-                      background: "#10b981",
-                      color: "#ffffff",
-                      fontWeight: 700,
-                      fontSize: "0.76rem",
-                      padding: "0.32rem 0.75rem",
-                      borderRadius: "0.375rem",
-                      textDecoration: "none",
-                    }}
-                  >
-                    <span>{ds.repository} →</span>
-                  </a>
-                )}
-                {ds.downloadUrl ? (
-                  <a
-                    href={ds.downloadUrl}
-                    download
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.25rem",
-                      background: "transparent",
-                      color: "var(--ink)",
+                      background: "var(--bg-secondary)",
+                      color: "var(--text-muted)",
                       border: "1px solid var(--border-color)",
                       fontWeight: 600,
-                      fontSize: "0.76rem",
-                      padding: "0.32rem 0.65rem",
+                      fontSize: "0.74rem",
+                      padding: "0.32rem 0.55rem",
                       borderRadius: "0.375rem",
                       textDecoration: "none",
                     }}
+                    title={`View on ${repo.name}`}
                   >
-                    <span>📥</span>
-                    <span>{ds.format}</span>
+                    <span>{repo.platform === "figshare" ? "📊" : "🤗"}</span>
+                    <span>{repo.platform === "figshare" ? "Figshare" : "Hugging Face"} ↗</span>
                   </a>
-                ) : !ds.repositoryUrl && (
-                  <span
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.25rem",
-                      color: "var(--text-muted)",
-                      fontSize: "0.74rem",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    🏛️ Accession pending on {ds.repository}
-                  </span>
-                )}
+                ))}
               </div>
             </div>
           ))}

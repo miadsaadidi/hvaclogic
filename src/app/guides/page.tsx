@@ -309,7 +309,7 @@ export default function GuidesHubPage() {
                 </div>
 
                 {/* COMPANION CALCULATORS MINI ROW */}
-                <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.75rem", marginBottom: "1rem" }}>
+                <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.75rem", marginBottom: "0.75rem" }}>
                   <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--ink-secondary)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
                     Companion Calculators:
                   </div>
@@ -334,6 +334,64 @@ export default function GuidesHubPage() {
                     ))}
                   </div>
                 </div>
+
+                {/* COMPANION RESEARCH MINI ROW */}
+                {guide.companionResearch && guide.companionResearch.length > 0 && (
+                  <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.5rem", marginBottom: "0.75rem" }}>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--ink-secondary)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+                      Governing Research:
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                      {guide.companionResearch.map((res) => (
+                        <Link
+                          key={res.route}
+                          href={res.route}
+                          style={{
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            color: "#8b5cf6",
+                            textDecoration: "none",
+                            background: "rgba(139, 92, 246, 0.06)",
+                            border: "1px solid rgba(139, 92, 246, 0.2)",
+                            padding: "0.15rem 0.45rem",
+                            borderRadius: "4px",
+                          }}
+                        >
+                          📄 {res.name} →
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* COMPANION DATASETS MINI ROW */}
+                {guide.companionDatasets && guide.companionDatasets.length > 0 && (
+                  <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.5rem", marginBottom: "1rem" }}>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--ink-secondary)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+                      Benchmark Datasets:
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                      {guide.companionDatasets.map((ds) => (
+                        <Link
+                          key={ds.route}
+                          href={ds.route}
+                          style={{
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            color: "#10b981",
+                            textDecoration: "none",
+                            background: "rgba(16, 185, 129, 0.06)",
+                            border: "1px solid rgba(16, 185, 129, 0.2)",
+                            padding: "0.15rem 0.45rem",
+                            borderRadius: "4px",
+                          }}
+                        >
+                          📊 {ds.name} →
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* ACTION CTA */}
                 <Link
@@ -481,7 +539,7 @@ export default function GuidesHubPage() {
                 </div>
 
                 {/* COMPANION CALCULATORS MINI ROW */}
-                <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.75rem", marginBottom: "1rem" }}>
+                <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.75rem", marginBottom: "0.75rem" }}>
                   <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--ink-secondary)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
                     Associated Calculators:
                   </div>
@@ -506,6 +564,64 @@ export default function GuidesHubPage() {
                     ))}
                   </div>
                 </div>
+
+                {/* COMPANION RESEARCH MINI ROW */}
+                {guide.companionResearch && guide.companionResearch.length > 0 && (
+                  <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.5rem", marginBottom: "0.75rem" }}>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--ink-secondary)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+                      Governing Research:
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                      {guide.companionResearch.map((res) => (
+                        <Link
+                          key={res.route}
+                          href={res.route}
+                          style={{
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            color: "#8b5cf6",
+                            textDecoration: "none",
+                            background: "rgba(139, 92, 246, 0.06)",
+                            border: "1px solid rgba(139, 92, 246, 0.2)",
+                            padding: "0.15rem 0.45rem",
+                            borderRadius: "4px",
+                          }}
+                        >
+                          📄 {res.name} →
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* COMPANION DATASETS MINI ROW */}
+                {guide.companionDatasets && guide.companionDatasets.length > 0 && (
+                  <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "0.5rem", marginBottom: "1rem" }}>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--ink-secondary)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+                      Benchmark Datasets:
+                    </div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                      {guide.companionDatasets.map((ds) => (
+                        <Link
+                          key={ds.route}
+                          href={ds.route}
+                          style={{
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            color: "#10b981",
+                            textDecoration: "none",
+                            background: "rgba(16, 185, 129, 0.06)",
+                            border: "1px solid rgba(16, 185, 129, 0.2)",
+                            padding: "0.15rem 0.45rem",
+                            borderRadius: "4px",
+                          }}
+                        >
+                          📊 {ds.name} →
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* ACTION CTA */}
                 <Link

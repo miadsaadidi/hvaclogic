@@ -30,18 +30,58 @@ export const metadata: Metadata = {
 };
 
 export default function StandardsMatrixPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ItemPage",
+        "@id": `${siteConfig.canonicalDomain}/standards#page`,
+        name: "Standards & Code Compliance Matrix",
+        description: "Cross-reference index linking ASHRAE, ACCA, SMACNA, AHRI, and EPA engineering codes directly to HVACLogic calculation engines and mathematical equations.",
+        url: `${siteConfig.canonicalDomain}/standards`,
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": `${siteConfig.canonicalDomain}/#website`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteConfig.canonicalDomain}/standards#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.canonicalDomain,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Standards & Codes",
+            item: `${siteConfig.canonicalDomain}/standards`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
-    <div className="site-container page" style={{ padding: "2.5rem 1.5rem", maxWidth: "1200px", margin: "0 auto" }}>
-      {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" style={{ marginBottom: "1.5rem" }}>
-        <ol style={{ display: "flex", gap: "0.5rem", listStyle: "none", padding: 0, fontSize: "0.85rem", color: "var(--text-muted)" }}>
-          <li>
-            <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Home</Link>
-          </li>
-          <li>/</li>
-          <li style={{ color: "var(--ink)", fontWeight: 600 }} aria-current="page">Standards &amp; Codes</li>
-        </ol>
-      </nav>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="site-container page" style={{ padding: "2.5rem 1.5rem", maxWidth: "1200px", margin: "0 auto" }}>
+        {/* Breadcrumbs */}
+        <nav aria-label="Breadcrumb" style={{ marginBottom: "1.5rem" }}>
+          <ol style={{ display: "flex", gap: "0.5rem", listStyle: "none", padding: 0, fontSize: "0.85rem", color: "var(--text-muted)" }}>
+            <li>
+              <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Home</Link>
+            </li>
+            <li>/</li>
+            <li style={{ color: "var(--ink)", fontWeight: 600 }} aria-current="page">Standards &amp; Codes</li>
+          </ol>
+        </nav>
 
       {/* Hero Header */}
       <header style={{ marginBottom: "3rem", borderBottom: "1px solid var(--border-color)", paddingBottom: "2rem" }}>
@@ -206,5 +246,6 @@ export default function StandardsMatrixPage() {
         ))}
       </div>
     </div>
+    </>
   );
 }

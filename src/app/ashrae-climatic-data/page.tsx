@@ -162,6 +162,123 @@ export default function AshraeClimaticDataPage() {
             </div>
           </div>
         </section>
+
+        {/* Connected Calculation Workflows Section */}
+        <section style={{ marginTop: "3rem" }}>
+          <div style={{ marginBottom: "1rem" }}>
+            <p className="eyebrow" style={{ marginBottom: "0.2rem" }}>Direct Engineering Applications</p>
+            <h2 style={{ fontSize: "1.35rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
+              Apply Climatic Design Conditions to Engineering Sizing
+            </h2>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "1.25rem",
+            }}
+          >
+            <Link
+              href="/calculators/btu-calculator"
+              className="powerlab-card-link"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "1.25rem",
+                borderRadius: "0.75rem",
+                background: "var(--surface)",
+                border: "1px solid var(--border-color)",
+                borderTop: "3px solid #38bdf8",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                <span style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", color: "#38bdf8" }}>
+                  Cooling &amp; Loads
+                </span>
+                <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", fontWeight: 600 }}>ACCA Manual J</span>
+              </div>
+              <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)" }}>
+                BTU Heating &amp; Cooling Load Calculator
+              </h3>
+              <p style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", lineHeight: 1.45, margin: "0 0 0.85rem", flex: 1 }}>
+                Apply your local 0.4% summer cooling DB and 99% winter heating DB to calculate whole-house sensible and latent heat loads.
+              </p>
+              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#38bdf8", paddingTop: "0.5rem", borderTop: "1px solid var(--border-subtle)", display: "flex", justifyContent: "space-between" }}>
+                <span>Launch Load Calculator</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            <Link
+              href="/calculators/heat-loss-calculator"
+              className="powerlab-card-link"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "1.25rem",
+                borderRadius: "0.75rem",
+                background: "var(--surface)",
+                border: "1px solid var(--border-color)",
+                borderTop: "3px solid #8b5cf6",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                <span style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", color: "#8b5cf6" }}>
+                  Building Science
+                </span>
+                <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", fontWeight: 600 }}>ASHRAE / ACCA</span>
+              </div>
+              <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)" }}>
+                Building Heat Loss &amp; Infiltration Sizer
+              </h3>
+              <p style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", lineHeight: 1.45, margin: "0 0 0.85rem", flex: 1 }}>
+                Input 99% winter design dry-bulb temperatures to calculate building envelope conduction ($U \\cdot A \\cdot \\Delta T$) and infiltration losses.
+              </p>
+              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#8b5cf6", paddingTop: "0.5rem", borderTop: "1px solid var(--border-subtle)", display: "flex", justifyContent: "space-between" }}>
+                <span>Launch Heat Loss Sizer</span>
+                <span>→</span>
+              </div>
+            </Link>
+
+            <Link
+              href="/calculators/heat-pump-size-calculator"
+              className="powerlab-card-link"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "1.25rem",
+                borderRadius: "0.75rem",
+                background: "var(--surface)",
+                border: "1px solid var(--border-color)",
+                borderTop: "3px solid #ff6b4a",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                <span style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", color: "#ff6b4a" }}>
+                  Heating Systems
+                </span>
+                <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", fontWeight: 600 }}>AHRI / NEEP</span>
+              </div>
+              <h3 style={{ margin: "0 0 0.35rem", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)" }}>
+                Heat Pump Sizing &amp; Balance Point Tool
+              </h3>
+              <p style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", lineHeight: 1.45, margin: "0 0 0.85rem", flex: 1 }}>
+                Evaluate cold-climate inverter capacity retention down to 99% winter design temperatures and size supplemental electric heat strips.
+              </p>
+              <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#ff6b4a", paddingTop: "0.5rem", borderTop: "1px solid var(--border-subtle)", display: "flex", justifyContent: "space-between" }}>
+                <span>Launch Balance Point Tool</span>
+                <span>→</span>
+              </div>
+            </Link>
+          </div>
+        </section>
       </div>
     </>
   );

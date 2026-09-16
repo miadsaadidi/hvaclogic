@@ -53,7 +53,7 @@ export default function HeatLossCalculatorPage() {
                 { symbol: "Delta T", label: "Design Temperature Difference", description: "Indoor setpoint minus the 99% ASHRAE winter design outdoor temperature", unit: "°F" },
                 { symbol: "CFM_inf", label: "Infiltration Airflow", description: "Natural air leakage volume entering through envelope cracks", unit: "CFM" },
               ]}
-              notes="Air leakage is governed by the sensible heat equation with air constant 1.08 (0.075 lb/cu ft × 0.240 BTU/lb·°F × 60 min/hr)."
+              notes="Air leakage is governed by the sensible heat equation with air constant 1.08. Cross-reference regional 99% winter heating design temperatures using the HVACLogic ASHRAE Climatic Design Conditions Database (/ashrae-climatic-data)."
               sourceStandard="ACCA Manual J Residential Load Calculation & ASHRAE Standard 90.2"
             />
           </div>

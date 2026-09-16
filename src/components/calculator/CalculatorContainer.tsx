@@ -6,9 +6,11 @@ import { DirectAnswerCard } from "@/components/seo/DirectAnswerCard";
 import { PageJumpNav } from "@/components/seo/PageJumpNav";
 import { StandardsBadge } from "@/components/seo/StandardsBadge";
 import { EngineeringReviewCard } from "@/components/seo/EngineeringReviewCard";
+import { ResearchCitationCard } from "@/components/calculator/ResearchCitationCard";
 import { RelatedCalculatorsGrid } from "@/components/seo/RelatedCalculatorsGrid";
 import { PrintJobSubmittal } from "@/components/calculator/PrintJobSubmittal";
 import { EmbedDetector } from "@/components/calculator/EmbedDetector";
+import { EmbedTriggerButton } from "@/components/calculator/EmbedTriggerButton";
 
 interface CalculatorContainerProps {
   calculator: CalculatorMeta;
@@ -56,9 +58,16 @@ export function CalculatorContainer({
         </nav>
 
         <header className="calculator-header">
-          <span className="eyebrow">{calculator.categoryName}</span>
-          <h1>{calculator.name}</h1>
-          <p className="intro speakable-definition">{calculator.metaDescription}</p>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
+            <div style={{ flex: "1 1 500px" }}>
+              <span className="eyebrow">{calculator.categoryName}</span>
+              <h1>{calculator.name}</h1>
+              <p className="intro speakable-definition">{calculator.metaDescription}</p>
+            </div>
+            <div style={{ marginTop: "0.5rem" }}>
+              <EmbedTriggerButton toolRoute={calculator.route} toolName={calculator.name} />
+            </div>
+          </div>
         </header>
 
         {/* SECTION 2: INTERACTIVE TOOL UI — IMMEDIATELY VISIBLE (ZERO SCROLL) */}
@@ -116,6 +125,9 @@ export function CalculatorContainer({
             </div>
           </section>
         )}
+
+        {/* GOVERNING RESEARCH MONOGRAPH, OER LAB & DATASET CITATION */}
+        <ResearchCitationCard calculator={calculator} />
 
         {/* ENGINEERING E-E-A-T AUDIT CARD */}
         <EngineeringReviewCard calculator={calculator} />

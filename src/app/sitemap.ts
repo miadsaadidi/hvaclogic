@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { RESEARCH_PAPERS } from "@/lib/data/research-papers";
+import { BENCHMARK_DATASETS } from "@/lib/data/datasets";
 
 // Deterministic content release & revision milestones (prevents volatile daily jitter while signaling crawl priority)
 const RELEASE_MILESTONES = {
@@ -10,6 +11,7 @@ const RELEASE_MILESTONES = {
   PILLAR_HUBS: new Date("2026-08-26T00:00:00.000Z"),
   GUIDES_HUB: new Date("2026-08-26T00:00:00.000Z"),
   RESEARCH_HUB: new Date("2026-08-26T00:00:00.000Z"),
+  DATASETS_HUB: new Date("2026-09-15T00:00:00.000Z"),
   STANDARDS_COMPLIANCE: new Date("2026-08-25T00:00:00.000Z"),
   AUTHORITY_PAGES: new Date("2026-08-24T00:00:00.000Z"),
   CALCULATOR_BASELINE: new Date("2026-08-20T00:00:00.000Z"),
@@ -83,6 +85,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  // Datasets Hub & Detail Pages
+  const datasetsHubEntry: MetadataRoute.Sitemap[0] = {
+    url: `${baseUrl}/datasets`,
+    lastModified: RELEASE_MILESTONES.DATASETS_HUB,
+    changeFrequency: "weekly",
+    priority: 0.9,
+  };
+
+  const datasetEntries: MetadataRoute.Sitemap = BENCHMARK_DATASETS.map((ds) => ({
+    url: `${baseUrl}/datasets/${ds.slug}`,
+    lastModified: new Date(`${ds.lastUpdated}T00:00:00.000Z`),
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
   // Standards Matrix
   const standardsEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/standards`,
@@ -147,6 +164,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     guidesHubEntry,
     researchHubEntry,
     ...researchPaperEntries,
+    datasetsHubEntry,
+    ...datasetEntries,
     ...paperPdfEntries,
     standardsEntry,
     ...authorityEntries,

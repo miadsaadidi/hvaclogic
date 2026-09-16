@@ -9,16 +9,16 @@ import { calculatorRegistry, publishedCalculators } from "@/lib/data/calculators
 import { constructCanonicalUrl } from "@/lib/seo/metadata-helper";
 
 describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
-  it("generates exactly 50 unique canonical entries in /sitemap.xml", () => {
+  it("generates exactly 58 unique canonical entries in /sitemap.xml", () => {
     const sitemapEntries = sitemap();
     const urls = sitemapEntries.map((e) => e.url);
 
-    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 21 Calculators + 1 Guides Hub + 1 Research Hub + 6 Research Papers + 4 Academic PDF Whitepapers + 1 Standards + 7 Authority/Resource/Policy Pages = 51
-    expect(urls.length).toBe(51);
+    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 21 Calculators + 1 Guides Hub + 1 Research Hub + 6 Research Papers + 1 Datasets Hub + 6 Datasets + 4 Academic PDF Whitepapers + 1 Standards + 7 Authority/Resource/Policy Pages = 58
+    expect(urls.length).toBe(58);
 
     // Ensure zero duplicates
     const uniqueUrls = new Set(urls);
-    expect(uniqueUrls.size).toBe(51);
+    expect(uniqueUrls.size).toBe(58);
 
     // Ensure all URLs start with the canonical domain https://hvaclogic.org
     urls.forEach((url) => {

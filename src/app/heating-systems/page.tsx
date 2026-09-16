@@ -40,21 +40,73 @@ const CATEGORY_COLOR = "#ff6b4a";
 export default function HeatingSystemsHub() {
   const calculators = calculatorRegistry.filter((c) => c.pillar === "heating-systems");
 
-  return (
-    <main className="page site-container">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link href="/">Home</Link>
-        <span>/</span>
-        <span aria-current="page">Heating &amp; Heat Pumps</span>
-      </nav>
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${siteConfig.canonicalDomain}/heating-systems#collection`,
+        name: "Heating & Heat Pump Calculators",
+        description: "Calculate cold-climate heat pump balance points, furnace sizing, NFPA 54 combustion air, and boiler loads adhering to ACCA Manual J/S and AHRI standards.",
+        url: `${siteConfig.canonicalDomain}/heating-systems`,
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": `${siteConfig.canonicalDomain}/#website`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteConfig.canonicalDomain}/heating-systems#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.canonicalDomain,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Heating Systems",
+            item: `${siteConfig.canonicalDomain}/heating-systems`,
+          },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        name: "Heating & Heat Pump Calculators",
+        numberOfItems: calculators.length,
+        itemListElement: calculators.map((calc, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: calc.name,
+          url: `${siteConfig.canonicalDomain}${calc.route}`,
+          description: calc.metaDescription,
+        })),
+      },
+    ],
+  };
 
-      <header className="calculator-header">
-        <span className="eyebrow">Category Hub</span>
-        <h1>Heating, Heat Pumps &amp; Electrification Calculators</h1>
-        <p className="intro">
-          Electrification sizing, cold-climate inverter heat pump balance points, gas combustion air calculations (NFPA 54 / IFGC), AFUE furnace matching, and hydronic boiler radiation (EDR) sizing.
-        </p>
-      </header>
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <main className="page site-container">
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <Link href="/">Home</Link>
+          <span>/</span>
+          <span aria-current="page">Heating &amp; Heat Pumps</span>
+        </nav>
+
+        <header className="calculator-header">
+          <span className="eyebrow">Category Hub</span>
+          <h1>Heating, Heat Pumps &amp; Electrification Calculators</h1>
+          <p className="intro">
+            Electrification sizing, cold-climate inverter heat pump balance points, gas combustion air calculations (NFPA 54 / IFGC), AFUE furnace matching, and hydronic boiler radiation (EDR) sizing.
+          </p>
+        </header>
 
       {/* CARDS GRID (PowerLab Card Design) */}
       <h2 style={{ fontSize: "1.4rem", fontWeight: 700, margin: "2.5rem 0 1rem", color: "var(--ink)" }}>
@@ -733,5 +785,6 @@ export default function HeatingSystemsHub() {
         </div>
       </section>
     </main>
+    </>
   );
 }

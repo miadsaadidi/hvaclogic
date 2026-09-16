@@ -39,8 +39,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.canonicalDomain),
   title: {
-    default: "HVAC Logic - Engineering Calculators & Building Science",
-    template: "%s | HVAC Logic",
+    default: "HVACLogic - Engineering Calculators & Building Science",
+    template: "%s | HVACLogic",
   },
   description: siteConfig.description,
   alternates: {
@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     "r value calculator",
     "hvac load calculator",
   ],
-  authors: [{ name: "HVAC Logic Engineering Team" }],
-  creator: "HVAC Logic",
-  publisher: "HVAC Logic",
+  authors: [{ name: "HVACLogic Engineering Standards Committee" }],
+  creator: "HVACLogic",
+  publisher: "HVACLogic",
   robots: {
     index: true,
     follow: true,
@@ -81,24 +81,58 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.canonicalDomain,
-    siteName: siteConfig.name,
-    title: "HVAC Logic — Engineering Calculators & Building Science",
+    siteName: "HVACLogic",
+    title: "HVACLogic — Engineering Calculators & Building Science",
     description: siteConfig.description,
     images: [
       {
         url: `${siteConfig.canonicalDomain}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: "HVACLogic Engineering Calculators & Building Science",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC Logic — Engineering Calculators & Building Science",
+    title: "HVACLogic — Engineering Calculators & Building Science",
     description: siteConfig.description,
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
+};
+
+const rootStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.canonicalDomain}/#organization`,
+      name: "HVACLogic",
+      url: siteConfig.canonicalDomain,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.canonicalDomain}/icon.svg`,
+      },
+      sameAs: [
+        "https://www.academia.edu/172310808",
+        "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7430738",
+        "https://figshare.com/articles/dataset/ASHRAE_Hyland-Wexler_Moist_Air_Psychrometric_Benchmark_Dataset_420_Thermodynamic_State_Points_Across_Sea-Level_and_Elevated_Altitudes/33456928",
+        "https://github.com/miadsaadidi/hvaclogic",
+        "https://www.bibsonomy.org/user/miadinside",
+      ],
+      description: siteConfig.description,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.canonicalDomain}/#website`,
+      name: "HVACLogic",
+      url: siteConfig.canonicalDomain,
+      publisher: {
+        "@id": `${siteConfig.canonicalDomain}/#organization`,
+      },
+      inLanguage: "en-US",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -118,6 +152,11 @@ export default function RootLayout({
         {/* LLM & AI Crawler Grounding Manifests */}
         <link rel="help" type="text/markdown" href="/llms.txt" title="LLM Grounding Manifest" />
         <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Full Engineering Mathematical Models" />
+        {/* Global Root Entity Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rootStructuredData) }}
+        />
         {/* Google tag (gtag.js) */}
         <script
           async

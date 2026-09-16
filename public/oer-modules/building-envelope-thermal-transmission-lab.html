@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Laboratory Exercise: Building Envelope Thermal Transmission & Parallel-Path Framing Analysis</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1 { color: #0f172a; font-size: 26px; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 20px; }
+    h2 { color: #0369a1; font-size: 20px; margin-top: 28px; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+    h3 { color: #0f172a; font-size: 16px; margin-top: 18px; margin-bottom: 8px; }
+    p, li { font-size: 15px; color: #334155; }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    th, td { border: 1px solid #cbd5e1; padding: 10px 12px; text-align: left; }
+    th { background-color: #f1f5f9; color: #0f172a; font-weight: 600; }
+    tr:nth-child(even) { background-color: #f8fafc; }
+    .callout { background-color: #f0f9ff; border-left: 4px solid #0284c7; padding: 14px 18px; margin: 20px 0; border-radius: 0 6px 6px 0; }
+    .formula-box { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 16px; margin: 14px 0; border-radius: 6px; font-family: monospace; font-size: 14px; color: #0f172a; }
+    a { color: #0284c7; text-decoration: underline; font-weight: 500; }
+    a:hover { color: #0369a1; }
+  </style>
+</head>
+<body>
+
+<h1>Student Laboratory Exercise: Building Envelope Thermal Transmission & Parallel-Path Framing Analysis</h1>
+
+<h2>1. Pedagogical Learning Objectives</h2>
+<p>Upon successful completion of this laboratory module, students and building science trainees will be able to:</p>
+<ul>
+  <li><strong>Formulate</strong> multi-layer composite thermal resistance ($R_{total}$) across typical residential and commercial building assemblies using ASHRAE parallel-path isothermal planes methods.</li>
+  <li><strong>Quantify</strong> the thermal bridging derating penalty caused by solid structural framing elements (studs, top/bottom plates, headers) vs. nominal cavity insulation values.</li>
+  <li><strong>Evaluate</strong> overall building envelope heat transfer coefficients ($U_{overall} \cdot A$) and their impact on design heating and cooling loads ($Q = UA \Delta T$).</li>
+  <li><strong>Benchmark</strong> the energy conservation impact of adding continuous exterior insulation (ci) to eliminate structural thermal bridging.</li>
+</ul>
+
+<h2>2. Theoretical Background & Mathematical Physics</h2>
+<p>In standard building construction, wall assemblies consist of parallel heat flow paths: the insulated cavity path and the solid structural framing path (studs, plates, headers). Nominal insulation R-values do not represent true assembly performance.</p>
+
+<p>According to the <strong>ASHRAE Parallel-Path Method</strong>, the effective assembly thermal transmittance ($U_{eff}$) is:</p>
+
+<div class="formula-box">
+  $$U_{eff} = (f_{framing} \cdot U_{framing}) + (f_{cavity} \cdot U_{cavity}) = \frac{f_{framing}}{R_{framing}} + \frac{(1 - f_{framing})}{R_{cavity}}$$
+</div>
+
+<p>Where:</p>
+<ul>
+  <li>$f_{framing}$ = Framing area fraction (typically $0.23$ to $0.25$ for $16&quot;\text{ OC}$ advanced framing; up to $0.28$ for conventional construction)</li>
+  <li>$R_{cavity}$ = Total series thermal resistance through the insulated cavity path ($\text{h}\cdot\text{ft}^2\cdot^\circ\text{F/BTU}$)</li>
+  <li>$R_{framing}$ = Total series thermal resistance through the solid lumber framing path ($\text{h}\cdot\text{ft}^2\cdot^\circ\text{F/BTU}$)</li>
+</ul>
+
+<p>The total steady-state conductive heat loss ($Q_{cond}$) through the building envelope is:</p>
+
+<div class="formula-box">
+  $$Q_{cond} = \sum (U_{eff, i} \cdot A_i) \cdot (T_{inside} - T_{design})$$
+</div>
+
+<h2>3. Laboratory Apparatus & Interactive Simulation Workbench</h2>
+<p>Students will utilize the validated deterministic building envelope solver:</p>
+<div class="callout">
+  <strong>Primary Interactive Instrument:</strong><br>
+  Open the live simulation instrument at <a href="https://hvaclogic.org/calculators/building-heat-loss" target="_blank" rel="noopener">HVACLogic Building Envelope Heat Loss & Thermal Bridging Workbench</a>.
+</div>
+<p>The simulation workbench calculates layer-by-layer series resistances, parallel-path framing deratings, window solar heat gain coefficients (SHGC), and fenestration U-factors in real time without client tracking or server latency.</p>
+
+<h2>4. Step-by-Step Experimental Procedure</h2>
+<ol>
+  <li><strong>Baseline Assembly Setup</strong>: Configure a $2 \times 6$ wood stud wall ($16&quot;\text{ OC}$, $25\%$ framing factor) with interior drywall ($R\text{-}0.45$), $R\text{-}20$ fiberglass batt cavity insulation, $7/16&quot;$ OSB sheathing ($R\text{-}0.62$), and vinyl siding ($R\text{-}0.61$).</li>
+  <li><strong>Scenario 1 — Nominal vs. Effective R-Value Calculation</strong>: Compute the theoretical cavity R-value ($R_{cavity} = 22.36$) vs. framing path R-value ($R_{framing} = 8.56$). Record the resulting effective wall R-value ($R_{eff} = 1/U_{eff}$). Note the percentage derating from the advertised $R\text{-}20$ rating.</li>
+  <li><strong>Scenario 2 — Continuous Exterior Insulation (ci) Addition</strong>: Add $R\text{-}5$ ($1&quot;$ rigid polyisocyanurate / XPS) continuous exterior insulation unbroken across all framing members. Calculate the new effective assembly R-value and observe how continuous thermal layers mitigate thermal bridging.</li>
+  <li><strong>Scenario 3 — Whole-Building Heating Load Sweep</strong>: For a $2{,}000\text{ sq ft}$ single-story structure at $T_{inside} = 70^\circ\text{F}$ and $T_{design} = 0^\circ\text{F}$ ($\Delta T = 70^\circ\text{F}$), compute total envelope heat loss under Scenario 1 vs. Scenario 2.</li>
+</ol>
+
+<h2>5. Student Data Collection Matrix</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Assembly Configuration</th>
+      <th>Framing Factor ($f_{framing}$)</th>
+      <th>Cavity Path $R_{cavity}$</th>
+      <th>Framing Path $R_{framing}$</th>
+      <th>Effective $R_{eff}$</th>
+      <th>Effective $U_{eff}$</th>
+      <th>Whole-Wall Heat Loss ($\Delta T = 70^\circ\text{F}$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Nominal Rating (No Bridging)</strong></td>
+      <td>0.00 (Idealized)</td>
+      <td>22.36</td>
+      <td>—</td>
+      <td>22.36</td>
+      <td>0.0447</td>
+      <td>3,130 BTU/h (per 1,000 sq ft)</td>
+    </tr>
+    <tr>
+      <td><strong>Scenario 1: Standard 2x6 (16" OC)</strong></td>
+      <td>0.25 (25%)</td>
+      <td>22.36</td>
+      <td>8.56</td>
+      <td>15.82</td>
+      <td>0.0632</td>
+      <td>4,424 BTU/h (per 1,000 sq ft)</td>
+    </tr>
+    <tr>
+      <td><strong>Scenario 2: 2x6 + R-5 Ext ci</strong></td>
+      <td>0.25 (25%)</td>
+      <td>27.36</td>
+      <td>13.56</td>
+      <td>20.84</td>
+      <td>0.0480</td>
+      <td>3,360 BTU/h (per 1,000 sq ft)</td>
+    </tr>
+    <tr>
+      <td><strong>Scenario 3: 2x4 (16" OC, R-13 batt)</strong></td>
+      <td>0.25 (25%)</td>
+      <td>15.36</td>
+      <td>6.06</td>
+      <td>10.64</td>
+      <td>0.0940</td>
+      <td>6,580 BTU/h (per 1,000 sq ft)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6. Post-Lab Analytical Assessment</h2>
+<ol>
+  <li><strong>The Thermal Bridging Effect</strong>: In Scenario 1, the effective R-value is $R\text{-}15.82$ despite using $R\text{-}20$ cavity insulation (a $21\%$ thermal performance penalty). Mathematically justify why the lower R-value framing path dominates the reciprocal sum in parallel heat flow.</li>
+  <li><strong>Condensation & Dew Point Analysis</strong>: Continuous exterior insulation warms the internal cavity sheathing during cold winter months. Explain why adding exterior insulation reduces the risk of interstitial moisture condensation within the stud cavity.</li>
+  <li><strong>Building Code Compliance</strong>: Contrast IECC/ASHRAE 90.1 prescriptive requirements for Climate Zone 5 ($R\text{-}20$ cavity vs. $R\text{-}13 + 5\text{ ci}$). Which approach yields lower peak heating demand?</li>
+</ol>
+
+<h2>7. Instructor Notes & Pedagogical Solutions Guide</h2>
+<div class="callout">
+  <p><strong>Estimated Duration</strong>: 60 minutes in laboratory session or independent coursework.</p>
+  <p><strong>Prerequisites</strong>: Fourier's Law of Thermal Conduction, electrical analog resistance networks ($R = \Delta T / Q$).</p>
+  <p><strong>Common Student Pitfalls</strong>:</p>
+  <ul>
+    <li>Directly averaging R-values ($0.75 \times 20 + 0.25 \times 8.56 = 17.14$). Students must be guided to average transmittances (U-factors), not resistances, because heat flow is parallel.</li>
+    <li>Omitting air film surface resistances ($R_{inside} \approx 0.68$, $R_{outside} \approx 0.17$ for $15\text{ mph}$ winter wind).</li>
+  </ul>
+</div>
+
+</body>
+</html>

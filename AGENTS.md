@@ -33,8 +33,10 @@
 - **Verified Live DOI Gating for Academic Profiles (ORCID / CV / Scholar)**:
   Output **STRICTLY VERIFIED LIVE, RESOLVABLE DOIs** from [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](./docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md). Never output pending or unverified DOIs.
 - **Mandatory Master Calendar Inspection**: When asked "what's in SEO plan today?" or for status, inspect [`docs/16-master-authority-and-syndication-calendar.md`](./docs/16-master-authority-and-syndication-calendar.md) and [`docs/14-seo-progress-tracker.md`](./docs/14-seo-progress-tracker.md).
+- **Strict Anti-Duplication Pre-Check Protocol (MANDATORY)**:
+  Before proposing, drafting, or generating ANY publication, article, lab module, dataset, or post for ANY platform (Medium, DEV.to, Hashnode, Academia.edu, Figshare, Hugging Face, OER Commons, MERLOT, SSRN, BibSonomy, X, etc.), you MUST inspect [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](./docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md). **NEVER suggest or draft a publication topic/asset that is already published on that platform.** Every single platform submission must be verified for uniqueness against the registry prior to presentation.
 - **Mandatory Daily Syndication Sequence (STRICT ORDER)**:
-  `1. DEV.to` -> `2. Hashnode` -> `3. Medium` -> `4. Academia.edu` -> `5. Figshare` -> `6. Internet Archive` -> `7. Hugging Face / Datasets` -> `8. BibSonomy (Daily Bookmark)` -> `9. X (Twitter)`.
+  `1. DEV.to` -> `2. Hashnode` -> `3. Medium` -> `4. Academia.edu` -> `5. Figshare` -> `6. Hugging Face / Datasets` -> `7. OER Commons (Open Author Lab Unit - every 2 days)` -> `8. Internet Archive` -> `9. BibSonomy (Daily Bookmark)` -> `10. X (Twitter)`.
 
 ---
 

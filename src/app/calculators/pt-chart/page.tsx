@@ -42,116 +42,132 @@ export default function PtChartPage() {
         <>
           <HvacFlowDiagram category="refrigeration" />
 
-          <div style={{ marginTop: "1.5rem" }}>
-            <FormulaCard
-              title="Refrigerant Vapor-Liquid Equilibrium &amp; Saturation Thermodynamics"
-              formula="ln(P_sat / P_c) = (T_c / T) * [a1 * (1 - T/T_c) + a2 * (1 - T/T_c)^1.5 + a3 * (1 - T/T_c)^3] | PSIA = PSIG + 14.696"
-              variables={[
-                { symbol: "P_sat", label: "Saturation Pressure", description: "Equilibrium vapor pressure where liquid and gas coexist in phase change", unit: "PSIA or Bar" },
-                { symbol: "T_sat", label: "Saturation Temperature", description: "Boiling or condensing temperature corresponding to the measured manifold pressure", unit: "°F or °C" },
-                { symbol: "Glide", label: "Zeotropic Temperature Glide", description: "Temperature span between bubble point (100% liquid) and dew point (100% vapor) at constant pressure", unit: "°F" },
-                { symbol: "PSIG", label: "Gauge Pressure", description: "Pressure relative to ambient atmospheric pressure (0 PSIG = 14.696 PSIA)", unit: "PSIG" },
-              ]}
-              notes="All values are derived directly from NIST REFPROP v10.0 formulation equations. For zeotropic blends like R-454B and R-407C, always use the Dew Point curve for Superheat and the Bubble Point curve for Subcooling."
-              sourceStandard="NIST Standard Reference Database 23 & AHRI Standard 700 / ASHRAE 34"
-            />
-          </div>
+          <h2>How to Read a Refrigerant PT Chart (Dew Point vs. Bubble Point)</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            A Pressure-Temperature (PT) chart defines the thermodynamic saturation curve where liquid and vapor phases coexist in equilibrium. With the industry transition to A2L low-GWP refrigerants like <strong>R-454B (Opteon XL41)</strong> and pure <strong>R-32</strong> under EPA Section 608, understanding the difference between dew point and bubble point is essential for accurate diagnostics.
+          </p>
 
-          <div style={{ marginTop: "1.5rem", lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
-            <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              Understanding Temperature Glide in A2L Refrigerants (R-454B &amp; R-407C)
-            </h3>
-            <p>
-              Unlike single-component refrigerants (like R-32 or R-22) and near-azeotropes (like R-410A), zeotropic blends change phase over a temperature range known as <strong>temperature glide</strong>:
-            </p>
-            <ul>
-              <li><strong>Bubble Point (Liquid Saturation):</strong> The temperature at which liquid refrigerant first begins to boil. Used to calculate <strong>TXV Subcooling</strong> on the high-side liquid line.</li>
-              <li><strong>Dew Point (Vapor Saturation):</strong> The temperature at which the last drop of liquid evaporates into gas. Used to calculate <strong>Superheat</strong> on the low-side suction line.</li>
-            </ul>
-          </div>
+          <ol style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+            <li><strong>Identify Refrigerant Chemical Composition</strong>: Single-component refrigerants (like pure R-32 or R-22) and near-azeotropic blends (like R-410A) boil and condense at a single temperature. Zeotropic blends (like R-454B and R-407C) exhibit <em>temperature glide</em> and have distinct boiling (bubble) and condensation (dew) saturation curves.</li>
+            <li><strong>Select Dew Point for Superheat Verification</strong>: When measuring low-side suction pressure on the evaporator coil, reference the <strong>Dew Point curve</strong> to determine true vapor saturation temperature. Cross-check results with the <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Target Superheat Calculator</Link>.</li>
+            <li><strong>Select Bubble Point for Subcooling Verification</strong>: When measuring high-side liquid pressure before the expansion valve, reference the <strong>Bubble Point curve</strong> to determine true liquid saturation temperature.</li>
+            <li><strong>Apply Gauge vs. Absolute Pressure Conversions</strong>: Standard field manifold gauges read gauge pressure (PSIG). Absolute pressure is calculated as <code>PSIA = PSIG + 14.696</code> at sea level.</li>
+          </ol>
+
+          <FormulaCard
+            title="Refrigerant Vapor-Liquid Equilibrium & Saturation Thermodynamics"
+            formula="\ln(P_{\text{sat}} / P_c) = \frac{T_c}{T} \cdot \left[ a_1 \left(1 - \frac{T}{T_c}\right) + a_2 \left(1 - \frac{T}{T_c}\right)^{1.5} + a_3 \left(1 - \frac{T}{T_c}\right)^3 \right] \quad | \quad \text{PSIA} = \text{PSIG} + 14.696"
+            variables={[
+              { symbol: "P_{\\text{sat}}", label: "Saturation Pressure", description: "Equilibrium vapor pressure where liquid and gas coexist in phase change", unit: "PSIA or Bar" },
+              { symbol: "T_{\\text{sat}}", label: "Saturation Temperature", description: "Boiling or condensing temperature corresponding to the measured manifold pressure", unit: "°F or °C" },
+              { symbol: "\\text{Glide}", label: "Zeotropic Temperature Glide", description: "Temperature span between bubble point (100% liquid) and dew point (100% vapor) at constant pressure", unit: "°F" },
+              { symbol: "\\text{PSIG}", label: "Gauge Pressure", description: "Pressure relative to ambient atmospheric pressure (0 PSIG = 14.696 PSIA at sea level)", unit: "PSIG" },
+            ]}
+            notes="All values are derived directly from NIST Standard Reference Database 23 (REFPROP v10.0) formulations. For zeotropic blends (R-454B, R-407C), always use Dew Point for superheat and Bubble Point for subcooling."
+            sourceStandard="NIST Standard Reference Database 23 & AHRI Standard 700 / ASHRAE Standard 34"
+          />
         </>
       }
       comparisonTableSection={
-        <div className="scenario-table">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Refrigerant</th>
-                <th scope="col">Safety Group</th>
-                <th scope="col">GWP Rating</th>
-                <th scope="col">40&deg;F Evaporator (Suction)</th>
-                <th scope="col">110&deg;F Condenser (Liquid)</th>
-                <th scope="col">Temperature Glide</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>R-454B (Opteon XL41)</strong></td>
-                <td>A2L (Low GWP)</td>
-                <td>466</td>
-                <td>115.0 PSIG</td>
-                <td>365.0 PSIG</td>
-                <td>1.5&deg;F</td>
-              </tr>
-              <tr>
-                <td><strong>R-32</strong></td>
-                <td>A2L (Low GWP)</td>
-                <td>675</td>
-                <td>119.0 PSIG</td>
-                <td>382.0 PSIG</td>
-                <td>0.0&deg;F (Pure)</td>
-              </tr>
-              <tr>
-                <td><strong>R-410A (Puron)</strong></td>
-                <td>A1 (Standard)</td>
-                <td>2,088</td>
-                <td>118.0 PSIG</td>
-                <td>365.0 PSIG</td>
-                <td>0.2&deg;F (Near-Azeotrope)</td>
-              </tr>
-              <tr>
-                <td><strong>R-22 (Freon)</strong></td>
-                <td>A1 (Legacy)</td>
-                <td>1,810</td>
-                <td>68.5 PSIG</td>
-                <td>226.0 PSIG</td>
-                <td>0.0&deg;F (Pure)</td>
-              </tr>
-              <tr>
-                <td><strong>R-134a</strong></td>
-                <td>A1 (Medium Temp)</td>
-                <td>1,430</td>
-                <td>35.1 PSIG</td>
-                <td>146.4 PSIG</td>
-                <td>0.0&deg;F (Pure)</td>
-              </tr>
-              <tr>
-                <td><strong>R-404A</strong></td>
-                <td>A1 (Commercial)</td>
-                <td>3,922</td>
-                <td>86.5 PSIG</td>
-                <td>273.5 PSIG</td>
-                <td>0.9&deg;F</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <>
+          <h2>Refrigerant Saturation & Pressure-Temperature Benchmark Table</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem" }}>
+            Operating saturation pressures across standard residential cooling design points (40°F Evaporator Suction / 110°F Condenser Liquid):
+          </p>
+
+          <div className="scenario-table">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Refrigerant Blend</th>
+                  <th scope="col">ASHRAE Safety Class</th>
+                  <th scope="col">GWP Rating</th>
+                  <th scope="col">40°F Evaporator (Suction)</th>
+                  <th scope="col">110°F Condenser (Liquid)</th>
+                  <th scope="col">Temperature Glide</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>R-454B (Opteon XL41)</strong></td>
+                  <td>A2L (Mildly Flammable)</td>
+                  <td>466</td>
+                  <td>115.0 PSIG (Dew)</td>
+                  <td>365.0 PSIG (Bubble)</td>
+                  <td>1.5°F</td>
+                </tr>
+                <tr>
+                  <td><strong>R-32</strong></td>
+                  <td>A2L (Mildly Flammable)</td>
+                  <td>675</td>
+                  <td>119.0 PSIG</td>
+                  <td>382.0 PSIG</td>
+                  <td>0.0°F (Pure)</td>
+                </tr>
+                <tr>
+                  <td><strong>R-410A (Puron)</strong></td>
+                  <td>A1 (Non-Toxic/Non-Flammable)</td>
+                  <td>2,088</td>
+                  <td>118.0 PSIG</td>
+                  <td>365.0 PSIG</td>
+                  <td>0.2°F (Near-Azeotrope)</td>
+                </tr>
+                <tr>
+                  <td><strong>R-22 (Freon Legacy)</strong></td>
+                  <td>A1 (Non-Toxic/Non-Flammable)</td>
+                  <td>1,810</td>
+                  <td>68.5 PSIG</td>
+                  <td>226.0 PSIG</td>
+                  <td>0.0°F (Pure)</td>
+                </tr>
+                <tr>
+                  <td><strong>R-134a</strong></td>
+                  <td>A1 (Medium-Temp)</td>
+                  <td>1,430</td>
+                  <td>35.1 PSIG</td>
+                  <td>146.4 PSIG</td>
+                  <td>0.0°F (Pure)</td>
+                </tr>
+                <tr>
+                  <td><strong>R-404A</strong></td>
+                  <td>A1 (Commercial Low-Temp)</td>
+                  <td>3,922</td>
+                  <td>86.5 PSIG</td>
+                  <td>273.5 PSIG</td>
+                  <td>0.9°F</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </>
       }
       workedExampleSection={
-        <div style={{ lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
-          <p>
-            <strong>Scenario:</strong> A service technician is commissioning a new 2025 residential heat pump charged with <strong>R-454B</strong>. The low-side suction manifold pressure reads <strong>115 PSIG</strong>.
+        <>
+          <h2>Worked Example: Verifying Suction Superheat on an R-454B Heat Pump</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            <strong>Scenario:</strong> A technician is commissioning an R-454B residential split system. The digital suction manifold reads <strong>115.0 PSIG</strong> at the outdoor service valve, and the pipe clamp thermocouple reads <strong>52.0°F</strong>.
           </p>
-          <div style={{ background: "var(--surface-raised)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem", marginTop: "1rem" }}>
-            <h4 style={{ color: "var(--ink)", margin: "0 0 0.5rem", fontWeight: 600 }}>Calculation Steps:</h4>
-            <ol style={{ paddingLeft: "1.2rem", margin: 0 }}>
-              <li><strong>Select Dew Point Curve:</strong> Since suction pressure measures vapor evaporating off the coil, select the <strong>Dew Point curve</strong>.</li>
-              <li><strong>Look Up Saturation Temp:</strong> At 115 PSIG, R-454B dew point saturation temperature is <strong>40.0&deg;F</strong>.</li>
-              <li><strong>Measure Suction Line Pipe Temp:</strong> The clamp-on thermocouple measures <strong>52.0&deg;F</strong>.</li>
-              <li><strong>Calculate Superheat:</strong> Actual Superheat = 52.0&deg;F - 40.0&deg;F = <strong>12.0&deg;F</strong> (optimal for residential cooling).</li>
-            </ol>
+
+          <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.25rem", color: "var(--ink)" }}>
+            <p><strong>Step 1: Select the Dew Point Curve</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              Because suction line measurement reflects evaporating vapor leaving the coil, use the Dew Point saturation curve for R-454B.
+            </p>
+
+            <p><strong>Step 2: Look Up Vapor Saturation Temperature (T_sat_dew)</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              At 115.0 PSIG R-454B: T_sat_dew = 40.0°F
+            </p>
+
+            <p><strong>Step 3: Calculate Actual Suction Superheat</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0" }}>
+              Actual Superheat = T_suction - T_sat_dew = 52.0°F - 40.0°F = 12.0°F Superheat
+            </p>
+            <p style={{ color: "var(--ink-secondary)", marginTop: "0.5rem" }}>
+              ✓ <strong>Evaluation:</strong> 12.0°F superheat indicates adequate coil heat absorption without risk of liquid floodback to the compressor. For full diagnostics, cross-reference the <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Superheat & Subcooling Charging Sizer</Link>.
+            </p>
           </div>
-        </div>
+        </>
       }
     />
   );
