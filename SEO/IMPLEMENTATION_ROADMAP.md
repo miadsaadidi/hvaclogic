@@ -87,12 +87,16 @@ ONGOING EVIDENCE-DRIVEN OPERATING SYSTEM: Continuous GSC Diagnostics & Approved 
 
 ## Permanent Ongoing Operating Mode (The Continuous Loop)
 
-Following the completion of the implementation phases, the SEO system operates strictly under the autonomous evidence loop:
+> [!IMPORTANT]
+> **Legacy Calendar Classification**: The previous fixed calendar ([`docs/16-master-authority-and-syndication-calendar.md`](../docs/16-master-authority-and-syndication-calendar.md)) is officially classified as **LEGACY / BACKLOG / NON-AUTHORITATIVE REFERENCE**. It is preserved for candidate concepts, unfinished opportunities, and historical reference, but no longer dictates operational priority.
 
-1. **Diagnosis**: Forensic inspection of Search Console telemetry, crawl logs, or target registers.
+Following the completion of the foundational implementation phases, all future SEO activity is governed strictly by the autonomous evidence loop:
+
+1. **Diagnosis**: Forensic inspection of Search Console telemetry, crawl logs, codebase architecture, and external registers.
 2. **Priority Selection**: Selection of exactly ONE highest-value objective supported by evidence.
-3. **Approval Gate**: Presentation of diagnosis, evidence, and execution plan to the user.
-4. **Execution**: Implementation upon explicit user approval.
-5. **Validation**: Comprehensive verification via typecheck, unit tests, and production build.
-6. **Logging**: Persistent record updated in `SEO/DAILY_LOG.md` and `SEO/CHANGELOG.md`.
-7. **Measurement & Reassessment**: Loop repeats for the next highest-value objective.
+3. **Execution Plan**: Formulation of concrete step-by-step actions (Audit ➔ Implement ➔ Validate ➔ Log).
+4. **Approval Gate**: Presentation of diagnosis, evidence, and execution plan to the user (STOP).
+5. **Execution**: Implementation only upon explicit user approval.
+6. **Validation**: Comprehensive verification via typecheck, unit tests, and production build.
+7. **Logging**: Persistent record updated in `SEO/DAILY_LOG.md` and `SEO/CHANGELOG.md`.
+8. **Measurement & Reassessment**: Loop repeats for the next highest-value objective.

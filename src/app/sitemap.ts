@@ -128,33 +128,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Academic PDF Whitepapers & Monographs
-  const paperPdfEntries: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/papers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf`,
-      lastModified: new Date("2026-08-25T00:00:00.000Z"),
+  // Academic PDF Whitepapers & Monographs (Dynamically derived from unique research paper pdfUrls)
+  const uniquePdfs = new Map<string, Date>();
+  RESEARCH_PAPERS.forEach((paper) => {
+    if (paper.pdfUrl) {
+      const existingDate = uniquePdfs.get(paper.pdfUrl);
+      const paperDate = new Date(`${paper.publicationDate}T00:00:00.000Z`);
+      if (!existingDate || paperDate > existingDate) {
+        uniquePdfs.set(paper.pdfUrl, paperDate);
+      }
+    }
+  });
+
+  const paperPdfEntries: MetadataRoute.Sitemap = Array.from(uniquePdfs.entries()).map(
+    ([pdfUrl, lastMod]) => ({
+      url: `${baseUrl}${pdfUrl}`,
+      lastModified: lastMod,
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/papers/hvaclogic_psychrometrics_hyland_wexler_paper.pdf`,
-      lastModified: new Date("2026-09-07T00:00:00.000Z"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/papers/Thermodynamic_Modeling_A2L_Refrigerant_Glide_R454B_publication.pdf`,
-      lastModified: new Date("2026-09-05T00:00:00.000Z"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/papers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf`,
-      lastModified: new Date("2026-09-11T00:00:00.000Z"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-  ];
+    })
+  );
 
   return [
     rootEntry,

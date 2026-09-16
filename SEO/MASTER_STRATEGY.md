@@ -284,40 +284,85 @@ Search Console is an active, evidence-based driver of daily optimization decisio
 
 ---
 
-## N. Autonomous SEO Decision System & Approval Protocol
+## N. Permanent Evidence-Driven SEO Operating System
 
-The HVACLogic SEO Operating System operates on a strict autonomous ownership model:
+### 1. Operating Paradigm: Evidence Over Fixed Schedules
+The fixed daily and weekly calendars (`docs/16-master-authority-and-syndication-calendar.md`) are permanently retired as active execution schedules and classified as **LEGACY / BACKLOG / NON-AUTHORITATIVE REFERENCE**. 
 
-1. **Gemini Owns Priority & Diagnosis**: Gemini inspects the live repository, performance data, link graph, and operational logs to determine the single highest-value objective.
-2. **User Owns Approval**: The user reviews and approves the recommended objective. The user is NEVER asked to choose a workstream, keyword, page, platform, or SEO task.
-3. **Execution Only After Approval**: Gemini executes the approved objective fully, validates correctness, and records the results in persistent logs.
+The fundamental question of the operating system is:
+> **"What does the current evidence say HVACLogic should do next?"**
 
+The permanent operating loop is:
 ```
-                              ┌───────────────┐
-                              │  DAILY CYCLE  │
-                              └───────┬───────┘
-                                      │
- ┌────────────────────────────────────┼────────────────────────────────────┐
- │                                    ▼                                    │
- │ 1. READ: Inspect SEO/DAILY_LOG.md, SEO/KEYWORDS.md, and System State    │
- │                                    │                                    │
- │ 2. RESEARCH: Evaluate GSC metrics, link graph health, and queue status  │
- │                                    │                                    │
- │ 3. DECIDE: Determine SINGLE highest-value priority (Content/Tech/Links) │
- │                                    │                                    │
- │ 4. PLAN: Formulate concise action plan & expected outcome               │
- │                                    │                                    │
- │ 5. APPROVAL GATE: Present recommendation to User & STOP                 │
- └────────────────────────────────────┼────────────────────────────────────┘
-                                      │ (User says "Approved")
- ┌────────────────────────────────────┼────────────────────────────────────┐
- │                                    ▼                                    │
- │ 6. EXECUTE: Implement approved changes across code or SEO files         │
- │                                    │                                    │
- │ 7. VALIDATE: Run typecheck, unit tests, schema validation, link checks  │
- │                                    │                                    │
- │ 8. LOG: Update SEO/DAILY_LOG.md, SEO/CHANGELOG.md, and Registries       │
- └─────────────────────────────────────────────────────────────────────────┘
+DIAGNOSE ➔ PRIORITIZE ➔ PLAN ➔ APPROVAL GATE ➔ EXECUTE ➔ VALIDATE ➔ LOG ➔ MEASURE ➔ REASSESS
+```
+
+### 2. Evidence Assessment Hierarchy
+1. **Highest Priority**: Verified technical, crawlability, or indexation defects affecting critical routes.
+2. **Next Priority**: Measurable search-performance opportunities (queries in strike distance, high-impression low-CTR, emerging clusters).
+3. **Next Priority**: Meaningful internal architecture, semantic clarity, or content gaps supported by evidence.
+4. **Next Priority**: Verified research, open dataset, or educational distribution opportunities.
+5. **Next Priority**: External authority / editorial acquisition when specifically justified by evidence.
+6. **Lowest Priority**: Routine or repetitive activity with no evidence of direct value.
+
+### 3. Search Console Data Governance
+- When live Search Console API data is unavailable, this limitation must be explicitly stated.
+- Search metrics, impressions, rankings, or click-through rates must never be fabricated or guessed.
+- Absent Search Console data, prioritization relies strictly on verified codebase state, route testing, and persistent publication records.
+
+### 4. Mandatory Single-Objective Diagnosis & Execution Format
+Every autonomous diagnosis session must output strictly ONE highest-value objective in this exact execution-ready structure before stopping at the approval gate:
+
+```markdown
+## CURRENT STATE
+(Factual summary of internal and external implementation status)
+
+## EVIDENCE
+(Verified observations, code/file states, indexation signals, or explicit statement of missing GSC telemetry)
+
+## ONE PRIORITY
+(Single objective stated in one sentence)
+
+## EXACT EXECUTION STEPS
+### Step 1 — Audit
+- File/system:
+- Action:
+- Evidence:
+- Done when:
+
+### Step 2 — Implement
+- File/system:
+- Action:
+- Evidence:
+- Done when:
+
+### Step 3 — Validate
+- Command/test:
+- Expected result:
+- Done when:
+
+### Step 4 — Log
+- File:
+- Update:
+- Done when:
+
+## EXPECTED SEO MECHANISM
+(Current problem → Action → Search/discovery mechanism → Expected improvement, with zero speculative ranking/traffic guarantees)
+
+## DEPENDENCIES
+- Autonomous actions:
+- User approval required:
+- External accounts / 3rd parties:
+- Unavailable data / limitations:
+
+## VALIDATION
+(Exact tests, build checks, and verification commands)
+
+## FILES / SYSTEMS AFFECTED
+(Exact list of file paths and systems)
+
+## APPROVAL REQUIRED
+(Explicit stop condition awaiting user direction)
 ```
 
 ---

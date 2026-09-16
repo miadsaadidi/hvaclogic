@@ -24,6 +24,37 @@ For every systemic SEO modification, record:
 
 ## Historical Changelog Entries
 
+### [2026-09-16] — Sitemap & Whitepaper Canonical Route Harmonization (v3.2.0)
+- **Type**: Technical SEO, Crawlability & Canonical Alignment.
+- **Reason**: Eliminate crawler redirect noise and potential 404 indexing errors in Google Search Console by unifying all whitepaper PDF declarations under `/whitepapers/` and dynamically deriving sitemap PDF URLs directly from the research paper registry.
+- **URLs / Files Affected**:
+  - `src/lib/data/research-papers.ts` (Standardized `deterministic-vapor-compression-refrigerant-mass-sizing` `pdfUrl` to `/whitepapers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf`)
+  - `src/app/sitemap.ts` (Replaced hardcoded `/papers/` array with dynamic deduplicated `uniquePdfs` mapping)
+  - `src/lib/seo/canonical-routes.test.ts` (Asserted 61 unique canonical URLs and 0 `/papers/` occurrences)
+  - `public/whitepapers/` (Verified all 7 PDF assets)
+  - `SEO/DAILY_LOG.md` (Recorded execution)
+  - `SEO/CHANGELOG.md` (Updated to v3.2.0)
+- **Expected Outcome**: Deliver 100% consistent canonical signals for scientific documents to Googlebot, Google Scholar, and academic indexers across sitemaps, HTML meta tags, and physical file routes.
+- **Actual Outcome / Validation**: 100% test pass across 33 test files (134 tests), 0 TypeScript errors, clean production build.
+- **Follow-Up Date**: Ongoing.
+
+---
+
+### [2026-09-16] — Evidence-Driven SEO Operating System & Legacy Calendar Retirement (v3.1.0)
+- **Type**: Operational Governance, Decision Engine & Output Template Standardization.
+- **Reason**: Formally retire the legacy fixed daily/weekly syndication calendar (`docs/16-master-authority-and-syndication-calendar.md`) as an active execution schedule and reclassify it as `LEGACY / BACKLOG / NON-AUTHORITATIVE REFERENCE`. Standardize the mandatory 9-part autonomous diagnosis output template and 4-step execution format, enforce explicit statement of Search Console limitations without metric fabrication, and codify the single-objective approval gate.
+- **URLs / Files Affected**:
+  - `docs/16-master-authority-and-syndication-calendar.md` (Classified as legacy reference document)
+  - `SEO/MASTER_STRATEGY.md` (Updated Section N with evidence hierarchy and mandatory output template)
+  - `SEO/IMPLEMENTATION_ROADMAP.md` (Codified continuous evidence loop and calendar retirement)
+  - `SEO/DAILY_LOG.md` (Recorded governance update)
+  - `SEO/CHANGELOG.md` (Updated to v3.1.0)
+- **Expected Outcome**: Guarantee that 100% of future SEO activities are generated dynamically from verified codebase, indexation, or search evidence rather than arbitrary calendar quotas.
+- **Actual Outcome / Validation**: Documentation synchronized across all persistent governance files with zero unauthorized code changes.
+- **Follow-Up Date**: Ongoing (Strict Evidence-Driven Mode).
+
+---
+
 ### [2026-09-16] — Final HVACLogic SEO Gap-Closure Program & OS Transition (v3.0.0)
 - **Type**: Full System Verification, Architectural Mesh Hardening, Guide Contextual Linking & Governance Finalization.
 - **Reason**: Achieve verified Definition of Done across the entire HVACLogic SEO Operating System without creating arbitrary subsequent numbered phases. Reconcile all 11 persistent files in `/SEO/`, verify all 13 Tier 2 calculators, enrich all published and scheduled engineering guides with direct companion research monograph and benchmark dataset bridges, and transition the system into permanent evidence-driven operating mode.

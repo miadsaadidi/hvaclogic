@@ -27,6 +27,52 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-16] — GSC Crawl & Sitemap Whitepaper Canonical Route Harmonization
+- **Autonomous Priority Selected**: Technical SEO & Canonical Sitemap Harmonization.
+- **Evidence & Rationale**: Historical GSC crawl logs indicated that Googlebot actively crawled sitemaps and indexable assets. Analysis of `src/app/sitemap.ts` revealed hardcoded `/papers/` paths and missing entries for 3 published whitepapers/labs, conflicting with on-page `citation_pdf_url` meta tags and physical files located in `public/whitepapers/`. Refactored `sitemap.ts` to dynamically derive canonical `/whitepapers/*.pdf` URLs from `RESEARCH_PAPERS`, standardized `deterministic-vapor-compression-refrigerant-mass-sizing` `pdfUrl`, and ensured 1-to-1 parity between sitemap declarations, meta tags, and physical assets.
+- **Target Assets**:
+  - `src/lib/data/research-papers.ts` (Updated line 627 `pdfUrl` to `/whitepapers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf`)
+  - `src/app/sitemap.ts` (Dynamic extraction of unique `/whitepapers/*.pdf` entries from `RESEARCH_PAPERS`)
+  - `src/lib/seo/canonical-routes.test.ts` (Updated sitemap test to assert 61 canonical URLs and zero `/papers/` paths)
+  - `public/whitepapers/` (Verified all 7 unique whitepaper PDFs physically exist)
+- **Actions Executed**:
+  1. Standardized `src/lib/data/research-papers.ts` line 627 to `/whitepapers/Vapor_Compression_Refrigerant_Mass_Sizing.pdf`.
+  2. Refactored `src/app/sitemap.ts` to dynamically compute deduplicated `paperPdfEntries` using a `Map` over `RESEARCH_PAPERS`.
+  3. Ensured `Vapor_Compression_Refrigerant_Mass_Sizing.pdf` is present in `public/whitepapers/`.
+  4. Updated `src/lib/seo/canonical-routes.test.ts` to assert 61 unique canonical entries with zero `/papers/` occurrences.
+- **Validation & Quality Checks**:
+  - `npm run typecheck` (`tsc --noEmit`): 0 errors.
+  - `npm test` (`vitest run`): 33 test files, 134 unit and canonical route tests passed (100%).
+- **Operational Files Updated**:
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+- **Status / Follow-Up Date**: COMPLETE.
+
+### [2026-09-16] — Institutionalization of Permanent Evidence-Driven SEO Protocol & Calendar Retirement
+- **Autonomous Priority Selected**: SEO Governance Hardening & Legacy Calendar Retirement.
+- **Evidence & Rationale**: The legacy fixed daily/weekly syndication calendar (`docs/16-master-authority-and-syndication-calendar.md`) was previously driving activity based on static scheduling rather than measured search or codebase evidence. To establish strict evidence-driven decision-making, the old calendar has been officially retired as an execution schedule and classified as a `LEGACY / BACKLOG / NON-AUTHORITATIVE REFERENCE` repository. The mandatory operational protocol has been codified: every SEO session must diagnose current evidence, state Search Console limitations explicitly, select strictly ONE priority, provide an execution-ready 4-step action plan, and halt at the approval gate before any code, content, or distribution actions occur.
+- **Target Assets**:
+  - `docs/16-master-authority-and-syndication-calendar.md` (Updated header and section 4 to reflect retired/backlog status)
+  - `SEO/MASTER_STRATEGY.md` (Updated Section N with evidence hierarchy, GSC data rules, and mandatory 9-step output template)
+  - `SEO/IMPLEMENTATION_ROADMAP.md` (Documented permanent continuous loop and legacy calendar classification)
+  - `SEO/DAILY_LOG.md` (Recorded governance update)
+  - `SEO/CHANGELOG.md` (Updated historical audit trail)
+- **Actions Executed**:
+  1. Classified `docs/16-master-authority-and-syndication-calendar.md` as `LEGACY / BACKLOG / NON-AUTHORITATIVE REFERENCE`.
+  2. Codified the 9-part output template (`CURRENT STATE`, `EVIDENCE`, `ONE PRIORITY`, `EXACT EXECUTION STEPS`, `EXPECTED SEO MECHANISM`, `DEPENDENCIES`, `VALIDATION`, `FILES / SYSTEMS AFFECTED`, `APPROVAL REQUIRED`) into `SEO/MASTER_STRATEGY.md`.
+  3. Formally recorded the candidate status of external targets (e.g. TechRxiv) as `CANDIDATE / NOT APPROVED` until explicitly triggered by search or research evidence.
+  4. Updated persistent roadmaps and changelogs.
+- **Validation & Quality Checks**:
+  - Verified all internal document cross-references.
+  - Zero code, content, outreach, or submission actions executed.
+- **Operational Files Updated**:
+  - [`docs/16-master-authority-and-syndication-calendar.md`](../docs/16-master-authority-and-syndication-calendar.md)
+  - [`SEO/MASTER_STRATEGY.md`](./MASTER_STRATEGY.md)
+  - [`SEO/IMPLEMENTATION_ROADMAP.md`](./IMPLEMENTATION_ROADMAP.md)
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+- **Status / Follow-Up Date**: COMPLETE / Ongoing (Strict Evidence-Driven Mode).
+
 ### [2026-09-16] — Final HVACLogic SEO Gap-Closure Program & Transition to Ongoing Mode
 - **Autonomous Priority Selected**: Complete System Reconciliation, Tier 2 Calculator Semantic Verification, Guide Contextual Linking & Final Operating System Hardening.
 - **Evidence & Rationale**: The phased implementation program (Phases 0 through 5) successfully built the technical, architectural, schema, dataset, and internal link foundations. To bring the entire system to a verified Definition of Done without creating arbitrary subsequent numbered phases, this final program closed all remaining internal gaps: verified all 13 Tier 2 calculators, enriched guide cards with companion research and dataset links, audited all external layer states (separating verified live from pending human action), updated all 11 persistent SEO files, and transitioned the operating system into permanent evidence-driven execution mode.
