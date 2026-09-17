@@ -1,63 +1,91 @@
-# HVACLogic External Distribution & Syndication Operating Guide (Layer 1)
+# HVACLogic External Distribution & Supporting Authority Guide
 
 **Domain**: [https://hvaclogic.org/](https://hvaclogic.org/)  
-**Document Version**: 2.1.0 (Asset-Fit Driven Distribution)  
-**Last Updated**: 2026-09-16  
+**Document Version**: 4.0.0 (Supporting Distribution & Verification Model)  
+**Last Updated**: 2026-09-17  
 **Operational Status**: ACTIVE / MANDATORY DISTRIBUTION GOVERNANCE  
 
 ---
 
-## 1. Primary Distribution Protocol: Asset-Fit First
+## 1. Strategic Purpose of External Distribution
 
-External distribution is **NOT** a rigid, automatic publishing sequence where every asset is broadcast to every platform. Syndicating content merely to generate links creates noise and devalues authority.
+External publishing platforms (Dev.to, Hashnode, Medium, LinkedIn, research repositories, educational catalogs, and trade media) are **supporting distribution channels only**. They are **not** the foundation of SEO success.
 
-All Layer 1 distribution must execute through the deterministic 8-step decision gate:
-
-$$\text{Evaluate Asset} \longrightarrow \text{Determine Purpose} \longrightarrow \text{Evaluate Platform Fit} \longrightarrow \text{Select Appropriate Platform(s)} \longrightarrow \text{Adapt Content} \longrightarrow \text{Publish} \longrightarrow \text{Validate} \longrightarrow \text{Record}$$
-
-### The Distribution Decision Gate:
-1. **Evaluate Asset**: Is the asset a code architecture, mathematical derivation, benchmark dataset, academic pre-print, or student lab module?
-2. **Determine Purpose**: Is the goal developer adoption, academic citation, educational curriculum adoption, or long-term archiving?
-3. **Evaluate Platform Fit**: Does the target platform’s audience genuinely benefit from this asset?
-4. **Select Appropriate Platform(s)**: Choose **only** the platforms that match the asset type (e.g., Code $\rightarrow$ DEV.to/Hashnode; Datasets $\rightarrow$ Figshare/Hugging Face; Courseware $\rightarrow$ OER Commons/MERLOT; Monograph PDFs $\rightarrow$ Academia.edu/Archive.org).
-5. **Adapt Content**: Completely reformat copy to match the platform's native editorial standard. Never duplicate identical copy.
-6. **Publish**: Deploy with strict canonical URL tags to `https://hvaclogic.org/<canonical-route>`.
-7. **Validate**: Verify rendered live URL, canonical header tag, and link formatting.
-8. **Record**: Log the live asset in `SEO/BACKLINK_LOG.csv` and `docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`.
+### Key Operational Invariants:
+1. **Primary Focus**: HVACLogic's own pages and computational tools are the primary SEO assets.
+2. **No Quota**: Zero mandatory quotas for external articles, bookmarks, or directory submissions.
+3. **No Ranking Guarantees**: Never assume or promise that external publications or backlinks guarantee organic ranking improvements.
+4. **Distinct Angles**: External content must offer distinct, independently useful engineering angles rather than duplicating on-site copy solely to multiply URLs.
+5. **Legitimate Authority**: Relationships are built on authentic technical substance, reproducible research, and open courseware.
 
 ---
 
-## 2. Platform Suitability & Mapping Matrix
+## 2. Master Publishing Flow: HVACLogic Core First
 
-| Platform | Asset Class Fit | Audience | Canonical Handling | Verification Requirement |
-| :--- | :--- | :--- | :--- | :--- |
-| **DEV.to** | Client-side algorithms, TypeScript math engines, SVG rendering code | Software engineers & web developers | Native `canonical_url` pointing to source calculator/monograph | Verified live canonical in HTML head |
-| **Hashnode** | Deep-dive technical architectural monographs, zero-DB physics engines | Web engineers & technical architects | Native `canonical_url` pointing to source calculator/monograph | Verified live canonical in HTML head |
-| **Medium** | Industry overview, building decarbonization, contractor guides | Building science & HVAC professionals | Native Medium cross-domain canonical setting | Verified live canonical in HTML head |
-| **Academia.edu** | Peer-reviewed technical monographs & formal engineering papers | Academic researchers & mechanical engineers | Technical report pre-print PDF with cited HVACLogic URL | Verified profile & paper upload link |
-| **Figshare** | Open tabular benchmark datasets (CSV, JSON, benchmark arrays) | Data scientists & academic researchers | Minted DataCite DOI with direct citation of HVACLogic URL | Verified resolvable DataCite DOI |
-| **Hugging Face** | AI/ML engineering datasets & structured property matrices | Data scientists & ML practitioners | Dataset repository card with source attribution & DOI | Verified live dataset card |
-| **OER Commons** | Interactive HTML5 courseware & student lab units | Higher education & vocational HVAC instructors | Open Author lesson module referencing HVACLogic tool | Verified public lesson URL |
-| **MERLOT** | STEM educational simulations & interactive learning objects | University mechanical engineering faculty | Peer-reviewed learning material catalog entry | Verified catalog ID & listing URL |
-| **Internet Archive** | Permanent academic PDF whitepapers & monograph archives | Public web archival & long-term digital preservation | Permanent PDF item upload with source attribution | Verified archive.org detail URL |
-| **BibSonomy** | Academic social bookmarks & structured BibTeX citations | Scholarly researchers & academic libraries | Direct BibTeX entry with verified DOI & HVACLogic URL | Verified public library bookmark |
+Every external distribution follows the immutable core-to-spoke flow:
+
+$$\text{HVACLOGIC CORE ASSET FIRST} \longrightarrow \text{VERIFY} \longrightarrow \text{SELECT BEST-FIT CHANNEL} \longrightarrow \text{ADAPT CONTENT} \longrightarrow \text{PUBLISH} \longrightarrow \text{VERIFY} \longrightarrow \text{LOG} \longrightarrow \text{MEASURE}$$
 
 ---
 
-## 3. Strict Layer Separation
+## 3. Asset-Class Distribution Protocols
 
-| Authority Layer | Definition & Scope | Primary Platforms / Targets | Link Nature |
-| :--- | :--- | :--- | :--- |
-| **Layer 1: Open Distribution** | Self-published technical syndication, pre-prints, and open data deposits. | DEV.to, Hashnode, Medium, Figshare, Hugging Face, Archive.org | Canonical / Sourced Attribution |
-| **Layer 2: Editorial Authority** | Independent, third-party trade journalism and editorial building science media. | ACHR News, GreenBuildingAdvisor, Energy Vanguard, Contracting Business | Editorial Contextual Dofollow |
-| **Layer 3: Research & Citations** | Academic journal citations, university engineering syllabi, and official OER course adoption. | University faculty, SSRN, OER Commons, MERLOT, ASHRAE | Academic Citation & Educational .edu |
+```
+1. RESEARCH / WHITEPAPER
+   HVACLogic Research Page (/research/<slug>)
+   └── Verify live page, PDF asset, and structured JSON-LD metadata
+       └── Select appropriate Preprint / Scientific Repository (e.g., SSRN, IEEE TechRxiv)
+           └── Deposit record & mint DOI (where supported)
+               └── Verify live landing page & attribution ➔ Log in SEO/BACKLINK_LOG.csv
+
+2. DATASET
+   HVACLogic Dataset Landing Page (/datasets/<slug>)
+   └── Verify schema.org/Dataset, CSV/JSON downloads, and variable dictionary
+       └── Select appropriate Scientific Data Repository (Figshare, Hugging Face, Dataverse)
+           └── Deposit benchmark matrix & obtain DataCite DOI
+               └── Verify live record & attribution ➔ Log in SEO/BACKLINK_LOG.csv
+
+3. ENGINEERING EDITORIAL ARTICLE
+   HVACLogic Calculator / Research / Dataset
+   └── Identify a NEW engineering angle / field case study
+       └── Draft 100% original, publication-specific article
+           └── Pitch / Submit to best-fit HVAC/engineering trade journal (e.g. ACHR News, GBA)
+               └── Natural contextual reference to HVACLogic source tool ➔ Log in SEO/BACKLINK_LOG.csv
+
+4. DEVELOPER ARTICLE
+   HVACLogic Calculator Engine / Technical Architecture
+   └── Identify genuine technical adaptation (TypeScript algorithms, Web Workers, reactive SVG)
+       └── Draft for developer platform (DEV.to / Hashnode)
+           └── Apply canonical tag ONLY if substantially identical; otherwise use contextual attribution
+               └── Verify live URL and HTML head canonical ➔ Log in SEO/BACKLINK_LOG.csv
+
+5. EDUCATIONAL RESOURCE
+   HVACLogic Research / Interactive Courseware Lab (/oer-modules/*.html)
+   └── Adapt into structured curriculum / student laboratory exercise
+       └── Submit to appropriate OER platform (OER Commons, MERLOT, institutional portal)
+           └── Embed contextual reference & computational tool link ➔ Log in SEO/BACKLINK_LOG.csv
+```
 
 ---
 
-## 4. Strict Anti-Duplication Pre-Check Protocol
+## 4. Canonical vs. Contextual Link Governance
 
-Before drafting or syndicating ANY article, dataset, or lab module:
-1. **Registry Inspection**: Inspect [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](file:///d:/HVACLab/docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md) and [`SEO/BACKLINK_LOG.csv`](file:///d:/HVACLab/SEO/BACKLINK_LOG.csv).
-2. **Topic Uniqueness**: Verify that the asset has NOT already been deposited on the selected platform.
-3. **Dedicated Copy Formatting**: Output all metadata (Title, Subtitle, Tags, Canonical URL) in separate dedicated code blocks.
-4. **Signature & Style**: Always sign as **`Miad S.`**; strictly prohibit em-dashes (`—`).
+1. **Substantially Identical / Syndicated Content**: Use cross-domain canonical tag to the HVACLogic source asset **only** when technically appropriate, supported by the platform, and verified in the rendered HTML head.
+2. **Original / Adapted Editorial Content**: Publish as an independent article with a natural, contextual link pointing to the relevant HVACLogic calculator, research paper, or dataset.
+3. **No Presumptions**: Never assume a third-party platform honors canonical directives without live verification.
+
+---
+
+## 5. Backlink Governance & Verification Standards
+
+1. **Database Status Pipeline**:
+   $$\text{Prospect} \neq \text{Contacted} \neq \text{Published} \neq \text{Verified Backlink}$$
+2. **Link Status Classification**:
+   - `VERIFIED DOFOLLOW`: Confirmed via live HTML inspection (`rel` attribute checked; no `nofollow`, `ugc`, or `sponsored`).
+   - `NOFOLLOW`: Link contains `rel="nofollow"`, `rel="ugc"`, or platform default.
+   - `UNKNOWN`: Unverified or pending manual audit.
+3. **Dofollow Policy**:
+   - Dofollow links are never required; dofollow status is never promised or presumed.
+   - External links remain a supporting discovery mechanism.
+4. **Anti-Duplication Invariant**:
+   - Before drafting any external piece, inspect [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](../docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md) and [`SEO/BACKLINK_LOG.csv`](./BACKLINK_LOG.csv). Never suggest or draft a topic already published on that platform.

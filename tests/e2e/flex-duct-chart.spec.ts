@@ -13,7 +13,7 @@ test.describe("Flexible Duct CFM & Friction Chart E2E Suite", () => {
     await expect(page.locator(".direct-answer-card")).toContainText("standard 6-inch flexible duct");
 
     // Schema JSON-LD
-    const jsonLd = page.locator('script[type="application/ld+json"]');
+    const jsonLd = page.locator('script[type="application/ld+json"]').first();
     await expect(jsonLd).toBeAttached();
   });
 

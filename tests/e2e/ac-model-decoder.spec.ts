@@ -13,7 +13,7 @@ test.describe("AC Model & Serial Number Decoder E2E Suite", () => {
     await expect(page.locator(".direct-answer-card")).toContainText("air conditioner tonnage from the model number");
 
     // Schema JSON-LD
-    const jsonLd = page.locator('script[type="application/ld+json"]');
+    const jsonLd = page.locator('script[type="application/ld+json"]').first();
     await expect(jsonLd).toBeAttached();
   });
 
@@ -36,7 +36,7 @@ test.describe("AC Model & Serial Number Decoder E2E Suite", () => {
     await page.goto("/calculators/ac-model-decoder");
 
     // Click Goodman 3.0 Ton preset
-    const goodmanChip = page.locator(".preset-chip-btn").filter({ hasText: "Goodman 3.0 Ton" });
+    const goodmanChip = page.locator(".preset-chip-btn").filter({ hasText: "Goodman" });
     await goodmanChip.click();
 
     await expect(page.locator("#model-input")).toHaveValue("GSX140361KB");
