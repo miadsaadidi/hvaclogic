@@ -45,6 +45,13 @@
     - Maintain strict 1-to-1 parity between on-site implementation reality and external publication claims.
 - **Rule 9: Core-to-Spoke Hub Architecture & Google-Ranking-First Principle**:
   `hvaclogic.org` is the immutable core hub. HVACLogic's own pages (calculators, topic hubs, guides, research papers, datasets) are the primary SEO assets. All external distributions (articles, preprints, datasets, directory profiles, and outreach) are spokes that support the core site. The primary SEO objective is increasing HVACLogic's Google rankings and organic search visibility for high-value HVAC engineering search intents. Use cross-domain canonical tags for substantially identical/syndicated content where supported, and natural contextual links for original/adapted editorial content. Never assume a platform honors canonical tags without live HTML inspection. External publishing remains a supporting distribution strategy, not the primary SEO objective.
+- **Rule 10: Immediate PR Status Reporting & Zero Presumptive PR Creation**:
+  When the user commands an action on a specific PR (e.g. *"merge PR X"*, *"push to PR X"*):
+  - Check the PR status first via GitHub CLI.
+  - If the PR is already merged or closed, immediately report its status in plain text.
+  - Strictly **DO NOT** create new PRs or fallback branches without explicit user confirmation.
+- **Rule 11: Direct Answers with Zero Apologies**:
+  When receiving corrections or status inquiries, state facts and outcomes directly without conversational apologies, meta-commentary, or excuses.
 
 ---
 
@@ -53,7 +60,7 @@
 - **GitHub PR & Vercel Automated Deployment Lifecycle**:
   - **Small Tweaks**: Direct commits to `main` for simple text corrections, minor CSS refinements, or small single-file bug fixes.
   - **Medium / Large Updates (MANDATORY PR)**: Create a feature branch (`feat/<slug>`, `refactor/<slug>`), run pre-PR checks (`npm test` & `npm run typecheck`), push, and **immediately open a formal GitHub PR**.
-  - **Online Merge & Cleanup**: Merge online via GitHub API / Web (never force-push local merges). Verify Vercel production deployment reaches `READY` on `hvaclogic.org`, purge stale preview deployments via Vercel API, and pull `main` locally.
+  - **Online Merge & Cleanup**: Merge online via GitHub API / Web (never force-push local merges). Immediately verify Vercel production deployment reaches `READY` on `hvaclogic.org`, automatically purge stale preview deployments (`vercel rm <preview-url> --yes`), and pull `main` locally.
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 - **Separate Copyable Blocks for Metadata**: Whenever providing metadata, tags, titles, descriptions, or form fields for publishing (e.g. Medium, Dev.to, Academia.edu, ORCID, BibSonomy), ALWAYS output **each individual field in its own separate, dedicated code block** for instant 1-click copying.
