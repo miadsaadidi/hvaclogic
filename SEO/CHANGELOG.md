@@ -24,6 +24,96 @@ For every systemic SEO modification, record:
 
 ## Historical Changelog Entries
 
+### [2026-09-17] — Search-Intent & Technical Hardening of Flex Duct CFM Chart (/calculators/flex-duct-cfm-chart) (v4.3.0)
+- **Type**: On-Site Search-Intent, Technical Substance & Internal Link Architecture.
+- **Reason**: Optimized `/calculators/flex-duct-cfm-chart` for its verified Google Search Console demand (Snapshot A: 143 impressions, 1 click, 0.70% CTR, pos 40.01; Snapshot B: 122 impressions, 0 clicks, 0.00% CTR, pos 47.98) across observed search queries (`flex duct cfm chart`, `flex duct cfm`, `flexible duct sizing chart`, `400 cfm duct size flex`). Enriched on-page substance with complete 12-diameter (4" to 20") reference matrix at 0.05", 0.08", and 0.10" WG friction rates, ASHRAE RP-1333 empirical sag deratings (0% stretched = 1.00, 4% code tension = 0.93, 15% attic sag = 0.78, 30% choked = 0.65), two worked engineering scenarios (8" master bedroom run & 400 CFM zone with 15% attic sag derating), and contextual internal links to `/calculators/ductulator` and `/calculators/cfm-calculator`. Preserved 100% of the underlying calculation engine.
+- **URLs / Files Affected**:
+  - `src/app/calculators/flex-duct-cfm-chart/page.tsx`
+  - `src/lib/data/calculators-registry.ts`
+  - `tests/e2e/flex-duct-chart.spec.ts`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Expected Outcome**: Enhance search-intent satisfaction, technical clarity, and organic visibility/CTR for HVAC installers, technicians, and designers sizing flexible ductwork.
+- **Actual Outcome / Validation**: 0 TypeScript errors (`npm run typecheck`), 134/134 Vitest unit tests passed, 86/86 Next.js static routes pre-rendered, 8/8 Playwright E2E tests passed (Desktop & Mobile Chromium).
+- **Follow-Up Date**: Ongoing (Search Console Observation).
+
+### [2026-09-17] — Search-Intent & Technical Hardening of AC Model Decoder (/calculators/ac-model-decoder) (v4.2.0)
+- **Type**: On-Site Search-Intent, Technical Substance & Internal Link Architecture.
+- **Reason**: Optimized `/calculators/ac-model-decoder` for its verified Google Search Console demand (203 impressions, 0 clicks, 0.00% CTR, position 33.93) across target query intents (`how to find ac tonnage by model number`, `ac model number tonnage`, Carrier/Trane/Goodman/Lennox/Rheem model decoding). Enriched on-page substance with verified manufacturer nomenclature rules, nominal capacity extraction formulas (divide capacity digits by 12 for tonnage), data plate distinction (model vs serial number), structured capacity reference matrix (1.5T to 5.0T), two verified worked examples, and contextual internal links to `/calculators/ac-tonnage-calculator` and `/calculators/btu-calculator`. Preserved 100% of the underlying calculation engine.
+- **URLs / Files Affected**:
+  - `src/app/calculators/ac-model-decoder/page.tsx`
+  - `src/lib/data/calculators-registry.ts`
+  - `tests/e2e/ac-model-decoder.spec.ts`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Expected Outcome**: Enhance search-intent satisfaction, technical utility, and SERP click-through rate for contractors, technicians, and homeowners searching for AC unit capacity decoding.
+- **Actual Outcome / Validation**: 0 TypeScript errors (`npm run typecheck`), 134/134 Vitest unit tests passed, 86/86 Next.js static routes pre-rendered, 8/8 Playwright E2E tests passed (Desktop & Mobile Chromium).
+- **Follow-Up Date**: Ongoing (Search Console Observation).
+
+### [2026-09-17] — On-Page Search-Intent & Technical Hardening of PT Chart (/calculators/pt-chart)
+- **Type**: On-Site Search-Intent, Content Substance & Internal Link Architecture.
+- **Reason**: Optimized `/calculators/pt-chart` for its verified Google Search Console strike-distance demand (77 impressions, 1.30% CTR, position 20.84) across high-intent query families (`pt chart`, `454b pt chart`, `r32 pt chart`, `a2l refrigerant pressure chart`). Enriched on-page substance with verified saturation benchmark tables, expanded thermodynamic explanations of bubble vs. dew point curves and zeotropic temperature glide, optimized title and meta description length, and connected radial internal links to companion charging tools and research monographs. Preserved 100% of the underlying calculation engine.
+- **URLs / Files Affected**:
+  - `src/app/calculators/pt-chart/page.tsx`
+  - `src/lib/data/calculators-registry.ts`
+  - `tests/e2e/pt-chart.spec.ts`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Enhance search-intent satisfaction, technical utility, and SERP click-through rate for field technicians and engineers searching refrigerant saturation curves.
+- **Actual Outcome / Validation**: 0 TypeScript errors (`npm run typecheck`), 134/134 Vitest unit tests passed, 86/86 Next.js static routes pre-rendered, 8/8 Playwright E2E tests passed.
+- **Follow-Up Date**: Ongoing (Search Console Observation).
+
+### [2026-09-17] — Transition to Google Search Intent & On-Site Engineering Assets Operating System (v4.0.0)
+- **Type**: Master Strategy, Operating System, Governance & KPI Hierarchy Overhaul.
+- **Reason**: Refocused the entire HVACLogic SEO program around one primary objective: increasing HVACLogic's visibility and rankings in Google Search for high-value HVAC engineering, building-science, thermodynamics, heat-pump, cooling/heating-load, psychrometric, energy-efficiency, and engineering-calculation search intents. HVACLogic's own pages are established as primary SEO assets; external publishing platforms remain supporting distribution channels only. Codified the 7-tier priority hierarchy, existing-asset-first rule (1 search intent = 1 canonical URL), calculators as comprehensive search landing pages, distinct PowerLab ↔ HVACLogic entity boundaries, restructured KPI hierarchy (Google impressions/clicks/rankings as primary, Ahrefs/backlink volume as diagnostic-only), and reinforced the single active objective governance loop.
+- **URLs / Files Affected**:
+  - `SEO/MASTER_STRATEGY.md` (Updated to v4.0.0)
+  - `SEO/WEEKLY_PLAN.md` (Updated to v4.0.0 with candidate backlog)
+  - `SEO/EXTERNAL_DISTRIBUTION.md` (Updated to v4.0.0 framing external publishing as supporting distribution only)
+  - `AGENTS.md` (Synchronized with Google-ranking-first and on-site asset priority)
+  - `SEO/DAILY_LOG.md` (Recorded session log)
+  - `SEO/CHANGELOG.md` (Updated to v4.0.0)
+- **Expected Outcome**: Eliminate volume-driven and backlink-first assumptions; ground 100% of future SEO planning in Google search intent, on-site engineering substance, topic cluster coherence, and Search Console evidence.
+- **Actual Outcome / Validation**: Governance and strategy files fully synchronized; zero unauthorized publishing, outreach, or code edits.
+- **Follow-Up Date**: Ongoing (Standard Google-First Operating System).
+
+### [2026-09-17] — Codification of Action Flow & Plan Mode vs. Execution Mode Protocol (v3.5.0)
+- **Type**: Operational Architecture, Interaction Protocol & Daily Planning Governance.
+- **Reason**: Formally separate Plan Mode from Execution Mode in all daily/weekly autonomous SEO sessions. Require that every proposed plan begins with Current State, Today's Plan Table (`#`, `Action`, `Asset`, `Channel`, `Purpose`, `Status`), visual Execution Flow (`Step 1 → Step 2 → ...`), and action-by-action mini workflows (`Goal`, `Flow`, `Evidence`, `Done when`, `Validation`) before any detailed code, copy, dataset, or metadata is presented. Lock the permanent rule: the user must always understand WHAT → WHY → WHERE → IN WHAT ORDER → WHAT "DONE" MEANS prior to receiving implementation material.
+- **URLs / Files Affected**:
+  - `AGENTS.md` (Updated Rule 8 with Plan Mode vs. Execution Mode requirements)
+  - `SEO/MASTER_STRATEGY.md` (Updated Section N.5 with Action Flow and Plan Table schema)
+  - `SEO/WEEKLY_PLAN.md` (Updated Section 7 with standard Plan Mode schema)
+  - `SEO/DAILY_LOG.md` (Recorded session log)
+  - `SEO/CHANGELOG.md` (Updated to v3.5.0)
+- **Expected Outcome**: Guarantee total clarity on operational sequence, objectives, and completion criteria before presenting detailed publishing, coding, or outreach assets.
+- **Actual Outcome / Validation**: Governance files synchronized; zero SEO execution or code changes enacted during protocol update.
+- **Follow-Up Date**: Ongoing (Standard Operating Protocol).
+
+### [2026-09-17] — Transition to Permanent Evidence-Driven External Publishing System (v3.4.0)
+- **Type**: Operational Architecture, Governance & External Publishing Model.
+- **Reason**: Permanently replace fixed syndication calendars, daily publishing quotas, and speculative SEO outcome claims with the evidence-driven external publishing system matching PowerLab's architecture. Lock the master core-to-spoke flow (`HVACLogic Core First → Verify → Select Best-Fit Channel → Adapt → Publish → Verify → Log → Measure`), asset-fit publishing protocols across 5 asset classes, strict canonical vs contextual link rules, and the 12-section single-objective autonomous decision template.
+- **URLs / Files Affected**:
+  - `SEO/WEEKLY_PLAN.md` (Converted into Evidence-Driven Weekly Tactical Backlog v3.0.0)
+  - `SEO/MASTER_STRATEGY.md` (Updated Sections L & N)
+  - `SEO/EXTERNAL_DISTRIBUTION.md` (Updated to v3.0.0)
+  - `AGENTS.md` (Synchronized Rule 8, 9, 39, and asset-fit publishing)
+  - `SEO/DAILY_LOG.md` (Updated log)
+  - `SEO/CHANGELOG.md` (Updated to v3.4.0)
+- **Expected Outcome**: Eliminate artificial publishing quotas; ground 100% of external publishing and outreach in verified on-site readiness, authentic topical fit, and rigorous link verification.
+- **Actual Outcome / Validation**: All governance and tactical files synchronized; Week 01 items preserved as candidate backlog; zero unauthorized publishing, outreach, or code edits.
+- **Follow-Up Date**: Ongoing (Strict Evidence-Driven Mode).
+
+### [2026-09-17] — Codification of Weekly Thursday Authority Operating Plan (v3.3.0 - Superceded)
+- **Type**: Architecture, Governance & Distribution.
+- **Reason**: Initial 7-day tactical plan (superseded by Evidence-Driven Weekly Tactical Backlog v3.4.0).
+- **URLs / Files Affected**: `SEO/WEEKLY_PLAN.md`
+- **Expected Outcome**: Tactical schedule structure.
+- **Actual Outcome / Validation**: Replaced with Evidence-Driven Backlog.
+- **Follow-Up Date**: N/A.
+
 ### [2026-09-16] — Sitemap & Whitepaper Canonical Route Harmonization (v3.2.0)
 - **Type**: Technical SEO, Crawlability & Canonical Alignment.
 - **Reason**: Eliminate crawler redirect noise and potential 404 indexing errors in Google Search Console by unifying all whitepaper PDF declarations under `/whitepapers/` and dynamically deriving sitemap PDF URLs directly from the research paper registry.

@@ -36,9 +36,13 @@ describe("NFPA 54 / IFGC Combustion Air Sizing Engine", () => {
     // Method 3 (Outdoor Horizontal 2 openings): 120,000 / 2,000 = 60 sq in net each.
     const horiz = res.methods.find((m) => m.methodId === "outdoor_horizontal_two_openings");
     expect(horiz?.netFreeAreaSqIn).toBe(60);
+
+    // Summary text regression check
+    expect(res.summary).toContain("CONFINED for 120,000 BTU/hr total gas load under the Standard Method");
+    expect(res.summary).toContain("Permanent combustion air openings are required by NFPA 54 / IFGC.");
   });
 
-  it("detects unconfined space in large open basement", () => {
+  it("detects unconfined space in large open basement and qualifies Standard Method / ACH boundary", () => {
     const input: CombustionAirInput = {
       appliances: [
         { id: "furnace", name: "Gas Furnace", inputBtuHr: 60000 },
@@ -53,5 +57,9 @@ describe("NFPA 54 / IFGC Combustion Air Sizing Engine", () => {
     // Required = (60,000 / 1000) * 50 = 3,000 cu ft
     expect(res.requiredUnconfinedVolumeCuFt).toBe(3000);
     expect(res.isConfinedSpace).toBe(false);
+
+    // Summary text regression check for unconfined condition
+    expect(res.summary).toContain("meets the Standard Method unconfined threshold (50 cu ft / 1,000 BTU/hr)");
+    expect(res.summary).toContain("Note: This does not establish compliance where the building envelope infiltration rate is known to be below 0.40 ACH");
   });
 });

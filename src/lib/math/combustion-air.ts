@@ -123,8 +123,8 @@ export function calculateCombustionAir(input: CombustionAirInput): CombustionAir
   });
 
   const summary = isConfinedSpace
-    ? `Mechanical room volume of ${roomVolumeCuFt.toLocaleString()} cu ft is CONFINED for ${totalInputBtuHr.toLocaleString()} BTU/hr total gas load (requires ${requiredUnconfinedVolumeCuFt.toLocaleString()} cu ft). Permanent combustion air openings are required by NFPA 54.`
-    : `Mechanical room volume of ${roomVolumeCuFt.toLocaleString()} cu ft is UNCONFINED for ${totalInputBtuHr.toLocaleString()} BTU/hr total gas load (exceeds ${requiredUnconfinedVolumeCuFt.toLocaleString()} cu ft threshold). Natural infiltration provides adequate combustion air.`;
+    ? `Mechanical room volume of ${roomVolumeCuFt.toLocaleString()} cu ft is CONFINED for ${totalInputBtuHr.toLocaleString()} BTU/hr total gas load under the Standard Method (requires ${requiredUnconfinedVolumeCuFt.toLocaleString()} cu ft). Permanent combustion air openings are required by NFPA 54 / IFGC.`
+    : `Mechanical room volume of ${roomVolumeCuFt.toLocaleString()} cu ft meets the Standard Method unconfined threshold (50 cu ft / 1,000 BTU/hr) for ${totalInputBtuHr.toLocaleString()} BTU/hr total gas load. Note: This does not establish compliance where the building envelope infiltration rate is known to be below 0.40 ACH (where the Known Air Infiltration Rate method or outdoor air provisions are required).`;
 
   return {
     totalInputBtuHr,

@@ -341,7 +341,7 @@ export function CombustionAirTool() {
               >
                 {output.isConfinedSpace
                   ? `Deficit: ${output.volumeDeficitCuFt.toLocaleString()} cu ft — Permanent Combustion Openings Required`
-                  : "Adequate Natural Infiltration Air Available"}
+                  : "Meets Standard Method Threshold (Requires Infiltration ACH ≥ 0.40)"}
               </span>
             </div>
           </div>

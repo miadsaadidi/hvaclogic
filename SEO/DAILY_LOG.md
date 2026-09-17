@@ -27,6 +27,187 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-17] — Search-Intent & Technical Hardening of Flex Duct CFM Chart (/calculators/flex-duct-cfm-chart)
+- **Autonomous Priority Selected**: On-Site Search-Intent & Technical Content Hardening (`P1 Strategic Search Asset`).
+- **Evidence & Rationale**:
+  - **VERIFIED Baseline**: Snapshot A (cumulative testing): 143 impressions, 1 click, 0.70% CTR, position 40.01; Snapshot B (recent 28-day window): 122 impressions, 0 clicks, 0.00% CTR, average position 47.98.
+  - **HYPOTHESIS**: Clearer SERP intent alignment for observed queries (`flex duct cfm chart`, `flex duct cfm`, `flexible duct sizing chart`, `400 cfm duct size flex`) and structured on-page engineering reference data (ASHRAE RP-1333 sag deratings) may improve CTR and organic search visibility.
+- **Target Assets**:
+  - `src/app/calculators/flex-duct-cfm-chart/page.tsx` (Direct answer, methodology, 12-diameter sizing matrix, worked examples, and contextual links)
+  - `src/lib/data/calculators-registry.ts` (SEO title: `Flex Duct CFM Chart: Sizing 4" to 20" Flexible Ducts`, meta description: 157 chars, related calculators)
+  - `tests/e2e/flex-duct-chart.spec.ts` (Playwright E2E assertions)
+  - `SEO/DAILY_LOG.md` (Recorded execution)
+  - `SEO/CHANGELOG.md` (Recorded changelog entry)
+  - `SEO/WEEKLY_PLAN.md` (Updated active objective status)
+- **Actions Executed**:
+  1. Audited calculation engine (`src/lib/math/flex-duct.ts`) to verify supported diameters (4" to 20"), friction rates (0.05", 0.08", 0.10", 0.15" WG), and empirical sag factors (0% stretched = 1.00, 4% code tension = 0.93, 15% attic sag = 0.78, 30% choked = 0.65). Preserved 100% of underlying calculation code.
+  2. Optimized SEO title to `Flex Duct CFM Chart: Sizing 4" to 20" Flexible Ducts` (54 chars) and meta description (157 chars).
+  3. Added structured on-page technical guidance covering helical core turbulence, ASHRAE RP-1333 empirical deratings, and SMACNA/ADC hanging standards (support straps every 4 feet, maximum 0.5" sag per linear foot).
+  4. Created complete 12-diameter static reference matrix (4" through 20") comparing quiet return (0.05" WG), standard supply (0.08" WG), and high-velocity (0.10" WG) airflow capacities traceable directly to `generateFlexDuctMatrix(4)`.
+  5. Added two verified worked examples:
+     - *Worked Example 1*: Sizing an 8-inch flexible duct for a 150 CFM bedroom run at 0.08" WG and 430 FPM velocity.
+     - *Worked Example 2*: Sizing a 400 CFM branch zone requiring a 12-inch flexible duct and quantifying the 22% capacity loss if installed with 15% attic sag.
+  6. Injected contextual workflow links to `/calculators/ductulator` (sheet metal equivalence) and `/calculators/cfm-calculator` (room CFM calculation).
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors.
+  - `npm test` (Vitest): 33 test files passed, 134/134 unit tests passed.
+  - `npm run build`: 86/86 static routes pre-rendered successfully.
+  - `npx playwright test tests/e2e/flex-duct-chart.spec.ts`: 8/8 tests passed on Desktop and Mobile Chromium.
+- **Operational Files Updated**:
+  - [`src/app/calculators/flex-duct-cfm-chart/page.tsx`](../src/app/calculators/flex-duct-cfm-chart/page.tsx)
+  - [`src/lib/data/calculators-registry.ts`](../src/lib/data/calculators-registry.ts)
+  - [`tests/e2e/flex-duct-chart.spec.ts`](../tests/e2e/flex-duct-chart.spec.ts)
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+  - [`SEO/WEEKLY_PLAN.md`](./WEEKLY_PLAN.md)
+- **Status / Follow-Up Date**: COMPLETE. Transitioned into post-change Search Console measurement and re-diagnosis.
+
+### [2026-09-17] — Search-Intent & Technical Hardening of AC Model Decoder (/calculators/ac-model-decoder)
+- **Autonomous Priority Selected**: On-Site Search-Intent & Technical Content Hardening (`P1 Strategic Search Asset`).
+- **Evidence & Rationale**:
+  - **VERIFIED**: Historical GSC baseline showed **203 impressions**, **0 clicks**, **0.00% CTR**, and an average position of **33.93**.
+  - **HYPOTHESIS**: Clearer SERP intent alignment (`how to find ac tonnage by model number`, `ac model number tonnage`, supported brand decoding) and structured on-page brand guidance may improve CTR and user task completion.
+- **Target Assets**:
+  - `src/app/calculators/ac-model-decoder/page.tsx` (Direct answer, methodology, brand nomenclature reference, reference matrix, worked examples, and contextual sizing links)
+  - `src/lib/data/calculators-registry.ts` (SEO title: `AC Model Number Tonnage Decoder: Carrier, Trane, Lennox`, meta description: 152 chars, related calculators)
+  - `SEO/DAILY_LOG.md` (Recorded execution)
+  - `SEO/CHANGELOG.md` (Recorded changelog entry)
+- **Actions Executed**:
+  1. Audited decoder calculation engine (`src/lib/math/ac-model-decoder.ts`) to verify supported OEM rules (Carrier/Bryant/Payne, Trane/American Standard, Goodman/Amana/Daikin, Lennox, Rheem/Ruud, ICP/Heil, and York/Coleman). Preserved 100% of underlying calculation code.
+  2. Optimized SEO title to `AC Model Number Tonnage Decoder: Carrier, Trane, Lennox` (56 chars) and meta description (152 chars) focusing on verified search intents.
+  3. Added structured on-page technical guidance distinguishing Model Number (capacity rating) from Serial Number (manufacture date), explaining embedded capacity digits (divide by 12 for tonnage), and detailing manufacturer-specific prefix/position rules.
+  4. Created standard capacity reference matrix (1.5T to 5.0T with BTU/hr, design CFM @ 400 CFM/ton, and square footage coverage).
+  5. Added two verified worked examples: Carrier 3-Ton Split AC condenser (`24ACC636A003`) and Trane 3-Ton Heat Pump condenser (`4TTR4036L1000AA`).
+  6. Injected contextual workflow links to `/calculators/ac-tonnage-calculator` and `/calculators/btu-calculator` (omitted unrelated refrigerant charge link per scope discipline).
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors.
+  - `npm test` (Vitest): 33 test files passed, 134/134 tests passed.
+  - `npm run build`: 86/86 static routes pre-rendered successfully.
+- **Operational Files Updated**:
+  - [`src/app/calculators/ac-model-decoder/page.tsx`](../src/app/calculators/ac-model-decoder/page.tsx)
+  - [`src/lib/data/calculators-registry.ts`](../src/lib/data/calculators-registry.ts)
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+  - [`SEO/WEEKLY_PLAN.md`](./WEEKLY_PLAN.md)
+- **Status / Follow-Up Date**: COMPLETE. Transitioned into post-change Search Console measurement and re-diagnosis.
+
+### [2026-09-17] — On-Page Search-Intent & Technical Hardening of PT Chart (/calculators/pt-chart)
+- **Autonomous Priority Selected**: On-Site Search-Intent & Technical Content Optimization (`P1 Strategic Search Asset`).
+- **Evidence & Rationale**: Historical GSC telemetry verified that `/calculators/pt-chart` achieved **Position 20.84** with **77 impressions** and **1.30% CTR** (1 click) during algorithmic testing. To optimize for verified search intent (`pt chart`, `454b pt chart`, `r32 pt chart`, `a2l refrigerant pressure chart`) without keyword stuffing or speculative claims, the on-page content was strengthened with precise thermodynamic definitions, verified saturation benchmark reference data, and contextual internal bridges to companion charging and research resources.
+- **Target Assets**:
+  - `src/app/calculators/pt-chart/page.tsx` (Expanded direct answer, methodology, benchmark comparison table, and worked superheat/subcooling examples)
+  - `src/lib/data/calculators-registry.ts` (Optimized `seoTitle` to 51 chars and `metaDescription` to 154 chars)
+  - `tests/e2e/pt-chart.spec.ts` (Updated Playwright JSON-LD locator assertion)
+  - `SEO/DAILY_LOG.md` (Recorded execution)
+  - `SEO/CHANGELOG.md` (Recorded changelog entry)
+- **Actions Executed**:
+  1. Updated SEO title to `R-454B, R-32 & A2L Pressure-Temperature (PT) Chart` (51 chars) and refined meta description (154 chars).
+  2. Preserved the exact client-side calculation engine and validated thermodynamic datasets in `src/lib/math/refrigerants.ts` and `src/lib/math/pt-chart.ts`.
+  3. Added verified benchmark saturation values for 40°F evaporator suction (R-454B 112.0 PSIG Dew, R-32 119.0 PSIG, R-410A 118.0 PSIG, R-22 68.5 PSIG) and 110°F condenser liquid (R-454B 361.8 PSIG Bubble, R-32 382.0 PSIG, R-410A 365.0 PSIG, R-22 226.0 PSIG).
+  4. Expanded technical explanations of vapor-liquid phase equilibrium, bubble point vs. dew point, and zeotropic temperature glide.
+  5. Injected bidirectional contextual links to `/calculators/superheat-subcooling-calculator`, `/calculators/refrigerant-charge-calculator`, and companion monograph `/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b`.
+  6. Provided two worked engineering examples: 1) Suction Superheat verification on an R-454B heat pump (Dew Point curve), and 2) Liquid Line Subcooling verification on an R-454B system (Bubble Point curve).
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors.
+  - `npm test` (Vitest): 33 test files passed, 134/134 unit and route tests passing.
+  - `npm run build`: 86/86 static routes pre-rendered successfully.
+  - `npx playwright test tests/e2e/pt-chart.spec.ts`: 8/8 E2E tests passed on Chromium and Mobile Chrome.
+- **Operational Files Updated**:
+  - [`src/app/calculators/pt-chart/page.tsx`](../src/app/calculators/pt-chart/page.tsx)
+  - [`src/lib/data/calculators-registry.ts`](../src/lib/data/calculators-registry.ts)
+  - [`tests/e2e/pt-chart.spec.ts`](../tests/e2e/pt-chart.spec.ts)
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+- **Status / Follow-Up Date**: COMPLETE. Awaiting Search Console measurement and re-diagnosis.
+
+### [2026-09-17] — Migration to Google Search Intent & On-Site Engineering Assets Operating System (v4.0.0)
+- **Autonomous Priority Selected**: Strategic SEO Architecture, Governance & Operating Model Overhaul.
+- **Evidence & Rationale**: Updated the HVACLogic master SEO strategy, operating rules, weekly planning system, and KPI hierarchy around the central objective of maximizing Google Search rankings and visibility across high-value HVAC engineering, building-science, thermodynamics, heat-pump, load-calculation, psychrometric, and energy-efficiency search intents. Established HVACLogic's own pages as the primary SEO assets, codifying the 7-tier priority hierarchy, the existing-asset-first rule (1 intent = 1 canonical URL), calculators as comprehensive search landing pages, distinct PowerLab ↔ HVACLogic entity boundaries, restructured KPI hierarchy (impressions, clicks, rankings as primary; Ahrefs/backlink volume as diagnostic-only), and strict single-active-objective governance.
+- **Target Assets**:
+  - `SEO/MASTER_STRATEGY.md` (Updated to v4.0.0)
+  - `SEO/WEEKLY_PLAN.md` (Updated to v4.0.0)
+  - `SEO/EXTERNAL_DISTRIBUTION.md` (Updated to v4.0.0)
+  - `AGENTS.md` (Synchronized guidelines)
+  - `SEO/CHANGELOG.md` (Recorded v4.0.0 entry)
+  - `SEO/DAILY_LOG.md` (Recorded session log)
+- **Actions Executed**:
+  1. Audited the complete repository SEO and governance architecture.
+  2. Overhauled `SEO/MASTER_STRATEGY.md` with the 7-tier priority hierarchy, core-to-spoke search model, P1-P4 asset classifications, calculator deep technical standards, and truthful schema governance.
+  3. Overhauled `SEO/WEEKLY_PLAN.md` to establish the candidate backlog focused on Google search intent and set current active objective to NONE (awaiting diagnosis and approval).
+  4. Updated `SEO/EXTERNAL_DISTRIBUTION.md` to define external publishing strictly as supporting distribution without volume quotas or dofollow mandates.
+  5. Updated `AGENTS.md` and recorded formal changelog and daily operating entries.
+  6. Zero unauthorized code modifications, publishing campaigns, or outreach executed.
+- **Validation & Quality Checks**:
+  - Cross-file consistency verified across all persistent SEO files.
+  - Zero speculative ranking claims or fabricated Search Console metrics.
+- **Operational Files Updated**:
+  - [`SEO/MASTER_STRATEGY.md`](./MASTER_STRATEGY.md)
+  - [`SEO/WEEKLY_PLAN.md`](./WEEKLY_PLAN.md)
+  - [`SEO/EXTERNAL_DISTRIBUTION.md`](./EXTERNAL_DISTRIBUTION.md)
+  - [`AGENTS.md`](../AGENTS.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+- **Status / Follow-Up Date**: COMPLETE. Active operating governance. Awaiting user direction on first diagnostic objective.
+
+### [2026-09-17] — Codification of Action Flow & Plan Mode vs. Execution Mode Protocol
+- **Autonomous Priority Selected**: Interaction Architecture & Daily Planning Governance.
+- **Evidence & Rationale**: Codified the strict operational separation between Plan Mode and Execution Mode. In Plan Mode, the agent outputs current state, a clear Today's Plan Table (`#`, `Action`, `Asset`, `Channel`, `Purpose`, `Status`), visual execution flows (`Step 1 → Step 2 → ...`), and action-by-action mini workflows (`Goal`, `Flow`, `Evidence`, `Done when`, `Validation`) before any detailed code, copy, dataset, or metadata is generated. Detailed implementation material is presented strictly in Execution Mode following explicit user approval.
+- **Target Assets**:
+  - `AGENTS.md` (Updated Rule 8 with Plan Mode vs. Execution Mode)
+  - `SEO/MASTER_STRATEGY.md` (Updated Section N.5 with Action Flow schema)
+  - `SEO/WEEKLY_PLAN.md` (Updated Section 7)
+  - `SEO/DAILY_LOG.md` (Recorded log)
+  - `SEO/CHANGELOG.md` (Updated changelog)
+- **Actions Executed**:
+  1. Codified standard Plan Mode table and execution flow schemas across all persistent governance files.
+  2. Enforced strict prohibition against premature material dumping (articles, CSVs, metadata) prior to plan approval.
+  3. Codified the permanent understanding rule: WHAT → WHY → WHERE → IN WHAT ORDER → WHAT "DONE" MEANS.
+- **Validation & Quality Checks**: Verified 100% alignment across workspace rules and SEO strategy.
+- **Operational Files Updated**:
+  - [`AGENTS.md`](../AGENTS.md)
+  - [`SEO/MASTER_STRATEGY.md`](./MASTER_STRATEGY.md)
+  - [`SEO/WEEKLY_PLAN.md`](./WEEKLY_PLAN.md)
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+- **Status / Follow-Up Date**: COMPLETE. Active operating governance.
+
+### [2026-09-17] — Conversion to Permanent Evidence-Driven External Publishing System
+- **Autonomous Priority Selected**: Strategic SEO Architecture, Governance & External Publishing Hardening.
+- **Evidence & Rationale**: Converted the legacy Week 01 fixed syndication calendar into the permanent Evidence-Driven External Publishing System matching PowerLab's architecture. Fixed Day 1-7 quotas, rigid sequences, and speculative backlink claims were permanently retired and classified as `LEGACY / BACKLOG / NON-AUTHORITATIVE REFERENCE`. Codified the master core-to-spoke flow (`HVACLogic Core First → Verify → Select Best-Fit Channel → Adapt → Publish → Verify → Log → Measure`), 5 asset-class publishing flows, canonical vs. contextual link governance, `VERIFIED DOFOLLOW / NOFOLLOW / UNKNOWN` link classification, and the standardized 12-section autonomous diagnosis output template.
+- **Target Assets**:
+  - `SEO/WEEKLY_PLAN.md` (Converted into Evidence-Driven Weekly Tactical Backlog v3.0.0)
+  - `SEO/MASTER_STRATEGY.md` (Updated Sections L & N)
+  - `SEO/EXTERNAL_DISTRIBUTION.md` (Updated to v3.0.0 with 5 asset publishing flows)
+  - `AGENTS.md` (Updated Rules 8, 9, 39, and asset-fit external publishing)
+  - `SEO/DAILY_LOG.md` (Recorded session log)
+  - `SEO/CHANGELOG.md` (Recorded system update)
+- **Actions Executed**:
+  1. Reclassified legacy Week 01 calendar items as candidate backlog items with zero quota authority.
+  2. Codified the 5 asset-class publishing protocols (Research, Dataset, Engineering Editorial, Developer Article, Educational Resource).
+  3. Defined canonical vs contextual link rules (canonical for identical syndicated copy where supported; contextual links for original adapted copy).
+  4. Standardized the autonomous daily decision workflow (diagnose evidence → 1 asset → 1 channel → 1 objective → exact execution steps → STOP for approval).
+  5. Zero code modifications, publishing, or outreach executed.
+- **Validation & Quality Checks**:
+  - Cross-document consistency verified across all persistent SEO files and workspace rules.
+  - Zero external submissions, emails, or code alterations executed.
+- **Operational Files Updated**:
+  - [`SEO/WEEKLY_PLAN.md`](./WEEKLY_PLAN.md)
+  - [`SEO/MASTER_STRATEGY.md`](./MASTER_STRATEGY.md)
+  - [`SEO/EXTERNAL_DISTRIBUTION.md`](./EXTERNAL_DISTRIBUTION.md)
+  - [`AGENTS.md`](../AGENTS.md)
+  - [`SEO/DAILY_LOG.md`](./DAILY_LOG.md)
+  - [`SEO/CHANGELOG.md`](./CHANGELOG.md)
+- **Status / Follow-Up Date**: COMPLETE. Ongoing Evidence-Driven Mode.
+
+### [2026-09-17] — Codification of Weekly Thursday Authority Operating Plan (Week 01 - Superceded)
+- **Autonomous Priority Selected**: Strategic Authority Planning & Weekly Thursday Rhythm Codification.
+- **Evidence & Rationale**: Initial drafting of 7-day tactical plan (subsequently superseded by Evidence-Driven Weekly Tactical Backlog v3.0.0).
+- **Target Assets**: `SEO/WEEKLY_PLAN.md`
+- **Actions Executed**: Drafted initial tactical schedule.
+- **Validation & Quality Checks**: Transitioned to Evidence-Driven Backlog.
+- **Operational Files Updated**: [`SEO/WEEKLY_PLAN.md`](./WEEKLY_PLAN.md)
+- **Status / Follow-Up Date**: SUPERSEDED by Evidence-Driven External Publishing System.
+
 ### [2026-09-16] — GSC Crawl & Sitemap Whitepaper Canonical Route Harmonization
 - **Autonomous Priority Selected**: Technical SEO & Canonical Sitemap Harmonization.
 - **Evidence & Rationale**: Historical GSC crawl logs indicated that Googlebot actively crawled sitemaps and indexable assets. Analysis of `src/app/sitemap.ts` revealed hardcoded `/papers/` paths and missing entries for 3 published whitepapers/labs, conflicting with on-page `citation_pdf_url` meta tags and physical files located in `public/whitepapers/`. Refactored `sitemap.ts` to dynamically derive canonical `/whitepapers/*.pdf` URLs from `RESEARCH_PAPERS`, standardized `deterministic-vapor-compression-refrigerant-mass-sizing` `pdfUrl`, and ensured 1-to-1 parity between sitemap declarations, meta tags, and physical assets.

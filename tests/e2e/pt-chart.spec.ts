@@ -14,7 +14,7 @@ test.describe("Digital Refrigerant PT Chart E2E Suite", () => {
 
     // Schema JSON-LD
     const jsonLd = page.locator('script[type="application/ld+json"]');
-    await expect(jsonLd).toBeAttached();
+    await expect(jsonLd.first()).toBeAttached();
   });
 
   test("2. Computes R-454B and R-410A saturation temperatures dynamically", async ({ page }) => {
