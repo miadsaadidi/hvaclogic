@@ -149,6 +149,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  // Open Educational Resource (OER) Lab Modules
+  const oerRoutes = [
+    "/oer-modules/duct-aerodynamics-lab.html",
+    "/oer-modules/building-envelope-thermal-transmission-lab.html",
+    "/oer-modules/heat-pump-balance-point-lab.html",
+  ];
+
+  const oerEntries: MetadataRoute.Sitemap = oerRoutes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: RELEASE_MILESTONES.RESEARCH_HUB,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   return [
     rootEntry,
     ...pillarEntries,
@@ -160,6 +174,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     datasetsHubEntry,
     ...datasetEntries,
     ...paperPdfEntries,
+    ...oerEntries,
     standardsEntry,
     ...authorityEntries,
   ];

@@ -5,7 +5,7 @@ import { ENGINEERING_GUIDES } from "@/lib/data/guides-registry";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "HVAC Engineering Guides & Field Sizing Protocols",
+  title: "HVAC Engineering Guides & Sizing Protocols",
   description:
     "Engineering guides covering ACCA Manual D duct sizing, Manual J cooling loads, cold-climate heat pump balance points, and A2L refrigerant glide physics.",
   alternates: {
