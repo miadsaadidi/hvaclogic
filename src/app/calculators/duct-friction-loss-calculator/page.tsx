@@ -81,6 +81,17 @@ export default function DuctFrictionLossPage() {
               In a system with 350 ft TEL, the true design friction rate is <code>(0.08 * 100) / 350 = 0.023&quot;</code>. Sizing ducts at 0.10&quot; in this scenario causes high total static pressure, burned-out ECM blower motors, and frozen A/C coils.
             </p>
           </div>
+
+          <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
+              Downstream Sizing &amp; Distribution Workflows
+            </h3>
+            <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+              • Size Rigid Trunks with Calculated FR: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — apply your derived friction rate to size equal-friction main supply and return trunks.<br />
+              • Check Flexible Branch Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — select flexible branch diameters based on your design friction rate and installation sag.<br />
+              • Verify System Airflow Volume: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM Sizer</Link> — determine whole-building sensible CFM before accumulating duct pressure drops.
+            </p>
+          </div>
         </>
       }
       comparisonTableSection={

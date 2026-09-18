@@ -52,7 +52,7 @@ export default function FlexDuctCfmChartPage() {
               <strong>Determine Room Design Airflow (CFM)</strong>: Calculate the required cooling or heating airflow from whole-building Manual J heat gain loads or via the <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM Sizer</Link>.
             </li>
             <li>
-              <strong>Select Target Design Friction Rate</strong>: Standard residential supply runouts operate at <strong>0.08 to 0.10 in. wg per 100 ft</strong>. Quiet return runouts operate at <strong>0.05 to 0.08 in. wg</strong> to maintain low velocity and eliminate register noise.
+              <strong>Select Target Design Friction Rate</strong>: Standard residential supply runouts operate at <strong>0.08 to 0.10 in. wg per 100 ft</strong>. Quiet return runouts operate at <strong>0.05 to 0.08 in. wg</strong> to maintain low velocity. To compute your system-specific friction rate from blower external static pressure and fitting resistance, use the <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link>.
             </li>
             <li>
               <strong>Apply ASHRAE RP-1333 Compression Deratings</strong>: Cross-reference empirical laboratory measurements from ASHRAE Research Project RP-1333:
@@ -64,7 +64,12 @@ export default function FlexDuctCfmChartPage() {
               </ul>
             </li>
             <li>
-              <strong>Support and Hanging Standards (SMACNA &amp; ADC)</strong>: Install support hanger straps (minimum 1.5 inches wide) at maximum 4-foot intervals. Ensure maximum allowable sag between supports does not exceed 0.5 inches per linear foot (4.2% droop). Seal all inner and outer connections with UL 181-rated mastic.
+              <strong>Observe Installation Standards vs. Design Heuristics</strong>:
+              <ul>
+                <li><strong>Mandatory Building Code (IRC M1601.4.3)</strong>: Flexible ducts must be supported at maximum 4-foot intervals with support straps at least 1.5 inches wide.</li>
+                <li><strong>ADC 5th Edition Standard</strong>: Maximum allowable sag between supports shall not exceed 0.5 inches per linear foot of span (4.2% droop).</li>
+                <li><strong>ACCA Manual D / ENERGY STAR Guideline (Design Heuristic)</strong>: Limit flexible branch runouts to 14 to 25 feet maximum to avoid excessive cumulative friction losses.</li>
+              </ul>
             </li>
           </ol>
 
@@ -76,10 +81,10 @@ export default function FlexDuctCfmChartPage() {
               { symbol: "Q_{\\text{stretched}}", label: "Fully Stretched Airflow", description: "Baseline catalog airflow at zero compression (100% factory tension per ADC standard)", unit: "CFM" },
               { symbol: "C_{\\text{sag}}", label: "Capacity Derate Factor", description: "Fractional capacity multiplier: 1.00 (0% sag), 0.93 (4% sag), 0.78 (15% sag), 0.65 (30% sag)", unit: "Multiplier" },
               { symbol: "A_{\\text{duct}}", label: "Cross-Sectional Area", description: "Internal duct cross-sectional area: \\pi \\times (D/24)^2", unit: "sq ft" },
-              { symbol: "\\text{Velocity}_{\\text{FPM}}", label: "Duct Air Velocity", description: "Airflow velocity across duct cross-section (recommended \\le 700 FPM for residential)", unit: "FPM" },
+              { symbol: "\\text{Velocity}_{\\text{FPM}}", label: "Duct Air Velocity", description: "Airflow velocity across duct cross-section (recommended \\le 700–900 FPM for supply branches)", unit: "FPM" },
             ]}
-            notes="Flexible duct runs should be kept as short and straight as possible (recommended maximum 14 ft per runout). For main trunk lines and extended runs, use rigid galvanized sheet metal sized with the Digital Ductulator."
-            sourceStandard="ASHRAE Research Project RP-1333 (Culp et al., Texas A&M ESL), ADC 5th Edition & ACCA Manual D"
+            notes="Flexible duct runs should be kept as short and straight as possible. For main trunk lines and extended runs, use rigid galvanized sheet metal sized with the Digital Ductulator."
+            sourceStandard="ASHRAE RP-1333 (Culp et al., Texas A&M ESL), ADC 5th Edition & ACCA Manual D"
           />
 
           <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
@@ -88,7 +93,8 @@ export default function FlexDuctCfmChartPage() {
             </h3>
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
               • Size Rigid Metal Trunks: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — compare flexible duct runouts with equivalent round and rectangular sheet metal trunks.<br />
-              • Calculate Sensible Room Airflow: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM &amp; Airflow Sizer</Link> — determine required supply CFM from room heat load and supply-to-return temperature difference.<br />
+              • Compute System Static &amp; TEL: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link> — determine available static pressure and exact design friction rate.<br />
+              • Calculate Sensible Room Airflow: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM &amp; Airflow Sizer</Link> — determine required supply CFM from room heat load and coil delta-T.<br />
               • Explore Air Distribution Pillar: <Link href="/airflow-ducts" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Airflow &amp; Duct Sizing Hub</Link> — access the full suite of duct design tools and standards.
             </p>
           </div>
@@ -96,6 +102,74 @@ export default function FlexDuctCfmChartPage() {
       }
       comparisonTableSection={
         <>
+          <h2>Flexible Duct vs. Rigid Sheet Metal Airflow Comparison Matrix</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            Direct comparison of delivered airflow capacity (CFM) between smooth rigid galvanized sheet metal (Colebrook roughness &epsilon; = 0.0003 ft) and flexible ductwork across standard diameters at 0.08&quot; and 0.10&quot; WG friction rates:
+          </p>
+
+          <div className="scenario-table" style={{ marginBottom: "2rem" }}>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Diameter</th>
+                  <th scope="col">Rigid Metal (0.08&quot; WG)</th>
+                  <th scope="col">Rigid Metal (0.10&quot; WG)</th>
+                  <th scope="col">Stretched Flex (0.10&quot; WG)</th>
+                  <th scope="col">Code Flex 4% Sag (0.10&quot; WG)</th>
+                  <th scope="col">Attic Flex 15% Sag (0.10&quot; WG)</th>
+                  <th scope="col">Airflow Reduction vs Metal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>6&quot; Round</strong></td>
+                  <td>98 CFM</td>
+                  <td>111 CFM</td>
+                  <td>105 CFM</td>
+                  <td>98 CFM</td>
+                  <td>82 CFM</td>
+                  <td>-12% to -26%</td>
+                </tr>
+                <tr>
+                  <td><strong>8&quot; Round</strong></td>
+                  <td>205 CFM</td>
+                  <td>232 CFM</td>
+                  <td>220 CFM</td>
+                  <td>205 CFM</td>
+                  <td>172 CFM</td>
+                  <td>-12% to -26%</td>
+                </tr>
+                <tr>
+                  <td><strong>10&quot; Round</strong></td>
+                  <td>367 CFM</td>
+                  <td>416 CFM</td>
+                  <td>395 CFM</td>
+                  <td>367 CFM</td>
+                  <td>308 CFM</td>
+                  <td>-12% to -26%</td>
+                </tr>
+                <tr>
+                  <td><strong>12&quot; Round</strong></td>
+                  <td>596 CFM</td>
+                  <td>675 CFM</td>
+                  <td>640 CFM</td>
+                  <td>595 CFM</td>
+                  <td>499 CFM</td>
+                  <td>-12% to -26%</td>
+                </tr>
+                <tr>
+                  <td><strong>14&quot; Round</strong></td>
+                  <td>884 CFM</td>
+                  <td>1,001 CFM</td>
+                  <td>950 CFM</td>
+                  <td>884 CFM</td>
+                  <td>741 CFM</td>
+                  <td>-12% to -26%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2>Flexible Duct CFM Sizing &amp; Friction Rate Reference Matrix (4&quot; to 20&quot;)</h2>
           <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
             Airflow capacity (CFM) across all 12 standard flexible duct diameters under code-compliant 4% installed tension (C_sag = 0.93), comparing quiet return (0.05&quot; WG), standard supply (0.08&quot; WG), and high-velocity (0.10&quot; WG) friction rates:
@@ -231,7 +305,7 @@ export default function FlexDuctCfmChartPage() {
               8-inch Flex = 177 CFM at 4% tension (Sufficient capacity to deliver 150 CFM with modest damper throttling)
             </p>
 
-            <p><strong>Step 2: Acoustic Velocity Check</strong></p>
+            <p><strong>Step 2: Acoustic Velocity Check per ACCA Manual D Table A1-1</strong></p>
             <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
               Area = pi * (8/24)^2 = 0.349 sq ft  |  Velocity = 150 CFM / 0.349 sq ft = 430 FPM
             </p>

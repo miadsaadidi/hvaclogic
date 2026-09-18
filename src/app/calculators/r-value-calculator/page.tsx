@@ -62,11 +62,11 @@ export default function RValueCalculatorPage() {
               Cavity vs. Continuous Insulation (ci) Explained
             </h3>
             <p>
-              In traditional wood-framed walls, wood studs have an R-value of only ~R-1.25 per inch (an R-4.4 thermal bridge for a 2x4). When heat bypasses the cavity insulation through the studs:
+              In traditional wood-framed and cold-formed steel walls, structural studs create repetitive thermal bridges. When heat bypasses cavity insulation through the studs:
             </p>
             <ul>
-              <li><strong>Thermal Bridging Penalty:</strong> A nominal &quot;R-13&quot; 2x4 wall has an effective whole-wall performance of only ~R-9.6 because 25% of the wall surface is solid wood framing.</li>
-              <li><strong>The Continuous Insulation Solution:</strong> Adding 1 inch of exterior polyiso foam (R-6.0) or XPS (R-5.0) blankets the entire framing structure, stopping thermal bridges and preventing condensation inside wall cavities.</li>
+              <li><strong>Thermal Bridging Penalty:</strong> Structural studs act as thermal shorts, reducing effective cavity performance by 15% to 64%. Calculate the exact bridged assembly U-factor using the <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Effective R-Value &amp; Thermal Bridging Calculator</Link>.</li>
+              <li><strong>The Continuous Insulation Solution:</strong> Adding exterior rigid board (such as XPS, EPS, Polyiso, or mineral wool) blankets the entire framing structure, creating an unbroken thermal break. Read the <Link href="/guides/framing-thermal-bridging-effective-r-value" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>ASHRAE 90.1 Thermal Bridging Guide</Link> for detailed derivations.</li>
             </ul>
           </div>
         </>

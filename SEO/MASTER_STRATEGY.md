@@ -250,19 +250,22 @@ Google Search Console is the primary operational feedback mechanism. All diagnos
 
 ---
 
-## 13. External Distribution & Backlink Governance
+## 13. External Technical Distribution & Research Interpretation Channels
 
-External publishing is a **supporting distribution mechanism**, not the foundation of SEO:
+External publishing is a **supporting technical distribution and research interpretation mechanism**, not a substitute for primary on-site HVACLogic assets:
 
-1. **Purpose**: Reach practicing engineers, HVAC technicians, researchers, and students; build researcher identity; generate legitimate citations and referral traffic.
-2. **Core-to-Spoke Flow**:
-   $$\text{HVACLogic Core Page First} \longrightarrow \text{Verify} \longrightarrow \text{Select Channel} \longrightarrow \text{Adapt Content} \longrightarrow \text{Publish} \longrightarrow \text{Verify} \longrightarrow \text{Log} \longrightarrow \text{Measure}$$
-3. **No Quotas**: Zero mandatory weekly quotas for external articles, bookmarks, or directory submissions.
-4. **Distinct Angles**: Never cross-post duplicate copy across platforms to artificially inflate URLs. Use distinct technical angles tailored to each channel.
+1. **Purpose**: Reach practicing mechanical engineers, HVAC technicians, researchers, and students; build researcher authority; generate qualified referral traffic and discoverability across developer/engineering ecosystems.
+2. **Platform Positioning (Dev.to / Hashnode / Technical Platforms)**:
+   - Treat Dev.to, Hashnode, and peer platforms primarily as **technical distribution, engineering methodology explanations, and research interpretation channels**.
+   - Suitable content angles: engineering implementation walkthroughs, mathematical/algorithmic methodology breakdowns, dataset curation protocols, research findings summaries, calculator logic deep-dives, and technical lessons derived from original HVACLogic engineering assets.
+   - **Core Hub Invariant**: The authoritative Core asset (interactive calculator, primary whitepaper, canonical guide, benchmark dataset) **must always remain on HVACLogic (`hvaclogic.org`)**. External publications provide companion interpretations and discovery channels, never duplicate copies.
+3. **Core-to-Spoke Flow**:
+   $$\text{HVACLogic Core Asset First} \longrightarrow \text{Verify Live} \longrightarrow \text{Select Distribution Channel} \longrightarrow \text{Adapt Technical Angle} \longrightarrow \text{Publish} \longrightarrow \text{Inspect HTML} \longrightarrow \text{Log} \longrightarrow \text{Measure}$$
+4. **No Quotas**: Zero mandatory weekly quotas for external articles, bookmarks, or directory submissions. Publishing occurs strictly when an original HVACLogic asset provides defensible technical insights to share.
 5. **Link Governance & Verification**:
    - Database Status: $\text{Prospect} \neq \text{Contacted} \neq \text{Published} \neq \text{Verified Backlink}$.
    - Classification: Strictly classify links as `VERIFIED DOFOLLOW`, `NOFOLLOW`, or `UNKNOWN` based on live HTML inspection.
-   - Dofollow links are never required; dofollow status is never promised or presumed.
+   - Dofollow links are never promised, presumed, or artificially manufactured.
    - Never claim an external backlink produced an organic ranking change without longitudinal evidence.
 
 ---
@@ -277,23 +280,90 @@ Cross-site links are permitted **only** where technically relevant (e.g. solar P
 
 ---
 
-## 15. The Autonomous Operating Model: Exactly One Active Objective
+## 15. The Autonomous Operating Model: Research-Driven & Evidence-Driven SEO Production
 
-The operating loop follows strict governance:
-$$\text{DIAGNOSE} \longrightarrow \text{IDENTIFY ONE OBJECTIVE} \longrightarrow \text{PRESENT EVIDENCE} \longrightarrow \text{STOP (APPROVAL)} \longrightarrow \text{EXECUTE} \longrightarrow \text{VALIDATE} \longrightarrow \text{LOG} \longrightarrow \text{MEASURE} \longrightarrow \text{RE-DIAGNOSE}$$
+HVACLogic operates as an integrated **research-driven, evidence-driven SEO production system**:
+$$\text{DAY 1: FULL INTELLIGENCE \& OPPORTUNITY MAPPING} \longrightarrow \text{PRIORITIZE} \longrightarrow \text{STOP (APPROVAL)} \longrightarrow \text{DAYS 2–6: CORE + EXISTING ASSET EXECUTION} \longrightarrow \text{DAY 7: VALIDATE \& MEASURE} \longrightarrow \text{RE-DIAGNOSE}$$
 
-### Operating Rules:
-1. **Exactly ONE Active Objective**: At any given time, there is strictly one active objective. The backlog is a candidate queue, not an automated execution list.
-2. **Diagnosis Order**:
-   1. Indexability & Technical Crawl Status
-   2. Existing Google Search Visibility & GSC Signals
-   3. Search Intent & Query Alignment
-   4. Page Usefulness & Engineering Substance
-   5. Topic Architecture & Internal Linking
-   6. Technical SEO & Schema
-   7. External Distribution & Asset-Fit Outreach
-3. **Plan Mode Before Execution Mode**: When presenting recommendations, output the factual state, plan table, execution flow, and action-by-action workflows. Never generate full copy, datasets, code, or metadata until the plan is approved.
-4. **Validation Before Advancement**: Validate every change locally (typecheck, tests, build) and in production before measuring and selecting the next objective.
+### The North Star Criterion
+Every execution decision, candidate asset, and proposed objective must answer:
+> **What evidence shows that this change can improve Google's understanding, coverage, relevance, discoverability, or usefulness of the site's search assets?**
+
+### Core Governance Rule: One Active Objective = One Coherent SEO Outcome
+> **ONE ACTIVE OBJECTIVE = ONE COHERENT SEO OUTCOME.**
+
+- **Objective = unit of SEO work**: Sized around a single coherent search outcome.
+- **Session/Day = execution container**: Multiple independent, coherent objectives may be executed sequentially in the same session or day. Small code/content fixes execute immediately; large clusters or core publications may span multiple sessions.
+- **Week = planning, execution, validation, and measurement window**: There is no artificial limit of one objective per week, and no requirement to spend a full week passively monitoring before executing another objective. Telemetry measurement and continuous research continue in parallel with execution.
+- **Anti-Distortion Rules**:
+  - Do not artificially shrink a coherent cluster objective to one URL merely to satisfy the one-objective rule.
+  - Do not artificially combine unrelated work into one objective merely to increase scope.
+
+### Day 1: Full SEO Intelligence & Opportunity Mapping
+Day 1 synthesizes three integrated intelligence streams into a single evidence baseline:
+1. **Owned-Site Evidence**: GSC queries, pages, impressions, clicks, CTR, average position, query/page movement, emerging query families, high-impression / low-CTR opportunities, striking-distance rankings (positions 8–40), existing calculators/tools/guides/research, internal linking structure, indexation state (indexed vs non-indexed), and technical health.
+2. **SERP Evidence**: Current ranking pages, SERP feature formats (direct answers, tables, snippets), competing tools/calculators, missing tables, datasets, references, or explanations in existing SERPs, weak or fragmented search results, search-intent gaps, and terminology/query variants.
+3. **External Research / Authority Radar**: Continuous inspection of high-authority technical sources, research institutions, national labs, standards organizations, and open scientific repositories (e.g., **ASHRAE, ACCA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, Figshare, Zenodo, Hugging Face**).
+   - *Purpose*: Discover new search topics, datasets, engineering questions, research gaps, calculation reference opportunities, and opportunities for new Core assets or tool expansions (NOT to copy external content).
+
+### Day 1 Output: The Weekly Opportunity Map
+Day 1 produces an evidence-backed Opportunity Map across 6 asset categories:
+- **A. Existing Asset Optimization**: Pages/calculators with existing search visibility/impressions that can be deepened or expanded.
+- **B. Cluster Upgrade**: Interconnected groups of existing pages addressing the same search problem.
+- **C. Technical / Architecture Fixes**: Evidence-backed technical, schema, canonical, or crawlability issues.
+- **D. Core Publication Candidates**: Major new search assets (datasets, whitepapers, engineering research monographs, technical reference documents, comprehensive pillar guides, calculator-backed research assets).
+- **E. Layer 1 Candidates**: Narrower, specific supporting search intents that reinforce and branch from Core assets.
+- **F. External Technical Distribution**: Technical articles (Dev.to / Hashnode) translating HVACLogic engineering methodologies and dataset research for developer and engineering audiences.
+
+*Specification Requirement*: Every candidate in the Opportunity Map must define: Evidence, Target Search Problem, Asset Type, Relationship to Existing Assets, Expected SEO/Search-Value Hypothesis, and Implementation Scope.
+
+### Core Assets as a Primary SEO Production Pillar
+Content production is defined as **Persistent Search-Asset Creation & Research Mining** (never generic "blog publishing"):
+- **Core Asset Types**: Open Benchmark Datasets, Technical Whitepapers, Peer-Grade Engineering Research, Technical Reference Manuals, Comprehensive Pillar Guides, Calculator-Backed Research Assets.
+- **Standards of Quality**: Every Core asset must be substantial, original, mathematically verified, and technically defensible.
+- **Planning Horizon**: A target of 3–5 Core opportunities per week serves as an operational planning guideline, **NOT a mandatory production quota**. If evidence justifies 5, produce 5; if evidence justifies 2, produce 2; if no genuine gap exists, zero content is manufactured.
+
+### Core → Layer 1 Search Architecture
+Every new Core asset anchors a hierarchical topical cluster:
+$$\begin{array}{c}
+\mathbf{CORE\ ASSET} \\
+\text{\small (Authoritative Technical Engineering Reference / Dataset / Whitepaper / Pillar Guide)} \\
+\Downarrow \\
+\mathbf{LAYER\ 1\ SUPPORTING\ ASSETS} \\
+\text{\small (Narrow, Specific Long-Tail Search Intents \& Sub-Topic Guides)} \\
+\Downarrow \\
+\mathbf{INTERACTIVE\ CALCULATORS\ \&\ DATASET\ ENGINES} \\
+\text{\small (100\% Client-Side Interactive Computation Tools)} \\
+\Downarrow \\
+\mathbf{RADIAL\ INTERNAL\ LINK\ GRAPH} \\
+\text{\small (Bidirectional Semantic Connections Unifying the Knowledge Graph)}
+\end{array}$$
+
+*Rule*: Layer 1 assets exist strictly because they satisfy distinct, verifiable search intents, never to satisfy an arbitrary volume quota.
+
+### Continuous Research Radar (Days 2–7)
+Research is continuous, not confined to Day 1:
+- While executing existing-page upgrades or Core publications on Days 2–6, the **Research Radar** continuously monitors fresh GSC queries, SERP movements, newly published lab data, standards revisions, and engineering questions.
+- High-value opportunities discovered mid-week are immediately logged in the candidate backlog and prioritized when justified by evidence.
+
+### Weekly Execution Rhythm
+1. **DAY 1 — SEO Intelligence + Opportunity Mapping**: Full GSC + GA4 + SERP + Technical + Research Radar diagnostic and Weekly Opportunity Map synthesis.
+2. **DAY 2 — Core Production + Existing Asset Execution**: Launch highest-priority Core assets and execute immediate high-ROI existing page optimizations / quick wins.
+3. **DAYS 3–6 — Core + Layer 1 + Cluster + Existing Asset Execution**: Sequential execution of Core publications, Layer 1 supporting assets, calculator enhancements, cluster upgrades, internal link bridging, technical fixes, and external technical distribution.
+4. **DAY 7 — Validation + Measurement + Opportunity Harvesting**: Comprehensive test execution (`npm test`), typechecks (`tsc --noEmit`), build verification, schema/canonical validation, live header checks, and baseline logging. Harvest new search evidence to feed the next Day 1 diagnostic.
+
+### 6-Tier Objective Priority Framework
+When selecting objectives from the Weekly Opportunity Map, prioritize by evidence hierarchy (evidence can justify selecting any tier directly):
+1. **Tier 1: Existing Page with Clear GSC Opportunity** (Immediate strike-distance visibility and CTR gains).
+2. **Tier 2: Existing Cluster with Multiple Related Opportunities** (Topical authority and cross-page circulation).
+3. **Tier 3: Evidence-Backed Technical Issue** (Indexation, crawl efficiency, schema/canonical integrity).
+4. **Tier 4: Genuine Search / Content Gap** (Identified query intent unserved by existing assets).
+5. **Tier 5: Core Publication** (New major pillar guide, benchmark dataset, or calculation-backed research asset).
+6. **Tier 6: Layer 1 Supporting Publication** (Narrower supporting spoke strengthening a Core asset).
+
+### Content Quality & Anti-Spam Governance
+- **Strict Quality Rule**: The system produces **valuable, differentiated, technically useful search assets** — never volume-based commodity copy.
+- **Strict Prohibitions**: Zero keyword-volume quotas, zero arbitrary article counts, zero thin supporting pages, zero duplicate copy across routes or platforms, and zero content created merely to satisfy a publishing calendar.
 
 ---
 
