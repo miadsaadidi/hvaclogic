@@ -52,6 +52,11 @@
   - Strictly **DO NOT** create new PRs or fallback branches without explicit user confirmation.
 - **Rule 11: Direct Answers with Zero Apologies**:
   When receiving corrections or status inquiries, state facts and outcomes directly without conversational apologies, meta-commentary, or excuses.
+- **Rule 12: Strict PR Creation Stop Boundary (Zero Automatic Merging)**:
+  When instructed to commit to a PR or open a PR:
+  - Branch, commit, push, run tests, and open the GitHub PR.
+  - **STOP IMMEDIATELY** after providing the PR URL and summary.
+  - **Strict Prohibition**: NEVER automatically merge the PR, delete branches, or trigger production cleanup in the same turn. Merging requires explicit, separate user command (e.g., *"merge PR X"* or *"approved to merge"*).
 
 ---
 
@@ -60,7 +65,12 @@
 - **GitHub PR & Vercel Automated Deployment Lifecycle**:
   - **Small Tweaks**: Direct commits to `main` for simple text corrections, minor CSS refinements, or small single-file bug fixes.
   - **Medium / Large Updates (MANDATORY PR)**: Create a feature branch (`feat/<slug>`, `refactor/<slug>`), run pre-PR checks (`npm test` & `npm run typecheck`), push, and **immediately open a formal GitHub PR**.
-  - **Online Merge & Cleanup**: Merge online via GitHub API / Web (never force-push local merges). Immediately verify Vercel production deployment reaches `READY` on `hvaclogic.org`, automatically purge stale preview deployments (`vercel rm <preview-url> --yes`), and pull `main` locally.
+  - **Online Merge & Cleanup (Strictly upon explicit command)**:
+    1. Merge online via GitHub CLI/Web: `gh pr merge <PR> --squash --delete-branch`.
+    2. Verify Vercel production reaches `READY` on `hvaclogic.org`.
+    3. Purge stale preview deployments: `npx vercel rm <preview-url> --yes` and old superseded deployment IDs `npx vercel rm <dpl_id> --yes --safe`.
+    4. Purge stale Git branch aliases: `npx vercel alias rm <branch-alias> --yes` to clear Vercel Active Branches.
+    5. Pull `main` locally (`git checkout main && git pull origin main`) and prune remote tracking (`git remote prune origin && git fetch --prune`).
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 - **Separate Copyable Blocks for Metadata**: Whenever providing metadata, tags, titles, descriptions, or form fields for publishing (e.g. Medium, Dev.to, Academia.edu, ORCID, BibSonomy), ALWAYS output **each individual field in its own separate, dedicated code block** for instant 1-click copying.
