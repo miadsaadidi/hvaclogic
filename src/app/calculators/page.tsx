@@ -6,7 +6,7 @@ import { HomeSearchFilter } from "@/components/home/HomeSearchFilter";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "HVAC Engineering Calculators: All 21 Diagnostic Tools",
+  title: "HVAC Engineering Calculators Directory",
   description:
     "Free directory of 21 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
   alternates: {
