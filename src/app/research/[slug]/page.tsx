@@ -353,6 +353,102 @@ export default async function ResearchPaperPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Empirical Engineering Tables & Datasets */}
+      {paper.tables && paper.tables.length > 0 && (
+        <section style={{ marginBottom: "3rem" }}>
+          <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
+            Empirical Engineering Reference Tables &amp; Standards Datasets
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            {paper.tables.map((table, idx) => (
+              <div
+                key={idx}
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "0.65rem",
+                  padding: "1.5rem",
+                  overflowX: "auto",
+                }}
+              >
+                <div style={{ marginBottom: "1rem" }}>
+                  <h3 style={{ fontSize: "1.08rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.3rem" }}>
+                    {table.title}
+                  </h3>
+                  {table.subtitle && (
+                    <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", margin: 0, lineHeight: 1.5 }}>
+                      {table.subtitle}
+                    </p>
+                  )}
+                  {table.standardReference && (
+                    <div style={{ marginTop: "0.4rem" }}>
+                      <span
+                        style={{
+                          fontSize: "0.72rem",
+                          fontWeight: 600,
+                          padding: "0.15rem 0.5rem",
+                          borderRadius: "4px",
+                          background: "var(--bg-secondary)",
+                          color: "var(--accent-cooling)",
+                          border: "1px solid var(--border-color)",
+                        }}
+                      >
+                        {table.standardReference}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ overflowX: "auto" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem", textAlign: "left" }}>
+                    <thead>
+                      <tr style={{ borderBottom: "2px solid var(--border-color)", background: "var(--bg-secondary)" }}>
+                        {table.headers.map((h, hIdx) => (
+                          <th key={hIdx} style={{ padding: "0.75rem 1rem", fontWeight: 700, color: "var(--ink)", whiteSpace: "nowrap" }}>
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {table.rows.map((row, rIdx) => (
+                        <tr
+                          key={rIdx}
+                          style={{
+                            borderBottom: "1px solid var(--border-color)",
+                            background: rIdx % 2 === 0 ? "transparent" : "rgba(255, 255, 255, 0.02)",
+                          }}
+                        >
+                          {row.map((cell, cIdx) => (
+                            <td
+                              key={cIdx}
+                              style={{
+                                padding: "0.75rem 1rem",
+                                color: cIdx === 0 || cIdx === 3 ? "var(--ink)" : "var(--ink-secondary)",
+                                fontWeight: cIdx === 3 || cIdx === 4 ? 600 : 400,
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {table.footnote && (
+                  <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.85rem", marginBottom: 0, fontStyle: "italic", lineHeight: 1.5 }}>
+                    ℹ️ {table.footnote}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Companion Calculation Engines */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>

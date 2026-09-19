@@ -416,6 +416,69 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
     icon: "🏢",
   },
   {
+    slug: "framing-thermal-bridging-effective-r-value",
+    title: "Building Envelope Thermal Bridging & Effective Assembly U-Factor Engineering Guide",
+    shortTitle: "Framing Thermal Bridging & Effective R-Value",
+    summary:
+      "Comprehensive engineering reference for calculating whole-wall assembly U-factors, parallel-path heat transfer through wood studs, and ASHRAE 90.1 Appendix A effective cavity insulation deratings for cold-formed steel framing.",
+    category: "Building Science",
+    pillar: "building-science",
+    targetRoute: "/guides/framing-thermal-bridging-effective-r-value",
+    readingTime: "13 min read",
+    difficulty: "Advanced",
+    standards: ["ANSI/ASHRAE/IES Standard 90.1-2022", "ASHRAE Handbook—Fundamentals Ch. 25/27", "IECC 2024 / 2021 Table C402.1.4"],
+    keyEquations: [
+      {
+        label: "Wood Stud Parallel-Path U-Factor",
+        formula: "U_wood = (f_framing / R_framing_path) + (f_cavity / R_cavity_path)",
+        explanation: "Area-weighted isothermal planes model accounting for dimensional lumber framing area fractions.",
+      },
+      {
+        label: "ASHRAE 90.1 Effective Cavity Insulation Model",
+        formula: "U_steel = 1 / (R_continuous + R_eff_cavity)",
+        explanation: "Empirical thermal resistance of cold-formed steel stud cavities derated per Table A9.2-1.",
+      },
+      {
+        label: "Whole-Wall Effective Thermal Resistance",
+        formula: "R_effective = 1 / U_assembly",
+        explanation: "True composite thermal resistance of the wall cross-section including framing thermal bridges.",
+      },
+    ],
+    keyTakeaways: [
+      "Steel framing has 400x higher thermal conductivity than wood, reducing cavity batt effectiveness by up to 64% without exterior continuous insulation.",
+      "ASHRAE 90.1 Table A9.2-1 mandates that an R-13 batt in a 3.5\" steel stud at 16\" O.C. delivers only R-6.0 effective cavity resistance.",
+      "Continuous exterior insulation (ci) provides an uninterrupted thermal break that is mandatory for modern IECC and ASHRAE 90.1 code compliance.",
+    ],
+    companionCalculators: [
+      {
+        name: "Effective R-Value Calculator",
+        route: "/calculators/effective-r-value-calculator",
+        description: "Interactive parallel-path and steel stud thermal bridging solver.",
+      },
+      {
+        name: "Insulation R-Value",
+        route: "/calculators/r-value-calculator",
+        description: "1D series material layer stack builder and IECC zone check.",
+      },
+      {
+        name: "Building Heat Loss",
+        route: "/calculators/heat-loss-calculator",
+        description: "Whole-building conductive and infiltration heat loss.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "Framing Thermal Bridging Benchmark Matrix",
+        route: "/datasets/framing-thermal-bridging-assembly-factors",
+        description: "48 assembly configurations across wood and steel studs.",
+      },
+    ],
+    status: "published",
+    scheduledDate: "2026-09-18",
+    color: "#3b82f6",
+    icon: "📐",
+  },
+  {
     slug: "ventilation-makeup-air-depressurization",
     title: "Residential & Commercial Ventilation & Make-Up Air Engineering Guide",
     shortTitle: "Ventilation & Make-Up Air Guide",

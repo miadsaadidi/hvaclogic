@@ -18,10 +18,11 @@ import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
 
 const HEAT_PUMP_PRESETS = [
-  { label: "❄️ Cold-Climate Inverter (3T)", tons: 3.0, type: "inverter_cold_climate" as HeatPumpCompressorType, outdoorDesign: 5, heatLoss: 42000, coolingLoad: 32000 },
-  { label: "🏡 Standard Inverter (2.5T)", tons: 2.5, type: "inverter_standard" as HeatPumpCompressorType, outdoorDesign: 17, heatLoss: 32000, coolingLoad: 28000 },
-  { label: "☀️ Sunbelt Heat Pump (3T)", tons: 3.0, type: "single_stage_standard" as HeatPumpCompressorType, outdoorDesign: 25, heatLoss: 30000, coolingLoad: 36000 },
-  { label: "🏰 4-Ton Cold Climate", tons: 4.0, type: "inverter_cold_climate" as HeatPumpCompressorType, outdoorDesign: 0, heatLoss: 58000, coolingLoad: 44000 },
+  { label: "❄️ Cold-Climate Inverter (3T)", tons: 3.0, type: "inverter_cold_climate" as HeatPumpCompressorType, outdoorDesign: 5, heatLoss: 42000, coolingLoad: 32000, dualFuel: false },
+  { label: "🔥 Dual-Fuel Hybrid (3T + Gas)", tons: 3.0, type: "inverter_cold_climate" as HeatPumpCompressorType, outdoorDesign: 5, heatLoss: 45000, coolingLoad: 32000, dualFuel: true },
+  { label: "🏡 Standard Inverter (2.5T)", tons: 2.5, type: "inverter_standard" as HeatPumpCompressorType, outdoorDesign: 17, heatLoss: 32000, coolingLoad: 28000, dualFuel: false },
+  { label: "☀️ Sunbelt Heat Pump (3T)", tons: 3.0, type: "single_stage_standard" as HeatPumpCompressorType, outdoorDesign: 25, heatLoss: 30000, coolingLoad: 36000, dualFuel: false },
+  { label: "🏰 4-Ton Cold Climate", tons: 4.0, type: "inverter_cold_climate" as HeatPumpCompressorType, outdoorDesign: 0, heatLoss: 58000, coolingLoad: 44000, dualFuel: false },
 ];
 
 export function HeatPumpSizeTool() {
@@ -34,6 +35,12 @@ export function HeatPumpSizeTool() {
   const [heatLoss, setHeatLoss] = useState<number>(42000);
   const [coolingLoad, setCoolingLoad] = useState<number>(32000);
 
+  // Dual-fuel economic parameters
+  const [dualFuelEnabled, setDualFuelEnabled] = useState<boolean>(false);
+  const [elecRate, setElecRate] = useState<number>(0.16);
+  const [gasRate, setGasRate] = useState<number>(1.40);
+  const [furnaceAfue, setFurnaceAfue] = useState<number>(95);
+
   // Hydrate from URL
   useEffect(() => {
     const urlTons = Number(getParam("tons", "3.0"));
@@ -41,12 +48,20 @@ export function HeatPumpSizeTool() {
     const urlDesign = Number(getParam("design", "5"));
     const urlLoss = Number(getParam("loss", "42000"));
     const urlCool = Number(getParam("cool", "32000"));
+    const urlDf = getParam("dualfuel", "false") === "true";
+    const urlElec = Number(getParam("elec", "0.16"));
+    const urlGas = Number(getParam("gas", "1.40"));
+    const urlAfue = Number(getParam("afue", "95"));
 
     if (!isNaN(urlTons) && urlTons > 0) setTons(urlTons);
     if (["inverter_cold_climate", "inverter_standard", "single_stage_standard"].includes(urlType)) setCompressorType(urlType);
     if (!isNaN(urlDesign)) setOutdoorDesign(urlDesign);
     if (!isNaN(urlLoss) && urlLoss > 0) setHeatLoss(urlLoss);
     if (!isNaN(urlCool) && urlCool > 0) setCoolingLoad(urlCool);
+    if (urlDf) setDualFuelEnabled(true);
+    if (!isNaN(urlElec) && urlElec > 0) setElecRate(urlElec);
+    if (!isNaN(urlGas) && urlGas > 0) setGasRate(urlGas);
+    if (!isNaN(urlAfue) && urlAfue > 50) setFurnaceAfue(urlAfue);
   }, [getParam]);
 
   const handlePresetSelect = (preset: typeof HEAT_PUMP_PRESETS[0]) => {
@@ -55,12 +70,14 @@ export function HeatPumpSizeTool() {
     setOutdoorDesign(preset.outdoorDesign);
     setHeatLoss(preset.heatLoss);
     setCoolingLoad(preset.coolingLoad);
+    setDualFuelEnabled(preset.dualFuel);
 
     updateParam("tons", preset.tons);
     updateParam("type", preset.type);
     updateParam("design", preset.outdoorDesign);
     updateParam("loss", preset.heatLoss);
     updateParam("cool", preset.coolingLoad);
+    updateParam("dualfuel", preset.dualFuel ? "true" : "false");
   };
 
   // Perform Calculation
@@ -71,12 +88,16 @@ export function HeatPumpSizeTool() {
       outdoorDesignTempF: outdoorDesign,
       designHeatingLossBtu: heatLoss,
       designCoolingLoadBtu: coolingLoad,
+      dualFuelEnabled,
+      electricityRatePerKwh: elecRate,
+      naturalGasRatePerTherm: gasRate,
+      furnaceAfue: furnaceAfue / 100,
     });
-  }, [tons, compressorType, outdoorDesign, heatLoss, coolingLoad]);
+  }, [tons, compressorType, outdoorDesign, heatLoss, coolingLoad, dualFuelEnabled, elecRate, gasRate, furnaceAfue]);
 
   const handleExportCsv = () => {
-    const headers = "Nominal Tonnage,Compressor Type,Outdoor Design Temp (°F),Design Heat Loss (BTU),Heating Output @ Design (BTU),Thermal Balance Point (°F),Auxiliary Heat Deficit (BTU),Recommended Aux Heat Strip (kW)\n";
-    const row = `${output.nominalTonnage},"${compressorType}",${outdoorDesign},${output.buildingHeatLossAtDesignBtu},${output.heatingCapacityAtDesignBtu},${output.thermalBalancePointF},${output.auxiliaryHeatDeficitBtu},${output.recommendedAuxHeatStripKw}\n`;
+    const headers = "Nominal Tonnage,Compressor Type,Outdoor Design Temp (°F),Design Heat Loss (BTU),Heating Output @ Design (BTU),Thermal Balance Point (°F),Auxiliary Heat Deficit (BTU),Recommended Aux Heat Strip (kW),Manual S Status,Dual Fuel Enabled,Economic Balance Point (°F),Fuel Parity COP,HP Cost / MBTU,Furnace Cost / MBTU\n";
+    const row = `${output.nominalTonnage},"${compressorType}",${outdoorDesign},${output.buildingHeatLossAtDesignBtu},${output.heatingCapacityAtDesignBtu},${output.thermalBalancePointF},${output.auxiliaryHeatDeficitBtu},${output.recommendedAuxHeatStripKw},"${output.manualSOversizingStatus}",${output.dualFuelEnabled},${output.economicBalancePointF ?? "N/A"},${output.economicCopThreshold ?? "N/A"},${output.heatPumpCostPerMbtuAtDesign},${output.furnaceCostPerMbtu}\n`;
     const blob = new Blob([headers + row], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -280,8 +301,85 @@ export function HeatPumpSizeTool() {
               className="input-number"
             />
             <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.25rem", display: "block" }}>
-              Manual S Status: <strong>{output.manualSOversizingStatus}</strong> ({Math.round(output.manualSCoolingRatio * 100)}% of cooling load)
+              Manual S 3rd Ed: <strong style={{ color: output.manualSOversizingStatus.includes("Optimal") ? "var(--accent-success)" : output.manualSOversizingStatus.includes("Heating-Priority") ? "var(--accent-cooling)" : "#f59e0b" }}>{output.manualSOversizingStatus}</strong> ({Math.round(output.manualSCoolingRatio * 100)}% of cooling load)
             </span>
+          </div>
+
+          {/* DUAL-FUEL HYBRID & ECONOMIC SWITCHOVER SETTINGS */}
+          <div style={{ marginTop: "1rem", padding: "0.85rem", background: "rgba(255,255,255,0.03)", border: "1px solid var(--border-color)", borderRadius: "0.5rem" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <label htmlFor="dual-fuel-toggle" style={{ fontWeight: 600, fontSize: "0.82rem", cursor: "pointer", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span>🔥 Dual-Fuel Gas Backup &amp; Economic Switchover</span>
+              </label>
+              <input
+                id="dual-fuel-toggle"
+                type="checkbox"
+                checked={dualFuelEnabled}
+                onChange={(e) => {
+                  setDualFuelEnabled(e.target.checked);
+                  updateParam("dualfuel", e.target.checked ? "true" : "false");
+                }}
+                style={{ cursor: "pointer", width: "1.1rem", height: "1.1rem", accentColor: "var(--accent-cooling)" }}
+              />
+            </div>
+            {dualFuelEnabled && (
+              <div style={{ marginTop: "0.75rem", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.5rem" }}>
+                <div>
+                  <label htmlFor="elec-rate" style={{ fontSize: "0.7rem", color: "var(--text-muted)", display: "block", marginBottom: "0.2rem" }}>Elec ($/kWh)</label>
+                  <input
+                    id="elec-rate"
+                    type="number"
+                    step={0.01}
+                    min={0.05}
+                    max={0.60}
+                    value={elecRate}
+                    onChange={(e) => {
+                      const v = Number(e.target.value);
+                      setElecRate(v);
+                      updateParam("elec", v);
+                    }}
+                    className="input-number"
+                    style={{ fontSize: "0.8rem", padding: "0.35rem 0.5rem" }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="gas-rate" style={{ fontSize: "0.7rem", color: "var(--text-muted)", display: "block", marginBottom: "0.2rem" }}>Gas ($/therm)</label>
+                  <input
+                    id="gas-rate"
+                    type="number"
+                    step={0.05}
+                    min={0.50}
+                    max={4.00}
+                    value={gasRate}
+                    onChange={(e) => {
+                      const v = Number(e.target.value);
+                      setGasRate(v);
+                      updateParam("gas", v);
+                    }}
+                    className="input-number"
+                    style={{ fontSize: "0.8rem", padding: "0.35rem 0.5rem" }}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="furnace-afue" style={{ fontSize: "0.7rem", color: "var(--text-muted)", display: "block", marginBottom: "0.2rem" }}>AFUE (%)</label>
+                  <input
+                    id="furnace-afue"
+                    type="number"
+                    step={1}
+                    min={80}
+                    max={98}
+                    value={furnaceAfue}
+                    onChange={(e) => {
+                      const v = Number(e.target.value);
+                      setFurnaceAfue(v);
+                      updateParam("afue", v);
+                    }}
+                    className="input-number"
+                    style={{ fontSize: "0.8rem", padding: "0.35rem 0.5rem" }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -318,7 +416,35 @@ export function HeatPumpSizeTool() {
             </div>
           </div>
 
-          <StandardsBadge standards={["ACCA Manual S®", "AHRI 210/240", "NEEP Cold-Climate (ccASHP)"]} />
+          <StandardsBadge standards={["ANSI/ACCA 3 Manual S (3rd Ed)", "AHRI 210/240-2023", "NEEP ccASHP v4.0"]} />
+
+          {/* DUAL-FUEL ECONOMIC SWITCHOVER CARD */}
+          {output.dualFuelEnabled && (
+            <div style={{ margin: "0.75rem 0", padding: "0.85rem", background: "rgba(16, 185, 129, 0.08)", border: "1px solid rgba(16, 185, 129, 0.3)", borderRadius: "0.5rem" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem", flexWrap: "wrap", gap: "0.3rem" }}>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--accent-success)" }}>
+                  ⚡/🔥 Dual-Fuel Economic Switchover
+                </span>
+                <span style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>
+                  Fuel Parity COP: <strong>{output.economicCopThreshold}</strong>
+                </span>
+              </div>
+              <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", margin: "0.2rem 0" }}>
+                {output.economicBalancePointF !== null ? `${output.economicBalancePointF}°F Switchover Temperature` : "Heat Pump Always More Economical"}
+              </div>
+              <p style={{ fontSize: "0.74rem", color: "var(--ink-secondary)", margin: "0.3rem 0", lineHeight: 1.45 }}>
+                {output.economicExplanation}
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginTop: "0.5rem", fontSize: "0.72rem" }}>
+                <div style={{ background: "rgba(0,0,0,0.2)", padding: "0.35rem 0.5rem", borderRadius: "4px" }}>
+                  HP Cost @ {outdoorDesign}&deg;F: <strong style={{ color: "var(--accent-cooling)" }}>${output.heatPumpCostPerMbtuAtDesign} / MBTU</strong>
+                </div>
+                <div style={{ background: "rgba(0,0,0,0.2)", padding: "0.35rem 0.5rem", borderRadius: "4px" }}>
+                  Gas Furnace Cost: <strong style={{ color: "#f59e0b" }}>${output.furnaceCostPerMbtu} / MBTU</strong>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* BALANCE POINT INTERSECTION VISUALIZER */}
           <HeatPumpBalanceVisualizer output={output} />

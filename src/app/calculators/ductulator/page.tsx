@@ -49,9 +49,9 @@ export default function DuctulatorPage() {
 
           <ol style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
             <li><strong>Determine Design Airflow (CFM)</strong>: Calculate required airflow based on room sensible heat load (<code>CFM = BTU / (1.08 × ΔT)</code>) or the <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM Sizer</Link> (400 CFM/ton).</li>
-            <li><strong>Select Target Friction Rate</strong>: Standard residential supply trunks use <strong>0.08 to 0.10 in. wg per 100 ft</strong>. Return trunks use 0.05 to 0.08 in. wg. Cross-reference available static pressure in the <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link>.</li>
+            <li><strong>Select Target Friction Rate</strong>: Standard residential supply trunks use <strong>0.08 to 0.10 in. wg per 100 ft</strong>. Return trunks use 0.05 to 0.08 in. wg. To calculate the exact design friction rate from blower external static pressure and total equivalent length, use the <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link>.</li>
             <li><strong>Calculate Equivalent Round Diameter (De)</strong>: Use the Colebrook-Darcy aerodynamic equation to determine the minimum round diameter. For flexible duct runouts, cross-check the <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flex Duct Sizing Chart</Link>.</li>
-            <li><strong>Convert to Rectangular Fabrication Dimensions</strong>: Apply Huebscher&apos;s formula to determine rectangular trunk width and height while maintaining an aspect ratio below 4:1 to prevent turbulence and corner friction losses.</li>
+            <li><strong>Convert to Rectangular Fabrication Dimensions</strong>: Apply Huebscher&apos;s formula to determine rectangular trunk width and height while maintaining an aspect ratio below 4:1 (3:1 preferred per SMACNA) to prevent boundary corner turbulence and excessive sheet metal friction losses.</li>
           </ol>
 
           <FormulaCard
@@ -65,9 +65,20 @@ export default function DuctulatorPage() {
               { symbol: "b", label: "Rectangular Duct Height", description: "Shorter or vertical height dimension (limited by joist depth)", unit: "inches" },
               { symbol: "V", label: "Air Velocity", description: "Mean air stream velocity: V = Q * 144 / (pi * (D/2)^2)", unit: "FPM" },
             ]}
-            notes="Equations assume standard dry air density (rho = 0.075 lb/ft3) at 70°F and 29.921 in. Hg barometric pressure with clean galvanized steel roughness (epsilon = 0.0003 ft)."
+            notes="Equations assume standard dry air density (0.075 lb/ft3) at 70°F and 29.921 in. Hg barometric pressure with clean galvanized steel roughness (epsilon = 0.0003 ft)."
             sourceStandard="ASHRAE 2021 Fundamentals Ch. 21 / SMACNA HVAC Duct Construction Standards"
           />
+
+          <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
+              Airflow &amp; Duct Design Workflows
+            </h3>
+            <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+              • Size Flexible Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — apply ASHRAE RP-1333 sag and tension deratings to branch runouts.<br />
+              • Compute System Friction Rate: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link> — calculate Available Static Pressure (ASP) and Total Equivalent Length.<br />
+              • Determine Supply CFM: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM &amp; Airflow Sizer</Link> — compute volumetric requirements from sensible room loads.
+            </p>
+          </div>
         </>
       }
       comparisonTableSection={
@@ -77,7 +88,7 @@ export default function DuctulatorPage() {
             Standard round and rectangular duct sizes sized at standard residential supply friction (0.08 in. wg per 100 ft):
           </p>
 
-          <div className="scenario-table">
+          <div className="scenario-table" style={{ marginBottom: "2rem" }}>
             <table>
               <thead>
                 <tr>
@@ -98,7 +109,7 @@ export default function DuctulatorPage() {
                   <td>6&quot; × 8&quot;</td>
                   <td>—</td>
                   <td>650 FPM</td>
-                  <td><span style={{ color: "var(--accent-success)" }}>Quiet</span></td>
+                  <td><span style={{ color: "var(--accent-success)" }}>Quiet (NC 25)</span></td>
                 </tr>
                 <tr>
                   <td><strong>400 CFM</strong></td>
@@ -107,7 +118,7 @@ export default function DuctulatorPage() {
                   <td>10&quot; × 8&quot;</td>
                   <td>8&quot; × 10&quot;</td>
                   <td>905 FPM</td>
-                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate</span></td>
+                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate (NC 30)</span></td>
                 </tr>
                 <tr>
                   <td><strong>600 CFM</strong></td>
@@ -116,7 +127,7 @@ export default function DuctulatorPage() {
                   <td>14&quot; × 8&quot;</td>
                   <td>11&quot; × 10&quot;</td>
                   <td>960 FPM</td>
-                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate</span></td>
+                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate (NC 30)</span></td>
                 </tr>
                 <tr>
                   <td><strong>800 CFM</strong></td>
@@ -125,7 +136,7 @@ export default function DuctulatorPage() {
                   <td>18&quot; × 8&quot;</td>
                   <td>13&quot; × 10&quot;</td>
                   <td>1,018 FPM</td>
-                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate</span></td>
+                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate (NC 30)</span></td>
                 </tr>
                 <tr>
                   <td><strong>1,000 CFM</strong></td>
@@ -134,7 +145,7 @@ export default function DuctulatorPage() {
                   <td>22&quot; × 8&quot;</td>
                   <td>16&quot; × 10&quot;</td>
                   <td>1,050 FPM</td>
-                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate</span></td>
+                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate (NC 30)</span></td>
                 </tr>
                 <tr>
                   <td><strong>1,200 CFM</strong></td>
@@ -143,7 +154,7 @@ export default function DuctulatorPage() {
                   <td>26&quot; × 8&quot;</td>
                   <td>18&quot; × 10&quot;</td>
                   <td>1,087 FPM</td>
-                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate</span></td>
+                  <td><span style={{ color: "var(--accent-warning)" }}>Moderate (NC 30)</span></td>
                 </tr>
                 <tr>
                   <td><strong>1,600 CFM</strong></td>
@@ -162,6 +173,62 @@ export default function DuctulatorPage() {
                   <td>30&quot; × 10&quot;</td>
                   <td>1,195 FPM</td>
                   <td><span style={{ color: "var(--accent-danger)" }}>High Velocity</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>ASHRAE &amp; SMACNA Duct Air Velocity &amp; Acoustic Comfort Limits</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem" }}>
+            Recommended air velocity thresholds (FPM) by system application and target Noise Criteria (NC) ratings:
+          </p>
+
+          <div className="scenario-table">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Application / Duct Section</th>
+                  <th scope="col">Target NC Rating</th>
+                  <th scope="col">Recommended Velocity (FPM)</th>
+                  <th scope="col">Maximum Velocity (FPM)</th>
+                  <th scope="col">Governing Standard</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Residential Supply Branch Runout</strong></td>
+                  <td>NC 25–30</td>
+                  <td>400–600 FPM</td>
+                  <td>700–900 FPM</td>
+                  <td>ACCA Manual D Table A1-1</td>
+                </tr>
+                <tr>
+                  <td><strong>Residential Main Supply Trunk</strong></td>
+                  <td>NC 25–30</td>
+                  <td>700–900 FPM</td>
+                  <td>1,000 FPM</td>
+                  <td>ACCA Manual D / SMACNA</td>
+                </tr>
+                <tr>
+                  <td><strong>Residential Return Air Trunk</strong></td>
+                  <td>NC 25–30</td>
+                  <td>500–700 FPM</td>
+                  <td>800 FPM</td>
+                  <td>ACCA Manual D Table A1-1</td>
+                </tr>
+                <tr>
+                  <td><strong>Commercial Supply Trunk (Office)</strong></td>
+                  <td>NC 30–35</td>
+                  <td>1,000–1,300 FPM</td>
+                  <td>1,500 FPM</td>
+                  <td>ASHRAE 2021 Ch. 21 Table 7</td>
+                </tr>
+                <tr>
+                  <td><strong>Commercial Main Riser / Shaft</strong></td>
+                  <td>NC 35–40</td>
+                  <td>1,500–1,800 FPM</td>
+                  <td>2,000 FPM</td>
+                  <td>SMACNA Duct Design Ch. 5</td>
                 </tr>
               </tbody>
             </table>
@@ -186,7 +253,7 @@ export default function DuctulatorPage() {
               14.22 = 1.30 * (a * 10)^0.625 / (a + 10)^0.25  ==&gt;  Width &apos;a&apos; = 17.4 inches
             </p>
             <p style={{ color: "var(--ink-secondary)" }}>
-              Round up to standard sheet metal fabrication sizing: <strong>18&quot; Width × 10&quot; Height</strong>.
+              Round up to standard sheet metal fabrication sizing: <strong>18&quot; Width × 10&quot; Height</strong> (Aspect Ratio = 1.8:1, well within SMACNA&apos;s 4:1 limit).
             </p>
 
             <p style={{ marginTop: "1rem" }}><strong>Step 3: Verify Velocity and Acoustic Rating</strong></p>
@@ -194,7 +261,7 @@ export default function DuctulatorPage() {
               Area = (18 * 10) / 144 = 1.25 sq ft  |  Velocity = 1200 / 1.25 = 960 FPM
             </p>
             <p style={{ color: "var(--ink-secondary)" }}>
-              ✓ <strong>Conclusion:</strong> Velocity is 960 FPM, well within SMACNA&apos;s 1,000 FPM residential supply trunk limit.
+              ✓ <strong>Conclusion:</strong> Velocity is 960 FPM, satisfying ACCA Manual D and SMACNA residential supply trunk acoustic limits (&le; 1,000 FPM).
             </p>
           </div>
         </>

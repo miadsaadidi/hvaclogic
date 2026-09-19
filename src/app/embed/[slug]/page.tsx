@@ -27,6 +27,7 @@ import { PsychrometricTool } from "@/components/calculator/tools/PsychrometricTo
 import { PtChartTool } from "@/components/calculator/tools/PtChartTool";
 import { AcModelDecoderTool } from "@/components/calculator/tools/AcModelDecoderTool";
 import { BtuCalculatorTool } from "@/components/calculator/tools/BtuCalculatorTool";
+import { EffectiveRValueTool } from "@/components/calculator/tools/EffectiveRValueTool";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -114,6 +115,8 @@ function renderToolComponent(id: string) {
       return <CombustionAirTool />;
 
     // Building Science
+    case "effective-r-value-calculator":
+      return <EffectiveRValueTool />;
     case "r-value-calculator":
       return <RValueTool />;
     case "heat-loss-calculator":

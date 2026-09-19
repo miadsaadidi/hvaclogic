@@ -27,6 +27,198 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-19] - LAYER 1 PUBLICATION: Cold-Formed Steel Stud Framing Factors & Cavity Deratings (Step 5)
+- **Objective Class**: `CLUSTER PUBLICATION`
+- **Autonomous Priority Selected**: Tier 6 Layer 1 Supporting Publication (ANSI/ASHRAE/IES Standard 90.1 Normative Appendix A & IECC Commercial Wall Provisions)
+- **Evidence & Rationale**: Addressed documented practitioner and student demand for open-access ASHRAE 90.1 Table A9.2-1 framing factor lookup tables ($F_c$) and cold-formed steel two-dimensional thermal bridging derivations. Published an open technical engineering monograph (Report No. `HL-TR-2026-STEEL01`) at `/research/cold-formed-steel-framing-thermal-factors` to branch from and pass topical authority upstream to Core B-1 ([`/guides/framing-thermal-bridging-effective-r-value`](../src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx)) and [`/calculators/effective-r-value-calculator`](../src/app/calculators/effective-r-value-calculator/page.tsx).
+- **Target Assets**:
+  - Research Registry & Interfaces: [`src/lib/data/research-papers.ts`](../src/lib/data/research-papers.ts)
+  - Research Monograph Dynamic Template: [`src/app/research/[slug]/page.tsx`](../src/app/research/[slug]/page.tsx)
+  - Core B-1 Companion Guide: [`src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx`](../src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx)
+  - Interactive Sizing Tool: [`src/app/calculators/effective-r-value-calculator/page.tsx`](../src/app/calculators/effective-r-value-calculator/page.tsx)
+  - Technical Sitemap & SEO Verification: [`src/lib/seo/canonical-routes.test.ts`](../src/lib/seo/canonical-routes.test.ts)
+- **Actions Executed**:
+  1. *Technical Monograph Registration*: Authored open technical report `HL-TR-2026-STEEL01` in `src/lib/data/research-papers.ts` modeling the 1,184× conductivity disparity ($\kappa_{\text{thermal}} = k_{\text{steel}} / k_{\text{insulation}} \approx 1184$), empirical framing correction factors ($F_c$), and whole-wall U-factors with continuous exterior insulation ($R_{\text{ci}}$).
+  2. *Empirical Standards Datasets*: Structured normative lookup tables for ASHRAE 90.1 Table A9.2-1 & Table A3.3-1 effective cavity R-values (3.5", 6.0", and 8.0" steel studs at 16" and 24" O.C.) and IECC 2024 Table C402.1.4 continuous insulation prescriptive targets.
+  3. *Monograph Template Expansion*: Enhanced `src/app/research/[slug]/page.tsx` with responsive engineering table renderer supporting headers, zebra striping, standard reference badges, and explanatory footnotes.
+  4. *Radial Link Graph Integration*: Embedded bidirectional links between the new monograph, the Core B-1 guide, and the effective R-value calculator.
+  5. *SEO & Technical Routing*: Pre-rendered static route `/research/cold-formed-steel-framing-thermal-factors`, updated sitemap verification suite to 66 canonical entries, and injected Highwire Press / Google Scholar metadata.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors (TypeScript 100% clean).
+  - `npm test`: 34/34 test files passed, 141/141 unit tests passed.
+  - `npm run build`: 90/90 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `src/lib/data/research-papers.ts`
+  - `src/app/research/[slug]/page.tsx`
+  - `src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx`
+  - `src/app/calculators/effective-r-value-calculator/page.tsx`
+  - `src/lib/seo/canonical-routes.test.ts`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: COMPLETED / MEASUREMENT MODE (2026-09-19). Active 28-day GSC telemetry observation window running through 2026-10-17.
+
+### [2026-09-19] — EXISTING ASSET OPTIMIZATION: Heat Pump Balance Point & Sizing Enhancement (SA-01)
+- **Objective Class**: `SINGLE ASSET`
+- **Autonomous Priority Selected**: Tier 1 Existing Asset Optimization (ANSI/ACCA 3 Manual S 3rd Edition, Dual-Fuel Economic Switchover & Low-Ambient Thermodynamics)
+- **Evidence & Rationale**: Addressed practitioner demand and search volume for heat pump sizing, balance points, and low-ambient heating capacities. Elevated `/calculators/heat-pump-size-calculator` to ANSI/ACCA 3 Manual S 3rd Edition (2023, v1.02 with Addendum A/B 2024), distinguished thermal balance point from dual-fuel economic switchover balance point with explicit fuel parity COP formulas, and added visual representation of the auxiliary heat deficit region. Attached supporting distribution actions for BibSonomy and MERLOT.
+- **Target Assets**:
+  - Computational Engine: [`src/lib/math/heat-pump.ts`](../src/lib/math/heat-pump.ts) & [`src/lib/math/heat-pump.test.ts`](../src/lib/math/heat-pump.test.ts)
+  - Interactive Tool: [`src/components/calculator/tools/HeatPumpSizeTool.tsx`](../src/components/calculator/tools/HeatPumpSizeTool.tsx)
+  - Visualizer: [`src/components/calculator/visualizers/HeatPumpBalanceVisualizer.tsx`](../src/components/calculator/visualizers/HeatPumpBalanceVisualizer.tsx)
+  - Route & Content Page: [`src/app/calculators/heat-pump-size-calculator/page.tsx`](../src/app/calculators/heat-pump-size-calculator/page.tsx)
+- **Actions Executed**:
+  1. *Mathematical Engine*: Implemented ANSI/ACCA 3 Manual S (3rd Edition, 2023 with Addendum B 2024) equipment sizing logic, evaluating single-speed (90%-115%), variable-capacity cooling (90%-130%), and variable-capacity primary heating selection (Addendum B turndown condition).
+  2. *Dual-Fuel Economic Switchover*: Added deterministic economic balance point ($T_{\text{economic}}$) engine computing fuel parity COP threshold ($\text{COP}_{\text{economic}} = 29.3071 \times \text{AFUE} \times \frac{\text{ElecRate}}{\text{GasRate}}$) and comparing heat pump vs. furnace operating costs per MBTU across outdoor temperatures.
+  3. *Visualizer Enhancement*: Added shaded polygon for supplemental auxiliary heat deficit region below thermal balance point and dual-fuel economic switchover marker.
+  4. *Content & Standards Expansion*: Authored detailed engineering sections explaining the physical difference between thermal balance and economic switchover, low-ambient suction density derating per ASHRAE Fundamentals Ch. 18 / AHRI 210/240, and auxiliary heat sizing.
+  5. *Internal Link Graph*: Embedded bidirectional links to `/calculators/heat-loss-calculator`, `/calculators/ac-tonnage-calculator`, `/calculators/furnace-size-calculator`, `/calculators/cfm-calculator`, `/calculators/pt-chart`, `/calculators/superheat-subcooling-calculator`, and `/calculators/effective-r-value-calculator`.
+  6. *Supporting Distribution*: Prepared BibSonomy bookmark for `/guides/framing-thermal-bridging-effective-r-value` and MERLOT OER learning resource metadata for `/calculators/ductulator`.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors (TypeScript 100% clean).
+  - `npm test`: 34/34 test files passed, 141/141 unit tests passed (+2 new tests for dual-fuel switchover & Manual S 3rd Ed).
+  - `npm run build`: 89/89 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/BACKLINK_LOG.csv`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: COMPLETED / MEASUREMENT MODE (2026-09-19). Active 28-day GSC telemetry observation window running through 2026-10-17.
+
+### [2026-09-18] — CORE PUBLICATION: Building Envelope Thermal Bridging & Effective Assembly U-Factor System
+- **Objective Class**: `CORE PUBLICATION`
+- **Autonomous Priority Selected**: Tier 5 Core Publication (Building Science / ASHRAE 90.1 Envelope Thermal Bridging)
+- **Evidence & Rationale**: Addressed documented high search demand and engineering tool deficit for calculating effective whole-wall R-values and cold-formed steel stud thermal bridging deratings per ANSI/ASHRAE/IES Standard 90.1-2022 Normative Appendix A and IECC 2024 / 2021 Table C402.1.4. Built a fully verified, self-contained Version 1 engineering engine and multi-asset system connecting theory, calculation, and open reference data.
+- **Target Assets**:
+  - Calculation Engine: [`src/lib/math/effective-r-value.ts`](../src/lib/math/effective-r-value.ts) & [`src/lib/math/effective-r-value.test.ts`](../src/lib/math/effective-r-value.test.ts)
+  - Interactive Tool & Visualizer: [`src/components/calculator/tools/EffectiveRValueTool.tsx`](../src/components/calculator/tools/EffectiveRValueTool.tsx) & [`src/components/calculator/visualizers/EffectiveRValueVisualizer.tsx`](../src/components/calculator/visualizers/EffectiveRValueVisualizer.tsx)
+  - Calculator Route: [`src/app/calculators/effective-r-value-calculator/page.tsx`](../src/app/calculators/effective-r-value-calculator/page.tsx)
+  - Core Engineering Guide: [`src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx`](../src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx)
+  - Derived Benchmark Matrix: [`public/datasets/framing-thermal-bridging-assembly-factors.csv`](../public/datasets/framing-thermal-bridging-assembly-factors.csv)
+  - Embed Widget Route: [`src/app/embed/[slug]/page.tsx`](../src/app/embed/[slug]/page.tsx)
+- **Actions Executed**:
+  1. *Mathematical Engine*: Implemented wood stud parallel-path isothermal planes model ($U = f_1/R_1 + f_2/R_2$) per ASHRAE Fundamentals Ch. 25/27 and cold-formed steel stud effective cavity method ($R_{\text{eff,cavity}}$) per ASHRAE 90.1 Table A9.2-1.
+  2. *Continuous Exterior Insulation (ci)*: Modeled ASTM C578 (XPS @ R-5.0/in, EPS @ R-4.0/in), ASTM C1289 (Polyiso @ R-6.0/in), and ASTM C612 (Mineral Wool @ R-4.2/in) as uninterrupted thermal breaks.
+  3. *Core Guide Publication*: Authored deep technical monograph detailing thermal bridge heat flux physics, comparative wood vs. steel conductivities (400× ratio), ASHRAE Table A9.2-1 derating matrix, worked sizing scenario (Zone 5 commercial wall), and TechArticle JSON-LD schema.
+  4. *Reactive Visualizer & UI*: Created dynamic SVG cross-section diagram rendering real-time heat flux bridge indicators, framing area fractions, and numerical performance cards.
+  5. *Internal Link Mesh*: Linked bidirectional bridges between `/calculators/effective-r-value-calculator`, `/calculators/r-value-calculator`, and `/calculators/heat-loss-calculator`.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors (TypeScript 100% clean).
+  - `npm test`: 34/34 test files passed, 139/139 unit and canonical route tests passed.
+  - `npm run build`: 89/89 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+- **Status / Follow-Up Date**: COMPLETE. Transitioned to 28-day post-deployment GSC observation window.
+
+### [2026-09-18] — CLUSTER UPGRADE: Thermodynamic Calculator Cluster (/calculators/pt-chart & /calculators/psychrometric-calculator)
+- **Objective Class**: `CLUSTER UPGRADE`
+- **Autonomous Priority Selected**: Tier 2 Existing Cluster Upgrade (Refrigerant Phase Equilibrium & Moist-Air Psychrometrics)
+- **Evidence & Rationale**: Documented GSC demand for PT chart (529 imp / pos 14.09) and moist-air thermodynamic search queries. Upgraded the two existing thermodynamic assets (`/calculators/pt-chart` and `/calculators/psychrometric-calculator`) to provide rigorous thermodynamic domain separation (NIST REFPROP refrigerant phase equilibrium vs. ASHRAE Hyland-Wexler moist air), explain the physical air-side dew point ($T_{dp}$) vs. refrigerant evaporator boiling ($T_{sat,dew}$) dehumidification threshold, provide standard psychrometric benchmark state tables cited to ANSI/ASHRAE Standard 55-2023 and ANSI/AHRI Standard 210/240-2023, document the standard air density derivation for coil capacity approximations ($Q = 4.5 \times CFM \times \Delta h$), and establish genuine engineering workflow link bridges to `/calculators/cfm-calculator` and `/calculators/superheat-subcooling-calculator` (ACCA Standard 5). Zero new routes created (standalone dew point and enthalpy calculators deferred to future asset objectives).
+- **Target Assets**:
+  - [`/calculators/pt-chart`](../src/app/calculators/pt-chart/page.tsx)
+  - [`/calculators/psychrometric-calculator`](../src/app/calculators/psychrometric-calculator/page.tsx)
+- **Actions Executed**:
+  1. *PT Chart Page*: Added direct thermodynamic explanation of refrigerant evaporator saturation temperature ($T_{sat,dew}$) vs. air-side psychrometric dew point ($T_{dp}$), detailing the latent dehumidification boundary ($T_{sat,dew} < T_{dp}$), sensible-only cooling ($T_{sat,dew} > T_{dp}$), and the coil freezing hazard ($T_{sat,dew} < 32.0^\circ\text{F}$). Added contextual links to `psychrometric-calculator` and `superheat-subcooling-calculator`.
+  2. *Psychrometric Calculator Page*: Added dedicated property reference cards for dew point ($T_{dp}$), specific enthalpy ($h$), and wet bulb ($T_{wb}$). Added verified HVAC psychrometric benchmark table citing ANSI/ASHRAE Standard 55-2023, ANSI/AHRI Standard 210/240-2023 Table 7 (Condition A entering/leaving), and ANSI/ASHRAE 90.1-2022. Documented standard air density assumptions for $Q \approx 4.5 \times CFM \times \Delta h$. Added contextual links to `pt-chart` and `cfm-calculator`.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors.
+  - `npm test`: 33/33 test files passed, 134/134 unit tests passed.
+  - `npm run build`: 86/86 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+- **Status / Follow-Up Date**: COMPLETE. Transitioned to 28-day post-deployment GSC observation window.
+
+### [2026-09-18] — SINGLE ASSET: Combustion Air Confined Space On-Page Compliance & Worked Sizing Tables
+- **Objective Class**: `SINGLE ASSET`
+- **Autonomous Priority Selected**: Tier 1 Existing Asset Optimization (High-Rank Strike-Distance Quick Win)
+- **Evidence & Rationale**: GSC 28-day baseline showed 48 impressions, 1 click, and top-10 average ranking position of **8.71**. Enhanced on-page technical substance with verified NFPA 54 / IFGC mechanical room sizing reference matrices, metal vs. wood louver free area rules, and bidirectional downstream heating/ventilation workflow links.
+- **Target Assets**:
+  - [`/calculators/combustion-air-calculator`](../src/app/calculators/combustion-air-calculator/page.tsx)
+- **Actions Executed**:
+  1. *Reference Sizing Matrix*: Added standard residential equipment combination matrix (60k+36k, 80k+40k, 100k+50k, 120k+50k+40k, 150k+50k) detailing unconfined volume thresholds (50 ft³/kBTU), vertical/horizontal duct net free areas, and louver gross openings per NFPA 54 Section 9.3.
+  2. *Louver & Safety Standards*: Added explicit NFPA 54 Section 9.3.7 free area rules (75% metal / 25% wood) and life safety rationale for carbon monoxide (CO) prevention.
+  3. *Downstream Heating Workflow Links*: Embedded contextual link bridges to `/calculators/furnace-size-calculator`, `/calculators/boiler-size-calculator`, `/calculators/kitchen-hood-cfm`, and `/calculators/garage-heater-sizing`.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors.
+  - `npm test`: 33/33 test files passed, 134/134 unit tests passed.
+  - `npm run build`: 86/86 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+- **Status / Follow-Up Date**: COMPLETE. Transitioned to 28-day post-deployment GSC observation window.
+
+### [2026-09-18] — CLUSTER UPGRADE: HVAC Airflow / Flex Duct / Duct Sizing Search Cluster
+- **Objective Class**: `CLUSTER UPGRADE`
+- **Evidence & Rationale**: Documented GSC 28-day demand for flex duct sizing (292 imp / pos 26.03), duct friction loss (22 imp / pos 18.73), and core ductulator terms. Upgraded the entire 4-asset airflow cluster to satisfy documented query intents across flexible vs. rigid sheet metal comparisons, ADC/IRC installation standards, SMACNA aspect ratio thresholds, acoustic velocity limits, and inter-tool sizing workflows.
+- **Target Assets**:
+  - [`/calculators/flex-duct-cfm-chart`](../src/app/calculators/flex-duct-cfm-chart/page.tsx)
+  - [`/calculators/ductulator`](../src/app/calculators/ductulator/page.tsx)
+  - [`/calculators/cfm-calculator`](../src/app/calculators/cfm-calculator/page.tsx)
+  - [`/calculators/duct-friction-loss-calculator`](../src/app/calculators/duct-friction-loss-calculator/page.tsx)
+- **Actions Executed**:
+  1. *Flex Duct CFM Chart*: Added verified Flex vs. Rigid Sheet Metal Airflow Comparison Matrix (6"–14" round), Installation Standards vs. Design Heuristics section (IRC M1601.4.3, ADC 5th Ed, ACCA Manual D/Energy Star qualified heuristic), acoustic velocity guidelines, and bidirectional links to `duct-friction-loss-calculator` and `ductulator`.
+  2. *Digital Ductulator*: Added SMACNA Aspect Ratio guidance ($\le 4:1$), ASHRAE/SMACNA Air Velocity & NC Sound Rating Matrix, and workflow bridges to `flex-duct-cfm-chart` and `duct-friction-loss-calculator`.
+  3. *HVAC CFM Sizer*: Added Downstream Airflow-to-Duct Sizing Workflow Bridge Table and direct handoff links.
+  4. *Duct Friction Loss Sizer*: Added Equal Friction Sizing Integration Section showing how derived friction rate ($FR$) connects to the ductulator.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors (TypeScript 100% clean).
+  - `npm test`: 33/33 test files passed, 134/134 unit tests passed.
+  - `npx playwright test tests/e2e/flex-duct-chart.spec.ts`: 8/8 tests passed on Desktop and Mobile Chromium.
+  - `npm run build`: 86/86 static pages generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up**: COMPLETE. All 4 assets transition to post-deployment **GSC observation & measurement mode** for a 28-day tracking cycle.
+
+### [2026-09-18] — GSC 28-Day Baseline Logging, Redirect & Indexation Diagnostics, Operating State Allocation
+- **Autonomous Priority Selected**: Logging, Diagnostic & Operating State Allocation (Zero Implementation).
+- **Evidence & Rationale**:
+  - Full Google Search Console (GSC) 28-day performance, coverage, country, and query telemetry ingested and audited for both PowerLab and HVACLogic.
+  - Completed technical host/redirect diagnostic (`NO TECHNICAL HOST/REDIRECT BLOCKER FOUND`) and targeted indexation audit (`NO TECHNICAL INDEXATION BLOCKER FOUND — MONITOR`).
+  - Site architecture frozen; strictly zero code, content, redirect, canonical, or sitemap modifications executed.
+- **PowerLab Baseline Recorded**:
+  - **GSC 28-Day Performance**: 18,595 impressions, 19 clicks, ~0.10% CTR.
+  - **Top Strategic Assets**:
+    - `/home-energy/air-conditioner-cost-calculator`: 2,000 impressions, avg position 16.45.
+    - `/ev/ev-range-calculator`: 1,309 impressions, avg position 16.53.
+    - `/battery/battery-capacity-calculator`: 1,686 impressions, avg position 61.38.
+    - `/guides/how-many-kwh-does-a-house-use-per-day`: 1,470 impressions, avg position 48.42.
+  - **Indexation Coverage**: 17 indexed / 55 non-indexed (34 crawled-not-indexed, 13 discovered-not-indexed, 5 redirect-related errors, 3 redirected URLs).
+  - **Operating Allocation**:
+    - `EV Range Calculator` = next proposed active objective, awaiting approval (NOT executed).
+    - Recently optimized AC Calculator and completed assets held in **measurement mode**.
+- **HVACLogic Baseline Recorded**:
+  - **GSC 28-Day Performance**: 4,191 total impressions (2,475 US impressions / 59%), 7 clicks (100% US).
+  - **Top Strategic Assets**:
+    - `/calculators/pt-chart`: 529 impressions, 2 clicks, avg position 14.09.
+    - `/calculators/ac-model-decoder`: 304 impressions, 0 clicks, avg position 29.46.
+    - `/calculators/flex-duct-cfm-chart`: 292 impressions, 1 click, avg position 26.03.
+    - `/calculators/combustion-air-calculator`: 48 impressions, 1 click, avg position 8.71.
+    - `/calculators/duct-friction-loss-calculator`: 22 impressions, 1 click, avg position 18.73.
+  - **Indexation Coverage**: 11 indexed / 76 non-indexed (38 crawled-not-indexed, 13 discovered-not-indexed, 21 redirect URLs, 3 duplicate/canonical issues, 1 other canonical-related issue).
+  - **Diagnostic Conclusion**: `NO TECHNICAL INDEXATION BLOCKER FOUND — MONITOR` (Sampled strategic URLs verified technically clean; GSC validation in progress).
+  - **Operating Allocation**:
+    - `PT Chart` held in **measurement mode**.
+    - `AC Model Decoder` held in **measurement mode**.
+    - `51 non-indexed URLs` held in **INDEXATION WATCH**.
+- **HVACLogic GA4 Baseline Recorded (2026-08-21 to 2026-09-17)**:
+  - **Volume & Behavioral Telemetry**: 865 active users, 893 new users, 953 sessions, 1,871 page views, 21.7s average engagement time/user, 4,342 total events, 20 click events, 1 file download.
+  - **Traffic Acquisition Channels**: Direct/none (691 users / 724 sessions), Bing organic (87 users / 100 sessions), ChatGPT (17 users / 20 sessions), DuckDuckGo (13 users / 14 sessions), Google organic (7 users / 7 sessions), OER Commons (10 sessions), Merlot (7 sessions), Vercel (6 sessions), Yahoo (6 sessions), GitHub (2 sessions).
+  - **Geographic Concentration**: Singapore (257 users), Moses Lake (72), Ashburn (39), Des Moines (39), Glenview (39), San Jose (37), Temara (29), Council Bluffs (25), Boardman (15) — heavy datacenter/cloud infrastructure hubs.
+  - **ANALYTICS DATA QUALITY WATCH**: Raw GA4 user and session totals must NOT be treated as verified human organic traffic. Geographic and referral distribution indicates possible automated, infrastructure, preview, crawler, or non-representative traffic requiring dedicated investigation before using GA4 as a primary growth KPI. (Bot traffic is treated as a hypothesis until verified).
+  - **SEO Measurement Hierarchy**:
+    - `GSC = Primary Source`: Authoritative for organic search impressions, query demand, click-through rates, and Google rankings.
+    - `GA4 = Supporting Source`: Behavioral and referral telemetry (landing page engagement, referral sources, page views, conversion/download events).
+- **Current Operating State**:
+  - `GSC measurement + indexation watch + GA4 data-quality watch`
+  - Site architecture strictly frozen (zero implementation).
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+  - `SEO/CHANGELOG.md`
+- **Status / Follow-Up Date**: COMPLETE (Logging only; zero implementation). Follow-up upon next GSC / GA4 telemetry refresh.
+
 ### [2026-09-17] — Search-Intent & Technical Hardening of Flex Duct CFM Chart (/calculators/flex-duct-cfm-chart)
 - **Autonomous Priority Selected**: On-Site Search-Intent & Technical Content Hardening (`P1 Strategic Search Asset`).
 - **Evidence & Rationale**:
