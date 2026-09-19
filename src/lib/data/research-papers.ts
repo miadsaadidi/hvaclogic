@@ -17,6 +17,20 @@ export interface ResearchRepositoryLink {
   badge?: string;
 }
 
+export interface ResearchPaperTable {
+  title: string;
+  subtitle?: string;
+  standardReference?: string;
+  headers: string[];
+  rows: (string | number)[][];
+  footnote?: string;
+}
+
+export interface ResearchPaperSection {
+  title: string;
+  content: string[];
+}
+
 export interface ResearchPaper {
   slug: string;
   title: string;
@@ -34,6 +48,8 @@ export interface ResearchPaper {
   pdfUrl: string;
   repositories?: ResearchRepositoryLink[];
   companionCalculators: CompanionCalculator[];
+  tables?: ResearchPaperTable[];
+  technicalSections?: ResearchPaperSection[];
   bibtex: string;
   apa: string;
 }
@@ -755,6 +771,119 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.org/research/student-lab-building-envelope-thermal-transmission}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Student Laboratory Manual: Building Envelope Thermal Transmission, Fenestration SHGC Modeling, and Infiltration Sizing per ACCA Manual J (Courseware Report No. HL-LAB-2026-ENV02). HVACLogic Open Educational Resources. https://doi.org/10.57967/hf/10401`
+  },
+  {
+    slug: "cold-formed-steel-framing-thermal-factors",
+    title: "ANSI/ASHRAE/IES Standard 90.1 Cold-Formed Steel Stud Framing Factors & Cavity Insulation Thermal Bridging Deratings",
+    seoTitle: "Steel Stud Framing Factors & Cavity R-Value Deratings",
+    seoDescription: "Empirical analysis of ASHRAE 90.1 Table A9.2-1 framing factors (Fc), cold-formed steel thermal bridging, and continuous exterior insulation requirements.",
+    subtitle: "A rigorous building science evaluation of two-dimensional thermal fin effects, empirical framing correction factors (Fc), and whole-wall assembly U-factor compliance under ANSI/ASHRAE/IES Standard 90.1 and IECC.",
+    abstract: "Evaluates the severe two-dimensional thermal bridging physics inherent to cold-formed steel (CFS) stud building envelopes. Because the thermal conductivity of structural carbon steel (k ≈ 45.0 W/m·K / 31.2 BTU/hr·ft·°F) is over 1,180 times greater than typical batt insulation (k ≈ 0.038 W/m·K / 0.026 BTU/hr·ft·°F), steel studs act as highly efficient heat sinks and thermal fins. This monograph examines the finite-difference modeling underlying ANSI/ASHRAE/IES Standard 90.1 Normative Appendix A (Table A9.2-1 and Table A3.3-1), derives the empirical framing correction factor (Fc), tabulates verified effective cavity R-values across 3.5-inch, 6.0-inch, and 8.0-inch depths at 16-inch and 24-inch on-center spacings, and demonstrates why continuous exterior insulation (ci) is mathematically required to achieve contemporary code compliance under IECC 2024.",
+    keyFindings: [
+      "The thermal conductivity of cold-formed steel (k ≈ 45 W/m·K) exceeds glass fiber insulation by a factor of 1,184, inducing intensive two-dimensional heat flux pinching across stud flanges that violates one-dimensional Fourier assumptions.",
+      "Per ASHRAE 90.1 Table A9.2-1, nominal R-13 cavity insulation in a 3.5-inch steel stud wall at 16-inch on-center spacing is derated by 53.8% to an effective cavity resistance of R-6.0 (framing factor Fc = 0.46).",
+      "In 6.0-inch steel studs @ 16-inch on-center spacing, nominal R-19 fiberglass batt delivers an effective cavity resistance of only R-7.1 (a 62.6% thermal loss, Fc = 0.37), highlighting diminishing returns of cavity insulation without continuous exterior insulation.",
+      "Continuous exterior insulation (ci) installed across the exterior sheathing plane is unaffected by stud thermal bridging, functioning in pure series and providing a 100% effective thermal barrier (effective R-value = nominal R-value).",
+      "Under IECC 2024 Table C402.1.4, meeting the Climate Zone 5-6 steel-framed wall prescriptive limit (U ≤ 0.064 BTU/hr·ft²·°F) requires at least R-13 cavity + R-7.5 ci or R-20 cavity + R-3.8 ci, proving that code compliance is physically unattainable with cavity insulation alone."
+    ],
+    governingStandards: [
+      "ANSI/ASHRAE/IES Standard 90.1-2022 (Normative Appendix A, Tables A3.3-1 & A9.2-1)",
+      "ASHRAE Handbook—Fundamentals 2021 (Chapters 25 & 27)",
+      "IECC 2021/2024 Commercial & Residential Building Provisions (Table C402.1.4)",
+      "AISI S240-20 / AISI S100-16 North American Specification for Cold-Formed Steel"
+    ],
+    formulas: [
+      {
+        title: "Empirical Cavity Thermal Correction Factor (Fc)",
+        latex: "R_{\\text{cavity, eff}} = R_{\\text{cavity, nom}} \\times F_c \\quad \\iff \\quad F_c = \\frac{R_{\\text{cavity, eff}}}{R_{\\text{cavity, nom}}}",
+        explanation: "Governs the non-linear derating of nominal cavity insulation batts subjected to two-dimensional lateral heat pinching through steel web and flange conductive paths."
+      },
+      {
+        title: "Steel-to-Insulation Thermal Conductivity Ratio (Thermal Fin Pinning)",
+        latex: "\\kappa_{\\text{thermal}} = \\frac{k_{\\text{steel}}}{k_{\\text{insulation}}} = \\frac{45.0\\text{ W}/(\\text{m}\\cdot\\text{K})}{0.038\\text{ W}/(\\text{m}\\cdot\\text{K})} \\approx 1184",
+        explanation: "Quantifies the massive thermal conductivity disparity driving heat toward the conductive steel stud path rather than through the insulating cavity."
+      },
+      {
+        title: "Whole-Wall Assembly U-Factor with Continuous Exterior Insulation (ci)",
+        latex: "U_{\\text{assembly}} = \\frac{1}{R_{\\text{int air}} + R_{\\text{gypsum}} + (R_{\\text{cavity, nom}} \\cdot F_c) + R_{\\text{sheathing}} + R_{\\text{ci}} + R_{\\text{cladding}} + R_{\\text{ext air}}}",
+        explanation: "Computes the total assembly overall heat transmission coefficient combining parallel-bridged cavity layers and unbridged continuous exterior insulation layers in series."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-19",
+    reportNumber: "HL-TR-2026-STEEL01",
+    pdfUrl: "/whitepapers/Student_Lab_02_Building_Envelope_Thermal_Transmission.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "Read on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93"
+      }
+    ],
+    companionCalculators: [
+      {
+        name: "Building Envelope Thermal Bridging & Effective R-Value Calculator",
+        route: "/calculators/effective-r-value-calculator",
+        description: "Simulate parallel-path framing thermal bridging, continuous exterior insulation, and whole-wall U-factors per ASHRAE 90.1."
+      },
+      {
+        name: "Insulation R-Value & U-Factor Sizing Calculator",
+        route: "/calculators/r-value-calculator",
+        description: "Stack multi-layer homogeneous building envelope materials and determine cumulative thermal resistance."
+      },
+      {
+        name: "Building Heat Loss & Manual J Infiltration Sizer",
+        route: "/calculators/heat-loss-calculator",
+        description: "Model building enclosure Fourier conductive transmission and infiltration loads for space heating design."
+      }
+    ],
+    tables: [
+      {
+        title: "ASHRAE 90.1 Table A9.2-1 & Table A3.3-1: Cold-Formed Steel Framing Correction Factors (Fc) & Effective Cavity R-Values",
+        subtitle: "Normative effective cavity thermal resistance values for steel stud wall systems.",
+        standardReference: "ANSI/ASHRAE/IES Standard 90.1-2022 Normative Appendix A",
+        headers: ["Stud Depth", "Stud Spacing", "Nominal Cavity R", "Effective Cavity R (hr·ft²·°F/BTU)", "Framing Factor (Fc)", "Cavity Derate Loss (%)"],
+        rows: [
+          ["3.5 in (2x4 steel)", "16 in O.C.", "R-11", "R-5.5", "0.50", "50.0%"],
+          ["3.5 in (2x4 steel)", "16 in O.C.", "R-13", "R-6.0", "0.46", "53.8%"],
+          ["3.5 in (2x4 steel)", "16 in O.C.", "R-15", "R-6.4", "0.43", "57.3%"],
+          ["3.5 in (2x4 steel)", "24 in O.C.", "R-11", "R-6.6", "0.60", "40.0%"],
+          ["3.5 in (2x4 steel)", "24 in O.C.", "R-13", "R-7.2", "0.55", "44.6%"],
+          ["3.5 in (2x4 steel)", "24 in O.C.", "R-15", "R-7.8", "0.52", "48.0%"],
+          ["6.0 in (2x6 steel)", "16 in O.C.", "R-19", "R-7.1", "0.37", "62.6%"],
+          ["6.0 in (2x6 steel)", "16 in O.C.", "R-21", "R-7.4", "0.35", "64.8%"],
+          ["6.0 in (2x6 steel)", "24 in O.C.", "R-19", "R-8.6", "0.45", "54.7%"],
+          ["6.0 in (2x6 steel)", "24 in O.C.", "R-21", "R-9.0", "0.43", "57.1%"],
+          ["8.0 in (2x8 steel)", "16 in O.C.", "R-25", "R-7.8", "0.31", "68.8%"],
+          ["8.0 in (2x8 steel)", "24 in O.C.", "R-25", "R-9.6", "0.38", "61.6%"]
+        ],
+        footnote: "Values derived from ANSI/ASHRAE/IES Standard 90.1-2022 Normative Appendix A, Table A9.2-1 & Table A3.3-1. Framing factor Fc = R_effective / R_nominal."
+      },
+      {
+        title: "Continuous Exterior Insulation (ci) Prescriptive Minimums under IECC 2024 / ASHRAE 90.1",
+        subtitle: "Above-grade commercial steel-framed wall assembly U-factor and continuous insulation prescriptive targets.",
+        standardReference: "IECC 2024 Table C402.1.4 & ASHRAE 90.1-2022",
+        headers: ["Climate Zone", "Assembly U-Factor Limit", "Steel Framing Prescriptive Option", "Effective Whole-Wall R-Value", "Status"],
+        rows: [
+          ["Zones 1–2", "U ≤ 0.084", "R-13 + R-3.8 ci", "R-12.3", "Compliant"],
+          ["Zone 3", "U ≤ 0.077", "R-13 + R-5.0 ci", "R-13.5", "Compliant"],
+          ["Zone 4", "U ≤ 0.064", "R-13 + R-7.5 ci", "R-16.0", "Compliant"],
+          ["Zones 5–6", "U ≤ 0.064", "R-19 + R-7.5 ci", "R-17.1", "Compliant"],
+          ["Zones 7–8", "U ≤ 0.052", "R-13 + R-10.0 ci", "R-19.5", "Compliant"]
+        ],
+        footnote: "Derived from IECC 2024 Commercial Table C402.1.4 and ASHRAE Standard 90.1-2022 Building Envelope Requirements."
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_steel_framing_factors,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {ANSI/ASHRAE/IES Standard 90.1 Cold-Formed Steel Stud Framing Factors and Cavity Insulation Thermal Bridging Deratings},
+  institution = {HVACLogic Open-Access Building Science Monograph Series},
+  year = {2026},
+  number = {HL-TR-2026-STEEL01},
+  url = {https://hvaclogic.org/research/cold-formed-steel-framing-thermal-factors}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). ANSI/ASHRAE/IES Standard 90.1 Cold-Formed Steel Stud Framing Factors and Cavity Insulation Thermal Bridging Deratings (Technical Report No. HL-TR-2026-STEEL01). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/cold-formed-steel-framing-thermal-factors`
   }
 ];
 

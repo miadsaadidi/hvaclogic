@@ -83,7 +83,7 @@ export default function EffectiveRValueCalculatorPage() {
         <>
           <h2>ASHRAE 90.1 Cold-Formed Steel Stud Effective Cavity R-Value Matrix</h2>
           <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
-            Normative deratings for C-shape cold-formed steel studs derived directly from ANSI/ASHRAE/IES Standard 90.1-2022 (Table A9.2-1 &amp; Table A3.3-1):
+            Normative deratings for C-shape cold-formed steel studs derived directly from ANSI/ASHRAE/IES Standard 90.1-2022 (Table A9.2-1 &amp; Table A3.3-1). For finite-difference derivation, thermal fin equations, and complete framing factor (F_c) matrices, consult the <Link href="/research/cold-formed-steel-framing-thermal-factors" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Cold-Formed Steel Framing Factors Monograph</Link>.
           </p>
 
           <div className="scenario-table">

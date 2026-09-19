@@ -27,6 +27,62 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-19] - LAYER 1 PUBLICATION: Cold-Formed Steel Stud Framing Factors & Cavity Deratings (Step 5)
+- **Objective Class**: `CLUSTER PUBLICATION`
+- **Autonomous Priority Selected**: Tier 6 Layer 1 Supporting Publication (ANSI/ASHRAE/IES Standard 90.1 Normative Appendix A & IECC Commercial Wall Provisions)
+- **Evidence & Rationale**: Addressed documented practitioner and student demand for open-access ASHRAE 90.1 Table A9.2-1 framing factor lookup tables ($F_c$) and cold-formed steel two-dimensional thermal bridging derivations. Published an authoritative, scholarly technical monograph at `/research/cold-formed-steel-framing-thermal-factors` to branch from and pass topical authority upstream to Core B-1 ([`/guides/framing-thermal-bridging-effective-r-value`](../src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx)) and [`/calculators/effective-r-value-calculator`](../src/app/calculators/effective-r-value-calculator/page.tsx).
+- **Target Assets**:
+  - Research Registry & Interfaces: [`src/lib/data/research-papers.ts`](../src/lib/data/research-papers.ts)
+  - Research Monograph Dynamic Template: [`src/app/research/[slug]/page.tsx`](../src/app/research/[slug]/page.tsx)
+  - Core B-1 Companion Guide: [`src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx`](../src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx)
+  - Interactive Sizing Tool: [`src/app/calculators/effective-r-value-calculator/page.tsx`](../src/app/calculators/effective-r-value-calculator/page.tsx)
+  - Technical Sitemap & SEO Verification: [`src/lib/seo/canonical-routes.test.ts`](../src/lib/seo/canonical-routes.test.ts)
+- **Actions Executed**:
+  1. *Scholarly Monograph Registration*: Authored technical report `HL-TR-2026-STEEL01` in `src/lib/data/research-papers.ts` modeling the 1,184× conductivity disparity ($\kappa_{\text{thermal}} = k_{\text{steel}} / k_{\text{insulation}} \approx 1184$), empirical framing correction factors ($F_c$), and whole-wall U-factors with continuous exterior insulation ($R_{\text{ci}}$).
+  2. *Empirical Standards Datasets*: Structured normative lookup tables for ASHRAE 90.1 Table A9.2-1 & Table A3.3-1 effective cavity R-values (3.5", 6.0", and 8.0" steel studs at 16" and 24" O.C.) and IECC 2024 Table C402.1.4 continuous insulation prescriptive targets.
+  3. *Monograph Template Expansion*: Enhanced `src/app/research/[slug]/page.tsx` with responsive engineering table renderer supporting headers, zebra striping, standard reference badges, and explanatory footnotes.
+  4. *Radial Link Graph Integration*: Embedded bidirectional links between the new monograph, the Core B-1 guide, and the effective R-value calculator.
+  5. *SEO & Technical Routing*: Pre-rendered static route `/research/cold-formed-steel-framing-thermal-factors`, updated sitemap verification suite to 66 canonical entries, and injected Highwire Press / Google Scholar metadata.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors (TypeScript 100% clean).
+  - `npm test`: 34/34 test files passed, 141/141 unit tests passed.
+  - `npm run build`: 90/90 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `src/lib/data/research-papers.ts`
+  - `src/app/research/[slug]/page.tsx`
+  - `src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx`
+  - `src/app/calculators/effective-r-value-calculator/page.tsx`
+  - `src/lib/seo/canonical-routes.test.ts`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: COMPLETED / MEASUREMENT MODE (2026-09-19). Active 28-day GSC telemetry observation window running through 2026-10-17.
+
+### [2026-09-19] — EXISTING ASSET OPTIMIZATION: Heat Pump Balance Point & Sizing Enhancement (SA-01)
+- **Objective Class**: `SINGLE ASSET`
+- **Autonomous Priority Selected**: Tier 1 Existing Asset Optimization (ANSI/ACCA 3 Manual S 3rd Edition, Dual-Fuel Economic Switchover & Low-Ambient Thermodynamics)
+- **Evidence & Rationale**: Addressed practitioner demand and search volume for heat pump sizing, balance points, and low-ambient heating capacities. Elevated `/calculators/heat-pump-size-calculator` to ANSI/ACCA 3 Manual S 3rd Edition (2023, v1.02 with Addendum A/B 2024), distinguished thermal balance point from dual-fuel economic switchover balance point with explicit fuel parity COP formulas, and added visual representation of the auxiliary heat deficit region. Attached supporting distribution actions for BibSonomy and MERLOT.
+- **Target Assets**:
+  - Computational Engine: [`src/lib/math/heat-pump.ts`](../src/lib/math/heat-pump.ts) & [`src/lib/math/heat-pump.test.ts`](../src/lib/math/heat-pump.test.ts)
+  - Interactive Tool: [`src/components/calculator/tools/HeatPumpSizeTool.tsx`](../src/components/calculator/tools/HeatPumpSizeTool.tsx)
+  - Visualizer: [`src/components/calculator/visualizers/HeatPumpBalanceVisualizer.tsx`](../src/components/calculator/visualizers/HeatPumpBalanceVisualizer.tsx)
+  - Route & Content Page: [`src/app/calculators/heat-pump-size-calculator/page.tsx`](../src/app/calculators/heat-pump-size-calculator/page.tsx)
+- **Actions Executed**:
+  1. *Mathematical Engine*: Implemented ANSI/ACCA 3 Manual S (3rd Edition, 2023 with Addendum B 2024) equipment sizing logic, evaluating single-speed (90%-115%), variable-capacity cooling (90%-130%), and variable-capacity primary heating selection (Addendum B turndown condition).
+  2. *Dual-Fuel Economic Switchover*: Added deterministic economic balance point ($T_{\text{economic}}$) engine computing fuel parity COP threshold ($\text{COP}_{\text{economic}} = 29.3071 \times \text{AFUE} \times \frac{\text{ElecRate}}{\text{GasRate}}$) and comparing heat pump vs. furnace operating costs per MBTU across outdoor temperatures.
+  3. *Visualizer Enhancement*: Added shaded polygon for supplemental auxiliary heat deficit region below thermal balance point and dual-fuel economic switchover marker.
+  4. *Content & Standards Expansion*: Authored detailed engineering sections explaining the physical difference between thermal balance and economic switchover, low-ambient suction density derating per ASHRAE Fundamentals Ch. 18 / AHRI 210/240, and auxiliary heat sizing.
+  5. *Internal Link Graph*: Embedded bidirectional links to `/calculators/heat-loss-calculator`, `/calculators/ac-tonnage-calculator`, `/calculators/furnace-size-calculator`, `/calculators/cfm-calculator`, `/calculators/pt-chart`, `/calculators/superheat-subcooling-calculator`, and `/calculators/effective-r-value-calculator`.
+  6. *Supporting Distribution*: Prepared BibSonomy bookmark for `/guides/framing-thermal-bridging-effective-r-value` and MERLOT OER learning resource metadata for `/calculators/ductulator`.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors (TypeScript 100% clean).
+  - `npm test`: 34/34 test files passed, 141/141 unit tests passed (+2 new tests for dual-fuel switchover & Manual S 3rd Ed).
+  - `npm run build`: 89/89 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/BACKLINK_LOG.csv`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: COMPLETED / MEASUREMENT MODE (2026-09-19). Active 28-day GSC telemetry observation window running through 2026-10-17.
+
 ### [2026-09-18] — CORE PUBLICATION: Building Envelope Thermal Bridging & Effective Assembly U-Factor System
 - **Objective Class**: `CORE PUBLICATION`
 - **Autonomous Priority Selected**: Tier 5 Core Publication (Building Science / ASHRAE 90.1 Envelope Thermal Bridging)

@@ -119,6 +119,23 @@
 - **Rule 14: Strict Calculation Domain Separation & Cluster Scope Invariant**:
   - **Domain Separation**: Never conflate distinct engineering and physical domains (e.g., refrigerant phase-equilibrium thermodynamics vs. moist-air psychrometrics). Never construct synthetic "state-point handoffs" between separate tools unless explicitly designed and implemented in source code.
   - **Existing-Asset Cluster Gate**: In any `CLUSTER UPGRADE` objective, verify route existence in the production codebase first. **Strict Prohibition**: Never create new routes or tools inside a `CLUSTER UPGRADE`. Creating new routes requires an explicit, separate `CORE PUBLICATION` or `CLUSTER PUBLICATION` objective.
+- **Rule 15: Standardized Protocol for X (Twitter) Layer 1 Syndication Posts**:
+  Whenever drafting X (Twitter) posts to accelerate indexation and distribution for Layer 1 publications (Academia.edu, Figshare, SSRN, Hugging Face, DEV.to, Hashnode, OER Commons, MERLOT):
+  - **Pacing**: Output **STRICTLY 1 POST AT A TIME** per turn.
+  - **Strict 280-Character Ceiling**: The entire text in the single post block (Title + Description + Link + Tags) MUST NOT exceed 280 characters (accounting for X's 23-character URL shortening).
+  - **Format & Delivery Zones**: Deliver strictly in this exact structure:
+    1. `#### IMAGE LOCATION`: Clickable folder link ([`public/images/social/`](./public/images/social/)) and direct file link to the persisted image asset.
+    2. `#### POST (1 ZONE — <Count> / 280 CHARACTERS)`: Exactly **ONE** single copyable code block containing:
+       - Title
+       - Small Description
+       - Verified Link (Strictly 1 single URL/DOI from `VERIFIED_PUBLICATIONS_REGISTRY.md`)
+       - Exactly 5 to 6 technical hashtags (`#Tag1 #Tag2 #Tag3 #Tag4 #Tag5`)
+    3. `#### IMAGE PREVIEW`: Embedded markdown preview of the rendered image (`![Alt Text](file:///...)`).
+    4. `#### ALT`: A standalone copyable code block containing the clean accessibility and SEO description.
+  - **Strict Prohibitions**:
+    - **NEVER** provide a text "Image Prompt" code block in lieu of the actual image asset. Always generate and save the graphic to `public/images/social/`.
+    - **NEVER** exceed 280 characters in the Post code block.
+    - **NEVER** use em-dashes (`—`). Use standard hyphens (`-`), commas, or periods.
 
 ---
 
@@ -144,8 +161,9 @@
 - **Mandatory Master Inventory & Backlog Inspection**: When asked for SEO status or next action, inspect `SEO/WEEKLY_PLAN.md`, `SEO/MASTER_STRATEGY.md`, `SEO/EXTERNAL_DISTRIBUTION.md`, and `SEO/BACKLINK_LOG.csv`.
 - **Strict Anti-Duplication Pre-Check Protocol (MANDATORY)**:
   Before proposing, drafting, or generating ANY publication, article, lab module, dataset, or post for ANY platform (Medium, DEV.to, Hashnode, Academia.edu, Figshare, Hugging Face, OER Commons, MERLOT, SSRN, BibSonomy, X, etc.), you MUST inspect [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](./docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md) and [`SEO/BACKLINK_LOG.csv`](./SEO/BACKLINK_LOG.csv). **NEVER suggest or draft a publication topic/asset that is already published on that platform.**
-- **Asset-Fit External Publishing (No Fixed Quotas or Rigid Sequences)**:
-  Publishing and outreach occur strictly through the 5 asset-class flows (Research $\rightarrow$ Preprint/DOI, Dataset $\rightarrow$ Data Repository/DOI, Engineering Editorial $\rightarrow$ Trade Media, Developer Article $\rightarrow$ Tech Platform, Educational Resource $\rightarrow$ OER Platform). All fixed daily quotas, bookmarks, and rigid platform sequences are retired.
+- **Mandatory Daily Distribution Inclusion (BibSonomy & MERLOT)**: Whatever the daily SEO plan is, ALWAYS add extra educational material / bookmarks in **BibSonomy** and/or **MERLOT** (strictly verifying anti-duplication against [`docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`](./docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md) and [`SEO/BACKLINK_LOG.csv`](./SEO/BACKLINK_LOG.csv)), formatted with dedicated 1-click copyable metadata blocks.
+- **Asset-Fit External Publishing**:
+  Publishing and outreach occur strictly through the 5 asset-class flows (Research $\rightarrow$ Preprint/DOI, Dataset $\rightarrow$ Data Repository/DOI, Engineering Editorial $\rightarrow$ Trade Media, Developer Article $\rightarrow$ Tech Platform, Educational Resource $\rightarrow$ OER Platform). Aside from the mandatory BibSonomy & MERLOT material inclusion, publishing is asset-fit driven rather than fixed platform sequences.
 
 ---
 

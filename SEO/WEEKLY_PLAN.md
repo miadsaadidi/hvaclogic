@@ -213,6 +213,22 @@ Reply "Approved" to execute.
   - **Validation**: Peer technical review & standards verification complete.
   - **Status**: `[EXECUTED / READY TO PUBLISH — 2026-09-18]`
 
+- **Step 5 — Single Asset (`SA-01`)**: *Heat Pump Balance Point & Sizing Engineering Enhancement*
+  - **Class**: `SINGLE ASSET`
+  - **Scope / Affected URLs**: [`/calculators/heat-pump-size-calculator`](https://hvaclogic.org/calculators/heat-pump-size-calculator)
+  - **Outcome**: Upgraded to ANSI/ACCA 3 Manual S (3rd Edition, 2023 with Addenda A/B 2024), distinguished thermal balance point from dual-fuel economic switchover with deterministic fuel parity COP formulas, rendered auxiliary heat deficit shaded area in SVG visualizer, and attached BibSonomy and MERLOT supporting distribution.
+  - **Validation**: 141/141 unit tests passing, clean TypeScript typecheck, 89/89 static routes pre-rendered.
+  - **Measurement Window**: 2026-09-19 to 2026-10-17 (28-day GSC tracking on heat pump sizing query clusters).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-19]`
+
+- **Step 6 — Layer 1 Publication**: *Cold-Formed Steel Stud Framing Factors & Cavity Deratings*
+  - **Class**: `CLUSTER PUBLICATION` (Tier 6 Priority)
+  - **Scope / Affected URLs**: [`/research/cold-formed-steel-framing-thermal-factors`](https://hvaclogic.org/research/cold-formed-steel-framing-thermal-factors)
+  - **Outcome**: Published authoritative scholarly monograph modeling the 1,184× conductivity disparity ($\kappa_{\text{thermal}} = k_{\text{steel}} / k_{\text{insulation}} \approx 1184$), empirical framing correction factors ($F_c$), and continuous exterior insulation ($R_{\text{ci}}$) requirements. Tabulated ASHRAE 90.1 Table A9.2-1 & Table A3.3-1 normative matrix and IECC 2024 Table C402.1.4 continuous insulation minimums with responsive tables and Highwire Press metadata. Embedded radial links to Core B-1 and the effective R-value calculator.
+  - **Validation**: 141/141 unit tests passing, 0 TypeScript errors, 90/90 static routes generated.
+  - **Measurement Window**: 2026-09-19 to 2026-10-17 (28-day GSC tracking on steel stud framing factor queries).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-19]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -223,12 +239,7 @@ Reply "Approved" to execute.
 - **Candidate SA-01**: *Heat Pump Balance Point & Sizing Engineering Enhancement*
   - **Class**: `SINGLE ASSET` (Tier 1 Priority)
   - **Scope / Affected URLs**: [`/calculators/heat-pump-size-calculator`](https://hvaclogic.org/calculators/heat-pump-size-calculator)
-  - **Search Problem**: Missing worked engineering examples and ACCA Manual S selection criteria for commercial and cold-climate heat pump sizing queries.
-  - **Evidence**: GSC queries targeting heat pump sizing and balance point calculations.
-  - **Expected Outcome**: Increase impressions and improve average position for target heat pump sizing query clusters.
-  - **Validation Method**: Vitest calculation suite (`npm test`) & Next.js production build verification.
-  - **Measurement Method**: 28-day GSC tracking on URL-specific impressions, clicks, and average position.
-  - **Status**: `[BACKLOG / CANDIDATE]`
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-19]` (Moved to Section 5, Step 5)
 
 ### Category B: Cluster Upgrades (`CLUSTER UPGRADE`)
 - **Candidate CLU-02**: *Airflow & Hydronic Distribution Cluster Linking*

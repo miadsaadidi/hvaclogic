@@ -348,6 +348,9 @@ export default function FramingThermalBridgingGuidePage() {
             Calculate custom wall assemblies: <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Effective R-Value &amp; Thermal Bridging Calculator</Link>
           </li>
           <li>
+            Research monograph &amp; framing factor matrix: <Link href="/research/cold-formed-steel-framing-thermal-factors" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>ASHRAE 90.1 Cold-Formed Steel Framing Factors &amp; Cavity Deratings Monograph</Link>
+          </li>
+          <li>
             Build 1D homogeneous layer stacks: <Link href="/calculators/r-value-calculator" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Insulation R-Value &amp; U-Factor Calculator</Link>
           </li>
           <li>
