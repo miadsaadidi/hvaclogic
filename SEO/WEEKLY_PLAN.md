@@ -224,7 +224,7 @@ Reply "Approved" to execute.
 - **Step 6 — Layer 1 Publication**: *Cold-Formed Steel Stud Framing Factors & Cavity Deratings*
   - **Class**: `CLUSTER PUBLICATION` (Tier 6 Priority)
   - **Scope / Affected URLs**: [`/research/cold-formed-steel-framing-thermal-factors`](https://hvaclogic.org/research/cold-formed-steel-framing-thermal-factors)
-  - **Outcome**: Published authoritative scholarly monograph modeling the 1,184× conductivity disparity ($\kappa_{\text{thermal}} = k_{\text{steel}} / k_{\text{insulation}} \approx 1184$), empirical framing correction factors ($F_c$), and continuous exterior insulation ($R_{\text{ci}}$) requirements. Tabulated ASHRAE 90.1 Table A9.2-1 & Table A3.3-1 normative matrix and IECC 2024 Table C402.1.4 continuous insulation minimums with responsive tables and Highwire Press metadata. Embedded radial links to Core B-1 and the effective R-value calculator.
+  - **Outcome**: Published open technical engineering monograph (Report No. `HL-TR-2026-STEEL01`) modeling the 1,184× conductivity disparity ($\kappa_{\text{thermal}} = k_{\text{steel}} / k_{\text{insulation}} \approx 1184$), empirical framing correction factors ($F_c$), and continuous exterior insulation ($R_{\text{ci}}$) requirements. Tabulated ASHRAE 90.1 Table A9.2-1 & Table A3.3-1 normative matrix and IECC 2024 Table C402.1.4 continuous insulation minimums with responsive tables and Highwire Press metadata. Embedded radial links to Core B-1 and the effective R-value calculator.
   - **Validation**: 141/141 unit tests passing, 0 TypeScript errors, 90/90 static routes generated.
   - **Measurement Window**: 2026-09-19 to 2026-10-17 (28-day GSC tracking on steel stud framing factor queries).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-19]`

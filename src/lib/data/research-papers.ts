@@ -816,7 +816,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     repositories: [
       {
         platform: "academia",
-        label: "Read on Academia.edu",
+        label: "HVACLogic Series on Academia.edu",
         url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
         badge: "DA 93"
       }
