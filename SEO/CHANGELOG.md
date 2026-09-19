@@ -24,6 +24,19 @@ For every systemic SEO modification, record:
 
 ## Historical Changelog Entries
 
+### [2026-09-19] — GOVERNANCE UPDATE: Permanent Day-1 Multi-Engine Search-Gap Intelligence Layer & Additive Opportunity Protocol
+- **Type**: SEO Operating System Governance & Day 1 Intelligence Architecture
+- **Reason**: Codified the permanent Multi-Engine Day 1 Intelligence System to systematically uncover search intents that competing search results fail to fully satisfy without displacing the existing production roadmap. Codified four discovery engines (Engine A: Owned-Site Search Gap, Engine B: SERP Search-Intent Gap across 10 gap classifications, Engine C: Research / Engineering Gap, Engine D: Site Architecture / Product Gap), established the strict 4-gap taxonomy distinction and mandatory evidence separation labeling (`GSC Evidence`, `GA4 Evidence`, `SERP Evidence`, `Research / Authority Evidence`, `External Search-Volume Evidence`, `Site Architecture Evidence`, `Engineering Inference / Hypothesis`), codified the Anti-Content Bias hierarchy, and instituted the Additive Opportunity Rule ensuring newly discovered gaps populate the Additive Search-Gap Backlog without replacing, deleting, or reordering scheduled weekly objectives.
+- **URLs / Files Affected**:
+  - `AGENTS.md`
+  - `SEO/MASTER_STRATEGY.md`
+  - `SEO/WEEKLY_PLAN.md`
+  - `.agents/rules/universal-interaction-rules.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Structured, reproducible search-gap discovery across owned data, competitive SERPs, research standards, and site architecture; zero disruption to planned execution; eliminate arbitrary content manufacturing.
+- **Actual Outcome / Validation**: All governance files updated, cross-referenced, verified for consistency; zero code modifications, calculation engines untouched, existing scheduled candidates 100% preserved in active backlog.
+- **Follow-Up Date**: Day 1 of subsequent weekly cycles.
+
 ### [2026-09-18] — CORE PUBLICATION: Building Envelope Thermal Bridging & Effective Assembly U-Factor System
 - **Type**: Core Publication, Computational Engine & Multi-Asset Architecture
 - **Reason**: Implemented Core Candidate B-1 fulfilling documented high search demand for effective R-value calculations and steel stud thermal bridging deratings per ANSI/ASHRAE/IES Standard 90.1-2022 Normative Appendix A and IECC 2024 / 2021 Table C402.1.4. Developed pure TypeScript calculation engine (`src/lib/math/effective-r-value.ts`), reactive SVG heat-flux visualizer (`EffectiveRValueVisualizer.tsx`), interactive tool (`EffectiveRValueTool.tsx`), calculator route (`/calculators/effective-r-value-calculator`), dedicated core engineering guide (`/guides/framing-thermal-bridging-effective-r-value`), derived 48-assembly reference matrix CSV (`public/datasets/framing-thermal-bridging-assembly-factors.csv`), embed route, and bidirectional link mesh to `r-value-calculator` and `heat-loss-calculator`.

@@ -49,12 +49,43 @@ DAYS 3–6: CORE + LAYER 1 + CLUSTER + EXISTING ASSET EXECUTION (Continuous Rese
 DAY 7: VALIDATION + MEASUREMENT + OPPORTUNITY HARVESTING (Tests, Builds, Schema, Baseline Logs)
 ```
 
-### Day 1: Full SEO Intelligence + Opportunity Mapping
-Day 1 analyzes three integrated intelligence streams into a single evidence baseline:
-1. **Owned-Site Evidence**: GSC queries, pages, impressions, clicks, CTR, average position, query/page movement, emerging query families, high-impression / low-CTR opportunities, striking-distance rankings (positions 8–40), existing calculators/tools/guides/research, internal linking structure, indexation state, and technical issues.
-2. **SERP Evidence**: Current ranking pages, SERP feature formats (direct answers, tables, snippets), competing tools/calculators, missing tables, datasets, references, or explanations in existing SERPs, weak/fragmented search results, search-intent gaps, and terminology/query variants.
-3. **External Research / Authority Radar**: Continuous inspection of high-authority technical sources, research institutions, national labs, standards organizations, and open scientific repositories (e.g., **ASHRAE, ACCA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, Figshare, Zenodo, Hugging Face**).
-   - *Discovery Goal*: Uncover new search topics, datasets, engineering questions, research gaps, calculation reference opportunities, and opportunities for new Core assets or tool expansions (NOT to copy external content).
+### Day 1: Multi-Engine Intelligence & Search-Gap System
+
+Day 1 synthesizes intelligence across a **Multi-Engine Intelligence System** comprising four complementary discovery engines:
+
+1. **Engine A — Owned-Site Search Gap**:
+   - *Core Question*: What does HVACLogic's existing search data show that its current assets do not satisfy completely?
+   - *Evidence*: GSC queries, pages, impressions, clicks, CTR, average position, striking-distance queries (positions 4–40), emerging query families, declining assets, pages ranking for unintended queries, and incomplete intent coverage.
+   - *Output*: Owned-Site Search Gaps (directed to Category A Existing Asset Optimization or Category B Cluster Upgrades).
+
+2. **Engine B — SERP Search-Intent Gap**:
+   - *Core Question*: What are users searching for that the current competitive SERP does not fully solve?
+   - *10 SERP Gap Classifications*: Uncovered Intent, Partially Covered Intent, Fragmented Intent, Tool Gap, Data Gap, Technical-Depth Gap, Freshness Gap, Evidence Gap, Workflow Gap, Implementation Gap.
+   - *Analysis Dimensions*: Search Intent, Existing SERP Coverage, Missing Component, Coverage Level (Fully / Mostly / Partially / Poorly / Uncovered), HVACLogic Opportunity, Best Asset Type.
+   - *Output*: SERP Search-Intent Gaps.
+
+3. **Engine C — Research / Engineering Gap**:
+   - *Core Question*: What important technical problems could HVACLogic solve that are not currently represented well in search?
+   - *Evidence*: Continuous intelligence mining across national laboratories, research institutions, and standards organizations (**ASHRAE, ACCA, AHRI, SMACNA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, EPA, Figshare, Zenodo, Hugging Face**).
+   - *Output*: Research / Engineering Gaps (independent of pre-existing GSC impressions).
+
+4. **Engine D — Site Architecture / Product Gap**:
+   - *Core Question*: Where does the current HVACLogic product/content architecture fail to complete a user's task?
+   - *Evidence*: Internal routing graph, calculator registry (`src/lib/data/calculators-registry.ts`), guides registry (`src/lib/data/guides-registry.ts`), internal link graph, disconnected assets, missing workflow handoffs, and missing calculations.
+   - *Output*: Architecture / Product Gaps.
+
+### Strict 4-Gap Taxonomy & Evidence Separation
+- *Owned-Site Gap*: Users telling us through GSC what HVACLogic does not satisfy well.
+- *SERP Search Gap*: Users searching for an intent that competing results do not satisfy completely.
+- *Research / Engineering Gap*: Scientific/engineering sources reveal an important problem that search results do not yet address.
+- *Architecture / Product Gap*: HVACLogic's existing assets do not form the best workflow for solving an identified task.
+- *Strict Evidence Labeling*: Every candidate must explicitly state its evidence source (`GSC Evidence`, `GA4 Evidence`, `SERP Evidence`, `Research / Authority Evidence`, `External Search-Volume Evidence`, `Site Architecture Evidence`, or `Engineering Inference / Hypothesis`). Never conflate impressions with total search demand.
+
+### Additive Opportunity Rule
+**Newly discovered search gaps add opportunities to the backlog; they do NOT replace, delete, or reorder the existing weekly production plan.**
+- The existing weekly production schedule remains the authoritative baseline execution roadmap.
+- Newly discovered search gaps enter the **Additive Search-Gap Backlog** (Section 7 below).
+- The operating loop remains strictly: $\text{Discover} \longrightarrow \text{Classify} \longrightarrow \text{Prioritize} \longrightarrow \text{User Approval} \longrightarrow \text{Execute} \longrightarrow \text{Validate} \longrightarrow \text{Measure}$. Discovery does not equal execution authorization.
 
 ### Day 1 Output: The Weekly Opportunity Map
 Day 1 produces an evidence-backed Opportunity Map containing 6 categories:
@@ -310,3 +341,87 @@ Reply "Approved" to execute.
   - **Expected Outcome**: Qualified developer/engineer referral traffic, brand discovery, and authoritative external citation.
   - **Validation Method**: Technical accuracy review and verified cross-link to canonical `/calculators/psychrometric-calculator`.
   - **Status**: `[BACKLOG / CANDIDATE]`
+
+---
+
+---
+
+---
+
+## 7. Additive Search-Gap Opportunity Backlog
+
+### Supplemental Intelligence Status: `COMPLETED` (Executed 2026-09-19)
+*The Day 1 Multi-Engine Search-Gap Intelligence pass has been executed across Engines B, C, and D. The baseline Day 1 diagnostic, measurement-mode assets, and existing planned candidates (Section 6) remain 100% intact and unchanged.*
+
+**Same-Cycle Execution Rule:**
+> **Newly discovered strong gaps are eligible for execution during the CURRENT weekly cycle, alongside the existing scheduled objectives, after explicit approval. They are not automatically deferred to future weeks.**
+
+### Additive Same-Cycle Execution Candidates
+
+#### A. New SERP Search-Intent Gaps (Engine B)
+1. **Candidate SG-01: ACCA Manual D Total Effective Length (TEL) & Equivalent Length Fitting Accumulator**
+   - **Gap Type**: `Workflow Gap` & `Tool Gap`
+   - **Search Intent**: Sizing air distribution systems by determining the cumulative equivalent length of elbows, transitions, boots, and dampers to calculate Available Static Pressure ($ASP$) and friction rate ($FR = \frac{ASP \times 100}{TEL}$).
+   - **SERP Coverage**: Top ranking results are static, low-resolution scanned PDF tables from Manual D or contractor forum threads with zero dynamic fitting accumulators.
+   - **Missing Component**: An interactive composite fitting calculator where users can select duct types, add fittings by category (e.g., 90° radius vs mitered elbow with turning vanes, supply boots, takeoffs), and compute composite supply + return TEL in real time.
+   - **Evidence**: `SERP Evidence` (SERPs lack interactive composite fitting calculators) + `Site Architecture Evidence` (Fills the missing input parameter between `/calculators/duct-friction-loss-calculator` and `/calculators/ductulator`).
+   - **Proposed Solution**: New Interactive Calculator / Tool Module (`/calculators/equivalent-length-calculator` or Manual D Fitting Sizer module).
+   - **Objective Class**: `SINGLE ASSET` (New Tool)
+   - **Confidence**: High (Clear query intent with high engineering friction in existing SERPs).
+   - **Status**: `DISCOVERED / READY FOR PRIORITIZATION`
+
+2. **Candidate SG-02: Hydronic ASME Closed-Loop Expansion Tank Sizing & Temperature-Dependent Glycol Thermal Expansion**
+   - **Gap Type**: `Technical-Depth Gap`, `Data Gap`, & `Tool Gap`
+   - **Search Intent**: Sizing closed-loop hydronic expansion tanks accounting for system water/glycol volume, fill temperature, maximum operating temperature, relief valve pressure, and acceptance volume limits per ASME Section VIII.
+   - **SERP Coverage**: Commercial plumbing websites provide simplified rule-of-thumb tank volume estimates ($V_t \approx \text{Gallons} \times 0.05$) assuming pure water at fixed temperatures, ignoring ASME acceptance volume criteria and glycol concentration expansion factors.
+   - **Missing Component**: ASME Section VIII formula modeling with temperature-dependent specific volume shifts ($\nu_1, \nu_2$) for water and propylene/ethylene glycol mixtures (0% to 50%), dynamic piping/emitter volume estimation, and net positive suction head (NPSH) pressure safety margins.
+   - **Evidence**: `SERP Evidence` (Top search results omit ASME compliance and glycol deratings) + `Research / Authority Evidence` (ASHRAE HVAC Systems and Equipment Handbook Chapter 15 & ASME Boiler and Pressure Vessel Code Section VIII).
+   - **Proposed Solution**: Dedicated Hydronic Expansion Tank Calculation Tool & Engineering Reference (`/calculators/expansion-tank-calculator`).
+   - **Objective Class**: `SINGLE ASSET` / `CORE PUBLICATION`
+   - **Confidence**: High (High-intent commercial and residential hydronic engineering search intent).
+   - **Status**: `PROPOSED / BOUNDED TECHNICAL VALIDATION`
+
+#### B. New Research / Engineering Gaps (Engine C)
+3. **Candidate SG-03: ASHRAE Standard 241-2023 Equivalent Clean Airflow ($ECA_i$) Pathogen Mitigation Benchmark & Sizing Framework**
+   - **Gap Type**: `Freshness Gap`, `Research / Engineering Gap`, & `Implementation Gap`
+   - **Search Intent**: Calculating compliance with the new national standard for control of infectious aerosols during Infection Risk Management Mode (IRMM), determining required Equivalent Clean Airflow per person ($ECA_p$) and per unit area ($ECA_a$) per ANSI/ASHRAE Standard 241-2023.
+   - **SERP Coverage**: SERPs are dominated by introductory press releases, webinar summaries, and high-level manufacturer promotional articles; zero deterministic engineering calculators or open benchmark datasets exist to calculate multi-zone $ECA$ allocation.
+   - **Missing Component**: Interactive engineering model balancing outdoor air ventilation ($V_{ot}$), mechanical filter pass efficiency by MERV rating ($\eta_{filter}$), in-room portable HEPA air cleaning, and upper-room UV-C germicidal irradiation fluence to verify total delivered $ECA_i$.
+   - **Evidence**: `Research / Authority Evidence` (ANSI/ASHRAE Standard 241-2023; CDC/ASHRAE Ventilation Specifications) + `Engineering Inference / Hypothesis` (Commercial facilities engineers and HVAC consultants require computational tools to audit ASHRAE 241 compliance).
+   - **Proposed Solution**: Core Publication & Benchmark Dataset: Open Technical Monograph (`/research/ashrae-241-equivalent-clean-airflow`) & Interactive $ECA$ Modeling Matrix (`/datasets/ashrae-241-clean-airflow-benchmarks`).
+   - **Objective Class**: `CORE PUBLICATION`
+   - **Confidence**: High (First-mover authority opportunity for newly codified standard).
+   - **Status**: `RESEARCH / PROVENANCE GATE`
+
+#### C. New Site Architecture / Product Gaps (Engine D)
+4. **Candidate SG-04: Building Envelope Effective Assembly $U$-Factor Handoff to Building Heat Loss Engine**
+   - **Gap Type**: `Workflow Gap` & `Implementation Gap`
+   - **Search Intent**: Transitioning from framing-derated envelope assembly calculations directly into whole-building fabric transmission heat loss modeling ($q = U \times A \times \Delta T$).
+   - **SERP / Site Coverage**: Core B-1 (`/calculators/effective-r-value-calculator`) calculates parallel-path effective thermal transmission and assembly $U$-factors per ASHRAE 90.1-2022 Appendix A, but the existing `/calculators/heat-loss-calculator` prompts users only for generic nominal $R$-values, forcing manual recalculation and breaking workflow continuity.
+   - **Missing Component**: Bidirectional calculation integration and direct input toggle on `/calculators/heat-loss-calculator` to accept pre-calculated assembly $U$-factors from the effective R-value tool.
+   - **Evidence**: `Site Architecture Evidence` (Verified in `src/app/calculators/heat-loss-calculator/page.tsx` and `src/app/calculators/effective-r-value-calculator/page.tsx`).
+   - **Proposed Solution**: Existing Asset Optimization: Enhance `/calculators/heat-loss-calculator` with an "Assembly U-Factor / Effective R-Value" input mode, linking directly to the Core B-1 tool.
+   - **Objective Class**: `SINGLE ASSET` (Existing Asset Optimization)
+   - **Confidence**: High (Zero new routes required; directly enhances existing Core B-1 utility).
+   - **Status**: `PROPOSED / READY FOR PRIORITIZATION`
+
+---
+
+### Additive Opportunity Backlog Ledger (Same-Cycle Eligible)
+
+| Candidate ID | Gap Type | Query / Topic | Evidence Type | Missing SERP / Site Component | Proposed HVACLogic Solution | Objective Class | Confidence | Status | Target Scope |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **SG-01** | `Workflow Gap` / `Tool Gap` | ACCA Manual D Total Effective Length (TEL) | `SERP Evidence` + `Site Architecture Evidence` | Interactive fitting accumulator for composite trunk & branch TEL | Dedicated Equivalent Length Fitting Accumulator Tool | `SINGLE ASSET` | High | `DISCOVERED / READY FOR PRIORITIZATION` | `/calculators/equivalent-length-calculator` |
+| **SG-02** | `Technical-Depth Gap` / `Data Gap` | ASME Hydronic Expansion Tank Sizing & Glycol Derating | `SERP Evidence` + `Research / Authority Evidence` | ASME Section VIII formula modeling & temperature-dependent glycol curves | Hydronic Expansion Tank Calculator & ASME Technical Guide | `SINGLE ASSET` / `CORE PUBLICATION` | High | `PROPOSED / BOUNDED TECHNICAL VALIDATION` | `/calculators/expansion-tank-calculator` |
+| **SG-03** | `Freshness Gap` / `Research Gap` | ASHRAE 241-2023 Equivalent Clean Airflow ($ECA_i$) | `Research / Authority Evidence` + `Engineering Inference` | Multi-source pathogen mitigation $ECA$ allocation engine & benchmark matrix | Open Research Monograph & Benchmark Dataset | `CORE PUBLICATION` | High | `RESEARCH / PROVENANCE GATE` | `/research/ashrae-241-equivalent-clean-airflow` |
+| **SG-04** | `Workflow Gap` / `Implementation Gap` | Effective Assembly $U$-Factor to Heat Loss Handoff | `Site Architecture Evidence` | Direct assembly $U$-factor input & workflow link from Core B-1 tool | On-page enhancement to Heat Loss Calculator with effective $U$-factor toggle | `SINGLE ASSET` | High | `PROPOSED / READY FOR PRIORITIZATION` | `/calculators/heat-loss-calculator` |
+
+---
+
+### Confirmation of Baseline Production Plan Preservation
+- **Preservation Status**: `100% INTACT & UNCHANGED`.
+- The existing production roadmap (Section 5 executed log and Section 6 active candidate backlog: `SA-01`, `CLU-02`, `TECH-01`, `CORE-01`, `CORE-02`, `L1-01`, `DIST-01`) has NOT been replaced, deleted, reordered, or weakened.
+- Candidates `SG-01` through `SG-04` are recorded strictly as additive same-cycle candidates awaiting explicit user selection and approval per the operating governance loop: **DISCOVER → CLASSIFY → PRIORITIZE → USER APPROVAL → EXECUTE → VALIDATE → MEASURE**.
+
+
+

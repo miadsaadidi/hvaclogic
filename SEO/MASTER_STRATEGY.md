@@ -299,12 +299,88 @@ Every execution decision, candidate asset, and proposed objective must answer:
   - Do not artificially shrink a coherent cluster objective to one URL merely to satisfy the one-objective rule.
   - Do not artificially combine unrelated work into one objective merely to increase scope.
 
-### Day 1: Full SEO Intelligence & Opportunity Mapping
-Day 1 synthesizes three integrated intelligence streams into a single evidence baseline:
-1. **Owned-Site Evidence**: GSC queries, pages, impressions, clicks, CTR, average position, query/page movement, emerging query families, high-impression / low-CTR opportunities, striking-distance rankings (positions 8–40), existing calculators/tools/guides/research, internal linking structure, indexation state (indexed vs non-indexed), and technical health.
-2. **SERP Evidence**: Current ranking pages, SERP feature formats (direct answers, tables, snippets), competing tools/calculators, missing tables, datasets, references, or explanations in existing SERPs, weak or fragmented search results, search-intent gaps, and terminology/query variants.
-3. **External Research / Authority Radar**: Continuous inspection of high-authority technical sources, research institutions, national labs, standards organizations, and open scientific repositories (e.g., **ASHRAE, ACCA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, Figshare, Zenodo, Hugging Face**).
-   - *Purpose*: Discover new search topics, datasets, engineering questions, research gaps, calculation reference opportunities, and opportunities for new Core assets or tool expansions (NOT to copy external content).
+### Day 1: Multi-Engine Intelligence & Search-Gap System
+
+Day 1 synthesizes intelligence across a **Multi-Engine Intelligence System** comprising four complementary discovery engines:
+
+1. **Engine A — Owned-Site Search Gap**:
+   - *Core Question*: What does HVACLogic's existing search data show that its current assets do not satisfy completely?
+   - *Evidence*: GSC queries, pages, impressions, clicks, CTR, average position, striking-distance queries (positions 4–40), emerging query families, declining assets, pages ranking for unintended queries, and incomplete intent coverage.
+   - *Output*: Owned-Site Search Gaps (directed to Category A Existing Asset Optimization or Category B Cluster Upgrades).
+
+2. **Engine B — SERP Search-Intent Gap**:
+   - *Core Question*: What are users searching for that the current competitive SERP does not fully solve?
+   - *10 SERP Gap Classifications*:
+     - **A. Uncovered Intent**: Top results barely answer what the user is actually trying to accomplish.
+     - **B. Partially Covered Intent**: Basic question answered, but a critical engineering component is omitted.
+     - **C. Fragmented Intent**: User must synthesize multiple disparate pages or tools to complete their task.
+     - **D. Tool Gap**: Results describe the engineering formula but lack an interactive computing tool.
+     - **E. Data Gap**: Results lack empirical benchmarks, reference datasets, or standard tables.
+     - **F. Technical-Depth Gap**: Results provide consumer-level fluff when professional engineering depth is required.
+     - **G. Freshness Gap**: Results rely on superseded standards, obsolete refrigerants, or retired codes (e.g., SEER instead of SEER2, ASHRAE 90.1-2016 instead of 2022).
+     - **H. Evidence Gap**: Competitor claims lack mathematical proof, physical constants, or standard citations.
+     - **I. Workflow Gap**: Solves an isolated step but fails to connect to the upstream/downstream engineering decision.
+     - **J. Implementation Gap**: Intent requires an interactive visualizer, dynamic SVG derate curve, or deterministic calculation model missing in search results.
+   - *Analysis Dimensions*: Every candidate must evaluate: Search Intent, Existing SERP Coverage, Missing Component, Coverage Level (Fully / Mostly / Partially / Poorly / Uncovered), HVACLogic Opportunity, and Best Asset Type.
+   - *Output*: SERP Search-Intent Gaps.
+
+3. **Engine C — Research / Engineering Gap**:
+   - *Core Question*: What important technical problems could HVACLogic solve that are not currently represented well in search?
+   - *Evidence*: Continuous intelligence mining across national laboratories, research institutions, and standards organizations (**ASHRAE, ACCA, AHRI, SMACNA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, EPA, Figshare, Zenodo, Hugging Face**).
+   - *Output*: Research / Engineering Gaps (independent of pre-existing GSC impressions).
+
+4. **Engine D — Site Architecture / Product Gap**:
+   - *Core Question*: Where does the current HVACLogic product/content architecture fail to complete a user's task?
+   - *Evidence*: Internal routing graph, calculator registry (`src/lib/data/calculators-registry.ts`), guides registry (`src/lib/data/guides-registry.ts`), internal link graph, disconnected assets, missing workflow handoffs, and missing calculation features.
+   - *Output*: Architecture / Product Gaps.
+
+### Strict 4-Gap Taxonomy & Evidence Separation
+
+The operating system strictly distinguishes the 4 gap origins:
+- **Owned-Site Gap**: Users telling us via GSC what HVACLogic does not satisfy well.
+- **SERP Search Gap**: Users searching for an intent that competing results do not satisfy completely.
+- **Research / Engineering Gap**: Scientific/engineering literature reveals an important problem that search results do not yet address.
+- **Architecture / Product Gap**: HVACLogic's existing assets do not form the best workflow for solving an identified task.
+
+#### Evidence Separation Standard
+Every discovered opportunity must explicitly label its evidence source:
+- `GSC Evidence`
+- `GA4 Evidence`
+- `SERP Evidence`
+- `Research / Authority Evidence`
+- `External Search-Volume Evidence`
+- `Site Architecture Evidence`
+- `Engineering Inference / Hypothesis`
+
+*Inference Invariant*: Never silently convert one evidence type into another. Do not equate GSC impressions with total search demand, and do not equate competitor weakness with high volume without verified data.
+
+### Opportunity → Minimum Effective Objective Conversion
+
+Translate every discovered gap into its minimum effective SEO objective:
+- *Query Gap* $\rightarrow$ Existing Asset Optimization
+- *Search Intent Gap* $\rightarrow$ Core / Layer 1 / Guide / Calculator (matching the missing component)
+- *Tool Gap* $\rightarrow$ New Calculator
+- *Workflow Gap* $\rightarrow$ Cluster Upgrade
+- *Feature Gap* $\rightarrow$ New Feature / Calculator upgrade
+- *Data Gap* $\rightarrow$ Dataset / Core Research
+- *Research Gap* $\rightarrow$ Core Publication / Calculator / Dataset
+- *Technical Gap* $\rightarrow$ Systemic Technical Remediation
+
+### Anti-Content Bias
+
+The presence of a search gap does NOT automatically mean "write an article". The solution must match the nature of the gap. Prefer the most useful asset:
+$$\text{calculator} > \text{feature} > \text{dataset} > \text{research} > \text{guide} > \text{generic article}$$
+*(applied only when that hierarchy genuinely fits the user's task).*
+
+### Additive Opportunity Rule & Backlog Governance
+
+**Newly discovered search gaps add opportunities to the backlog; they do NOT replace, delete, or reorder the existing weekly production plan.**
+- The existing weekly production schedule remains the authoritative baseline execution roadmap.
+- Newly discovered search gaps enter the **Additive Search-Gap Backlog** (`SEO/WEEKLY_PLAN.md`) with statuses: `DISCOVERED`, `RESEARCH NEEDED`, `PROPOSED`, `PROVENANCE GATE`, `BACKLOG`, `READY FOR APPROVAL`, `MEASUREMENT MODE`, `COMPLETED`.
+- The operating loop remains strictly: $\text{Discover} \longrightarrow \text{Classify} \longrightarrow \text{Prioritize} \longrightarrow \text{User Approval} \longrightarrow \text{Execute} \longrightarrow \text{Validate} \longrightarrow \text{Measure}$. Discovery does not equal execution authorization.
+
+### Anti-Loop Rule
+Maintain a strictly bounded intelligence cycle: $\text{Query selection} \longrightarrow \text{SERP inspection} \longrightarrow \text{Intent analysis} \longrightarrow \text{Gap classification} \longrightarrow \text{Opportunity mapping} \longrightarrow \text{STOP}$. Never loop on the same SERP seeking speculative perfection.
 
 ### Day 1 Output: The Weekly Opportunity Map
 Day 1 produces an evidence-backed Opportunity Map across 6 asset categories:
