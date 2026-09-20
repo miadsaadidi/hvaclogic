@@ -27,6 +27,38 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-20] — EXISTING ASSET OPTIMIZATION: Building Envelope Effective Assembly U-Factor Handoff to Heat Loss Engine (SG-04)
+- **Objective Class**: `SINGLE ASSET`
+- **Autonomous Priority Selected**: Tier 1 Existing Asset Optimization & Site Architecture Workflow Completion (ASHRAE Standard 90.1-2022 Appendix A & ACCA Manual J 8th Edition)
+- **Evidence & Rationale**: Addressed documented workflow gap where `/calculators/heat-loss-calculator` only accepted nominal cavity R-values, preventing practitioners from directly feeding bridge-corrected whole-wall assembly U-factors calculated in Core B-1 (`/calculators/effective-r-value-calculator`). Implemented dual-mode wall conduction solver supporting both nominal cavity R and ASHRAE 90.1 assembly U-factors with URL parameter hydration and bidirectional handoffs.
+- **Target Assets**:
+  - Computational Engine: [`src/lib/math/heat-loss.ts`](../src/lib/math/heat-loss.ts)
+  - Mathematical Test Suite: [`src/lib/math/heat-loss.test.ts`](../src/lib/math/heat-loss.test.ts)
+  - Interactive Tool Component: [`src/components/calculator/tools/HeatLossTool.tsx`](../src/components/calculator/tools/HeatLossTool.tsx)
+  - Core B-1 Tool Component: [`src/components/calculator/tools/EffectiveRValueTool.tsx`](../src/components/calculator/tools/EffectiveRValueTool.tsx)
+  - Page & Methodology Section: [`src/app/calculators/heat-loss-calculator/page.tsx`](../src/app/calculators/heat-loss-calculator/page.tsx)
+  - Calculator Registry: [`src/lib/data/calculators-registry.ts`](../src/lib/data/calculators-registry.ts)
+- **Actions Executed**:
+  1. *Mathematical Engine Upgrade*: Expanded `BuildingHeatLossInput` and `BuildingHeatLossOutput` in `src/lib/math/heat-loss.ts` to accept `wallAssemblyMode` (`nominal_r` | `effective_u`) and `customWallUFactor`, returning explicit `wallUFactor` and `effectiveWallR`.
+  2. *Unit Test Verification*: Added unit tests in `src/lib/math/heat-loss.test.ts` validating effective U-factor conductive calculations and comparing unmitigated steel stud thermal bridging against nominal cavity R-values.
+  3. *Interactive Tool State & UI Switcher*: Added dual-mode toggle ("Nominal Cavity R" vs "ASHRAE 90.1 Assembly U") in `HeatLossTool.tsx` with dynamic URL parameter hydration (`?wallMode=effective_u&wallU=...`) and CSV export accounting.
+  4. *Core B-1 Bidirectional Workflow Handoff*: Integrated a dedicated workflow handoff card in `EffectiveRValueTool.tsx` allowing 1-click transfer of calculated assembly U-factors into the heat loss calculator.
+  5. *Methodology & Knowledge Graph Expansion*: Added technical callout on framing thermal bridging in `src/app/calculators/heat-loss-calculator/page.tsx` and cross-linked `effective-r-value-calculator` in `src/lib/data/calculators-registry.ts`.
+- **Validation & Quality Checks**:
+  - `npm run typecheck`: 0 errors (TypeScript 100% clean).
+  - `npm test`: 34/34 test files passed, 143/143 unit tests passed (including 4/4 in `heat-loss.test.ts`).
+  - `npm run build`: 90/90 static routes generated successfully with zero runtime or hydration errors.
+- **Operational Files Updated**:
+  - `src/lib/math/heat-loss.ts`
+  - `src/lib/math/heat-loss.test.ts`
+  - `src/components/calculator/tools/HeatLossTool.tsx`
+  - `src/components/calculator/tools/EffectiveRValueTool.tsx`
+  - `src/app/calculators/heat-loss-calculator/page.tsx`
+  - `src/lib/data/calculators-registry.ts`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: COMPLETED / MEASUREMENT MODE (2026-09-20). Active 28-day GSC telemetry observation window running through 2026-10-18.
+
 ### [2026-09-19] - LAYER 1 PUBLICATION: Cold-Formed Steel Stud Framing Factors & Cavity Deratings (Step 5)
 - **Objective Class**: `CLUSTER PUBLICATION`
 - **Autonomous Priority Selected**: Tier 6 Layer 1 Supporting Publication (ANSI/ASHRAE/IES Standard 90.1 Normative Appendix A & IECC Commercial Wall Provisions)

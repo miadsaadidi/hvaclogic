@@ -1035,7 +1035,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
       "Heating equipment sizing recommendations (Furnace BTU/hr and Heat Pump Tonnage)",
       "1-Click CSV engineering report submittal export",
     ],
-    relatedCalculatorIds: ["btu-calculator", "r-value-calculator", "heat-pump-size-calculator", "furnace-size-calculator"],
+    relatedCalculatorIds: ["btu-calculator", "r-value-calculator", "effective-r-value-calculator", "heat-pump-size-calculator", "furnace-size-calculator"],
     researchSlug: "thermal-envelope-infiltration-building-heat-loss",
     standards: ["ASHRAE", "ACCA"],
     formulaVersion: "1.0.0",

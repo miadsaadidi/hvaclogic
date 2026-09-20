@@ -477,6 +477,48 @@ export function EffectiveRValueTool() {
         </p>
       </div>
 
+      {/* Downstream Workflow Handoff to Heat Loss */}
+      <div
+        style={{
+          background: "linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(30, 41, 59, 0.4) 100%)",
+          border: "1px solid rgba(14, 165, 233, 0.25)",
+          borderRadius: "0.75rem",
+          padding: "1rem 1.25rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+        }}
+      >
+        <div>
+          <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.2rem" }}>
+            Handoff to Whole-Building Heat Loss Engine
+          </div>
+          <div style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", lineHeight: 1.4 }}>
+            Apply this calculated assembly U-factor (<strong>U-{output.totalAssemblyUFactor.toFixed(3)}</strong> / effective <strong>R-{output.totalAssemblyEffectiveR.toFixed(1)}</strong>) directly into whole-house conductive transmission &amp; equipment sizing.
+          </div>
+        </div>
+        <Link
+          href={`/calculators/heat-loss-calculator?wallMode=effective_u&wallU=${output.totalAssemblyUFactor.toFixed(4)}`}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.4rem",
+            padding: "0.55rem 1rem",
+            borderRadius: "0.5rem",
+            background: "var(--accent-cooling)",
+            color: "#ffffff",
+            fontSize: "0.82rem",
+            fontWeight: 600,
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Calculate Building Heat Loss with U-{output.totalAssemblyUFactor.toFixed(3)} →
+        </Link>
+      </div>
+
       {/* Downstream Links */}
       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", fontSize: "0.85rem", color: "var(--ink-secondary)" }}>
         <span>• 1D Layer Builder: <Link href="/calculators/r-value-calculator" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Insulation R-Value &amp; U-Factor Calculator</Link></span>

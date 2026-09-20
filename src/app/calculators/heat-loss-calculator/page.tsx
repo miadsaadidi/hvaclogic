@@ -69,6 +69,15 @@ export default function HeatLossCalculatorPage() {
               <li><strong>Conductive Transmission (Q = U &times; A &times; &Delta;T):</strong> Heat traveling directly through solid materials (glass, drywall, wood/steel framing, siding). Determine exact whole-wall assembly U-factors accounting for stud thermal bridging with the <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Effective R-Value &amp; Thermal Bridging Calculator</Link>.</li>
               <li><strong>Air Infiltration (Q = 1.08 &times; CFM &times; &Delta;T):</strong> Cold outside air rushing through unsealed gaps around windows, rim joists, can lights, and electrical outlets. Air sealing with closed-cell spray foam or acoustic caulking is often the most cost-effective way to slash heating bills.</li>
             </ul>
+
+            <div style={{ marginTop: "1rem", padding: "1rem", background: "var(--surface-raised)", border: "1px solid var(--border-color)", borderRadius: "0.5rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--ink)", margin: "0 0 0.4rem" }}>
+                Accounting for Framing Thermal Bridging in Heat Loss
+              </h4>
+              <p style={{ margin: 0, fontSize: "0.85rem", color: "var(--ink-secondary)" }}>
+                Standard residential cavity insulation (such as R-13 or R-19 batts) is interrupted every 16 or 24 inches by wood or light-gauge cold-formed steel framing. In steel stud framing, thermal bridging derates cavity insulation performance by 40% to 60% per ASHRAE Standard 90.1 Appendix A. To prevent undersizing heating equipment in cold climates, switch the calculator to <strong>ASHRAE 90.1 Assembly U</strong> mode or compute your exact assembly transmittance using the <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Effective R-Value Calculator</Link> and <Link href="/guides/framing-thermal-bridging-effective-r-value" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Framing Thermal Bridging Guide</Link>.
+              </p>
+            </div>
           </div>
         </>
       }
