@@ -68,6 +68,17 @@ export default function CfmCalculatorPage() {
             notes="All air calculations assume standard dry air density (0.075 lb/ft³) at sea level. For high-altitude installations above 3,000 ft, derate the 1.08 constant by the barometric pressure ratio."
             sourceStandard="ASHRAE Standard 62.1 & ACCA Manual D (3rd Edition)"
           />
+
+          <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
+              Downstream Duct Sizing &amp; Distribution Workflows
+            </h3>
+            <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+              • Size Main Supply Trunks: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — convert total room CFM to equal-friction round and rectangular sheet metal trunks.<br />
+              • Size Flexible Branch Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — determine flexible duct runout diameters accounting for installation tension and sag.<br />
+              • Compute System Friction &amp; TEL: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss Sizer</Link> — verify blower static pressure and fitting resistance.
+            </p>
+          </div>
         </>
       }
       comparisonTableSection={
@@ -77,7 +88,7 @@ export default function CfmCalculatorPage() {
             Design airflow benchmarks and recommended duct trunk sizes across nominal residential equipment sizes:
           </p>
 
-          <div className="scenario-table">
+          <div className="scenario-table" style={{ marginBottom: "2rem" }}>
             <table>
               <thead>
                 <tr>
@@ -137,6 +148,62 @@ export default function CfmCalculatorPage() {
                   <td>1,750 CFM</td>
                   <td>2,250 CFM</td>
                   <td>18&quot; Round / 24&quot; × 10&quot; Rect</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Airflow (CFM) to Duct Sizing Workflow Bridge Matrix</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem" }}>
+            Connecting delivered airflow (CFM) to primary sheet metal trunks and typical branch runout counts at standard 0.08&quot; WG design friction:
+          </p>
+
+          <div className="scenario-table">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Airflow Volume (CFM)</th>
+                  <th scope="col">Primary Trunk (Round)</th>
+                  <th scope="col">Primary Trunk (Rectangular)</th>
+                  <th scope="col">Typical 6&quot; Flex Branches (84 CFM)</th>
+                  <th scope="col">Typical 8&quot; Flex Branches (177 CFM)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>400 CFM (1.0 Ton)</strong></td>
+                  <td>9&quot; Round</td>
+                  <td>10&quot; × 8&quot;</td>
+                  <td>4–5 Branches</td>
+                  <td>2–3 Branches</td>
+                </tr>
+                <tr>
+                  <td><strong>800 CFM (2.0 Tons)</strong></td>
+                  <td>12&quot; Round</td>
+                  <td>14&quot; × 8&quot;</td>
+                  <td>9–10 Branches</td>
+                  <td>4–5 Branches</td>
+                </tr>
+                <tr>
+                  <td><strong>1,200 CFM (3.0 Tons)</strong></td>
+                  <td>14&quot; Round</td>
+                  <td>18&quot; × 8&quot;</td>
+                  <td>14–15 Branches</td>
+                  <td>6–7 Branches</td>
+                </tr>
+                <tr>
+                  <td><strong>1,600 CFM (4.0 Tons)</strong></td>
+                  <td>16&quot; Round</td>
+                  <td>22&quot; × 8&quot;</td>
+                  <td>19–20 Branches</td>
+                  <td>9 Branches</td>
+                </tr>
+                <tr>
+                  <td><strong>2,000 CFM (5.0 Tons)</strong></td>
+                  <td>18&quot; Round</td>
+                  <td>24&quot; × 10&quot;</td>
+                  <td>23–24 Branches</td>
+                  <td>11–12 Branches</td>
                 </tr>
               </tbody>
             </table>

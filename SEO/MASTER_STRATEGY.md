@@ -250,19 +250,22 @@ Google Search Console is the primary operational feedback mechanism. All diagnos
 
 ---
 
-## 13. External Distribution & Backlink Governance
+## 13. External Technical Distribution & Research Interpretation Channels
 
-External publishing is a **supporting distribution mechanism**, not the foundation of SEO:
+External publishing is a **supporting technical distribution and research interpretation mechanism**, not a substitute for primary on-site HVACLogic assets:
 
-1. **Purpose**: Reach practicing engineers, HVAC technicians, researchers, and students; build researcher identity; generate legitimate citations and referral traffic.
-2. **Core-to-Spoke Flow**:
-   $$\text{HVACLogic Core Page First} \longrightarrow \text{Verify} \longrightarrow \text{Select Channel} \longrightarrow \text{Adapt Content} \longrightarrow \text{Publish} \longrightarrow \text{Verify} \longrightarrow \text{Log} \longrightarrow \text{Measure}$$
-3. **No Quotas**: Zero mandatory weekly quotas for external articles, bookmarks, or directory submissions.
-4. **Distinct Angles**: Never cross-post duplicate copy across platforms to artificially inflate URLs. Use distinct technical angles tailored to each channel.
+1. **Purpose**: Reach practicing mechanical engineers, HVAC technicians, researchers, and students; build researcher authority; generate qualified referral traffic and discoverability across developer/engineering ecosystems.
+2. **Platform Positioning (Dev.to / Hashnode / Technical Platforms)**:
+   - Treat Dev.to, Hashnode, and peer platforms primarily as **technical distribution, engineering methodology explanations, and research interpretation channels**.
+   - Suitable content angles: engineering implementation walkthroughs, mathematical/algorithmic methodology breakdowns, dataset curation protocols, research findings summaries, calculator logic deep-dives, and technical lessons derived from original HVACLogic engineering assets.
+   - **Core Hub Invariant**: The authoritative Core asset (interactive calculator, primary whitepaper, canonical guide, benchmark dataset) **must always remain on HVACLogic (`hvaclogic.org`)**. External publications provide companion interpretations and discovery channels, never duplicate copies.
+3. **Core-to-Spoke Flow**:
+   $$\text{HVACLogic Core Asset First} \longrightarrow \text{Verify Live} \longrightarrow \text{Select Distribution Channel} \longrightarrow \text{Adapt Technical Angle} \longrightarrow \text{Publish} \longrightarrow \text{Inspect HTML} \longrightarrow \text{Log} \longrightarrow \text{Measure}$$
+4. **No Quotas**: Zero mandatory weekly quotas for external articles, bookmarks, or directory submissions. Publishing occurs strictly when an original HVACLogic asset provides defensible technical insights to share.
 5. **Link Governance & Verification**:
    - Database Status: $\text{Prospect} \neq \text{Contacted} \neq \text{Published} \neq \text{Verified Backlink}$.
    - Classification: Strictly classify links as `VERIFIED DOFOLLOW`, `NOFOLLOW`, or `UNKNOWN` based on live HTML inspection.
-   - Dofollow links are never required; dofollow status is never promised or presumed.
+   - Dofollow links are never promised, presumed, or artificially manufactured.
    - Never claim an external backlink produced an organic ranking change without longitudinal evidence.
 
 ---
@@ -277,23 +280,166 @@ Cross-site links are permitted **only** where technically relevant (e.g. solar P
 
 ---
 
-## 15. The Autonomous Operating Model: Exactly One Active Objective
+## 15. The Autonomous Operating Model: Research-Driven & Evidence-Driven SEO Production
 
-The operating loop follows strict governance:
-$$\text{DIAGNOSE} \longrightarrow \text{IDENTIFY ONE OBJECTIVE} \longrightarrow \text{PRESENT EVIDENCE} \longrightarrow \text{STOP (APPROVAL)} \longrightarrow \text{EXECUTE} \longrightarrow \text{VALIDATE} \longrightarrow \text{LOG} \longrightarrow \text{MEASURE} \longrightarrow \text{RE-DIAGNOSE}$$
+HVACLogic operates as an integrated **research-driven, evidence-driven SEO production system**:
+$$\text{DAY 1: FULL INTELLIGENCE \& OPPORTUNITY MAPPING} \longrightarrow \text{PRIORITIZE} \longrightarrow \text{STOP (APPROVAL)} \longrightarrow \text{DAYS 2–6: CORE + EXISTING ASSET EXECUTION} \longrightarrow \text{DAY 7: VALIDATE \& MEASURE} \longrightarrow \text{RE-DIAGNOSE}$$
 
-### Operating Rules:
-1. **Exactly ONE Active Objective**: At any given time, there is strictly one active objective. The backlog is a candidate queue, not an automated execution list.
-2. **Diagnosis Order**:
-   1. Indexability & Technical Crawl Status
-   2. Existing Google Search Visibility & GSC Signals
-   3. Search Intent & Query Alignment
-   4. Page Usefulness & Engineering Substance
-   5. Topic Architecture & Internal Linking
-   6. Technical SEO & Schema
-   7. External Distribution & Asset-Fit Outreach
-3. **Plan Mode Before Execution Mode**: When presenting recommendations, output the factual state, plan table, execution flow, and action-by-action workflows. Never generate full copy, datasets, code, or metadata until the plan is approved.
-4. **Validation Before Advancement**: Validate every change locally (typecheck, tests, build) and in production before measuring and selecting the next objective.
+### The North Star Criterion
+Every execution decision, candidate asset, and proposed objective must answer:
+> **What evidence shows that this change can improve Google's understanding, coverage, relevance, discoverability, or usefulness of the site's search assets?**
+
+### Core Governance Rule: One Active Objective = One Coherent SEO Outcome
+> **ONE ACTIVE OBJECTIVE = ONE COHERENT SEO OUTCOME.**
+
+- **Objective = unit of SEO work**: Sized around a single coherent search outcome.
+- **Session/Day = execution container**: Multiple independent, coherent objectives may be executed sequentially in the same session or day. Small code/content fixes execute immediately; large clusters or core publications may span multiple sessions.
+- **Week = planning, execution, validation, and measurement window**: There is no artificial limit of one objective per week, and no requirement to spend a full week passively monitoring before executing another objective. Telemetry measurement and continuous research continue in parallel with execution.
+- **Anti-Distortion Rules**:
+  - Do not artificially shrink a coherent cluster objective to one URL merely to satisfy the one-objective rule.
+  - Do not artificially combine unrelated work into one objective merely to increase scope.
+
+### Day 1: Multi-Engine Intelligence & Search-Gap System
+
+Day 1 synthesizes intelligence across a **Multi-Engine Intelligence System** comprising four complementary discovery engines:
+
+1. **Engine A — Owned-Site Search Gap**:
+   - *Core Question*: What does HVACLogic's existing search data show that its current assets do not satisfy completely?
+   - *Evidence*: GSC queries, pages, impressions, clicks, CTR, average position, striking-distance queries (positions 4–40), emerging query families, declining assets, pages ranking for unintended queries, and incomplete intent coverage.
+   - *Output*: Owned-Site Search Gaps (directed to Category A Existing Asset Optimization or Category B Cluster Upgrades).
+
+2. **Engine B — SERP Search-Intent Gap**:
+   - *Core Question*: What are users searching for that the current competitive SERP does not fully solve?
+   - *10 SERP Gap Classifications*:
+     - **A. Uncovered Intent**: Top results barely answer what the user is actually trying to accomplish.
+     - **B. Partially Covered Intent**: Basic question answered, but a critical engineering component is omitted.
+     - **C. Fragmented Intent**: User must synthesize multiple disparate pages or tools to complete their task.
+     - **D. Tool Gap**: Results describe the engineering formula but lack an interactive computing tool.
+     - **E. Data Gap**: Results lack empirical benchmarks, reference datasets, or standard tables.
+     - **F. Technical-Depth Gap**: Results provide consumer-level fluff when professional engineering depth is required.
+     - **G. Freshness Gap**: Results rely on superseded standards, obsolete refrigerants, or retired codes (e.g., SEER instead of SEER2, ASHRAE 90.1-2016 instead of 2022).
+     - **H. Evidence Gap**: Competitor claims lack mathematical proof, physical constants, or standard citations.
+     - **I. Workflow Gap**: Solves an isolated step but fails to connect to the upstream/downstream engineering decision.
+     - **J. Implementation Gap**: Intent requires an interactive visualizer, dynamic SVG derate curve, or deterministic calculation model missing in search results.
+   - *Analysis Dimensions*: Every candidate must evaluate: Search Intent, Existing SERP Coverage, Missing Component, Coverage Level (Fully / Mostly / Partially / Poorly / Uncovered), HVACLogic Opportunity, and Best Asset Type.
+   - *Output*: SERP Search-Intent Gaps.
+
+3. **Engine C — Research / Engineering Gap**:
+   - *Core Question*: What important technical problems could HVACLogic solve that are not currently represented well in search?
+   - *Evidence*: Continuous intelligence mining across national laboratories, research institutions, and standards organizations (**ASHRAE, ACCA, AHRI, SMACNA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, EPA, Figshare, Zenodo, Hugging Face**).
+   - *Output*: Research / Engineering Gaps (independent of pre-existing GSC impressions).
+
+4. **Engine D — Site Architecture / Product Gap**:
+   - *Core Question*: Where does the current HVACLogic product/content architecture fail to complete a user's task?
+   - *Evidence*: Internal routing graph, calculator registry (`src/lib/data/calculators-registry.ts`), guides registry (`src/lib/data/guides-registry.ts`), internal link graph, disconnected assets, missing workflow handoffs, and missing calculation features.
+   - *Output*: Architecture / Product Gaps.
+
+### Strict 4-Gap Taxonomy & Evidence Separation
+
+The operating system strictly distinguishes the 4 gap origins:
+- **Owned-Site Gap**: Users telling us via GSC what HVACLogic does not satisfy well.
+- **SERP Search Gap**: Users searching for an intent that competing results do not satisfy completely.
+- **Research / Engineering Gap**: Scientific/engineering literature reveals an important problem that search results do not yet address.
+- **Architecture / Product Gap**: HVACLogic's existing assets do not form the best workflow for solving an identified task.
+
+#### Evidence Separation Standard
+Every discovered opportunity must explicitly label its evidence source:
+- `GSC Evidence`
+- `GA4 Evidence`
+- `SERP Evidence`
+- `Research / Authority Evidence`
+- `External Search-Volume Evidence`
+- `Site Architecture Evidence`
+- `Engineering Inference / Hypothesis`
+
+*Inference Invariant*: Never silently convert one evidence type into another. Do not equate GSC impressions with total search demand, and do not equate competitor weakness with high volume without verified data.
+
+### Opportunity → Minimum Effective Objective Conversion
+
+Translate every discovered gap into its minimum effective SEO objective:
+- *Query Gap* $\rightarrow$ Existing Asset Optimization
+- *Search Intent Gap* $\rightarrow$ Core / Layer 1 / Guide / Calculator (matching the missing component)
+- *Tool Gap* $\rightarrow$ New Calculator
+- *Workflow Gap* $\rightarrow$ Cluster Upgrade
+- *Feature Gap* $\rightarrow$ New Feature / Calculator upgrade
+- *Data Gap* $\rightarrow$ Dataset / Core Research
+- *Research Gap* $\rightarrow$ Core Publication / Calculator / Dataset
+- *Technical Gap* $\rightarrow$ Systemic Technical Remediation
+
+### Anti-Content Bias
+
+The presence of a search gap does NOT automatically mean "write an article". The solution must match the nature of the gap. Prefer the most useful asset:
+$$\text{calculator} > \text{feature} > \text{dataset} > \text{research} > \text{guide} > \text{generic article}$$
+*(applied only when that hierarchy genuinely fits the user's task).*
+
+### Additive Opportunity Rule & Backlog Governance
+
+**Newly discovered search gaps add opportunities to the backlog; they do NOT replace, delete, or reorder the existing weekly production plan.**
+- The existing weekly production schedule remains the authoritative baseline execution roadmap.
+- Newly discovered search gaps enter the **Additive Search-Gap Backlog** (`SEO/WEEKLY_PLAN.md`) with statuses: `DISCOVERED`, `RESEARCH NEEDED`, `PROPOSED`, `PROVENANCE GATE`, `BACKLOG`, `READY FOR APPROVAL`, `MEASUREMENT MODE`, `COMPLETED`.
+- The operating loop remains strictly: $\text{Discover} \longrightarrow \text{Classify} \longrightarrow \text{Prioritize} \longrightarrow \text{User Approval} \longrightarrow \text{Execute} \longrightarrow \text{Validate} \longrightarrow \text{Measure}$. Discovery does not equal execution authorization.
+
+### Anti-Loop Rule
+Maintain a strictly bounded intelligence cycle: $\text{Query selection} \longrightarrow \text{SERP inspection} \longrightarrow \text{Intent analysis} \longrightarrow \text{Gap classification} \longrightarrow \text{Opportunity mapping} \longrightarrow \text{STOP}$. Never loop on the same SERP seeking speculative perfection.
+
+### Day 1 Output: The Weekly Opportunity Map
+Day 1 produces an evidence-backed Opportunity Map across 6 asset categories:
+- **A. Existing Asset Optimization**: Pages/calculators with existing search visibility/impressions that can be deepened or expanded.
+- **B. Cluster Upgrade**: Interconnected groups of existing pages addressing the same search problem.
+- **C. Technical / Architecture Fixes**: Evidence-backed technical, schema, canonical, or crawlability issues.
+- **D. Core Publication Candidates**: Major new search assets (datasets, whitepapers, engineering research monographs, technical reference documents, comprehensive pillar guides, calculator-backed research assets).
+- **E. Layer 1 Candidates**: Narrower, specific supporting search intents that reinforce and branch from Core assets.
+- **F. External Technical Distribution**: Technical articles (Dev.to / Hashnode) translating HVACLogic engineering methodologies and dataset research for developer and engineering audiences.
+
+*Specification Requirement*: Every candidate in the Opportunity Map must define: Evidence, Target Search Problem, Asset Type, Relationship to Existing Assets, Expected SEO/Search-Value Hypothesis, and Implementation Scope.
+
+### Core Assets as a Primary SEO Production Pillar
+Content production is defined as **Persistent Search-Asset Creation & Research Mining** (never generic "blog publishing"):
+- **Core Asset Types**: Open Benchmark Datasets, Technical Whitepapers, Peer-Grade Engineering Research, Technical Reference Manuals, Comprehensive Pillar Guides, Calculator-Backed Research Assets.
+- **Standards of Quality**: Every Core asset must be substantial, original, mathematically verified, and technically defensible.
+- **Planning Horizon**: A target of 3–5 Core opportunities per week serves as an operational planning guideline, **NOT a mandatory production quota**. If evidence justifies 5, produce 5; if evidence justifies 2, produce 2; if no genuine gap exists, zero content is manufactured.
+
+### Core → Layer 1 Search Architecture
+Every new Core asset anchors a hierarchical topical cluster:
+$$\begin{array}{c}
+\mathbf{CORE\ ASSET} \\
+\text{\small (Authoritative Technical Engineering Reference / Dataset / Whitepaper / Pillar Guide)} \\
+\Downarrow \\
+\mathbf{LAYER\ 1\ SUPPORTING\ ASSETS} \\
+\text{\small (Narrow, Specific Long-Tail Search Intents \& Sub-Topic Guides)} \\
+\Downarrow \\
+\mathbf{INTERACTIVE\ CALCULATORS\ \&\ DATASET\ ENGINES} \\
+\text{\small (100\% Client-Side Interactive Computation Tools)} \\
+\Downarrow \\
+\mathbf{RADIAL\ INTERNAL\ LINK\ GRAPH} \\
+\text{\small (Bidirectional Semantic Connections Unifying the Knowledge Graph)}
+\end{array}$$
+
+*Rule*: Layer 1 assets exist strictly because they satisfy distinct, verifiable search intents, never to satisfy an arbitrary volume quota.
+
+### Continuous Research Radar (Days 2–7)
+Research is continuous, not confined to Day 1:
+- While executing existing-page upgrades or Core publications on Days 2–6, the **Research Radar** continuously monitors fresh GSC queries, SERP movements, newly published lab data, standards revisions, and engineering questions.
+- High-value opportunities discovered mid-week are immediately logged in the candidate backlog and prioritized when justified by evidence.
+
+### Weekly Execution Rhythm
+1. **DAY 1 — SEO Intelligence + Opportunity Mapping**: Full GSC + GA4 + SERP + Technical + Research Radar diagnostic and Weekly Opportunity Map synthesis.
+2. **DAY 2 — Core Production + Existing Asset Execution**: Launch highest-priority Core assets and execute immediate high-ROI existing page optimizations / quick wins.
+3. **DAYS 3–6 — Core + Layer 1 + Cluster + Existing Asset Execution**: Sequential execution of Core publications, Layer 1 supporting assets, calculator enhancements, cluster upgrades, internal link bridging, technical fixes, and external technical distribution.
+4. **DAY 7 — Validation + Measurement + Opportunity Harvesting**: Comprehensive test execution (`npm test`), typechecks (`tsc --noEmit`), build verification, schema/canonical validation, live header checks, and baseline logging. Harvest new search evidence to feed the next Day 1 diagnostic.
+
+### 6-Tier Objective Priority Framework
+When selecting objectives from the Weekly Opportunity Map, prioritize by evidence hierarchy (evidence can justify selecting any tier directly):
+1. **Tier 1: Existing Page with Clear GSC Opportunity** (Immediate strike-distance visibility and CTR gains).
+2. **Tier 2: Existing Cluster with Multiple Related Opportunities** (Topical authority and cross-page circulation).
+3. **Tier 3: Evidence-Backed Technical Issue** (Indexation, crawl efficiency, schema/canonical integrity).
+4. **Tier 4: Genuine Search / Content Gap** (Identified query intent unserved by existing assets).
+5. **Tier 5: Core Publication** (New major pillar guide, benchmark dataset, or calculation-backed research asset).
+6. **Tier 6: Layer 1 Supporting Publication** (Narrower supporting spoke strengthening a Core asset).
+
+### Content Quality & Anti-Spam Governance
+- **Strict Quality Rule**: The system produces **valuable, differentiated, technically useful search assets** — never volume-based commodity copy.
+- **Strict Prohibitions**: Zero keyword-volume quotas, zero arbitrary article counts, zero thin supporting pages, zero duplicate copy across routes or platforms, and zero content created merely to satisfy a publishing calendar.
 
 ---
 

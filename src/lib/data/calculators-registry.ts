@@ -911,6 +911,60 @@ export const calculatorRegistry: CalculatorMeta[] = [
   // PILLAR 5: BUILDING SCIENCE & INSULATION
   // -------------------------------------------------------------
   {
+    id: "effective-r-value-calculator",
+    name: "Thermal Bridging & Effective R-Value Calculator",
+    pillar: "building-science",
+    route: "/calculators/effective-r-value-calculator",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
+    primaryKeyword: "effective r value calculator",
+    secondaryKeywords: [
+      "steel stud r value calculator",
+      "effective r value steel studs",
+      "thermal bridging calculator",
+      "wall assembly u factor",
+      "continuous insulation r value"
+    ],
+    primaryIntent: "Technical / Building Science Calculation",
+    seoTitle: "Effective R-Value & Thermal Bridging Calculator: Wood/Steel",
+    metaDescription: "Calculate whole-wall effective R-value and assembly U-factor accounting for wood and steel stud thermal bridging per ASHRAE 90.1 Appendix A and IECC.",
+    categoryName: "Building Science",
+    categoryRoute: "/building-science",
+    features: [
+      "Parallel-path isothermal planes solver for wood stud wall assemblies (16\" & 24\" O.C.)",
+      "ASHRAE 90.1-2022 Normative Appendix A Table A9.2-1 cold-formed steel stud derating lookup matrix",
+      "Continuous exterior insulation (ci) modeling across XPS, EPS, Polyiso, and Mineral Wool",
+      "Reactive SVG assembly cross-section with live thermal bridging heat flux indicators",
+      "1-Click CSV engineering report submittal export",
+    ],
+    relatedCalculatorIds: ["r-value-calculator", "heat-loss-calculator", "btu-calculator"],
+    researchSlug: "student-lab-building-envelope-thermal-transmission",
+    datasetUrl: "/datasets/framing-thermal-bridging-assembly-factors.csv",
+    standards: ["ASHRAE", "IECC"],
+    formulaVersion: "1.0.0",
+    dataVersion: "1.0.0",
+    lastEngineeringReview: "2026-09-18",
+    requiresReferenceDataset: false,
+    offlineEligible: true,
+    testStatus: "validated",
+    faqs: [
+      {
+        question: "Why is the effective R-value of a steel stud wall lower than nominal cavity insulation?",
+        answer: "Steel has a thermal conductivity approximately 400 times higher than wood. Heat conducts rapidly through the steel stud flanges and web, bypassing the cavity insulation. Per ASHRAE 90.1 Table A9.2-1, an R-13 fiberglass batt in a 3.5-inch steel stud at 16 inches on-center has an effective cavity resistance of only R-6.0—a 53.8% performance loss."
+      },
+      {
+        question: "How does continuous insulation (ci) eliminate framing thermal bridging?",
+        answer: "Continuous exterior insulation (such as rigid foam or mineral wool board) runs uninterrupted across the exterior faces of all framing members. Because it has no thermal breaks, 100% of its rated thermal resistance is added directly to the assembly, raising effective R-value and lowering whole-wall U-factor."
+      },
+      {
+        question: "What is the formula for calculating whole-wall assembly U-factor?",
+        answer: "For wood framing, U_assembly = (f_framing / R_framing_path) + (f_cavity / R_cavity_path). For steel framing per ASHRAE 90.1 Appendix A, U_assembly = 1 / (R_continuous_layers + R_eff_cavity)."
+      }
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
+  },
+  {
     id: "r-value-calculator",
     name: "Insulation R-Value & U-Factor Calculator",
     pillar: "building-science",

@@ -1,7 +1,7 @@
 # HVACLogic SEO System Changelog
 
 **Domain**: [https://hvaclogic.org/](https://hvaclogic.org/)  
-**Document Version**: 2.2.0  
+**Document Version**: 2.3.0  
 **Operational Status**: ACTIVE / HISTORICAL AUDIT TRAIL  
 
 ---
@@ -23,6 +23,125 @@ For every systemic SEO modification, record:
 ---
 
 ## Historical Changelog Entries
+
+### [2026-09-19] — GOVERNANCE UPDATE: Permanent Day-1 Multi-Engine Search-Gap Intelligence Layer & Additive Opportunity Protocol
+- **Type**: SEO Operating System Governance & Day 1 Intelligence Architecture
+- **Reason**: Codified the permanent Multi-Engine Day 1 Intelligence System to systematically uncover search intents that competing search results fail to fully satisfy without displacing the existing production roadmap. Codified four discovery engines (Engine A: Owned-Site Search Gap, Engine B: SERP Search-Intent Gap across 10 gap classifications, Engine C: Research / Engineering Gap, Engine D: Site Architecture / Product Gap), established the strict 4-gap taxonomy distinction and mandatory evidence separation labeling (`GSC Evidence`, `GA4 Evidence`, `SERP Evidence`, `Research / Authority Evidence`, `External Search-Volume Evidence`, `Site Architecture Evidence`, `Engineering Inference / Hypothesis`), codified the Anti-Content Bias hierarchy, and instituted the Additive Opportunity Rule ensuring newly discovered gaps populate the Additive Search-Gap Backlog without replacing, deleting, or reordering scheduled weekly objectives.
+- **URLs / Files Affected**:
+  - `AGENTS.md`
+  - `SEO/MASTER_STRATEGY.md`
+  - `SEO/WEEKLY_PLAN.md`
+  - `.agents/rules/universal-interaction-rules.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Structured, reproducible search-gap discovery across owned data, competitive SERPs, research standards, and site architecture; zero disruption to planned execution; eliminate arbitrary content manufacturing.
+- **Actual Outcome / Validation**: All governance files updated, cross-referenced, verified for consistency; zero code modifications, calculation engines untouched, existing scheduled candidates 100% preserved in active backlog.
+- **Follow-Up Date**: Day 1 of subsequent weekly cycles.
+
+### [2026-09-18] — CORE PUBLICATION: Building Envelope Thermal Bridging & Effective Assembly U-Factor System
+- **Type**: Core Publication, Computational Engine & Multi-Asset Architecture
+- **Reason**: Implemented Core Candidate B-1 fulfilling documented high search demand for effective R-value calculations and steel stud thermal bridging deratings per ANSI/ASHRAE/IES Standard 90.1-2022 Normative Appendix A and IECC 2024 / 2021 Table C402.1.4. Developed pure TypeScript calculation engine (`src/lib/math/effective-r-value.ts`), reactive SVG heat-flux visualizer (`EffectiveRValueVisualizer.tsx`), interactive tool (`EffectiveRValueTool.tsx`), calculator route (`/calculators/effective-r-value-calculator`), dedicated core engineering guide (`/guides/framing-thermal-bridging-effective-r-value`), derived 48-assembly reference matrix CSV (`public/datasets/framing-thermal-bridging-assembly-factors.csv`), embed route, and bidirectional link mesh to `r-value-calculator` and `heat-loss-calculator`.
+- **URLs / Files Affected**:
+  - `src/lib/math/effective-r-value.ts`
+  - `src/lib/math/effective-r-value.test.ts`
+  - `src/components/calculator/visualizers/EffectiveRValueVisualizer.tsx`
+  - `src/components/calculator/tools/EffectiveRValueTool.tsx`
+  - `src/app/calculators/effective-r-value-calculator/page.tsx`
+  - `src/app/guides/framing-thermal-bridging-effective-r-value/page.tsx`
+  - `public/datasets/framing-thermal-bridging-assembly-factors.csv`
+  - `src/app/embed/[slug]/page.tsx`
+  - `src/lib/data/calculators-registry.ts`
+  - `src/lib/data/guides-registry.ts`
+  - `src/app/calculators/r-value-calculator/page.tsx`
+  - `src/app/calculators/heat-loss-calculator/page.tsx`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Rank prominently for high-value building science, steel stud, and envelope thermal bridging search intents; expand organic impressions and provide a reproducible engineering calculation tool.
+- **Actual Outcome / Validation**: Passed 100% verification checks: TypeScript 0 errors (`npm run typecheck`), 34/34 Vitest test files / 139 tests passed, Next.js static build pre-rendering 89/89 routes (`npm run build`).
+- **Follow-Up Date**: 28-day post-deployment GSC observation window.
+
+### [2026-09-18] — CLUSTER UPGRADE: Thermodynamic Calculator Cluster (/calculators/pt-chart & /calculators/psychrometric-calculator)
+- **Type**: Keyword Intent Hardening, Technical Substance & Internal Link Architecture
+- **Reason**: Upgraded the two existing thermodynamic assets (`pt-chart` and `psychrometric-calculator`). Preserved strict calculation domain separation between refrigerant phase equilibrium (NIST REFPROP v10.0) and moist-air thermodynamics (ASHRAE Hyland-Wexler). Added on-page engineering explanations of the air-side dew point vs. evaporator refrigerant boiling temperature dehumidification threshold ($T_{sat,dew} < T_{dp}$), authoritative benchmark state table cited to ANSI/ASHRAE Standard 55-2023 and ANSI/AHRI Standard 210/240-2023 Table 7, clear documentation of standard sea-level air density assumptions for coil capacity ($Q \approx 4.5 \times CFM \times \Delta h$), and contextual link bridges to `cfm-calculator` and `superheat-subcooling-calculator`. Zero new routes created.
+- **URLs / Files Affected**:
+  - `src/app/calculators/pt-chart/page.tsx`
+  - `src/app/calculators/psychrometric-calculator/page.tsx`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Expand relevant search visibility and CTR across thermodynamic, PT chart, and psychrometric query families while reinforcing genuine cross-tool engineering workflows.
+- **Actual Outcome / Validation**: Passed 100% tests (TypeScript clean, 33/33 Vitest files / 134 tests, Next.js static build of 86/86 routes).
+- **Follow-Up Date**: 28-day post-deployment GSC observation window.
+
+### [2026-09-18] — SINGLE ASSET: Combustion Air Confined Space On-Page Compliance & Worked Sizing Tables
+- **Type**: Keyword Intent Hardening, Technical Content Enrichment & Mesh Linking
+- **Reason**: Optimized strike-distance asset `/calculators/combustion-air-calculator` (GSC pos 8.71 / 48 imp). Added verified NFPA 54 Section 9.3 residential equipment reference sizing matrix (5 standard load pairings), explicit louver free area standards (75% metal / 25% wood), and downstream link bridges to furnace, boiler, kitchen hood, and garage heater sizing tools.
+- **URLs / Files Affected**:
+  - `src/app/calculators/combustion-air-calculator/page.tsx`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Expand relevant search visibility, improve CTR for NFPA 54 / IFGC combustion air queries, and strengthen internal link circulation.
+- **Actual Outcome / Validation**: Passed 100% tests (TypeScript clean, 33/33 Vitest files / 134 tests, Next.js static build of 86/86 pages).
+- **Follow-Up Date**: 28-day post-deployment GSC observation window.
+
+### [2026-09-18] — Research-Driven & Evidence-Driven SEO Production System Codification
+- **Type**: Strategic Governance / Operating Protocol Upgrade
+- **Reason**: Transformed the SEO governance model into a **Research-Driven, Evidence-Driven SEO Production System**. Codified Day 1 Full SEO Intelligence (Owned-Site + SERP + External Authority Radar across ASHRAE, ACCA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, etc.), Day 1 Opportunity Map output schema (Categories A–F), Core Asset Production as a Primary SEO Production Pillar (Persistent Search-Asset Creation & Research Mining; planning target 3–5 vs no mandatory quotas), Core $\rightarrow$ Layer 1 $\rightarrow$ Calculators/Datasets $\rightarrow$ Internal Links search architecture, Continuous Research Radar (Days 2–7), Weekly Execution Rhythm, and Dev.to / Hashnode technical distribution & research interpretation channel positioning.
+- **URLs / Files Affected**:
+  - `SEO/WEEKLY_PLAN.md` (v4.4.0)
+  - `SEO/MASTER_STRATEGY.md`
+  - `AGENTS.md` (Rules 8 & 9)
+  - `SEO/CHANGELOG.md` (v2.3.0)
+- **Expected Outcome**: Establish high-velocity, research-grounded production of defensible search assets with clear topical hierarchy and continuous opportunity discovery while strictly prohibiting volume-based publishing quotas and commodity content.
+- **Actual Outcome / Validation**: Successfully updated and verified consistency across all governance documents.
+- **Follow-Up Date**: Permanent operational rule.
+
+### [2026-09-18] — Evidence-Driven Execution Model & 7 Execution Windows Codification
+- **Type**: Strategic Governance / Operating Protocol Update
+- **Reason**: Replaced passive "measurement/watch week" model with the Evidence-Driven Execution Model (`DIAGNOSE → IDENTIFY OBJECTIVES → PRIORITIZE → EXECUTE → VALIDATE → MEASURE → RE-DIAGNOSE`). Codified the 7 flexible Execution Windows, 6-Tier Priority Framework, North Star criterion, and container definitions (`Objective` = unit of work, `Session/Day` = execution container, `Week` = planning/execution/validation/measurement window) without artificial weekly limits.
+- **URLs / Files Affected**:
+  - `SEO/WEEKLY_PLAN.md`
+  - `SEO/MASTER_STRATEGY.md`
+  - `AGENTS.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Establish seamless continuous execution capability while retaining rigorous single active objective scoping (`ONE ACTIVE OBJECTIVE = ONE COHERENT SEO OUTCOME`), existing-asset-first priority, and parallel telemetry measurement.
+- **Actual Outcome / Validation**: Successfully updated and verified consistency across all three governance files and rule definitions.
+- **Follow-Up Date**: Permanent operational rule.
+
+### [2026-09-18] — CLUSTER UPGRADE: HVAC Airflow / Flex Duct / Duct Sizing Search Cluster
+- **Type**: Keyword Intent Hardening, Technical Content Enrichment & Mesh Linking
+- **Reason**: Upgraded the 4-asset airflow cluster (`flex-duct-cfm-chart`, `ductulator`, `cfm-calculator`, `duct-friction-loss-calculator`) based on documented GSC 28-day demand. Integrated verified Flex vs. Rigid sheet metal comparison matrices, IRC M1601.4.3 / ADC hanging standards, qualified ACCA Manual D runout heuristics, SMACNA aspect ratio thresholds ($\le 4:1$), ASHRAE acoustic velocity limits, and bidirectional downstream workflow link bridges.
+- **URLs / Files Affected**:
+  - `src/app/calculators/flex-duct-cfm-chart/page.tsx`
+  - `src/app/calculators/ductulator/page.tsx`
+  - `src/app/calculators/cfm-calculator/page.tsx`
+  - `src/app/calculators/duct-friction-loss-calculator/page.tsx`
+- **Expected Outcome**: Increase relevant search visibility, improve impressions/clicks for documented GSC query families, and enhance internal circulation across the airflow cluster.
+- **Actual Outcome / Validation**: 100% test pass rate across Vitest (33 files / 134 tests), Playwright E2E (8/8 tests), TypeScript (`tsc --noEmit`), and Next.js static build (86/86 pages).
+- **Follow-Up Date**: 28-day post-deployment GSC observation window.
+
+### [2026-09-18] — Objective Sizing Governance & Classes Framework Codification
+- **Type**: Strategic Governance / Operating Protocol
+- **Reason**: Formally codified the definition and sizing of an active objective across the SEO system (`ONE ACTIVE OBJECTIVE = ONE COHERENT SEO OUTCOME`). Clarified that an objective is not restricted to a single URL but is bounded by search problem, implementation-pattern, validation, measurement, and execution controllability coherence. Codified the 6 Objective Classes (`SINGLE ASSET`, `CLUSTER UPGRADE`, `CORE PUBLICATION`, `CLUSTER PUBLICATION`, `SYSTEMIC TECHNICAL REMEDIATION`, `DIAGNOSTIC / MEASUREMENT`) and established mandatory pre-execution specification criteria.
+- **URLs / Files Affected**:
+  - `SEO/MASTER_STRATEGY.md`
+  - `SEO/WEEKLY_PLAN.md`
+  - `AGENTS.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Prevent artificial shrinking of multi-page cluster enhancements or artificial combining of unrelated tasks; ensure every candidate objective is sized cleanly around a coherent, measurable SEO outcome.
+- **Actual Outcome / Validation**: Successfully updated and synchronized all 3 governance files.
+- **Follow-Up Date**: Permanent operational rule.
+
+### [2026-09-18] — GSC Baseline Logging, Redirect & Indexation Diagnostics, System Operating Allocations
+- **Type**: Operational Telemetry, Diagnostic Classification & Operating Allocation.
+- **Reason**: Ingested and audited complete 28-day Google Search Console (GSC) datasets for PowerLab (18,595 impressions, 19 clicks, 17 indexed / 55 non-indexed) and HVACLogic (4,191 impressions, 7 clicks, 11 indexed / 76 non-indexed). Conducted rigorous technical investigations:
+  1. *Host/Redirect Diagnostic*: Verified `www` → apex is a clean 1-hop 308 permanent redirect, HTTPS canonicalization is intact, and sitemap/internal links are clean. Conclusion: `NO TECHNICAL HOST/REDIRECT BLOCKER FOUND`.
+  2. *Targeted Indexation Audit*: Audited representative strategic URLs across calculators, pillars, and research assets. Verified 200 OK, `index, follow` tags, self-referential canonicals, sitemap inclusion, and internal linking. Conclusion: `NO TECHNICAL INDEXATION BLOCKER FOUND — MONITOR` (GSC validation `Commencé` / in progress).
+- **URLs / Files Affected**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+  - `SEO/CHANGELOG.md`
+- **Expected Outcome**: Maintain operational audit trail, record official 28-day performance and coverage baselines, freeze site architecture, and hold active assets in measurement mode and indexation watch.
+- **Actual Outcome / Validation**: 100% compliance with non-execution mandate (zero code, content, redirect, canonical, or sitemap changes).
+- **Follow-Up Date**: Upon next GSC telemetry refresh.
 
 ### [2026-09-17] — Search-Intent & Technical Hardening of Flex Duct CFM Chart (/calculators/flex-duct-cfm-chart) (v4.3.0)
 - **Type**: On-Site Search-Intent, Technical Substance & Internal Link Architecture.

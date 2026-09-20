@@ -52,7 +52,7 @@ export default function PtChartPage() {
               <strong>Classify Pure vs. Zeotropic Refrigerants</strong>: Pure single-component substances (such as R-32, R-22, and R-134a) and near-azeotropic mixtures (such as R-410A) evaporate and condense at a constant temperature. In contrast, zeotropic blends (such as R-454B and R-407C) exhibit <em>temperature glide</em>, requiring separate dew and bubble curves.
             </li>
             <li>
-              <strong>Use the Dew Point Curve for Superheat</strong>: When measuring low-side suction pressure at the evaporator outlet, reference the <strong>Dew Point (Vapor Saturation) curve</strong> to determine the true vapor saturation temperature (T_sat_dew). Cross-reference actual measurements using the <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Target Superheat & Subcooling Calculator</Link>.
+              <strong>Use the Dew Point Curve for Superheat</strong>: When measuring low-side suction pressure at the evaporator outlet, reference the <strong>Dew Point (Vapor Saturation) curve</strong> to determine the true vapor saturation temperature (T_sat_dew). Cross-reference actual measurements using the <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Target Superheat &amp; Subcooling Calculator</Link>.
             </li>
             <li>
               <strong>Use the Bubble Point Curve for Subcooling</strong>: When measuring high-side liquid line pressure before the expansion device (TXV/EEV), reference the <strong>Bubble Point (Liquid Saturation) curve</strong> to determine the true liquid saturation temperature (T_sat_bubble).
@@ -61,6 +61,22 @@ export default function PtChartPage() {
               <strong>Convert Between Gauge and Absolute Pressure</strong>: Manifold gauges measure gauge pressure (PSIG). Thermodynamic equations utilize absolute pressure (PSIA), calculated at standard sea-level barometric pressure as PSIA = PSIG + 14.696.
             </li>
           </ol>
+
+          <h2>Refrigerant Saturation vs. Air-Side Psychrometric Dew Point</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            In direct-expansion (DX) cooling systems, evaporator heat transfer connects refrigerant-side phase equilibrium with air-side psychrometrics:
+          </p>
+          <ul style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+            <li>
+              <strong>Latent Dehumidification Threshold</strong>: Dehumidification begins only when the evaporator coil surface temperature (governed by refrigerant saturation temperature <em>T_sat_dew</em>) is lower than the entering moist-air dew point (<em>T_dp</em>). Determine entering air dew point using the <Link href="/calculators/psychrometric-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Psychrometric Calculator</Link>.
+            </li>
+            <li>
+              <strong>Sensible-Only Cooling</strong>: If <em>T_sat_dew</em> remains above the entering air dew point (<em>T_sat_dew &gt; T_dp</em>), no moisture condenses on coil fins; the process is purely sensible cooling along a constant humidity ratio line (<em>W</em>).
+            </li>
+            <li>
+              <strong>Coil Freeze Hazard (32°F Boundary)</strong>: When suction pressure drops such that <em>T_sat_dew &lt; 32.0°F (0°C)</em>, condensed moisture freezes into frost and ice on coil fins, starving airflow and risking liquid slugging to the compressor.
+            </li>
+          </ul>
 
           <FormulaCard
             title="Refrigerant Vapor-Liquid Equilibrium & Saturation Thermodynamics"
@@ -77,13 +93,13 @@ export default function PtChartPage() {
 
           <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
             <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              Related Engineering & Diagnostic Resources
+              Related Engineering &amp; Diagnostic Resources
             </h3>
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
-              • Field Charging Diagnostics: <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Target Superheat & Subcooling Calculator</Link> — evaluate target superheat for fixed orifices and subcooling benchmarks for TXVs.<br />
-              • Line-Set Weigh-In: <Link href="/calculators/refrigerant-charge-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Refrigerant Charge & Line-Set Sizing Tool</Link> — calculate required additional trim charge by liquid line diameter.<br />
-              • Applied Research: <Link href="/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Thermodynamic Modeling of Zeotropic A2L Refrigerant Glide (Report HL-TR-2026-A2L05)</Link> — peer-reviewed phase equilibrium derivations and saturation equations.<br />
-              • Pillar Hub: <Link href="/field-diagnostics" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Field Diagnostics, PT Charts & Psychrometrics Hub</Link> — master directory of refrigeration engineering tools.
+              • Air-Side Psychrometrics: <Link href="/calculators/psychrometric-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Moist Air Psychrometric Calculator</Link> — calculate moist-air dew point, wet bulb, and specific enthalpy across barometric elevations.<br />
+              • Field Charging Diagnostics: <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Target Superheat &amp; Subcooling Calculator</Link> — evaluate target superheat for fixed orifices and subcooling benchmarks for TXVs per ACCA Standard 5.<br />
+              • Line-Set Weigh-In: <Link href="/calculators/refrigerant-charge-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Refrigerant Charge &amp; Line-Set Sizing Tool</Link> — calculate required additional trim charge by liquid line diameter.<br />
+              • Applied Research: <Link href="/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Thermodynamic Modeling of Zeotropic A2L Refrigerant Glide (Report HL-TR-2026-A2L05)</Link> — peer-reviewed phase equilibrium derivations and saturation equations.
             </p>
           </div>
         </>

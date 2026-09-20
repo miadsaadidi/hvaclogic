@@ -66,7 +66,7 @@ export default function HeatLossCalculatorPage() {
               A home loses heat through two primary thermodynamic pathways:
             </p>
             <ul>
-              <li><strong>Conductive Transmission (Q = U &times; A &times; &Delta;T):</strong> Heat traveling directly through solid materials (glass, drywall, wood framing, siding). Upgrading to Low-E windows or continuous insulation reduces conductive heat flow.</li>
+              <li><strong>Conductive Transmission (Q = U &times; A &times; &Delta;T):</strong> Heat traveling directly through solid materials (glass, drywall, wood/steel framing, siding). Determine exact whole-wall assembly U-factors accounting for stud thermal bridging with the <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Effective R-Value &amp; Thermal Bridging Calculator</Link>.</li>
               <li><strong>Air Infiltration (Q = 1.08 &times; CFM &times; &Delta;T):</strong> Cold outside air rushing through unsealed gaps around windows, rim joists, can lights, and electrical outlets. Air sealing with closed-cell spray foam or acoustic caulking is often the most cost-effective way to slash heating bills.</li>
             </ul>
           </div>
