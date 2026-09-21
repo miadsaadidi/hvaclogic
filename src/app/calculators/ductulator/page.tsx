@@ -76,7 +76,8 @@ export default function DuctulatorPage() {
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
               • Size Flexible Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — apply ASHRAE RP-1333 sag and tension deratings to branch runouts.<br />
               • Compute System Friction Rate: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link> — calculate Available Static Pressure (ASP) and Total Equivalent Length.<br />
-              • Determine Supply CFM: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM &amp; Airflow Sizer</Link> — compute volumetric requirements from sensible room loads.
+              • Determine Supply CFM: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM &amp; Airflow Sizer</Link> — compute volumetric requirements from sensible room loads.<br />
+              • Hydro-Air &amp; Central Heating Plants: <Link href="/calculators/boiler-size-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Hydronic Boiler Sizer</Link> — size hot water supply loops for hydro-air duct heating coils and dual-fuel systems.
             </p>
           </div>
         </>

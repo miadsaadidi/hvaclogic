@@ -89,7 +89,8 @@ export default function DuctFrictionLossPage() {
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
               • Size Rigid Trunks with Calculated FR: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — apply your derived friction rate to size equal-friction main supply and return trunks.<br />
               • Check Flexible Branch Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — select flexible branch diameters based on your design friction rate and installation sag.<br />
-              • Verify System Airflow Volume: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM Sizer</Link> — determine whole-building sensible CFM before accumulating duct pressure drops.
+              • Verify System Airflow Volume: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM Sizer</Link> — determine whole-building sensible CFM before accumulating duct pressure drops.<br />
+              • Central Heating &amp; Hydro-Air Coils: <Link href="/calculators/boiler-size-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Hydronic Boiler Sizer</Link> — size heating plants powering ducted hot-water coils, accounting for hydro-air coil static pressure drops (0.15–0.25 in. wg) in your ASP budget.
             </p>
           </div>
         </>

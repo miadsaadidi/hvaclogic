@@ -489,8 +489,12 @@ export function BoilerSizeTool() {
               <span>Verify Boiler Sizing with Whole-Building Manual J Heat Loss</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/furnace-size-calculator">
+            <Link href="/calculators/furnace-size-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Compare Hydronic Boilers vs Forced-Air Furnaces</span>
+              <span>→</span>
+            </Link>
+            <Link href="/calculators/ductulator">
+              <span>Size Air Ducts for Hydro-Air Fan Coils (Water-to-Air Coils)</span>
               <span>→</span>
             </Link>
           </div>

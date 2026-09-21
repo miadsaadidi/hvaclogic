@@ -361,8 +361,12 @@ export function DuctulatorTool() {
           {/* WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in Airflow Design</div>
-            <Link href={`/calculators/flex-duct-cfm-chart?friction=${friction}`}>
+            <Link href={`/calculators/flex-duct-cfm-chart?friction=${friction}`} style={{ marginBottom: "0.5rem" }}>
               <span>View Flex Duct CFM Lookup Matrix</span>
+              <span>→</span>
+            </Link>
+            <Link href="/calculators/duct-friction-loss-calculator">
+              <span>Calculate System Available Static Pressure &amp; TEL</span>
               <span>→</span>
             </Link>
           </div>

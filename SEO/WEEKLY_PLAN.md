@@ -137,7 +137,7 @@ When prioritizing candidate opportunities, follow this evidence hierarchy (evide
 ## 3. Current Program & Diagnostic State
 
 ```text
-HVACLOGIC: AIRFLOW CLUSTER + COMBUSTION AIR + THERMODYNAMIC CLUSTER + BUILDING ENVELOPE (CORE B-1 + SG-04) DEPLOYED & IN GSC MEASUREMENT
+HVACLOGIC: AIRFLOW & HYDRONIC DISTRIBUTION CLUSTER (CLU-02) + COMBUSTION AIR + THERMODYNAMIC CLUSTER + BUILDING ENVELOPE (CORE B-1 + SG-04) DEPLOYED & IN GSC MEASUREMENT
 ACTIVE OBJECTIVE: NONE — awaiting selection of next prioritized objective from Opportunity Map.
 ```
 
@@ -270,6 +270,18 @@ Reply "Approved" to execute.
   - **Measurement Window**: 2026-09-20 to 2026-10-18 (28-day GSC tracking on heat loss and assembly U-factor query families).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-20]`
 
+- **Step 8 — Cluster Upgrade (`CLU-02`)**: *Airflow & Hydronic Distribution Cluster Linking*
+  - **Class**: `CLUSTER UPGRADE` (Tier 2 Priority / Cluster Upgrade)
+  - **Scope / Affected URLs**:
+    - [`/calculators/ductulator`](https://hvaclogic.org/calculators/ductulator)
+    - [`/calculators/flex-duct-cfm-chart`](https://hvaclogic.org/calculators/flex-duct-cfm-chart)
+    - [`/calculators/duct-friction-loss-calculator`](https://hvaclogic.org/calculators/duct-friction-loss-calculator)
+    - [`/calculators/boiler-size-calculator`](https://hvaclogic.org/calculators/boiler-size-calculator)
+  - **Outcome**: Established domain-separated bidirectional linking and technical methodology explanations connecting forced-air distribution tools with the hydronic boiler sizing engine. Added hydro-air water-to-air fan coil thermal balance equations ($Q = 500 \times \text{GPM} \times \Delta T_w = 1.08 \times \text{CFM} \times \Delta T_a$) and static resistance drop accounting (0.15–0.25 in. wg) across all workflow sections, interactive tool handoff cards, and `calculators-registry.ts`.
+  - **Validation**: 144/144 unit tests passing across 34 suites (including new cluster regression tests in `calculators-registry.test.ts`), 0 TypeScript errors, 90/90 static routes pre-rendered.
+  - **Measurement Window**: 2026-09-21 to 2026-10-19 (28-day aggregate GSC tracking on airflow and hydronic query families).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-21]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -290,12 +302,7 @@ Reply "Approved" to execute.
     - [`/calculators/flex-duct-cfm-chart`](https://hvaclogic.org/calculators/flex-duct-cfm-chart)
     - [`/calculators/duct-friction-loss-calculator`](https://hvaclogic.org/calculators/duct-friction-loss-calculator)
     - [`/calculators/boiler-size-calculator`](https://hvaclogic.org/calculators/boiler-size-calculator)
-  - **Search Problem**: Internal circulation between air distribution friction metrics and heating/cooling delivery capacity.
-  - **Evidence**: High impression volume on flex duct and ductulator assets.
-  - **Expected Outcome**: Improved cross-session engagement and topical authority reinforcement.
-  - **Validation Method**: Route and link graph verification.
-  - **Measurement Method**: 28-day aggregate GSC tracking.
-  - **Status**: `[BACKLOG / CANDIDATE]`
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-21]` (Moved to Section 5, Step 8)
 
 ### Category C: Technical & Architecture Fixes (`SYSTEMIC TECHNICAL REMEDIATION`)
 - **Candidate TECH-01**: *Automated Diagnostic Filter & Infrastructure Traffic Segregation*
