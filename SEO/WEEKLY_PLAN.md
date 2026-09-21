@@ -137,7 +137,7 @@ When prioritizing candidate opportunities, follow this evidence hierarchy (evide
 ## 3. Current Program & Diagnostic State
 
 ```text
-HVACLOGIC: AIRFLOW CLUSTER + COMBUSTION AIR + THERMODYNAMIC CLUSTER + BUILDING ENVELOPE (CORE B-1) DEPLOYED & IN GSC MEASUREMENT
+HVACLOGIC: AIRFLOW CLUSTER + COMBUSTION AIR + THERMODYNAMIC CLUSTER + BUILDING ENVELOPE (CORE B-1 + SG-04) DEPLOYED & IN GSC MEASUREMENT
 ACTIVE OBJECTIVE: NONE — awaiting selection of next prioritized objective from Opportunity Map.
 ```
 
@@ -259,6 +259,16 @@ Reply "Approved" to execute.
   - **Validation**: 141/141 unit tests passing, 0 TypeScript errors, 90/90 static routes generated.
   - **Measurement Window**: 2026-09-19 to 2026-10-17 (28-day GSC tracking on steel stud framing factor queries).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-19]`
+
+- **Step 7 — Single Asset (`SG-04`)**: *Building Envelope Effective Assembly U-Factor Handoff to Heat Loss Engine*
+  - **Class**: `SINGLE ASSET` (Tier 1 Priority / Existing Asset Optimization)
+  - **Scope / Affected URLs**:
+    - [`/calculators/heat-loss-calculator`](https://hvaclogic.org/calculators/heat-loss-calculator)
+    - [`/calculators/effective-r-value-calculator`](https://hvaclogic.org/calculators/effective-r-value-calculator)
+  - **Outcome**: Upgraded building heat loss computational engine to support dual-mode wall conduction ("Nominal Cavity R" vs "ASHRAE 90.1 Assembly U"), enabling direct input of parallel-path thermal bridging U-factors. Integrated URL hydration (`?wallMode=effective_u&wallU=...`), CSV export accounting, a dedicated 1-click transfer handoff card on Core B-1, and framing thermal bridging technical callouts.
+  - **Validation**: 143/143 unit tests passing across 34 suites (including 4/4 in `heat-loss.test.ts`), 0 TypeScript errors, 90/90 static routes pre-rendered.
+  - **Measurement Window**: 2026-09-20 to 2026-10-18 (28-day GSC tracking on heat loss and assembly U-factor query families).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-20]`
 
 ---
 
@@ -403,7 +413,7 @@ Reply "Approved" to execute.
    - **Proposed Solution**: Existing Asset Optimization: Enhance `/calculators/heat-loss-calculator` with an "Assembly U-Factor / Effective R-Value" input mode, linking directly to the Core B-1 tool.
    - **Objective Class**: `SINGLE ASSET` (Existing Asset Optimization)
    - **Confidence**: High (Zero new routes required; directly enhances existing Core B-1 utility).
-   - **Status**: `PROPOSED / READY FOR PRIORITIZATION`
+   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-20]` (Moved to Section 5, Step 7)
 
 ---
 
@@ -414,7 +424,7 @@ Reply "Approved" to execute.
 | **SG-01** | `Workflow Gap` / `Tool Gap` | ACCA Manual D Total Effective Length (TEL) | `SERP Evidence` + `Site Architecture Evidence` | Interactive fitting accumulator for composite trunk & branch TEL | Dedicated Equivalent Length Fitting Accumulator Tool | `SINGLE ASSET` | High | `DISCOVERED / READY FOR PRIORITIZATION` | `/calculators/equivalent-length-calculator` |
 | **SG-02** | `Technical-Depth Gap` / `Data Gap` | ASME Hydronic Expansion Tank Sizing & Glycol Derating | `SERP Evidence` + `Research / Authority Evidence` | ASME Section VIII formula modeling & temperature-dependent glycol curves | Hydronic Expansion Tank Calculator & ASME Technical Guide | `SINGLE ASSET` / `CORE PUBLICATION` | High | `PROPOSED / BOUNDED TECHNICAL VALIDATION` | `/calculators/expansion-tank-calculator` |
 | **SG-03** | `Freshness Gap` / `Research Gap` | ASHRAE 241-2023 Equivalent Clean Airflow ($ECA_i$) | `Research / Authority Evidence` + `Engineering Inference` | Multi-source pathogen mitigation $ECA$ allocation engine & benchmark matrix | Open Research Monograph & Benchmark Dataset | `CORE PUBLICATION` | High | `RESEARCH / PROVENANCE GATE` | `/research/ashrae-241-equivalent-clean-airflow` |
-| **SG-04** | `Workflow Gap` / `Implementation Gap` | Effective Assembly $U$-Factor to Heat Loss Handoff | `Site Architecture Evidence` | Direct assembly $U$-factor input & workflow link from Core B-1 tool | On-page enhancement to Heat Loss Calculator with effective $U$-factor toggle | `SINGLE ASSET` | High | `PROPOSED / READY FOR PRIORITIZATION` | `/calculators/heat-loss-calculator` |
+| **SG-04** | `Workflow Gap` / `Implementation Gap` | Effective Assembly $U$-Factor to Heat Loss Handoff | `Site Architecture Evidence` | Direct assembly $U$-factor input & workflow link from Core B-1 tool | On-page enhancement to Heat Loss Calculator with effective $U$-factor toggle | `SINGLE ASSET` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-20]` | `/calculators/heat-loss-calculator` |
 
 ---
 

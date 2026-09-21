@@ -70,7 +70,9 @@ export function HeatLossTool() {
   const [ceilingHeight, setCeilingHeight] = useState<number>(9);
   const [indoorTemp, setIndoorTemp] = useState<number>(70);
   const [outdoorTemp, setOutdoorTemp] = useState<number>(10);
+  const [wallMode, setWallMode] = useState<"nominal_r" | "effective_u">("nominal_r");
   const [wallR, setWallR] = useState<number>(19);
+  const [customWallU, setCustomWallU] = useState<number>(0.052);
   const [ceilingR, setCeilingR] = useState<number>(38);
   const [glazing, setGlazing] = useState<WindowGlazingType>("double_low_e");
   const [foundation, setFoundation] = useState<FoundationType>("slab_on_grade");
@@ -82,17 +84,27 @@ export function HeatLossTool() {
     const urlOutdoor = Number(getParam("outTemp", "10"));
     const urlWallR = Number(getParam("wallR", "19"));
     const urlCeilingR = Number(getParam("ceilR", "38"));
+    const urlWallMode = getParam("wallMode", "");
+    const urlWallU = Number(getParam("wallU", ""));
 
     if (!isNaN(urlArea) && urlArea >= 200) setFloorArea(urlArea);
     if (!isNaN(urlOutdoor)) setOutdoorTemp(urlOutdoor);
     if (!isNaN(urlWallR) && urlWallR >= 0) setWallR(urlWallR);
     if (!isNaN(urlCeilingR) && urlCeilingR >= 0) setCeilingR(urlCeilingR);
+
+    if (urlWallMode === "effective_u" || (!isNaN(urlWallU) && urlWallU > 0)) {
+      setWallMode("effective_u");
+      if (!isNaN(urlWallU) && urlWallU > 0) {
+        setCustomWallU(urlWallU);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePresetSelect = (preset: typeof PRESETS[0]) => {
     setFloorArea(preset.area);
     setOutdoorTemp(preset.outdoorTemp);
+    setWallMode("nominal_r");
     setWallR(preset.wallR);
     setCeilingR(preset.ceilingR);
     setGlazing(preset.glazing);
@@ -101,6 +113,7 @@ export function HeatLossTool() {
 
     updateParam("area", preset.area);
     updateParam("outTemp", preset.outdoorTemp);
+    updateParam("wallMode", "nominal_r");
     updateParam("wallR", preset.wallR);
     updateParam("ceilR", preset.ceilingR);
   };
@@ -113,17 +126,19 @@ export function HeatLossTool() {
       indoorTempF: indoorTemp,
       outdoorDesignTempF: outdoorTemp,
       wallInsulationR: wallR,
+      wallAssemblyMode: wallMode,
+      customWallUFactor: customWallU,
       ceilingInsulationR: ceilingR,
       windowGlazing: glazing,
       foundation,
       airTightness: tightness,
     };
     return calculateBuildingHeatLoss(input);
-  }, [floorArea, ceilingHeight, indoorTemp, outdoorTemp, wallR, ceilingR, glazing, foundation, tightness]);
+  }, [floorArea, ceilingHeight, indoorTemp, outdoorTemp, wallMode, wallR, customWallU, ceilingR, glazing, foundation, tightness]);
 
   const handleExportCsv = () => {
     const headers = "Component,Heat Loss (BTU/hr),Percentage (%)\n";
-    const rows = `Above-Grade Walls,${output.breakdown.wallsBtu},${output.breakdownPercentages.wallsPercent}%\nCeiling & Attic,${output.breakdown.ceilingBtu},${output.breakdownPercentages.ceilingPercent}%\nWindows & Glazing,${output.breakdown.windowsBtu},${output.breakdownPercentages.windowsPercent}%\nExterior Doors,${output.breakdown.doorsBtu},${output.breakdownPercentages.doorsPercent}%\nFoundation Slab/Basement,${output.breakdown.foundationBtu},${output.breakdownPercentages.foundationPercent}%\nAir Infiltration Leakage,${output.breakdown.infiltrationBtu},${output.breakdownPercentages.infiltrationPercent}%\n\nTOTAL PEAK HEAT LOSS,${output.totalHeatLossBtu} BTU/hr,100%\nPEAK POWER DEMAND,${output.totalHeatLossKw} kW,\nHEAT LOSS INTENSITY,${output.heatLossPerSqFtBtu} BTU/sq ft,\nRECOMMENDED FURNACE,${output.recommendedFurnaceBtu} BTU/hr,\nRECOMMENDED HEAT PUMP,${output.recommendedHeatPumpTons} Tons,\n`;
+    const rows = `Above-Grade Walls,${output.breakdown.wallsBtu},${output.breakdownPercentages.wallsPercent}%\nCeiling & Attic,${output.breakdown.ceilingBtu},${output.breakdownPercentages.ceilingPercent}%\nWindows & Glazing,${output.breakdown.windowsBtu},${output.breakdownPercentages.windowsPercent}%\nExterior Doors,${output.breakdown.doorsBtu},${output.breakdownPercentages.doorsPercent}%\nFoundation Slab/Basement,${output.breakdown.foundationBtu},${output.breakdownPercentages.foundationPercent}%\nAir Infiltration Leakage,${output.breakdown.infiltrationBtu},${output.breakdownPercentages.infiltrationPercent}%\n\nWALL CONDUCTION MODE,${output.wallAssemblyMode === "effective_u" ? "ASHRAE 90.1 Assembly U-Factor" : "Nominal Cavity R"},\nWALL TRANSMISSION R-VALUE,R-${output.effectiveWallR},\nWALL U-FACTOR,${output.wallUFactor} BTU/hr·ft²·°F,\nTOTAL PEAK HEAT LOSS,${output.totalHeatLossBtu} BTU/hr,100%\nPEAK POWER DEMAND,${output.totalHeatLossKw} kW,\nHEAT LOSS INTENSITY,${output.heatLossPerSqFtBtu} BTU/sq ft,\nRECOMMENDED FURNACE,${output.recommendedFurnaceBtu} BTU/hr,\nRECOMMENDED HEAT PUMP,${output.recommendedHeatPumpTons} Tons,\n`;
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -225,27 +240,93 @@ export function HeatLossTool() {
             </div>
           </div>
 
+          {/* WALL CONDUCTION MODE TOGGLE */}
+          <div style={{ marginBottom: "0.75rem", background: "var(--surface-subtle)", padding: "0.55rem 0.75rem", borderRadius: "0.5rem", border: "1px solid var(--border-color)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
+              <span style={{ fontSize: "0.76rem", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", letterSpacing: "0.03em" }}>
+                Wall Conduction Mode
+              </span>
+              <Link
+                href="/calculators/effective-r-value-calculator"
+                style={{ fontSize: "0.73rem", color: "var(--accent-cooling)", textDecoration: "underline", fontWeight: 600 }}
+              >
+                Thermal Bridging Tool ↗
+              </Link>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.25fr", gap: "0.4rem" }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setWallMode("nominal_r");
+                  updateParam("wallMode", "nominal_r");
+                }}
+                className={`preset-chip-btn ${wallMode === "nominal_r" ? "active" : ""}`}
+                style={{ margin: 0, padding: "0.35rem 0.5rem", fontSize: "0.75rem", textAlign: "center", width: "100%" }}
+              >
+                Nominal Cavity R
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setWallMode("effective_u");
+                  updateParam("wallMode", "effective_u");
+                  updateParam("wallU", customWallU);
+                }}
+                className={`preset-chip-btn ${wallMode === "effective_u" ? "active" : ""}`}
+                style={{ margin: 0, padding: "0.35rem 0.5rem", fontSize: "0.75rem", textAlign: "center", width: "100%" }}
+              >
+                ASHRAE 90.1 Assembly U
+              </button>
+            </div>
+          </div>
+
           {/* WALL & CEILING INSULATION */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
-            <div className="form-group" style={{ margin: 0 }}>
-              <label htmlFor="wall-r-input">
-                <span>Wall Insulation</span>
-                <span className="unit-label">R-Value</span>
-              </label>
-              <input
-                id="wall-r-input"
-                type="number"
-                min={0}
-                max={45}
-                value={wallR}
-                onChange={(e) => {
-                  const val = Number(e.target.value);
-                  setWallR(val);
-                  updateParam("wallR", val);
-                }}
-                className="input-number"
-              />
-            </div>
+            {wallMode === "nominal_r" ? (
+              <div className="form-group" style={{ margin: 0 }}>
+                <label htmlFor="wall-r-input">
+                  <span>Wall Insulation</span>
+                  <span className="unit-label">Nominal R</span>
+                </label>
+                <input
+                  id="wall-r-input"
+                  type="number"
+                  min={0}
+                  max={45}
+                  value={wallR}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    setWallR(val);
+                    updateParam("wallR", val);
+                  }}
+                  className="input-number"
+                />
+              </div>
+            ) : (
+              <div className="form-group" style={{ margin: 0 }}>
+                <label htmlFor="custom-wall-u-input">
+                  <span>Assembly U-Factor</span>
+                  <span className="unit-label">U (BTU/hr·ft²·°F)</span>
+                </label>
+                <input
+                  id="custom-wall-u-input"
+                  type="number"
+                  min={0.015}
+                  max={0.35}
+                  step={0.001}
+                  value={customWallU}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    setCustomWallU(val);
+                    updateParam("wallU", val);
+                  }}
+                  className="input-number"
+                />
+                <span style={{ fontSize: "0.68rem", color: "var(--ink-secondary)", display: "block", marginTop: "0.2rem" }}>
+                  Effective R-{(1 / Math.max(0.01, customWallU)).toFixed(1)}
+                </span>
+              </div>
+            )}
 
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="ceiling-r-input">
@@ -403,15 +484,23 @@ export function HeatLossTool() {
             onExportCsv={handleExportCsv}
           />
 
-          {/* DOWNSTREAM WORKFLOW HANDOFF */}
+          {/* WORKFLOW HANDOFFS */}
           <div className="handoff-card">
-            <div className="handoff-title">Next Step in Heating Equipment Sizing</div>
+            <div className="handoff-title">Related Building Science &amp; Heating Sizing Tools</div>
+            <Link href="/calculators/effective-r-value-calculator" style={{ marginBottom: "0.5rem" }}>
+              <span>Derive Exact Wall Assembly U-Factor with Stud Thermal Bridging (ASHRAE 90.1)</span>
+              <span>→</span>
+            </Link>
+            <Link href="/guides/framing-thermal-bridging-effective-r-value" style={{ marginBottom: "0.5rem" }}>
+              <span>Read Engineering Guide: Framing Thermal Bridging &amp; Effective R-Value</span>
+              <span>→</span>
+            </Link>
             <Link href="/calculators/furnace-size-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Size 80% vs 96% AFUE Gas Furnace for {output.totalHeatLossBtu.toLocaleString()} BTU Heat Loss</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/heat-pump-size-calculator">
-              <span>Find Cold-Climate Heat Pump Thermal Balance Point</span>
+              <span>Find Cold-Climate Heat Pump Thermal Balance Point &amp; Deficit</span>
               <span>→</span>
             </Link>
           </div>

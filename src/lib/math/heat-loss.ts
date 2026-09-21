@@ -12,7 +12,9 @@ export interface BuildingHeatLossInput {
   ceilingHeightFeet?: number; // default 9 ft
   indoorTempF?: number; // default 70°F
   outdoorDesignTempF: number; // e.g. -15°F to 35°F
-  wallInsulationR: number; // e.g. R-11 to R-35
+  wallInsulationR: number; // e.g. R-11 to R-35 (used in nominal_r mode)
+  wallAssemblyMode?: "nominal_r" | "effective_u"; // default: "nominal_r"
+  customWallUFactor?: number; // e.g. 0.045 to 0.120 BTU/hr·ft²·°F (used in effective_u mode)
   ceilingInsulationR: number; // e.g. R-19 to R-60
   windowGlazing: WindowGlazingType;
   windowAreaSqFt?: number; // default 15% of floor area
@@ -36,6 +38,9 @@ export interface BuildingHeatLossOutput {
   temperatureDifferenceDeltaT: number;
   infiltrationCfm: number;
   naturalAch: number;
+  wallAssemblyMode: "nominal_r" | "effective_u";
+  wallUFactor: number;
+  effectiveWallR: number;
   breakdown: HeatLossBreakdown;
   breakdownPercentages: {
     wallsPercent: number;
@@ -84,8 +89,18 @@ export function calculateBuildingHeatLoss(input: BuildingHeatLossInput): Buildin
   const volume = area * height;
 
   // 1. Conductive Losses: Q = U * A * Delta T
-  const wallR = Math.max(4, input.wallInsulationR + 1.5); // Framing + air films
-  const uWall = 1 / wallR;
+  const mode = input.wallAssemblyMode ?? "nominal_r";
+  let uWall: number;
+  let wallR: number;
+
+  if (mode === "effective_u" && input.customWallUFactor && input.customWallUFactor > 0) {
+    uWall = Number(input.customWallUFactor.toFixed(4));
+    wallR = Number((1 / uWall).toFixed(1));
+  } else {
+    // Nominal R-value with framing/air films buffer: R_total ≈ R_cavity + 1.5
+    wallR = Math.max(4, input.wallInsulationR + 1.5);
+    uWall = Number((1 / wallR).toFixed(4));
+  }
   const wallsBtu = Math.round(uWall * netWallArea * deltaT);
 
   const ceilingR = Math.max(10, input.ceilingInsulationR + 1.0);
@@ -138,7 +153,11 @@ export function calculateBuildingHeatLoss(input: BuildingHeatLossInput): Buildin
   const recommendedFurnaceBtu = Math.ceil(rawFurnaceBtu / 10000) * 10000;
   const recommendedHeatPumpTons = Number((totalHeatLossBtu / 12000).toFixed(1));
 
-  const summary = `At ${tOutdoor}°F outdoor design temperature (ΔT = ${deltaT}°F), total building heat loss is ${totalHeatLossBtu.toLocaleString()} BTU/hr (${totalHeatLossKw} kW). Envelope conductive loss represents ${100 - breakdownPercentages.infiltrationPercent}% while air leakage accounts for ${breakdownPercentages.infiltrationPercent}% (${infiltrationCfm} CFM).`;
+  const wallProvenance = mode === "effective_u"
+    ? `ASHRAE 90.1 assembly U-${uWall.toFixed(3)} (effective R-${wallR.toFixed(1)})`
+    : `nominal R-${input.wallInsulationR} (effective R-${wallR.toFixed(1)})`;
+
+  const summary = `At ${tOutdoor}°F outdoor design temperature (ΔT = ${deltaT}°F), total building heat loss is ${totalHeatLossBtu.toLocaleString()} BTU/hr (${totalHeatLossKw} kW) using ${wallProvenance}. Envelope conductive loss represents ${100 - breakdownPercentages.infiltrationPercent}% while air leakage accounts for ${breakdownPercentages.infiltrationPercent}% (${infiltrationCfm} CFM).`;
 
   return {
     totalHeatLossBtu,
@@ -147,6 +166,9 @@ export function calculateBuildingHeatLoss(input: BuildingHeatLossInput): Buildin
     temperatureDifferenceDeltaT: deltaT,
     infiltrationCfm,
     naturalAch,
+    wallAssemblyMode: mode,
+    wallUFactor: uWall,
+    effectiveWallR: wallR,
     breakdown,
     breakdownPercentages,
     recommendedFurnaceBtu,
