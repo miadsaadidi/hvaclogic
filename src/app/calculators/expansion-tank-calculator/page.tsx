@@ -34,9 +34,9 @@ export default function ExpansionTankCalculatorPage() {
   return (
     <CalculatorContainer
       calculator={calculator}
-      directAnswer="An ASME Section VIII closed-loop diaphragm expansion tank sizes based on the net thermal expansion of the system fluid volume (Vs) between initial cold fill temperature (T1) and maximum operating temperature (T2), divided by the acceptance ratio (Ar = 1 - P1/P2): Vt = [Vs × ((v2/v1 - 1) - 3·α·ΔT)] / [1 - (P1_abs / P2_abs)]. For pure water heating loops from 60°F to 180°F with a 12 psig fill and 30 psig boiler relief valve, water expands by ~3.0%, yielding an acceptance ratio of ~0.36 and requiring a total tank volume of approximately 8.5% to 11% of total system fluid volume. Glycol solutions require 25% to 75% larger tank capacities due to elevated thermal volumetric expansion coefficients."
+      directAnswer="A closed-loop hydronic expansion tank is sized using ASHRAE Systems & Equipment Chapter 15 methodology based on the net thermal expansion of the system fluid volume (Vs) between initial cold fill temperature (T1) and maximum operating temperature (T2), divided by the acceptance ratio (Ar = 1 - P1/P2): Vt = [Vs × ((v2/v1 - 1) - 3·α·ΔT)] / [1 - (P1_abs / P2_abs)]. Where required by building codes or commercial specifications, pressure vessel construction, design pressure rating, and relief valve coordination adhere to ASME Boiler and Pressure Vessel Code (BPVC) Section VIII, Division 1. For pure water heating loops from 60°F to 180°F with a 12 psig fill and 30 psig boiler relief valve, water expands by ~3.0%, yielding an acceptance ratio of ~0.36 and requiring a total tank volume of approximately 8.5% to 11% of total system fluid volume. Glycol solutions require 25% to 75% larger tank capacities due to elevated thermal volumetric expansion coefficients."
       formulaSnippet="Vt = Vacc / [1 - (P1 / P2)] | Vacc = Vs * [(v2/v1 - 1) - 3*alpha*DeltaT] | Ar = 1 - (P1 / P2)"
-      authorityCitation="ASME Boiler and Pressure Vessel Code (BPVC) Section VIII Division 1 & ASHRAE Handbook - HVAC Systems and Equipment Chapter 15"
+      authorityCitation="ASHRAE Handbook — HVAC Systems and Equipment (Chapter 15, Sizing Expansion Tanks) & ASME BPVC Section VIII Division 1 (Vessel Construction)"
       toolComponent={<ExpansionTankTool />}
       methodologySection={
         <>
@@ -44,7 +44,7 @@ export default function ExpansionTankCalculatorPage() {
 
           <div style={{ marginTop: "1.5rem" }}>
             <FormulaCard
-              title="ASME Section VIII Closed-Loop Expansion Tank Sizing Equations"
+              title="ASHRAE Hydronic Expansion Tank Sizing & ASME Section VIII Pressure Rating Equations"
               formula="V_t = \frac{V_{acc}}{1 - \left(\frac{P_1}{P_2}\right)} \quad\Bigg|\quad V_{acc} = V_s \cdot \left[\left(\frac{\nu_2}{\nu_1} - 1\right) - 3\,\alpha\,\Delta T\right] \quad\Bigg|\quad A_r = 1 - \frac{P_1}{P_2}"
               variables={[
                 { symbol: "V_t", label: "Total Tank Volume", description: "Minimum gross internal volume of the expansion tank shell", unit: "Gallons (gal)" },
@@ -57,8 +57,8 @@ export default function ExpansionTankCalculatorPage() {
                 { symbol: "A_r", label: "Acceptance Ratio", description: "Fraction of gross tank volume available to store liquid before hitting P2", unit: "Dimensionless" },
                 { symbol: "alpha", label: "Thermal Expansion of Pipe", description: "Linear expansion coefficient (6.5×10⁻⁶ for steel, 9.5×10⁻⁶ for copper, 8.5×10⁻⁵ for PEX)", unit: "in/in/°F" },
               ]}
-              notes="Absolute pressure (psia = psig + 14.7 psi) must strictly be used in Boyle's Law acceptance ratio calculations. Using gauge pressure causes catastrophic undersizing by 30% to 50%, forcing boiler relief valves to weep during peak firing."
-              sourceStandard="ASME BPVC Section VIII Division 1 & ASHRAE Handbook - HVAC Systems and Equipment Chapter 15"
+              notes="Sizing methodology strictly follows ASHRAE Handbook — HVAC Systems and Equipment (Chapter 15, Sizing Expansion Tanks, Eq. 13 & 14). Absolute pressure (psia = psig + 14.7 psi) must strictly be used in Boyle's Law acceptance ratio calculations. Pressure vessel structural design, wall thickness, and relief valve coordination adhere to ASME Section VIII Division 1 where code-rated vessels are specified."
+              sourceStandard="ASHRAE Handbook — HVAC Systems and Equipment (Chapter 15, Eq. 13 & 14) & ASME BPVC Section VIII Div. 1"
             />
           </div>
 
@@ -70,7 +70,7 @@ export default function ExpansionTankCalculatorPage() {
               Water and industrial heat transfer fluids are virtually incompressible liquids. When heated inside a closed hydronic loop from cold fill conditions (typically 50°F to 60°F) to design operating temperature (180°F to 200°F for heating or 140°F for condensing loops), the fluid expands significantly. Because the piping and boiler vessels cannot stretch sufficiently to accommodate this volume surge, the trapped fluid pressure would instantly skyrocket beyond the burst threshold of boiler heat exchangers, valves, and piping joints without an expansion tank.
             </p>
             <p>
-              In modern HVAC engineering, <strong>ASME Section VIII diaphragm and bladder tanks</strong> permanently separate the system water from a precharged nitrogen or atmospheric air cushion via a flexible synthetic elastomer membrane (butyl or EPDM). As water heats and expands into the acceptance chamber, it compresses the gas cushion according to Boyle&apos;s Ideal Gas Law (<code>P₁·V₁ = P₂·V₂</code>), safely absorbing the volume increase while strictly bounding system pressure between cold fill pressure (P₁) and maximum permissible operating pressure (P₂).
+              In modern HVAC engineering, <strong>diaphragm and bladder expansion tanks</strong> (fabricated to ASME BPVC Section VIII Division 1 construction standards for commercial installations) permanently separate the system water from a precharged nitrogen or atmospheric air cushion via a flexible synthetic elastomer membrane (butyl or EPDM). As water heats and expands into the acceptance chamber, it compresses the gas cushion according to Boyle&apos;s Ideal Gas Law (<code>P₁·V₁ = P₂·V₂</code>), safely absorbing the volume increase while strictly bounding system pressure between cold fill pressure (P₁) and maximum permissible operating pressure (P₂).
             </p>
 
             <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
@@ -79,14 +79,40 @@ export default function ExpansionTankCalculatorPage() {
             <p>
               The size of an expansion tank is inversely proportional to its <strong>Acceptance Ratio (Ar)</strong>:
             </p>
-            <p style={{ background: "var(--surface-raised)", borderLeft: "3px solid var(--accent)", padding: "0.6rem 0.9rem", margin: "0.75rem 0", borderRadius: "0 4px 4px 0" }}>
-              <code>{"Ar = 1 - (P₁ / P₂) = 1 - (P₁_gauge + 14.7) / (P₂_gauge + 14.7)"}</code>
-            </p>
+            <div
+              style={{
+                background: "#090d16",
+                border: "1px solid #1e293b",
+                borderLeft: "3px solid #38bdf8",
+                padding: "0.75rem 1rem",
+                margin: "0.75rem 0",
+                borderRadius: "0.5rem",
+                color: "#f8fafc",
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                fontSize: "0.9rem",
+              }}
+            >
+              Ar = 1 - (P₁ / P₂) = 1 - (P₁_gauge + 14.7) / (P₂_gauge + 14.7)
+            </div>
             <p>
               A common field failure occurs when engineers design with a narrow pressure differential (e.g. 15 psig fill with a 30 psig relief valve and a 5 psi buffer, yielding P₂ = 25 psig). In absolute terms:
-              <br />
-              <code>{"P₁ = 15 + 14.7 = 29.7 psia | P₂ = 25 + 14.7 = 39.7 psia ➔ Ar = 1 - (29.7 / 39.7) = 0.252"}</code>
-              <br />
+            </p>
+            <div
+              style={{
+                background: "#090d16",
+                border: "1px solid #1e293b",
+                borderLeft: "3px solid #f59e0b",
+                padding: "0.75rem 1rem",
+                margin: "0.75rem 0",
+                borderRadius: "0.5rem",
+                color: "#f8fafc",
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                fontSize: "0.9rem",
+              }}
+            >
+              P₁ = 15 + 14.7 = 26.7 psia | P₂ = 25 + 14.7 = 39.7 psia ➔ Ar = 1 - (26.7 / 39.7) = <span style={{ color: "#fbbf24", fontWeight: 700 }}>0.252 (25.2% usable)</span>
+            </div>
+            <p>
               This means only 25.2% of the physical tank shell is usable for water expansion, requiring a tank <strong>four times larger</strong> than the net expanded water volume. Widening the delta (e.g. raising the boiler relief valve to 50 psig on commercial boilers) increases Ar to 0.50+, halving the physical tank footprint.
             </p>
 
@@ -187,10 +213,10 @@ export default function ExpansionTankCalculatorPage() {
       workedExampleSection={
         <div style={{ lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
           <p>
-            <strong>Scenario:</strong> Sizing an ASME Section VIII closed-loop diaphragm expansion tank for a 2,400 sq ft home with a 100,000 BTU/hr hydronic boiler and fin-tube copper baseboards. Total estimated fluid volume (Vs) is <strong>80 gallons</strong>. Cold fill temperature (T1) is <strong>60°F</strong> and high limit aquastat setpoint (T2) is <strong>180°F</strong>. Initial fill pressure (P1) is <strong>12 psig</strong> (26.7 psia), and the boiler is fitted with a standard <strong>30 psig</strong> ASME safety relief valve. A 3 psi safety buffer is specified (P2 = 27 psig = 41.7 psia).
+            <strong>Scenario:</strong> Sizing a closed-loop diaphragm expansion tank per ASHRAE Chapter 15 (with ASME Section VIII commercial vessel rating) for a 2,400 sq ft home with a 100,000 BTU/hr hydronic boiler and fin-tube copper baseboards. Total estimated fluid volume (Vs) is <strong>80 gallons</strong>. Cold fill temperature (T1) is <strong>60°F</strong> and high limit aquastat setpoint (T2) is <strong>180°F</strong>. Initial fill pressure (P1) is <strong>12 psig</strong> (26.7 psia), and the boiler is fitted with a standard <strong>30 psig</strong> ASME safety relief valve. A 3 psi safety buffer is specified (P2 = 27 psig = 41.7 psia).
           </p>
           <div style={{ background: "var(--surface-raised)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem", marginTop: "1rem" }}>
-            <h4 style={{ color: "var(--ink)", margin: "0 0 0.5rem", fontWeight: 600 }}>Step-by-Step ASME Section VIII Calculation:</h4>
+            <h4 style={{ color: "var(--ink)", margin: "0 0 0.5rem", fontWeight: 600 }}>Step-by-Step ASHRAE Sizing &amp; ASME Vessel Pressure Verification:</h4>
             <ol style={{ paddingLeft: "1.2rem", margin: 0 }}>
               <li>
                 <strong>Determine Fluid Specific Volumes &amp; Net Fluid Expansion:</strong>
@@ -215,7 +241,7 @@ export default function ExpansionTankCalculatorPage() {
                 </pre>
               </li>
               <li>
-                <strong>Calculate Acceptance Volume (Vacc) with Piping Expansion:</strong>
+                <strong>Calculate Acceptance Volume (Vacc) per ASHRAE Ch. 15 (Eq. 13 &amp; 14):</strong>
                 <pre
                   style={{
                     background: "#090d16",
@@ -234,7 +260,7 @@ export default function ExpansionTankCalculatorPage() {
                 >
                   Piping Expansion (steel) = 3 × 6.5×10⁻⁶ × (180 - 60) = 0.00234{"\n"}
                   Net Expansion Ratio = 0.0295 - 0.00234 = 0.02716{"\n"}
-                  Vacc = Vs × 0.02716 = 80 × 0.02716 = <span style={{ color: "#38bdf8", fontWeight: 700 }}>2.17 Gallons</span>
+                  Vacc = Vs × [(ν₂/ν₁ - 1) - 3·α·ΔT] = 80 × 0.02716 = <span style={{ color: "#38bdf8", fontWeight: 700 }}>2.17 Gallons</span>
                 </pre>
               </li>
               <li>
@@ -260,7 +286,7 @@ export default function ExpansionTankCalculatorPage() {
                 </pre>
               </li>
               <li>
-                <strong>Calculate Minimum Tank Volume (Vt) &amp; Select Standard Commercial ASME Size:</strong>
+                <strong>Calculate Minimum Tank Volume (Vt) per ASHRAE &amp; Select ASME-Rated Commercial Size:</strong>
                 <pre
                   style={{
                     background: "#090d16",

@@ -121,7 +121,7 @@ export default function CalculatorsDirectoryPage() {
 
           <div className="hero-eyebrow-badge">
             <span className="pulse-radar-dot" aria-hidden="true" />
-            <span>Master Engineering Directory • 21 Calculators</span>
+            <span>Master Engineering Directory • {calculators.length} Calculators</span>
           </div>
 
           <h1 className="hero-main-heading">

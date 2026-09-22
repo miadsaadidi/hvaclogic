@@ -38,7 +38,7 @@ export function ExpansionTankVisualizer({ output }: ExpansionTankVisualizerProps
         margin: "0.75rem 0",
       }}
       role="region"
-      aria-label="ASME Section VIII Expansion Tank Visualizer"
+      aria-label="ASHRAE Hydronic Expansion Tank Visualizer"
     >
       {/* Header Bar */}
       <div
@@ -63,9 +63,9 @@ export function ExpansionTankVisualizer({ output }: ExpansionTankVisualizerProps
                 letterSpacing: "0.04em",
               }}
             >
-              ASME BPVC Section VIII Tank Profile
+              ASHRAE Sizing Profile • ASME Vessel Structure
             </div>
-            <div style={{ fontSize: "0.72rem", color: "var(--ink-secondary)" }}>
+            <div style={{ fontSize: "0.72rem", color: "#94a3b8" }}>
               Minimum Volume: {output.totalTankVolumeGallons} Gal | Commercial: {output.recommendedCommercialTankSizeGallons} Gal
             </div>
           </div>
@@ -281,7 +281,7 @@ export function ExpansionTankVisualizer({ output }: ExpansionTankVisualizerProps
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
-          <span style={{ fontSize: "0.72rem", color: "var(--ink-secondary)", textTransform: "uppercase", letterSpacing: "0.03em" }}>
+          <span style={{ fontSize: "0.72rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.03em" }}>
             Operating Pressure Spectrum (0 to {output.reliefValvePressurePsig} psig Relief Setpoint)
           </span>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, color: statusColor }}>
@@ -297,7 +297,7 @@ export function ExpansionTankVisualizer({ output }: ExpansionTankVisualizerProps
         </div>
 
         {/* Legend */}
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.68rem", color: "var(--ink-secondary)", marginTop: "0.2rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.68rem", color: "#94a3b8", marginTop: "0.2rem" }}>
           <span>0 psig</span>
           <span style={{ color: "#38bdf8", fontWeight: 600 }}>P1: {output.initialPressurePsig} psig (Fill)</span>
           <span style={{ color: "#34d399", fontWeight: 600 }}>P2: {output.maxOperatingPressurePsig} psig (Peak)</span>

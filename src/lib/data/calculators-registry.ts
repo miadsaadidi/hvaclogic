@@ -254,7 +254,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
     features: [
-      "ACCA Manual D (3rd Edition, Appendix 3) fitting accumulator (Groups 1 through 5)",
+      "ACCA Manual D fitting accumulator (representative fitting loss archetypes)",
       "Critical path aerodynamic decomposition: straight footage vs fitting dynamic resistance",
       "Available Static Pressure (ASP = TESP - CVP) solver for coils, filters & grilles",
       "ACCA Manual D Design Friction Rate (FR = (ASP * 100) / TEL) solver",
@@ -277,12 +277,12 @@ export const calculatorRegistry: CalculatorMeta[] = [
         answer: "Total Effective Length (TEL) equals the measured linear straight footage plus the sum of all fitting equivalent lengths along the most aerodynamically restrictive critical path: TEL = L_straight_supply + sum(EL_supply_fittings) + L_straight_return + sum(EL_return_fittings)."
       },
       {
-        question: "Why do fittings account for 60% to 75% of total duct resistance?",
-        answer: "Every time moving air changes direction or cross-section, boundary layers detach, generating turbulent recirculation eddies and dynamic shock losses. A single unvaned 90° mitered elbow has an equivalent length of 50 ft, representing as much airflow resistance as 50 feet of straight ductwork."
+        question: "Why do fittings frequently represent a substantial portion of total duct resistance?",
+        answer: "Every time moving air changes direction or cross-section, boundary layers detach, generating turbulent recirculation eddies and dynamic shock losses. Depending on the system layout and fitting geometry, fitting equivalent length often contributes significantly to total resistance. For example, a single unvaned 90° mitered elbow has an equivalent length of 50 ft, representing as much airflow resistance as 50 feet of straight ductwork."
       },
       {
         question: "What is the difference between a mitered elbow with vanes vs without vanes?",
-        answer: "Under ACCA Manual D Appendix 3, a standard 90° rectangular mitered elbow without vanes has an equivalent length of 50 ft. Adding factory or field turning vanes guides airflow smoothly through the corner, dropping equivalent length to 10 ft — an 80% reduction in fitting dynamic loss."
+        answer: "In standard ACCA Manual D fitting methodologies, a standard 90° rectangular mitered elbow without vanes has an equivalent length of 50 ft. Adding factory or field turning vanes guides airflow smoothly through the corner, dropping equivalent length to 10 ft — an 80% reduction in fitting dynamic loss."
       },
       {
         question: "How does Total Effective Length determine duct sizing friction rate?",
@@ -862,7 +862,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
   },
   {
     id: "expansion-tank-calculator",
-    name: "ASME Hydronic Expansion Tank Sizing Calculator",
+    name: "ASHRAE Hydronic Expansion Tank Sizing Calculator",
     pillar: "heating-systems",
     route: "/calculators/expansion-tank-calculator",
     status: "production",
@@ -871,17 +871,17 @@ export const calculatorRegistry: CalculatorMeta[] = [
     primaryKeyword: "expansion tank calculator",
     secondaryKeywords: ["hydronic expansion tank sizing", "asme expansion tank calculator", "boiler expansion tank sizing", "glycol expansion tank calculator", "amtrol sizing calculator"],
     primaryIntent: "Professional Engineering / Hydronics",
-    seoTitle: "ASME Hydronic Expansion Tank Calculator — Glycol Derating",
-    metaDescription: "Size ASME Section VIII closed-loop diaphragm and bladder expansion tanks for hydronic heating, snow melt, and chilled water with glycol derating.",
+    seoTitle: "ASHRAE Hydronic Expansion Tank Calculator — Glycol Derating",
+    metaDescription: "Size closed-loop diaphragm and bladder expansion tanks per ASHRAE Systems & Equipment Ch. 15 with ASME Section VIII commercial vessel rating checks.",
     categoryName: "Heating Systems",
     categoryRoute: "/heating-systems",
     features: [
-      "ASME Section VIII Division 1 closed-loop diaphragm sizing formula",
+      "ASHRAE Systems & Equipment Ch. 15 closed-loop diaphragm sizing equations (Eq. 13 & 14)",
       "Specific volume and density thermodynamic curves for water and 20%-50% propylene/ethylene glycol",
       "Boyle's Law acceptance ratio (Ar = 1 - P1/P2) in absolute pressure (psia)",
       "Piping thermal expansion compensation for carbon steel, copper, and PEX",
       "Interactive SVG cross-section visualizer showing bladder inflation and operating pressure spectrum",
-      "Standard commercial ASME tank size selector (2.1 to 528 gallons)",
+      "Commercial ASME Section VIII standard tank size selector (2.1 to 528 gallons)",
       "1-Click CSV engineering submittal export",
     ],
     relatedCalculatorIds: ["boiler-size-calculator", "heat-loss-calculator", "equivalent-length-calculator", "combustion-air-calculator"],

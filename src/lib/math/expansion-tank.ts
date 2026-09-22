@@ -1,8 +1,9 @@
 /**
- * HVACLogic ASME Section VIII Closed-Loop Hydronic Expansion Tank Sizing Engine
- * Conforms to:
- * - ASME Boiler and Pressure Vessel Code (BPVC), Section VIII, Division 1
- * - ASHRAE Handbook - HVAC Systems and Equipment, Chapter 15 (Hydronic Systems)
+ * HVACLogic Hydronic Expansion Tank Sizing Engine
+ * Sizing Methodology:
+ * - ASHRAE Handbook — HVAC Systems and Equipment, Chapter 15 (Sizing Expansion Tanks, Eq. 13 & 14)
+ * Pressure Vessel Construction & Design Standards:
+ * - ASME Boiler and Pressure Vessel Code (BPVC), Section VIII, Division 1 (commercial vessel construction & relief valve margin)
  */
 
 export type FluidType =
@@ -152,7 +153,9 @@ export const STANDARD_ASME_TANK_SIZES = [
 ];
 
 /**
- * Sizes an ASME Section VIII closed-loop diaphragm/bladder expansion tank.
+ * Sizes a closed-loop diaphragm/bladder expansion tank according to ASHRAE Handbook —
+ * HVAC Systems and Equipment Chapter 15 (Eq. 13 & 14), with ASME Section VIII commercial
+ * pressure vessel ratings and relief valve margins.
  */
 export function calculateAsmeExpansionTank(input: ExpansionTankInput): ExpansionTankOutput {
   const vs = Math.max(1, input.systemVolumeGallons);
@@ -200,7 +203,7 @@ export function calculateAsmeExpansionTank(input: ExpansionTankInput): Expansion
   const pressureRatio = p1Psia / p2Psia;
   const acceptanceRatio = Math.max(0.05, Math.round((1 - pressureRatio) * 1000) / 1000);
 
-  // ASME Section VIII Minimum Total Tank Volume:
+  // ASHRAE Systems & Equipment Chapter 15 Minimum Total Tank Volume (Eq. 13 & 14):
   // Vt = Vacc / (1 - (P1 / P2))
   const rawVt = acceptanceVolumeGallons / acceptanceRatio;
   const totalTankVolumeGallons = Math.max(1, Math.round(rawVt * 100) / 100);

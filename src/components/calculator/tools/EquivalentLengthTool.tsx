@@ -242,7 +242,7 @@ export function EquivalentLengthTool() {
       formulaLatex: "\\text{TEL}_{\\text{supply}} = L_{\\text{straight, supply}} + \\sum \\text{EL}_{\\text{supply fittings}}",
       substitutionLatex: `${output.straightSupplyFt} + ${output.fittingsSupplyFt}`,
       resultText: `${output.totalSupplyTelFt} \\text{ ft eq}`,
-      governingStandard: "ACCA Manual D Appendix 3",
+      governingStandard: "ACCA Manual D (Fitting Methodology)",
     },
     {
       stepNumber: 2,
@@ -250,7 +250,7 @@ export function EquivalentLengthTool() {
       formulaLatex: "\\text{TEL}_{\\text{return}} = L_{\\text{straight, return}} + \\sum \\text{EL}_{\\text{return fittings}}",
       substitutionLatex: `${output.straightReturnFt} + ${output.fittingsReturnFt}`,
       resultText: `${output.totalReturnTelFt} \\text{ ft eq}`,
-      governingStandard: "ACCA Manual D Appendix 3",
+      governingStandard: "ACCA Manual D (Fitting Methodology)",
     },
     {
       stepNumber: 3,
@@ -679,7 +679,7 @@ export function EquivalentLengthTool() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
             <div>
               <h3 style={{ fontSize: "0.95rem", fontWeight: 700, margin: 0, color: "var(--ink, #f8fafc)" }}>
-                3. ACCA Manual D Appendix 3 Fitting Catalog
+                3. ACCA Manual D Fitting Library
               </h3>
               <p style={{ fontSize: "0.75rem", color: "var(--ink-secondary, #94a3b8)", margin: "0.2rem 0 0 0" }}>
                 Select standard aerodynamic fittings to add to the critical run.
@@ -1194,7 +1194,7 @@ export function EquivalentLengthTool() {
       <ActionButtonBar
         toolRoute="/calculators/equivalent-length-calculator"
         toolName="ACCA Manual D Equivalent Length & TEL Fitting Accumulator"
-        governingStandard="ACCA Manual D (3rd Edition, Appendix 3)"
+        governingStandard="ANSI/ACCA Manual D (Fitting Methodologies)"
         inputs={{
           "Blower TESP": `${tesp} in. wg`,
           "Coil Drop": `${coilDrop} in. wg`,
