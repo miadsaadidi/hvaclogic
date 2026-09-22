@@ -342,8 +342,12 @@ export function FlexDuctChartTool() {
               <span>Compare with Sheet Metal Ductulator ({activeRow.cfmAt008} CFM)</span>
               <span>→</span>
             </Link>
-            <Link href={`/calculators/cfm-calculator?diameter=${activeRow.diameterInches}`}>
+            <Link href={`/calculators/cfm-calculator?diameter=${activeRow.diameterInches}`} style={{ marginBottom: "0.5rem" }}>
               <span>Calculate Room Air Changes &amp; Sensible Airflow</span>
+              <span>→</span>
+            </Link>
+            <Link href="/calculators/boiler-size-calculator">
+              <span>Size Central Hydronic Boiler &amp; Hydro-Air Coils</span>
               <span>→</span>
             </Link>
           </div>

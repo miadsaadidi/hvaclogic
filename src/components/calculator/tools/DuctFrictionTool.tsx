@@ -555,8 +555,12 @@ export function DuctFrictionTool() {
               <span>Size Duct Diameters at {output.designFrictionRateFr.toFixed(3)}&quot; Friction Rate in Digital Ductulator</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/flex-duct-cfm-chart">
+            <Link href="/calculators/flex-duct-cfm-chart" style={{ marginBottom: "0.5rem" }}>
               <span>Derate Flexible Duct Sag &amp; Friction Drops</span>
+              <span>→</span>
+            </Link>
+            <Link href="/calculators/boiler-size-calculator">
+              <span>Size Heating Plant for Hydro-Air Coils (Coil Drop: {coilDrop}&quot; w.g.)</span>
               <span>→</span>
             </Link>
           </div>

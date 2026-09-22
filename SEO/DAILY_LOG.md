@@ -27,6 +27,42 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-21] — CLUSTER UPGRADE: Airflow & Hydronic Distribution Cluster Linking (CLU-02)
+- **Objective Class**: `CLUSTER UPGRADE`
+- **Autonomous Priority Selected**: Tier 2 Existing Cluster Upgrade & Cross-Domain Circulation (ASHRAE Fundamentals Ch. 21, ACCA Manual D, and I=B=R Hydronics Institute)
+- **Evidence & Rationale**: Solved search and workflow friction where users analyzing air distribution friction rates, equivalent duct diameters, and blower static pressure budgets were disconnected from heating capacity equipment (hydro-air fan coils, boiler water-to-air coils, and whole-building central heating plants). Established domain-separated bidirectional linking and technical methodology explanations connecting air delivery ($Q = 1.08 \times \text{CFM} \times \Delta T$) to hydronic thermal loops ($Q = 500 \times \text{GPM} \times \Delta T$).
+- **Target Assets**:
+  - Calculator Registry: [`src/lib/data/calculators-registry.ts`](../src/lib/data/calculators-registry.ts)
+  - Unit Test Suite: [`src/lib/data/calculators-registry.test.ts`](../src/lib/data/calculators-registry.test.ts)
+  - Ductulator Page & Tool: [`src/app/calculators/ductulator/page.tsx`](../src/app/calculators/ductulator/page.tsx), [`src/components/calculator/tools/DuctulatorTool.tsx`](../src/components/calculator/tools/DuctulatorTool.tsx)
+  - Flex Duct Page & Tool: [`src/app/calculators/flex-duct-cfm-chart/page.tsx`](../src/app/calculators/flex-duct-cfm-chart/page.tsx), [`src/components/calculator/tools/FlexDuctChartTool.tsx`](../src/components/calculator/tools/FlexDuctChartTool.tsx)
+  - Duct Friction Loss Page & Tool: [`src/app/calculators/duct-friction-loss-calculator/page.tsx`](../src/app/calculators/duct-friction-loss-calculator/page.tsx), [`src/components/calculator/tools/DuctFrictionTool.tsx`](../src/components/calculator/tools/DuctFrictionTool.tsx)
+  - Hydronic Boiler Sizer Page & Tool: [`src/app/calculators/boiler-size-calculator/page.tsx`](../src/app/calculators/boiler-size-calculator/page.tsx), [`src/components/calculator/tools/BoilerSizeTool.tsx`](../src/components/calculator/tools/BoilerSizeTool.tsx)
+- **Actions Executed**:
+  1. *Bidirectional Registry Graph*: Updated `relatedCalculatorIds` in `src/lib/data/calculators-registry.ts` linking `ductulator`, `flex-duct-cfm-chart`, and `duct-friction-loss-calculator` with `boiler-size-calculator`.
+  2. *Automated Cluster Regression Test*: Added vitest assertion in `src/lib/data/calculators-registry.test.ts` verifying bidirectional cluster references across all four target assets.
+  3. *Airflow Workflows Enhancement*: Added hydro-air central heating loop links to the workflow sections of `ductulator`, `flex-duct-cfm-chart`, and `duct-friction-loss-calculator`, highlighting water-to-air coil static resistance drops (0.15–0.25 in. wg) in Available Static Pressure (ASP) budgets.
+  4. *Hydronic Methodology & Engineering Workflows*: Added "Hydronic Heating vs. Ducted Hydro-Air Distribution" physical derivations and a dedicated 5-asset "Hydronic & Air Distribution Engineering Workflows" navigation block in `boiler-size-calculator/page.tsx`.
+  5. *Interactive Tool Component Handoffs*: Added dedicated handoff buttons in `BoilerSizeTool.tsx` (to `ductulator`), `DuctulatorTool.tsx` (to `duct-friction-loss-calculator`), `DuctFrictionTool.tsx` (to `boiler-size-calculator` dynamically displaying coil drop), and `FlexDuctChartTool.tsx` (to `boiler-size-calculator`).
+- **Validation & Quality Checks**:
+  - `npm test`: 34/34 test files passed, 144/144 unit tests passed (100% clean).
+  - `npm run typecheck`: 0 errors.
+  - `npm run build`: 90/90 static routes pre-rendered successfully with zero hydration errors.
+- **Operational Files Updated**:
+  - `src/lib/data/calculators-registry.ts`
+  - `src/lib/data/calculators-registry.test.ts`
+  - `src/app/calculators/ductulator/page.tsx`
+  - `src/components/calculator/tools/DuctulatorTool.tsx`
+  - `src/app/calculators/flex-duct-cfm-chart/page.tsx`
+  - `src/components/calculator/tools/FlexDuctChartTool.tsx`
+  - `src/app/calculators/duct-friction-loss-calculator/page.tsx`
+  - `src/components/calculator/tools/DuctFrictionTool.tsx`
+  - `src/app/calculators/boiler-size-calculator/page.tsx`
+  - `src/components/calculator/tools/BoilerSizeTool.tsx`
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: COMPLETED / MEASUREMENT MODE (2026-09-21). Active 28-day GSC telemetry observation window running through 2026-10-19.
+
 ### [2026-09-20] — EXISTING ASSET OPTIMIZATION: Building Envelope Effective Assembly U-Factor Handoff to Heat Loss Engine (SG-04)
 - **Objective Class**: `SINGLE ASSET`
 - **Autonomous Priority Selected**: Tier 1 Existing Asset Optimization & Site Architecture Workflow Completion (ASHRAE Standard 90.1-2022 Appendix A & ACCA Manual J 8th Edition)

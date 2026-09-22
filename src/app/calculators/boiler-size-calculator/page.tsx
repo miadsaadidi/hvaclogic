@@ -69,6 +69,32 @@ export default function BoilerSizeCalculatorPage() {
               <li><strong>Cast-Iron Radiator EDR Survey:</strong> Counting the tubes, columns, height, and sections of vintage cast-iron radiators to calculate total Equivalent Direct Radiation.</li>
               <li><strong>ACCA Manual J Heat Loss:</strong> Measuring room envelope heat losses to ensure the boiler is not oversized for modern insulated buildings (which frequently have more radiator surface area than the home actually needs).</li>
             </ul>
+
+            <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
+              Hydronic Heating vs. Ducted Hydro-Air Distribution
+            </h3>
+            <p>
+              When a central hydronic boiler supplies a forced-air fan coil (hydro-air heating) or when evaluating conversions between baseboards and ducted central heat pumps, system performance spans both water-side and air-side thermal dynamics. A hot water coil installed in a central duct trunk delivers heating capacity matching the hydronic loop:
+            </p>
+            <p style={{ background: "var(--surface-raised)", borderLeft: "3px solid var(--accent-heating)", padding: "0.6rem 0.9rem", margin: "0.75rem 0", borderRadius: "0 4px 4px 0" }}>
+              <strong>Coupled Thermal Balance:</strong> <code>Q = 500 × GPM × ΔT_water = 1.08 × CFM × ΔT_air</code>
+            </p>
+            <p>
+              The hydro-air heating coil introduces an internal static pressure resistance (typically 0.15 to 0.25 in. wg) to the air handler blower budget. Sizing the supply and return duct trunks with the proper friction rate is critical to prevent restricted airflow and excessive discharge air temperatures.
+            </p>
+          </div>
+
+          <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
+            <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
+              Hydronic &amp; Air Distribution Engineering Workflows
+            </h3>
+            <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+              • Size Hydro-Air Duct Trunks: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — calculate equal-friction round and rectangular duct sizes for ducted hydro-air fan coil systems.<br />
+              • Account for Coil Static Pressure Drops: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link> — deduct water coil static resistance from blower Available Static Pressure (ASP).<br />
+              • Size Flexible Duct Branch Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — verify branch air delivery with ASHRAE RP-1333 sag deratings.<br />
+              • Whole-Building Thermal Envelope Load: <Link href="/calculators/heat-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Building Heat Loss Calculator</Link> — calculate peak building transmission and infiltration load per ACCA Manual J.<br />
+              • Boiler Room Combustion Air Sizing: <Link href="/calculators/combustion-air-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Combustion Air Sizer</Link> — ensure NFPA 54 / IFGC compliance for non-direct-vent boiler installations.
+            </p>
           </div>
         </>
       }

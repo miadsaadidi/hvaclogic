@@ -95,6 +95,7 @@ export default function FlexDuctCfmChartPage() {
               • Size Rigid Metal Trunks: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — compare flexible duct runouts with equivalent round and rectangular sheet metal trunks.<br />
               • Compute System Static &amp; TEL: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Sizer</Link> — determine available static pressure and exact design friction rate.<br />
               • Calculate Sensible Room Airflow: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM &amp; Airflow Sizer</Link> — determine required supply CFM from room heat load and coil delta-T.<br />
+              • Ducted Hydro-Air Coil Integration: <Link href="/calculators/boiler-size-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Hydronic Boiler Sizer</Link> — evaluate boiler heating input and water-to-air fan coil delivery capacity for ducted hydronic systems.<br />
               • Explore Air Distribution Pillar: <Link href="/airflow-ducts" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Airflow &amp; Duct Sizing Hub</Link> — access the full suite of duct design tools and standards.
             </p>
           </div>
