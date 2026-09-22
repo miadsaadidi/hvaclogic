@@ -46,4 +46,18 @@ describe("calculator registry publication state", () => {
     expect(ductFriction?.relatedCalculatorIds).toContain("equivalent-length-calculator");
     expect(ductulator?.relatedCalculatorIds).toContain("equivalent-length-calculator");
   });
+
+  it("publishes the validated ASME Section VIII expansion tank calculator and verifies cluster links", () => {
+    const expTank = getCalculatorById("expansion-tank-calculator");
+    const boiler = getCalculatorById("boiler-size-calculator");
+
+    expect(expTank).toBeDefined();
+    expect(expTank?.status).toBe("production");
+    expect(expTank?.testStatus).toBe("validated");
+    expect(publishedCalculators().map((item) => item.id)).toContain("expansion-tank-calculator");
+
+    // Bidirectional cluster relations
+    expect(expTank?.relatedCalculatorIds).toContain("boiler-size-calculator");
+    expect(boiler?.relatedCalculatorIds).toContain("expansion-tank-calculator");
+  });
 });

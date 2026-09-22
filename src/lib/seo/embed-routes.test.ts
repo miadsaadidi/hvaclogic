@@ -4,9 +4,9 @@ import { siteConfig } from "@/lib/site-config";
 import { generateMetadata, generateStaticParams } from "@/app/embed/[slug]/page";
 
 describe("Phase 3 Embed System Verification", () => {
-  it("generates static params for all 23 registered calculators", async () => {
+  it("generates static params for all 24 registered calculators", async () => {
     const params = await generateStaticParams();
-    expect(params.length).toBe(23);
+    expect(params.length).toBe(24);
     const slugs = params.map((p) => p.slug);
     
     calculatorRegistry.forEach((calc) => {

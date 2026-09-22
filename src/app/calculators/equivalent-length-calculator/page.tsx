@@ -272,8 +272,23 @@ export default function EquivalentLengthCalculatorPage() {
             <ol style={{ paddingLeft: "1.2rem", margin: 0 }}>
               <li>
                 <strong>Calculate Available Static Pressure (ASP):</strong>
-                <pre style={{ background: "rgba(0,0,0,0.3)", padding: "0.5rem", borderRadius: "4px", margin: "0.4rem 0", color: "#38bdf8" }}>
-                  ASP = TESP - CVP = 0.50&quot; - (0.20&quot; + 0.12&quot; + 0.03&quot; + 0.03&quot;) = 0.50&quot; - 0.38&quot; = 0.120&quot; w.g.
+                <pre
+                  style={{
+                    background: "#090d16",
+                    border: "1px solid #1e293b",
+                    borderLeft: "3px solid #38bdf8",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "0.5rem",
+                    margin: "0.5rem 0",
+                    color: "#f8fafc",
+                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                    fontSize: "0.92rem",
+                    fontWeight: 600,
+                    lineHeight: 1.5,
+                    overflowX: "auto",
+                  }}
+                >
+                  ASP = TESP - CVP = 0.50&quot; - (0.20&quot; + 0.12&quot; + 0.03&quot; + 0.03&quot;) = 0.50&quot; - 0.38&quot; = <span style={{ color: "#38bdf8", fontWeight: 700 }}>0.120&quot; w.g.</span>
                 </pre>
               </li>
               <li>
@@ -301,15 +316,45 @@ export default function EquivalentLengthCalculatorPage() {
               </li>
               <li>
                 <strong>Calculate Total Effective Length (TEL):</strong>
-                <pre style={{ background: "rgba(0,0,0,0.3)", padding: "0.5rem", borderRadius: "4px", margin: "0.4rem 0", color: "#34d399" }}>
-                  TEL = (65 + 100) supply + (45 + 35) return = 165 ft + 80 ft = 245 equivalent feet
+                <pre
+                  style={{
+                    background: "#090d16",
+                    border: "1px solid #1e293b",
+                    borderLeft: "3px solid #10b981",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "0.5rem",
+                    margin: "0.5rem 0",
+                    color: "#f8fafc",
+                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                    fontSize: "0.92rem",
+                    fontWeight: 600,
+                    lineHeight: 1.5,
+                    overflowX: "auto",
+                  }}
+                >
+                  TEL = (65 + 100) supply + (45 + 35) return = 165 ft + 80 ft = <span style={{ color: "#34d399", fontWeight: 700 }}>245 equivalent feet</span>
                 </pre>
                 <em>Notice: Fittings contribute 135 ft out of 245 ft (55.1% of all airflow resistance!).</em>
               </li>
               <li>
                 <strong>Solve ACCA Manual D Design Friction Rate (FR):</strong>
-                <pre style={{ background: "rgba(0,0,0,0.3)", padding: "0.5rem", borderRadius: "4px", margin: "0.4rem 0", color: "#fcd34d" }}>
-                  FR = (ASP × 100) / TEL = (0.120&quot; × 100) / 245 ft = 0.0489 ≈ 0.049&quot; w.g. / 100 ft
+                <pre
+                  style={{
+                    background: "#090d16",
+                    border: "1px solid #1e293b",
+                    borderLeft: "3px solid #f59e0b",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "0.5rem",
+                    margin: "0.5rem 0",
+                    color: "#f8fafc",
+                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                    fontSize: "0.92rem",
+                    fontWeight: 600,
+                    lineHeight: 1.5,
+                    overflowX: "auto",
+                  }}
+                >
+                  FR = (ASP × 100) / TEL = (0.120&quot; × 100) / 245 ft = 0.0489 ≈ <span style={{ color: "#fbbf24", fontWeight: 700 }}>0.049&quot; w.g. / 100 ft</span>
                 </pre>
               </li>
               <li>

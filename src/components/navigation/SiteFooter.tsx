@@ -103,6 +103,7 @@ export function SiteFooter() {
               <li><Link href="/calculators/heat-pump-size-calculator">Heat Pump Sizer</Link></li>
               <li><Link href="/calculators/furnace-size-calculator">Furnace AFUE Sizer</Link></li>
               <li><Link href="/calculators/boiler-size-calculator">Boiler &amp; EDR Sizer</Link></li>
+              <li><Link href="/calculators/expansion-tank-calculator">ASME Expansion Tank</Link></li>
               <li><Link href="/calculators/garage-heater-sizing">Garage Heater Sizer</Link></li>
               <li><Link href="/calculators/combustion-air-calculator">Combustion Air Sizer</Link></li>
               <li><Link href="/calculators/r-value-calculator">Insulation R-Value</Link></li>
@@ -116,7 +117,7 @@ export function SiteFooter() {
               Standards &amp; Trust
             </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
-              <li><Link href="/calculators" style={{ fontWeight: 700, color: "var(--accent-cooling)" }}>🧮 All 21 Calculators Directory</Link></li>
+              <li><Link href="/calculators" style={{ fontWeight: 700, color: "var(--accent-cooling)" }}>🧮 All 24 Calculators Directory</Link></li>
               <li><Link href="/guides" style={{ fontWeight: 600 }}>📚 Master Engineering Guides</Link></li>
               <li><Link href="/research" style={{ fontWeight: 600 }}>🎓 Research &amp; Whitepapers</Link></li>
               <li><Link href="/standards" style={{ fontWeight: 600 }}>📜 Standards &amp; Codes Matrix</Link></li>

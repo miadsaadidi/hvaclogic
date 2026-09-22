@@ -150,6 +150,7 @@ export function EquivalentLengthTool() {
 
   // Fitting handlers
   const handleAddCatalogFitting = (fittingDefId: string, defaultLength: number) => {
+    setSelectedPresetIndex(null);
     const newId = `fit_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     setSelectedFittings((prev) => [
       ...prev,
@@ -166,6 +167,7 @@ export function EquivalentLengthTool() {
   const handleAddCustomFitting = (e: React.FormEvent) => {
     e.preventDefault();
     if (!customName.trim()) return;
+    setSelectedPresetIndex(null);
     const newId = `custom_${Date.now()}`;
     setSelectedFittings((prev) => [
       ...prev,
@@ -182,6 +184,7 @@ export function EquivalentLengthTool() {
   };
 
   const handleUpdateQuantity = (id: string, delta: number) => {
+    setSelectedPresetIndex(null);
     setSelectedFittings((prev) =>
       prev
         .map((f) => {
@@ -196,14 +199,19 @@ export function EquivalentLengthTool() {
   };
 
   const handleRemoveFitting = (id: string) => {
+    setSelectedPresetIndex(null);
     setSelectedFittings((prev) => prev.filter((f) => f.id !== id));
   };
 
   const handleClearFittings = () => {
+    setSelectedPresetIndex(null);
     setSelectedFittings([]);
   };
 
-  const handleApplyPreset = (preset: PresetConfig) => {
+  const [selectedPresetIndex, setSelectedPresetIndex] = useState<number | null>(0);
+
+  const handleApplyPreset = (preset: PresetConfig, index: number) => {
+    setSelectedPresetIndex(index);
     setStraightSupply(preset.straightSupply);
     setStraightReturn(preset.straightReturn);
     setTesp(preset.tesp);
@@ -270,50 +278,141 @@ export function EquivalentLengthTool() {
     },
   ];
 
+  const getStatusColor = () => {
+    switch (output.statusBadgeColor) {
+      case "emerald":
+        return "#10b981";
+      case "amber":
+        return "#f59e0b";
+      case "rose":
+        return "#ef4444";
+      case "blue":
+        return "#3b82f6";
+      default:
+        return "#10b981";
+    }
+  };
+  const statusColor = getStatusColor();
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-      <GooglePreferredBanner />
-      <StandardsBadge standards={["ACCA Manual D", "ASHRAE Ch. 21", "SMACNA"]} />
-
-      {/* Preset Buttons */}
+      {/* 1. Primary Result Hero Card: Title + Value First */}
       <div
         style={{
-          background: "var(--card-bg, #0f172a)",
+          background: "linear-gradient(145deg, #090e1a 0%, #0d1a2d 50%, #071f30 100%)",
           border: "1px solid var(--border-color, #1e293b)",
+          borderTop: `3px solid ${statusColor}`,
           borderRadius: "0.75rem",
-          padding: "1rem",
+          padding: "1.25rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.5rem",
+          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
         }}
       >
-        <div style={{ fontSize: "0.85rem", fontWeight: 700, marginBottom: "0.5rem", color: "var(--ink, #f8fafc)" }}>
-          📐 Quick Design Archetypes (ACCA Manual D Examples)
-        </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-          {PRESETS.map((preset, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => handleApplyPreset(preset)}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.75rem" }}>
+          <div>
+            <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--ink-secondary, #94a3b8)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              ACCA Manual D Total Effective Length (TEL)
+            </div>
+            <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "#f8fafc", lineHeight: 1.1, marginTop: "0.25rem" }}>
+              {output.cumulativeTelFt}{" "}
+              <span style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--ink-secondary, #94a3b8)" }}>
+                ft eq
+              </span>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.35rem" }}>
+            <span
               style={{
-                background: "var(--surface-bg, #1e293b)",
-                border: "1px solid var(--border-color, #334155)",
-                color: "#e2e8f0",
-                borderRadius: "0.5rem",
-                padding: "0.45rem 0.8rem",
-                fontSize: "0.78rem",
-                cursor: "pointer",
-                fontWeight: 600,
-                transition: "all 0.2s ease",
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                padding: "0.25rem 0.65rem",
+                borderRadius: "9999px",
+                background: `${statusColor}22`,
+                color: statusColor,
+                border: `1px solid ${statusColor}55`,
               }}
-              title={preset.description}
             >
-              {preset.label}
-            </button>
-          ))}
+              {output.frictionRateStatus}
+            </span>
+            <div style={{ fontSize: "0.75rem", color: "var(--ink-secondary, #94a3b8)" }}>
+              Recommended Target: <strong style={{ color: "#f8fafc" }}>0.06 - 0.12&quot;</strong> / 100 ft
+            </div>
+          </div>
+        </div>
+
+        {/* Secondary Quick Metrics Row */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1.25rem",
+            marginTop: "0.5rem",
+            paddingTop: "0.75rem",
+            borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+            fontSize: "0.82rem",
+          }}
+        >
+          <div>
+            <span style={{ color: "var(--ink-secondary, #94a3b8)" }}>Design Friction Rate (FR): </span>
+            <strong style={{ color: statusColor, fontSize: "0.95rem" }}>
+              {output.designFrictionRateFr.toFixed(3)}&quot; w.g. / 100 ft
+            </strong>
+          </div>
+          <div>
+            <span style={{ color: "var(--ink-secondary, #94a3b8)" }}>Available Static (ASP): </span>
+            <strong style={{ color: "#38bdf8" }}>{output.availableStaticPressureAspInWg.toFixed(3)}&quot; w.g.</strong>
+          </div>
+          <div>
+            <span style={{ color: "var(--ink-secondary, #94a3b8)" }}>Fitting Drag: </span>
+            <strong style={{ color: "#fca5a5" }}>
+              {output.fittingLengthTotalFt} ft ({output.fittingRatioPercent}%)
+            </strong>
+            <span style={{ color: "var(--ink-secondary, #94a3b8)" }}> | Straight: </span>
+            <strong style={{ color: "#93c5fd" }}>{output.straightLengthTotalFt} ft</strong>
+          </div>
         </div>
       </div>
 
-      {/* Interactive Visualizer */}
+      {/* 2. Preset Buttons with Standard System Classes and Distinct Active State */}
+      <div className="preset-chips-container" role="group" aria-label="ACCA Manual D Archetypes">
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginBottom: "0.25rem" }}>
+          <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>
+            📐 Sample Design Archetypes:
+          </span>
+          {selectedPresetIndex !== null && (
+            <span style={{ fontSize: "0.75rem", color: "var(--accent-cooling)", fontWeight: 700 }}>
+              ✓ Selected Archetype #{selectedPresetIndex + 1}
+            </span>
+          )}
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+          {PRESETS.map((preset, idx) => {
+            const isSelected = selectedPresetIndex === idx;
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleApplyPreset(preset, idx)}
+                className={`preset-chip-btn ${isSelected ? "active" : ""}`}
+                title={preset.description}
+                aria-pressed={isSelected}
+              >
+                {preset.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. Interactive Visualizer (Graph / Schemas) */}
       <EquivalentLengthVisualizer output={output} />
+
+      {/* 4. Google Preferred Banner & Standards Badge Moved AFTER Graph / Schemas */}
+      <GooglePreferredBanner />
+      <StandardsBadge standards={["ACCA Manual D", "ASHRAE Ch. 21", "SMACNA"]} />
 
       {/* Main Form Grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "1.25rem" }}>
