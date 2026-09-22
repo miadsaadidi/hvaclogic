@@ -124,6 +124,7 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         applicableCalculators: [
           { name: "Duct Airflow & Friction Rate Sizing Calculator", route: "/calculators/ductulator" },
           { name: "Duct Friction Loss & Pressure Drop Calculator", route: "/calculators/duct-friction-loss-calculator" },
+          { name: "ACCA Manual D Equivalent Length Calculator", route: "/calculators/equivalent-length-calculator" },
           { name: "Filter Sizing & Pressure Drop Calculator", route: "/calculators/filter-sizing-calculator" }
         ]
       },

@@ -29,4 +29,21 @@ describe("calculator registry publication state", () => {
     expect(boiler?.relatedCalculatorIds).toContain("ductulator");
     expect(boiler?.relatedCalculatorIds).toContain("duct-friction-loss-calculator");
   });
+
+  it("publishes the validated ACCA Manual D equivalent length calculator and verifies cluster links", () => {
+    const eqLength = getCalculatorById("equivalent-length-calculator");
+    const ductFriction = getCalculatorById("duct-friction-loss-calculator");
+    const ductulator = getCalculatorById("ductulator");
+
+    expect(eqLength).toBeDefined();
+    expect(eqLength?.status).toBe("production");
+    expect(eqLength?.testStatus).toBe("validated");
+    expect(publishedCalculators().map((item) => item.id)).toContain("equivalent-length-calculator");
+
+    // Bidirectional cluster relations
+    expect(eqLength?.relatedCalculatorIds).toContain("duct-friction-loss-calculator");
+    expect(eqLength?.relatedCalculatorIds).toContain("ductulator");
+    expect(ductFriction?.relatedCalculatorIds).toContain("equivalent-length-calculator");
+    expect(ductulator?.relatedCalculatorIds).toContain("equivalent-length-calculator");
+  });
 });

@@ -28,6 +28,7 @@ import { PtChartTool } from "@/components/calculator/tools/PtChartTool";
 import { AcModelDecoderTool } from "@/components/calculator/tools/AcModelDecoderTool";
 import { BtuCalculatorTool } from "@/components/calculator/tools/BtuCalculatorTool";
 import { EffectiveRValueTool } from "@/components/calculator/tools/EffectiveRValueTool";
+import { EquivalentLengthTool } from "@/components/calculator/tools/EquivalentLengthTool";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -73,6 +74,8 @@ function renderToolComponent(id: string) {
       return <KitchenHoodTool />;
     case "duct-friction-loss-calculator":
       return <DuctFrictionTool />;
+    case "equivalent-length-calculator":
+      return <EquivalentLengthTool />;
     case "filter-sizing-calculator":
       return <FilterSizingTool />;
 

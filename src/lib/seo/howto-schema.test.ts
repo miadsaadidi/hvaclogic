@@ -4,9 +4,9 @@ import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { SchemaJsonLd } from "@/components/seo/SchemaJsonLd";
 
 describe("Schema.org HowTo & Structured Data Validation", () => {
-  it("renders valid Schema.org graph with HowTo for all 22 production calculators", () => {
+  it("renders valid Schema.org graph with HowTo for all 23 production calculators", () => {
     const published = publishedCalculators();
-    expect(published.length).toBe(22);
+    expect(published.length).toBe(23);
 
     published.forEach((calc) => {
       const element = SchemaJsonLd({ calculator: calc });

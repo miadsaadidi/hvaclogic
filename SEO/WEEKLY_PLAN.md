@@ -137,7 +137,7 @@ When prioritizing candidate opportunities, follow this evidence hierarchy (evide
 ## 3. Current Program & Diagnostic State
 
 ```text
-HVACLOGIC: AIRFLOW & HYDRONIC DISTRIBUTION CLUSTER (CLU-02) + COMBUSTION AIR + THERMODYNAMIC CLUSTER + BUILDING ENVELOPE (CORE B-1 + SG-04) DEPLOYED & IN GSC MEASUREMENT
+HVACLOGIC: ACCA MANUAL D EQUIVALENT LENGTH & TEL FITTING ACCUMULATOR (SG-01) + AIRFLOW & HYDRONIC DISTRIBUTION CLUSTER (CLU-02) DEPLOYED & IN GSC MEASUREMENT
 ACTIVE OBJECTIVE: NONE — awaiting selection of next prioritized objective from Opportunity Map.
 ```
 
@@ -282,6 +282,17 @@ Reply "Approved" to execute.
   - **Measurement Window**: 2026-09-21 to 2026-10-19 (28-day aggregate GSC tracking on airflow and hydronic query families).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-21]`
 
+- **Step 9 — Single Asset (`SG-01`)**: *ACCA Manual D Total Effective Length (TEL) & Equivalent Length Fitting Accumulator*
+  - **Class**: `SINGLE ASSET` (Tier 1 Priority / Tool & Workflow Gap)
+  - **Scope / Affected URLs**:
+    - [`/calculators/equivalent-length-calculator`](https://hvaclogic.org/calculators/equivalent-length-calculator)
+    - [`/calculators/duct-friction-loss-calculator`](https://hvaclogic.org/calculators/duct-friction-loss-calculator)
+    - [`/calculators/ductulator`](https://hvaclogic.org/calculators/ductulator)
+  - **Outcome**: Deployed comprehensive ACCA Manual D Appendix 3 fitting accumulator engine (`src/lib/math/equivalent-length.ts`) with 24 standard fittings across Groups 1–5, dynamic straight vs. fitting resistance ratio decomposition, Available Static Pressure ($ASP$) budgeter, automated aerodynamic optimization suggestions (saving up to 80 ft TEL), responsive SVG system schematic visualizer (`EquivalentLengthVisualizer.tsx`), and 1-click downstream workflow handoffs to Digital Ductulator and Duct Friction Loss Sizer.
+  - **Validation**: 150/150 unit tests passing across 35 test suites, 0 TypeScript errors, 92/92 static routes pre-rendered.
+  - **Measurement Window**: 2026-09-22 to 2026-10-20 (28-day GSC tracking on equivalent length, duct TEL, and Manual D query families).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-22]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -382,10 +393,10 @@ Reply "Approved" to execute.
    - **SERP Coverage**: Top ranking results are static, low-resolution scanned PDF tables from Manual D or contractor forum threads with zero dynamic fitting accumulators.
    - **Missing Component**: An interactive composite fitting calculator where users can select duct types, add fittings by category (e.g., 90° radius vs mitered elbow with turning vanes, supply boots, takeoffs), and compute composite supply + return TEL in real time.
    - **Evidence**: `SERP Evidence` (SERPs lack interactive composite fitting calculators) + `Site Architecture Evidence` (Fills the missing input parameter between `/calculators/duct-friction-loss-calculator` and `/calculators/ductulator`).
-   - **Proposed Solution**: New Interactive Calculator / Tool Module (`/calculators/equivalent-length-calculator` or Manual D Fitting Sizer module).
+   - **Proposed Solution**: Dedicated Equivalent Length Fitting Accumulator Tool (`/calculators/equivalent-length-calculator`).
    - **Objective Class**: `SINGLE ASSET` (New Tool)
    - **Confidence**: High (Clear query intent with high engineering friction in existing SERPs).
-   - **Status**: `DISCOVERED / READY FOR PRIORITIZATION`
+   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-22]` (Moved to Section 5, Step 9)
 
 2. **Candidate SG-02: Hydronic ASME Closed-Loop Expansion Tank Sizing & Temperature-Dependent Glycol Thermal Expansion**
    - **Gap Type**: `Technical-Depth Gap`, `Data Gap`, & `Tool Gap`
@@ -428,7 +439,7 @@ Reply "Approved" to execute.
 
 | Candidate ID | Gap Type | Query / Topic | Evidence Type | Missing SERP / Site Component | Proposed HVACLogic Solution | Objective Class | Confidence | Status | Target Scope |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **SG-01** | `Workflow Gap` / `Tool Gap` | ACCA Manual D Total Effective Length (TEL) | `SERP Evidence` + `Site Architecture Evidence` | Interactive fitting accumulator for composite trunk & branch TEL | Dedicated Equivalent Length Fitting Accumulator Tool | `SINGLE ASSET` | High | `DISCOVERED / READY FOR PRIORITIZATION` | `/calculators/equivalent-length-calculator` |
+| **SG-01** | `Workflow Gap` / `Tool Gap` | ACCA Manual D Total Effective Length (TEL) | `SERP Evidence` + `Site Architecture Evidence` | Interactive fitting accumulator for composite trunk & branch TEL | Dedicated Equivalent Length Fitting Accumulator Tool | `SINGLE ASSET` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-22]` | `/calculators/equivalent-length-calculator` |
 | **SG-02** | `Technical-Depth Gap` / `Data Gap` | ASME Hydronic Expansion Tank Sizing & Glycol Derating | `SERP Evidence` + `Research / Authority Evidence` | ASME Section VIII formula modeling & temperature-dependent glycol curves | Hydronic Expansion Tank Calculator & ASME Technical Guide | `SINGLE ASSET` / `CORE PUBLICATION` | High | `PROPOSED / BOUNDED TECHNICAL VALIDATION` | `/calculators/expansion-tank-calculator` |
 | **SG-03** | `Freshness Gap` / `Research Gap` | ASHRAE 241-2023 Equivalent Clean Airflow ($ECA_i$) | `Research / Authority Evidence` + `Engineering Inference` | Multi-source pathogen mitigation $ECA$ allocation engine & benchmark matrix | Open Research Monograph & Benchmark Dataset | `CORE PUBLICATION` | High | `RESEARCH / PROVENANCE GATE` | `/research/ashrae-241-equivalent-clean-airflow` |
 | **SG-04** | `Workflow Gap` / `Implementation Gap` | Effective Assembly $U$-Factor to Heat Loss Handoff | `Site Architecture Evidence` | Direct assembly $U$-factor input & workflow link from Core B-1 tool | On-page enhancement to Heat Loss Calculator with effective $U$-factor toggle | `SINGLE ASSET` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-20]` | `/calculators/heat-loss-calculator` |
