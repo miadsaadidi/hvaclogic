@@ -27,6 +27,35 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-22] — SINGLE ASSET: ASHRAE Hydronic Expansion Tank Sizing & ASME Vessel Rating (SG-02)
+- **Objective Class**: `SINGLE ASSET` (Tier 1 Priority / Tool & Technical-Depth Gap)
+- **Autonomous Priority Selected**: Tier 1 Additive Tool Gap & Technical Depth per ASHRAE Handbook — HVAC Systems and Equipment (Chapter 15, Sizing Expansion Tanks) and ASME BPVC Section VIII Division 1
+- **Evidence & Rationale**: High-intent search gap for "expansion tank calculator", "boiler expansion tank sizing", and "glycol expansion tank calculator". Competitor tools fail to account for temperature-dependent fluid density variations of propylene/ethylene glycol, conflate gauge vs absolute pressure in Boyle's Law ($A_r = 1 - P_1/P_2$), and ignore piping thermal volumetric expansion. Sizing formulation strictly governed by ASHRAE Systems & Equipment Chapter 15 (Equations 13 & 14): $V_t = \frac{V_s [(\nu_2/\nu_1 - 1) - 3\alpha\Delta T]}{1 - P_1/P_2}$. Coordinated with ASME Section VIII Division 1 pressure vessel ratings, standard commercial nominal shell sizes, and relief valve safety buffer rules.
+- **Target Assets**:
+  - Math Calculation Engine: [`src/lib/math/expansion-tank.ts`](../src/lib/math/expansion-tank.ts)
+  - Unit Test Suite: [`src/lib/math/expansion-tank.test.ts`](../src/lib/math/expansion-tank.test.ts)
+  - Interactive Tool Component: [`src/components/calculator/tools/ExpansionTankTool.tsx`](../src/components/calculator/tools/ExpansionTankTool.tsx)
+  - Interactive SVG Visualizer: [`src/components/calculator/visualizers/ExpansionTankVisualizer.tsx`](../src/components/calculator/visualizers/ExpansionTankVisualizer.tsx)
+  - Production Page: [`src/app/calculators/expansion-tank-calculator/page.tsx`](../src/app/calculators/expansion-tank-calculator/page.tsx)
+  - Calculator Registry: [`src/lib/data/calculators-registry.ts`](../src/lib/data/calculators-registry.ts)
+  - Calculator Registry Tests: [`src/lib/data/calculators-registry.test.ts`](../src/lib/data/calculators-registry.test.ts)
+  - Standards Matrix: [`src/lib/data/standards-matrix.ts`](../src/lib/data/standards-matrix.ts)
+  - Embed Route: [`src/app/embed/[slug]/page.tsx`](../src/app/embed/[slug]/page.tsx)
+- **Actions Executed & Minimal Corrective Pass**:
+  1. *Thermodynamic Fluid Model*: Implemented high-precision density polynomials for water and 20% to 50% propylene and ethylene glycol mixtures across 32°F to 250°F based on ASHRAE Fundamentals and industrial heat-transfer fluid data.
+  2. *ASHRAE Sizing vs. ASME Vessel Standards Separation*: Separated standard jurisdictions: ASHRAE Handbook — Systems & Equipment Chapter 15 governs hydronic volumetric expansion and acceptance ratio sizing equations; ASME BPVC Section VIII Division 1 governs pressure vessel construction, code stamping, and safety relief valve coordination where required.
+  3. *Formulation Review*: Verified and confirmed the governing derivation $V_{acc} = V_s [(\nu_2/\nu_1 - 1) - 3\alpha\Delta T]$ directly corresponds to ASHRAE Ch. 15 (Eq. 13 & 14) net liquid expansion minus piping thermal expansion.
+  4. *UI & Visualizer*: Preserved existing UI, tank-selection workflow, glycol derating functionality, and responsive SVG visualizer (`ExpansionTankVisualizer.tsx`).
+  5. *SG-01 Minimal Corrections*: Refined ACCA Manual D citations to qualify Appendix 3 as historical/edition-specific; removed universal "fittings account for 60-75% of resistance" assertion; published representative archetype loss ranges rather than copyrighted proprietary tables. TEL/friction rate engine unchanged.
+- **Validation & Quality Checks**:
+  - `npm test`: 36/36 test files passed, 155/155 unit tests passing (100% clean).
+  - `npm run typecheck`: 0 errors.
+  - `npm run build`: 93/93 static routes pre-rendered successfully (SSG) with zero regressions.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: `[COMPLETED / 28-DAY GSC MEASUREMENT MODE — 2026-09-22 to 2026-10-20]`
+
 ### [2026-09-22] — SINGLE ASSET: ACCA Manual D Equivalent Length & TEL Fitting Accumulator (SG-01)
 - **Objective Class**: `SINGLE ASSET` (Tier 1 Priority / Tool & Workflow Gap)
 - **Autonomous Priority Selected**: Tier 1 Additive Tool Gap & Workflow Integration per ACCA Manual D (3rd Edition, Appendix 3) and ASHRAE Fundamentals Chapter 21

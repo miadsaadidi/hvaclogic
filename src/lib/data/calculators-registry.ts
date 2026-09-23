@@ -254,7 +254,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
     features: [
-      "ACCA Manual D (3rd Edition, Appendix 3) fitting accumulator (Groups 1 through 5)",
+      "ACCA Manual D fitting accumulator (representative fitting loss archetypes)",
       "Critical path aerodynamic decomposition: straight footage vs fitting dynamic resistance",
       "Available Static Pressure (ASP = TESP - CVP) solver for coils, filters & grilles",
       "ACCA Manual D Design Friction Rate (FR = (ASP * 100) / TEL) solver",
@@ -277,12 +277,12 @@ export const calculatorRegistry: CalculatorMeta[] = [
         answer: "Total Effective Length (TEL) equals the measured linear straight footage plus the sum of all fitting equivalent lengths along the most aerodynamically restrictive critical path: TEL = L_straight_supply + sum(EL_supply_fittings) + L_straight_return + sum(EL_return_fittings)."
       },
       {
-        question: "Why do fittings account for 60% to 75% of total duct resistance?",
-        answer: "Every time moving air changes direction or cross-section, boundary layers detach, generating turbulent recirculation eddies and dynamic shock losses. A single unvaned 90° mitered elbow has an equivalent length of 50 ft, representing as much airflow resistance as 50 feet of straight ductwork."
+        question: "Why do fittings frequently represent a substantial portion of total duct resistance?",
+        answer: "Every time moving air changes direction or cross-section, boundary layers detach, generating turbulent recirculation eddies and dynamic shock losses. Depending on the system layout and fitting geometry, fitting equivalent length often contributes significantly to total resistance. For example, a single unvaned 90° mitered elbow has an equivalent length of 50 ft, representing as much airflow resistance as 50 feet of straight ductwork."
       },
       {
         question: "What is the difference between a mitered elbow with vanes vs without vanes?",
-        answer: "Under ACCA Manual D Appendix 3, a standard 90° rectangular mitered elbow without vanes has an equivalent length of 50 ft. Adding factory or field turning vanes guides airflow smoothly through the corner, dropping equivalent length to 10 ft — an 80% reduction in fitting dynamic loss."
+        answer: "In standard ACCA Manual D fitting methodologies, a standard 90° rectangular mitered elbow without vanes has an equivalent length of 50 ft. Adding factory or field turning vanes guides airflow smoothly through the corner, dropping equivalent length to 10 ft — an 80% reduction in fitting dynamic loss."
       },
       {
         question: "How does Total Effective Length determine duct sizing friction rate?",
@@ -836,7 +836,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
       "Interactive SVG hydronic piping loop schematic with boiler, expansion tank, and circulator",
       "1-Click CSV engineering submittal export",
     ],
-    relatedCalculatorIds: ["heat-loss-calculator", "furnace-size-calculator", "combustion-air-calculator", "ductulator", "duct-friction-loss-calculator"],
+    relatedCalculatorIds: ["expansion-tank-calculator", "heat-loss-calculator", "furnace-size-calculator", "combustion-air-calculator", "ductulator", "duct-friction-loss-calculator"],
     standards: ["ASHRAE", "AHRI"],
     formulaVersion: "1.0.0",
     dataVersion: "1.0.0",
@@ -859,6 +859,54 @@ export const calculatorRegistry: CalculatorMeta[] = [
       }
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
+  },
+  {
+    id: "expansion-tank-calculator",
+    name: "ASHRAE Hydronic Expansion Tank Sizing Calculator",
+    pillar: "heating-systems",
+    route: "/calculators/expansion-tank-calculator",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
+    primaryKeyword: "expansion tank calculator",
+    secondaryKeywords: ["hydronic expansion tank sizing", "asme expansion tank calculator", "boiler expansion tank sizing", "glycol expansion tank calculator", "amtrol sizing calculator"],
+    primaryIntent: "Professional Engineering / Hydronics",
+    seoTitle: "ASHRAE Hydronic Expansion Tank Calculator — Glycol Derating",
+    metaDescription: "Size closed-loop diaphragm and bladder expansion tanks per ASHRAE Systems & Equipment Ch. 15 with ASME Section VIII commercial vessel rating checks.",
+    categoryName: "Heating Systems",
+    categoryRoute: "/heating-systems",
+    features: [
+      "ASHRAE Systems & Equipment Ch. 15 closed-loop diaphragm sizing equations (Eq. 13 & 14)",
+      "Specific volume and density thermodynamic curves for water and 20%-50% propylene/ethylene glycol",
+      "Boyle's Law acceptance ratio (Ar = 1 - P1/P2) in absolute pressure (psia)",
+      "Piping thermal expansion compensation for carbon steel, copper, and PEX",
+      "Interactive SVG cross-section visualizer showing bladder inflation and operating pressure spectrum",
+      "Commercial ASME Section VIII standard tank size selector (2.1 to 528 gallons)",
+      "1-Click CSV engineering submittal export",
+    ],
+    relatedCalculatorIds: ["boiler-size-calculator", "heat-loss-calculator", "equivalent-length-calculator", "combustion-air-calculator"],
+    standards: ["ASHRAE", "AHRI"],
+    formulaVersion: "1.0.0",
+    dataVersion: "1.0.0",
+    lastEngineeringReview: "2026-09-22",
+    requiresReferenceDataset: false,
+    offlineEligible: true,
+    testStatus: "validated",
+    faqs: [
+      {
+        question: "Why does glycol require a larger expansion tank than pure water?",
+        answer: "Propylene and ethylene glycol solutions have higher thermal volumetric expansion coefficients than pure water. A 50% propylene glycol mixture expands ~65% more than pure water across heating temperature ranges, requiring a significantly larger expansion tank."
+      },
+      {
+        question: "What is the Acceptance Ratio (Ar) in expansion tank sizing?",
+        answer: "Acceptance ratio (Ar = 1 - P1/P2) represents the usable fraction of the tank's total volume. P1 is the initial cold fill precharge and P2 is the maximum operating pressure (both in absolute psia). A narrower pressure band lowers Ar, requiring a larger physical tank shell."
+      },
+      {
+        question: "Where should the expansion tank be connected in a hydronic system?",
+        answer: "The expansion tank should be connected on the suction side of the circulator pump at the 'Point of No Pressure Change' (PONPC). Pumping away from the expansion tank ensures that pump head is added to the system pressure, preventing cavitation and air binding."
+      }
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked", "print_exported"]
   },
   {
     id: "garage-heater-sizing",

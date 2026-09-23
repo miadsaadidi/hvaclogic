@@ -29,6 +29,7 @@ import { AcModelDecoderTool } from "@/components/calculator/tools/AcModelDecoder
 import { BtuCalculatorTool } from "@/components/calculator/tools/BtuCalculatorTool";
 import { EffectiveRValueTool } from "@/components/calculator/tools/EffectiveRValueTool";
 import { EquivalentLengthTool } from "@/components/calculator/tools/EquivalentLengthTool";
+import { ExpansionTankTool } from "@/components/calculator/tools/ExpansionTankTool";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -111,6 +112,8 @@ function renderToolComponent(id: string) {
       return <FurnaceBtuTool />;
     case "boiler-size-calculator":
       return <BoilerSizeTool />;
+    case "expansion-tank-calculator":
+      return <ExpansionTankTool />;
     case "garage-heater-sizing":
     case "garage-heater-calculator":
       return <GarageHeaterTool />;

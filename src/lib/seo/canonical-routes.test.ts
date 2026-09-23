@@ -13,12 +13,12 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
     const sitemapEntries = sitemap();
     const urls = sitemapEntries.map((e) => e.url);
 
-    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 23 Calculators + 1 Guides Hub + 1 Research Hub + 10 Research Papers + 1 Datasets Hub + 6 Datasets + 7 Academic PDF Whitepapers + 3 OER Modules + 1 Standards + 7 Authority/Resource/Policy Pages = 67
-    expect(urls.length).toBe(67);
+    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 24 Calculators + 1 Guides Hub + 1 Research Hub + 10 Research Papers + 1 Datasets Hub + 6 Datasets + 7 Academic PDF Whitepapers + 3 OER Modules + 1 Standards + 7 Authority/Resource/Policy Pages = 68
+    expect(urls.length).toBe(68);
 
     // Ensure zero duplicates
     const uniqueUrls = new Set(urls);
-    expect(uniqueUrls.size).toBe(67);
+    expect(uniqueUrls.size).toBe(68);
 
     // Ensure all URLs start with the canonical domain https://hvaclogic.org
     urls.forEach((url) => {
@@ -43,9 +43,9 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
     expect(mainRule?.disallow).toEqual(["/api/", "/embed/"]);
   });
 
-  it("verifies all 23 production calculators have valid SEO metadata and standards", () => {
+  it("verifies all 24 production calculators have valid SEO metadata and standards", () => {
     const published = publishedCalculators();
-    expect(published.length).toBe(23);
+    expect(published.length).toBe(24);
 
     published.forEach((calc) => {
       expect(calc.status).toBe("production");
@@ -121,9 +121,9 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
     const published = publishedCalculators();
     const primaryKeywords = published.map((c) => c.primaryKeyword.toLowerCase().trim());
 
-    // 23 tools must map to 23 distinct primary search intents
+    // 24 tools must map to 24 distinct primary search intents
     const uniqueKeywords = new Set(primaryKeywords);
-    expect(uniqueKeywords.size).toBe(23);
+    expect(uniqueKeywords.size).toBe(24);
 
     // Explicitly verify distinct intent across related duct and airflow tools
     const ductulator = published.find((c) => c.id === "ductulator");

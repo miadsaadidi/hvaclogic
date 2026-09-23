@@ -191,6 +191,17 @@
     - **Single-Zone Body**: NEVER fragment the article body across multiple blocks. ALWAYS use four backticks (` ````markdown `) so inner 3-backtick code blocks do not prematurely close the container.
     - **Native Unicode Only (NO RAW LATEX)**: DEV.to does not render MathJax/KaTeX. NEVER output `$$...$$`, `$..$`, `\frac`, `\Delta`, `\text{}`, or `\cdot`. Format formulas using clean native Unicode (`Δ`, `×`, `÷`, `≈`, `≤`, `≥`, `·`, `²`, `³`, `°F`, `W/(m·K)`, `BTU/hr`) or monospaced text blocks.
     - **Zero Em-Dashes**: NEVER use em-dashes (`—`). Use standard hyphens (`-`), commas, or periods.
+- **Rule 17: Strict Standards Jurisdiction Separation (ASHRAE Sizing vs. ASME Construction)**:
+  - **Thermodynamic Sizing & Physics**: Sizing equations, thermal volumetric expansion ($(\nu_2/\nu_1 - 1) - 3\alpha\Delta T$), acceptance volume ($V_{acc}$), and acceptance ratios ($A_r = 1 - P_1/P_2$) in closed hydronic systems are strictly governed by **ASHRAE** (*ASHRAE Handbook — HVAC Systems and Equipment*, Chapter 15: Sizing Expansion Tanks, Eq. 13 & 14).
+  - **Structural Pressure Vessel Code**: **ASME BPVC Section VIII Division 1** strictly governs mechanical pressure vessel construction, minimum design metal temperatures, shell wall thickness, code stamping, and safety relief valve coordination where commercial code vessels are required.
+  - **Strict Prohibition**: Never attribute hydronic expansion sizing formulas or thermal physics directly to ASME, and never present non-code residential tanks as ASME-stamped unless explicitly specified.
+- **Rule 18: Standards Citation & Empirical Claim Qualification (ACCA / ASHRAE / SMACNA)**:
+  - **Edition-Specific Qualification**: Never cite specific standard sections or appendices (e.g., "Appendix 3" of ACCA Manual D) as the current authoritative location without explicitly qualifying it as edition-specific or historical.
+  - **Zero Absolute Universal Claims**: Empirical guidelines or field rules of thumb (e.g., fitting resistance percentages) must never be stated as universal or absolute laws. Always qualify by geometry, fitting aerodynamic quality, and layout topology.
+  - **Copyright Scoping**: Strictly avoid reproducing proprietary, copyrighted fitting tables or coefficient matrices beyond permitted fair-use representative archetypes and derived engineering values.
+- **Rule 19: Calculator Input Layout & Readability Invariants**:
+  - Whenever generating or refactoring calculator tool inputs, strictly use the site's standardized class hierarchy: `.calculator-grid`, `.input-panel`, `.output-panel`, `.form-group`, `<label><span>...</span><span className="unit-label">...</span></label>`, `.input-number`, and `.input-help`.
+  - **Strict Contrast & Legibility**: Ensure high contrast in both dark and light modes. Form labels and help text must use theme variables (`var(--ink)`, `var(--ink-secondary)`, `var(--surface)`) rather than low-contrast hardcoded grays. Never generate raw unstyled form elements or uncoordinated card wrappers.
 
 ---
 

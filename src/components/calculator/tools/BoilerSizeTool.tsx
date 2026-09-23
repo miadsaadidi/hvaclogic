@@ -485,6 +485,10 @@ export function BoilerSizeTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in Heating Systems Engineering</div>
+            <Link href="/calculators/expansion-tank-calculator" style={{ marginBottom: "0.5rem" }}>
+              <span>Size ASME Section VIII Closed-Loop Hydronic Expansion Tank</span>
+              <span>→</span>
+            </Link>
             <Link href="/calculators/heat-loss-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Verify Boiler Sizing with Whole-Building Manual J Heat Loss</span>
               <span>→</span>

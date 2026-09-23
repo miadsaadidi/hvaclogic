@@ -34,9 +34,9 @@ export default function EquivalentLengthCalculatorPage() {
   return (
     <CalculatorContainer
       calculator={calculator}
-      directAnswer="ACCA Manual D Total Effective Length (TEL) quantifies the aerodynamic friction of all duct fittings and straight ductwork along the single most restrictive critical path from the return grille to the furthest supply register: TEL = (Straight Supply Length + Sum of Supply Fitting Equivalent Lengths) + (Straight Return Length + Sum of Return Fitting Equivalent Lengths). The resulting TEL dictates the system design friction rate: FR = (Available Static Pressure × 100) / TEL. Standard residential systems have a TEL of 180 to 350 equivalent feet, with fittings accounting for 60% to 75% of total airflow drag."
+      directAnswer="ACCA Manual D Total Effective Length (TEL) quantifies the aerodynamic friction of all duct fittings and straight ductwork along the single most restrictive critical path from the return grille to the furthest supply register: TEL = (Straight Supply Length + Sum of Supply Fitting Equivalent Lengths) + (Straight Return Length + Sum of Return Fitting Equivalent Lengths). The resulting TEL dictates the system design friction rate: FR = (Available Static Pressure × 100) / TEL. Standard residential systems typically range from 150 to 400 equivalent feet of Total Effective Length, with fitting aerodynamic turbulence often contributing a substantial fraction of total circuit friction depending on layout geometry."
       formulaSnippet="TEL = (L_straight_supply + sum(EL_supply_fittings)) + (L_straight_return + sum(EL_return_fittings)) | ASP = TESP - CVP | FR = (ASP * 100) / TEL"
-      authorityCitation="ACCA Manual D (3rd Edition, Appendix 3 Fitting Equivalent Lengths) & ASHRAE Fundamentals Chapter 21"
+      authorityCitation="ANSI/ACCA Manual D (Fitting Equivalent Length Methodologies) & ASHRAE Fundamentals Chapter 21"
       toolComponent={<EquivalentLengthTool />}
       methodologySection={
         <>
@@ -54,8 +54,8 @@ export default function EquivalentLengthCalculatorPage() {
                 { symbol: "CVP", label: "Component Pressure Losses", description: "Total static drop across evaporator coil, air filter, supply registers, and return grilles", unit: "in. wg" },
                 { symbol: "FR", label: "Design Friction Rate", description: "Friction rate setting used on ductulator wheels and sizing charts", unit: "in. wg / 100 ft" },
               ]}
-              notes="Dynamic shock loss at duct direction changes causes flow separation, turbulence vortices, and rapid static pressure decay. An unvaned 90° mitered elbow introduces 50 equivalent feet of resistance, whereas adding aerodynamic turning vanes drops this resistance to just 10 equivalent feet."
-              sourceStandard="ANSI/ACCA 1 Manual D (3rd Edition, Appendix 3) & ASHRAE Handbook of Fundamentals Chapter 21"
+              notes="Dynamic shock loss at duct direction changes causes flow separation, turbulence vortices, and rapid static pressure decay. An unvaned 90° mitered elbow introduces approximately 50 equivalent feet of resistance, whereas adding aerodynamic turning vanes drops this resistance to approximately 10 equivalent feet."
+              sourceStandard="ANSI/ACCA 1 Manual D (Fitting Equivalent Lengths) & ASHRAE Handbook of Fundamentals Chapter 21"
             />
           </div>
 
@@ -67,9 +67,9 @@ export default function EquivalentLengthCalculatorPage() {
               In forced-air HVAC design, air flowing through straight galvanized sheet metal encounters purely viscous surface friction governed by the Darcy-Weisbach equation and Colebrook-White friction factor. However, whenever air reaches an elbow, boot, branch takeoff, or transition, the flow direction changes abruptly. Centrifugal forces shove high-velocity air toward the outer throat, while boundary layer separation at the inner heel generates a vena contracta and severe recirculating eddy zones.
             </p>
             <p>
-              This dynamic turbulence consumes air velocity pressure (P_v = (V / 4005)²) and converts it into irreversible heat dissipation. In <strong>ACCA Manual D Appendix 3</strong>, these complex fluid dynamic loss coefficients (C_o) are converted into <strong>Equivalent Length (EL)</strong> — the linear footage of standard straight ductwork that produces the identical static pressure drop at design velocity:
+              This dynamic turbulence consumes air velocity pressure (P_v = (V / 4005)²) and converts it into irreversible heat dissipation. In ACCA Manual D fitting methodologies (historically cataloged under Appendix 3 in foundational editions), these complex fluid dynamic loss coefficients (C_o) are converted into <strong>Equivalent Length (EL)</strong> — the linear footage of standard straight ductwork that produces the identical static pressure drop at design velocity:
             </p>
-            <p style={{ background: "var(--surface-raised)", borderLeft: "3px solid var(--accent)", padding: "0.6rem 0.9rem", margin: "0.75rem 0", borderRadius: "0 4px 4px 0" }}>
+            <p style={{ background: "var(--surface-raised)", borderLeft: "3px solid var(--accent-cooling)", padding: "0.6rem 0.9rem", margin: "0.75rem 0", borderRadius: "0 4px 4px 0" }}>
               <strong>ACCA Conversion:</strong> <code>{"EL = (C_o × 100) / (12 × f) ≈ C_o × D_h / (4 × f)"}</code>
             </p>
             <p>
@@ -92,7 +92,7 @@ export default function EquivalentLengthCalculatorPage() {
               Downstream Sizing &amp; Distribution Workflows
             </h3>
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
-              • ACCA Manual D Fitting Accumulator: <Link href="/calculators/equivalent-length-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Equivalent Length Calculator</Link> — itemize individual elbows, branch takeoffs, and register boots per Appendix 3 to calculate critical run TEL.<br />
+              • ACCA Manual D Fitting Accumulator: <Link href="/calculators/equivalent-length-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Equivalent Length Calculator</Link> — itemize individual elbows, branch takeoffs, and register boots per ACCA Manual D fitting groups to calculate critical run TEL.<br />
               • Size Rigid Supply &amp; Return Trunks: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — apply your derived design friction rate (FR) to size round and rectangular sheet metal ducts.<br />
               • Evaluate System Static Pressure Losses: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss &amp; TEL Tool</Link> — analyze full system pressure drop gradients and component budgets.<br />
               • Size Branch Flexible Ductwork: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — select flexible duct diameters accounting for installation compression and sag derating.<br />
@@ -107,156 +107,42 @@ export default function EquivalentLengthCalculatorPage() {
           <table>
             <thead>
               <tr>
-                <th scope="col">ACCA Fitting Description</th>
-                <th scope="col">Manual D Group</th>
-                <th scope="col">Equivalent Length (EL)</th>
-                <th scope="col">Aerodynamic Performance Rating</th>
+                <th scope="col">Fitting Geometry Archetype</th>
+                <th scope="col">Design Group</th>
+                <th scope="col">Representative Equivalent Length Range</th>
+                <th scope="col">Aerodynamic Performance &amp; Guidance</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Starting Collar - Bellmouth / Conical Entry</strong></td>
+                <td><strong>Supply Plenum Takeoffs</strong></td>
                 <td>Group 1</td>
-                <td>10 Feet</td>
-                <td>Optimal (Smooth Vena Contracta)</td>
+                <td>10 to 50 Feet</td>
+                <td>Conical bellmouth collars (10–15 ft) minimize entrance shock; abrupt square collars (35 ft) and bullhead tees (50 ft) severely increase entrance loss.</td>
               </tr>
               <tr>
-                <td><strong>Starting Collar - 45° Side Takeoff with Shoe</strong></td>
-                <td>Group 1</td>
-                <td>15 Feet</td>
-                <td>Good (High Efficiency)</td>
-              </tr>
-              <tr>
-                <td><strong>Starting Collar - Straight / Flush Collar</strong></td>
-                <td>Group 1</td>
-                <td>35 Feet</td>
-                <td>Standard Flush Entry</td>
-              </tr>
-              <tr>
-                <td><strong>Plenum Bullhead Tee (Opposing Split)</strong></td>
-                <td>Group 1</td>
-                <td>50 Feet</td>
-                <td>Severe Shock Loss (Avoid)</td>
-              </tr>
-              <tr>
-                <td><strong>90° Trunk Elbow - Long Radius (R/W = 1.5)</strong></td>
+                <td><strong>Main Trunk Direction Changes</strong></td>
                 <td>Group 2</td>
-                <td>10 Feet</td>
-                <td>Optimal (Low Turbulence)</td>
+                <td>10 to 50 Feet</td>
+                <td>Long-radius curved elbows (10–15 ft) and vaned mitered turns (10 ft) maintain streamline flow; unvaned 90° mitered turns (50 ft) create extreme heel separation.</td>
               </tr>
               <tr>
-                <td><strong>90° Trunk Elbow - Mitered with Turning Vanes</strong></td>
-                <td>Group 2</td>
-                <td>10 Feet</td>
-                <td>Optimal (Engineered Vanes)</td>
-              </tr>
-              <tr>
-                <td><strong>90° Trunk Elbow - Standard Radius (R/W = 1.0)</strong></td>
-                <td>Group 2</td>
-                <td>15 Feet</td>
-                <td>Good</td>
-              </tr>
-              <tr>
-                <td><strong>90° Trunk Elbow - Short Radius (R/W = 0.5)</strong></td>
-                <td>Group 2</td>
-                <td>30 Feet</td>
-                <td>Moderate Resistance</td>
-              </tr>
-              <tr>
-                <td><strong>90° Trunk Elbow - Mitered (No Turning Vanes)</strong></td>
-                <td>Group 2</td>
-                <td>50 Feet</td>
-                <td>Severe Penalty (High Shock Loss)</td>
-              </tr>
-              <tr>
-                <td><strong>45° Rectangular Trunk Offset Elbow</strong></td>
-                <td>Group 2</td>
-                <td>8 Feet</td>
-                <td>Optimal</td>
-              </tr>
-              <tr>
-                <td><strong>Branch Takeoff - Conical Spin-In Bellmouth</strong></td>
+                <td><strong>Branch Takeoffs &amp; Runout Bends</strong></td>
                 <td>Group 3</td>
-                <td>15 Feet</td>
-                <td>Optimal Branch Entry</td>
+                <td>12 to 35 Feet</td>
+                <td>Conical spin-in takeoffs (15 ft) and smooth stamped elbows (12 ft) provide superior airflow; straight taps (35 ft) generate high vena contracta detachment.</td>
               </tr>
               <tr>
-                <td><strong>Branch Takeoff - Straight 90° Collar / Dovetail</strong></td>
-                <td>Group 3</td>
-                <td>35 Feet</td>
-                <td>High Flow Detachment</td>
-              </tr>
-              <tr>
-                <td><strong>90° Round Rigid Elbow - Smooth / Die-Stamped</strong></td>
-                <td>Group 3</td>
-                <td>12 Feet</td>
-                <td>Optimal Smooth Curve</td>
-              </tr>
-              <tr>
-                <td><strong>90° Round Rigid Elbow - 4-Piece Adjustable</strong></td>
-                <td>Group 3</td>
-                <td>20 Feet</td>
-                <td>Standard Segmented</td>
-              </tr>
-              <tr>
-                <td><strong>90° Round Rigid Elbow - 3-Piece Segmented</strong></td>
-                <td>Group 3</td>
-                <td>30 Feet</td>
-                <td>Moderate Segment Resistance</td>
-              </tr>
-              <tr>
-                <td><strong>Flexible Duct 90° Bend (Well-Supported, No Sag)</strong></td>
-                <td>Group 3</td>
-                <td>25 Feet</td>
-                <td>Standard Supported Core</td>
-              </tr>
-              <tr>
-                <td><strong>90° Register Boot (Round to Floor/Wall Diffuser)</strong></td>
+                <td><strong>Terminal Supply Register Boots</strong></td>
                 <td>Group 4</td>
-                <td>30 Feet</td>
-                <td>Standard Right-Angle Termination</td>
+                <td>10 to 35 Feet</td>
+                <td>Straight axial transitions (10 ft) offer least resistance; standard 90° register boots (30 ft) add moderate directional turn loss before diffuser.</td>
               </tr>
               <tr>
-                <td><strong>End Boot (Axial Branch Termination)</strong></td>
-                <td>Group 4</td>
-                <td>25 Feet</td>
-                <td>Standard End Cap Termination</td>
-              </tr>
-              <tr>
-                <td><strong>Straight Register Boot (Axial Transition)</strong></td>
-                <td>Group 4</td>
-                <td>10 Feet</td>
-                <td>Optimal Direct Grille Collar</td>
-              </tr>
-              <tr>
-                <td><strong>Return Air Drop - 90° Elbow into Blower (No Vanes)</strong></td>
+                <td><strong>Return Air Inlets &amp; Drops</strong></td>
                 <td>Group 5</td>
-                <td>50 Feet</td>
-                <td>Severe Suction Choke</td>
-              </tr>
-              <tr>
-                <td><strong>Return Air Drop - 90° Elbow with Turning Vanes</strong></td>
-                <td>Group 5</td>
-                <td>15 Feet</td>
-                <td>Optimal Blower Inlet Entry</td>
-              </tr>
-              <tr>
-                <td><strong>Return Air Drop - 45° Slanted Drop</strong></td>
-                <td>Group 5</td>
-                <td>15 Feet</td>
-                <td>Optimal Slanted Intake</td>
-              </tr>
-              <tr>
-                <td><strong>Return Grille Ceiling Collar / Box</strong></td>
-                <td>Group 5</td>
-                <td>20 Feet</td>
-                <td>Standard Ceiling Drop</td>
-              </tr>
-              <tr>
-                <td><strong>Stud / Joist Cavity Panning Transition</strong></td>
-                <td>Group 5</td>
-                <td>35 Feet</td>
-                <td>High Framing Roughness</td>
+                <td>15 to 50 Feet</td>
+                <td>Slanted 45° intake transitions or vaned 90° drops (15 ft) promote smooth blower entry; unvaned 90° return drops (50 ft) create high suction choke.</td>
               </tr>
             </tbody>
           </table>
@@ -272,8 +158,23 @@ export default function EquivalentLengthCalculatorPage() {
             <ol style={{ paddingLeft: "1.2rem", margin: 0 }}>
               <li>
                 <strong>Calculate Available Static Pressure (ASP):</strong>
-                <pre style={{ background: "rgba(0,0,0,0.3)", padding: "0.5rem", borderRadius: "4px", margin: "0.4rem 0", color: "#38bdf8" }}>
-                  ASP = TESP - CVP = 0.50&quot; - (0.20&quot; + 0.12&quot; + 0.03&quot; + 0.03&quot;) = 0.50&quot; - 0.38&quot; = 0.120&quot; w.g.
+                <pre
+                  style={{
+                    background: "#090d16",
+                    border: "1px solid #1e293b",
+                    borderLeft: "3px solid #38bdf8",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "0.5rem",
+                    margin: "0.5rem 0",
+                    color: "#f8fafc",
+                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                    fontSize: "0.92rem",
+                    fontWeight: 600,
+                    lineHeight: 1.5,
+                    overflowX: "auto",
+                  }}
+                >
+                  ASP = TESP - CVP = 0.50&quot; - (0.20&quot; + 0.12&quot; + 0.03&quot; + 0.03&quot;) = 0.50&quot; - 0.38&quot; = <span style={{ color: "#38bdf8", fontWeight: 700 }}>0.120&quot; w.g.</span>
                 </pre>
               </li>
               <li>
@@ -301,15 +202,45 @@ export default function EquivalentLengthCalculatorPage() {
               </li>
               <li>
                 <strong>Calculate Total Effective Length (TEL):</strong>
-                <pre style={{ background: "rgba(0,0,0,0.3)", padding: "0.5rem", borderRadius: "4px", margin: "0.4rem 0", color: "#34d399" }}>
-                  TEL = (65 + 100) supply + (45 + 35) return = 165 ft + 80 ft = 245 equivalent feet
+                <pre
+                  style={{
+                    background: "#090d16",
+                    border: "1px solid #1e293b",
+                    borderLeft: "3px solid #10b981",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "0.5rem",
+                    margin: "0.5rem 0",
+                    color: "#f8fafc",
+                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                    fontSize: "0.92rem",
+                    fontWeight: 600,
+                    lineHeight: 1.5,
+                    overflowX: "auto",
+                  }}
+                >
+                  TEL = (65 + 100) supply + (45 + 35) return = 165 ft + 80 ft = <span style={{ color: "#34d399", fontWeight: 700 }}>245 equivalent feet</span>
                 </pre>
                 <em>Notice: Fittings contribute 135 ft out of 245 ft (55.1% of all airflow resistance!).</em>
               </li>
               <li>
                 <strong>Solve ACCA Manual D Design Friction Rate (FR):</strong>
-                <pre style={{ background: "rgba(0,0,0,0.3)", padding: "0.5rem", borderRadius: "4px", margin: "0.4rem 0", color: "#fcd34d" }}>
-                  FR = (ASP × 100) / TEL = (0.120&quot; × 100) / 245 ft = 0.0489 ≈ 0.049&quot; w.g. / 100 ft
+                <pre
+                  style={{
+                    background: "#090d16",
+                    border: "1px solid #1e293b",
+                    borderLeft: "3px solid #f59e0b",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "0.5rem",
+                    margin: "0.5rem 0",
+                    color: "#f8fafc",
+                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                    fontSize: "0.92rem",
+                    fontWeight: 600,
+                    lineHeight: 1.5,
+                    overflowX: "auto",
+                  }}
+                >
+                  FR = (ASP × 100) / TEL = (0.120&quot; × 100) / 245 ft = 0.0489 ≈ <span style={{ color: "#fbbf24", fontWeight: 700 }}>0.049&quot; w.g. / 100 ft</span>
                 </pre>
               </li>
               <li>

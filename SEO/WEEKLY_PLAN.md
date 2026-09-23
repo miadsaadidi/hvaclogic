@@ -137,7 +137,7 @@ When prioritizing candidate opportunities, follow this evidence hierarchy (evide
 ## 3. Current Program & Diagnostic State
 
 ```text
-HVACLOGIC: ACCA MANUAL D EQUIVALENT LENGTH & TEL FITTING ACCUMULATOR (SG-01) + AIRFLOW & HYDRONIC DISTRIBUTION CLUSTER (CLU-02) DEPLOYED & IN GSC MEASUREMENT
+HVACLOGIC: ACCA MANUAL D EQUIVALENT LENGTH (SG-01) + ASHRAE/ASME HYDRONIC EXPANSION TANK (SG-02) DEPLOYED & IN GSC MEASUREMENT
 ACTIVE OBJECTIVE: NONE — awaiting selection of next prioritized objective from Opportunity Map.
 ```
 
@@ -293,6 +293,17 @@ Reply "Approved" to execute.
   - **Measurement Window**: 2026-09-22 to 2026-10-20 (28-day GSC tracking on equivalent length, duct TEL, and Manual D query families).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-22]`
 
+- **Step 10 — Single Asset (`SG-02`)**: *ASHRAE Closed-Loop Hydronic Expansion Tank Sizing & ASME Section VIII Pressure Rating*
+  - **Class**: `SINGLE ASSET` (Tier 1 Priority / Tool & Technical-Depth Gap)
+  - **Scope / Affected URLs**:
+    - [`/calculators/expansion-tank-calculator`](https://hvaclogic.org/calculators/expansion-tank-calculator)
+    - [`/calculators/boiler-size-calculator`](https://hvaclogic.org/calculators/boiler-size-calculator)
+    - [`/calculators/equivalent-length-calculator`](https://hvaclogic.org/calculators/equivalent-length-calculator)
+  - **Outcome**: Deployed closed-loop hydronic expansion tank calculation engine (`src/lib/math/expansion-tank.ts`) conforming to ASHRAE Handbook — HVAC Systems and Equipment Chapter 15 (Eq. 13 & 14) for fluid and piping thermal volumetric expansion ($V_t = \frac{V_{acc}}{1 - P_1/P_2}$) and Boyle's Law acceptance ratio, coordinated with ASME Section VIII commercial vessel rating thresholds and relief valve safety margins. Includes high-precision polynomial density curves for water and 20%–50% propylene/ethylene glycol mixtures, interactive SVG visualizer (`ExpansionTankVisualizer.tsx`), responsive preset archetypes, ASHRAE step derivation drawer, and bidirectional hydronic workflow handoffs.
+  - **Validation**: 155/155 unit tests passing across 36 test suites, 0 TypeScript errors, 93/93 static routes pre-rendered.
+  - **Measurement Window**: 2026-09-22 to 2026-10-20 (28-day GSC tracking on expansion tank sizing, boiler expansion tank, and hydronic glycol derating query families).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-22]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -440,7 +451,7 @@ Reply "Approved" to execute.
 | Candidate ID | Gap Type | Query / Topic | Evidence Type | Missing SERP / Site Component | Proposed HVACLogic Solution | Objective Class | Confidence | Status | Target Scope |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **SG-01** | `Workflow Gap` / `Tool Gap` | ACCA Manual D Total Effective Length (TEL) | `SERP Evidence` + `Site Architecture Evidence` | Interactive fitting accumulator for composite trunk & branch TEL | Dedicated Equivalent Length Fitting Accumulator Tool | `SINGLE ASSET` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-22]` | `/calculators/equivalent-length-calculator` |
-| **SG-02** | `Technical-Depth Gap` / `Data Gap` | ASME Hydronic Expansion Tank Sizing & Glycol Derating | `SERP Evidence` + `Research / Authority Evidence` | ASME Section VIII formula modeling & temperature-dependent glycol curves | Hydronic Expansion Tank Calculator & ASME Technical Guide | `SINGLE ASSET` / `CORE PUBLICATION` | High | `PROPOSED / BOUNDED TECHNICAL VALIDATION` | `/calculators/expansion-tank-calculator` |
+| **SG-02** | `Technical-Depth Gap` / `Data Gap` | ASHRAE Hydronic Expansion Tank Sizing & ASME Vessel Rating | `SERP Evidence` + `Research / Authority Evidence` | ASHRAE Ch. 15 formula modeling & temperature-dependent glycol curves | Hydronic Expansion Tank Calculator & ASHRAE Technical Guide | `SINGLE ASSET` / `CORE PUBLICATION` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-22]` | `/calculators/expansion-tank-calculator` |
 | **SG-03** | `Freshness Gap` / `Research Gap` | ASHRAE 241-2023 Equivalent Clean Airflow ($ECA_i$) | `Research / Authority Evidence` + `Engineering Inference` | Multi-source pathogen mitigation $ECA$ allocation engine & benchmark matrix | Open Research Monograph & Benchmark Dataset | `CORE PUBLICATION` | High | `RESEARCH / PROVENANCE GATE` | `/research/ashrae-241-equivalent-clean-airflow` |
 | **SG-04** | `Workflow Gap` / `Implementation Gap` | Effective Assembly $U$-Factor to Heat Loss Handoff | `Site Architecture Evidence` | Direct assembly $U$-factor input & workflow link from Core B-1 tool | On-page enhancement to Heat Loss Calculator with effective $U$-factor toggle | `SINGLE ASSET` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-20]` | `/calculators/heat-loss-calculator` |
 

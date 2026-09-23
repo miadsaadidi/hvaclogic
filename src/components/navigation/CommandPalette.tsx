@@ -39,6 +39,7 @@ const EXTRA_KEYWORDS: Record<string, string[]> = {
   "furnace-size-calculator": ["furnace btu", "afue efficiency", "condensing furnace", "gas furnace sizing", "input btu", "output btu"],
   "heat-pump-size-calculator": ["heat pump", "balance point", "hspf2", "cop", "supplemental heat", "dual fuel", "strip heat", "cold climate"],
   "boiler-size-calculator": ["hydronic boiler", "baseboard sizing", "radiator edr", "cast iron radiator", "dhw priority", "boiler btu"],
+  "expansion-tank-calculator": ["expansion tank", "asme section viii", "hydronic expansion", "bladder tank", "glycol derating", "acceptance volume", "boiler expansion"],
   "garage-heater-sizing": ["garage heater", "shop heater", "modine hot dawg", "gas unit heater", "electric garage heater", "slab heat loss"],
   "r-value-calculator": ["insulation", "u-factor", "wall assembly", "iecc", "r value", "thermal resistance", "energy code"],
   "heat-loss-calculator": ["building heat loss", "envelope loss", "infiltration cfm", "ach", "whole home heat loss"],

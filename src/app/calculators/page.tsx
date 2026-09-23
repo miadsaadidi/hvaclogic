@@ -8,14 +8,14 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "HVAC Engineering Calculators Directory",
   description:
-    "Free directory of 23 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
+    "Free directory of 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/calculators`,
   },
   openGraph: {
-    title: "HVAC Engineering Calculators: All 23 Diagnostic Tools",
+    title: "HVAC Engineering Calculators: All 24 Diagnostic Tools",
     description:
-      "Free directory of 23 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
+      "Free directory of 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
     url: `${siteConfig.canonicalDomain}/calculators`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC Engineering Calculators: All 23 Diagnostic Tools",
+    title: "HVAC Engineering Calculators: All 24 Diagnostic Tools",
     description:
-      "Free directory of 23 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
+      "Free directory of 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
@@ -47,9 +47,9 @@ export default function CalculatorsDirectoryPage() {
       {
         "@type": "CollectionPage",
         "@id": `${siteConfig.canonicalDomain}/calculators/#collection`,
-        name: "HVAC Engineering Calculators Directory — All 23 Calculation Tools",
+        name: "HVAC Engineering Calculators Directory — All 24 Calculation Tools",
         description:
-          "Comprehensive directory of all 23 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, combustion air, psychrometrics, and refrigerant diagnostics.",
+          "Comprehensive directory of all 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, combustion air, psychrometrics, and refrigerant diagnostics.",
         url: `${siteConfig.canonicalDomain}/calculators`,
         isPartOf: {
           "@type": "WebSite",
@@ -121,7 +121,7 @@ export default function CalculatorsDirectoryPage() {
 
           <div className="hero-eyebrow-badge">
             <span className="pulse-radar-dot" aria-hidden="true" />
-            <span>Master Engineering Directory • 21 Calculators</span>
+            <span>Master Engineering Directory • {calculators.length} Calculators</span>
           </div>
 
           <h1 className="hero-main-heading">

@@ -32,6 +32,7 @@ const CALCULATOR_METRICS: Record<string, { metric: string; icon: string }> = {
   "furnace-size-calculator": { metric: "80% vs 96% AFUE • Blower CFM", icon: "🔥" },
   "heat-pump-size-calculator": { metric: "Balance Point • ccASHP • Backup kW", icon: "⚡" },
   "boiler-size-calculator": { metric: "Baseboard Ft • Radiator EDR • DHW", icon: "♨️" },
+  "expansion-tank-calculator": { metric: "ASME Section VIII • Bladder • Glycol", icon: "🛢️" },
   "garage-heater-sizing": { metric: "Slab Losses • Gas BTU • 240V Amps", icon: "🚗" },
   "r-value-calculator": { metric: "Series/Parallel • U-Factor • IECC", icon: "🏢" },
   "heat-loss-calculator": { metric: "Envelope Transmission • ACH Drafts", icon: "🏡" },
