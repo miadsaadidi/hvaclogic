@@ -87,6 +87,7 @@ export default function DuctFrictionLossPage() {
               Downstream Sizing &amp; Distribution Workflows
             </h3>
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+              • ACCA Manual D Fitting Accumulator: <Link href="/calculators/equivalent-length-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Equivalent Length Calculator</Link> — itemize individual elbows, branch takeoffs, and register boots per Appendix 3 to calculate critical run TEL.<br />
               • Size Rigid Trunks with Calculated FR: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — apply your derived friction rate to size equal-friction main supply and return trunks.<br />
               • Check Flexible Branch Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — select flexible branch diameters based on your design friction rate and installation sag.<br />
               • Verify System Airflow Volume: <Link href="/calculators/cfm-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>HVAC CFM Sizer</Link> — determine whole-building sensible CFM before accumulating duct pressure drops.<br />

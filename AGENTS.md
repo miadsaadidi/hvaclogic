@@ -175,6 +175,22 @@
     - **NEVER** provide a text "Image Prompt" code block in lieu of the actual image asset. Always generate and save the graphic to `public/images/social/`.
     - **NEVER** exceed 280 characters in the Post code block.
     - **NEVER** use em-dashes (`—`). Use standard hyphens (`-`), commas, or periods.
+- **Rule 16: Standardized Protocol for DEV.to & Technical Distribution Articles**:
+  Whenever drafting, preparing, or presenting DEV.to (or Hashnode) technical distribution articles per [`docs/DEV-TO-EDITORIAL-GUIDELINES.md`](./docs/DEV-TO-EDITORIAL-GUIDELINES.md):
+  - **Strict 6-Step Sequential Presentation**: Deliver the publication package strictly in this exact 6-step sequential order with dedicated headers:
+    1. `#### 1. Title`: Standalone copyable code block containing the descriptive technical title.
+    2. `#### 2. Tags`: Standalone copyable code block containing up to 4 lowercase tags.
+    3. `#### 3. Image Prompt`: Standalone copyable code block detailing the technical graphic generation prompt (16:9 dark-mode engineering diagram).
+    4. `#### 4. Image Alt`: Standalone copyable code block containing concise accessibility description.
+    5. `#### 5. Body`: MUST be wrapped in exactly **ONE single 4-backtick code block** (````markdown ... ````) containing:
+       - YAML frontmatter with `title`, `published: true`, `description`, `tags`, `canonical_url`, and `cover_image`.
+       - Developer-first technical article with typed pure TypeScript engines and Vitest invariant tests.
+       - Natural contextual inline links pointing to target HVACLogic calculators/guides.
+    6. `#### 6. Canonical`: Standalone copyable code block containing the explicit canonical URL.
+  - **Strict Invariants**:
+    - **Single-Zone Body**: NEVER fragment the article body across multiple blocks. ALWAYS use four backticks (` ````markdown `) so inner 3-backtick code blocks do not prematurely close the container.
+    - **Native Unicode Only (NO RAW LATEX)**: DEV.to does not render MathJax/KaTeX. NEVER output `$$...$$`, `$..$`, `\frac`, `\Delta`, `\text{}`, or `\cdot`. Format formulas using clean native Unicode (`Δ`, `×`, `÷`, `≈`, `≤`, `≥`, `·`, `²`, `³`, `°F`, `W/(m·K)`, `BTU/hr`) or monospaced text blocks.
+    - **Zero Em-Dashes**: NEVER use em-dashes (`—`). Use standard hyphens (`-`), commas, or periods.
 
 ---
 

@@ -26,7 +26,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
       "SMACNA acoustic noise limits and residential velocity alerts",
       "Real-time 2D Canvas cross-section with velocity gradient visualization",
     ],
-    relatedCalculatorIds: ["duct-friction-loss-calculator", "flex-duct-cfm-chart", "cfm-calculator", "boiler-size-calculator"],
+    relatedCalculatorIds: ["duct-friction-loss-calculator", "equivalent-length-calculator", "flex-duct-cfm-chart", "cfm-calculator", "boiler-size-calculator"],
     researchSlug: "non-linear-duct-friction-loss-fitting-penalties",
     oerModuleUrl: "/oer-modules/duct-aerodynamics-lab.html",
     standards: ["ASHRAE", "SMACNA", "ACCA"],
@@ -212,7 +212,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
       "Interactive SVG duct system schematic with static pressure drop gradient",
       "Optimal vs High-Resistance fitting warnings (e.g. mitered no-vane elbow penalties)",
     ],
-    relatedCalculatorIds: ["ductulator", "filter-sizing-calculator", "flex-duct-cfm-chart", "boiler-size-calculator"],
+    relatedCalculatorIds: ["ductulator", "equivalent-length-calculator", "filter-sizing-calculator", "flex-duct-cfm-chart", "boiler-size-calculator"],
     researchSlug: "non-linear-duct-friction-loss-fitting-penalties",
     oerModuleUrl: "/oer-modules/duct-aerodynamics-lab.html",
     standards: ["ACCA", "ASHRAE", "SMACNA"],
@@ -237,6 +237,59 @@ export const calculatorRegistry: CalculatorMeta[] = [
       }
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
+  },
+  {
+    id: "equivalent-length-calculator",
+    name: "ACCA Manual D Equivalent Length & TEL Fitting Accumulator",
+    pillar: "airflow-ducts",
+    route: "/calculators/equivalent-length-calculator",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
+    primaryKeyword: "equivalent length calculator",
+    secondaryKeywords: ["duct equivalent length calculator", "total effective length calculator", "tel calculator hvac", "acca manual d equivalent length", "duct fitting equivalent length", "total equivalent length calculator"],
+    primaryIntent: "Transactional / Professional Engineering",
+    seoTitle: "Equivalent Length Calculator (ACCA Manual D TEL Sizer)",
+    metaDescription: "Calculate ACCA Manual D Total Effective Length (TEL) and fitting equivalent length. Accumulate elbows, takeoffs, and boots to compute design friction rate.",
+    categoryName: "Airflow & Ducts",
+    categoryRoute: "/airflow-ducts",
+    features: [
+      "ACCA Manual D (3rd Edition, Appendix 3) fitting accumulator (Groups 1 through 5)",
+      "Critical path aerodynamic decomposition: straight footage vs fitting dynamic resistance",
+      "Available Static Pressure (ASP = TESP - CVP) solver for coils, filters & grilles",
+      "ACCA Manual D Design Friction Rate (FR = (ASP * 100) / TEL) solver",
+      "Aerodynamic fitting optimization engine identifying high-loss unvaned elbows and bullhead tees",
+      "Direct 1-click workflow handoff to Digital Ductulator and Duct Friction Loss Sizer",
+    ],
+    relatedCalculatorIds: ["duct-friction-loss-calculator", "ductulator", "flex-duct-cfm-chart", "cfm-calculator", "boiler-size-calculator"],
+    researchSlug: "non-linear-duct-friction-loss-fitting-penalties",
+    oerModuleUrl: "/oer-modules/duct-aerodynamics-lab.html",
+    standards: ["ACCA", "ASHRAE", "SMACNA"],
+    formulaVersion: "1.0.0",
+    dataVersion: "1.0.0",
+    lastEngineeringReview: "2026-09-22",
+    requiresReferenceDataset: false,
+    offlineEligible: true,
+    testStatus: "validated",
+    faqs: [
+      {
+        question: "How do you calculate Total Effective Length (TEL) in ACCA Manual D?",
+        answer: "Total Effective Length (TEL) equals the measured linear straight footage plus the sum of all fitting equivalent lengths along the most aerodynamically restrictive critical path: TEL = L_straight_supply + sum(EL_supply_fittings) + L_straight_return + sum(EL_return_fittings)."
+      },
+      {
+        question: "Why do fittings account for 60% to 75% of total duct resistance?",
+        answer: "Every time moving air changes direction or cross-section, boundary layers detach, generating turbulent recirculation eddies and dynamic shock losses. A single unvaned 90° mitered elbow has an equivalent length of 50 ft, representing as much airflow resistance as 50 feet of straight ductwork."
+      },
+      {
+        question: "What is the difference between a mitered elbow with vanes vs without vanes?",
+        answer: "Under ACCA Manual D Appendix 3, a standard 90° rectangular mitered elbow without vanes has an equivalent length of 50 ft. Adding factory or field turning vanes guides airflow smoothly through the corner, dropping equivalent length to 10 ft — an 80% reduction in fitting dynamic loss."
+      },
+      {
+        question: "How does Total Effective Length determine duct sizing friction rate?",
+        answer: "Total Effective Length is the denominator in the ACCA Manual D design friction rate formula: FR = (ASP × 100) / TEL. A higher TEL reduces the allowable friction rate per 100 ft, requiring wider duct diameters to deliver the required design CFM within the blower's available static pressure."
+      }
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "handoff_clicked", "share_clicked"]
   },
   {
     id: "filter-sizing-calculator",

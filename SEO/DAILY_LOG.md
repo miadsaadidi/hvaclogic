@@ -27,6 +27,36 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-22] — SINGLE ASSET: ACCA Manual D Equivalent Length & TEL Fitting Accumulator (SG-01)
+- **Objective Class**: `SINGLE ASSET` (Tier 1 Priority / Tool & Workflow Gap)
+- **Autonomous Priority Selected**: Tier 1 Additive Tool Gap & Workflow Integration per ACCA Manual D (3rd Edition, Appendix 3) and ASHRAE Fundamentals Chapter 21
+- **Evidence & Rationale**: Solved search and workflow friction for engineers and HVAC contractors searching for "equivalent length calculator", "duct equivalent length calculator", and "acca manual d equivalent length". Existing SERP results are static scanned PDF tables or contractor forum posts with zero dynamic fitting accumulators. Built a complete, interactive client-side equivalent length fitting accumulator covering ACCA Manual D Appendix 3 Groups 1 through 5, real-time straight-versus-fitting resistance ratio decomposition, Available Static Pressure ($ASP$) budgeting, and design friction rate ($FR = \frac{ASP \times 100}{TEL}$) solving.
+- **Target Assets**:
+  - Math Calculation Engine: [`src/lib/math/equivalent-length.ts`](../src/lib/math/equivalent-length.ts)
+  - Unit Test Suite: [`src/lib/math/equivalent-length.test.ts`](../src/lib/math/equivalent-length.test.ts)
+  - Interactive Tool Component: [`src/components/calculator/tools/EquivalentLengthTool.tsx`](../src/components/calculator/tools/EquivalentLengthTool.tsx)
+  - Interactive SVG Visualizer: [`src/components/calculator/visualizers/EquivalentLengthVisualizer.tsx`](../src/components/calculator/visualizers/EquivalentLengthVisualizer.tsx)
+  - Production Page: [`src/app/calculators/equivalent-length-calculator/page.tsx`](../src/app/calculators/equivalent-length-calculator/page.tsx)
+  - Calculator Registry: [`src/lib/data/calculators-registry.ts`](../src/lib/data/calculators-registry.ts)
+  - Calculator Registry Tests: [`src/lib/data/calculators-registry.test.ts`](../src/lib/data/calculators-registry.test.ts)
+  - Standards Matrix: [`src/lib/data/standards-matrix.ts`](../src/lib/data/standards-matrix.ts)
+  - Embed Route: [`src/app/embed/[slug]/page.tsx`](../src/app/embed/[slug]/page.tsx)
+  - Duct Friction Sizer Handoffs: [`src/app/calculators/duct-friction-loss-calculator/page.tsx`](../src/app/calculators/duct-friction-loss-calculator/page.tsx), [`src/components/calculator/tools/DuctFrictionTool.tsx`](../src/components/calculator/tools/DuctFrictionTool.tsx)
+- **Actions Executed**:
+  1. *ACCA Manual D Fitting Catalog*: Implemented 24 standard fittings in `src/lib/math/equivalent-length.ts` categorized across Group 1 (Supply Plenum Takeoffs), Group 2 (Trunk Elbows & Transitions), Group 3 (Branch Runout Takeoffs & Elbows), Group 4 (Register Boots), and Group 5 (Return Drops & Grilles), plus custom user-defined fitting support.
+  2. *Aerodynamic Optimization Engine*: Built automated heuristic optimization flagging unvaned mitered elbows, bullhead tees, and unvaned return drops, calculating exact equivalent length savings (up to 80 ft TEL reduction).
+  3. *Interactive Tool Component*: Engineered `EquivalentLengthTool.tsx` featuring preset archetypes, fitting catalog filtering, quantity steppers, critical path itemization, Available Static Pressure input budget, Step Derivation Drawer with LaTeX formulas, and 1-click workflow handoffs to the Digital Ductulator.
+  4. *SVG Aerodynamic Visualizer*: Built `EquivalentLengthVisualizer.tsx` displaying critical run schematic, straight duct vs. fitting resistance ratio bar, and a multi-zone target friction rate dial ($0.06 - 0.12$ in. wg/100 ft).
+  5. *Cluster Integration*: Established bidirectional linking across `duct-friction-loss-calculator`, `ductulator`, and `equivalent-length-calculator` in registries, tool components, and downstream workflow blocks.
+- **Validation & Quality Checks**:
+  - `npm test`: 35/35 test files passed, 150/150 unit tests passing (100% clean).
+  - `npm run typecheck`: 0 errors.
+  - `npm run build`: 92/92 static routes pre-rendered successfully without hydration or runtime errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: `[COMPLETED / 28-DAY GSC MEASUREMENT MODE — 2026-09-22 to 2026-10-20]`
+
 ### [2026-09-21] — CLUSTER UPGRADE: Airflow & Hydronic Distribution Cluster Linking (CLU-02)
 - **Objective Class**: `CLUSTER UPGRADE`
 - **Autonomous Priority Selected**: Tier 2 Existing Cluster Upgrade & Cross-Domain Circulation (ASHRAE Fundamentals Ch. 21, ACCA Manual D, and I=B=R Hydronics Institute)

@@ -551,6 +551,10 @@ export function DuctFrictionTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in Airflow Distribution</div>
+            <Link href={`/calculators/equivalent-length-calculator?straightSupply=${supplyStraight}&straightReturn=${returnStraight}&tesp=${tesp}&coilDrop=${coilDrop}&filterDrop=${filterDrop}`} style={{ marginBottom: "0.5rem" }}>
+              <span>Itemize Complete ACCA Manual D Fitting Accumulator (Groups 1–5)</span>
+              <span>→</span>
+            </Link>
             <Link href={`/calculators/ductulator?friction=${output.designFrictionRateFr.toFixed(3)}`} style={{ marginBottom: "0.5rem" }}>
               <span>Size Duct Diameters at {output.designFrictionRateFr.toFixed(3)}&quot; Friction Rate in Digital Ductulator</span>
               <span>→</span>
