@@ -72,6 +72,23 @@ export default function FilterSizingPage() {
               The proven engineering solution is upgrading to a <strong>4-inch or 5-inch deep pleated media cabinet</strong> (such as Honeywell or AprilAire). A 4-inch filter contains up to 4&times; more total fabric surface area, lowering pressure drop back down to an optimal <strong>0.11&quot; w.g.</strong> while capturing 90%+ of airborne contaminants.
             </p>
           </div>
+
+          <div style={{ marginTop: "1.5rem", background: "var(--surface-raised)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem" }}>
+            <h4 style={{ color: "var(--ink)", margin: "0 0 0.5rem", fontWeight: 600 }}>
+              ANSI/ASHRAE Standard 241-2023 Compliance &amp; Clean Airflow Delivery
+            </h4>
+            <p style={{ margin: "0 0 0.75rem", fontSize: "0.9rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
+              Under newly codified ANSI/ASHRAE Standard 241, MERV 13 is the minimum baseline for central air cleaning during Infection Risk Management Mode (IRMM). Upgrading to MERV 13 captures 85% of 1–3 µm bioaerosol droplet nuclei without incurring the massive energy penalties of 100% outdoor air ventilation.
+            </p>
+            <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", fontSize: "0.85rem" }}>
+              <Link href="/research/ashrae-241-equivalent-clean-airflow" style={{ color: "var(--accent-cooling)", textDecoration: "underline", fontWeight: 600 }}>
+                &rarr; Read ASHRAE 241 Research Monograph (HL-TR-2026-AIR241)
+              </Link>
+              <Link href="/datasets/ashrae-241-clean-airflow-benchmarks" style={{ color: "var(--accent-cooling)", textDecoration: "underline", fontWeight: 600 }}>
+                &rarr; Explore 178-Vector Clean Airflow Benchmark Dataset
+              </Link>
+            </div>
+          </div>
         </>
       }
       comparisonTableSection={
