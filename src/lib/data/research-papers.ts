@@ -937,6 +937,12 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
         label: "HVACLogic Series on Academia.edu",
         url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
         badge: "DA 93"
+      },
+      {
+        platform: "figshare",
+        label: "Figshare Benchmark Dataset",
+        url: "https://doi.org/10.6084/m9.figshare.33977425",
+        badge: "DOI 10.6084/m9.figshare.33977425"
       }
     ],
     companionCalculators: [
@@ -1095,6 +1101,19 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     downloadUrl: "/datasets/building_envelope_thermal_transmission_benchmark_dataset_2026.csv",
     publicationDate: "2026-09-13",
     recordCount: 540
+  },
+  {
+    slug: "ashrae-241-clean-airflow-benchmark-dataset",
+    title: "ANSI/ASHRAE Standard 241-2023 Equivalent Clean Airflow (ECA) Benchmark Dataset",
+    subtitle: "178 deterministic infection risk management state vectors across 11 commercial, educational, and healthcare space archetypes.",
+    description: "Multi-parameter pathogen mitigation benchmark evaluating Table 5-1 ECA baseline demand, mechanical filter bioaerosol capture across MERV 8–16/HEPA, in-room air cleaners, and upper-room UV-C irradiation under ANSI/ASHRAE Standard 241-2023.",
+    doi: "10.6084/m9.figshare.33977425",
+    repository: "Figshare",
+    repositoryUrl: "https://figshare.com/articles/dataset/ANSI_ASHRAE_Standard_241-2023_Equivalent_Clean_Airflow_ECA_Benchmark_Dataset/33977425",
+    format: "CSV",
+    downloadUrl: "/datasets/ashrae_241_equivalent_clean_airflow_benchmark_2026.csv",
+    publicationDate: "2026-09-23",
+    recordCount: 178
   }
 ];
 

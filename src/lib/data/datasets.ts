@@ -499,6 +499,7 @@ export const BENCHMARK_DATASETS: BenchmarkDataset[] = [
     seoDescription: "Open benchmark dataset containing 178 deterministic state points evaluating ANSI/ASHRAE Standard 241-2023 Table 5-1 ECA demand, MERV filtration, and in-room HEPA air cleaners.",
     description: "Deterministic building ventilation and infectious aerosol mitigation benchmark dataset containing 178 multi-technology calculation vectors. Tabulates mandatory Equivalent Clean Airflow (ECA_i) baselines per occupant and floor area across 11 occupancy archetypes under ANSI/ASHRAE Standard 241-2023. Models central recirculated air filtration (MERV 8 through MERV 16/HEPA), in-room portable air cleaners (CADR), and upper-room germicidal UV-C irradiation.",
     methodology: "Synthesized using HVACLogic's deterministic ASHRAE 241 computational engine conforming to ANSI/ASHRAE Standard 241-2023 Section 5 (Assessment and Planning) and Section 6 (Equivalent Clean Airflow Rates and Air Cleaning Systems). Bioaerosol droplet nuclei capture efficiencies are evaluated from ASHRAE 52.2 particle size efficiency curves in the 1–3 µm aerodynamic diameter band. Room air mixing effectiveness factors are fixed at ε_mix = 0.90 for localized portable HEPA filtration.",
+    primaryDoi: "10.6084/m9.figshare.33977425",
     publicationDate: "2026-09-23",
     lastUpdated: "2026-09-23",
     recordCount: 178,
@@ -531,7 +532,14 @@ export const BENCHMARK_DATASETS: BenchmarkDataset[] = [
         description: "Technical research monograph articulating governing mathematical formulations for ECA and pathogen mitigation."
       }
     ],
-    repositories: [],
+    repositories: [
+      {
+        platform: "figshare",
+        name: "Figshare Data Repository",
+        url: "https://figshare.com/articles/dataset/ANSI_ASHRAE_Standard_241-2023_Equivalent_Clean_Airflow_ECA_Benchmark_Dataset/33977425",
+        doi: "10.6084/m9.figshare.33977425"
+      }
+    ],
     variables: [
       { name: "vector_id", type: "string", description: "Unique clean airflow calculation vector (ECA-VEC-0001 to ECA-VEC-0178)" },
       { name: "space_type", type: "string", description: "Occupancy archetype identifier per ASHRAE 241 Table 5-1" },
