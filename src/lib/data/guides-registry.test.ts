@@ -9,15 +9,15 @@ import {
 } from "./guides-registry";
 
 describe("Engineering Guides Registry", () => {
-  it("registers exactly 9 comprehensive engineering guides", () => {
+  it("registers exactly 10 comprehensive engineering guides", () => {
     const guides = getAllGuides();
-    expect(guides.length).toBe(9);
+    expect(guides.length).toBe(10);
   });
 
-  it("has 6 published guides and 3 scheduled guides in the roadmap", () => {
+  it("has 7 published guides and 3 scheduled guides in the roadmap", () => {
     const published = getPublishedGuides();
     const scheduled = getScheduledGuides();
-    expect(published.length).toBe(6);
+    expect(published.length).toBe(7);
     expect(scheduled.length).toBe(3);
   });
 

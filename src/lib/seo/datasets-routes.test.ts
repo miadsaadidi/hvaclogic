@@ -10,9 +10,9 @@ import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { RESEARCH_PAPERS } from "@/lib/data/research-papers";
 
 describe("Open Benchmark Datasets Registry & Integrity Tests", () => {
-  it("should have exactly 7 canonical benchmark datasets", () => {
-    expect(BENCHMARK_DATASETS.length).toBe(7);
-    expect(getAllDatasetSlugs().length).toBe(7);
+  it("should have exactly 8 canonical benchmark datasets", () => {
+    expect(BENCHMARK_DATASETS.length).toBe(8);
+    expect(getAllDatasetSlugs().length).toBe(8);
   });
 
   it("should find each dataset by slug", () => {
