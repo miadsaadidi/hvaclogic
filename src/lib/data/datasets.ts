@@ -490,6 +490,91 @@ export const BENCHMARK_DATASETS: BenchmarkDataset[] = [
       { vector_id: "KH-VEC-0004", cooktop_type: "gas", cooktop_width_in: 24, gas_burner_btu: 36000, mounting_type: "wall", straight_duct_len_ft: 15, elbows_90: 1, total_equivalent_length_ft: 55, final_recommended_cfm: 400, recommended_duct_diameter_in: 7, make_up_air_required: false, make_up_air_cfm_required: 0 },
       { vector_id: "KH-VEC-0005", cooktop_type: "gas", cooktop_width_in: 24, gas_burner_btu: 36000, mounting_type: "wall", straight_duct_len_ft: 15, elbows_90: 2, total_equivalent_length_ft: 65, final_recommended_cfm: 400, recommended_duct_diameter_in: 7, make_up_air_required: false, make_up_air_cfm_required: 0 }
     ]
+  },
+  {
+    slug: "ashrae-241-clean-airflow-benchmarks",
+    title: "ASHRAE Standard 241-2023 Equivalent Clean Airflow (ECA) Benchmark Dataset",
+    subtitle: "178 deterministic infection risk management state vectors across 11 commercial, educational, and healthcare space archetypes.",
+    seoTitle: "ASHRAE 241 Equivalent Clean Airflow Benchmark Dataset (178 Vectors)",
+    seoDescription: "Open benchmark dataset containing 178 deterministic state points evaluating ANSI/ASHRAE Standard 241-2023 Table 5-1 ECA demand, MERV filtration, and in-room HEPA air cleaners.",
+    description: "Deterministic building ventilation and infectious aerosol mitigation benchmark dataset containing 178 multi-technology calculation vectors. Tabulates mandatory Equivalent Clean Airflow (ECA_i) baselines per occupant and floor area across 11 occupancy archetypes under ANSI/ASHRAE Standard 241-2023. Models central recirculated air filtration (MERV 8 through MERV 16/HEPA), in-room portable air cleaners (CADR), and upper-room germicidal UV-C irradiation.",
+    methodology: "Synthesized using HVACLogic's deterministic ASHRAE 241 computational engine conforming to ANSI/ASHRAE Standard 241-2023 Section 5 (Assessment and Planning) and Section 6 (Equivalent Clean Airflow Rates and Air Cleaning Systems). Bioaerosol droplet nuclei capture efficiencies are evaluated from ASHRAE 52.2 particle size efficiency curves in the 1–3 µm aerodynamic diameter band. Room air mixing effectiveness factors are fixed at ε_mix = 0.90 for localized portable HEPA filtration.",
+    primaryDoi: "10.6084/m9.figshare.33977425",
+    publicationDate: "2026-09-23",
+    lastUpdated: "2026-09-23",
+    recordCount: 178,
+    filename: "ashrae_241_equivalent_clean_airflow_benchmark_2026.csv",
+    fileSizeBytes: 34228,
+    format: "CSV",
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    licenseName: "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+    governingStandards: [
+      "ANSI/ASHRAE Standard 241-2023",
+      "ANSI/ASHRAE Standard 62.1-2022",
+      "ANSI/ASHRAE Standard 52.2-2017"
+    ],
+    companionCalculators: [
+      {
+        name: "Filter Sizing & Static Pressure Drop Calculator",
+        url: "/calculators/filter-sizing-calculator",
+        description: "Size MERV 13+ filters, calculate face velocity, and evaluate initial clean vs. loaded static pressure drops."
+      },
+      {
+        name: "Ventilation Airflow & Building CFM Calculator",
+        url: "/calculators/cfm-calculator",
+        description: "Determine building envelope sensible/latent airflow requirements and room air exchange rates."
+      }
+    ],
+    companionResearch: [
+      {
+        name: "ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture",
+        url: "/research/ashrae-241-equivalent-clean-airflow",
+        description: "Technical research monograph articulating governing mathematical formulations for ECA and pathogen mitigation."
+      }
+    ],
+    repositories: [
+      {
+        platform: "figshare",
+        name: "Figshare Data Repository",
+        url: "https://figshare.com/articles/dataset/ANSI_ASHRAE_Standard_241-2023_Equivalent_Clean_Airflow_ECA_Benchmark_Dataset/33977425",
+        doi: "10.6084/m9.figshare.33977425"
+      }
+    ],
+    variables: [
+      { name: "vector_id", type: "string", description: "Unique clean airflow calculation vector (ECA-VEC-0001 to ECA-VEC-0178)" },
+      { name: "space_type", type: "string", description: "Occupancy archetype identifier per ASHRAE 241 Table 5-1" },
+      { name: "category", type: "string", description: "Broad building occupancy sector (Educational, Commercial, Healthcare, Public Assembly, Residential)" },
+      { name: "floor_area_sqft", type: "number", unit: "sq ft", description: "Net occupied room usable floor area" },
+      { name: "occupants", type: "number", description: "Zone design peak occupant population (P_z)" },
+      { name: "ceiling_height_ft", type: "number", unit: "ft", description: "Floor-to-ceiling clear architectural height" },
+      { name: "room_volume_cuft", type: "number", unit: "cu ft", description: "Total interior zone cubic volume" },
+      { name: "ashrae_241_eca_p_cfm", type: "number", unit: "CFM/person", description: "Table 5-1 minimum equivalent clean airflow required per person" },
+      { name: "ashrae_241_eca_a_cfm", type: "number", unit: "CFM/sq ft", description: "Table 5-1 minimum equivalent clean airflow required per unit floor area" },
+      { name: "required_eca_cfm", type: "number", unit: "CFM", description: "Total mandatory equivalent clean airflow demand during IRMM mode" },
+      { name: "required_ach_equiv", type: "number", unit: "ACH", description: "Required equivalent clean air exchange rate per hour" },
+      { name: "outdoor_air_cfm", type: "number", unit: "CFM", description: "Pathogen-free outdoor ventilation airflow delivery (V_ot)" },
+      { name: "recirc_air_cfm", type: "number", unit: "CFM", description: "Central recirculated airflow handled by the air-handling unit" },
+      { name: "central_filter_merv", type: "string", description: "Installed central filtration rating (MERV 8, 11, 13, 14, 16/HEPA)" },
+      { name: "filter_bioaerosol_eff", type: "number", description: "Single-pass removal efficiency on 1–3 µm droplet nuclei" },
+      { name: "delivered_filter_eca_cfm", type: "number", unit: "CFM", description: "Equivalent clean airflow delivered via central filtered recirculation" },
+      { name: "in_room_cadr_cfm", type: "number", unit: "CFM", description: "Total rated Clean Air Delivery Rate of in-room portable air cleaners" },
+      { name: "room_mixing_factor", type: "number", description: "Room air mixing effectiveness factor (0.90)" },
+      { name: "delivered_in_room_eca_cfm", type: "number", unit: "CFM", description: "Effective in-room portable clean airflow delivered" },
+      { name: "uvc_eca_cfm", type: "number", unit: "CFM", description: "Equivalent clean airflow credited from upper-room UV-C irradiation" },
+      { name: "total_delivered_eca_cfm", type: "number", unit: "CFM", description: "Aggregate sum of all delivered equivalent clean airflow pathways" },
+      { name: "delivered_ach_equiv", type: "number", unit: "ACH", description: "Delivered equivalent clean air changes per hour" },
+      { name: "compliance_margin_cfm", type: "number", unit: "CFM", description: "Compliance surplus (+) or deficit (-) in CFM" },
+      { name: "compliance_ratio", type: "number", description: "Ratio of delivered ECA to required ECA (>= 1.0 indicates compliance)" },
+      { name: "irmm_compliance_status", type: "string", description: "Infection Risk Management Mode compliance classification" },
+      { name: "governing_standard", type: "string", description: "Authoritative regulatory code standard" }
+    ],
+    previewRows: [
+      { vector_id: "ECA-VEC-0001", space_type: "classroom_age_5_8", category: "Educational", floor_area_sqft: 900, occupants: 25, ceiling_height_ft: 9, room_volume_cuft: 8100, ashrae_241_eca_p_cfm: 42.4, ashrae_241_eca_a_cfm: 0.12, required_eca_cfm: 1168, required_ach_equiv: 8.7, outdoor_air_cfm: 203, recirc_air_cfm: 1148, central_filter_merv: "MERV 8", filter_bioaerosol_eff: 0.2, delivered_filter_eca_cfm: 229.6, in_room_cadr_cfm: 0, room_mixing_factor: 0.9, delivered_in_room_eca_cfm: 0, uvc_eca_cfm: 0, total_delivered_eca_cfm: 432.6, delivered_ach_equiv: 3.2, compliance_margin_cfm: -735.4, compliance_ratio: 0.37, irmm_compliance_status: "CRITICAL_DEFICIT", governing_standard: "ANSI/ASHRAE Standard 241-2023 Table 5-1" },
+      { vector_id: "ECA-VEC-0002", space_type: "classroom_age_5_8", category: "Educational", floor_area_sqft: 900, occupants: 25, ceiling_height_ft: 9, room_volume_cuft: 8100, ashrae_241_eca_p_cfm: 42.4, ashrae_241_eca_a_cfm: 0.12, required_eca_cfm: 1168, required_ach_equiv: 8.7, outdoor_air_cfm: 203, recirc_air_cfm: 1148, central_filter_merv: "MERV 8", filter_bioaerosol_eff: 0.2, delivered_filter_eca_cfm: 229.6, in_room_cadr_cfm: 250, room_mixing_factor: 0.9, delivered_in_room_eca_cfm: 225, uvc_eca_cfm: 0, total_delivered_eca_cfm: 657.6, delivered_ach_equiv: 4.9, compliance_margin_cfm: -510.4, compliance_ratio: 0.563, irmm_compliance_status: "CRITICAL_DEFICIT", governing_standard: "ANSI/ASHRAE Standard 241-2023 Table 5-1" },
+      { vector_id: "ECA-VEC-0003", space_type: "classroom_age_5_8", category: "Educational", floor_area_sqft: 900, occupants: 25, ceiling_height_ft: 9, room_volume_cuft: 8100, ashrae_241_eca_p_cfm: 42.4, ashrae_241_eca_a_cfm: 0.12, required_eca_cfm: 1168, required_ach_equiv: 8.7, outdoor_air_cfm: 203, recirc_air_cfm: 1148, central_filter_merv: "MERV 11", filter_bioaerosol_eff: 0.5, delivered_filter_eca_cfm: 574, in_room_cadr_cfm: 0, room_mixing_factor: 0.9, delivered_in_room_eca_cfm: 0, uvc_eca_cfm: 0, total_delivered_eca_cfm: 777, delivered_ach_equiv: 5.8, compliance_margin_cfm: -391, compliance_ratio: 0.665, irmm_compliance_status: "CRITICAL_DEFICIT", governing_standard: "ANSI/ASHRAE Standard 241-2023 Table 5-1" },
+      { vector_id: "ECA-VEC-0004", space_type: "classroom_age_5_8", category: "Educational", floor_area_sqft: 900, occupants: 25, ceiling_height_ft: 9, room_volume_cuft: 8100, ashrae_241_eca_p_cfm: 42.4, ashrae_241_eca_a_cfm: 0.12, required_eca_cfm: 1168, required_ach_equiv: 8.7, outdoor_air_cfm: 203, recirc_air_cfm: 1148, central_filter_merv: "MERV 11", filter_bioaerosol_eff: 0.5, delivered_filter_eca_cfm: 574, in_room_cadr_cfm: 250, room_mixing_factor: 0.9, delivered_in_room_eca_cfm: 225, uvc_eca_cfm: 0, total_delivered_eca_cfm: 1002, delivered_ach_equiv: 7.4, compliance_margin_cfm: -166, compliance_ratio: 0.858, irmm_compliance_status: "MARGINAL_DEFICIT", governing_standard: "ANSI/ASHRAE Standard 241-2023 Table 5-1" },
+      { vector_id: "ECA-VEC-0005", space_type: "classroom_age_5_8", category: "Educational", floor_area_sqft: 900, occupants: 25, ceiling_height_ft: 9, room_volume_cuft: 8100, ashrae_241_eca_p_cfm: 42.4, ashrae_241_eca_a_cfm: 0.12, required_eca_cfm: 1168, required_ach_equiv: 8.7, outdoor_air_cfm: 203, recirc_air_cfm: 1148, central_filter_merv: "MERV 13", filter_bioaerosol_eff: 0.85, delivered_filter_eca_cfm: 975.8, in_room_cadr_cfm: 0, room_mixing_factor: 0.9, delivered_in_room_eca_cfm: 0, uvc_eca_cfm: 0, total_delivered_eca_cfm: 1178.8, delivered_ach_equiv: 8.7, compliance_margin_cfm: 10.8, compliance_ratio: 1.009, irmm_compliance_status: "COMPLIANT", governing_standard: "ANSI/ASHRAE Standard 241-2023 Table 5-1" }
+    ]
   }
 ];
 

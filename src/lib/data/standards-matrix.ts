@@ -218,6 +218,26 @@ export const ENGINEERING_STANDARDS: EngineeringStandard[] = [
         ]
       }
     ]
+  },
+  {
+    code: "ASHRAE Standard 241",
+    organization: "ASHRAE",
+    title: "Control of Infectious Aerosols",
+    edition: "2023 Edition",
+    scope: "Establishes minimum requirements for control of airborne pathogen droplet nuclei in the built environment, defining Equivalent Clean Airflow (ECA) rates and Infection Risk Management Mode (IRMM).",
+    importance: "The first consensus-based national standard for building airborne pathogen resilience, cited by federal agencies, public school districts, and healthcare facility guidelines.",
+    clauses: [
+      {
+        clauseNumber: "Section 5 & Table 5-1",
+        title: "Minimum Equivalent Clean Airflow per Person and Floor Area",
+        summary: "Specifies mandatory baseline equivalent clean airflow demand per person (ECA_p) and per floor area (ECA_a) across 11 occupancy categories during IRMM.",
+        governingEquation: "ECA_i = P_z \\cdot ECA_p + A_z \\cdot ECA_a",
+        applicableCalculators: [
+          { name: "Filter Sizing & Static Pressure Drop Calculator", route: "/calculators/filter-sizing-calculator" },
+          { name: "Ventilation Airflow & Building CFM Calculator", route: "/calculators/cfm-calculator" }
+        ]
+      }
+    ]
   }
 ];
 

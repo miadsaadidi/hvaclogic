@@ -884,6 +884,130 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.org/research/cold-formed-steel-framing-thermal-factors}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). ANSI/ASHRAE/IES Standard 90.1 Cold-Formed Steel Stud Framing Factors and Cavity Insulation Thermal Bridging Deratings (Technical Report No. HL-TR-2026-STEEL01). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/cold-formed-steel-framing-thermal-factors`
+  },
+  {
+    slug: "ashrae-241-equivalent-clean-airflow",
+    title: "ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture",
+    seoTitle: "ASHRAE 241 Equivalent Clean Airflow & Pathogen Mitigation",
+    seoDescription: "Engineering monograph and normative calculation framework for ANSI/ASHRAE Standard 241-2023. Models Table 5-1 ECA baselines, MERV filtration, and in-room HEPA air cleaners.",
+    subtitle: "A deterministic engineering framework for modeling multi-zone equivalent clean airflow (ECA_i), aerosol particle capture efficiency, and infection risk management in commercial, educational, and healthcare buildings.",
+    abstract: "ANSI/ASHRAE Standard 241-2023, Control of Infectious Aerosols, establishes the first consensus-based national standard for mitigating disease transmission via airborne pathogen droplet nuclei in the built environment. This engineering monograph articulates the core mathematical formulations governing Equivalent Clean Airflow (ECA) during Infection Risk Management Mode (IRMM). We model the normative Table 5-1 baseline clean airflow per person (ECA_p) and per unit floor area (ECA_a), quantify the single-pass removal efficiencies of central recirculation air filters (MERV 8 through MERV 16/HEPA) on 1–3 µm infectious bioaerosols, evaluate room air mixing effectiveness for in-room portable air cleaners (CADR), and formalize the equivalent clean airflow contribution of upper-room UV-C germicidal irradiation systems. An integrated open dataset benchmarks 12 common space archetypes across varying occupancy densities and filtration topologies, demonstrating how targeted filtration and supplemental air cleaning satisfy IRMM targets with 60% lower thermal energy penalties than 100% outdoor air dilution.",
+    keyFindings: [
+      "ASHRAE 241 Table 5-1 mandates 20–30 L/s/person (42.4–63.6 CFM/person) of equivalent clean airflow in schools, assembly spaces, and gyms during IRMM, representing a 2.5× to 4× increase over ASHRAE 62.1 baseline ventilation.",
+      "Meeting IRMM targets solely through outdoor air dilution increases heating/cooling coil loads by 250%–400%, whereas upgrading central filtration to MERV 13 (85% bioaerosol efficiency) satisfies over 70% of required ECA without increasing outdoor air thermal penalties.",
+      "Standard MERV 8 filters capture only ~20% of 1–3 µm infectious bioaerosol droplet nuclei, producing a critical compliance deficit in typical commercial and educational recirculation systems.",
+      "Supplemental in-room portable HEPA air cleaners deployed at a room mixing effectiveness of ε_mix = 0.9 provide cost-effective localized ECA delivery, bridging deficits in spaces with fixed central AHU duct static pressure constraints.",
+      "Upper-room UV-C germicidal irradiation provides high-equivalent clean air exchange rates (up to 15–20 ACH equivalent) in crowded public assembly and healthcare zones with minimal operating fan power."
+    ],
+    governingStandards: [
+      "ANSI/ASHRAE Standard 241-2023: Control of Infectious Aerosols",
+      "ANSI/ASHRAE Standard 62.1-2022: Ventilation for Acceptable Indoor Air Quality",
+      "ANSI/ASHRAE Standard 52.2-2017: Method of Testing General Ventilation Air-Cleaning Devices for Removal Efficiency by Particle Size",
+      "CDC Core Recommendations for Reducing Exposure to Respiratory Pathogens in Indoor Environments (2024)"
+    ],
+    formulas: [
+      {
+        title: "Required Zone Equivalent Clean Airflow Rate (ECA_i)",
+        latex: "ECA_i = P_z \\cdot ECA_p + A_z \\cdot ECA_a",
+        explanation: "Normative equation from ANSI/ASHRAE Standard 241-2023 Section 5 determining the mandatory clean airflow demand during Infection Risk Management Mode (IRMM) as a function of zone population (P_z) and floor area (A_z)."
+      },
+      {
+        title: "Central Recirculation Filter Pathogen Removal Rate",
+        latex: "ECA_{\\text{recirc}} = V_{\\text{recirc}} \\cdot \\eta_{\\text{filter}}",
+        explanation: "Quantifies equivalent clean airflow delivered by central HVAC mechanical filtration, where η_filter is the single-pass capture efficiency for 1–3 µm bioaerosol droplet nuclei (e.g. 0.85 for MERV 13)."
+      },
+      {
+        title: "Total Delivered Multi-Technology Equivalent Clean Airflow",
+        latex: "ECA_{\\text{delivered}} = V_{ot} + (V_{\\text{recirc}} \\cdot \\eta_{\\text{filter}}) + (\\text{CADR}_{\\text{in-room}} \\cdot \\varepsilon_{\\text{mix}}) + ECA_{\\text{uv-c}}",
+        explanation: "Summates pathogen-free outdoor ventilation air (V_ot), central filtered recirculated air, in-room portable air cleaner CADR scaled by room mixing factor ε_mix, and upper-room UV-C germicidal irradiation."
+      },
+      {
+        title: "Equivalent Air Changes per Hour (ACH_equiv)",
+        latex: "\\text{ACH}_{\\text{equiv}} = \\frac{ECA_{\\text{total}} \\times 60}{V_{\\text{room}}} = \\frac{ECA_{\\text{total}} \\times 60}{A_z \\times H_{\\text{ceiling}}}",
+        explanation: "Normalizes volumetric clean airflow delivery to room cubic volume to evaluate pathogen dilution and clearance kinetics against CDC and ASHRAE ventilation benchmarks."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-23",
+    reportNumber: "HL-TR-2026-AIR241",
+    pdfUrl: "/whitepapers/HVACLogic_ASHRAE_241_Clean_Airflow_Monograph.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "HVACLogic Series on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93"
+      },
+      {
+        platform: "figshare",
+        label: "Figshare Benchmark Dataset",
+        url: "https://doi.org/10.6084/m9.figshare.33977425",
+        badge: "DOI 10.6084/m9.figshare.33977425"
+      }
+    ],
+    companionCalculators: [
+      {
+        name: "Filter Sizing & Static Pressure Drop Calculator",
+        route: "/calculators/filter-sizing-calculator",
+        description: "Size MERV 13+ filters, calculate face velocity, and evaluate initial clean vs. loaded static pressure drops per ASHRAE 52.2."
+      },
+      {
+        name: "Ventilation Airflow & Building CFM Calculator",
+        route: "/calculators/cfm-calculator",
+        description: "Determine building envelope sensible/latent airflow requirements and room air exchange rates."
+      },
+      {
+        name: "ACCA Manual D Equivalent Length & Fitting Accumulator",
+        route: "/calculators/equivalent-length-calculator",
+        description: "Calculate total effective length (TEL) and verify available static pressure (ASP) budget for filtration upgrades."
+      }
+    ],
+    tables: [
+      {
+        title: "ANSI/ASHRAE Standard 241-2023 Table 5-1 Minimum Equivalent Clean Airflow Rates",
+        subtitle: "Normative Infection Risk Management Mode (IRMM) clean airflow baselines per occupant and floor area.",
+        standardReference: "ANSI/ASHRAE Standard 241-2023 Table 5-1",
+        headers: ["Occupancy Category", "Space Type", "ECA_p (L/s/person)", "ECA_p (CFM/person)", "ECA_a (CFM/sq ft)", "Default Density (occ/1000 ft²)"],
+        rows: [
+          ["Educational", "Classroom (Ages 5–8)", "20", "42.4", "0.12", "25"],
+          ["Educational", "Classroom (Age 9+ & Lecture)", "20", "42.4", "0.12", "35"],
+          ["Commercial", "General Office Space", "15", "31.8", "0.12", "5"],
+          ["Commercial", "Conference / Meeting Room", "15", "31.8", "0.16", "50"],
+          ["Healthcare", "Patient Room", "25", "53.0", "0.20", "4"],
+          ["Healthcare", "Outpatient Exam Room", "25", "53.0", "0.20", "10"],
+          ["Commercial", "Retail & Department Store", "15", "31.8", "0.12", "15"],
+          ["Public Assembly", "Restaurant Dining", "20", "42.4", "0.18", "70"],
+          ["Public Assembly", "Fitness Gym / Aerobics", "30", "63.6", "0.30", "40"],
+          ["Public Assembly", "Place of Worship", "15", "31.8", "0.12", "100"],
+          ["Residential", "Residential Common Areas", "10", "21.2", "0.10", "10"]
+        ],
+        footnote: "Values excerpted from ANSI/ASHRAE Standard 241-2023 Table 5-1. 1 L/s = 2.11888 CFM."
+      },
+      {
+        title: "Bioaerosol Droplet Nuclei (1–3 µm) Removal Efficiency by Filter Rating",
+        subtitle: "Single-pass mechanical filtration efficiencies and equivalent clean air multiplier factors.",
+        standardReference: "ASHRAE Standard 52.2 & ASHRAE 241 Appendix A",
+        headers: ["Filter Rating", "Bioaerosol Removal (1–3 µm)", "Typical Clean ΔP (in. wg)", "ASHRAE 241 Suitability", "Engineering Role"],
+        rows: [
+          ["MERV 8", "20%", "0.12", "Non-Compliant Baseline", "Coarse pre-filter only; large dust & pollen capture."],
+          ["MERV 11", "50%", "0.18", "Marginal", "Partial droplet nuclei reduction; insufficient for high-density IRMM."],
+          ["MERV 13", "85%", "0.25", "Normative Baseline", "ASHRAE 241 recommended central AHU minimum."],
+          ["MERV 14", "90%", "0.30", "High Performance", "Commercial healthcare and premium corporate facilities."],
+          ["MERV 15", "95%", "0.34", "Advanced Protection", "High-exposure clinical environments and clean rooms."],
+          ["MERV 16 / HEPA", "≥99.97%", "0.50–1.00", "Maximum Efficiency", "Critical isolation suites and standalone in-room air cleaners."]
+        ],
+        footnote: "Single-pass capture efficiencies based on ASHRAE 52.2 particle size efficiency curves (E1: 0.3–1.0 µm, E2: 1.0–3.0 µm)."
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_ashrae_241_clean_airflow,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture},
+  institution = {HVACLogic Open-Access Building Science Monograph Series},
+  year = {2026},
+  number = {HL-TR-2026-AIR241},
+  url = {https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture (Technical Report No. HL-TR-2026-AIR241). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow`
   }
 ];
 
@@ -977,6 +1101,19 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     downloadUrl: "/datasets/building_envelope_thermal_transmission_benchmark_dataset_2026.csv",
     publicationDate: "2026-09-13",
     recordCount: 540
+  },
+  {
+    slug: "ashrae-241-clean-airflow-benchmark-dataset",
+    title: "ANSI/ASHRAE Standard 241-2023 Equivalent Clean Airflow (ECA) Benchmark Dataset",
+    subtitle: "178 deterministic infection risk management state vectors across 11 commercial, educational, and healthcare space archetypes.",
+    description: "Multi-parameter pathogen mitigation benchmark evaluating Table 5-1 ECA baseline demand, mechanical filter bioaerosol capture across MERV 8–16/HEPA, in-room air cleaners, and upper-room UV-C irradiation under ANSI/ASHRAE Standard 241-2023.",
+    doi: "10.6084/m9.figshare.33977425",
+    repository: "Figshare",
+    repositoryUrl: "https://figshare.com/articles/dataset/ANSI_ASHRAE_Standard_241-2023_Equivalent_Clean_Airflow_ECA_Benchmark_Dataset/33977425",
+    format: "CSV",
+    downloadUrl: "/datasets/ashrae_241_equivalent_clean_airflow_benchmark_2026.csv",
+    publicationDate: "2026-09-23",
+    recordCount: 178
   }
 ];
 

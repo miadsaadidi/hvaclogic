@@ -202,23 +202,31 @@
 - **Rule 19: Calculator Input Layout & Readability Invariants**:
   - Whenever generating or refactoring calculator tool inputs, strictly use the site's standardized class hierarchy: `.calculator-grid`, `.input-panel`, `.output-panel`, `.form-group`, `<label><span>...</span><span className="unit-label">...</span></label>`, `.input-number`, and `.input-help`.
   - **Strict Contrast & Legibility**: Ensure high contrast in both dark and light modes. Form labels and help text must use theme variables (`var(--ink)`, `var(--ink-secondary)`, `var(--surface)`) rather than low-contrast hardcoded grays. Never generate raw unstyled form elements or uncoordinated card wrappers.
+- **Rule 20: Standardized Protocol for External Distribution & Repository Submissions**:
+  - **Strict 1-Platform-At-A-Time Presentation**: Whenever drafting or preparing external distribution packages (Figshare, Zenodo, BibSonomy, ORCID, MERLOT, OER Commons), output **STRICTLY ONE PLATFORM PER TURN**. NEVER bundle multiple platforms (e.g., BibSonomy + ORCID) into a single response. Always wait for the user to complete or confirm the first platform before presenting the next.
+  - **ORCID Add-by-DOI Standard**: For ORCID profiling, provide **STRICTLY THE VERIFIED DOI** in a single 1-click copyable code block for instant import via ORCID's "Add by DOI" feature. Never dump manual field forms unless explicitly requested by the user.
+  - **Max 3 Generic Categories & Keywords**: All repository and indexing submissions must use broad, high-level terms with a **strict ceiling of 3 categories and 3 keywords/tags** (e.g., `Building Engineering, Mechanical Engineering, Environmental Engineering` and `HVAC, Ventilation, Indoor Air Quality`). Never generate long or overly specific keyword lists.
+  - **Figshare Related Materials Format**: Always format references as explicit, separate 1-click copyable blocks: 1) `Label`, followed immediately by 2) `Link`.
 
 ---
 
 ## Operations & Deployment Rules
 
-- **Strict Git Commit & Push Boundary**:
+- **Strict Git Commit, Push & PR Creation Boundary (MANDATORY)**:
+  - **Implementation Approval != Commit Authorization**: When the user approves a plan or says *"proceed"*, *"do X"*, or *"lets do all, 1 by 1"*, this authorizes ONLY local file writing and test verification.
+  - **Zero Automatic Commits**: NEVER execute `git commit`, `git push`, or `gh pr create` without a separate, explicit user command (e.g., *"commit"*, *"push"*, *"open PR"*). Always stop after local verification and present the test results to the user.
   - Never execute `git commit` or `git push` presumptively during documentation updates, plan reviews, or code staging.
-  - Commits require explicit user instruction or explicit confirmation (e.g., *"commit"*, *"push"*, *"open PR"*).
 - **GitHub PR & Vercel Automated Deployment Lifecycle**:
   - **Small Tweaks**: Direct commits to `main` for simple text corrections, minor CSS refinements, or small single-file bug fixes.
   - **Medium / Large Updates (MANDATORY PR)**: Create a feature branch (`feat/<slug>`, `refactor/<slug>`), run pre-PR checks (`npm test` & `npm run typecheck`), push, and **immediately open a formal GitHub PR**.
-  - **Online Merge & Cleanup (Strictly upon explicit command)**:
-    1. Merge online via GitHub CLI/Web: `gh pr merge <PR> --squash --delete-branch`.
+  - **Online Merge & Mandatory Vercel Cleanup Sequence (Atomic Execution)**:
+    Whenever commanded to merge a PR (e.g., *"merge PR X"*), the task is NOT done until all 5 steps are fully executed:
+    1. Merge online via GitHub CLI: `gh pr merge <PR> --squash --delete-branch`.
     2. Verify Vercel production reaches `READY` on `hvaclogic.org`.
-    3. Purge stale preview deployments: `npx vercel rm <preview-url> --yes` and old superseded deployment IDs `npx vercel rm <dpl_id> --yes --safe`.
-    4. Purge stale Git branch aliases: `npx vercel alias rm <branch-alias> --yes` to clear Vercel Active Branches.
+    3. **Mandatory Vercel Preview Purge**: `npx vercel rm <preview-url> --yes` and old superseded deployment IDs `npx vercel rm <dpl_id> --yes --safe`.
+    4. **Mandatory Vercel Alias Purge**: `npx vercel alias rm <branch-alias> --yes` to eliminate stale Active Branches from Vercel.
     5. Pull `main` locally (`git checkout main && git pull origin main`) and prune remote tracking (`git remote prune origin && git fetch --prune`).
+    - **Strict Prohibition**: NEVER state *"Vercel retains records"* or leave stale preview deployments or branch aliases active on Vercel after merging.
 - **Outreach Email Signature**: ALWAYS sign outreach and follow-up emails simply as **`Miad S.`** (never full last name).
 - **No AI Watermarks / Em-Dashes**: NEVER use em-dashes (`—`) in outreach emails, copy, or templates. Use standard hyphens (`-`), commas, or periods.
 - **Separate Copyable Blocks for Metadata**: Whenever providing metadata, tags, titles, descriptions, or form fields for publishing (e.g. Medium, Dev.to, Academia.edu, ORCID, BibSonomy), ALWAYS output **each individual field in its own separate, dedicated code block** for instant 1-click copying.

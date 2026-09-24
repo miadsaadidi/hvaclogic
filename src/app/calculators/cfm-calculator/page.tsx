@@ -76,7 +76,8 @@ export default function CfmCalculatorPage() {
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
               • Size Main Supply Trunks: <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Digital Ductulator</Link> — convert total room CFM to equal-friction round and rectangular sheet metal trunks.<br />
               • Size Flexible Branch Runouts: <Link href="/calculators/flex-duct-cfm-chart" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Flexible Duct CFM Chart</Link> — determine flexible duct runout diameters accounting for installation tension and sag.<br />
-              • Compute System Friction &amp; TEL: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss Sizer</Link> — verify blower static pressure and fitting resistance.
+              • Compute System Friction &amp; TEL: <Link href="/calculators/duct-friction-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Duct Friction Loss Sizer</Link> — verify blower static pressure and fitting resistance.<br />
+              • Infection Control Clean Airflow: <Link href="/research/ashrae-241-equivalent-clean-airflow" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>ASHRAE 241 Monograph</Link> &amp; <Link href="/datasets/ashrae-241-clean-airflow-benchmarks" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Clean Airflow Dataset</Link> — determine multi-zone Equivalent Clean Airflow (ECA) for pathogen risk management.
             </p>
           </div>
         </>

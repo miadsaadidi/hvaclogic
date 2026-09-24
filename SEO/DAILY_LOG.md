@@ -27,6 +27,33 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-23] — CORE PUBLICATION: ASHRAE Standard 241-2023 Equivalent Clean Airflow Monograph & Benchmark Dataset (SG-03)
+- **Objective Class**: `CORE PUBLICATION` (Tier 5 Priority / Research & Freshness Gap)
+- **Autonomous Priority Selected**: Tier 5 Additive Research & Freshness Gap per ANSI/ASHRAE Standard 241-2023 (*Control of Infectious Aerosols*)
+- **Evidence & Rationale**: High-authority search gap for "ASHRAE 241", "equivalent clean airflow calculator", "ECA calculation ASHRAE", and "infection risk management mode". Existing SERP results are dominated by news releases, webinars, and manufacturer marketing copy with zero deterministic multi-zone engineering calculators or open benchmark datasets. Formalized Section 5 baseline clean airflow per person ($ECA_p$) and floor area ($ECA_a$) across 11 occupancy types, single-pass mechanical filter capture efficiencies on 1–3 µm droplet nuclei ($\eta_{\text{filter}}$) across MERV 8–16/HEPA, portable in-room air cleaner CADR with mixing factors ($\varepsilon_{\text{mix}} = 0.90$), and upper-room UV-C equivalent clean airflow.
+- **Target Assets**:
+  - Computational Engine: [`src/lib/math/ashrae-241.ts`](../src/lib/math/ashrae-241.ts)
+  - Unit Test Suite: [`src/lib/math/ashrae-241.test.ts`](../src/lib/math/ashrae-241.test.ts)
+  - Research Monograph Registry: [`src/lib/data/research-papers.ts`](../src/lib/data/research-papers.ts) (Route: `/research/ashrae-241-equivalent-clean-airflow`)
+  - Benchmark Dataset Registry: [`src/lib/data/datasets.ts`](../src/lib/data/datasets.ts) (Route: `/datasets/ashrae-241-clean-airflow-benchmarks`)
+  - Downloadable CSV Benchmark: [`public/datasets/ashrae_241_equivalent_clean_airflow_benchmark_2026.csv`](../public/datasets/ashrae_241_equivalent_clean_airflow_benchmark_2026.csv) (178 calculation vectors)
+  - Engineering Standards Matrix: [`src/lib/data/standards-matrix.ts`](../src/lib/data/standards-matrix.ts)
+  - Radial Internal Links: [`src/app/calculators/filter-sizing-calculator/page.tsx`](../src/app/calculators/filter-sizing-calculator/page.tsx) and [`src/app/calculators/cfm-calculator/page.tsx`](../src/app/calculators/cfm-calculator/page.tsx)
+- **Actions Executed**:
+  1. *ASHRAE 241 Math Engine*: Formulated deterministic calculation engine for required ECA ($ECA_i = P_z \times ECA_p + A_z \times ECA_a$) and multi-pathway delivered ECA ($V_{ot} + V_{\text{recirc}} \cdot \eta_{\text{filter}} + \text{CADR} \cdot \varepsilon_{\text{mix}} + ECA_{\text{uv-c}}$).
+  2. *Core Research Monograph*: Published open technical monograph (Report No. `HL-TR-2026-AIR241`) with Highwire Press metadata, structured `TechArticle` schema, and complete BibTeX/APA citation records.
+  3. *Open Benchmark Dataset*: Published open tabular dataset containing 178 deterministic state vectors across 11 occupancy archetypes, filter configurations, and supplemental air cleaning technologies, with downloadable 34 KB CSV asset.
+  4. *Standards Matrix*: Codified ASHRAE Standard 241-2023 with Section 5 / Table 5-1 clause definitions and bidirectional calculator mappings.
+  5. *Radial Linking*: Deployed contextual engineering cards in Filter Sizing and CFM Airflow calculators linking directly to the monograph and dataset.
+- **Validation & Quality Checks**:
+  - `npm test`: 37/37 test suites passed, 160/160 unit tests passing (100% clean).
+  - `npm run typecheck`: 0 TypeScript errors.
+  - `npm run build`: All static routes pre-rendered successfully (SSG) with zero hydration or route errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: `[COMPLETED / 28-DAY GSC MEASUREMENT MODE — 2026-09-23 to 2026-10-21]`
+
 ### [2026-09-22] — SINGLE ASSET: ASHRAE Hydronic Expansion Tank Sizing & ASME Vessel Rating (SG-02)
 - **Objective Class**: `SINGLE ASSET` (Tier 1 Priority / Tool & Technical-Depth Gap)
 - **Autonomous Priority Selected**: Tier 1 Additive Tool Gap & Technical Depth per ASHRAE Handbook — HVAC Systems and Equipment (Chapter 15, Sizing Expansion Tanks) and ASME BPVC Section VIII Division 1

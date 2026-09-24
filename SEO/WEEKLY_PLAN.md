@@ -304,6 +304,18 @@ Reply "Approved" to execute.
   - **Measurement Window**: 2026-09-22 to 2026-10-20 (28-day GSC tracking on expansion tank sizing, boiler expansion tank, and hydronic glycol derating query families).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-22]`
 
+- **Step 11 — Core Publication (`SG-03`)**: *ANSI/ASHRAE Standard 241-2023 Equivalent Clean Airflow (ECA) Monograph & Benchmark Dataset*
+  - **Class**: `CORE PUBLICATION` (Tier 5 Priority / Freshness & Research Gap)
+  - **Scope / Affected URLs**:
+    - [`/research/ashrae-241-equivalent-clean-airflow`](https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow)
+    - [`/datasets/ashrae-241-clean-airflow-benchmarks`](https://hvaclogic.org/datasets/ashrae-241-clean-airflow-benchmarks)
+    - [`/calculators/filter-sizing-calculator`](https://hvaclogic.org/calculators/filter-sizing-calculator)
+    - [`/calculators/cfm-calculator`](https://hvaclogic.org/calculators/cfm-calculator)
+  - **Outcome**: Deployed deterministic ANSI/ASHRAE Standard 241-2023 calculation engine (`src/lib/math/ashrae-241.ts`), open technical monograph (Report No. `HL-TR-2026-AIR241`), and open benchmark dataset containing 178 state vectors across 11 occupancy archetypes with downloadable 34 KB CSV. Formulated normative Table 5-1 rates ($ECA_p, ECA_a$), single-pass bioaerosol filtration capture efficiencies ($\eta_{\text{filter}}$) across MERV 8–16/HEPA, room mixing factor adjustments for portable air cleaners, and bidirectional radial internal linking.
+  - **Validation**: 160/160 unit tests passing across 37 test suites, 0 TypeScript errors, 100% static routes pre-rendered successfully.
+  - **Measurement Window**: 2026-09-23 to 2026-10-21 (28-day GSC tracking on ASHRAE 241 and equivalent clean airflow query clusters).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-23]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -430,7 +442,7 @@ Reply "Approved" to execute.
    - **Proposed Solution**: Core Publication & Benchmark Dataset: Open Technical Monograph (`/research/ashrae-241-equivalent-clean-airflow`) & Interactive $ECA$ Modeling Matrix (`/datasets/ashrae-241-clean-airflow-benchmarks`).
    - **Objective Class**: `CORE PUBLICATION`
    - **Confidence**: High (First-mover authority opportunity for newly codified standard).
-   - **Status**: `RESEARCH / PROVENANCE GATE`
+   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-23]` (Moved to Section 5, Step 11)
 
 #### C. New Site Architecture / Product Gaps (Engine D)
 4. **Candidate SG-04: Building Envelope Effective Assembly $U$-Factor Handoff to Building Heat Loss Engine**
@@ -452,7 +464,7 @@ Reply "Approved" to execute.
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **SG-01** | `Workflow Gap` / `Tool Gap` | ACCA Manual D Total Effective Length (TEL) | `SERP Evidence` + `Site Architecture Evidence` | Interactive fitting accumulator for composite trunk & branch TEL | Dedicated Equivalent Length Fitting Accumulator Tool | `SINGLE ASSET` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-22]` | `/calculators/equivalent-length-calculator` |
 | **SG-02** | `Technical-Depth Gap` / `Data Gap` | ASHRAE Hydronic Expansion Tank Sizing & ASME Vessel Rating | `SERP Evidence` + `Research / Authority Evidence` | ASHRAE Ch. 15 formula modeling & temperature-dependent glycol curves | Hydronic Expansion Tank Calculator & ASHRAE Technical Guide | `SINGLE ASSET` / `CORE PUBLICATION` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-22]` | `/calculators/expansion-tank-calculator` |
-| **SG-03** | `Freshness Gap` / `Research Gap` | ASHRAE 241-2023 Equivalent Clean Airflow ($ECA_i$) | `Research / Authority Evidence` + `Engineering Inference` | Multi-source pathogen mitigation $ECA$ allocation engine & benchmark matrix | Open Research Monograph & Benchmark Dataset | `CORE PUBLICATION` | High | `RESEARCH / PROVENANCE GATE` | `/research/ashrae-241-equivalent-clean-airflow` |
+| **SG-03** | `Freshness Gap` / `Research Gap` | ASHRAE 241-2023 Equivalent Clean Airflow ($ECA_i$) | `Research / Authority Evidence` + `Engineering Inference` | Multi-source pathogen mitigation $ECA$ allocation engine & benchmark matrix | Open Research Monograph & Benchmark Dataset | `CORE PUBLICATION` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-23]` | `/research/ashrae-241-equivalent-clean-airflow` |
 | **SG-04** | `Workflow Gap` / `Implementation Gap` | Effective Assembly $U$-Factor to Heat Loss Handoff | `Site Architecture Evidence` | Direct assembly $U$-factor input & workflow link from Core B-1 tool | On-page enhancement to Heat Loss Calculator with effective $U$-factor toggle | `SINGLE ASSET` | High | `[COMPLETED / MEASUREMENT MODE — 2026-09-20]` | `/calculators/heat-loss-calculator` |
 
 ---
