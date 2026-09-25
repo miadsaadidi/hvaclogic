@@ -343,7 +343,7 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
       "Fundamental thermodynamics of moist air, ASHRAE Hyland-Wexler formulations, parallel-path R-value thermal bridging, and LBNL Sherman-Grimsrud blower door infiltration modeling.",
     category: "Building Science",
     pillar: "building-science",
-    targetRoute: "/building-science",
+    targetRoute: "/guides/psychrometrics-building-envelope-physics",
     readingTime: "14 min read",
     difficulty: "Advanced",
     standards: ["ASHRAE Handbook of Fundamentals Ch. 1", "ASHRAE Standard 90.1", "IECC 2021/2024", "ASTM E779"],

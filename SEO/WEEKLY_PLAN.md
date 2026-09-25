@@ -327,6 +327,17 @@ Reply "Approved" to execute.
   - **Measurement Window**: 2026-09-24 to 2026-10-22 (28-day GSC tracking on A2L transition, R-454B charge limits, and temperature glide query clusters).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-24]`
 
+- **Step 13 — Core Publication (`CORE-02`)**: *Building Envelope Psychrometrics & Interstitial Condensation Dynamics Master Guide*
+  - **Class**: `CORE PUBLICATION` (Tier 5 Priority / Research & Search-Intent Gap)
+  - **Scope / Affected URLs**:
+    - [`/guides/psychrometrics-building-envelope-physics`](https://hvaclogic.org/guides/psychrometrics-building-envelope-physics)
+    - [`/calculators/psychrometric-calculator`](https://hvaclogic.org/calculators/psychrometric-calculator)
+    - [`/calculators/effective-r-value-calculator`](https://hvaclogic.org/calculators/effective-r-value-calculator)
+  - **Outcome**: Deployed deterministic hydrothermal building envelope and Glaser Dew Point Method calculation engine (`src/lib/math/envelope-condensation.ts`), master engineering guide, and radial internal links. Formulated Fourier conductive temperature gradients, Fickian vapor diffusion across ASTM E96 permeance classes (Class I, II, III), and interstitial condensation accumulation rates ($g_c$).
+  - **Validation**: 174/174 unit tests passing across 39 test suites, 0 TypeScript errors, 100% static routes pre-rendered successfully.
+  - **Measurement Window**: 2026-09-25 to 2026-10-23 (28-day GSC tracking on hydrothermal envelope, condensation planes, and vapor retarder query clusters).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-25]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -371,12 +382,7 @@ Reply "Approved" to execute.
 - **Candidate CORE-02**: *Building Envelope Psychrometrics & Condensation Dynamics Master Guide*
   - **Class**: `CORE PUBLICATION` (Tier 5 Priority)
   - **Scope / Affected URLs**: `/guides/psychrometrics-building-envelope-physics`
-  - **Search Problem**: Search-intent gap connecting air psychrometrics (dew point, vapor pressure) with wall assembly thermal transmission and interstitial condensation physics.
-  - **Evidence**: GSC queries connecting dew point calculations with envelope R-value conversions.
-  - **Expected Outcome**: Definitive engineering reference capturing building envelope hydrothermal queries.
-  - **Validation Method**: Unit tests on underlying formulas, JSON-LD schema check.
-  - **Measurement Method**: GSC 28-day impression and ranking trajectory.
-  - **Status**: `[BACKLOG / CANDIDATE]`
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-25]` (Moved to Section 5, Step 13)
 
 ### Category E: Layer 1 Supporting Candidates (`CLUSTER PUBLICATION`)
 - **Candidate L1-01**: *R-454B vs R-32 Field Service & Recovery Protocols (A2L Spoke)*

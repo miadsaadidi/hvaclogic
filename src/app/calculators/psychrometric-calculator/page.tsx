@@ -181,7 +181,7 @@ export default function PsychrometricCalculatorPage() {
                   Q_total = 4.5 &times; CFM &times; &Delta;h = 4.5 &times; 1200 &times; (31.52 - 22.35) = 49,518 BTU/hr (4.13 Tons)
                 </p>
                 <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", margin: "0.25rem 0 0" }}>
-                  <em>Note: The 4.5 multiplier is an engineering approximation strictly valid for standard air density (&rho; = 0.075 lb/ft³ at sea level). For high-altitude installations, adjust density directly using local barometric pressure.</em>
+                  <em>Note: The 4.5 multiplier is an engineering approximation strictly valid for standard air density (&rho; = 0.075 lb/ft³ at sea level). For high-altitude installations, adjust density directly using local barometric pressure. For building envelope hydrothermal and interstitial condensation modeling, consult our <Link href="/guides/psychrometrics-building-envelope-physics" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Psychrometrics &amp; Building Envelope Physics Guide</Link>.</em>
                 </p>
               </li>
             </ol>
