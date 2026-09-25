@@ -1114,6 +1114,19 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
     downloadUrl: "/datasets/ashrae_241_equivalent_clean_airflow_benchmark_2026.csv",
     publicationDate: "2026-09-23",
     recordCount: 178
+  },
+  {
+    slug: "a2l-refrigerant-flammability-glide-benchmark-dataset",
+    title: "ANSI/ASHRAE Standard 15-2024 & UL 60335-2-40 Low-GWP A2L Refrigerant Flammability, Charge Limits, & Temperature Glide Benchmark Dataset",
+    subtitle: "200 deterministic thermodynamic state points evaluating ASHRAE 15-2024, ASHRAE 34, UL 60335-2-40, and EPA AIM Act transition limits across R-454B, R-32, R-454A, and R-1234yf.",
+    description: "Multi-parameter low-GWP refrigerant flammability and charge limit benchmark evaluating unmitigated charge limits (m1 = 0.20 × LFL × V), room volume constraints, mitigation tiers (continuous circulation and active RDS detection), and zeotropic temperature glide superheat/subcooling reference points.",
+    doi: "10.6084/m9.figshare.33985834",
+    repository: "Figshare",
+    repositoryUrl: "https://doi.org/10.6084/m9.figshare.33985834",
+    format: "CSV",
+    downloadUrl: "/datasets/a2l_refrigerant_flammability_glide_benchmark_2026.csv",
+    publicationDate: "2026-09-24",
+    recordCount: 200
   }
 ];
 

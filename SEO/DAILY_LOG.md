@@ -27,6 +27,35 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-24] — CORE PUBLICATION: ASHRAE 15/34 Low-GWP A2L Refrigerant Transition Master Guide & Benchmark Dataset (CORE-01)
+- **Objective Class**: `CORE PUBLICATION` (Tier 5 Priority / Core Publication & Freshness Gap)
+- **Autonomous Priority Selected**: Tier 5 Core Publication & Additive Research Gap per ANSI/ASHRAE Standard 15-2024 (*Safety Standard for Refrigeration Systems*), ANSI/ASHRAE Standard 34-2022, UL 60335-2-40 (4th Edition), and EPA AIM Act 40 CFR Part 84.
+- **Evidence & Rationale**: High-demand search gap for "A2L refrigerant transition", "R-454B charge limit", "R-32 vs R-454B", "ASHRAE 15 charge calculator", and "zeotropic temperature glide". Under the EPA AIM Act, newly manufactured comfort cooling equipment must meet GWP < 700. Published comprehensive engineering reference guide and open benchmark dataset evaluating 200 state vectors across R-454B, R-32, R-454A, R-1234yf, and baseline R-410A. Formalized unmitigated charge limit $m_1 = 0.20 \times \text{LFL} \times V_{\text{eff}}$, minimum required room volume $V_{\text{min}}$, mitigation tiers (Tier 0 passive, Tier 1 continuous circulation, Tier 2 RDS leak detection with mechanical ventilation), and zeotropic temperature glide superheat/subcooling reference points.
+- **Target Assets**:
+  - Computational Engine: [`src/lib/math/a2l-refrigerant.ts`](../src/lib/math/a2l-refrigerant.ts)
+  - Unit Test Suite: [`src/lib/math/a2l-refrigerant.test.ts`](../src/lib/math/a2l-refrigerant.test.ts)
+  - Master Engineering Guide: [`src/app/guides/a2l-refrigerant-transition-guide/page.tsx`](../src/app/guides/a2l-refrigerant-transition-guide/page.tsx) (Route: `/guides/a2l-refrigerant-transition-guide`)
+  - Guides Registry: [`src/lib/data/guides-registry.ts`](../src/lib/data/guides-registry.ts)
+  - Benchmark Dataset Registry: [`src/lib/data/datasets.ts`](../src/lib/data/datasets.ts) (Route: `/datasets/a2l-refrigerant-flammability-glide-benchmark`)
+  - Downloadable CSV Benchmark: [`public/datasets/a2l_refrigerant_flammability_glide_benchmark_2026.csv`](../public/datasets/a2l_refrigerant_flammability_glide_benchmark_2026.csv) (200 calculation vectors)
+  - Radial Internal Links: [`src/app/calculators/pt-chart/page.tsx`](../src/app/calculators/pt-chart/page.tsx)
+- **Actions Executed**:
+  1. *A2L Math Engine*: Developed pure TypeScript calculation engine for ASHRAE 15 charge limit thresholds ($m_1, m_2, m_3$), minimum volume constraints, and zeotropic glide superheat/subcooling reference points.
+  2. *Core Reference Guide*: Published master engineering guide with Highwire Press metadata, structured `TechArticle` schema, and comparative thermophysical matrix.
+  3. *Open Benchmark Dataset*: Published open tabular dataset containing 200 deterministic state vectors across 5 refrigerants, 8 architectural space volumes (250–5,000 cu ft), and 5 system charges (2.5–12.0 lb), backed by downloadable 44.8 KB CSV asset.
+  4. *External Distribution*: Minted Figshare DOI `10.6084/m9.figshare.33985834`, attached to local dataset registry, submitted academic bookmark to BibSonomy, and updated ORCID record.
+  5. *Radial Linking*: Deployed contextual engineering callout cards in PT Chart Calculator linking directly to the guide and dataset.
+- **Validation & Quality Checks**:
+  - `npm test`: 38/38 test suites passed, 170/170 unit tests passing (100% clean).
+  - `npm run typecheck`: 0 TypeScript errors.
+  - `npm run build`: All static routes pre-rendered successfully (SSG) with zero hydration or route errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+  - `SEO/BACKLINK_LOG.csv`
+  - `docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`
+- **Status / Follow-Up Date**: `[COMPLETED / 28-DAY GSC MEASUREMENT MODE — 2026-09-24 to 2026-10-22]`
+
 ### [2026-09-23] — CORE PUBLICATION: ASHRAE Standard 241-2023 Equivalent Clean Airflow Monograph & Benchmark Dataset (SG-03)
 - **Objective Class**: `CORE PUBLICATION` (Tier 5 Priority / Research & Freshness Gap)
 - **Autonomous Priority Selected**: Tier 5 Additive Research & Freshness Gap per ANSI/ASHRAE Standard 241-2023 (*Control of Infectious Aerosols*)

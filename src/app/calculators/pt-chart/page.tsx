@@ -91,11 +91,69 @@ export default function PtChartPage() {
             sourceStandard="NIST Standard Reference Database 23, AHRI Standard 700 & ASHRAE Standard 34"
           />
 
+          <div
+            style={{
+              marginTop: "1.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderLeft: "4px solid #10b981",
+              borderRadius: "0.5rem",
+              padding: "1rem 1.25rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "0.75rem",
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>
+                2026 EPA A2L Refrigerant Transition &amp; Charge Limit Sizing
+              </div>
+              <div style={{ fontSize: "0.85rem", color: "var(--ink-secondary)" }}>
+                ASHRAE 15-2024 unmitigated charge limits (m1), UL 60335-2-40 detection requirements, and zeotropic glide protocols.
+              </div>
+            </div>
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              <Link
+                href="/guides/a2l-refrigerant-transition-guide"
+                style={{
+                  padding: "0.45rem 0.85rem",
+                  fontSize: "0.82rem",
+                  fontWeight: 700,
+                  background: "#10b981",
+                  color: "#ffffff",
+                  borderRadius: "0.375rem",
+                  textDecoration: "none",
+                }}
+              >
+                A2L Transition Guide →
+              </Link>
+              <Link
+                href="/datasets/a2l-refrigerant-flammability-glide-benchmark"
+                style={{
+                  padding: "0.45rem 0.85rem",
+                  fontSize: "0.82rem",
+                  fontWeight: 700,
+                  background: "rgba(255, 255, 255, 0.08)",
+                  color: "var(--ink)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "0.375rem",
+                  textDecoration: "none",
+                }}
+              >
+                200-Vector Dataset →
+              </Link>
+            </div>
+          </div>
+
           <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
             <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
               Related Engineering &amp; Diagnostic Resources
             </h3>
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+              • Low-GWP A2L Transition: <Link href="/guides/a2l-refrigerant-transition-guide" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>A2L Refrigerant Transition &amp; Charge Limit Sizing Guide</Link> — ASHRAE 15-2024 charge calculations and UL 60335-2-40 mitigation tiers.<br />
+              • Open Benchmark Dataset: <Link href="/datasets/a2l-refrigerant-flammability-glide-benchmark" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>A2L Refrigerant Flammability &amp; Glide Benchmark (200 Vectors)</Link> — downloadable CSV with deterministic state vectors.<br />
               • Air-Side Psychrometrics: <Link href="/calculators/psychrometric-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Moist Air Psychrometric Calculator</Link> — calculate moist-air dew point, wet bulb, and specific enthalpy across barometric elevations.<br />
               • Field Charging Diagnostics: <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Target Superheat &amp; Subcooling Calculator</Link> — evaluate target superheat for fixed orifices and subcooling benchmarks for TXVs per ACCA Standard 5.<br />
               • Line-Set Weigh-In: <Link href="/calculators/refrigerant-charge-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Refrigerant Charge &amp; Line-Set Sizing Tool</Link> — calculate required additional trim charge by liquid line diameter.<br />

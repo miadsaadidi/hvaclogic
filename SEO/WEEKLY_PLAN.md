@@ -316,6 +316,17 @@ Reply "Approved" to execute.
   - **Measurement Window**: 2026-09-23 to 2026-10-21 (28-day GSC tracking on ASHRAE 241 and equivalent clean airflow query clusters).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-23]`
 
+- **Step 12 — Core Publication (`CORE-01`)**: *ASHRAE 15/34 Low-GWP A2L Refrigerant Transition Master Technical Reference & Benchmark Dataset*
+  - **Class**: `CORE PUBLICATION` (Tier 5 Priority / Core Publication & Freshness Gap)
+  - **Scope / Affected URLs**:
+    - [`/guides/a2l-refrigerant-transition-guide`](https://hvaclogic.org/guides/a2l-refrigerant-transition-guide)
+    - [`/datasets/a2l-refrigerant-flammability-glide-benchmark`](https://hvaclogic.org/datasets/a2l-refrigerant-flammability-glide-benchmark)
+    - [`/calculators/pt-chart`](https://hvaclogic.org/calculators/pt-chart)
+  - **Outcome**: Deployed deterministic ANSI/ASHRAE Standard 15-2024 and UL 60335-2-40 (4th Ed) calculation engine (`src/lib/math/a2l-refrigerant.ts`), master engineering guide, and open benchmark dataset containing 200 state vectors across 5 refrigerants, 8 architectural room volumes, and 5 system charge thresholds with downloadable 44.8 KB CSV. Formulated unmitigated charge limits ($m_1 = 0.20 \times \text{LFL} \times V_{\text{eff}}$), minimum room volume constraints, mitigation tiers (Tier 0 passive, Tier 1 continuous circulation, Tier 2 RDS detection and mechanical exhaust), and zeotropic temperature glide superheat/subcooling reference points. Minted Figshare DOI `10.6084/m9.figshare.33985834`, attached to dataset registry, and deployed radial cross-links to the PT Chart calculator.
+  - **Validation**: 170/170 unit tests passing across 38 test suites, 0 TypeScript errors, 100% static routes pre-rendered successfully.
+  - **Measurement Window**: 2026-09-24 to 2026-10-22 (28-day GSC tracking on A2L transition, R-454B charge limits, and temperature glide query clusters).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-24]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -355,12 +366,7 @@ Reply "Approved" to execute.
   - **Scope / Affected URLs**:
     - New Core Pillar: `/guides/a2l-refrigerant-transition-guide`
     - Benchmark Dataset: `/datasets/a2l-refrigerant-flammability-glide-benchmark`
-  - **Search Problem**: Search-intent gap for comprehensive A2L safety classifications, lower flammability limits (LFL), temperature glide tables, and charge limit calculations.
-  - **Evidence**: GSC impressions on PT Chart, refrigerant glide queries, and industry transition demand (ASHRAE/EPA regulations).
-  - **Expected Outcome**: New high-authority Core ranking asset capturing informational and reference search volume; anchors the low-GWP cluster.
-  - **Validation Method**: JSON-LD `TechArticle` & `Dataset` schema validation, responsive layout check, zero hydration errors.
-  - **Measurement Method**: GSC indexation speed and 28-day initial impression velocity.
-  - **Status**: `[BACKLOG / CANDIDATE]`
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-24]` (Moved to Section 5, Step 12)
 
 - **Candidate CORE-02**: *Building Envelope Psychrometrics & Condensation Dynamics Master Guide*
   - **Class**: `CORE PUBLICATION` (Tier 5 Priority)

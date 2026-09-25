@@ -575,6 +575,88 @@ export const BENCHMARK_DATASETS: BenchmarkDataset[] = [
       { vector_id: "ECA-VEC-0004", space_type: "classroom_age_5_8", category: "Educational", floor_area_sqft: 900, occupants: 25, ceiling_height_ft: 9, room_volume_cuft: 8100, ashrae_241_eca_p_cfm: 42.4, ashrae_241_eca_a_cfm: 0.12, required_eca_cfm: 1168, required_ach_equiv: 8.7, outdoor_air_cfm: 203, recirc_air_cfm: 1148, central_filter_merv: "MERV 11", filter_bioaerosol_eff: 0.5, delivered_filter_eca_cfm: 574, in_room_cadr_cfm: 250, room_mixing_factor: 0.9, delivered_in_room_eca_cfm: 225, uvc_eca_cfm: 0, total_delivered_eca_cfm: 1002, delivered_ach_equiv: 7.4, compliance_margin_cfm: -166, compliance_ratio: 0.858, irmm_compliance_status: "MARGINAL_DEFICIT", governing_standard: "ANSI/ASHRAE Standard 241-2023 Table 5-1" },
       { vector_id: "ECA-VEC-0005", space_type: "classroom_age_5_8", category: "Educational", floor_area_sqft: 900, occupants: 25, ceiling_height_ft: 9, room_volume_cuft: 8100, ashrae_241_eca_p_cfm: 42.4, ashrae_241_eca_a_cfm: 0.12, required_eca_cfm: 1168, required_ach_equiv: 8.7, outdoor_air_cfm: 203, recirc_air_cfm: 1148, central_filter_merv: "MERV 13", filter_bioaerosol_eff: 0.85, delivered_filter_eca_cfm: 975.8, in_room_cadr_cfm: 0, room_mixing_factor: 0.9, delivered_in_room_eca_cfm: 0, uvc_eca_cfm: 0, total_delivered_eca_cfm: 1178.8, delivered_ach_equiv: 8.7, compliance_margin_cfm: 10.8, compliance_ratio: 1.009, irmm_compliance_status: "COMPLIANT", governing_standard: "ANSI/ASHRAE Standard 241-2023 Table 5-1" }
     ]
+  },
+  {
+    slug: "a2l-refrigerant-flammability-glide-benchmark",
+    title: "Low-GWP A2L Refrigerant Flammability, Charge Limits, & Temperature Glide Benchmark Dataset",
+    subtitle: "200 deterministic thermodynamic state points evaluating ASHRAE 15-2024, ASHRAE 34, UL 60335-2-40, and EPA AIM Act transition limits across R-454B, R-32, R-454A, and R-1234yf.",
+    seoTitle: "A2L Refrigerant Flammability & Charge Limit Benchmark Dataset (200 Vectors)",
+    seoDescription: "Open benchmark dataset containing 200 deterministic state vectors evaluating ANSI/ASHRAE 15/34 and UL 60335-2-40 charge limits, room volume constraints, and zeotropic glide.",
+    description: "Deterministic thermodynamic and safety benchmark dataset evaluating 200 charge limit and flammability state vectors for next-generation low-GWP A2L refrigerants (R-454B, R-32, R-454A, R-1234yf) alongside baseline R-410A under ANSI/ASHRAE Standard 15-2024 and UL 60335-2-40 (4th Edition). Computes unmitigated charge limits (m1 = 0.20 × LFL × V), minimum room volumes, active mitigation requirements (RDS sensors and mechanical ventilation), and zeotropic temperature glide superheat/subcooling reference points.",
+    methodology: "Synthesized using HVACLogic's deterministic A2L thermophysical and flammability engine conforming to ANSI/ASHRAE Standard 15-2024 Section 7 and UL 60335-2-40 Annex GG. Lower Flammability Limits (LFL) and burning velocity ratings (Su) are derived from ANSI/ASHRAE Standard 34-2022. Saturation temperatures and zeotropic temperature glide calculations (ΔT_glide = T_dew - T_bubble) are validated against NIST REFPROP formulations.",
+    primaryDoi: "10.6084/m9.figshare.33985834",
+    publicationDate: "2026-09-24",
+    lastUpdated: "2026-09-24",
+    recordCount: 200,
+    filename: "a2l_refrigerant_flammability_glide_benchmark_2026.csv",
+    fileSizeBytes: 44834,
+    format: "CSV",
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    licenseName: "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+    governingStandards: [
+      "ANSI/ASHRAE Standard 15-2024",
+      "ANSI/ASHRAE Standard 34-2022",
+      "UL 60335-2-40 (4th Edition)",
+      "EPA AIM Act 40 CFR Part 84"
+    ],
+    companionCalculators: [
+      {
+        name: "Refrigerant PT Chart & Pressure-Temperature Calculator",
+        url: "/calculators/pt-chart",
+        description: "Evaluate saturated vapor and liquid equilibrium, dew point vs bubble point, and superheat/subcooling for A2L blends."
+      },
+      {
+        name: "Target Superheat & Subcooling Charging Calculator",
+        url: "/calculators/superheat-subcooling-calculator",
+        description: "Calculate target superheat (fixed orifice) and target subcooling (TXV) across R-454B, R-32, R-410A, and R-22 with EPA fault isolation guidance."
+      }
+    ],
+    companionResearch: [
+      {
+        name: "ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA) Monograph",
+        url: "/research/ashrae-241-equivalent-clean-airflow",
+        description: "Technical research monograph on pathogen mitigation and ventilation air delivery."
+      }
+    ],
+    repositories: [
+      {
+        platform: "figshare",
+        name: "Figshare Data Repository",
+        url: "https://doi.org/10.6084/m9.figshare.33985834",
+        doi: "10.6084/m9.figshare.33985834"
+      }
+    ],
+    variables: [
+      { name: "vector_id", type: "string", description: "Unique calculation vector identifier (A2L-VEC-0001 to A2L-VEC-0200)" },
+      { name: "refrigerant_id", type: "string", description: "Standardized lowercase refrigerant slug (r-454b, r-32, r-454a, r-1234yf, r-410a)" },
+      { name: "refrigerant_name", type: "string", description: "Official ASHRAE designated refrigerant name" },
+      { name: "safety_group", type: "string", description: "ASHRAE Standard 34 safety classification (A1, A2L)" },
+      { name: "chemical_composition", type: "string", description: "Mass percentage chemical formulation of pure fluid or blend" },
+      { name: "gwp_ar5", type: "number", description: "Global Warming Potential per IPCC 5th Assessment Report (100-yr horizon)" },
+      { name: "lfl_kg_m3", type: "number", unit: "kg/m³", description: "Lower Flammability Limit per ASHRAE 34" },
+      { name: "lfl_lb_ft3", type: "number", unit: "lb/cu ft", description: "Imperial Lower Flammability Limit" },
+      { name: "auto_ignition_temp_f", type: "number", unit: "°F", description: "Minimum auto-ignition temperature" },
+      { name: "burning_velocity_cm_s", type: "number", unit: "cm/s", description: "Laminar burning velocity (Su <= 10 cm/s for Class 2L)" },
+      { name: "temp_glide_f", type: "number", unit: "°F", description: "Zeotropic temperature glide at atmospheric/evaporator pressure" },
+      { name: "room_volume_cuft", type: "number", unit: "cu ft", description: "Interior volume of the smallest connected occupied space" },
+      { name: "ceiling_height_ft", type: "number", unit: "ft", description: "Floor-to-ceiling clear architectural height" },
+      { name: "floor_area_sqft", type: "number", unit: "sq ft", description: "Usable floor area of the target space" },
+      { name: "system_charge_lb", type: "number", unit: "lb", description: "Total system refrigerant holding charge (factory + lineset)" },
+      { name: "unmitigated_limit_m1_lb", type: "number", unit: "lb", description: "Maximum allowable charge without active mitigation (m1 = 0.20 × LFL × V)" },
+      { name: "is_unmitigated_compliant", type: "boolean", description: "Whether system charge is within unmitigated threshold m1" },
+      { name: "min_volume_unmitigated_cuft", type: "number", unit: "cu ft", description: "Minimum required room volume to install without mitigation" },
+      { name: "mitigation_tier_required", type: "string", description: "Required mitigation protocol per UL 60335-2-40" },
+      { name: "charging_phase", type: "string", description: "Mandatory field charging phase (Liquid Only for blends with glide)" },
+      { name: "superheat_calc_ref", type: "string", description: "Thermodynamic reference point for superheat (Dew Point for glide)" },
+      { name: "subcooling_calc_ref", type: "string", description: "Thermodynamic reference point for subcooling (Bubble Point for glide)" }
+    ],
+    previewRows: [
+      { vector_id: "A2L-VEC-0001", refrigerant_id: "r-454b", refrigerant_name: "R-454B", safety_group: "A2L", chemical_composition: "68.9% R-32 / 31.1% R-1234yf", gwp_ar5: 466, lfl_kg_m3: 0.303, lfl_lb_ft3: 0.01892, auto_ignition_temp_f: 928, burning_velocity_cm_s: 5.2, temp_glide_f: 2.7, room_volume_cuft: 250, ceiling_height_ft: 8, floor_area_sqft: 31.3, system_charge_lb: 2.5, unmitigated_limit_m1_lb: 0.95, is_unmitigated_compliant: false, min_volume_unmitigated_cuft: 661, mitigation_tier_required: "Tier 1: Continuous Airflow / Air Circulation", charging_phase: "Liquid Only", superheat_calc_ref: "Dew Point Saturated Temp", subcooling_calc_ref: "Bubble Point Saturated Temp" },
+      { vector_id: "A2L-VEC-0002", refrigerant_id: "r-454b", refrigerant_name: "R-454B", safety_group: "A2L", chemical_composition: "68.9% R-32 / 31.1% R-1234yf", gwp_ar5: 466, lfl_kg_m3: 0.303, lfl_lb_ft3: 0.01892, auto_ignition_temp_f: 928, burning_velocity_cm_s: 5.2, temp_glide_f: 2.7, room_volume_cuft: 250, ceiling_height_ft: 8, floor_area_sqft: 31.3, system_charge_lb: 4.0, unmitigated_limit_m1_lb: 0.95, is_unmitigated_compliant: false, min_volume_unmitigated_cuft: 1057, mitigation_tier_required: "Tier 1: Continuous Airflow / Air Circulation", charging_phase: "Liquid Only", superheat_calc_ref: "Dew Point Saturated Temp", subcooling_calc_ref: "Bubble Point Saturated Temp" },
+      { vector_id: "A2L-VEC-0016", refrigerant_id: "r-454b", refrigerant_name: "R-454B", safety_group: "A2L", chemical_composition: "68.9% R-32 / 31.1% R-1234yf", gwp_ar5: 466, lfl_kg_m3: 0.303, lfl_lb_ft3: 0.01892, auto_ignition_temp_f: 928, burning_velocity_cm_s: 5.2, temp_glide_f: 2.7, room_volume_cuft: 1000, ceiling_height_ft: 8, floor_area_sqft: 125, system_charge_lb: 2.5, unmitigated_limit_m1_lb: 3.78, is_unmitigated_compliant: true, min_volume_unmitigated_cuft: 661, mitigation_tier_required: "None (Unmitigated Compliant)", charging_phase: "Liquid Only", superheat_calc_ref: "Dew Point Saturated Temp", subcooling_calc_ref: "Bubble Point Saturated Temp" },
+      { vector_id: "A2L-VEC-0041", refrigerant_id: "r-32", refrigerant_name: "R-32", safety_group: "A2L", chemical_composition: "100% R-32 (Pure Single-Component)", gwp_ar5: 675, lfl_kg_m3: 0.307, lfl_lb_ft3: 0.01917, auto_ignition_temp_f: 1198, burning_velocity_cm_s: 6.7, temp_glide_f: 0, room_volume_cuft: 250, ceiling_height_ft: 8, floor_area_sqft: 31.3, system_charge_lb: 2.5, unmitigated_limit_m1_lb: 0.96, is_unmitigated_compliant: false, min_volume_unmitigated_cuft: 652, mitigation_tier_required: "Tier 1: Continuous Airflow / Air Circulation", charging_phase: "Vapor or Liquid", superheat_calc_ref: "Mid/Mean Saturated Temp", subcooling_calc_ref: "Mid/Mean Saturated Temp" },
+      { vector_id: "A2L-VEC-0161", refrigerant_id: "r-410a", refrigerant_name: "R-410A", safety_group: "A1", chemical_composition: "50.0% R-32 / 50.0% R-125 (Near-Azeotropic Blend)", gwp_ar5: 1924, lfl_kg_m3: 0, lfl_lb_ft3: 0, auto_ignition_temp_f: 0, burning_velocity_cm_s: 0, temp_glide_f: 0.2, room_volume_cuft: 250, ceiling_height_ft: 8, floor_area_sqft: 31.3, system_charge_lb: 2.5, unmitigated_limit_m1_lb: 999.99, is_unmitigated_compliant: true, min_volume_unmitigated_cuft: 0, mitigation_tier_required: "None (Unmitigated Compliant)", charging_phase: "Liquid Only", superheat_calc_ref: "Mid/Mean Saturated Temp", subcooling_calc_ref: "Mid/Mean Saturated Temp" }
+    ]
   }
 ];
 

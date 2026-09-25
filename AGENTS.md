@@ -204,8 +204,20 @@
   - **Strict Contrast & Legibility**: Ensure high contrast in both dark and light modes. Form labels and help text must use theme variables (`var(--ink)`, `var(--ink-secondary)`, `var(--surface)`) rather than low-contrast hardcoded grays. Never generate raw unstyled form elements or uncoordinated card wrappers.
 - **Rule 20: Standardized Protocol for External Distribution & Repository Submissions**:
   - **Strict 1-Platform-At-A-Time Presentation**: Whenever drafting or preparing external distribution packages (Figshare, Zenodo, BibSonomy, ORCID, MERLOT, OER Commons), output **STRICTLY ONE PLATFORM PER TURN**. NEVER bundle multiple platforms (e.g., BibSonomy + ORCID) into a single response. Always wait for the user to complete or confirm the first platform before presenting the next.
-  - **ORCID Add-by-DOI Standard**: For ORCID profiling, provide **STRICTLY THE VERIFIED DOI** in a single 1-click copyable code block for instant import via ORCID's "Add by DOI" feature. Never dump manual field forms unless explicitly requested by the user.
-  - **Max 3 Generic Categories & Keywords**: All repository and indexing submissions must use broad, high-level terms with a **strict ceiling of 3 categories and 3 keywords/tags** (e.g., `Building Engineering, Mechanical Engineering, Environmental Engineering` and `HVAC, Ventilation, Indoor Air Quality`). Never generate long or overly specific keyword lists.
+  - **ORCID Submission Protocol & Schema**:
+    - **Primary Option (Instant Import)**: Always present **Option 1: Add by DOI** first with strictly the verified DOI in a single 1-click copyable code block.
+    - **Full Work Details Schema**: Always accompany with the complete copyable form matching ORCID's exact fields:
+      1. `Work type` (e.g., `Data set` or `Report`)
+      2. `Work title`
+      3. `Work subtitle`
+      4. `Publisher` (e.g., `Figshare` or `HVACLogic`)
+      5. `Publication date` (separate `Year`, `Month`, `Day` fields)
+      6. `Link` (canonical HVACLogic URL)
+      7. `Citation type` (`BIBTEX`) & `Citation description` (copyable BibTeX block)
+      8. `Work identifiers` (`doi: 10.6084/...`, URL, Relationship: `Self`)
+      9. `Contributors` (Author: `Miad Saadidi`)
+  - **Max 3 Generic Keywords**: All repository, metadata, and indexing submissions (Figshare, BibSonomy, ORCID, Zenodo) must strictly use broad, high-level terms with a **strict maximum ceiling of 3 generic keywords/tags** (e.g., `hvac, thermodynamics, refrigeration`). Never generate long, multi-word, or overly specific keyword lists.
+  - **Max 2 References / Related Materials**: Never provide more than **2 related materials/references** in external distribution packages.
   - **Figshare Related Materials Format**: Always format references as explicit, separate 1-click copyable blocks: 1) `Label`, followed immediately by 2) `Link`.
 
 ---

@@ -479,6 +479,70 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
     icon: "📐",
   },
   {
+    slug: "a2l-refrigerant-transition-guide",
+    title: "Low-GWP A2L Refrigerant Transition & Charge Limit Sizing: Master Engineering Guide",
+    shortTitle: "A2L Refrigerant Transition & Charge Limits",
+    summary:
+      "Definitive thermodynamic and safety guide for transitioning to next-generation A2L refrigerants (R-454B, R-32). Details ASHRAE 15-2024 charge calculations (m1, m2, m3), UL 60335-2-40 detection requirements, and zeotropic temperature glide charging protocols.",
+    category: "Diagnostics & PT",
+    pillar: "field-diagnostics",
+    targetRoute: "/guides/a2l-refrigerant-transition-guide",
+    readingTime: "14 min read",
+    difficulty: "Advanced",
+    standards: [
+      "ANSI/ASHRAE Standard 15-2024",
+      "ANSI/ASHRAE Standard 34-2022",
+      "UL 60335-2-40 (4th Edition)",
+      "EPA AIM Act 40 CFR Part 84",
+    ],
+    keyEquations: [
+      {
+        label: "ASHRAE 15 Unmitigated Charge Limit (m1)",
+        formula: "m1 = 0.20 × LFL × V_eff",
+        explanation: "Computes the maximum allowable passive refrigerant charge without requiring leak mitigation or detection sensors.",
+      },
+      {
+        label: "Minimum Unmitigated Space Volume",
+        formula: "V_min = M_charge / (0.20 × LFL)",
+        explanation: "Determines the smallest connected occupied room volume required for safe passive installation of a given system charge.",
+      },
+      {
+        label: "Zeotropic Temperature Glide",
+        formula: "ΔT_glide = T_dew(P) - T_bubble(P)",
+        explanation: "Calculates the boiling/condensing temperature range of zeotropic refrigerant mixtures at constant pressure.",
+      },
+    ],
+    keyTakeaways: [
+      "Under EPA AIM Act regulations, stationary comfort cooling equipment manufactured after January 1, 2025/2026 must utilize refrigerants with GWP < 700, establishing R-454B (GWP 466) and R-32 (GWP 675) as standard.",
+      "ASHRAE 15-2024 Equation m1 = 0.20 × LFL × V_eff dictates the unmitigated safety boundary; for R-454B (LFL = 0.0189 lb/ft³), a 1,000 cu ft space permits up to 3.78 lb before requiring mitigation.",
+      "UL 60335-2-40 mandates factory-integrated Refrigerant Detection Systems (RDS) and continuous circulation blower interlocks whenever holding charges exceed m1.",
+      "Zeotropic blends like R-454B exhibit a 2.7°F temperature glide; technicians MUST charge strictly in liquid state and calculate superheat from Dew Point and subcooling from Bubble Point.",
+    ],
+    companionCalculators: [
+      {
+        name: "Refrigerant PT Chart Calculator",
+        route: "/calculators/pt-chart",
+        description: "Interactive dew/bubble saturation temperatures for R-454B, R-32, and R-410A.",
+      },
+      {
+        name: "Target Superheat & Subcooling",
+        route: "/calculators/superheat-subcooling-calculator",
+        description: "Charging diagnostic sizer with zeotropic glide dew/bubble point isolation.",
+      },
+    ],
+    companionDatasets: [
+      {
+        name: "A2L Flammability & Glide Benchmark Dataset",
+        route: "/datasets/a2l-refrigerant-flammability-glide-benchmark",
+        description: "200 deterministic state points evaluating ASHRAE 15/34 and UL 60335-2-40 charge limits.",
+      },
+    ],
+    status: "published",
+    scheduledDate: "2026-09-24",
+    color: "#10b981",
+    icon: "❄️",
+  },
+  {
     slug: "ventilation-makeup-air-depressurization",
     title: "Residential & Commercial Ventilation & Make-Up Air Engineering Guide",
     shortTitle: "Ventilation & Make-Up Air Guide",
