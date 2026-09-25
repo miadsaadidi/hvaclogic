@@ -27,6 +27,29 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-09-25] — CORE PUBLICATION: Building Envelope Psychrometrics & Interstitial Condensation Dynamics Master Guide (CORE-02)
+- **Objective Class**: `CORE PUBLICATION` (Tier 5 Priority / Research & Search-Intent Gap)
+- **Autonomous Priority Selected**: Tier 5 Core Publication & Search-Intent Gap per ASHRAE Handbook of Fundamentals 2021 (Chapters 1 & 26: *Moist Air Psychrometrics* & *Moisture Control in Building Assemblies*), EN ISO 13788 (Glaser Dew Point Method), and IRC Section R702.7 / IECC 2024.
+- **Evidence & Rationale**: High-intent search gap connecting moist air thermodynamics ($T_{\text{db}}, \phi, P_v, T_{\text{dp}}$) with building enclosure heat and moisture transport, multi-layer wall thermal gradients, and Glaser interstitial condensation planes. Published comprehensive engineering master guide and deterministic hydrothermal calculation engine modeling Fourier conductive temperature drops, Fickian vapor pressure gradients across ASTM E96 permeance classes (Class I, II, III), and interstitial condensation accumulation rates.
+- **Target Assets**:
+  - Hydrothermal Math Engine: [`src/lib/math/envelope-condensation.ts`](../src/lib/math/envelope-condensation.ts)
+  - Unit Test Suite: [`src/lib/math/envelope-condensation.test.ts`](../src/lib/math/envelope-condensation.test.ts)
+  - Master Engineering Guide: [`src/app/guides/psychrometrics-building-envelope-physics/page.tsx`](../src/app/guides/psychrometrics-building-envelope-physics/page.tsx) (Route: `/guides/psychrometrics-building-envelope-physics`)
+  - Guides Registry: [`src/lib/data/guides-registry.ts`](../src/lib/data/guides-registry.ts)
+  - Radial Internal Links: [`src/app/calculators/psychrometric-calculator/page.tsx`](../src/app/calculators/psychrometric-calculator/page.tsx) & [`src/app/calculators/effective-r-value-calculator/page.tsx`](../src/app/calculators/effective-r-value-calculator/page.tsx)
+- **Actions Executed**:
+  1. *Hydrothermal Math Engine*: Developed pure TypeScript calculation engine for multi-layer wall thermal gradients, Fickian vapor diffusion, and Glaser dew point plane condensation mass flux ($g_c$).
+  2. *Core Reference Guide*: Published master engineering guide with Highwire Press metadata, structured `TechArticle` schema, and winter/summer hydrothermal failure mode analyses.
+  3. *Radial Linking*: Deployed contextual engineering links across Psychrometric Calculator and Effective R-Value Calculator pointing directly to the guide.
+- **Validation & Quality Checks**:
+  - `npm test`: 39/39 test suites passed, 174/174 unit tests passing (100% clean).
+  - `npm run typecheck`: 0 TypeScript errors.
+  - `npm run build`: 100% static routes pre-rendered successfully (SSG) with zero hydration or route errors.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+- **Status / Follow-Up Date**: `[COMPLETED / 28-DAY GSC MEASUREMENT MODE — 2026-09-25 to 2026-10-23]`
+
 ### [2026-09-24] — CORE PUBLICATION: ASHRAE 15/34 Low-GWP A2L Refrigerant Transition Master Guide & Benchmark Dataset (CORE-01)
 - **Objective Class**: `CORE PUBLICATION` (Tier 5 Priority / Core Publication & Freshness Gap)
 - **Autonomous Priority Selected**: Tier 5 Core Publication & Additive Research Gap per ANSI/ASHRAE Standard 15-2024 (*Safety Standard for Refrigeration Systems*), ANSI/ASHRAE Standard 34-2022, UL 60335-2-40 (4th Edition), and EPA AIM Act 40 CFR Part 84.

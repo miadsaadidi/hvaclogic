@@ -219,7 +219,7 @@ export default function EffectiveRValueCalculatorPage() {
               <li>Continuous insulation rating: 1.5 inches &times; R-6.0/inch (ASTM C1289) = <strong>R-9.0 ci</strong>.</li>
               <li>Add all series layers: R_total = R_base (2.52) + R_ci (9.0) + R_eff_cavity (7.1) = <strong>R-18.62</strong>.</li>
               <li>Calculate overall assembly U-factor: U = 1 / 18.62 = <strong>0.054 BTU/hr·ft²·°F</strong>.</li>
-              <li><em>Result:</em> <strong>Meets IECC 2024 / ASHRAE 90.1</strong> prescriptive assembly U-factor requirements across Climate Zones 1 through 6, cutting conductive wall heat loss by <strong>48%</strong> compared to the cavity-only assembly.</li>
+              <li><em>Result:</em> <strong>Meets IECC 2024 / ASHRAE 90.1</strong> prescriptive assembly U-factor requirements across Climate Zones 1 through 6, cutting conductive wall heat loss by <strong>48%</strong> compared to the cavity-only assembly. For vapor diffusion and Glaser condensation calculations across these assemblies, see our <Link href="/guides/psychrometrics-building-envelope-physics" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Psychrometrics &amp; Building Envelope Physics Master Guide</Link>.</li>
             </ol>
           </div>
         </div>
