@@ -406,6 +406,35 @@ export default function A2LRefrigerantTransitionGuidePage() {
             </p>
           </div>
         </div>
+
+        <div style={{ marginTop: "1.25rem", padding: "1rem 1.25rem", background: "rgba(59, 130, 246, 0.08)", border: "1px solid rgba(59, 130, 246, 0.25)", borderRadius: "0.5rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.75rem" }}>
+            <div>
+              <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: "0.95rem" }}>
+                Deep Dive: R-454B vs. R-32 Field Service &amp; Recovery Monograph
+              </div>
+              <p style={{ margin: "0.25rem 0 0", fontSize: "0.85rem", color: "var(--ink-secondary)" }}>
+                Compare DOT 4BA cylinder recovery fill weights, spark-proof tooling standards, and 500-micron vacuum decay diagnostics.
+              </p>
+            </div>
+            <Link
+              href="/research/r454b-r32-field-handling-protocols"
+              style={{
+                display: "inline-block",
+                padding: "0.45rem 0.9rem",
+                fontSize: "0.82rem",
+                fontWeight: 700,
+                background: "var(--accent-primary)",
+                color: "#ffffff",
+                borderRadius: "0.375rem",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Read Field Protocol Monograph →
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* SECTION 6: OPEN DATASET CITATION */}
@@ -493,6 +522,26 @@ export default function A2LRefrigerantTransitionGuidePage() {
             </div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
               Field charging diagnostic engine isolating saturated bubble and dew points for accurate TXV and fixed orifice tuning.
+            </p>
+          </Link>
+
+          <Link
+            href="/research/r454b-r32-field-handling-protocols"
+            style={{
+              display: "block",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderRadius: "0.5rem",
+              padding: "1.25rem",
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <div style={{ fontWeight: 700, color: "var(--accent-primary)", marginBottom: "0.5rem" }}>
+              Field Handling Monograph (Report HL-TR-2026-A2L02) →
+            </div>
+            <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
+              DOT 4BA cylinder recovery limits, 80% liquid fill safety margins, spark-proof tooling, and vacuum decay tests.
             </p>
           </Link>
         </div>

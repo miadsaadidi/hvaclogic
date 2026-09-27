@@ -1008,6 +1008,164 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   url = {https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture (Technical Report No. HL-TR-2026-AIR241). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow`
+  },
+  {
+    slug: "r454b-r32-field-handling-protocols",
+    title: "R-454B vs. R-32 Field Service Protocols: Recovery Cylinder Sizing, Temperature Glide Compensation, and Tooling Requirements Under ASHRAE Standard 15 and UL 60335-2-40",
+    seoTitle: "R-454B vs R-32 Field Service & Recovery Protocols",
+    seoDescription: "Comparative technical evaluation of R-454B and R-32 field handling: DOT 4BA cylinder recovery fill limits, zeotropic glide compensation, and spark-proof tooling.",
+    subtitle: "A field engineering framework for low-GWP A2L refrigerant recovery, bubble-versus-dew point superheat/subcooling charging, vacuum dehydration decay criteria, and ignition-proof instrumentation.",
+    abstract: "As the North American HVAC industry transitions away from high-GWP R-410A (GWP 2,088) to low-GWP A2L mildly flammable alternatives under the EPA AIM Act and UL 60335-2-40 (4th Edition), field service technicians and mechanical contractors encounter divergent thermodynamic behaviors and safety protocols between R-454B (Opteon XL41, GWP 465) and pure R-32 (Difluoromethane, GWP 675). This research monograph presents a rigorous comparative engineering analysis of field service workflows across four critical domains: (1) Recovery cylinder filling limits per DOT 4BA/4BW and AHRI Guideline K, accounting for specific gravity shifts at 130°F (0.88 for R-454B vs. 0.83 for R-32) and mandatory 400 psig pressure relief valve ratings; (2) Zeotropic temperature glide compensation, proving that R-454B's 1.5 K (2.7°F) glide mandates liquid-phase charging and explicit separation of dew-point suction superheat from bubble-point liquid subcooling to prevent charge errors exceeding 15%; (3) Micron vacuum decay criteria, defining dehydration vs. active leak thresholds; and (4) Tooling ignition-proofing under UL 121201 / Class I, Division 2, verifying brushless recovery machines, reverse-thread CGA-164/166 fittings, and A2L-certified electronic leak detection.",
+    keyFindings: [
+      "DOT 4BA and AHRI Guideline K mandate an 80% liquid fill limit based on liquid density at 130°F (54.4°C), yielding a maximum net recovery charge of 21.1 lb for R-454B (SG 0.88) and 19.9 lb for R-32 (SG 0.83) in a standard 30 lb water capacity (WC) recovery cylinder.",
+      "Legacy DOT-4BA350 cylinders are strictly prohibited for A2L service; cylinders must be rated DOT-4BA400 or DOT-4BW400 with pressure relief valves set to 400–450 psig to accommodate higher A2L saturation vapor pressures under direct solar thermal exposure.",
+      "R-454B is a zeotropic blend (68.9% R-32 / 31.1% R-1234yf) exhibiting 2.7°F (1.5 K) temperature glide, requiring liquid-only charging and explicit measurement of superheat from dew point pressure and subcooling from bubble point pressure. Using midpoint saturation curves introduces an operational subcooling error of up to 1.4°F, causing systematic system undercharging.",
+      "R-32 is a single-component pure substance exhibiting 0.0°F temperature glide, allowing either liquid or vapor phase charging and standard single-line saturation pressure-temperature correlation without fractionation risk.",
+      "Field vacuum dehydration must achieve < 500 microns with a 10-minute isolated hold test. Vacuum rise stabilizing between 500 and 1,000 microns indicates residual moisture boiling off from hygroscopic POE lubricant, whereas continuous rise above 1,000 microns diagnoses an active hermetic leak.",
+      "Tooling in proximity to A2L service ports must meet UL 121201 / Class I, Division 2 non-incendive standards; recovery units and vacuum pumps must feature sealed electrical switches, brushless DC motors, and CGA-164 / CGA-166 left-handed reverse threads to prevent cross-contamination with A1 systems."
+    ],
+    governingStandards: [
+      "ANSI/ASHRAE Standard 15-2024: Safety Standard for Refrigeration Systems",
+      "ANSI/ASHRAE Standard 34-2022: Designation and Safety Classification of Refrigerants",
+      "UL 60335-2-40 (4th Edition): Household and Similar Electrical Appliances - Safety - Part 2-40",
+      "AHRI Guideline K: Containers for Recovered Fluorocarbon Refrigerants",
+      "DOT Title 49 CFR Part 173 / 178 (DOT-4BA400 & DOT-4BW400 Specifications)",
+      "EPA Clean Air Act Title VI Section 608 & AIM Act (40 CFR Part 84)"
+    ],
+    formulas: [
+      {
+        title: "DOT & AHRI Guideline K Maximum Recovery Cylinder Fill Weight",
+        latex: "W_{\\text{max}} = 0.80 \\times \\text{WC} \\times \\text{SG}_{130^\\circ\\text{F}}",
+        explanation: "Calculates the maximum permissible refrigerant fill mass (lb) in a recovery vessel, where WC is the cylinder stamped water capacity (lb) and SG is refrigerant liquid specific gravity at 130°F (0.88 for R-454B, 0.83 for R-32)."
+      },
+      {
+        title: "Zeotropic Evaporator Superheat (Dew Point Reference)",
+        latex: "\\text{SH}_{\\text{zeotropic}} = T_{\\text{suction, line}} - T_{\\text{dew}}(P_{\\text{suction}})",
+        explanation: "Determines true evaporator vapor superheat for zeotropic blend R-454B by referencing suction pressure to the vapor dew-point temperature saturation curve."
+      },
+      {
+        title: "Zeotropic Condenser Subcooling (Bubble Point Reference)",
+        latex: "\\text{SC}_{\\text{zeotropic}} = T_{\\text{bubble}}(P_{\\text{liquid}}) - T_{\\text{liquid, line}}",
+        explanation: "Determines true liquid line subcooling for zeotropic blend R-454B by referencing head/liquid pressure to the liquid bubble-point temperature saturation curve."
+      },
+      {
+        title: "Glide Measurement Inaccuracy Penalty",
+        latex: "\\Delta T_{\\text{error}} = |T_{\\text{bubble}}(P) - T_{\\text{dew}}(P)| = \\Delta T_{\\text{glide}} \\approx 2.7^\\circ\\text{F} \\ (1.5\\text{ K})",
+        explanation: "Quantifies the systematic temperature calculation error incurred if a technician evaluates R-454B using single-point average saturation curves instead of discrete dew/bubble points."
+      }
+    ],
+    authors: ["HVACLogic Research Group", "Miad S."],
+    publicationDate: "2026-09-27",
+    reportNumber: "HL-TR-2026-A2L02",
+    pdfUrl: "/whitepapers/HVACLogic_A2L_Refrigerant_Field_Service_Protocols.pdf",
+    repositories: [
+      {
+        platform: "academia",
+        label: "HVACLogic Series on Academia.edu",
+        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
+        badge: "DA 93"
+      },
+      {
+        platform: "figshare",
+        label: "Figshare A2L Benchmark Dataset",
+        url: "https://doi.org/10.6084/m9.figshare.33985834",
+        badge: "DOI 10.6084/m9.figshare.33985834"
+      }
+    ],
+    companionCalculators: [
+      {
+        name: "Pressure-Temperature (PT) Chart & Saturation Calculator",
+        route: "/calculators/pt-chart",
+        description: "Interactive saturation curve solver modeling dew/bubble point split and zeotropic glide for R-454B and R-32."
+      },
+      {
+        name: "Low-GWP A2L Refrigerant Transition Master Guide",
+        route: "/guides/a2l-refrigerant-transition-guide",
+        description: "Comprehensive engineering reference on ASHRAE 15 charge limit calculations, minimum room volumes, and RDS mitigation."
+      },
+      {
+        name: "Refrigerant Line-Set Mass Addition & Charge Sizing",
+        route: "/calculators/refrigerant-charge-calculator",
+        description: "Calculate liquid line-set mass addition, elevation lift penalties, and factory trim charges for low-GWP systems."
+      }
+    ],
+    tables: [
+      {
+        title: "R-454B vs. R-32 vs. R-410A Comprehensive Field Engineering Comparison Matrix",
+        subtitle: "Key thermodynamic, regulatory, and field service handling differences.",
+        standardReference: "ANSI/ASHRAE Standard 15-2024, ASHRAE Standard 34, & UL 60335-2-40",
+        headers: ["Parameter / Characteristic", "R-454B (Opteon XL41)", "R-32 (Difluoromethane)", "R-410A (Legacy Baseline)", "Impact / Protocol"],
+        rows: [
+          ["ASHRAE 34 Safety Group", "A2L (Mildly Flammable)", "A2L (Mildly Flammable)", "A1 (Non-Flammable)", "Requires spark-proof tooling and A2L leak detection"],
+          ["Chemical Composition", "68.9% R-32 / 31.1% R-1234yf", "100% R-32", "50% R-32 / 50% R-125", "R-454B is zeotropic blend; R-32 is pure fluid"],
+          ["Global Warming Potential (AR4 / AR5)", "465 / 466", "675 / 675", "2,088 / 1,924", "Both meet EPA AIM Act < 700 GWP limit for comfort cooling"],
+          ["Temperature Glide (1 atm)", "2.7°F (1.5 K)", "0.0°F (0.0 K)", "0.2°F (0.1 K)", "R-454B requires dew/bubble separation; R-32 has zero glide"],
+          ["Charging Phase Protocol", "Liquid Phase Only", "Vapor or Liquid Phase", "Liquid Phase Only", "Prevents blend fractionation during charging"],
+          ["Recovery Cylinder Max Fill (30 lb WC)", "21.1 lb", "19.9 lb", "21.6 lb", "R-32 has lowest liquid density, limiting fill capacity"],
+          ["Recovery Cylinder Rating", "DOT-4BA400 / DOT-4BW400", "DOT-4BA400 / DOT-4BW400", "DOT-4BA350 / DOT-4BA400", "Minimum 400 psig service pressure rating mandated for A2L"],
+          ["Cylinder Valve Thread", "CGA 164 (1/4\" LH)", "CGA 166 (1/2\" 16 LH)", "Standard 1/4\" SAE Right-Hand", "Left-handed reverse threads prevent accidental cross-contamination"],
+          ["Compressor Lubricant", "POE Oil (Hygroscopic)", "POE Oil (Hygroscopic)", "POE / PVE Oil", "Deep evacuation (< 500 microns) required to remove moisture"],
+          ["Evacuation Target & Hold", "< 500 microns (10-min hold)", "< 500 microns (10-min hold)", "< 500 microns", "Decay > 1000 microns indicates active hermetic leak"]
+        ],
+        footnote: "Derived from ANSI/ASHRAE Standard 15-2024, AHRI Guideline K, and UL 60335-2-40 (4th Edition)."
+      },
+      {
+        title: "Recovery Cylinder Tare, Water Capacity, and 80% Max Net Charge Thresholds",
+        subtitle: "DOT 4BA / AHRI Guideline K maximum safe fill weights across cylinder sizes at 130°F (54.4°C).",
+        standardReference: "DOT 49 CFR Part 178 & AHRI Guideline K",
+        headers: ["Cylinder Size (WC)", "Tare Weight (lb)", "R-454B Max Net (lb)", "R-454B Gross (lb)", "R-32 Max Net (lb)", "R-32 Gross (lb)", "R-410A Max Net (lb)", "R-410A Gross (lb)"],
+        rows: [
+          ["30 lb WC", "16.5", "21.1", "37.6", "19.9", "36.4", "21.6", "38.1"],
+          ["50 lb WC", "27.5", "35.2", "62.7", "33.2", "60.7", "36.0", "63.5"],
+          ["100 lb WC", "51.0", "70.4", "121.4", "66.4", "117.4", "72.0", "123.0"]
+        ],
+        footnote: "Formula: W_max = 0.80 × Water Capacity × Specific Gravity at 130°F (R-454B SG = 0.88, R-32 SG = 0.83, R-410A SG = 0.90)."
+      }
+    ],
+    technicalSections: [
+      {
+        title: "1. Recovery Cylinder Filling Limits & Hydrostatic Overfill Protection (DOT 4BA / AHRI Guideline K)",
+        content: [
+          "Title 49 CFR Part 173 and AHRI Guideline K mandate that recovery vessels must never exceed 80% liquid volumetric capacity at 130°F (54.4°C) to prevent catastrophic vessel rupture driven by liquid thermal expansion. Because liquid refrigerant densities vary significantly across chemical compositions, technicians cannot apply uniform weight cutoffs across blends.",
+          "At 130°F, R-454B exhibits a specific gravity of 0.88, while pure R-32 has a lower specific gravity of 0.83. In a standard 30 lb water capacity (WC) recovery cylinder, the maximum safe net charge is 21.1 lb for R-454B compared to only 19.9 lb for R-32. Filling a 30 lb cylinder with more than 19.9 lb of R-32 violates federal DOT ullage requirements.",
+          "Furthermore, legacy DOT-4BA350 cylinders (350 psig relief setting) are strictly prohibited for A2L refrigerants. At elevated summer design temperatures (130°F), R-454B saturation pressure reaches 446.5 psig, and R-32 reaches 490.7 psig. Service personnel must exclusively deploy DOT-4BA400 or DOT-4BW400 vessels equipped with pressure relief valves calibrated to 400–450 psig, labeled with red collar rings, and fitted with left-handed reverse threads (CGA 164 / CGA 166)."
+        ]
+      },
+      {
+        title: "2. Zeotropic Temperature Glide & Superheat/Subcooling Separation",
+        content: [
+          "R-454B is a zeotropic blend (68.9% R-32 and 31.1% R-1234yf) with a temperature glide of approximately 1.5 K (2.7°F) at typical low-side operating pressures. In contrast, R-32 is a pure single-component fluid with 0.0°F glide.",
+          "Because R-454B components boil at different rates across the evaporator coil, the suction line superheat represents vapor leaving the coil and must be measured using the DEW POINT saturation pressure curve: SH = T_suction - T_dew(P_suction).",
+          "Conversely, liquid line subcooling represents 100% condensed liquid exiting the condenser coil and must be measured using the BUBBLE POINT saturation curve: SC = T_bubble(P_liquid) - T_liquid. Measuring subcooling against dew point pressure introduces an immediate 1.35°F to 2.7°F error, leading to systemic undercharging and high head pressure.",
+          "Because of this glide and differential volatility, R-454B cylinders must always be charged in the liquid phase to prevent vapor-space blend fractionation."
+        ]
+      },
+      {
+        title: "3. Deep Vacuum Dehydration (< 500 Microns) and Hold Diagnostics",
+        content: [
+          "Systems charged with A2L refrigerants universally utilize Polyolester (POE) compressor lubricants (ISO VG 32 or 68). Synthetic POE oils are hygroscopic, absorbing ambient atmospheric moisture at rates up to 10 times higher than legacy mineral oils. Moisture interacting with POE oil under operating temperatures produces hydrofluoric acid and sludge.",
+          "Field evacuation must pull the entire circuit down below 500 microns (0.50 Torr). Once isolated, a 10-minute vacuum hold test serves as the definitive diagnostic benchmark: if vacuum rises and levels off between 500 and 1,000 microns, residual moisture is boiling out of the oil, necessitating an Oxygen-Free Nitrogen (OFN) purge and re-evacuation. A continuous rise past 1,000 microns confirms an active mechanical leak.",
+          "Oxygen or compressed air must never be used for pressure testing or purging, as compressing oxygen with mildly flammable A2L vapors risks auto-ignition."
+        ]
+      },
+      {
+        title: "4. Tooling Compliance & Non-Incendive Standards (UL 121201)",
+        content: [
+          "Servicing A2L systems requires dedicated tools certified non-incendive per UL 121201 / CSA C22.2 No. 213 (Class I, Division 2 / Zone 2). Electrical recovery machines and vacuum pumps must feature sealed on/off switches, brushless DC motors, and sealed start relays to eliminate open arcing contacts.",
+          "Electronic leak detectors must conform to ASHRAE Standard 173 and UL 60335-2-40 Annex LL, maintaining a certified sensitivity of 3 grams per year or better for mildly flammable refrigerants.",
+          "Hoses and manifold gauges must be rated for minimum 800 psig working pressure (4,000 psig burst) and equipped with CGA-164 (1/4\" LH) or CGA-166 (1/2\" 16 LH) reverse threads to prevent cross-connection with legacy R-410A systems."
+        ]
+      }
+    ],
+    bibtex: `@techreport{hvaclogic_2026_r454b_r32_field_handling_protocols,
+  author = {{HVACLogic Research Group} and S., Miad},
+  title = {R-454B vs. R-32 Field Service Protocols: Recovery Cylinder Sizing, Temperature Glide Compensation, and Tooling Requirements Under ASHRAE Standard 15 and UL 60335-2-40},
+  institution = {HVACLogic Open-Access Building Science Monograph Series},
+  year = {2026},
+  number = {HL-TR-2026-A2L02},
+  url = {https://hvaclogic.org/research/r454b-r32-field-handling-protocols}
+}`,
+    apa: `HVACLogic Research Group, & S., M. (2026). R-454B vs. R-32 Field Service Protocols: Recovery Cylinder Sizing, Temperature Glide Compensation, and Tooling Requirements Under ASHRAE Standard 15 and UL 60335-2-40 (Technical Report No. HL-TR-2026-A2L02). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/r454b-r32-field-handling-protocols`
   }
 ];
 
