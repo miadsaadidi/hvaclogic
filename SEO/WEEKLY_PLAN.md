@@ -338,6 +338,17 @@ Reply "Approved" to execute.
   - **Measurement Window**: 2026-09-25 to 2026-10-23 (28-day GSC tracking on hydrothermal envelope, condensation planes, and vapor retarder query clusters).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-25]`
 
+- **Step 14 — Layer 1 Supporting Publication (`L1-01`)**: *R-454B vs. R-32 Field Service Protocols Technical Monograph*
+  - **Class**: `CLUSTER PUBLICATION` (Tier 6 Priority / Layer 1 Supporting Spoke)
+  - **Scope / Affected URLs**:
+    - [`/research/r454b-r32-field-handling-protocols`](https://hvaclogic.org/research/r454b-r32-field-handling-protocols)
+    - [`/guides/a2l-refrigerant-transition-guide`](https://hvaclogic.org/guides/a2l-refrigerant-transition-guide)
+    - [`/calculators/pt-chart`](https://hvaclogic.org/calculators/pt-chart)
+  - **Outcome**: Deployed deterministic A2L field service calculation engine (`src/lib/math/a2l-field-service.ts`) modeling DOT 4BA / AHRI Guideline K recovery cylinder maximum fill weights ($W_{\text{max}} = 0.80 \times \text{WC} \times \text{SG}_{130^\circ\text{F}}$), zeotropic glide superheat/subcooling dew vs. bubble point separation, 500-micron vacuum decay hold test evaluation, and UL 121201 spark-proof tooling certification. Published open technical monograph (Report No. `HL-TR-2026-A2L02`) with structured schema, Highwire Press metadata, and bidirectional radial cross-links.
+  - **Validation**: 184/184 unit tests passing across 40 test suites, 0 TypeScript errors, 100% static routes pre-rendered successfully.
+  - **Measurement Window**: 2026-09-27 to 2026-10-25 (28-day GSC tracking on long-tail A2L recovery, cylinder tare, and field handling query clusters).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-27]`
+
 ---
 
 ## 6. Prioritized Active Candidate Backlog (The Weekly Opportunity Map)
@@ -388,12 +399,7 @@ Reply "Approved" to execute.
 - **Candidate L1-01**: *R-454B vs R-32 Field Service & Recovery Protocols (A2L Spoke)*
   - **Class**: `CLUSTER PUBLICATION` (Tier 6 Priority)
   - **Scope / Affected URLs**: `/research/r454b-r32-field-handling-protocols`
-  - **Search Problem**: Specific, narrow search intent comparing recovery equipment certification, spark-proof manifold requirements, and field oil compatibility between R-454B and R-32.
-  - **Evidence**: Long-tail search queries branching from the A2L transition topic.
-  - **Expected Outcome**: Capture high-intent technician/engineer queries and pass topical authority upstream to CORE-01 and `/calculators/pt-chart`.
-  - **Validation Method**: Route tests and structured schema verification.
-  - **Measurement Method**: 28-day impression tracking for long-tail A2L query families.
-  - **Status**: `[BACKLOG / CANDIDATE]`
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-27]` (Moved to Section 5, Step 14)
 
 ### Category F: External Technical Distribution Candidates
 - **Candidate DIST-01**: *Dev.to / Hashnode Engineering Monograph: Implementing Real-Time Hydrothermal Psychrometric Solvers in WebAssembly/TypeScript*

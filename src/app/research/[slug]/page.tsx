@@ -449,6 +449,36 @@ export default async function ResearchPaperPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* Detailed Technical Sections */}
+      {paper.technicalSections && paper.technicalSections.length > 0 && (
+        <section style={{ marginBottom: "3rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            {paper.technicalSections.map((sec, idx) => (
+              <div
+                key={idx}
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "0.65rem",
+                  padding: "1.75rem",
+                }}
+              >
+                <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
+                  {sec.title}
+                </h2>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", color: "var(--ink-secondary)", fontSize: "0.95rem", lineHeight: 1.7 }}>
+                  {sec.content.map((p, pIdx) => (
+                    <p key={pIdx} style={{ margin: 0 }}>
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Companion Calculation Engines */}
       <section style={{ marginBottom: "3rem" }}>
         <h2 style={{ fontSize: "1.35rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>

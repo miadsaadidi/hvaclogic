@@ -1,0 +1,91 @@
+vector_id,refrigerant_id,trade_name,safety_group,gwp_ar5,ambient_temp_f,cylinder_water_capacity_lb,cylinder_tare_weight_lb,refrigerant_sg_130f,sg_at_ambient,max_allowable_net_charge_lb,max_gross_weight_cutoff_lb,sat_vapor_pressure_psig,mandatory_dot_cylinder_spec,relief_valve_setting_psig,temperature_glide_f,charging_protocol,glide_measurement_error_f,vacuum_evacuation_threshold_microns,valve_fitting_standard,spark_proof_tooling_mandate
+A2L-FS-001,R-454B,Opteon XL41,A2L,466,70,30,16.5,0.88,0.988,21.1,37.6,198,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-002,R-454B,Opteon XL41,A2L,466,90,30,16.5,0.88,0.952,21.1,37.6,290,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-003,R-454B,Opteon XL41,A2L,466,110,30,16.5,0.88,0.916,21.1,37.6,423,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-004,R-454B,Opteon XL41,A2L,466,120,30,16.5,0.88,0.898,21.1,37.6,512,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-005,R-454B,Opteon XL41,A2L,466,130,30,16.5,0.88,0.88,21.1,37.6,619,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-006,R-454B,Opteon XL41,A2L,466,140,30,16.5,0.88,0.862,21.1,37.6,749,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-007,R-454B,Opteon XL41,A2L,466,70,50,27.5,0.88,0.988,35.2,62.7,198,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-008,R-454B,Opteon XL41,A2L,466,90,50,27.5,0.88,0.952,35.2,62.7,290,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-009,R-454B,Opteon XL41,A2L,466,110,50,27.5,0.88,0.916,35.2,62.7,423,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-010,R-454B,Opteon XL41,A2L,466,120,50,27.5,0.88,0.898,35.2,62.7,512,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-011,R-454B,Opteon XL41,A2L,466,130,50,27.5,0.88,0.88,35.2,62.7,619,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-012,R-454B,Opteon XL41,A2L,466,140,50,27.5,0.88,0.862,35.2,62.7,749,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-013,R-454B,Opteon XL41,A2L,466,70,100,51,0.88,0.988,70.4,121.4,198,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-014,R-454B,Opteon XL41,A2L,466,90,100,51,0.88,0.952,70.4,121.4,290,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-015,R-454B,Opteon XL41,A2L,466,110,100,51,0.88,0.916,70.4,121.4,423,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-016,R-454B,Opteon XL41,A2L,466,120,100,51,0.88,0.898,70.4,121.4,512,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-017,R-454B,Opteon XL41,A2L,466,130,100,51,0.88,0.88,70.4,121.4,619,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-018,R-454B,Opteon XL41,A2L,466,140,100,51,0.88,0.862,70.4,121.4,749,DOT-4BA400 / DOT-4BW400,400,2.7,Liquid Only,1.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-019,R-32,Difluoromethane,A2L,675,70,30,16.5,0.83,0.938,19.9,36.4,214,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-020,R-32,Difluoromethane,A2L,675,90,30,16.5,0.83,0.902,19.9,36.4,315,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-021,R-32,Difluoromethane,A2L,675,110,30,16.5,0.83,0.866,19.9,36.4,466,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-022,R-32,Difluoromethane,A2L,675,120,30,16.5,0.83,0.848,19.9,36.4,566,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-023,R-32,Difluoromethane,A2L,675,130,30,16.5,0.83,0.83,19.9,36.4,688,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-024,R-32,Difluoromethane,A2L,675,140,30,16.5,0.83,0.812,19.9,36.4,836,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-025,R-32,Difluoromethane,A2L,675,70,50,27.5,0.83,0.938,33.2,60.7,214,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-026,R-32,Difluoromethane,A2L,675,90,50,27.5,0.83,0.902,33.2,60.7,315,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-027,R-32,Difluoromethane,A2L,675,110,50,27.5,0.83,0.866,33.2,60.7,466,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-028,R-32,Difluoromethane,A2L,675,120,50,27.5,0.83,0.848,33.2,60.7,566,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-029,R-32,Difluoromethane,A2L,675,130,50,27.5,0.83,0.83,33.2,60.7,688,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-030,R-32,Difluoromethane,A2L,675,140,50,27.5,0.83,0.812,33.2,60.7,836,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-031,R-32,Difluoromethane,A2L,675,70,100,51,0.83,0.938,66.4,117.4,214,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-032,R-32,Difluoromethane,A2L,675,90,100,51,0.83,0.902,66.4,117.4,315,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-033,R-32,Difluoromethane,A2L,675,110,100,51,0.83,0.866,66.4,117.4,466,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-034,R-32,Difluoromethane,A2L,675,120,100,51,0.83,0.848,66.4,117.4,566,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-035,R-32,Difluoromethane,A2L,675,130,100,51,0.83,0.83,66.4,117.4,688,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-036,R-32,Difluoromethane,A2L,675,140,100,51,0.83,0.812,66.4,117.4,836,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-037,R-454A,Opteon XL40,A2L,238,70,30,16.5,0.91,1.018,21.8,38.3,179,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-038,R-454A,Opteon XL40,A2L,238,90,30,16.5,0.91,0.982,21.8,38.3,261,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-039,R-454A,Opteon XL40,A2L,238,110,30,16.5,0.91,0.946,21.8,38.3,380,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-040,R-454A,Opteon XL40,A2L,238,120,30,16.5,0.91,0.928,21.8,38.3,459,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-041,R-454A,Opteon XL40,A2L,238,130,30,16.5,0.91,0.91,21.8,38.3,554,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-042,R-454A,Opteon XL40,A2L,238,140,30,16.5,0.91,0.892,21.8,38.3,668,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-043,R-454A,Opteon XL40,A2L,238,70,50,27.5,0.91,1.018,36.4,63.9,179,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-044,R-454A,Opteon XL40,A2L,238,90,50,27.5,0.91,0.982,36.4,63.9,261,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-045,R-454A,Opteon XL40,A2L,238,110,50,27.5,0.91,0.946,36.4,63.9,380,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-046,R-454A,Opteon XL40,A2L,238,120,50,27.5,0.91,0.928,36.4,63.9,459,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-047,R-454A,Opteon XL40,A2L,238,130,50,27.5,0.91,0.91,36.4,63.9,554,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-048,R-454A,Opteon XL40,A2L,238,140,50,27.5,0.91,0.892,36.4,63.9,668,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-049,R-454A,Opteon XL40,A2L,238,70,100,51,0.91,1.018,72.8,123.8,179,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-050,R-454A,Opteon XL40,A2L,238,90,100,51,0.91,0.982,72.8,123.8,261,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-051,R-454A,Opteon XL40,A2L,238,110,100,51,0.91,0.946,72.8,123.8,380,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-052,R-454A,Opteon XL40,A2L,238,120,100,51,0.91,0.928,72.8,123.8,459,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-053,R-454A,Opteon XL40,A2L,238,130,100,51,0.91,0.91,72.8,123.8,554,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-054,R-454A,Opteon XL40,A2L,238,140,100,51,0.91,0.892,72.8,123.8,668,DOT-4BA400 / DOT-4BW400,400,4.8,Liquid Only,2.4,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-055,R-1234yf,Solstice yf,A2L,1,70,30,16.5,0.94,1.048,22.6,39.1,92,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-056,R-1234yf,Solstice yf,A2L,1,90,30,16.5,0.94,1.012,22.6,39.1,140,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-057,R-1234yf,Solstice yf,A2L,1,110,30,16.5,0.94,0.976,22.6,39.1,213,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-058,R-1234yf,Solstice yf,A2L,1,120,30,16.5,0.94,0.958,22.6,39.1,263,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-059,R-1234yf,Solstice yf,A2L,1,130,30,16.5,0.94,0.94,22.6,39.1,324,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-060,R-1234yf,Solstice yf,A2L,1,140,30,16.5,0.94,0.922,22.6,39.1,400,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-061,R-1234yf,Solstice yf,A2L,1,70,50,27.5,0.94,1.048,37.6,65.1,92,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-062,R-1234yf,Solstice yf,A2L,1,90,50,27.5,0.94,1.012,37.6,65.1,140,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-063,R-1234yf,Solstice yf,A2L,1,110,50,27.5,0.94,0.976,37.6,65.1,213,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-064,R-1234yf,Solstice yf,A2L,1,120,50,27.5,0.94,0.958,37.6,65.1,263,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-065,R-1234yf,Solstice yf,A2L,1,130,50,27.5,0.94,0.94,37.6,65.1,324,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-066,R-1234yf,Solstice yf,A2L,1,140,50,27.5,0.94,0.922,37.6,65.1,400,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-067,R-1234yf,Solstice yf,A2L,1,70,100,51,0.94,1.048,75.2,126.2,92,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-068,R-1234yf,Solstice yf,A2L,1,90,100,51,0.94,1.012,75.2,126.2,140,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-069,R-1234yf,Solstice yf,A2L,1,110,100,51,0.94,0.976,75.2,126.2,213,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-070,R-1234yf,Solstice yf,A2L,1,120,100,51,0.94,0.958,75.2,126.2,263,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-071,R-1234yf,Solstice yf,A2L,1,130,100,51,0.94,0.94,75.2,126.2,324,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-072,R-1234yf,Solstice yf,A2L,1,140,100,51,0.94,0.922,75.2,126.2,400,DOT-4BA400 / DOT-4BW400,400,0,Vapor or Liquid,0,500,CGA 164/166 Left-Hand Reverse,UL 121201 Class I Div 2 Non-Incendive
+A2L-FS-073,R-410A,Puron Legacy,A1,2088,70,30,16.5,0.9,1.008,21.6,38.1,210,DOT-4BA350,350,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-074,R-410A,Puron Legacy,A1,2088,90,30,16.5,0.9,0.972,21.6,38.1,308,DOT-4BA350,350,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-075,R-410A,Puron Legacy,A1,2088,110,30,16.5,0.9,0.936,21.6,38.1,452,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-076,R-410A,Puron Legacy,A1,2088,120,30,16.5,0.9,0.918,21.6,38.1,548,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-077,R-410A,Puron Legacy,A1,2088,130,30,16.5,0.9,0.9,21.6,38.1,664,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-078,R-410A,Puron Legacy,A1,2088,140,30,16.5,0.9,0.882,21.6,38.1,805,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-079,R-410A,Puron Legacy,A1,2088,70,50,27.5,0.9,1.008,36,63.5,210,DOT-4BA350,350,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-080,R-410A,Puron Legacy,A1,2088,90,50,27.5,0.9,0.972,36,63.5,308,DOT-4BA350,350,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-081,R-410A,Puron Legacy,A1,2088,110,50,27.5,0.9,0.936,36,63.5,452,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-082,R-410A,Puron Legacy,A1,2088,120,50,27.5,0.9,0.918,36,63.5,548,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-083,R-410A,Puron Legacy,A1,2088,130,50,27.5,0.9,0.9,36,63.5,664,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-084,R-410A,Puron Legacy,A1,2088,140,50,27.5,0.9,0.882,36,63.5,805,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-085,R-410A,Puron Legacy,A1,2088,70,100,51,0.9,1.008,72,123,210,DOT-4BA350,350,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-086,R-410A,Puron Legacy,A1,2088,90,100,51,0.9,0.972,72,123,308,DOT-4BA350,350,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-087,R-410A,Puron Legacy,A1,2088,110,100,51,0.9,0.936,72,123,452,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-088,R-410A,Puron Legacy,A1,2088,120,100,51,0.9,0.918,72,123,548,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-089,R-410A,Puron Legacy,A1,2088,130,100,51,0.9,0.9,72,123,664,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
+A2L-FS-090,R-410A,Puron Legacy,A1,2088,140,100,51,0.9,0.882,72,123,805,DOT-4BA400 / DOT-4BW400,400,0.2,Liquid Only,0.1,500,1/4" SAE Standard Right-Hand,Standard Commercial
