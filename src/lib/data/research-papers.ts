@@ -1056,20 +1056,21 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-09-27",
+    doi: "10.6084/m9.figshare.34005498",
     reportNumber: "HL-TR-2026-A2L02",
     pdfUrl: "/whitepapers/HVACLogic_A2L_Refrigerant_Field_Service_Protocols.pdf",
     repositories: [
+      {
+        platform: "figshare",
+        label: "Figshare Technical Monograph",
+        url: "https://doi.org/10.6084/m9.figshare.34005498",
+        badge: "DOI 10.6084/m9.figshare.34005498"
+      },
       {
         platform: "academia",
         label: "HVACLogic Series on Academia.edu",
         url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
         badge: "DA 93"
-      },
-      {
-        platform: "figshare",
-        label: "Figshare A2L Benchmark Dataset",
-        url: "https://doi.org/10.6084/m9.figshare.33985834",
-        badge: "DOI 10.6084/m9.figshare.33985834"
       }
     ],
     companionCalculators: [
@@ -1157,15 +1158,16 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
         ]
       }
     ],
-    bibtex: `@techreport{hvaclogic_2026_r454b_r32_field_handling_protocols,
+    bibtex: `@techreport{hvaclogic_2026_r454b-r32-field-handling-protocols,
   author = {{HVACLogic Research Group} and S., Miad},
   title = {R-454B vs. R-32 Field Service Protocols: Recovery Cylinder Sizing, Temperature Glide Compensation, and Tooling Requirements Under ASHRAE Standard 15 and UL 60335-2-40},
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-A2L02},
-  url = {https://hvaclogic.org/research/r454b-r32-field-handling-protocols}
+  doi = {10.6084/m9.figshare.34005498},
+  url = {https://doi.org/10.6084/m9.figshare.34005498}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). R-454B vs. R-32 Field Service Protocols: Recovery Cylinder Sizing, Temperature Glide Compensation, and Tooling Requirements Under ASHRAE Standard 15 and UL 60335-2-40 (Technical Report No. HL-TR-2026-A2L02). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/r454b-r32-field-handling-protocols`
+    apa: `HVACLogic Research Group, & S., M. (2026). R-454B vs. R-32 Field Service Protocols: Recovery Cylinder Sizing, Temperature Glide Compensation, and Tooling Requirements Under ASHRAE Standard 15 and UL 60335-2-40 (Technical Report No. HL-TR-2026-A2L02). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.34005498`
   }
 ];
 
