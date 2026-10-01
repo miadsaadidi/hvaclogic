@@ -219,6 +219,26 @@
   - **Max 3 Generic Keywords**: All repository, metadata, and indexing submissions (Figshare, BibSonomy, ORCID, Zenodo) must strictly use broad, high-level terms with a **strict maximum ceiling of 3 generic keywords/tags** (e.g., `hvac, thermodynamics, refrigeration`). Never generate long, multi-word, or overly specific keyword lists.
   - **Max 2 References / Related Materials**: Never provide more than **2 related materials/references** in external distribution packages.
   - **Figshare Related Materials Format**: Always format references as explicit, separate 1-click copyable blocks: 1) `Label`, followed immediately by 2) `Link`.
+- **Rule 21: Standardized Protocol for MERLOT OER Submissions**:
+  Whenever drafting, preparing, or presenting MERLOT (California State University OER) submission packages per [`docs/MERLOT-PUBLISHING-GUIDELINES.md`](./docs/MERLOT-PUBLISHING-GUIDELINES.md):
+  - **Exact Form Field Structure**: Follow the MERLOT submission UI layout in strict sequential order.
+  - **Strict Keyword Invariant (Max 5 Separate Zones)**: Output strictly up to 5 keywords, with EACH keyword in its own dedicated single-line copyable code block (`**Keyword 1:**`, `**Keyword 2:**`, etc.). NEVER combine keywords into a single comma-separated block.
+  - **Generated 16:9 Educational Image Asset**: Always generate and save a 16:9 dark-mode educational cover graphic to `public/images/social/merlot-[slug]-cover.jpg`. Present both the clickable file link and embedded image preview (`![Cover](file:///...)`).
+  - **Standardized Field Sequence**:
+    1. `#### URL *`: Standalone copyable code block.
+    2. `#### Title *`: Standalone copyable code block.
+    3. `#### Disciplines *`: Primary & secondary discipline path.
+    4. `#### Description *`: Standalone copyable code block containing the academic abstract.
+    5. `#### Keywords (Max 5 — Separate Zones)`: Exactly up to 5 individual copyable code blocks (`**Keyword 1:**`, etc.).
+    6. `#### Image *`: File location link + embedded markdown preview.
+    7. `#### Material Type *`: E.g., `Simulation` or `Interactive`.
+    8. `#### Primary Audience *`: Checked audience boxes.
+    9. `#### Languages *`: E.g., `English`.
+    10. `#### Authors`: First Name, Last Name, Email, Organization.
+    11. `#### Technical Formats *`: E.g., `Website`.
+    12. `#### Technical Requirements`: Browser & JavaScript prerequisites.
+    13. `#### Is this Resource a Mobile App?`: Checked state or leave blank.
+    14. `#### Governance Radio Buttons`: Source Available (`Yes`), Cost (`No`), Accessibility (`Yes`), Creative Commons (`Yes` — CC BY-NC 4.0).
 
 ---
 

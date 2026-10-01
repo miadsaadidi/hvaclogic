@@ -1160,6 +1160,69 @@ export const calculatorRegistry: CalculatorMeta[] = [
       }
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked"]
+  },
+  {
+    id: "heat-strip-size-calculator",
+    name: "Heat Pump Auxiliary Electric Heat Strip Sizing Calculator",
+    pillar: "heating-systems",
+    route: "/calculators/heat-strip-size-calculator",
+    status: "production",
+    launchPhase: 1,
+    riskLevel: "low",
+    primaryKeyword: "heat strip size calculator",
+    secondaryKeywords: [
+      "heat strip size in kw calculator",
+      "auxiliary heat strip sizing",
+      "heat pump backup heat calculator",
+      "electric heat strip kw sizing",
+      "heat pump supplemental heat calculator"
+    ],
+    primaryIntent: "Technical / Sizing & Electrical Compliance",
+    seoTitle: "Heat Pump Auxiliary Heat Strip Sizer — ACCA Manual S",
+    metaDescription: "Calculate heat pump auxiliary electric heat strip deficit (kW), emergency backup sizing, NEC 424 circuit ampacity (MCA/MOPD), and minimum airflow limits.",
+    categoryName: "Heating Systems",
+    categoryRoute: "/heating-systems",
+    features: [
+      "ACCA Manual S supplemental heating deficit solver: kW = (Design Loss - HP Output) / 3,412",
+      "100% Emergency backup sizing mode with compressor lockout safety margin",
+      "Defrost cycle reverse-mode tempering capacity calculator (offsets cold air blow)",
+      "NEC Article 424 branch circuit sizing: FLA, 125% MCA, MOPD breaker, and AWG copper wire schedule",
+      "Multi-circuit partitioning analyzer for heavy residential resistance loads (>48A FLA)",
+      "Blower airflow verification with high-limit temperature rise safety check (45 CFM/kW)",
+    ],
+    relatedCalculatorIds: [
+      "heat-pump-size-calculator",
+      "heat-loss-calculator",
+      "furnace-size-calculator",
+      "ductulator",
+      "cfm-calculator"
+    ],
+    standards: ["ACCA", "ASHRAE", "NFPA", "DOE"],
+    formulaVersion: "1.0.0",
+    dataVersion: "1.0.0",
+    lastEngineeringReview: "2026-10-01",
+    requiresReferenceDataset: false,
+    offlineEligible: true,
+    testStatus: "validated",
+    faqs: [
+      {
+        question: "How do you size heat strips for a heat pump?",
+        answer: "Under ACCA Manual S (3rd Edition), auxiliary heat strips are sized to satisfy the heating deficit between the home's peak design heat loss (from ACCA Manual J) and the heat pump's delivered heating capacity at the local 99% winter outdoor design temperature: Required kW = (Design Heat Loss BTU - Heat Pump Output BTU) / 3,412. Sizing should never be based on arbitrary square footage."
+      },
+      {
+        question: "What is the difference between auxiliary heat and emergency heat?",
+        answer: "Auxiliary heat operates automatically in tandem with the heat pump compressor when outdoor temperatures drop below the thermal balance point. Emergency heat locks out the compressor entirely (typically due to mechanical failure or extreme sub-zero ambient) and relies 100% on the electric resistance elements to heat the home."
+      },
+      {
+        question: "What breaker and wire size do I need for a 10 kW heat strip?",
+        answer: "A 10 kW electric heat strip at 240V draws 41.7A Full Load Amperage (FLA). Per NEC Article 424.3(B), fixed space heating is considered a continuous load requiring 125% ampacity: MCA = 41.7A * 1.25 = 52.1A. This requires a 60A 2-pole circuit breaker and 6 AWG copper conductor (THHN/THWN 75°C)."
+      },
+      {
+        question: "Why does NEC 424 require multi-circuit feeds for heat strips larger than 10 kW?",
+        answer: "NEC 424.22(B) limits individual branch circuits for electric resistance heating equipment to a maximum of 48A FLA (protected by a 60A overcurrent device). A 15 kW element draws 62.5A and a 20 kW element draws 83.3A, requiring the air handler to be fed by two separate branch circuits (e.g., 60A + 30A for 15 kW, or 60A + 60A for 20 kW)."
+      }
+    ],
+    analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "csv_exported"]
   }
 ];
 
