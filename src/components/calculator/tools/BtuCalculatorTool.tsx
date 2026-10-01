@@ -86,7 +86,7 @@ export function BtuCalculatorTool() {
           <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>Quick Home Presets:</span>
           <button
             type="button"
-            onClick={() => handlePreset(2000, "4")}
+            onClick={() => handlePreset(2000, "zone_4")}
             style={{
               background: "none",
               border: "none",
@@ -246,7 +246,7 @@ export function BtuCalculatorTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Load Sizing Results">
-            <div className="result-label">Recommended Cooling Capacity</div>
+            <div className="result-label">Estimated Cooling Capacity</div>
             <div className="result-value">{result.coolingTonnage} Tons</div>
             <div className="result-unit">
               Total Cooling Load: <strong>{displayCoolingBtu}</strong>
@@ -271,7 +271,10 @@ export function BtuCalculatorTool() {
             </div>
           </div>
 
-          <StandardsBadge standards={["ACCA Manual J® (8th Ed)", "ASHRAE Fundamentals Ch. 18"]} />
+          <StandardsBadge
+            label="Technical References:"
+            standards={["ACCA Manual J (Reference Methodology)", "ASHRAE Fundamentals Ch. 18"]}
+          />
 
           {/* DUAL EQUIPMENT SIZING MATCH CARD */}
           <div
@@ -285,13 +288,13 @@ export function BtuCalculatorTool() {
             <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderTop: "3px solid var(--accent-cooling)", borderRadius: "0.65rem", padding: "0.85rem" }}>
               <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "var(--accent-cooling)", textTransform: "uppercase" }}>❄️ Summer Cooling</div>
               <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", marginTop: "0.2rem" }}>{result.coolingTonnage} Ton System</div>
-              <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>AC or Heat Pump (Manual S)</div>
+              <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>Preliminary Screening Range</div>
             </div>
 
             <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderTop: "3px solid var(--accent-heating)", borderRadius: "0.65rem", padding: "0.85rem" }}>
               <div style={{ fontSize: "0.7rem", fontWeight: 700, color: "var(--accent-heating)", textTransform: "uppercase" }}>🔥 Winter Heating</div>
               <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", marginTop: "0.2rem" }}>{(result.recommendedFurnaceBtu / 1000).toFixed(0)}k BTU Furnace</div>
-              <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>96% AFUE Input Rating</div>
+              <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>Nominal Input (~{Math.round(result.recommendedFurnaceBtu * 0.96 / 1000)}k Output)</div>
             </div>
           </div>
 
@@ -302,7 +305,7 @@ export function BtuCalculatorTool() {
               <div className="item-value" style={{ color: "var(--accent-heating)" }}>{displayHeatingBtu}</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Required Airflow</div>
+              <div className="item-label">Design Airflow</div>
               <div className="item-value">{result.recommendedCfm} CFM</div>
             </div>
             <div className="secondary-result-item">

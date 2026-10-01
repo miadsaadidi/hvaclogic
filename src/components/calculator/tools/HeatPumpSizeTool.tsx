@@ -12,7 +12,6 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { HeatPumpBalanceVisualizer } from "@/components/calculator/visualizers/HeatPumpBalanceVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
@@ -96,8 +95,8 @@ export function HeatPumpSizeTool() {
   }, [tons, compressorType, outdoorDesign, heatLoss, coolingLoad, dualFuelEnabled, elecRate, gasRate, furnaceAfue]);
 
   const handleExportCsv = () => {
-    const headers = "Nominal Tonnage,Compressor Type,Outdoor Design Temp (°F),Design Heat Loss (BTU),Heating Output @ Design (BTU),Thermal Balance Point (°F),Auxiliary Heat Deficit (BTU),Recommended Aux Heat Strip (kW),Manual S Status,Dual Fuel Enabled,Economic Balance Point (°F),Fuel Parity COP,HP Cost / MBTU,Furnace Cost / MBTU\n";
-    const row = `${output.nominalTonnage},"${compressorType}",${outdoorDesign},${output.buildingHeatLossAtDesignBtu},${output.heatingCapacityAtDesignBtu},${output.thermalBalancePointF},${output.auxiliaryHeatDeficitBtu},${output.recommendedAuxHeatStripKw},"${output.manualSOversizingStatus}",${output.dualFuelEnabled},${output.economicBalancePointF ?? "N/A"},${output.economicCopThreshold ?? "N/A"},${output.heatPumpCostPerMbtuAtDesign},${output.furnaceCostPerMbtu}\n`;
+    const headers = "Nominal Tonnage,Compressor Type,Outdoor Design Temp (°F),Design Heat Loss (BTU),Heating Output @ Design (BTU),Exact Thermal Balance Point (°F),Auxiliary Heat Deficit (BTU),Theoretical Aux kW,Recommended Aux Stage (kW),Manual S Preliminary Ratio,Dual Fuel Enabled,Economic Balance Point (°F),Fuel Parity COP,HP Cost / MBTU,Furnace Cost / MBTU\n";
+    const row = `${output.nominalTonnage},"${compressorType}",${outdoorDesign},${output.buildingHeatLossAtDesignBtu},${output.heatingCapacityAtDesignBtu},${output.exactThermalBalancePointF},${output.auxiliaryHeatDeficitBtu},${output.rawAuxHeatStripKw},${output.recommendedAuxHeatStripKw},"${output.manualSOversizingStatus}",${output.dualFuelEnabled},${output.economicBalancePointF ?? "N/A"},${output.economicCopThreshold ?? "N/A"},${output.heatPumpCostPerMbtuAtDesign},${output.furnaceCostPerMbtu}\n`;
     const blob = new Blob([headers + row], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -146,7 +145,7 @@ export function HeatPumpSizeTool() {
       <div className="calculator-grid">
         {/* INPUT PANEL */}
         <div className="input-panel">
-          <CalculatorTrustPill />
+          <CalculatorTrustPill customText="Calculation inputs are processed locally in your browser; no account or calculator-input database is required." />
           <AshraeClimateSelector
             compact={true}
             onSelectLocation={(loc) => {
@@ -186,7 +185,7 @@ export function HeatPumpSizeTool() {
             <div className="form-group">
               <label htmlFor="compressor-select">
                 <span>Compressor Tech</span>
-                <span className="unit-label">Inverter Tier</span>
+                <span className="unit-label">Performance Model</span>
               </label>
               <select
                 id="compressor-select"
@@ -199,9 +198,9 @@ export function HeatPumpSizeTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value="inverter_cold_climate">Cold-Climate ccASHP (76% @ 5°F)</option>
-                <option value="inverter_standard">Standard Inverter (52% @ 5°F)</option>
-                <option value="single_stage_standard">Single-Stage (35% @ 5°F)</option>
+                <option value="inverter_cold_climate">Cold-Climate Inverter Profile (~76% @ 5°F)</option>
+                <option value="inverter_standard">Standard Inverter Profile (~52% @ 5°F)</option>
+                <option value="single_stage_standard">Single-Stage Profile (~35% @ 5°F)</option>
               </select>
             </div>
           </div>
@@ -210,7 +209,7 @@ export function HeatPumpSizeTool() {
           <div className="form-group">
             <label htmlFor="outdoor-temp-input">
               <span>Winter Outdoor Design Temp</span>
-              <span className="unit-label">&deg;F (99% ASHRAE)</span>
+              <span className="unit-label">&deg;F (99% Design Temp)</span>
             </label>
             <div className="input-with-slider">
               <input
@@ -280,7 +279,7 @@ export function HeatPumpSizeTool() {
             </div>
           </div>
 
-          {/* DESIGN COOLING LOAD (ACCA MANUAL S CHECK) */}
+          {/* DESIGN COOLING LOAD (ACCA MANUAL S PRELIMINARY CHECK) */}
           <div className="form-group">
             <label htmlFor="cooling-load-input">
               <span>Summer Design Cooling Load</span>
@@ -301,7 +300,7 @@ export function HeatPumpSizeTool() {
               className="input-number"
             />
             <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.25rem", display: "block" }}>
-              Manual S 3rd Ed: <strong style={{ color: output.manualSOversizingStatus.includes("Optimal") ? "var(--accent-success)" : output.manualSOversizingStatus.includes("Heating-Priority") ? "var(--accent-cooling)" : "#f59e0b" }}>{output.manualSOversizingStatus}</strong> ({Math.round(output.manualSCoolingRatio * 100)}% of cooling load)
+              Preliminary Ratio: <strong style={{ color: "var(--accent-cooling)" }}>{output.manualSOversizingStatus}</strong>
             </span>
           </div>
 
@@ -389,10 +388,10 @@ export function HeatPumpSizeTool() {
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Heat Pump Thermal Balance Result">
             <div className="result-label">Thermal Balance Point</div>
             <div className="result-value" style={{ color: "var(--accent-cooling)" }}>
-              {output.thermalBalancePointF}&deg;F Outdoor
+              {output.exactThermalBalancePointF}&deg;F Outdoor
             </div>
             <div className="result-unit">
-              100% heat pump heating capacity down to <strong>{output.thermalBalancePointF}&deg;F</strong>
+              100% heat pump heating capacity down to <strong>{output.exactThermalBalancePointF}&deg;F</strong>
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -410,13 +409,13 @@ export function HeatPumpSizeTool() {
                 }}
               >
                 {output.auxiliaryHeatDeficitBtu > 0
-                  ? `Requires ${output.recommendedAuxHeatStripKw} kW Auxiliary Backup at ${outdoorDesign}°F`
+                  ? `Deficit at ${outdoorDesign}°F: ${output.rawAuxHeatStripKw} kW req (${output.recommendedAuxHeatStripKw} kW stage)`
                   : `✓ 100% Heating Coverage down to ${outdoorDesign}°F Design`}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ANSI/ACCA 3 Manual S (3rd Ed)", "AHRI 210/240-2023", "NEEP ccASHP v4.0"]} />
+          <StandardsBadge label="Calculation References:" standards={["ACCA Manual S (3rd Ed)", "AHRI 210/240", "ASHRAE Fundamentals"]} />
 
           {/* DUAL-FUEL ECONOMIC SWITCHOVER CARD */}
           {output.dualFuelEnabled && (
@@ -430,7 +429,7 @@ export function HeatPumpSizeTool() {
                 </span>
               </div>
               <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--ink)", margin: "0.2rem 0" }}>
-                {output.economicBalancePointF !== null ? `${output.economicBalancePointF}°F Switchover Temperature` : "Heat Pump Always More Economical"}
+                {output.economicBalancePointF !== null ? `~${output.economicBalancePointF}°F Switchover Temperature` : "Heat Pump Always More Economical"}
               </div>
               <p style={{ fontSize: "0.74rem", color: "var(--ink-secondary)", margin: "0.3rem 0", lineHeight: 1.45 }}>
                 {output.economicExplanation}
@@ -454,27 +453,24 @@ export function HeatPumpSizeTool() {
             <div className="secondary-result-item">
               <div className="item-label">Heating Output (@ {outdoorDesign}&deg;F)</div>
               <div className="item-value" style={{ color: "var(--accent-cooling)" }}>
-                {output.heatingCapacityAtDesignBtu.toLocaleString()} BTU
+                {output.heatingCapacityAtDesignBtu.toLocaleString()} BTU/hr
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Aux Heat Strip Size</div>
-              <div className="item-value">{output.recommendedAuxHeatStripKw} kW Backup</div>
+              <div className="item-label">Auxiliary Deficit &amp; Backup</div>
+              <div className="item-value">{output.rawAuxHeatStripKw} kW req ({output.recommendedAuxHeatStripKw} kW stage)</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">47&deg;F Rated Capacity</div>
-              <div className="item-value">{output.nominalHeatingBtu47F.toLocaleString()} BTU</div>
+              <div className="item-label">Rating Points (47° / 17° / 5°F)</div>
+              <div className="item-value">{(output.nominalHeatingBtu47F / 1000).toFixed(1)}k / {(output.heatingCapacity17FBtu / 1000).toFixed(1)}k / {(output.heatingCapacity5FBtu / 1000).toFixed(1)}k BTU</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Cold Climate ccASHP</div>
-              <div className="item-value" style={{ color: output.isColdClimateQualified ? "var(--accent-success)" : "var(--ink)" }}>
-                {output.isColdClimateQualified ? "✓ NEEP Qualified" : "Standard Tier"}
+              <div className="item-label">Performance Model</div>
+              <div className="item-value" style={{ color: output.isColdClimateProfile ? "var(--accent-success)" : "var(--ink)" }}>
+                {output.isColdClimateProfile ? "Cold-Climate Profile" : "Standard Profile"}
               </div>
             </div>
           </div>
-
-          {/* GOOGLE PREFERRED SOURCE BANNER */}
-          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
@@ -501,7 +497,7 @@ export function HeatPumpSizeTool() {
       {/* MOBILE STICKY RESULT BAR */}
       <MobileResultBar
         label={`${output.nominalTonnage}T Balance Point`}
-        value={`${output.thermalBalancePointF}°F`}
+        value={`${output.exactThermalBalancePointF}°F`}
         unit={`(${output.recommendedAuxHeatStripKw} kW Aux)`}
       />
     </div>

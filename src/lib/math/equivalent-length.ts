@@ -1,6 +1,6 @@
 /**
- * HVACLogic ACCA Manual D Equivalent Length & Total Effective Length (TEL) Engine
- * Conforms to ACCA Manual D (3rd Edition, Appendix 3 Fitting Equivalent Lengths)
+ * HVACLogic ACCA Manual D-based Equivalent Length & Total Effective Length (TEL) Engine
+ * Implements calculation relationships and representative fitting equivalent lengths referencing ACCA Manual D
  * and ASHRAE Fundamentals Chapter 21 (Duct Design).
  */
 
@@ -23,8 +23,8 @@ export interface AccaFittingDefinition {
 }
 
 /**
- * Authoritative ACCA Manual D Appendix 3 Fitting Equivalent Length Catalog.
- * Based on ANSI/ACCA 1 Manual D (Residential Duct Systems).
+ * Representative fitting equivalent length catalog referencing ACCA Manual D Appendix 3 archetypes.
+ * Values reflect representative reference geometries; actual equivalent lengths depend on fitting dimensions, throat radius, and construction.
  */
 export const ACCA_MANUAL_D_FITTINGS: AccaFittingDefinition[] = [
   // --- GROUP 1: SUPPLY TRUNK TAKEOFFS & HEADERS ---
@@ -33,7 +33,7 @@ export const ACCA_MANUAL_D_FITTINGS: AccaFittingDefinition[] = [
     name: "Starting Collar - Flush / Straight Takeoff",
     group: "group1_supply_trunk",
     defaultEqLengthFt: 35,
-    description: "Standard flush rectangular collar mounted directly onto furnace/air handler plenum wall.",
+    description: "Standard flush rectangular collar mounted directly onto plenum wall.",
     resistanceCategory: "medium",
     systemSide: "supply",
     iconType: "takeoff",
@@ -43,7 +43,7 @@ export const ACCA_MANUAL_D_FITTINGS: AccaFittingDefinition[] = [
     name: "Starting Collar - Bellmouth / Conical Entry",
     group: "group1_supply_trunk",
     defaultEqLengthFt: 10,
-    description: "Aerodynamic flared conical collar minimizing vena contracta entrance separation.",
+    description: "Flared conical collar providing a smooth aerodynamic entry transition.",
     resistanceCategory: "low",
     systemSide: "supply",
     iconType: "takeoff",
@@ -53,7 +53,7 @@ export const ACCA_MANUAL_D_FITTINGS: AccaFittingDefinition[] = [
     name: "Starting Collar - Side Takeoff with 45° Entry Shoe",
     group: "group1_supply_trunk",
     defaultEqLengthFt: 15,
-    description: "High-efficiency 45° leading shoe collar on main supply plenum.",
+    description: "Angled 45° entry shoe collar on supply plenum.",
     resistanceCategory: "low",
     systemSide: "supply",
     iconType: "takeoff",
@@ -70,10 +70,10 @@ export const ACCA_MANUAL_D_FITTINGS: AccaFittingDefinition[] = [
   },
   {
     id: "g1_bullhead_tee",
-    name: "Plenum Bullhead Tee (High Shock Loss)",
+    name: "Plenum Bullhead Tee (Opposing Trunk Split)",
     group: "group1_supply_trunk",
     defaultEqLengthFt: 50,
-    description: "Plenum discharge splitting symmetrically into opposing trunks without splitter vane (severe turbulence).",
+    description: "Plenum discharge splitting into opposing trunks without splitter vanes, resulting in elevated dynamic loss.",
     resistanceCategory: "severe",
     systemSide: "supply",
     iconType: "tee",
@@ -85,7 +85,7 @@ export const ACCA_MANUAL_D_FITTINGS: AccaFittingDefinition[] = [
     name: "90° Rectangular Elbow - Mitered (No Vanes)",
     group: "group2_trunk_elbows",
     defaultEqLengthFt: 50,
-    description: "Sharp square corner mitered elbow creating massive flow detachment and recirculation vortex.",
+    description: "Square mitered elbow without turning vanes, resulting in flow separation and higher resistance.",
     resistanceCategory: "severe",
     systemSide: "both",
     iconType: "elbow",
@@ -95,7 +95,7 @@ export const ACCA_MANUAL_D_FITTINGS: AccaFittingDefinition[] = [
     name: "90° Rectangular Elbow - Mitered with Turning Vanes",
     group: "group2_trunk_elbows",
     defaultEqLengthFt: 10,
-    description: "Engineered turning vanes straightening airflow through square mitered corner.",
+    description: "Square mitered elbow fitted with turning vanes to guide airflow around the turn.",
     resistanceCategory: "low",
     systemSide: "both",
     iconType: "elbow",
@@ -532,23 +532,23 @@ export function calculateEquivalentLength(input: EquivalentLengthInput): Equival
 
   let frictionRateStatus: EquivalentLengthOutput["frictionRateStatus"] = "optimal";
   let statusBadgeColor: EquivalentLengthOutput["statusBadgeColor"] = "emerald";
-  let statusDescription = "Target Design Range: Standard residential ductwork operates with minimal aerodynamic noise and balanced air distribution.";
+  let statusDescription = "Common Residential Reference Range (0.06 to 0.12 in. wg / 100 ft): Sized within typical residential design practice.";
 
   if (designFrictionRateFr < 0.05) {
     frictionRateStatus = "borderline_low";
     statusBadgeColor = "amber";
-    statusDescription = "Low Friction Rate: Requires substantially oversized duct dimensions to move design CFM. Consider reducing TEL by replacing high-loss fittings.";
+    statusDescription = "Low Calculated Friction Rate (<0.05 in. wg / 100 ft): Requires larger duct dimensions to deliver design CFM at available static pressure.";
   } else if (designFrictionRateFr > 0.18) {
     frictionRateStatus = "critical_undersized";
     statusBadgeColor = "rose";
-    statusDescription = "Critical High Friction Rate: Extreme duct restriction. Severe air rush noise and insufficient blower static pressure will choke design CFM.";
+    statusDescription = "High Friction Rate (>0.18 in. wg / 100 ft): High duct resistance may require elevated blower static pressure or reduced fitting equivalent length.";
   } else if (designFrictionRateFr > 0.12) {
     frictionRateStatus = "borderline_high";
     statusBadgeColor = "amber";
-    statusDescription = "Borderline High: Elevated air velocities may cause audible air register noise. High-velocity grilles or duct enlargement recommended.";
+    statusDescription = "Elevated Friction Rate (0.12 to 0.18 in. wg / 100 ft): May increase airflow velocities and register noise depending on system design.";
   }
 
-  const summary = `Critical run Total Effective Length is ${cumulativeTelFt} ft (Supply: ${totalSupplyTelFt} ft, Return: ${totalReturnTelFt} ft), with fittings accounting for ${fittingRatioPercent}% of resistance. With ASP = ${availableStaticPressureAspInWg.toFixed(3)}" w.g., the ACCA Manual D Design Friction Rate is ${designFrictionRateFr.toFixed(3)}" w.g./100 ft (${frictionRateStatus.replace("_", " ")}).`;
+  const summary = `Critical run Total Effective Length is ${cumulativeTelFt} ft (Supply TEL: ${totalSupplyTelFt} ft, Return TEL: ${totalReturnTelFt} ft), with fittings accounting for ${fittingRatioPercent}% of total critical path equivalent length. With Available Static Pressure (ASP) = ${availableStaticPressureAspInWg.toFixed(3)}" w.g., the calculated Design Friction Rate is ${designFrictionRateFr.toFixed(3)}" w.g. / 100 ft (${frictionRateStatus.replace("_", " ")}).`;
 
   return {
     straightSupplyFt: straightSupply,

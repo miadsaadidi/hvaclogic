@@ -242,7 +242,7 @@ export function EquivalentLengthTool() {
       formulaLatex: "\\text{TEL}_{\\text{supply}} = L_{\\text{straight, supply}} + \\sum \\text{EL}_{\\text{supply fittings}}",
       substitutionLatex: `${output.straightSupplyFt} + ${output.fittingsSupplyFt}`,
       resultText: `${output.totalSupplyTelFt} \\text{ ft eq}`,
-      governingStandard: "ACCA Manual D (Fitting Methodology)",
+      governingStandard: "ACCA Manual D Reference Method",
     },
     {
       stepNumber: 2,
@@ -250,11 +250,11 @@ export function EquivalentLengthTool() {
       formulaLatex: "\\text{TEL}_{\\text{return}} = L_{\\text{straight, return}} + \\sum \\text{EL}_{\\text{return fittings}}",
       substitutionLatex: `${output.straightReturnFt} + ${output.fittingsReturnFt}`,
       resultText: `${output.totalReturnTelFt} \\text{ ft eq}`,
-      governingStandard: "ACCA Manual D (Fitting Methodology)",
+      governingStandard: "ACCA Manual D Reference Method",
     },
     {
       stepNumber: 3,
-      title: "Cumulative Total Effective Length (TEL)",
+      title: "Cumulative Critical Path Total Effective Length (TEL)",
       formulaLatex: "\\text{TEL} = \\text{TEL}_{\\text{supply}} + \\text{TEL}_{\\text{return}}",
       substitutionLatex: `${output.totalSupplyTelFt} + ${output.totalReturnTelFt}`,
       resultText: `${output.cumulativeTelFt} \\text{ ft eq}`,
@@ -270,11 +270,11 @@ export function EquivalentLengthTool() {
     },
     {
       stepNumber: 5,
-      title: "ACCA Manual D Design Friction Rate (FR)",
+      title: "Calculated Design Friction Rate (FR)",
       formulaLatex: "\\text{FR} = \\frac{\\text{ASP} \\times 100}{\\text{TEL}}",
       substitutionLatex: `\\frac{${output.availableStaticPressureAspInWg.toFixed(3)} \\times 100}{${output.cumulativeTelFt}}`,
       resultText: `${output.designFrictionRateFr.toFixed(3)} \\text{ in. wg / 100 ft}`,
-      governingStandard: "ACCA Manual D Section 3",
+      governingStandard: "ACCA Manual D Eq. 3-1",
     },
   ];
 
@@ -313,7 +313,7 @@ export function EquivalentLengthTool() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.75rem" }}>
           <div>
             <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--ink-secondary, #94a3b8)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              ACCA Manual D Total Effective Length (TEL)
+              Critical Path Total Effective Length (TEL)
             </div>
             <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "#f8fafc", lineHeight: 1.1, marginTop: "0.25rem" }}>
               {output.cumulativeTelFt}{" "}
@@ -335,10 +335,10 @@ export function EquivalentLengthTool() {
                 border: `1px solid ${statusColor}55`,
               }}
             >
-              {output.frictionRateStatus}
+              {output.frictionRateStatus.replace("_", " ")}
             </span>
             <div style={{ fontSize: "0.75rem", color: "var(--ink-secondary, #94a3b8)" }}>
-              Recommended Target: <strong style={{ color: "#f8fafc" }}>0.06 - 0.12&quot;</strong> / 100 ft
+              Reference Range: <strong style={{ color: "#f8fafc" }}>0.06 - 0.12&quot;</strong> / 100 ft
             </div>
           </div>
         </div>
@@ -380,7 +380,7 @@ export function EquivalentLengthTool() {
       <div className="preset-chips-container" role="group" aria-label="ACCA Manual D Archetypes">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginBottom: "0.25rem" }}>
           <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>
-            📐 Sample Design Archetypes:
+            📐 Illustrative Ductwork Archetypes:
           </span>
           {selectedPresetIndex !== null && (
             <span style={{ fontSize: "0.75rem", color: "var(--accent-cooling)", fontWeight: 700 }}>
@@ -412,7 +412,7 @@ export function EquivalentLengthTool() {
 
       {/* 4. Google Preferred Banner & Standards Badge Moved AFTER Graph / Schemas */}
       <GooglePreferredBanner />
-      <StandardsBadge standards={["ACCA Manual D", "ASHRAE Ch. 21", "SMACNA"]} />
+      <StandardsBadge standards={["ACCA Manual D Reference Methodology", "ASHRAE Fundamentals Ch. 21", "SMACNA"]} />
 
       {/* Main Form Grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "1.25rem" }}>
@@ -1188,17 +1188,19 @@ export function EquivalentLengthTool() {
       <StepDerivationDrawer
         toolName="ACCA Manual D TEL & Friction Rate Derivation"
         steps={derivationSteps}
-        governingStandard="ACCA Manual D (3rd Edition)"
+        governingStandard="Calculation Method: ACCA Manual D Reference Model"
       />
 
       <ActionButtonBar
         toolRoute="/calculators/equivalent-length-calculator"
         toolName="ACCA Manual D Equivalent Length & TEL Fitting Accumulator"
-        governingStandard="ANSI/ACCA Manual D (Fitting Methodologies)"
+        governingStandard="Reference Method: ACCA Manual D"
         inputs={{
           "Blower TESP": `${tesp} in. wg`,
           "Coil Drop": `${coilDrop} in. wg`,
           "Filter Drop": `${filterDrop} in. wg`,
+          "Supply Register Drop": `${supplyRegDrop} in. wg`,
+          "Return Grille Drop": `${returnGrilleDrop} in. wg`,
           "Straight Supply Run": `${straightSupply} ft`,
           "Straight Return Run": `${straightReturn} ft`,
           "Supply Fitting Drag": `${output.fittingsSupplyFt} ft eq`,

@@ -1,11 +1,11 @@
 /**
  * HVACLogic Heat Pump Sizing & Thermal Balance Point Computational Engine
- * Implements:
- * - ANSI/ACCA 3 Manual S - Residential Equipment Selection, 3rd Edition (2023), Version 1.02
- *   including Addendum A (2024) and Addendum B (2024)
- * - ACCA Manual J (8th Edition)
+ *
+ * Technical References:
+ * - ANSI/ACCA 3 Manual S - Residential Equipment Selection (3rd Edition, 2023 with Addenda A & B)
+ * - ACCA Manual J - Residential Load Calculation (8th Edition)
  * - ANSI/AHRI Standard 210/240-2023 (Unitary Air-Conditioners & Air-Source Heat Pumps)
- * - Northeast Energy Efficiency Partnerships (NEEP) ccASHP Specification v4.0
+ * - Northeast Energy Efficiency Partnerships (NEEP) ccASHP Specification Framework (v4.0)
  */
 
 export type HeatPumpCompressorType = "inverter_cold_climate" | "inverter_standard" | "single_stage_standard";
@@ -14,8 +14,8 @@ export interface HeatPumpInput {
   nominalTonnage: number; // 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0
   compressorType: HeatPumpCompressorType;
   outdoorDesignTempF: number; // e.g. -5°F to 35°F
-  designHeatingLossBtu: number; // e.g. 45,000 BTU/hr at outdoor design temp
-  designCoolingLoadBtu?: number; // e.g. 30,000 BTU/hr
+  designHeatingLossBtu: number; // e.g. 42,000 BTU/hr at outdoor design temp
+  designCoolingLoadBtu?: number; // e.g. 32,000 BTU/hr
   indoorSetpointF?: number; // Default 70°F
   // Dual-fuel / Economic Switchover Parameters
   dualFuelEnabled?: boolean;
@@ -38,14 +38,18 @@ export interface HeatPumpOutput {
   nominalTonnage: number;
   nominalCoolingBtu: number;
   nominalHeatingBtu47F: number;
+  heatingCapacity17FBtu: number;
+  heatingCapacity5FBtu: number;
   heatingCapacityAtDesignBtu: number;
   buildingHeatLossAtDesignBtu: number;
+  exactThermalBalancePointF: number;
   thermalBalancePointF: number;
   auxiliaryHeatDeficitBtu: number;
+  rawAuxHeatStripKw: number;
   recommendedAuxHeatStripKw: number;
-  isColdClimateQualified: boolean;
+  isColdClimateProfile: boolean;
   manualSCoolingRatio: number;
-  manualSOversizingStatus: "Optimal (ACCA Manual S 3rd Ed)" | "Heating-Priority Sizing (Manual S Addendum B)" | "Significantly Oversized (Risk of Low-Load Cycling)" | "Undersized for Cooling Load";
+  manualSOversizingStatus: string;
   // Dual-Fuel Economic Switchover Outputs
   dualFuelEnabled: boolean;
   economicBalancePointF: number | null;
@@ -55,18 +59,18 @@ export interface HeatPumpOutput {
   curvePoints: CurvePoint[];
   summaryExplanation: string;
   economicExplanation: string;
-  governingStandard: string;
+  technicalReference: string;
 }
 
 /**
- * Baseline compressor performance factors calibrated to AHRI 210/240 standard test points:
- * - 47°F: Standard rated heating capacity
- * - 17°F: Low-temperature heating rating
- * - 5°F: Cold-climate rating point (NEEP ccASHP requires >= 70% capacity retention & COP >= 1.75)
- * - -5°F: Extreme low-ambient rating point
+ * Illustrative baseline compressor performance factors based on typical category profiles:
+ * - 47°F: Rated heating capacity baseline
+ * - 17°F: Intermediate low-ambient test point
+ * - 5°F: Cold-climate benchmark point
+ * - -5°F: Extreme low-ambient point
  *
- * NOTE: These factors represent baseline category models for simulation and pre-design screening.
- * Final submittals and AHRI certificate filings must use manufacturer expanded performance tables.
+ * NOTE: These factors represent illustrative engineering category models for screening and educational analysis.
+ * Actual project submittals and equipment selection must use specific OEM expanded performance tables.
  */
 export const COMPRESSOR_PERFORMANCE_FACTORS: Record<
   HeatPumpCompressorType,
@@ -83,7 +87,7 @@ export const COMPRESSOR_PERFORMANCE_FACTORS: Record<
   }
 > = {
   inverter_cold_climate: {
-    label: "Cold-Climate Inverter (NEEP ccASHP / Hyper-Heat)",
+    label: "Cold-Climate Inverter Profile (Illustrative ccASHP)",
     ratio17F: 0.88,
     ratio5F: 0.76,
     ratioMinus5F: 0.65,
@@ -94,7 +98,7 @@ export const COMPRESSOR_PERFORMANCE_FACTORS: Record<
     copMinus5F: 1.5,
   },
   inverter_standard: {
-    label: "Standard Inverter (Variable Speed)",
+    label: "Standard Inverter Profile (Variable Speed)",
     ratio17F: 0.68,
     ratio5F: 0.52,
     ratioMinus5F: 0.38,
@@ -105,7 +109,7 @@ export const COMPRESSOR_PERFORMANCE_FACTORS: Record<
     copMinus5F: 1.2,
   },
   single_stage_standard: {
-    label: "Single-Stage Standard Efficiency",
+    label: "Single-Stage Standard Efficiency Profile",
     ratio17F: 0.55,
     ratio5F: 0.35,
     ratioMinus5F: 0.20,
@@ -120,8 +124,7 @@ export const COMPRESSOR_PERFORMANCE_FACTORS: Record<
 const STANDARD_HEAT_STRIP_SIZES_KW = [0, 5, 8, 10, 15, 20, 25];
 
 /**
- * Calculates heat pump heating output at any arbitrary outdoor temperature.
- * Uses piecewise linear interpolation between AHRI 210/240 and NEEP benchmark test points.
+ * Calculates heat pump heating output at any outdoor temperature using piecewise linear interpolation.
  */
 export function getHeatPumpCapacityAtTemp(nominalHeatingBtu: number, tempF: number, type: HeatPumpCompressorType): number {
   const factors = COMPRESSOR_PERFORMANCE_FACTORS[type];
@@ -144,8 +147,7 @@ export function getHeatPumpCapacityAtTemp(nominalHeatingBtu: number, tempF: numb
 }
 
 /**
- * Calculates representative Coefficient of Performance (COP) at any outdoor temperature
- * based on AHRI 210/240 and NEEP performance curves.
+ * Calculates representative Coefficient of Performance (COP) at any outdoor temperature.
  */
 export function getHeatPumpCopAtTemp(tempF: number, type: HeatPumpCompressorType): number {
   const factors = COMPRESSOR_PERFORMANCE_FACTORS[type];
@@ -165,8 +167,8 @@ export function getHeatPumpCopAtTemp(tempF: number, type: HeatPumpCompressorType
 }
 
 /**
- * Calculates building heat loss at any arbitrary outdoor temperature based on design point.
- * Follows ACCA Manual J steady-state conduction & infiltration delta-T proportion.
+ * Calculates building heat loss at an outdoor temperature using a linear steady-state delta-T model.
+ * Q_loss(T) = Q_design * (T_indoor - T) / (T_indoor - T_design)
  */
 export function getBuildingHeatLossAtTemp(
   designHeatLoss: number,
@@ -178,6 +180,48 @@ export function getBuildingHeatLossAtTemp(
   const designDeltaT = Math.max(10, indoorSetpoint - designOutdoorTempF);
   const currentDeltaT = Math.max(0, indoorSetpoint - currentTempF);
   return Math.round(designHeatLoss * (currentDeltaT / designDeltaT));
+}
+
+/**
+ * Finds the exact continuous temperature where Q_loss(T) = Q_hp(T).
+ */
+export function findExactThermalBalancePoint(
+  nominalHeatingBtu: number,
+  designHeatLoss: number,
+  designOutdoorTempF: number,
+  type: HeatPumpCompressorType,
+  indoorSetpoint: number = 70
+): number {
+  const designDeltaT = Math.max(10, indoorSetpoint - designOutdoorTempF);
+  const lossSlope = designHeatLoss / designDeltaT; // BTU/hr per °F
+
+  // Segments from cold to warm
+  const segments: Array<{ t1: number; t2: number }> = [
+    { t1: -20, t2: -5 },
+    { t1: -5, t2: 5 },
+    { t1: 5, t2: 17 },
+    { t1: 17, t2: 47 },
+    { t1: 47, t2: indoorSetpoint },
+  ];
+
+  for (const seg of segments) {
+    const cap1 = getHeatPumpCapacityAtTemp(nominalHeatingBtu, seg.t1, type);
+    const loss1 = getBuildingHeatLossAtTemp(designHeatLoss, designOutdoorTempF, seg.t1, indoorSetpoint);
+    const cap2 = getHeatPumpCapacityAtTemp(nominalHeatingBtu, seg.t2, type);
+    const loss2 = getBuildingHeatLossAtTemp(designHeatLoss, designOutdoorTempF, seg.t2, indoorSetpoint);
+
+    if (cap1 <= loss1 && cap2 >= loss2) {
+      const capSlope = (cap2 - cap1) / (seg.t2 - seg.t1);
+      const denominator = capSlope + lossSlope;
+      if (denominator > 0) {
+        const delta = (loss1 - cap1) / denominator;
+        const tIntersect = seg.t1 + delta;
+        return Number(tIntersect.toFixed(1));
+      }
+    }
+  }
+
+  return Number(designOutdoorTempF.toFixed(1));
 }
 
 /**
@@ -199,13 +243,13 @@ export function calculateFurnaceCostPerMbtu(gasRatePerTherm: number, afue: numbe
 }
 
 /**
- * Calculates whole-home heat pump thermal balance point, ACCA Manual S 3rd Edition sizing status,
+ * Calculates heat pump thermal balance point, preliminary Manual S sizing ratio,
  * dual-fuel economic switchover balance point, and auxiliary backup requirements.
  */
 export function calculateHeatPumpSizing(input: HeatPumpInput): HeatPumpOutput {
   const tons = Math.max(1.0, Math.min(6.0, input.nominalTonnage));
   const nominalCoolingBtu = Math.round(tons * 12000);
-  const nominalHeatingBtu47F = Math.round(nominalCoolingBtu * 1.05); // Heat pumps typically deliver ~105% heating capacity at 47°F rated condition
+  const nominalHeatingBtu47F = Math.round(nominalCoolingBtu * 1.05); // Representative 47°F heating capacity ratio (~105% of cooling)
   const type = input.compressorType || "inverter_cold_climate";
   const outdoorDesign = input.outdoorDesignTempF;
   const designHeatingLoss = Math.max(5000, input.designHeatingLossBtu);
@@ -214,45 +258,38 @@ export function calculateHeatPumpSizing(input: HeatPumpInput): HeatPumpOutput {
 
   // Dual-fuel economic pricing assumptions
   const dualFuelEnabled = input.dualFuelEnabled ?? false;
-  const elecRate = input.electricityRatePerKwh ?? 0.16; // $0.16 / kWh US national average
-  const gasRate = input.naturalGasRatePerTherm ?? 1.40; // $1.40 / therm US national average
-  const afue = input.furnaceAfue ?? 0.95; // 95% AFUE condensing gas furnace
+  const elecRate = input.electricityRatePerKwh ?? 0.16; // $0.16 / kWh representative rate
+  const gasRate = input.naturalGasRatePerTherm ?? 1.40; // $1.40 / therm representative rate
+  const afue = input.furnaceAfue ?? 0.95; // 95% AFUE condensing gas furnace baseline
 
-  // Capacity at winter outdoor design temperature
+  // Capacity at key rating points
+  const heatingCapacity17FBtu = getHeatPumpCapacityAtTemp(nominalHeatingBtu47F, 17, type);
+  const heatingCapacity5FBtu = getHeatPumpCapacityAtTemp(nominalHeatingBtu47F, 5, type);
   const heatingCapacityAtDesignBtu = getHeatPumpCapacityAtTemp(nominalHeatingBtu47F, outdoorDesign, type);
   const buildingHeatLossAtDesignBtu = designHeatingLoss;
 
   // Deficit at design temperature
-  const auxiliaryDeficitBtu = Math.max(0, buildingHeatLossAtDesignBtu - heatingCapacityAtDesignBtu);
+  const auxiliaryHeatDeficitBtu = Math.max(0, buildingHeatLossAtDesignBtu - heatingCapacityAtDesignBtu);
 
-  // Match auxiliary electric heat strip size (kW)
-  const rawAuxKw = auxiliaryDeficitBtu / 3412.14;
+  // Theoretical resistance heater requirement (kW) and standard modular stage selection
+  const rawAuxHeatStripKw = Number((auxiliaryHeatDeficitBtu / 3412.14).toFixed(2));
   let recommendedAuxHeatStripKw = 0;
-  if (rawAuxKw > 0) {
+  if (rawAuxHeatStripKw > 0) {
     for (const kw of STANDARD_HEAT_STRIP_SIZES_KW) {
-      if (kw >= rawAuxKw) {
+      if (kw >= rawAuxHeatStripKw) {
         recommendedAuxHeatStripKw = kw;
         break;
       }
     }
-    if (recommendedAuxHeatStripKw === 0) recommendedAuxHeatStripKw = Math.ceil(rawAuxKw / 5) * 5;
+    if (recommendedAuxHeatStripKw === 0) recommendedAuxHeatStripKw = Math.ceil(rawAuxHeatStripKw / 5) * 5;
   }
 
-  // 1. Find Thermal Balance Point (where Building Loss == Heat Pump Capacity)
-  let thermalBalancePointF = outdoorDesign;
-  for (let t = Math.round(outdoorDesign); t <= indoorSetpoint; t++) {
-    const loss = getBuildingHeatLossAtTemp(designHeatingLoss, outdoorDesign, t, indoorSetpoint);
-    const cap = getHeatPumpCapacityAtTemp(nominalHeatingBtu47F, t, type);
-    if (cap >= loss) {
-      thermalBalancePointF = t;
-      break;
-    }
-  }
+  // 1. Authoritative Thermal Balance Point
+  const exactThermalBalancePointF = findExactThermalBalancePoint(nominalHeatingBtu47F, designHeatingLoss, outdoorDesign, type, indoorSetpoint);
+  const thermalBalancePointF = Math.round(exactThermalBalancePointF);
 
   // 2. Dual-Fuel Economic Parity COP and Economic Balance Point
-  // Parity condition: Cost_HP = Cost_Furnace
-  // (ElecRate * 293.071) / COP = (GasRate * 10) / AFUE
-  // COP_economic = 29.3071 * AFUE * (ElecRate / GasRate)
+  // Parity condition: Cost_HP = Cost_Furnace => COP_economic = 29.3071 * AFUE * (ElecRate / GasRate)
   const economicCopThreshold = Number((29.3071 * afue * (elecRate / gasRate)).toFixed(2));
   const furnaceCostPerMbtu = calculateFurnaceCostPerMbtu(gasRate, afue);
 
@@ -289,57 +326,55 @@ export function calculateHeatPumpSizing(input: HeatPumpInput): HeatPumpOutput {
     });
   }
 
-  // 4. ACCA Manual S Sizing Evaluation per ANSI/ACCA 3 Manual S (3rd Edition, 2023 with Addenda A & B)
-  // - Single-speed cooling limit: 90% to 115% of cooling load
-  // - Variable-capacity (inverter):
-  //   * Cooling selection: 90% to 130%
-  //   * Addendum B "Variable-Capacity Equipment Sizing Condition" (primary heat source):
-  //     permits sizing up to 100% of heating load or target balance point if minimum cooling
-  //     capacity satisfies part-load sensible/latent requirements without excessive cycling.
+  // 4. ACCA Manual S Sizing Ratio Information
   const manualSCoolingRatio = Number((nominalCoolingBtu / designCoolingLoad).toFixed(2));
-  let manualSOversizingStatus: HeatPumpOutput["manualSOversizingStatus"] = "Optimal (ACCA Manual S 3rd Ed)";
+  let manualSOversizingStatus: string;
 
   if (manualSCoolingRatio < 0.90) {
-    manualSOversizingStatus = "Undersized for Cooling Load";
+    manualSOversizingStatus = "Undersized for stated cooling load (<90%)";
   } else if (type === "single_stage_standard") {
     if (manualSCoolingRatio <= 1.15) {
-      manualSOversizingStatus = "Optimal (ACCA Manual S 3rd Ed)";
+      manualSOversizingStatus = `${Math.round(manualSCoolingRatio * 100)}% of cooling load — standard single-stage sizing window (90%–115%)`;
     } else if (manualSCoolingRatio <= 1.30) {
-      manualSOversizingStatus = "Heating-Priority Sizing (Manual S Addendum B)";
+      manualSOversizingStatus = `${Math.round(manualSCoolingRatio * 100)}% of cooling load — exceeds typical single-stage cooling cap; verify against OEM data`;
     } else {
-      manualSOversizingStatus = "Significantly Oversized (Risk of Low-Load Cycling)";
+      manualSOversizingStatus = `${Math.round(manualSCoolingRatio * 100)}% of cooling load — significantly oversized for cooling; risk of short-cycling`;
     }
   } else {
     // Variable-capacity inverters
     if (manualSCoolingRatio <= 1.30) {
-      manualSOversizingStatus = "Optimal (ACCA Manual S 3rd Ed)";
+      manualSOversizingStatus = `${Math.round(manualSCoolingRatio * 100)}% of cooling load — standard variable-capacity window (90%–130%)`;
     } else if (manualSCoolingRatio <= 1.50) {
-      manualSOversizingStatus = "Heating-Priority Sizing (Manual S Addendum B)";
+      manualSOversizingStatus = `${Math.round(manualSCoolingRatio * 100)}% of cooling load — heating-priority sizing; verify minimum turndown capacity against cooling sensible/latent loads`;
     } else {
-      manualSOversizingStatus = "Significantly Oversized (Risk of Low-Load Cycling)";
+      manualSOversizingStatus = `${Math.round(manualSCoolingRatio * 100)}% of cooling load — exceeds typical variable-capacity window; verify part-load dehumidification`;
     }
   }
 
-  const isColdClimateQualified = COMPRESSOR_PERFORMANCE_FACTORS[type].isColdClimate;
+  const isColdClimateProfile = COMPRESSOR_PERFORMANCE_FACTORS[type].isColdClimate;
 
   // Explanatory texts
-  const summaryExplanation = `A ${tons}-ton ${COMPRESSOR_PERFORMANCE_FACTORS[type].label} carries 100% of the building heating load down to ${thermalBalancePointF}°F (Thermal Balance Point). At ${outdoorDesign}°F winter design, the heat pump delivers ${heatingCapacityAtDesignBtu.toLocaleString()} BTU/hr, requiring a ${recommendedAuxHeatStripKw} kW electric heat strip for the remaining ${auxiliaryDeficitBtu.toLocaleString()} BTU deficit.`;
+  const summaryExplanation = `An illustrative ${tons}-ton ${COMPRESSOR_PERFORMANCE_FACTORS[type].label} carries 100% of the building heating load down to approximately ${exactThermalBalancePointF}°F (Thermal Balance Point). At the ${outdoorDesign}°F winter design temperature, the heat pump delivers an estimated ${heatingCapacityAtDesignBtu.toLocaleString()} BTU/hr, leaving a ${auxiliaryHeatDeficitBtu.toLocaleString()} BTU/hr deficit (${rawAuxHeatStripKw} kW theoretical; nominal ${recommendedAuxHeatStripKw} kW modular stage).`;
 
   const economicExplanation =
     economicBalancePointF !== null
-      ? `At current utility rates ($${elecRate.toFixed(2)}/kWh elec vs $${gasRate.toFixed(2)}/therm gas @ ${(afue * 100).toFixed(0)}% AFUE), fuel parity COP is ${economicCopThreshold}. The economic balance point is ${economicBalancePointF}°F. Above ${economicBalancePointF}°F, the heat pump is more economical; below ${economicBalancePointF}°F, the dual-fuel furnace is cheaper to operate.`
+      ? `Under entered utility rates ($${elecRate.toFixed(2)}/kWh electricity vs $${gasRate.toFixed(2)}/therm natural gas @ ${(afue * 100).toFixed(0)}% AFUE), fuel parity COP is ${economicCopThreshold}. The estimated economic crossover is ${economicBalancePointF}°F. Above ${economicBalancePointF}°F, the heat pump is estimated to be cheaper per delivered BTU; below ${economicBalancePointF}°F, the gas furnace is more economical under these pricing assumptions.`
       : `Heat pump COP remains above the fuel parity threshold (${economicCopThreshold}) across the typical operating range.`;
 
   return {
     nominalTonnage: tons,
     nominalCoolingBtu,
     nominalHeatingBtu47F,
+    heatingCapacity17FBtu,
+    heatingCapacity5FBtu,
     heatingCapacityAtDesignBtu,
     buildingHeatLossAtDesignBtu,
+    exactThermalBalancePointF,
     thermalBalancePointF,
-    auxiliaryHeatDeficitBtu: auxiliaryDeficitBtu,
+    auxiliaryHeatDeficitBtu,
+    rawAuxHeatStripKw,
     recommendedAuxHeatStripKw,
-    isColdClimateQualified,
+    isColdClimateProfile,
     manualSCoolingRatio,
     manualSOversizingStatus,
     dualFuelEnabled,
@@ -350,7 +385,8 @@ export function calculateHeatPumpSizing(input: HeatPumpInput): HeatPumpOutput {
     curvePoints,
     summaryExplanation,
     economicExplanation,
-    governingStandard: "ANSI/ACCA 3 Manual S (3rd Edition, 2023 with Addendum A/B) & AHRI 210/240-2023",
+    technicalReference: "ACCA Manual S (3rd Ed), ACCA Manual J (8th Ed), AHRI 210/240-2023, & ASHRAE Fundamentals",
   };
 }
+
 

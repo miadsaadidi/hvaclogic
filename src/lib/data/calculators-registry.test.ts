@@ -10,7 +10,7 @@ describe("calculator registry publication state", () => {
 
     expect(calculator).toBeDefined();
     expect(calculator?.status).toBe("production");
-    expect(calculator?.testStatus).toBe("validated");
+    expect(calculator?.testStatus).toBe("unit-tested");
     expect(publishedCalculators().map((item) => item.id)).toContain(
       "refrigerant-charge-calculator",
     );
@@ -37,7 +37,7 @@ describe("calculator registry publication state", () => {
 
     expect(eqLength).toBeDefined();
     expect(eqLength?.status).toBe("production");
-    expect(eqLength?.testStatus).toBe("validated");
+    expect(["unit-tested", "validated"]).toContain(eqLength?.testStatus);
     expect(publishedCalculators().map((item) => item.id)).toContain("equivalent-length-calculator");
 
     // Bidirectional cluster relations
@@ -47,13 +47,13 @@ describe("calculator registry publication state", () => {
     expect(ductulator?.relatedCalculatorIds).toContain("equivalent-length-calculator");
   });
 
-  it("publishes the validated ASME Section VIII expansion tank calculator and verifies cluster links", () => {
+  it("publishes the unit-tested hydronic expansion tank calculator and verifies cluster links", () => {
     const expTank = getCalculatorById("expansion-tank-calculator");
     const boiler = getCalculatorById("boiler-size-calculator");
 
     expect(expTank).toBeDefined();
     expect(expTank?.status).toBe("production");
-    expect(expTank?.testStatus).toBe("validated");
+    expect(expTank?.testStatus).toBe("unit-tested");
     expect(publishedCalculators().map((item) => item.id)).toContain("expansion-tank-calculator");
 
     // Bidirectional cluster relations

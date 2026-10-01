@@ -17,10 +17,10 @@ import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 type InputMode = "db_rh" | "db_wb" | "db_dp";
 
 const PSYCH_PRESETS = [
-  { label: "🏠 Standard Comfort (75°F / 50% RH)", mode: "db_rh" as InputMode, db: 75, rh: 50, wb: 62.5, dp: 55, alt: 0 },
-  { label: "❄️ AC Entering Coil (80°F DB / 67°F WB)", mode: "db_wb" as InputMode, db: 80, rh: 51, wb: 67, dp: 60, alt: 0 },
-  { label: "☀️ Summer Outdoor (95°F / 40% RH)", mode: "db_rh" as InputMode, db: 95, rh: 40, wb: 75, dp: 68, alt: 0 },
-  { label: "🏔️ Mile High Denver (75°F / 5,280 ft)", mode: "db_rh" as InputMode, db: 75, rh: 50, wb: 62.5, dp: 55, alt: 5280 },
+  { label: "🏠 Representative Comfort (75°F / 50% RH)", mode: "db_rh" as InputMode, db: 75, rh: 50, wb: 62.5, dp: 55.1, alt: 0 },
+  { label: "❄️ AC Entering Coil (80°F DB / 67°F WB)", mode: "db_wb" as InputMode, db: 80, rh: 51.2, wb: 67, dp: 60.4, alt: 0 },
+  { label: "☀️ Summer Outdoor (95°F / 40% RH)", mode: "db_rh" as InputMode, db: 95, rh: 40, wb: 75, dp: 67.9, alt: 0 },
+  { label: "🏔️ High Elevation (75°F / 5,280 ft)", mode: "db_rh" as InputMode, db: 75, rh: 50, wb: 62.5, dp: 55.1, alt: 5280 },
 ];
 
 const ELEVATION_PRESETS = [
@@ -339,8 +339,8 @@ export function PsychrometricTool() {
                   borderRadius: "9999px",
                   fontSize: "0.72rem",
                   fontWeight: 600,
-                  background: output.comfortZoneStatus.includes("Ideal") ? "rgba(16, 185, 129, 0.12)" : "rgba(245, 158, 11, 0.12)",
-                  color: output.comfortZoneStatus.includes("Ideal") ? "var(--accent-success)" : "#f59e0b",
+                  background: output.comfortZoneStatus.includes("Representative Comfort") ? "rgba(16, 185, 129, 0.12)" : "rgba(245, 158, 11, 0.12)",
+                  color: output.comfortZoneStatus.includes("Representative Comfort") ? "var(--accent-success)" : "#f59e0b",
                   border: "1px solid currentColor",
                 }}
               >
@@ -376,7 +376,7 @@ export function PsychrometricTool() {
             </div>
           )}
 
-          <StandardsBadge standards={["ASHRAE Standard 55", "Hyland-Wexler Formulations", "ASHRAE Fundamentals Ch. 1"]} />
+          <StandardsBadge label="Calculation References:" standards={["ASHRAE Fundamentals Ch. 1", "Hyland-Wexler Formulations", "ANSI/ASHRAE Standard 55-2023"]} />
 
           {/* PSYCHROMETRIC SVG STATE VISUALIZER */}
           <PsychrometricVisualizer output={output} />

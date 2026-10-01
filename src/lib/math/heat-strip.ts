@@ -2,11 +2,10 @@
  * HVACLogic Heat Pump Auxiliary Electric Heat Strip Sizing & Deficit Computational Engine
  *
  * Implements:
- * - ANSI/ACCA 3 Manual S - Residential Equipment Selection, 3rd Edition (2023) Section 4
- * - ACCA Manual J (8th Edition) Heating Design Loss
- * - National Electrical Code (NEC / NFPA 70) Article 220 & Article 424 (Fixed Electric Space Heating)
- * - ASHRAE Handbook - Fundamentals (2021) Space Heating Loads
- * - UL 1995 / UL 60335-2-40 Electric Element Heating Air Handler Standards
+ * - Thermal heating deficit analysis between design heat loss and heat pump output
+ * - Standard commercially manufactured resistance element sizing algorithms
+ * - Electrical load calculations (FLA, MCA continuous duty) referenced to NEC Article 424 principles
+ * - Sensible airflow temperature rise screening (Delta T = Q / (1.08 * CFM))
  */
 
 export type ElectricalVoltage = 240 | 208 | 480;
@@ -14,14 +13,14 @@ export type ElectricalPhase = 1 | 3;
 export type SizingObjective = "supplemental_deficit" | "full_emergency_backup" | "defrost_tempering";
 
 export interface HeatStripInput {
-  designHeatLossBtu: number; // e.g., 45,000 BTU/hr at 99% winter design temp
-  heatPumpCapacityAtDesignBtu: number; // e.g., 24,000 BTU/hr delivered at winter design temp
-  nominalTonnage?: number; // e.g., 3.0 tons (for defrost tempering calculations)
+  designHeatLossBtu: number; // Building heat loss at winter design condition (BTU/hr)
+  heatPumpCapacityAtDesignBtu: number; // Manufacturer-rated delivered capacity at design temp (BTU/hr)
+  nominalTonnage?: number; // Nominal heat pump tons (informational / defrost screening)
   sizingObjective?: SizingObjective; // Default: 'supplemental_deficit'
-  systemAirflowCfm?: number; // e.g., 1200 CFM
+  systemAirflowCfm?: number; // Air handler blower airflow (CFM)
   voltage?: ElectricalVoltage; // Default: 240V
   phase?: ElectricalPhase; // Default: 1-phase
-  safetyOversizeFactor?: number; // Default: 1.00 (1.00 to 1.25)
+  safetyOversizeFactor?: number; // Optional sizing margin (1.00 = 0% margin, 1.15 = 15% margin)
 }
 
 export interface ElectricCircuitBranch {
@@ -29,8 +28,8 @@ export interface ElectricCircuitBranch {
   assignedKw: number;
   flaAmps: number;
   mcaAmps: number;
-  breakerAmps: number;
-  wireGaugeAwg: string;
+  suggestedBreakerAmps: number;
+  suggestedWireGaugeAwg: string;
 }
 
 export interface HeatStripOutput {
@@ -38,32 +37,34 @@ export interface HeatStripOutput {
   designHeatLossBtu: number;
   heatPumpCapacityAtDesignBtu: number;
   netHeatingDeficitBtu: number;
-  exactRequiredKw: number;
+  theoreticalRequiredKw: number;
   selectedStandardKw: number;
   totalDeliveredBtu: number;
+  excessCapacityKw: number;
+  excessCapacityBtu: number;
   coveragePercentage: number;
-  defrostTemperingKw: number;
+  sizingMarginPercentage: number;
   
-  // Electrical Specifications per NEC 424
+  // Electrical Specifications
   voltage: ElectricalVoltage;
   phase: ElectricalPhase;
   totalFlaAmps: number;
   totalMcaAmps: number;
-  totalMopdBreakerAmps: number;
+  suggestedMopdBreakerAmps: number;
   isMultiCircuitRequired: boolean;
   circuitBranches: ElectricCircuitBranch[];
   
-  // Airflow & Temperature Rise
+  // Airflow & Temperature Rise Screening
   systemAirflowCfm: number;
-  minRequiredAirflowCfm: number;
-  airflowStatus: "Adequate" | "Low Airflow Warning" | "Critical Starvation";
+  screeningAirflowCfm: number;
+  airflowScreeningStatus: "Adequate Airflow" | "Low Airflow Warning" | "Critical Starvation";
   estimatedTempRiseF: number;
   
-  // Staging & Controls
+  // Staging
   recommendedStages: number;
   stageBreakdownKw: number[];
   controlRecommendation: string;
-  governingStandard: string;
+  summary: string;
 }
 
 /**
@@ -81,7 +82,7 @@ export const STANDARD_BREAKER_SIZES_AMPS = [
 ];
 
 /**
- * Derives recommended copper wire gauge (75°C THHN/THWN copper) per NEC Table 310.16
+ * Derives illustrative copper wire gauge (75°C THHN/THWN copper) per NEC Table 310.16
  */
 export function getRecommendedWireGauge(mcaAmps: number): string {
   if (mcaAmps <= 15) return "14 AWG Cu";
@@ -99,7 +100,7 @@ export function getRecommendedWireGauge(mcaAmps: number): string {
 }
 
 /**
- * Finds next standard breaker size meeting or exceeding MCA
+ * Finds next standard breaker size meeting or exceeding calculated MCA
  */
 export function getNextStandardBreaker(mcaAmps: number): number {
   for (const breaker of STANDARD_BREAKER_SIZES_AMPS) {
@@ -111,12 +112,12 @@ export function getNextStandardBreaker(mcaAmps: number): number {
 }
 
 /**
- * Selects the nearest standard manufactured heat strip size >= target kW
+ * Selects the smallest standard manufactured heat strip size >= target kW
  */
 export function selectStandardHeatStripKw(targetKw: number): number {
   if (targetKw <= 0) return 0;
   for (const size of STANDARD_HEAT_STRIP_SIZES_KW) {
-    if (size >= targetKw - 0.05) {
+    if (size >= targetKw - 0.001) {
       return size;
     }
   }
@@ -124,7 +125,7 @@ export function selectStandardHeatStripKw(targetKw: number): number {
 }
 
 /**
- * Computes deterministic heat strip sizing, circuit breaker requirements, and airflow limits.
+ * Computes deterministic heat strip thermal sizing, calculated electrical parameters, and airflow screening.
  */
 export function calculateHeatStripSizing(input: HeatStripInput): HeatStripOutput {
   const designLoss = Math.max(0, input.designHeatLossBtu);
@@ -134,53 +135,60 @@ export function calculateHeatStripSizing(input: HeatStripInput): HeatStripOutput
   const voltage = input.voltage || 240;
   const phase = input.phase || 1;
   const safetyFactor = Math.max(1.0, Math.min(1.5, input.safetyOversizeFactor || 1.0));
+  const sizingMarginPercentage = Math.round((safetyFactor - 1.0) * 100);
 
   // 1. Deficit Calculation
   const netDeficitBtu = Math.max(0, designLoss - hpCapacity);
   
-  // Defrost tempering: Heat pump absorbs ~75% of nominal cooling from indoor coil during reverse defrost
+  // Defrost tempering screening: ~75% nominal cooling capacity
   const defrostCoolingPenaltyBtu = tonnage * 12000 * 0.75;
-  const defrostTemperingKw = Number((defrostCoolingPenaltyBtu / 3412.142).toFixed(2));
+  const defrostTemperingTheoreticalKw = defrostCoolingPenaltyBtu / 3412.142;
 
-  let targetKw = 0;
+  let theoreticalKw = 0;
   if (objective === "supplemental_deficit") {
-    targetKw = (netDeficitBtu / 3412.142) * safetyFactor;
+    theoreticalKw = netDeficitBtu / 3412.142;
   } else if (objective === "full_emergency_backup") {
-    targetKw = (designLoss / 3412.142) * safetyFactor;
+    theoreticalKw = designLoss / 3412.142;
   } else if (objective === "defrost_tempering") {
-    targetKw = defrostTemperingKw * safetyFactor;
+    theoreticalKw = defrostTemperingTheoreticalKw;
   }
 
-  const exactRequiredKw = Number(targetKw.toFixed(2));
-  const selectedStandardKw = selectStandardHeatStripKw(exactRequiredKw);
+  const theoreticalRequiredKw = Number(theoreticalKw.toFixed(2));
+  const targetWithMarginKw = theoreticalKw * safetyFactor;
+  const selectedStandardKw = selectStandardHeatStripKw(targetWithMarginKw);
   const totalDeliveredBtu = Math.round(selectedStandardKw * 3412.142);
   
+  const excessCapacityKw = Number(Math.max(0, selectedStandardKw - theoreticalRequiredKw).toFixed(2));
+  const excessCapacityBtu = Math.round(excessCapacityKw * 3412.142);
+
   const coveragePercentage = designLoss > 0 
     ? Number((((objective === "supplemental_deficit" ? hpCapacity : 0) + totalDeliveredBtu) / designLoss * 100).toFixed(1))
     : 100;
 
-  // 2. Electrical Sizing per NEC 424.3(B) & 424.22(B)
-  // Continuous duty factor = 125%
+  // 2. Electrical Load Calculations
+  // Continuous duty factor = 125% per NEC 424.3(B)
   const voltageDivisor = phase === 3 ? voltage * Math.sqrt(3) : voltage;
-  const totalFlaAmps = Number(((selectedStandardKw * 1000) / voltageDivisor).toFixed(1));
-  const totalMcaAmps = Number((totalFlaAmps * 1.25).toFixed(1));
-  const totalMopdBreakerAmps = getNextStandardBreaker(totalMcaAmps);
+  const rawFla = (selectedStandardKw * 1000) / voltageDivisor;
+  const totalFlaAmps = Number(rawFla.toFixed(2));
+  const totalMcaAmps = Number((rawFla * 1.25).toFixed(2));
+  const suggestedMopdBreakerAmps = getNextStandardBreaker(totalMcaAmps);
 
-  // NEC 424.22(B) requires resistance heating elements drawing > 48A to be divided into individual branch circuits <= 48A (60A breaker max)
+  // NEC 424.22 limits single branch circuit load for fixed space heating to 48A FLA (60A breaker)
   const isMultiCircuitRequired = phase === 1 && totalFlaAmps > 48;
   const circuitBranches: ElectricCircuitBranch[] = [];
 
   if (isMultiCircuitRequired && selectedStandardKw > 10) {
-    // Partition into 2 balanced circuits (e.g., 15kW -> 10kW + 5kW, or 20kW -> 10kW + 10kW)
     const kw1 = selectedStandardKw >= 20 ? selectedStandardKw / 2 : 10;
     const kw2 = selectedStandardKw - kw1;
     
-    const fla1 = Number(((kw1 * 1000) / voltageDivisor).toFixed(1));
-    const mca1 = Number((fla1 * 1.25).toFixed(1));
+    const rawFla1 = (kw1 * 1000) / voltageDivisor;
+    const fla1 = Number(rawFla1.toFixed(2));
+    const mca1 = Number((rawFla1 * 1.25).toFixed(2));
     const breaker1 = getNextStandardBreaker(mca1);
     
-    const fla2 = Number(((kw2 * 1000) / voltageDivisor).toFixed(1));
-    const mca2 = Number((fla2 * 1.25).toFixed(1));
+    const rawFla2 = (kw2 * 1000) / voltageDivisor;
+    const fla2 = Number(rawFla2.toFixed(2));
+    const mca2 = Number((rawFla2 * 1.25).toFixed(2));
     const breaker2 = getNextStandardBreaker(mca2);
 
     circuitBranches.push({
@@ -188,8 +196,8 @@ export function calculateHeatStripSizing(input: HeatStripInput): HeatStripOutput
       assignedKw: kw1,
       flaAmps: fla1,
       mcaAmps: mca1,
-      breakerAmps: breaker1,
-      wireGaugeAwg: getRecommendedWireGauge(mca1),
+      suggestedBreakerAmps: breaker1,
+      suggestedWireGaugeAwg: getRecommendedWireGauge(mca1),
     });
 
     circuitBranches.push({
@@ -197,8 +205,8 @@ export function calculateHeatStripSizing(input: HeatStripInput): HeatStripOutput
       assignedKw: kw2,
       flaAmps: fla2,
       mcaAmps: mca2,
-      breakerAmps: breaker2,
-      wireGaugeAwg: getRecommendedWireGauge(mca2),
+      suggestedBreakerAmps: breaker2,
+      suggestedWireGaugeAwg: getRecommendedWireGauge(mca2),
     });
   } else {
     circuitBranches.push({
@@ -206,67 +214,70 @@ export function calculateHeatStripSizing(input: HeatStripInput): HeatStripOutput
       assignedKw: selectedStandardKw,
       flaAmps: totalFlaAmps,
       mcaAmps: totalMcaAmps,
-      breakerAmps: totalMopdBreakerAmps,
-      wireGaugeAwg: getRecommendedWireGauge(totalMcaAmps),
+      suggestedBreakerAmps: suggestedMopdBreakerAmps,
+      suggestedWireGaugeAwg: getRecommendedWireGauge(totalMcaAmps),
     });
   }
 
-  // 3. Airflow & Temperature Rise Analysis
-  // Standard rule: 40 to 50 CFM per kW (min required = 45 CFM/kW)
-  const minRequiredAirflowCfm = Math.round(selectedStandardKw * 45);
-  const actualCfm = input.systemAirflowCfm || (tonnage > 0 ? tonnage * 400 : minRequiredAirflowCfm);
+  // 3. Airflow Screening & Temperature Rise
+  const screeningAirflowCfm = Math.round(selectedStandardKw * 45);
+  const actualCfm = input.systemAirflowCfm || (tonnage > 0 ? tonnage * 400 : screeningAirflowCfm);
   
   // Delta T = (kW * 3412.142) / (1.08 * CFM)
   const estimatedTempRiseF = actualCfm > 0 
     ? Number(((selectedStandardKw * 3412.142) / (1.08 * actualCfm)).toFixed(1))
     : 0;
 
-  let airflowStatus: "Adequate" | "Low Airflow Warning" | "Critical Starvation" = "Adequate";
-  if (actualCfm < minRequiredAirflowCfm * 0.8) {
-    airflowStatus = "Critical Starvation";
-  } else if (actualCfm < minRequiredAirflowCfm) {
-    airflowStatus = "Low Airflow Warning";
+  let airflowScreeningStatus: "Adequate Airflow" | "Low Airflow Warning" | "Critical Starvation" = "Adequate Airflow";
+  if (actualCfm < screeningAirflowCfm * 0.75) {
+    airflowScreeningStatus = "Critical Starvation";
+  } else if (actualCfm < screeningAirflowCfm * 0.90) {
+    airflowScreeningStatus = "Low Airflow Warning";
   }
 
-  // 4. Staging & Control Recommendations
+  // 4. Illustrative Staging Configurations
   let recommendedStages = 1;
   let stageBreakdownKw: number[] = [selectedStandardKw];
-  let controlRecommendation = "Single-stage thermostat control (W1). Suitable for small residential supplemental loads.";
+  let controlRecommendation = "Single-stage operation (W1). Compare staging capabilities with manufacturer air-handler kit.";
 
   if (selectedStandardKw >= 15) {
     recommendedStages = 3;
     stageBreakdownKw = selectedStandardKw === 15 ? [5, 5, 5] : [10, 5, 5];
-    controlRecommendation = "3-stage sequenced control (W1/W2/W3) with outdoor low-ambient thermostat lockout (OT) to prevent simultaneous staging during mild ambient temps.";
-  } else if (selectedStandardKw >= 8) {
+    controlRecommendation = "3-stage sequenced control (W1/W2/W3) recommended with outdoor ambient lockout.";
+  } else if (selectedStandardKw >= 7.5) {
     recommendedStages = 2;
-    stageBreakdownKw = selectedStandardKw === 10 ? [5, 5] : [selectedStandardKw / 2, selectedStandardKw / 2];
-    controlRecommendation = "2-stage sequenced staging (W1/W2) with 5–10 minute time delay or multi-stage heat pump thermostat.";
+    stageBreakdownKw = selectedStandardKw === 10 ? [5, 5] : selectedStandardKw === 7.5 ? [4.8, 2.7] : [selectedStandardKw / 2, selectedStandardKw / 2];
+    controlRecommendation = "2-stage sequenced control (W1/W2) or staged multi-stage thermostat.";
   }
+
+  const summary = `Theoretical deficit requirement is ${theoreticalRequiredKw} kW (${netDeficitBtu.toLocaleString()} BTU/hr). Selected available nominal element: ${selectedStandardKw} kW (${totalDeliveredBtu.toLocaleString()} BTU/hr, +${excessCapacityKw} kW margin). Calculated electrical load: ${totalFlaAmps} A FLA / ${totalMcaAmps} A MCA @ ${voltage}V.`;
 
   return {
     sizingObjective: objective,
     designHeatLossBtu: designLoss,
     heatPumpCapacityAtDesignBtu: hpCapacity,
     netHeatingDeficitBtu: netDeficitBtu,
-    exactRequiredKw,
+    theoreticalRequiredKw,
     selectedStandardKw,
     totalDeliveredBtu,
+    excessCapacityKw,
+    excessCapacityBtu,
     coveragePercentage,
-    defrostTemperingKw,
+    sizingMarginPercentage,
     voltage,
     phase,
     totalFlaAmps,
     totalMcaAmps,
-    totalMopdBreakerAmps,
+    suggestedMopdBreakerAmps,
     isMultiCircuitRequired,
     circuitBranches,
     systemAirflowCfm: actualCfm,
-    minRequiredAirflowCfm,
-    airflowStatus,
+    screeningAirflowCfm,
+    airflowScreeningStatus,
     estimatedTempRiseF,
     recommendedStages,
     stageBreakdownKw,
     controlRecommendation,
-    governingStandard: "ANSI/ACCA 3 Manual S (3rd Ed), ACCA Manual J (8th Ed), and NFPA 70 (NEC Article 424)",
+    summary,
   };
 }

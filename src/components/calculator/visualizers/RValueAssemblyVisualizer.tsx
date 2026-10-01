@@ -10,13 +10,15 @@ interface RValueAssemblyVisualizerProps {
 
 const LAYER_COLORS: Record<string, string> = {
   drywall_half_inch: "#cbd5e1",
+  drywall_five_eighths: "#94a3b8",
   fiberglass_batt: "#f472b6",
+  fiberglass_hd_batt: "#ec4899",
   rockwool_mineral_wool: "#78716c",
   cellulose_loose_fill: "#a8a29e",
   closed_cell_foam: "#facc15",
   open_cell_foam: "#fde047",
   polyiso_continuous: "#38bdf8",
-  xps_rigid_foam: "#ec4899",
+  xps_rigid_foam: "#0ea5e9",
   eps_rigid_foam: "#e2e8f0",
   osb_sheathing: "#d97706",
   wood_siding: "#b45309",
@@ -34,7 +36,7 @@ export function RValueAssemblyVisualizer({ output, layers }: RValueAssemblyVisua
       style={{
         background: "linear-gradient(145deg, #090e1a 0%, #151b2e 50%, #080c18 100%)",
         border: "1px solid var(--border-color)",
-        borderTop: output.isIeccCompliant ? "3px solid var(--accent-success)" : "3px solid var(--accent-danger)",
+        borderTop: "3px solid var(--accent-cooling)",
         borderRadius: "0.75rem",
         padding: "1.15rem",
         boxShadow: "inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.4)",
@@ -45,14 +47,14 @@ export function RValueAssemblyVisualizer({ output, layers }: RValueAssemblyVisua
         margin: "0.75rem 0",
       }}
       role="region"
-      aria-label="Insulation Assembly Thermal Cross-Section Diagram"
+      aria-label="Insulation Assembly 1-D Thermal Cross-Section Diagram"
     >
       {/* Top Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.65rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
           <span style={{ fontSize: "1.1rem" }}>🧱</span>
           <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--ink)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
-            Assembly Thermal Cross-Section &amp; Gradient
+            1-D Layer Cross-Section &amp; Thermal Gradient
           </span>
         </div>
         <span
@@ -61,18 +63,18 @@ export function RValueAssemblyVisualizer({ output, layers }: RValueAssemblyVisua
             fontWeight: 600,
             padding: "0.15rem 0.5rem",
             borderRadius: "4px",
-            background: output.isIeccCompliant ? "rgba(16, 185, 129, 0.15)" : "rgba(239, 68, 68, 0.15)",
-            color: output.isIeccCompliant ? "var(--accent-success)" : "var(--accent-danger)",
+            background: "rgba(0, 210, 255, 0.12)",
+            color: "var(--accent-cooling)",
             border: "1px solid currentColor",
           }}
         >
-          {output.complianceStatusBadge}
+          R_stack = R-{output.totalRValue.toFixed(2)} &bull; U = {output.overallUFactor.toFixed(4)}
         </span>
       </div>
 
       {/* SVG Multi-Layer Cross Section */}
       <div style={{ width: "100%", height: "165px", position: "relative" }}>
-        <svg viewBox="0 0 480 165" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Wall Assembly Layers and Thermal Gradient">
+        <svg viewBox="0 0 480 165" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="1-D Wall Assembly Layers and Thermal Temperature Gradient">
           {/* Indoor / Outdoor Ambience Background Labels */}
           <text x="25" y="15" fill="#ef4444" fontSize="7.5" fontWeight="700">INDOOR (70&deg;F)</text>
           <text x="455" y="15" fill="#00d2ff" fontSize="7.5" fontWeight="700" textAnchor="end">OUTDOOR (0&deg;F)</text>
@@ -107,7 +109,7 @@ export function RValueAssemblyVisualizer({ output, layers }: RValueAssemblyVisua
                   fontWeight="700"
                   textAnchor="middle"
                 >
-                  R-{layer.calculatedRValue}
+                  R-{layer.calculatedRValue.toFixed(1)}
                 </text>
 
                 {/* Layer Name Below */}
@@ -141,10 +143,10 @@ export function RValueAssemblyVisualizer({ output, layers }: RValueAssemblyVisua
       {/* Summary Footer */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.4rem", fontSize: "0.72rem" }}>
         <span style={{ color: "var(--ink-secondary)" }}>
-          IECC Zone {output.climateZone} Requirement: <strong style={{ color: "var(--ink)" }}>R-{output.ieccRequiredRValue} (U-{output.ieccMaxUFactor})</strong>
+          IECC Prescriptive Benchmark: <strong style={{ color: "var(--ink)" }}>{output.ieccPrescriptiveTarget}</strong>
         </span>
         <span style={{ color: "var(--ink-secondary)" }}>
-          Annual Heat Loss: <strong style={{ color: output.isIeccCompliant ? "var(--accent-success)" : "#f59e0b" }}>{output.annualHeatLossBtuPerSqFt.toLocaleString()} BTU/sq ft·yr</strong>
+          Annual Heat Loss: <strong style={{ color: "var(--accent-cooling)" }}>{output.annualHeatLossBtuPerSqFt.toLocaleString()} BTU/ft²·yr</strong>
         </span>
       </div>
     </div>

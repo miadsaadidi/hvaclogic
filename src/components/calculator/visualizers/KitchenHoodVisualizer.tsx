@@ -49,7 +49,7 @@ export function KitchenHoodVisualizer({ output, cooktopType, mountingType }: Kit
             border: "1px solid currentColor",
           }}
         >
-          {isMakeUpRequired ? "⚠️ IRC M1503.6 Make-Up Air Required" : "✓ IRC M1503.6 Compliant (≤400 CFM)"}
+          {isMakeUpRequired ? "Make-Up Air Review Triggered (>400 CFM)" : "≤ 400 CFM (Check Local Code)"}
         </span>
       </div>
 
@@ -78,7 +78,7 @@ export function KitchenHoodVisualizer({ output, cooktopType, mountingType }: Kit
           <polygon points="140,55 360,55 330,15 170,15" fill="url(#hoodSteel)" stroke="var(--border-color)" strokeWidth="1.5" />
           <rect x="220" y="2" width="60" height="15" fill="#1e293b" stroke="#475569" strokeWidth="1" />
           <text x="250" y="12" fill="var(--ink)" fontSize="7" fontWeight="600" textAnchor="middle">
-            Ø {output.recommendedDuctDiameterInches}&quot; DUCT
+            Ø {output.recommendedDuctDiameterInches}&quot; DUCT ({output.ductAirVelocityFpm} FPM)
           </text>
 
           {/* Baffle Filters (Underside of Hood) */}
@@ -111,25 +111,25 @@ export function KitchenHoodVisualizer({ output, cooktopType, mountingType }: Kit
                 MAKE-UP AIR
               </text>
               <text x="45" y="30" fill="var(--accent-danger)" fontSize="7" fontWeight="600" textAnchor="middle">
-                MOTORIZED DAMPER
+                CODE REVIEW
               </text>
               <line x1="45" y1="40" x2="45" y2="60" stroke="var(--accent-danger)" strokeWidth="2" strokeDasharray="3 2" />
               <polygon points="41,58 45,66 49,58" fill="var(--accent-danger)" />
               <text x="45" y="70" fill="var(--ink-secondary)" fontSize="6.5" textAnchor="middle">
-                +{output.makeUpAirCfmRequired} CFM INTAKE
+                ~{output.makeUpAirCfmRequired} CFM Supply
               </text>
             </g>
           ) : (
             <g transform="translate(390, 50)">
               <rect x="0" y="0" width="90" height="55" rx="6" fill="rgba(16, 185, 129, 0.08)" stroke="var(--accent-success)" strokeWidth="1" />
               <text x="45" y="22" fill="var(--accent-success)" fontSize="8" fontWeight="700" textAnchor="middle">
-                NATURAL INFILTRATION
+                ≤ 400 CFM
               </text>
               <text x="45" y="35" fill="var(--text-muted)" fontSize="7" textAnchor="middle">
-                ≤ 400 CFM No Damper
+                Check Local Code
               </text>
               <text x="45" y="46" fill="var(--text-muted)" fontSize="6.5" textAnchor="middle">
-                IRC Code Exempt
+                Typically Exempt
               </text>
             </g>
           )}
@@ -154,7 +154,7 @@ export function KitchenHoodVisualizer({ output, cooktopType, mountingType }: Kit
           marginTop: "0.45rem",
         }}
       >
-        {output.codeNotice}
+        💡 {output.codeNotice}
       </div>
     </div>
   );

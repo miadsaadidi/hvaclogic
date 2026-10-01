@@ -8,21 +8,23 @@ import {
   FramingMaterial,
   StudDepth,
   StudSpacing,
+  CONTINUOUS_INSULATION_R_PER_INCH,
 } from "@/lib/math/effective-r-value";
 import { EffectiveRValueVisualizer } from "@/components/calculator/visualizers/EffectiveRValueVisualizer";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
-import { StandardsBadge } from "@/components/calculator/StandardsBadge";
+import { StandardsBadge } from "@/components/seo/StandardsBadge";
 
 export function EffectiveRValueTool() {
   const [framingMaterial, setFramingMaterial] = useState<FramingMaterial>("steel");
-  const [studDepth, setStudDepth] = useState<StudDepth>("3.5");
+  const [studDepth, setStudDepth] = useState<StudDepth>("6.0");
   const [studSpacing, setStudSpacing] = useState<StudSpacing>(16);
-  const [cavityNominalR, setCavityNominalR] = useState<number>(13);
-  const [ciType, setCiType] = useState<AssemblyThermalInput["continuousInsulationType"]>("xps");
-  const [ciThickness, setCiThickness] = useState<number>(1.0);
-  const [customCiR, setCustomCiR] = useState<number>(5.0);
+  const [cavityNominalR, setCavityNominalR] = useState<number>(19);
+  const [ciType, setCiType] = useState<AssemblyThermalInput["continuousInsulationType"]>("polyiso");
+  const [ciThickness, setCiThickness] = useState<number>(1.5);
+  const [customCiR, setCustomCiR] = useState<number>(9.0);
+  const [customFramingFactor, setCustomFramingFactor] = useState<number>(25);
 
   // Available nominal R options based on stud depth
   const availableNominalRs = useMemo(() => {
@@ -49,8 +51,9 @@ export function EffectiveRValueTool() {
       continuousInsulationType: ciType,
       continuousInsulationThicknessInches: ciThickness,
       customCiRValue: customCiR,
+      framingFactorPercent: customFramingFactor,
     });
-  }, [framingMaterial, studDepth, studSpacing, cavityNominalR, ciType, ciThickness, customCiR]);
+  }, [framingMaterial, studDepth, studSpacing, cavityNominalR, ciType, ciThickness, customCiR, customFramingFactor]);
 
   // Presets
   const applyPreset = (preset: "wood_standard" | "steel_uninsulated_ci" | "steel_with_ci" | "high_performance") => {
@@ -60,19 +63,22 @@ export function EffectiveRValueTool() {
       setStudSpacing(16);
       setCavityNominalR(13);
       setCiType("none");
+      setCustomFramingFactor(25);
     } else if (preset === "steel_uninsulated_ci") {
       setFramingMaterial("steel");
-      setStudDepth("3.5");
+      setStudDepth("6.0");
       setStudSpacing(16);
-      setCavityNominalR(13);
+      setCavityNominalR(19);
       setCiType("none");
+      setCustomFramingFactor(25);
     } else if (preset === "steel_with_ci") {
       setFramingMaterial("steel");
-      setStudDepth("3.5");
+      setStudDepth("6.0");
       setStudSpacing(16);
-      setCavityNominalR(13);
-      setCiType("xps");
-      setCiThickness(1.0);
+      setCavityNominalR(19);
+      setCiType("polyiso");
+      setCiThickness(1.5);
+      setCustomFramingFactor(25);
     } else if (preset === "high_performance") {
       setFramingMaterial("wood");
       setStudDepth("5.5");
@@ -80,31 +86,29 @@ export function EffectiveRValueTool() {
       setCavityNominalR(21);
       setCiType("polyiso");
       setCiThickness(1.5);
+      setCustomFramingFactor(22);
     }
   };
 
   const handleCsvExport = () => {
-    const headers = "Parameter,Value,Unit\n";
+    const headers = "Parameter,Value,Unit,Technical Reference\n";
     const rows = [
-      `Framing Material,"${output.framingMaterial === "wood" ? "Wood" : "Cold-Formed Steel"}",`,
-      `Stud Size & Depth,"${output.studDescription}",`,
-      `Stud Spacing,"${output.studSpacing}",in O.C.`,
-      `Framing Area Fraction,"${output.framingFactorPercent}",%`,
-      `Nominal Cavity R-Value,"R-${output.nominalCavityR}",hr·ft²·°F/BTU`,
-      `Effective Cavity R-Value,"R-${output.effectiveCavityR.toFixed(1)}",hr·ft²·°F/BTU`,
-      `Cavity Thermal Bridging Loss,"${output.cavityDeratePercent.toFixed(1)}",%`,
-      `Continuous Exterior Insulation (ci),"R-${output.continuousInsulationR.toFixed(1)}",hr·ft²·°F/BTU`,
-      `Base Continuous Layers (Air films/Drywall/Sheathing/Siding),"R-${output.baseContinuousLayersR.toFixed(2)}",hr·ft²·°F/BTU`,
-      `Total Assembly Effective R-Value,"R-${output.totalAssemblyEffectiveR.toFixed(2)}",hr·ft²·°F/BTU`,
-      `Overall Assembly U-Factor,"${output.totalAssemblyUFactor.toFixed(3)}",BTU/hr·ft²·°F`,
-      `Governing Standard,"${output.standardReference}",`,
+      `Framing System,"${output.framingMaterial === "wood" ? "Wood Studs" : "Cold-Formed Steel"}",,"${output.studDescription}"`,
+      `Stud Spacing,${output.studSpacing},"inches O.C.","${output.framingFactorPercent}% framing area fraction"`,
+      `Nominal Cavity Insulation,${output.nominalCavityR},"R-value","Product rated thermal resistance"`,
+      `Effective Cavity R-Value,${output.effectiveCavityR.toFixed(1)},"R-value","${output.cavityDeratePercent.toFixed(1)}% framing derate"`,
+      `Continuous Exterior Insulation (ci),${output.continuousInsulationR.toFixed(1)},"R-value","${ciType === "none" ? "None" : `${ciType.toUpperCase()} (${ciThickness} in)`}"`,
+      `Common Base Layers,${output.baseContinuousLayersR.toFixed(2)},"R-value","Air films (0.85) + Gypsum (0.45) + OSB (0.62) + Siding (0.60)"`,
+      `WHOLE-WALL EFFECTIVE R-VALUE,${output.totalAssemblyEffectiveR.toFixed(2)},"hr·ft²·°F/BTU","Whole-wall thermal resistance"`,
+      `WHOLE-WALL ASSEMBLY U-FACTOR,${output.totalAssemblyUFactor.toFixed(3)},"BTU/hr·ft²·°F","Overall thermal transmittance (1 / R_eff)"`,
+      `Calculation Engine,"${output.calculationMethod}",,"${output.standardReference}"`,
     ].join("\n");
 
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `HVACLogic_Assembly_Thermal_Report_${output.framingMaterial}.csv`);
+    link.setAttribute("download", `HVACLogic_Effective_R_Value_${output.framingMaterial}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -114,13 +118,13 @@ export function EffectiveRValueTool() {
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       {/* Top Meta Trust Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
-        <StandardsBadge standards={["ASHRAE 90.1", "IECC", "ASHRAE Fundamentals"]} />
-        <CalculatorTrustPill customText="ASHRAE 90.1 App A &amp; Parallel-Path Physics" />
+        <StandardsBadge standards={["ASHRAE", "IECC"]} />
+        <CalculatorTrustPill customText="ASHRAE 90.1 App A Table A9.2-2 &amp; Parallel-Path Physics" />
       </div>
 
       {/* Quick Presets Bar */}
       <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", alignItems: "center" }}>
-        <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--ink-secondary)" }}>Quick Presets:</span>
+        <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--ink-secondary)" }}>Standard Scenarios:</span>
         <button
           type="button"
           onClick={() => applyPreset("steel_uninsulated_ci")}
@@ -134,7 +138,7 @@ export function EffectiveRValueTool() {
             cursor: "pointer",
           }}
         >
-          Commercial Steel 2x4 (No ci)
+          Case A: Steel 6" @ 16" OC (No ci)
         </button>
         <button
           type="button"
@@ -142,14 +146,14 @@ export function EffectiveRValueTool() {
           style={{
             padding: "0.3rem 0.6rem",
             fontSize: "0.75rem",
-            background: framingMaterial === "steel" && ciType === "xps" ? "var(--surface-active)" : "var(--surface)",
+            background: framingMaterial === "steel" && ciType === "polyiso" ? "var(--surface-active)" : "var(--surface)",
             border: "1px solid var(--border-color)",
             borderRadius: "0.375rem",
             color: "var(--ink)",
             cursor: "pointer",
           }}
         >
-          Steel 2x4 + 1" XPS ci (R-13+5ci)
+          Case B: Steel 6" + 1.5" Polyiso ci
         </button>
         <button
           type="button"
@@ -179,7 +183,7 @@ export function EffectiveRValueTool() {
             cursor: "pointer",
           }}
         >
-          Advanced 2x6 24" OC + 1.5" Polyiso
+          Advanced Wood 2x6 24" OC + ci
         </button>
       </div>
 
@@ -278,7 +282,11 @@ export function EffectiveRValueTool() {
               </label>
               <select
                 value={studSpacing}
-                onChange={(e) => setStudSpacing(Number(e.target.value) as StudSpacing)}
+                onChange={(e) => {
+                  const sp = Number(e.target.value) as StudSpacing;
+                  setStudSpacing(sp);
+                  setCustomFramingFactor(sp === 16 ? 25 : 22);
+                }}
                 style={{
                   width: "100%",
                   padding: "0.55rem",
@@ -289,35 +297,59 @@ export function EffectiveRValueTool() {
                   fontSize: "0.85rem",
                 }}
               >
-                <option value={16}>16" On-Center (25% Framing)</option>
-                <option value={24}>24" On-Center (22% Framing)</option>
+                <option value={16}>16" On-Center</option>
+                <option value={24}>24" On-Center</option>
               </select>
             </div>
           </div>
 
-          <div>
-            <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, color: "var(--ink-secondary)", marginBottom: "0.3rem" }}>
-              Nominal Cavity Insulation R-Value
-            </label>
-            <select
-              value={cavityNominalR}
-              onChange={(e) => setCavityNominalR(Number(e.target.value))}
-              style={{
-                width: "100%",
-                padding: "0.55rem",
-                borderRadius: "0.5rem",
-                border: "1px solid var(--border-color)",
-                background: "var(--surface-subtle)",
-                color: "var(--ink)",
-                fontSize: "0.85rem",
-              }}
-            >
-              {availableNominalRs.map((r) => (
-                <option key={r} value={r}>
-                  {r === 0 ? "Uninsulated (R-0)" : `R-${r} Batt / Friction Fit`}
-                </option>
-              ))}
-            </select>
+          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem" }}>
+            <div>
+              <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, color: "var(--ink-secondary)", marginBottom: "0.3rem" }}>
+                Nominal Cavity R-Value
+              </label>
+              <select
+                value={cavityNominalR}
+                onChange={(e) => setCavityNominalR(Number(e.target.value))}
+                style={{
+                  width: "100%",
+                  padding: "0.55rem",
+                  borderRadius: "0.5rem",
+                  border: "1px solid var(--border-color)",
+                  background: "var(--surface-subtle)",
+                  color: "var(--ink)",
+                  fontSize: "0.85rem",
+                }}
+              >
+                {availableNominalRs.map((r) => (
+                  <option key={r} value={r}>
+                    {r === 0 ? "Uninsulated (R-0)" : `R-${r} Batt / Friction Fit`}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, color: "var(--ink-secondary)", marginBottom: "0.3rem" }}>
+                Framing Factor (%)
+              </label>
+              <input
+                type="number"
+                min={10}
+                max={40}
+                value={customFramingFactor}
+                onChange={(e) => setCustomFramingFactor(Number(e.target.value))}
+                style={{
+                  width: "100%",
+                  padding: "0.55rem",
+                  borderRadius: "0.5rem",
+                  border: "1px solid var(--border-color)",
+                  background: "var(--surface-subtle)",
+                  color: "var(--ink)",
+                  fontSize: "0.85rem",
+                }}
+              />
+            </div>
           </div>
         </div>
 
@@ -333,7 +365,14 @@ export function EffectiveRValueTool() {
             </label>
             <select
               value={ciType}
-              onChange={(e) => setCiType(e.target.value as AssemblyThermalInput["continuousInsulationType"])}
+              onChange={(e) => {
+                const val = e.target.value as AssemblyThermalInput["continuousInsulationType"];
+                setCiType(val);
+                if (val !== "none" && val !== "custom") {
+                  const spec = CONTINUOUS_INSULATION_R_PER_INCH[val];
+                  setCustomCiR(spec ? Math.round(ciThickness * spec.rPerInch * 10) / 10 : 0);
+                }
+              }}
               style={{
                 width: "100%",
                 padding: "0.55rem",
@@ -345,11 +384,11 @@ export function EffectiveRValueTool() {
               }}
             >
               <option value="none">None (Cavity Only / Unmitigated Bridge)</option>
-              <option value="xps">Extruded Polystyrene (XPS - R-5.0/inch)</option>
-              <option value="polyiso">Polyisocyanurate (Polyiso - R-6.0/inch)</option>
-              <option value="eps">Expanded Polystyrene (EPS - R-4.0/inch)</option>
-              <option value="mineral_wool">Rigid Mineral Wool Board (R-4.2/inch)</option>
-              <option value="custom">Custom Nominal R-Value</option>
+              <option value="polyiso">Polyisocyanurate (Polyiso — R-6.0/inch nominal ASTM C1289)</option>
+              <option value="xps">Extruded Polystyrene (XPS — R-5.0/inch nominal ASTM C578)</option>
+              <option value="eps">Expanded Polystyrene (EPS — R-4.0/inch nominal ASTM C578)</option>
+              <option value="mineral_wool">Rigid Mineral Wool Board (R-4.2/inch nominal ASTM C612)</option>
+              <option value="custom">Custom Nominal R-Value...</option>
             </select>
           </div>
 
@@ -369,7 +408,12 @@ export function EffectiveRValueTool() {
                 max="4.0"
                 step="0.5"
                 value={ciThickness}
-                onChange={(e) => setCiThickness(parseFloat(e.target.value))}
+                onChange={(e) => {
+                  const val = parseFloat(e.target.value);
+                  setCiThickness(val);
+                  const spec = CONTINUOUS_INSULATION_R_PER_INCH[ciType];
+                  if (spec) setCustomCiR(Math.round(val * spec.rPerInch * 10) / 10);
+                }}
                 style={{ width: "100%" }}
               />
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", color: "var(--ink-muted)" }}>
@@ -409,7 +453,7 @@ export function EffectiveRValueTool() {
           )}
 
           <div style={{ padding: "0.75rem", background: "var(--surface-subtle)", borderRadius: "0.5rem", fontSize: "0.78rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
-            <strong>Continuous Layers Included:</strong> Interior Air Film (0.68) + 1/2" Gypsum (0.45) + 7/16" OSB (0.62) + Siding (0.60) + Exterior Air Film (0.17) = <strong>R-{output.baseContinuousLayersR.toFixed(2)}</strong>.
+            <strong>Common Base Layers (Series R = {output.baseContinuousLayersR.toFixed(2)}):</strong> Interior Air Film (0.68) + 1/2" Gypsum (0.45) + 7/16" OSB Sheathing (0.62) + Siding (0.60) + Exterior Air Film (0.17).
           </div>
         </div>
       </div>
@@ -432,9 +476,9 @@ export function EffectiveRValueTool() {
             <thead>
               <tr>
                 <th scope="col">Layer / Thermal Component</th>
-                <th scope="col">Nominal Rating</th>
-                <th scope="col">Effective Resistance</th>
-                <th scope="col">Thermal Bridging Impact</th>
+                <th scope="col">Nominal Product Rating</th>
+                <th scope="col">Effective Thermal Resistance</th>
+                <th scope="col">Thermal Bridging Derivation</th>
               </tr>
             </thead>
             <tbody>
@@ -443,24 +487,26 @@ export function EffectiveRValueTool() {
                 <td>R-{output.nominalCavityR}</td>
                 <td><strong>R-{output.effectiveCavityR.toFixed(1)}</strong></td>
                 <td style={{ color: output.cavityDeratePercent > 40 ? "var(--accent-danger)" : "inherit" }}>
-                  {output.cavityDeratePercent > 0 ? `-${output.cavityDeratePercent.toFixed(1)}% capacity lost to framing bridge` : "0% loss"}
+                  {output.cavityDeratePercent > 0
+                    ? `-${output.cavityDeratePercent.toFixed(1)}% reduction due to direct stud thermal bridging`
+                    : "0% loss (unbridged)"}
                 </td>
               </tr>
               <tr>
                 <td><strong>Continuous Exterior Insulation (ci)</strong></td>
                 <td>R-{output.continuousInsulationR.toFixed(1)}</td>
                 <td><strong>R-{output.continuousInsulationR.toFixed(1)}</strong></td>
-                <td style={{ color: "#34d399" }}>0% bridging (uninterrupted thermal break)</td>
+                <td style={{ color: "#34d399" }}>Substantially mitigates framing thermal bridges across wall plane</td>
               </tr>
               <tr>
-                <td><strong>Common Unbridged Layers (Air films + Finishes)</strong></td>
+                <td><strong>Common Base Series Layers (Air films + Finishes)</strong></td>
                 <td>R-{output.baseContinuousLayersR.toFixed(2)}</td>
                 <td><strong>R-{output.baseContinuousLayersR.toFixed(2)}</strong></td>
-                <td>Series sum of homogeneous materials</td>
+                <td>Series sum of homogeneous unbridged layers</td>
               </tr>
               <tr style={{ background: "var(--surface-active)", fontWeight: 700 }}>
-                <td><strong>WHOLE-WALL EFFECTIVE THERMAL RESISTANCE</strong></td>
-                <td>R-{(output.nominalCavityR + output.continuousInsulationR + output.baseContinuousLayersR).toFixed(1)} (Unbridged)</td>
+                <td><strong>WHOLE-WALL EFFECTIVE ASSEMBLY RESISTANCE</strong></td>
+                <td>R-{(output.nominalCavityR + output.continuousInsulationR + output.baseContinuousLayersR).toFixed(1)} (Unbridged Nominal)</td>
                 <td style={{ color: "var(--accent-primary)", fontSize: "1.05rem" }}>
                   R-{output.totalAssemblyEffectiveR.toFixed(2)}
                 </td>
@@ -473,7 +519,7 @@ export function EffectiveRValueTool() {
         </div>
 
         <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.6, margin: 0 }}>
-          <strong>Governing Standard:</strong> {output.standardReference}. In cold-formed steel construction, thermal bridging through stud flanges reduces effective cavity performance by up to 60%. Adding exterior continuous insulation (ci) creates an uninterrupted thermal break that is required by modern energy codes (IECC &amp; ASHRAE 90.1) to achieve code compliance.
+          <strong>Governing Standard:</strong> {output.standardReference}. {output.framingMaterial === "steel" ? "Cold-formed steel framing severely reduces effective cavity insulation performance (e.g. 50% to over 68% derate). Adding continuous exterior insulation creates an unbroken thermal barrier across the stud flanges, lowering overall assembly U-factors." : "Wood stud framing follows the parallel-path isothermal planes model where the framing path and cavity path are area-weighted by the framing fraction."}
         </p>
       </div>
 
@@ -523,7 +569,7 @@ export function EffectiveRValueTool() {
       <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", fontSize: "0.85rem", color: "var(--ink-secondary)" }}>
         <span>• 1D Layer Builder: <Link href="/calculators/r-value-calculator" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Insulation R-Value &amp; U-Factor Calculator</Link></span>
         <span>• Conductive Heat Loss: <Link href="/calculators/heat-loss-calculator" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Building Heat Loss Calculator</Link></span>
-        <span>• Technical Monograph: <Link href="/guides/framing-thermal-bridging-effective-r-value" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Framing Thermal Bridging Guide</Link></span>
+        <span>• Technical Guide: <Link href="/guides/framing-thermal-bridging-effective-r-value" style={{ color: "var(--accent-primary)", textDecoration: "underline" }}>Framing Thermal Bridging Guide</Link></span>
       </div>
 
       {/* Export & Actions */}

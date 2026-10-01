@@ -29,7 +29,7 @@ const PRESETS = [
     merv: "merv_8" as MervRating,
   },
   {
-    label: "⚠️ 1\" MERV 13 High Resistance (16x20x1)",
+    label: "⚠️ 1\" MERV 13 Elevated Drop (16x20x1)",
     cfm: 1200,
     width: 16,
     height: 20,
@@ -38,7 +38,7 @@ const PRESETS = [
     merv: "merv_13" as MervRating,
   },
   {
-    label: "🛡️ 4\" Deep Media Upgrade (20x25x4)",
+    label: "🛡️ 4\" Deep Media (20x25x4)",
     cfm: 1200,
     width: 20,
     height: 25,
@@ -133,7 +133,7 @@ export function FilterSizingTool() {
 
   const handleExportCsv = () => {
     const headers = "Parameter,Value,Unit\n";
-    const rows = `System Airflow,${output.airflowCfm},"CFM"\nFilter Dimensions,"${output.filterDimensionsStr}",""\nFilter Count,${output.filterCount},""\nTotal Filter Face Area,${output.totalFaceAreaSqFt},"sq ft"\nFace Velocity,${output.faceVelocityFpm},"FPM"\nVelocity Status,"${output.velocityStatus}",""\nMERV Rating,"${mervRating}",""\nInitial Clean Static Pressure Drop,${output.initialCleanPressureDropInWg},"in. wg"\nEstimated Loaded Pressure Drop,${output.estimatedLoadedPressureDropInWg},"in. wg"\nPressure Drop Risk Status,"${output.pressureDropStatus}",""\nMax Recommended CFM (300/450 FPM limit),${output.recommendedMaxCfm},"CFM"\n`;
+    const rows = `System Airflow,${output.airflowCfm},"CFM"\nFilter Dimensions,"${output.filterDimensionsStr}",""\nFilter Count,${output.filterCount},""\nTotal Filter Face Area,${output.totalFaceAreaSqFt},"sq ft"\nFace Velocity,${output.faceVelocityFpm},"FPM"\nVelocity Assessment,"${output.velocityStatus}",""\nMERV Rating,"${mervRating}",""\nEstimated Clean Static Pressure Drop,${output.initialCleanPressureDropInWg},"in. wg"\nIllustrative Loaded Pressure Drop,${output.estimatedLoadedPressureDropInWg},"in. wg"\nPressure Drop Classification,"${output.pressureDropStatus}",""\nReference Design CFM Guideline,${output.recommendedMaxCfm},"CFM"\n`;
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -187,7 +187,7 @@ export function FilterSizingTool() {
           <div className="form-group" style={{ marginBottom: "0.5rem" }}>
             <label htmlFor="cfm-input">
               <span>System Airflow</span>
-              <span className="unit-label">CFM (400 CFM / Ton)</span>
+              <span className="unit-label">CFM (~400 CFM / Ton nominal)</span>
             </label>
             <input
               id="cfm-input"
@@ -210,7 +210,7 @@ export function FilterSizingTool() {
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="size-select">
                 <span>Filter Size</span>
-                <span className="unit-label">WxH</span>
+                <span className="unit-label">WxH (Inches)</span>
               </label>
               <select
                 id="size-select"
@@ -231,7 +231,7 @@ export function FilterSizingTool() {
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="depth-select">
                 <span>Media Depth</span>
-                <span className="unit-label">Inches</span>
+                <span className="unit-label">Nominal Inches</span>
               </label>
               <select
                 id="depth-select"
@@ -244,10 +244,10 @@ export function FilterSizingTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value={1}>1&quot; Standard Slot</option>
-                <option value={2}>2&quot; Commercial</option>
+                <option value={1}>1&quot; Standard Frame</option>
+                <option value={2}>2&quot; Commercial Frame</option>
                 <option value={4}>4&quot; Deep Pleated Media</option>
-                <option value={5}>5&quot; Whole-House Cleaner</option>
+                <option value={5}>5&quot; Whole-House Media</option>
               </select>
             </div>
           </div>
@@ -286,7 +286,7 @@ export function FilterSizingTool() {
           <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="merv-select">
-                <span>MERV Efficiency</span>
+                <span>MERV Rating</span>
                 <span className="unit-label">ASHRAE 52.2</span>
               </label>
               <select
@@ -300,18 +300,18 @@ export function FilterSizingTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value="merv_4">MERV 4 — Fiberglass Mesh (Low Resistance)</option>
+                <option value="merv_4">MERV 4 — Fiberglass Mesh (Equipment Protection)</option>
                 <option value="merv_8">MERV 8 — Standard Residential Pleated</option>
-                <option value="merv_11">MERV 11 — High Allergy &amp; Pet Dander</option>
-                <option value="merv_13">MERV 13 — ASHRAE 241 Virus / Wildfire Smoke</option>
-                <option value="merv_16">MERV 16 — Hospital / Cleanroom Grade</option>
+                <option value="merv_11">MERV 11 — Enhanced Pleated (Allergens &amp; Dander)</option>
+                <option value="merv_13">MERV 13 — Fine Particulate (Dust, Smoke, Droplets)</option>
+                <option value="merv_16">MERV 16 — High-Efficiency Media (Submicron Capture)</option>
               </select>
             </div>
 
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="count-select">
                 <span>Filter Grilles</span>
-                <span className="unit-label">Qty</span>
+                <span className="unit-label">Parallel Qty</span>
               </label>
               <select
                 id="count-select"
@@ -321,19 +321,25 @@ export function FilterSizingTool() {
                 style={{ cursor: "pointer" }}
               >
                 <option value={1}>1 Filter Slot</option>
-                <option value={2}>2 Filter Grilles (Parallel)</option>
-                <option value={3}>3 Filter Grilles</option>
-                <option value={4}>4 Filter Grilles</option>
+                <option value={2}>2 Parallel Grilles</option>
+                <option value={3}>3 Parallel Grilles</option>
+                <option value={4}>4 Parallel Grilles</option>
               </select>
             </div>
           </div>
+
+          {filterCount > 1 && (
+            <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.25rem", fontStyle: "italic" }}>
+              * Parallel calculation assumes reasonably balanced airflow distribution across return grilles.
+            </div>
+          )}
         </div>
 
         {/* OUTPUT PANEL */}
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Filter Face Velocity and Pressure Drop Result">
-            <div className="result-label">Initial Clean Static Pressure Drop</div>
+            <div className="result-label">Estimated Clean Static Pressure Drop</div>
             <div
               className="result-value"
               style={{
@@ -378,17 +384,20 @@ export function FilterSizingTool() {
                 }}
               >
                 {output.pressureDropStatus === "low_resistance"
-                  ? "✓ Optimal Low Resistance (<0.10\" w.g. Drop)"
+                  ? "✓ Low Resistance (<0.10\" w.g. estimated clean drop)"
                   : output.pressureDropStatus === "moderate"
-                  ? "✓ Normal Resistance (0.10\" to 0.18\" w.g.)"
+                  ? "✓ Typical Moderate Resistance (0.10\" to 0.18\" w.g.)"
                   : output.pressureDropStatus === "high_risk"
-                  ? "⚠️ High Resistance (>0.18\" w.g.): Upgrade to 4\" media recommended"
-                  : "⛔ Severe Choking (>0.28\" w.g.): High risk of ECM blower failure!"}
+                  ? "⚠️ Elevated Resistance (>0.18\" w.g.): Check available static pressure or consider deeper media"
+                  : "⛔ High Resistance (>0.28\" w.g.): Significant component loss against blower static budget"}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ASHRAE Standard 52.2 (MERV)", "ACCA Manual D®", "ASHRAE Standard 241"]} />
+          <StandardsBadge
+            label="Technical References:"
+            standards={["ASHRAE Standard 52.2 (Test Method)", "ACCA Manual D (Duct Sizing)"]}
+          />
 
           {/* REACTIVE VISUALIZER */}
           <FilterSizingVisualizer output={output} />
@@ -402,17 +411,21 @@ export function FilterSizingTool() {
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Loaded Dirty Drop</div>
+              <div className="item-label">Illustrative Loaded Drop</div>
               <div className="item-value">~{output.estimatedLoadedPressureDropInWg.toFixed(3)}&quot; w.g.</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Max CFM (300/450 FPM)</div>
+              <div className="item-label">Design CFM Guideline</div>
               <div className="item-value">{output.recommendedMaxCfm} CFM</div>
             </div>
             <div className="secondary-result-item">
               <div className="item-label">Face Velocity Status</div>
               <div className="item-value" style={{ textTransform: "capitalize" }}>
-                {output.velocityStatus.replace("_", " ")}
+                {output.velocityStatus === "optimal"
+                  ? "Within 300 FPM"
+                  : output.velocityStatus === "acceptable_deep_only"
+                  ? "300–450 FPM Range"
+                  : "Elevated (>450 FPM)"}
               </div>
             </div>
           </div>

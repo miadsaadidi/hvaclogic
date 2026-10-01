@@ -64,7 +64,7 @@ export function GarageHeaterVisualizer({ output }: GarageHeaterVisualizerProps) 
           {/* Roof Rafters / Ceiling */}
           <polygon points="230,10 40,45 420,45" fill="rgba(30, 41, 59, 0.8)" stroke="#64748b" strokeWidth="1.5" />
           <text x="230" y="35" fill="#f59e0b" fontSize="7.5" fontWeight="700" textAnchor="middle">
-            Ceiling Heat Loss: {output.conductiveLossBtu.toLocaleString()} BTU
+            Ceiling Loss: {output.ceilingLossBtu.toLocaleString()} BTU/hr
           </text>
 
           {/* Overhead Garage Door (Left) */}

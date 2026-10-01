@@ -6,16 +6,30 @@ import { FormulaCard } from "@/components/seo/FormulaCard";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
 export const metadata: Metadata = {
-  title: "Framing Thermal Bridging & Effective R-Value: ASHRAE 90.1 Engineering Guide",
+  title: "Framing Thermal Bridging & Effective R-Value: Engineering Reference Guide",
   description:
-    "Engineering guide to building envelope thermal bridging, parallel-path heat transfer, and ASHRAE 90.1 Appendix A effective cavity deratings for wood and steel stud walls.",
+    "Technical guide to building envelope thermal bridging, parallel-path heat transfer, cold-formed steel effective cavity values, and assembly U-factor calculations.",
+  keywords: [
+    "thermal bridging",
+    "effective R-value",
+    "whole-wall R-value",
+    "assembly U-factor",
+    "framing factor",
+    "cold-formed steel framing",
+    "wood framing",
+    "parallel-path method",
+    "continuous insulation",
+    "thermal bridge",
+    "building envelope",
+    "ASHRAE 90.1 Appendix A",
+  ],
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/guides/framing-thermal-bridging-effective-r-value`,
   },
   openGraph: {
-    title: "Framing Thermal Bridging & Effective R-Value: ASHRAE 90.1 Engineering Guide",
+    title: "Framing Thermal Bridging & Effective R-Value: Engineering Reference Guide",
     description:
-      "Engineering guide to building envelope thermal bridging, parallel-path heat transfer, and ASHRAE 90.1 Appendix A effective cavity deratings for wood and steel stud walls.",
+      "Technical guide to building envelope thermal bridging, parallel-path heat transfer, cold-formed steel effective cavity values, and assembly U-factor calculations.",
     url: `${siteConfig.canonicalDomain}/guides/framing-thermal-bridging-effective-r-value`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -23,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Framing Thermal Bridging & Effective R-Value: ASHRAE 90.1 Engineering Guide",
+    title: "Framing Thermal Bridging & Effective R-Value Guide",
     description:
-      "Engineering guide to building envelope thermal bridging, parallel-path heat transfer, and ASHRAE 90.1 Appendix A effective cavity deratings for wood and steel stud walls.",
+      "Technical guide to building envelope thermal bridging, parallel-path heat transfer, and assembly U-factor calculations.",
   },
 };
 
@@ -33,9 +47,9 @@ export default function FramingThermalBridgingGuidePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    headline: "Building Envelope Thermal Bridging & Effective Assembly U-Factor Engineering Guide",
+    headline: "Building Envelope Thermal Bridging & Effective Assembly U-Factor Guide",
     description:
-      "Comprehensive engineering guide to parallel-path heat transfer, cold-formed steel framing deratings, and continuous exterior insulation (ci) per ASHRAE 90.1 Normative Appendix A and IECC.",
+      "Technical guide to parallel-path heat transfer, cold-formed steel effective cavity values, continuous exterior insulation, and assembly U-factor calculations referencing ASHRAE 90.1 Appendix A methods.",
     url: `${siteConfig.canonicalDomain}/guides/framing-thermal-bridging-effective-r-value`,
     author: {
       "@type": "Organization",
@@ -78,17 +92,17 @@ export default function FramingThermalBridgingGuidePage() {
             Building Science
           </span>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "9999px", background: "rgba(16, 185, 129, 0.15)", color: "#34d399" }}>
-            ASHRAE 90.1 Normative Appendix A
+            ASHRAE 90.1 Appendix A Methods
           </span>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "9999px", background: "rgba(245, 158, 11, 0.15)", color: "#fbbf24" }}>
-            IECC 2024 / 2021
+            Assembly U-Factor Modeling
           </span>
         </div>
         <h1 style={{ fontSize: "2.1rem", fontWeight: 800, lineHeight: 1.25, color: "var(--ink)", marginBottom: "0.75rem" }}>
           Building Envelope Thermal Bridging &amp; Effective Assembly U-Factor
         </h1>
         <p style={{ fontSize: "1.1rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-          How repetitive structural framing penetrates insulation layers, degrades nominal R-values by up to 64%, and how to calculate code-compliant whole-wall assembly U-factors using ASHRAE 90.1 Normative Appendix A.
+          How repetitive structural framing penetrates cavity insulation layers, reduces clear-wall thermal resistance by up to ~69% in cold-formed steel, and how to calculate whole-wall assembly U-factors using simplified parallel-path and ASHRAE-referenced methods.
         </p>
       </header>
 
@@ -138,45 +152,45 @@ export default function FramingThermalBridgingGuidePage() {
           1. The Physics of Framing Thermal Bridging
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          In architectural specifications, building envelopes are frequently described by their <em>nominal</em> insulation ratings—such as "R-13 cavity batt" or "R-19 fiberglass." However, nominal insulation values only represent the thermal resistance of the insulation material itself measured under uniform 1D laboratory conditions (ASTM C518).
+          In architectural specifications, building envelopes are frequently described by their <em>nominal</em> insulation ratings—such as &quot;R-13 cavity batt&quot; or &quot;R-19 fiberglass.&quot; However, nominal insulation values represent the thermal resistance of the uncompressed insulation material itself under standardized product rating conditions.
         </p>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          In a physical building wall, the insulation layer is repeatedly interrupted by structural members: vertical studs, bottom sill plates, top double plates, structural headers over window openings, and corner framing clusters. Because heat follows the path of least thermal resistance (maximum thermal conductivity), structural framing acts as a thermal conduit—a <strong>thermal bridge</strong>—short-circuiting the adjacent insulation.
+          In a physical building wall, the insulation layer is repeatedly interrupted by structural members: vertical studs, bottom sill plates, top double plates, structural headers over window openings, and corner framing clusters. Because heat follows the path of least thermal resistance, structural framing acts as a thermal conduit—a <strong>thermal bridge</strong>—conducting heat around the adjacent cavity insulation.
         </p>
       </section>
 
-      {/* SECTION 2: GOVERNING EQUATIONS */}
+      {/* SECTION 2: CALCULATION MODELS */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          2. Governing Mathematical Models: Wood vs. Cold-Formed Steel
+          2. Calculation Models: Wood vs. Cold-Formed Steel Framing
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1.5rem" }}>
-          Because wood and steel possess fundamentally different thermal conductivity coefficients, building codes and ASHRAE standards mandate distinct mathematical methods for each material:
+          Because wood and steel have substantially different thermal conductivities, calculation methods differ. Wood framing is commonly approximated using a simplified parallel-path (isothermal planes) model, while cold-formed steel (CFS) assemblies require source-specific effective cavity values (such as ASHRAE 90.1 Table A9.2-1) or detailed 2D/3D modeling due to steel&apos;s high thermal conductivity:
         </p>
 
         <FormulaCard
           title="Parallel-Path Isothermal Planes Method (Wood Framing)"
           formula="U_{\text{wood}} = \frac{f_{\text{framing}}}{R_{\text{framing\_path}}} + \frac{f_{\text{cavity}}}{R_{\text{cavity\_path}}} \quad | \quad R_{\text{effective}} = \frac{1}{U_{\text{wood}}}"
           variables={[
-            { symbol: "f_{\\text{framing}}", label: "Framing Area Fraction", description: "Standard default: 0.25 (25%) for 16\" O.C.; 0.22 (22%) for 24\" O.C. advanced framing", unit: "decimal" },
-            { symbol: "f_{\\text{cavity}}", label: "Cavity Area Fraction", description: "Standard default: 0.75 (75%) for 16\" O.C.; 0.78 (78%) for 24\" O.C.", unit: "decimal" },
-            { symbol: "R_{\\text{framing\_path}}", label: "Framing Path Resistance", description: "R_continuous_layers + Depth_inches × 1.25 hr·ft²·°F/BTU (Softwood lumber)", unit: "R-value" },
-            { symbol: "R_{\\text{cavity\_path}}", label: "Cavity Path Resistance", description: "R_continuous_layers + R_cavity_insulation_nominal", unit: "R-value" },
+            { symbol: "f_{\\text{framing}}", label: "Framing Area Fraction", description: "Illustrative reference assumptions: ~0.25 (25%) for 16\" O.C.; ~0.22 (22%) for 24\" O.C. (varies with framing layout)", unit: "decimal" },
+            { symbol: "f_{\\text{cavity}}", label: "Cavity Area Fraction", description: "Illustrative reference assumptions: ~0.75 (75%) for 16\" O.C.; ~0.78 (78%) for 24\" O.C.", unit: "decimal" },
+            { symbol: "R_{\\text{framing\_path}}", label: "Framing Path Resistance", description: "R_continuous_layers + (Depth_inches × R_per_inch_wood, e.g. ~1.25 reference value for softwood)", unit: "hr·ft²·°F/Btu" },
+            { symbol: "R_{\\text{cavity\_path}}", label: "Cavity Path Resistance", description: "R_continuous_layers + R_cavity_insulation_nominal", unit: "hr·ft²·°F/Btu" },
           ]}
-          notes="Applicable to dimensional lumber framing where lateral heat flow through the wood member is moderate. Sourced to ASHRAE Handbook—Fundamentals 2021 Chapter 25 and ASHRAE 90.1 Section A3.1."
-          sourceStandard="ANSI/ASHRAE/IES Standard 90.1-2022 Section A3.1"
+          notes="Simplified parallel-path model for dimensional lumber framing. Actual framing fraction varies with stud spacing, stud dimensions, plates, corners, headers, openings, intersections, and advanced framing details."
+          sourceStandard="ASHRAE Handbook of Fundamentals & ASHRAE 90.1 Section A3.1"
         />
 
         <div style={{ marginTop: "1.5rem" }}>
           <FormulaCard
-            title="ASHRAE 90.1 Normative Effective Cavity Method (Steel Framing)"
+            title="ASHRAE 90.1 Effective Cavity Method (Cold-Formed Steel Framing)"
             formula="U_{\text{steel}} = \frac{1}{R_{\text{continuous}} + R_{\text{eff,cavity}}} \quad | \quad R_{\text{effective}} = R_{\text{continuous}} + R_{\text{eff,cavity}}"
             variables={[
-              { symbol: "R_{\\text{eff,cavity}}", label: "Effective Cavity R-Value", description: "Empirically calibrated thermal resistance of steel stud + cavity insulation (Table A9.2-1)", unit: "R-value" },
-              { symbol: "R_{\\text{continuous}}", label: "Continuous Unbridged Layers", description: "Series sum of interior air film, gypsum, continuous insulation (ci), sheathing, siding, and exterior air film", unit: "R-value" },
-              { symbol: "U_{\\text{steel}}", label: "Overall Steel Wall U-Factor", description: "Overall thermal transmittance of cold-formed steel assembly", unit: "BTU/hr·ft²·°F" },
+              { symbol: "R_{\\text{eff,cavity}}", label: "Effective Cavity R-Value", description: "Empirically calibrated effective thermal resistance of steel stud + cavity insulation (e.g. ASHRAE 90.1 Table A9.2-1)", unit: "hr·ft²·°F/Btu" },
+              { symbol: "R_{\\text{continuous}}", label: "Continuous Layers Resistance", description: "Series sum of unbridged continuous layers: air films, gypsum, continuous insulation (ci), sheathing, and claddings", unit: "hr·ft²·°F/Btu" },
+              { symbol: "U_{\\text{steel}}", label: "Overall Steel Wall U-Factor", description: "Calculated overall thermal transmittance of cold-formed steel assembly", unit: "BTU/hr·ft²·°F" },
             ]}
-            notes="Because steel thermal conductivity is approximately 314 BTU·in/hr·ft²·°F (~400× wood), simple 1D parallel path fails to capture 2D flange-to-web thermal bridging. ASHRAE 90.1 Appendix A mandates Table A9.2-1 lookup values."
+            notes="Because cold-formed steel has high thermal conductivity, simple 1D parallel path does not capture 2D flange-to-web thermal bridging. Sourced to ANSI/ASHRAE/IES Standard 90.1-2022 Table A9.2-1."
             sourceStandard="ANSI/ASHRAE/IES Standard 90.1-2022 Table A9.2-1 & Section A3.3"
           />
         </div>
@@ -185,84 +199,84 @@ export default function FramingThermalBridgingGuidePage() {
       {/* SECTION 3: ASHRAE TABLE A9.2-1 MATRIX */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          3. Cold-Formed Steel Effective Cavity Derating Matrix
+          3. Cold-Formed Steel Effective Cavity Derating Matrix (ASHRAE 90.1 Reference)
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          The table below demonstrates the severe thermal bridging penalties published in <strong>ANSI/ASHRAE/IES Standard 90.1-2022 Normative Appendix A (Table A9.2-1)</strong>:
+          The table below illustrates the effective cavity thermal resistance values published in <strong>ANSI/ASHRAE/IES Standard 90.1-2022 Normative Appendix A (Table A9.2-1)</strong> for cold-formed steel stud walls:
         </p>
 
         <div className="scenario-table">
           <table>
             <thead>
               <tr>
-                <th scope="col">Stud Depth</th>
+                <th scope="col">Nominal Stud Depth</th>
                 <th scope="col">Stud Spacing</th>
                 <th scope="col">Nominal Cavity R</th>
-                <th scope="col">Effective Cavity R</th>
-                <th scope="col">Thermal Bridging Loss (%)</th>
+                <th scope="col">Effective Cavity R (Table A9.2-1)</th>
+                <th scope="col">Thermal Bridging Reduction (%)</th>
                 <th scope="col">Effective Retention (%)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>3.5" (2x4)</strong></td>
-                <td>16" O.C.</td>
+                <td><strong>3.5 in. depth</strong></td>
+                <td>16 in. O.C.</td>
                 <td>R-11</td>
                 <td><strong>R-5.5</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-50.0%</td>
                 <td>50.0%</td>
               </tr>
               <tr>
-                <td><strong>3.5" (2x4)</strong></td>
-                <td>16" O.C.</td>
+                <td><strong>3.5 in. depth</strong></td>
+                <td>16 in. O.C.</td>
                 <td>R-13</td>
                 <td><strong>R-6.0</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-53.8%</td>
                 <td>46.2%</td>
               </tr>
               <tr>
-                <td><strong>3.5" (2x4)</strong></td>
-                <td>16" O.C.</td>
+                <td><strong>3.5 in. depth</strong></td>
+                <td>16 in. O.C.</td>
                 <td>R-15</td>
                 <td><strong>R-6.4</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-57.3%</td>
                 <td>42.7%</td>
               </tr>
               <tr>
-                <td><strong>3.5" (2x4)</strong></td>
-                <td>24" O.C.</td>
+                <td><strong>3.5 in. depth</strong></td>
+                <td>24 in. O.C.</td>
                 <td>R-13</td>
                 <td><strong>R-7.2</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-44.6%</td>
                 <td>55.4%</td>
               </tr>
               <tr>
-                <td><strong>6.0" (2x6)</strong></td>
-                <td>16" O.C.</td>
+                <td><strong>6.0 in. depth</strong></td>
+                <td>16 in. O.C.</td>
                 <td>R-19</td>
                 <td><strong>R-7.1</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-62.6%</td>
                 <td>37.4%</td>
               </tr>
               <tr>
-                <td><strong>6.0" (2x6)</strong></td>
-                <td>16" O.C.</td>
+                <td><strong>6.0 in. depth</strong></td>
+                <td>16 in. O.C.</td>
                 <td>R-21</td>
                 <td><strong>R-7.4</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-64.8%</td>
                 <td>35.2%</td>
               </tr>
               <tr>
-                <td><strong>6.0" (2x6)</strong></td>
-                <td>24" O.C.</td>
+                <td><strong>6.0 in. depth</strong></td>
+                <td>24 in. O.C.</td>
                 <td>R-19</td>
                 <td><strong>R-8.6</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-54.7%</td>
                 <td>45.3%</td>
               </tr>
               <tr>
-                <td><strong>8.0" (2x8)</strong></td>
-                <td>16" O.C.</td>
+                <td><strong>8.0 in. depth</strong></td>
+                <td>16 in. O.C.</td>
                 <td>R-25</td>
                 <td><strong>R-7.8</strong></td>
                 <td style={{ color: "var(--accent-danger)" }}>-68.8%</td>
@@ -273,67 +287,73 @@ export default function FramingThermalBridgingGuidePage() {
         </div>
 
         <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", marginTop: "0.75rem", fontStyle: "italic" }}>
-          Key takeaway: Adding thicker cavity insulation into a steel stud wall produces rapidly diminishing returns. Increasing cavity batt thickness from R-11 to R-15 in a 3.5" steel stud at 16" O.C. increases effective cavity performance by only 0.9 R-value (from R-5.5 to R-6.4).
+          Analytical note: In steel stud walls without continuous exterior insulation, increasing cavity insulation depth yields diminishing thermal returns because the conductive steel studs bypass a large fraction of the heat flow.
         </p>
       </section>
 
-      {/* SECTION 4: THE CONTINUOUS INSULATION SOLUTION */}
+      {/* SECTION 4: THE CONTINUOUS INSULATION STRATEGY */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          4. The Engineering Solution: Continuous Exterior Insulation (ci)
+          4. Continuous Exterior Insulation (ci) Strategies
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          The only cost-effective engineering mechanism to mitigate framing thermal bridging in steel (and high-performance wood) construction is <strong>Continuous Exterior Insulation (ci)</strong>. Defined by ASHRAE 90.1 as <em>"insulation that is continuous across all structural members without thermal bridges other than fasteners and service openings,"</em> continuous insulation is placed on the exterior face of the framing.
+          A common and effective strategy to mitigate framing thermal bridging in steel and wood framing is <strong>Continuous Exterior Insulation (ci)</strong>. ASHRAE 90.1 defines continuous insulation as <em>&quot;insulation that is continuous across all structural members without thermal bridges other than fasteners and service openings.&quot;</em>
         </p>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          Because the continuous layer is not penetrated by stud webs or flanges, 100% of its rated thermal resistance is added directly to the assembly. In addition to reducing conductive heat loss, continuous insulation keeps the structural cavity warm during winter, raising interior stud flange temperatures and preventing moisture condensation inside the wall cavity.
+          Continuous exterior insulation substantially reduces the thermal-bridging effect of framing by providing an unbroken thermal barrier across stud edges. In addition to reducing conductive heat loss, continuous insulation elevates the temperature of cavity framing and sheathing during cold weather, potentially reducing interstitial condensation risk under appropriate hygrothermal conditions. Minor thermal bridges can still occur at fasteners, clips, shelf angles, and window returns.
         </p>
 
         <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.25rem", marginTop: "1.5rem" }}>
           <h3 style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.75rem" }}>
-            Common Continuous Insulation Material Classes (ASTM Specifications)
+            Common Continuous Insulation Material Classes
           </h3>
           <ul style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, margin: 0 }}>
             <li>
-              <strong>Extruded Polystyrene (XPS - ASTM C578):</strong> R-5.0 per inch. High compressive strength and moisture resistance, commonly used behind claddings and below-grade.
+              <strong>Extruded Polystyrene (XPS):</strong> Typical nominal R-5.0 per inch (varies by product and temperature). High compressive strength and moisture resistance.
             </li>
             <li>
-              <strong>Polyisocyanurate (Polyiso - ASTM C1289):</strong> R-6.0 to R-6.5 per inch. Highest nominal R-value per inch of rigid foam, typically manufactured with reflective foil or glass facers.
+              <strong>Polyisocyanurate (Polyiso):</strong> Typical nominal R-6.0 to R-6.5 per inch at standard mean test temperatures. Commonly used with foil or coated glass facers.
             </li>
             <li>
-              <strong>Expanded Polystyrene (EPS - ASTM C578):</strong> R-3.85 to R-4.2 per inch. Vapor-permeable and cost-effective rigid board.
+              <strong>Expanded Polystyrene (EPS):</strong> Typical nominal R-3.85 to R-4.2 per inch depending on density. Vapor-permeable rigid board.
             </li>
             <li>
-              <strong>Rigid Mineral Wool Board (ASTM C612):</strong> R-4.0 to R-4.2 per inch. Non-combustible, vapor-permeable, and fire-rated exterior continuous thermal break.
+              <strong>Rigid Mineral Wool Board:</strong> Typical nominal R-4.0 to R-4.2 per inch. Non-combustible, vapor-permeable exterior continuous insulation.
             </li>
           </ul>
+          <p style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", marginTop: "0.75rem", marginBottom: 0 }}>
+            <em>Note:</em> Actual thermal resistance per inch varies by manufacturer, product density, thickness, temperature, facer type, and testing/rating standard.
+          </p>
         </div>
       </section>
 
-      {/* SECTION 5: WORKED SIZING SCENARIO */}
+      {/* SECTION 5: WORKED CALCULATION SCENARIO */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          5. Worked Engineering Sizing Scenario
+          5. Worked Calculation Example (Hypothetical Scenario)
         </h2>
         <div style={{ background: "var(--surface-raised)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.5rem" }}>
           <p style={{ fontWeight: 600, color: "var(--ink)", marginBottom: "0.75rem" }}>
-            Problem: Verify whether a commercial building in Climate Zone 5 (Chicago, IL) meets the IECC 2024 / ASHRAE 90.1 maximum assembly U-factor of U &le; 0.064 BTU/hr·ft²·°F using:
+            Scenario: Calculate the whole-wall assembly U-factor for an exterior wall assembly and compare it with an illustrative target criterion of U &le; 0.064 BTU/hr·ft²·°F using the following assumed layer properties:
           </p>
           <ul style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.6, marginBottom: "1rem" }}>
-            <li>6-inch cold-formed steel studs at 16 inches O.C.</li>
-            <li>R-19 fiberglass batt in cavity</li>
-            <li>1.5 inches of continuous exterior polyiso (ci) sheathing (R-9.0 ci)</li>
-            <li>1/2" interior drywall (R-0.45) + 7/16" OSB (R-0.62) + vinyl siding (R-0.60) + interior/exterior air films (R-0.85)</li>
+            <li>6.0 in. cold-formed steel studs at 16 in. O.C.</li>
+            <li>R-19 cavity batt (effective cavity resistance R_eff,cavity = R-7.1 per ASHRAE 90.1 Table A9.2-1)</li>
+            <li>1.5 in. continuous exterior polyiso sheathing (assumed R-9.0 ci)</li>
+            <li>1/2 in. interior gypsum board (assumed R-0.45)</li>
+            <li>7/16 in. OSB sheathing (assumed R-0.62)</li>
+            <li>Exterior vinyl siding (assumed R-0.60)</li>
+            <li>Surface air films: Indoor air film (assumed R-0.68) + Outdoor air film (assumed R-0.17) = Combined R-0.85</li>
           </ul>
 
-          <h4 style={{ color: "var(--accent-primary)", margin: "1rem 0 0.5rem", fontWeight: 700 }}>Step-by-Step Derivation:</h4>
+          <h4 style={{ color: "var(--accent-primary)", margin: "1rem 0 0.5rem", fontWeight: 700 }}>Step-by-Step Calculation:</h4>
           <ol style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, margin: 0 }}>
-            <li><strong>Derive Base Continuous Resistance:</strong> R_base = 0.85 (air films) + 0.45 (gypsum) + 0.62 (OSB) + 0.60 (siding) = <strong>R-2.52</strong>.</li>
-            <li><strong>Derive Continuous Exterior Insulation:</strong> 1.5 in &times; 6.0 R/in = <strong>R-9.0 ci</strong>.</li>
-            <li><strong>Look up Bridged Cavity Resistance:</strong> Per ASHRAE 90.1 Table A9.2-1, 6" steel @ 16" O.C. with nominal R-19 yields: <strong>R_eff_cavity = R-7.1</strong>.</li>
-            <li><strong>Calculate Whole-Wall Effective R-Value:</strong> R_total = 2.52 + 9.0 + 7.1 = <strong>R-18.62 hr·ft²·°F/BTU</strong>.</li>
-            <li><strong>Calculate Whole-Wall U-Factor:</strong> U_assembly = 1 / 18.62 = <strong>0.0537 &approx; 0.054 BTU/hr·ft²·°F</strong>.</li>
-            <li><strong>Compliance Assessment:</strong> Because 0.054 &le; 0.064, the wall assembly <strong>comfortably complies</strong> with IECC 2024 Table C402.1.4 and ASHRAE 90.1-2022.</li>
+            <li><strong>Derive Base Continuous Resistance:</strong> R_base = 0.85 (air films) + 0.45 (gypsum) + 0.62 (OSB) + 0.60 (siding) = <strong>R-2.52 hr·ft²·°F/BTU</strong>.</li>
+            <li><strong>Add Continuous Exterior Insulation:</strong> R_ci = <strong>R-9.0 hr·ft²·°F/BTU</strong>.</li>
+            <li><strong>Incorporate Bridged Cavity Resistance:</strong> Per ASHRAE 90.1 Table A9.2-1, 6.0 in. steel @ 16 in. O.C. with nominal R-19 yields: <strong>R_eff,cavity = R-7.1 hr·ft²·°F/BTU</strong>.</li>
+            <li><strong>Calculate Whole-Assembly Effective R-Value:</strong> R_total = 2.52 + 9.0 + 7.1 = <strong>R-18.62 hr·ft²·°F/BTU</strong>.</li>
+            <li><strong>Calculate Assembly U-Factor:</strong> U_assembly = 1 / 18.62 = <strong>0.0537 &approx; 0.054 BTU/hr·ft²·°F</strong>.</li>
+            <li><strong>Comparison Note:</strong> The calculated assembly U-factor is approximately 0.054 BTU/hr·ft²·°F, which is below the stated comparison value of 0.064 under the assumptions used in this example. Actual code compliance depends on the applicable code edition, building occupancy/use, climate zone, assembly category, exceptions, and permitted compliance paths.</li>
           </ol>
         </div>
       </section>

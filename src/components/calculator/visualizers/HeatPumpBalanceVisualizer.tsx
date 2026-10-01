@@ -25,11 +25,11 @@ export function HeatPumpBalanceVisualizer({ output }: HeatPumpBalanceVisualizerP
     .map((p, idx) => `${idx === 0 ? "M" : "L"} ${getX(p.outdoorTempF)} ${getY(p.heatPumpCapacityBtu)}`)
     .join(" ");
 
-  const balanceX = getX(output.thermalBalancePointF);
-  const balanceLossY = getY(output.curvePoints.find((p) => Math.abs(p.outdoorTempF - output.thermalBalancePointF) <= 5)?.buildingHeatLossBtu || 25000);
+  const balanceX = getX(output.exactThermalBalancePointF);
+  const balanceLossY = getY(output.curvePoints.find((p) => Math.abs(p.outdoorTempF - output.exactThermalBalancePointF) <= 5)?.buildingHeatLossBtu || 25000);
 
   // Shaded polygon for Auxiliary / Supplemental Heat Deficit Region (below thermal balance point)
-  const deficitPoints = output.curvePoints.filter((p) => p.outdoorTempF <= output.thermalBalancePointF);
+  const deficitPoints = output.curvePoints.filter((p) => p.outdoorTempF <= output.exactThermalBalancePointF);
   let deficitPolygon = "";
   if (deficitPoints.length > 0) {
     const forwardLoss = deficitPoints.map((p, idx) => `${idx === 0 ? "M" : "L"} ${getX(p.outdoorTempF)} ${getY(p.buildingHeatLossBtu)}`).join(" ");
@@ -82,7 +82,7 @@ export function HeatPumpBalanceVisualizer({ output }: HeatPumpBalanceVisualizerP
               border: "1px solid currentColor",
             }}
           >
-            📍 {output.thermalBalancePointF}&deg;F Thermal Balance
+            📍 {output.exactThermalBalancePointF}&deg;F Thermal Balance
           </span>
           {showEconomic && (
             <span
@@ -149,7 +149,7 @@ export function HeatPumpBalanceVisualizer({ output }: HeatPumpBalanceVisualizerP
 
           {/* Annotation Label for Thermal Balance */}
           <text x={Math.min(390, balanceX + 8)} y={Math.max(35, balanceLossY - 5)} fill="#f59e0b" fontSize="8.5" fontWeight="700">
-            {output.thermalBalancePointF}&deg;F Thermal Balance
+            {output.exactThermalBalancePointF}&deg;F Thermal Balance
           </text>
 
           {/* Economic Balance Point Marker (Dual-Fuel Mode) */}

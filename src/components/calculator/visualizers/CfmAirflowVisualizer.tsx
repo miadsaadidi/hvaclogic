@@ -47,7 +47,7 @@ export function CfmAirflowVisualizer({ result }: CfmAirflowVisualizerProps) {
             border: "1px solid rgba(0, 210, 255, 0.3)",
           }}
         >
-          ~{equivalentTons} Tons AC Eqv.
+          Nominal Benchmark: ~{equivalentTons} Tons (@ 400 CFM/ton)
         </span>
       </div>
 
@@ -71,7 +71,7 @@ export function CfmAirflowVisualizer({ result }: CfmAirflowVisualizerProps) {
           {/* Supply Diffuser (Top Left) */}
           <rect x="50" y="15" width="60" height="10" rx="2" fill="var(--accent-cooling)" />
           <text x="80" y="10" fill="var(--accent-cooling)" fontSize="9" fontWeight="600" textAnchor="middle">
-            SUPPLY (400–900 FPM)
+            SUPPLY (400–900 FPM target)
           </text>
 
           {/* Supply Air Cone */}
@@ -127,7 +127,7 @@ export function CfmAirflowVisualizer({ result }: CfmAirflowVisualizerProps) {
 
         {result.velocityCategory && (
           <div style={{ background: "rgba(0, 0, 0, 0.3)", padding: "0.5rem 0.65rem", borderRadius: "5px", border: "1px solid rgba(255, 255, 255, 0.06)" }}>
-            <div style={{ fontSize: "0.65rem", color: "#94a3b8", textTransform: "uppercase" }}>Acoustic Rating</div>
+            <div style={{ fontSize: "0.65rem", color: "#94a3b8", textTransform: "uppercase" }}>Velocity Guideline</div>
             <div
               style={{
                 fontSize: "0.9rem",
@@ -144,12 +144,12 @@ export function CfmAirflowVisualizer({ result }: CfmAirflowVisualizerProps) {
               }}
             >
               {result.velocityCategory === "whisper"
-                ? "🟢 Whisper (<600 FPM)"
+                ? "🟢 Low Velocity (<600 FPM)"
                 : result.velocityCategory === "standard"
-                ? "🟡 Standard (600-900)"
+                ? "🟡 Branch Target (600–900)"
                 : result.velocityCategory === "noisy"
-                ? "🟠 Moderate (900-1200)"
-                : "🔴 Excessive (>1200)"}
+                ? "🟠 Trunk Range (900–1200)"
+                : "🔴 Higher Velocity (>1200)"}
             </div>
           </div>
         )}

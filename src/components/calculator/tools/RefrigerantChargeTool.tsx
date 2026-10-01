@@ -17,7 +17,6 @@ import { useUnitSystem } from "@/lib/hooks/useUnitSystem";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { RefrigerantChargeVisualizer } from "@/components/calculator/visualizers/RefrigerantChargeVisualizer";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
@@ -281,19 +280,23 @@ export function RefrigerantChargeTool() {
 
       <div className="calculator-grid">
         <div className="input-panel">
-          <CalculatorTrustPill />
+          <CalculatorTrustPill customText="Calculation inputs are processed locally in your browser; no account or calculator-input database is required." />
           {mode === "oem_profile" ? (
             <>
               <div className="form-group">
                 <label htmlFor="profile-select"><span>Verified equipment profile</span></label>
-                <select id="profile-select" className="input-number" value={profileId} disabled={!params} onChange={(event) => handleProfileChange(event.target.value)}>
-                  {REFRIGERANT_CHARGE_PROFILES.map((item) => <option key={item.id} value={item.id}>{item.manufacturer} — {item.refrigerant}</option>)}
+                <select id="profile-select" className="input-number" value={profileId} onChange={(event) => handleProfileChange(event.target.value)}>
+                  {REFRIGERANT_CHARGE_PROFILES.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.manufacturer} — {item.refrigerant} ({item.modelFamily})
+                    </option>
+                  ))}
                 </select>
-                <p className="input-help">{profile.modelFamily}</p>
+                <p className="input-help">{profile.modelFamily} · {profile.capacityRange}</p>
               </div>
               <div className="form-group">
                 <label htmlFor="line-pair-select"><span>Line-size combination</span></label>
-                <select id="line-pair-select" className="input-number" value={linePairId} disabled={!params} onChange={(event) => { setLinePairId(event.target.value); updateParam("pair", event.target.value); }}>
+                <select id="line-pair-select" className="input-number" value={linePairId} onChange={(event) => { setLinePairId(event.target.value); updateParam("pair", event.target.value); }}>
                   {profile.linePairs.map((pair) => <option key={pair.id} value={pair.id}>{pair.label} · {pair.adderRateOzPerFt} oz/ft</option>)}
                 </select>
               </div>
@@ -365,10 +368,10 @@ export function RefrigerantChargeTool() {
               <div className={`primary-result-card charge-result--${result.output.adjustmentAction}`} aria-live="polite" aria-atomic="true">
                 <span className="result-label">Initial weigh-in estimate</span>
                 <div className="result-value">{primaryAction === "No adjustment" ? primaryAction : `${primaryAction} ${primaryValue}`}</div>
-                <p>{result.output.liquidLineOd} liquid · {result.output.suctionLineOd} suction · {result.output.adderRateOzPerFt} oz/ft</p>
+                <p>{result.output.liquidLineOd} liquid · {result.output.suctionLineOd} · {result.output.adderRateOzPerFt} oz/ft</p>
               </div>
 
-              <StandardsBadge standards={["OEM Subcooling Charging Charts", "EPA Section 608", "AHRI 210/240"]} />
+              <StandardsBadge label="Calculation References:" standards={["Selected OEM Long-Line Data", "EPA Section 608"]} />
 
               <div className="secondary-results-grid">
                 <div className="secondary-result-item"><span>Factory allowance</span><strong>{displayLength(result.output.factoryAllowanceFt)} {lengthUnit}</strong></div>
@@ -403,7 +406,6 @@ export function RefrigerantChargeTool() {
             </>
           )}
 
-          <GooglePreferredBanner />
           <ActionButtonBar toolRoute="/calculators/refrigerant-charge-calculator" toolName="Refrigerant Line Set Charge & Weigh-In Calculator" onExportCsv={result.ok ? exportCsv : undefined} />
         </div>
       </div>

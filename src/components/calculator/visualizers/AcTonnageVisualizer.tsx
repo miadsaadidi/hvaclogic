@@ -17,7 +17,7 @@ export function AcTonnageVisualizer({
   seerRating,
   annualOperatingCost,
   floorAreaSqFt,
-  climateZone,
+  climateZone: _climateZone,
 }: AcTonnageVisualizerProps) {
   // Estimated electrical watts at standard rating point
   const electricalWatts = Math.round(btuPerHour / seerRating);
@@ -38,7 +38,7 @@ export function AcTonnageVisualizer({
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <span style={{ fontSize: "1.1rem" }}>❄️</span>
           <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
-            Heat Flow &amp; SEER2 Energy Schematic
+            Heat Flow &amp; SEER2 Energy Schematic (Nominal Full-Load Balance)
           </span>
         </div>
         <span
@@ -66,7 +66,7 @@ export function AcTonnageVisualizer({
             {btuPerHour.toLocaleString()} BTU/hr
           </text>
           <text x="85" y="82" fill="var(--text-muted)" fontSize="8.5" textAnchor="middle">
-            Heat Absorbed
+            Nominal Heat Absorbed
           </text>
           <text x="85" y="105" fill="var(--ink-secondary)" fontSize="8.5" fontWeight="600" textAnchor="middle">
             {floorAreaSqFt.toLocaleString()} sq ft
@@ -80,10 +80,10 @@ export function AcTonnageVisualizer({
           <circle cx="250" cy="75" r="38" fill="var(--surface)" stroke="#eab308" strokeWidth="2" />
           <text x="250" y="68" fill="var(--ink)" fontSize="10" fontWeight="700" textAnchor="middle">COMPRESSOR</text>
           <text x="250" y="82" fill="#eab308" fontSize="10" fontWeight="700" textAnchor="middle">
-            {electricalWatts.toLocaleString()} W
+            ~{electricalWatts.toLocaleString()} W
           </text>
           <text x="250" y="96" fill="var(--text-muted)" fontSize="8" textAnchor="middle">
-            Work Input
+            Est. Work Input
           </text>
 
           {/* Flow Arrow: Compressor to Outdoor */}
@@ -94,10 +94,10 @@ export function AcTonnageVisualizer({
           <rect x="350" y="25" width="130" height="100" rx="8" fill="var(--surface)" stroke="#ef4444" strokeWidth="2" />
           <text x="415" y="48" fill="var(--ink)" fontSize="11" fontWeight="700" textAnchor="middle">OUTDOOR AIR</text>
           <text x="415" y="66" fill="#ef4444" fontSize="10" fontWeight="700" textAnchor="middle">
-            {totalHeatRejectionBtu.toLocaleString()} BTU/hr
+            ~{totalHeatRejectionBtu.toLocaleString()} BTU/hr
           </text>
           <text x="415" y="82" fill="var(--text-muted)" fontSize="8.5" textAnchor="middle">
-            Total Heat Rejected
+            Est. Heat Rejected
           </text>
           <text x="415" y="105" fill="var(--ink-secondary)" fontSize="8.5" fontWeight="600" textAnchor="middle">
             ${annualOperatingCost}/yr Est.
@@ -110,7 +110,7 @@ export function AcTonnageVisualizer({
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.78rem", marginBottom: "0.35rem" }}>
           <span style={{ color: "var(--text-muted)", fontWeight: 600 }}>Efficiency Performance Rating:</span>
           <span style={{ color: "var(--accent-cooling)", fontWeight: 700 }}>
-            {seerRating >= 18 ? "🌟 High Efficiency Inverter" : seerRating >= 15.2 ? "✅ Energy Star Standard" : "⚡ Code Minimum (13.4-14.3 SEER2)"}
+            {seerRating >= 18 ? "🌟 High Efficiency Inverter" : seerRating >= 15.2 ? "✅ ENERGY STAR® Tier" : "⚡ Standard Efficiency (13.4–14.3 SEER2)"}
           </span>
         </div>
         <div style={{ width: "100%", height: "8px", background: "var(--surface)", borderRadius: "9999px", overflow: "hidden", border: "1px solid var(--border-color)" }}>
@@ -123,6 +123,9 @@ export function AcTonnageVisualizer({
               transition: "width 0.3s ease",
             }}
           />
+        </div>
+        <div style={{ fontSize: "0.7rem", color: "var(--text-muted)", marginTop: "0.4rem", fontStyle: "italic" }}>
+          * Steady-state full-load energy balance approximation (Heat Rejected ≈ Heat Absorbed + Electrical Work Input). Dynamic field performance varies with weather, part-load operation, and duct losses.
         </div>
       </div>
     </div>

@@ -34,9 +34,9 @@ export default function BoilerSizeCalculatorPage() {
   return (
     <CalculatorContainer
       calculator={calculator}
-      directAnswer="Hydronic boiler sizing matches boiler heating capacity to connected radiation emitters (copper fin-tube baseboards or cast-iron radiators) or whole-building heat loss. Boiler Gross Input is calculated as: Gross_Input = (Net_Load * Piping_Factor) / AFUE. Copper fin-tube baseboard produces ~580 BTU/hr per linear foot at 180°F, while cast-iron radiators produce 150 BTU/hr per sq ft EDR for hot water and 240 BTU/hr for steam."
-      formulaSnippet="Q_baseboard = Linear_Feet * Rating(WaterTemp) | Q_edr = EDR_sqft * 150 (Hot Water) | Gross_Input = (Q_net * 1.15) / AFUE"
-      authorityCitation="I=B=R Hydronics Institute, AHRI Directory of Certified Boilers, & ASHRAE HVAC Systems 2020"
+      directAnswer="Hydronic boiler sizing matches boiler capacity to connected radiation emitters (copper fin-tube baseboard or cast-iron radiators) or whole-building heat loss. Required DOE Heating Capacity is calculated by applying the standard I=B=R piping and pick-up allowance to the net radiation load: Required DOE Capacity = Net Load × 1.15 (hot water) or Net Load × 1.33 (steam). Standard copper fin-tube baseboard delivers approximately 580 BTU/hr per linear foot at 180°F AWT, while cast-iron radiators yield 150 BTU/hr per sq ft EDR for hot water and 240 BTU/hr per sq ft EDR for 1 psig steam."
+      formulaSnippet="Q_emitter = Length * Rating(WaterTemp) | Q_net = Q_emitter + Q_DHW | Q_DOE_required = Q_net * 1.15 (Water) or 1.33 (Steam)"
+      authorityCitation="I=B=R Hydronics Institute Testing & Rating Standards, AHRI Directory of Certified Product Performance, ASME Section IV, & ACCA Manual S (Informational)"
       toolComponent={<BoilerSizeTool />}
       methodologySection={
         <>
@@ -44,16 +44,18 @@ export default function BoilerSizeCalculatorPage() {
 
           <div style={{ marginTop: "1.5rem" }}>
             <FormulaCard
-              title="Hydronic Boiler, Baseboard &amp; Radiator EDR Equations"
-              formula="Q_baseboard = Linear_Feet * BTU_per_ft(T_water) | Q_edr_water = EDR * 150 | Q_edr_steam = EDR * 240 | Q_gross = Q_net * 1.15 (Water) or 1.33 (Steam) | Input_BTU = Q_gross / (AFUE / 100)"
+              title="Hydronic Boiler Sizing &amp; Emitter Rating Equations"
+              formula="Q_{\text{emitter}} = \text{Length} \cdot q_{\text{baseboard}}(T_{\text{water}}) \quad | \quad Q_{\text{net}} = Q_{\text{emitter}} + Q_{\text{DHW}} \quad | \quad Q_{\text{DOE, req}} = Q_{\text{net}} \cdot F_{\text{pickup}}"
               variables={[
-                { symbol: "Q_net", label: "AHRI Net Radiation Load", description: "Combined heat output capacity of all installed baseboards, radiators, and indirect DHW", unit: "BTU/hr" },
-                { symbol: "EDR", label: "Equivalent Direct Radiation", description: "Standard measure of cast-iron radiator heating surface area (1 sq ft = 240 BTU/hr steam @ 215°F)", unit: "sq ft EDR" },
-                { symbol: "Piping Factor", label: "I=B=R Piping & Pick-Up Allowance", description: "Standard 1.15 multiplier for hot water (15% loss) or 1.33 for steam systems (33% pick-up)", unit: "Multiplier" },
-                { symbol: "AFUE", label: "Annual Fuel Utilization Efficiency", description: "Thermal seasonal combustion efficiency of the boiler (82% cast-iron to 96% condensing)", unit: "%" },
+                { symbol: "Q_{\\text{emitter}}", label: "Connected Emitter Load", description: "Combined heat emission capacity of all active fin-tube baseboards or cast-iron radiators", unit: "BTU/hr" },
+                { symbol: "Q_{\\text{net}}", label: "Net Radiation / AHRI Demand", description: "Total space heating emitter demand plus any unmanaged domestic hot water allowance", unit: "BTU/hr" },
+                { symbol: "F_{\\text{pickup}}", label: "I=B=R Piping & Pick-Up Factor", description: "Standard allowance: 1.15 for residential hot water systems, 1.33 for residential steam systems", unit: "Multiplier" },
+                { symbol: "Q_{\\text{DOE, req}}", label: "Required DOE Heating Capacity", description: "Minimum rated equipment heating capacity required from boiler submittal ratings", unit: "BTU/hr" },
+                { symbol: "\\text{EDR}", label: "Equivalent Direct Radiation", description: "Standard measure of cast-iron radiator surface area (1 sq ft EDR = 150 BTU/hr water, 240 steam)", unit: "sq ft EDR" },
+                { symbol: "\\text{AFUE}", label: "Annual Fuel Utilization Efficiency", description: "Seasonal laboratory rating (not an instantaneous steady-state conversion multiplier)", unit: "%" },
               ]}
-              notes="In systems equipped with a Domestic Hot Water (DHW) Priority Zone Relay, the boiler temporality suspends space heating circulators during hot water calls, eliminating the need to oversize the boiler for domestic water."
-              sourceStandard="I=B=R Hydronics Institute Testing Standards & AHRI Standard 1500"
+              notes="The I=B=R piping and pick-up allowance (1.15 for water, 1.33 for steam) represents distribution piping heat dissipation and initial warm-up from a cold system start, not combustion flue loss. AFUE is a seasonal laboratory rating; equipment selection must match required DOE Heating Capacity directly to manufacturer submittal ratings."
+              sourceStandard="I=B=R Hydronics Institute Standards, AHRI Directory of Certified Product Performance, and ASME Section IV"
             />
           </div>
 
@@ -62,12 +64,18 @@ export default function BoilerSizeCalculatorPage() {
               The 3 Methods of Hydronic Boiler Sizing
             </h3>
             <p>
-              Professional hydronic heating contractors size replacement boilers using three complementary methods:
+              Hydronic heating professionals evaluate replacement boiler sizing using three distinct methods:
             </p>
-            <ul>
-              <li><strong>Fin-Tube Baseboard Measuring:</strong> Measuring the active finned element length (excluding empty sheet metal covers). Standard 3/4&quot; residential copper fin-tube yields 580 BTU/hr per foot at 180&deg;F AWT.</li>
-              <li><strong>Cast-Iron Radiator EDR Survey:</strong> Counting the tubes, columns, height, and sections of vintage cast-iron radiators to calculate total Equivalent Direct Radiation.</li>
-              <li><strong>ACCA Manual J Heat Loss:</strong> Measuring room envelope heat losses to ensure the boiler is not oversized for modern insulated buildings (which frequently have more radiator surface area than the home actually needs).</li>
+            <ul style={{ paddingLeft: "1.25rem", margin: "0.75rem 0" }}>
+              <li>
+                <strong>Fin-Tube Baseboard Measurement:</strong> Measuring the active finned element length (excluding empty sheet metal covers). Standard 3/4&quot; residential copper fin-tube yields ~580 BTU/hr per foot at 180&deg;F average water temperature (AWT), ~450 BTU/hr at 160&deg;F, ~330 BTU/hr at 140&deg;F, and ~210 BTU/hr at 120&deg;F.
+              </li>
+              <li>
+                <strong>Cast-Iron Radiator EDR Survey:</strong> Counting the sections, tubes/columns, and height of vintage cast-iron radiators to calculate total Equivalent Direct Radiation (150 BTU/hr-sqft for hot water at 180&deg;F AWT; 240 BTU/hr-sqft for low-pressure steam at 215&deg;F).
+              </li>
+              <li>
+                <strong>ACCA Manual J Building Heat Loss:</strong> Calculating room-by-room envelope heat losses. In vintage homes that have added modern insulation, air sealing, and high-performance windows, whole-building design heat loss is often significantly lower than the installed vintage radiator capacity. Sizing by heat loss prevents oversized equipment and excessive short-cycling.
+              </li>
             </ul>
 
             <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--ink)", marginTop: "1.25rem", marginBottom: "0.5rem" }}>
@@ -99,64 +107,81 @@ export default function BoilerSizeCalculatorPage() {
         </>
       }
       comparisonTableSection={
-        <div className="scenario-table">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Heating System Type</th>
-                <th scope="col">Emitter Rating</th>
-                <th scope="col">Water Temp</th>
-                <th scope="col">I=B=R Multiplier</th>
-                <th scope="col">Typical Boiler Size</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Standard Fin-Tube Baseboard (100 ft)</strong></td>
-                <td>580 BTU/linear ft</td>
-                <td>180&deg;F AWT</td>
-                <td>1.15&times;</td>
-                <td>75,000 BTU / 95% Mod-Con</td>
-              </tr>
-              <tr>
-                <td><strong>Low-Temp Condensing Baseboard (150 ft)</strong></td>
-                <td>330 BTU/linear ft</td>
-                <td>140&deg;F AWT</td>
-                <td>1.15&times;</td>
-                <td>65,000 BTU / 96% Mod-Con</td>
-              </tr>
-              <tr>
-                <td><strong>Vintage Hot Water Radiators (400 EDR)</strong></td>
-                <td>150 BTU/sq ft EDR</td>
-                <td>170&deg;F–180&deg;F</td>
-                <td>1.15&times;</td>
-                <td>85,000 BTU / 84% Cast-Iron</td>
-              </tr>
-              <tr>
-                <td><strong>Low-Pressure Steam Radiators (300 EDR)</strong></td>
-                <td>240 BTU/sq ft EDR</td>
-                <td>215&deg;F Steam</td>
-                <td>1.33&times;</td>
-                <td>120,000 BTU / 82% Steam</td>
-              </tr>
-            </tbody>
-          </table>
+        <div>
+          <h2>Illustrative Emitter Capacity &amp; Radiation Examples</h2>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem" }}>
+            Representative heating capacity calculations across common hydronic emitter configurations. Sizing shows connected load, net radiation requirement, required DOE Heating Capacity, and candidate nominal boiler input ranges.
+          </p>
+          <div className="scenario-table">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Heating System Scenario</th>
+                  <th scope="col">Emitter Rating Basis</th>
+                  <th scope="col">Operating Temperature / Condition</th>
+                  <th scope="col">I=B=R Factor</th>
+                  <th scope="col">Required DOE Capacity</th>
+                  <th scope="col">Candidate Boiler Input Range</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Standard Fin-Tube Baseboard (100 ft)</strong></td>
+                  <td>580 BTU/linear ft</td>
+                  <td>180&deg;F AWT</td>
+                  <td>1.15&times;</td>
+                  <td>66,700 BTU/hr</td>
+                  <td>70k to 75k BTU/hr Input (95% AFUE)</td>
+                </tr>
+                <tr>
+                  <td><strong>Low-Temp Condensing Baseboard (150 ft)</strong></td>
+                  <td>330 BTU/linear ft</td>
+                  <td>140&deg;F AWT</td>
+                  <td>1.15&times;</td>
+                  <td>56,925 BTU/hr</td>
+                  <td>60k to 70k BTU/hr Input (96% AFUE)</td>
+                </tr>
+                <tr>
+                  <td><strong>Vintage Hot Water Radiators (400 EDR)</strong></td>
+                  <td>150 BTU/sq ft EDR</td>
+                  <td>170&deg;F–180&deg;F AWT</td>
+                  <td>1.15&times;</td>
+                  <td>69,000 BTU/hr</td>
+                  <td>80k to 90k BTU/hr Input (84% Cast-Iron)</td>
+                </tr>
+                <tr>
+                  <td><strong>Low-Pressure Steam Radiators (300 EDR)</strong></td>
+                  <td>240 BTU/sq ft EDR</td>
+                  <td>215&deg;F Steam (1 psig)</td>
+                  <td>1.33&times;</td>
+                  <td>95,760 BTU/hr</td>
+                  <td>110k to 120k BTU/hr Input (82% Steam)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       }
       workedExampleSection={
         <div style={{ lineHeight: 1.7, fontSize: "0.95rem", color: "var(--ink-secondary)" }}>
           <p>
-            <strong>Scenario:</strong> Sizing a replacement condensing modulating boiler for a home with <strong>100 linear feet</strong> of standard copper fin-tube baseboard and a <strong>45-gallon indirect domestic water heater</strong> with a DHW Priority Zone Controller.
+            <strong>Scenario:</strong> Sizing a replacement condensing modulating boiler for a home with <strong>100 linear feet</strong> of standard 3/4&quot; copper fin-tube baseboard and an indirect domestic water heater with a DHW Priority Zone Controller.
           </p>
           <div style={{ background: "var(--surface-raised)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem", marginTop: "1rem" }}>
-            <h4 style={{ color: "var(--ink)", margin: "0 0 0.5rem", fontWeight: 600 }}>Calculation Steps:</h4>
+            <h4 style={{ color: "var(--ink)", margin: "0 0 0.5rem", fontWeight: 600 }}>Hydronic Rating &amp; Sizing Steps:</h4>
             <ol style={{ paddingLeft: "1.2rem", margin: 0 }}>
-              <li><strong>Calculate Connected Baseboard Load:</strong> 100 ft &times; 580 BTU/ft (@ 180&deg;F) = <strong>58,000 BTU/hr</strong>.</li>
-              <li><strong>Evaluate DHW Priority:</strong> Because a priority relay is installed, the DHW pickup adder is <strong>0 BTU/hr</strong> (space heating pauses for &lt;15 min during DHW calls).</li>
-              <li><strong>Calculate AHRI Net Rating:</strong> Q_net = <strong>58,000 BTU/hr</strong>.</li>
-              <li><strong>Apply I=B=R Piping &amp; Pick-Up Factor:</strong> 58,000 &times; 1.15 = <strong>66,700 BTU/hr DOE Heating Capacity</strong>.</li>
-              <li><strong>Calculate Boiler Fuel Input:</strong> At 95% AFUE, Gross Input = 66,700 / 0.95 = <strong>70,210 BTU/hr</strong>.</li>
-              <li><strong>Final Boiler Selection:</strong> Select a standard <strong>75,000 to 80,000 BTU/hr 95% AFUE Mod-Con Wall-Hung Gas Boiler</strong>.</li>
+              <li>
+                <strong>Calculate Connected Baseboard Load:</strong> 100 linear ft &times; 580 BTU/hr-ft (standard 3/4&quot; fin-tube @ 180&deg;F AWT) = <strong>58,000 BTU/hr Connected Emitter Output</strong>.
+              </li>
+              <li>
+                <strong>Evaluate DHW Priority Relay:</strong> With a priority zone controller active, space-heating circulators are temporarily suspended during domestic water heating calls, yielding a space-heating pickup adder of <strong>0 BTU/hr</strong> (Net AHRI Demand Q_net = <strong>58,000 BTU/hr</strong>).
+              </li>
+              <li>
+                <strong>Apply I=B=R Hot Water Piping &amp; Pick-Up Allowance:</strong> 58,000 BTU/hr &times; 1.15 = <strong>66,700 BTU/hr Required DOE Heating Capacity</strong>.
+              </li>
+              <li>
+                <strong>Equipment Selection from Manufacturer Submittal Data:</strong> Select a candidate modulating-condensing boiler with rated DOE Heating Capacity &ge; 66,700 BTU/hr (typically corresponding to an illustrative <strong>75,000 to 80,000 BTU/hr nominal input</strong> gas-fired mod-con boiler rated at ~71,000 to 76,000 BTU/hr DOE output).
+              </li>
             </ol>
           </div>
         </div>

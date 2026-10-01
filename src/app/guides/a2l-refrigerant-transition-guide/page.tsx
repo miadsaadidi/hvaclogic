@@ -6,16 +6,30 @@ import { FormulaCard } from "@/components/seo/FormulaCard";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 
 export const metadata: Metadata = {
-  title: "Low-GWP A2L Refrigerant Transition: ASHRAE 15 & UL 60335-2-40 Engineering Guide",
+  title: "A2L Refrigerant Transition & Charge Limit Principles: Engineering Guide",
   description:
-    "Comprehensive engineering guide to the 2026 EPA AIM Act A2L refrigerant transition, ASHRAE 15 charge limit equations (m1, m2, m3), R-454B temperature glide, and UL 60335-2-40 detection requirements.",
+    "Technical guide to lower-GWP A2L refrigerants (R-454B, R-32), safety classifications, charge-limit concepts under ASHRAE and UL standards, temperature glide, and field service principles.",
+  keywords: [
+    "A2L refrigerants",
+    "R-454B",
+    "R-32",
+    "A2L refrigerant charge limits",
+    "ASHRAE 15",
+    "ASHRAE 34",
+    "UL 60335-2-40",
+    "refrigerant detection",
+    "refrigerant temperature glide",
+    "dew point bubble point",
+    "A2L safety",
+    "EPA AIM Act",
+  ],
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/guides/a2l-refrigerant-transition-guide`,
   },
   openGraph: {
-    title: "Low-GWP A2L Refrigerant Transition: ASHRAE 15 & UL 60335-2-40 Engineering Guide",
+    title: "A2L Refrigerant Transition & Charge Limit Principles: Engineering Guide",
     description:
-      "Comprehensive engineering guide to the 2026 EPA AIM Act A2L refrigerant transition, ASHRAE 15 charge limit equations (m1, m2, m3), R-454B temperature glide, and UL 60335-2-40 detection requirements.",
+      "Technical guide to lower-GWP A2L refrigerants (R-454B, R-32), safety classifications, charge-limit concepts under ASHRAE and UL standards, temperature glide, and field service principles.",
     url: `${siteConfig.canonicalDomain}/guides/a2l-refrigerant-transition-guide`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -23,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Low-GWP A2L Refrigerant Transition: ASHRAE 15 & UL 60335-2-40 Guide",
+    title: "A2L Refrigerant Transition & Charge Limit Guide",
     description:
-      "Engineering guide to ASHRAE 15-2024 A2L charge limit formulas, UL 60335-2-40 detection rules, and R-454B zeotropic glide.",
+      "Technical guide to A2L refrigerant properties, charge limit concepts, UL 60335-2-40 detection, and zeotropic temperature glide.",
   },
 };
 
@@ -33,9 +47,9 @@ export default function A2LRefrigerantTransitionGuidePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    headline: "Low-GWP A2L Refrigerant Transition & Charge Limit Sizing: Master Engineering Guide",
+    headline: "A2L Refrigerant Transition & Charge Limit Principles: Engineering Guide",
     description:
-      "Engineering reference detailing the 2026 EPA AIM Act transition to A2L refrigerants (R-454B, R-32), ANSI/ASHRAE Standard 15-2024 charge limit equations, UL 60335-2-40 mitigation tiers, and zeotropic temperature glide charging protocols.",
+      "Technical reference detailing lower-GWP A2L refrigerants (R-454B, R-32), safety classifications, charge limit concepts under ASHRAE 15/15.2 and UL 60335-2-40, and zeotropic temperature glide charging protocols.",
     url: `${siteConfig.canonicalDomain}/guides/a2l-refrigerant-transition-guide`,
     author: {
       "@type": "Organization",
@@ -54,9 +68,10 @@ export default function A2LRefrigerantTransitionGuidePage() {
     datePublished: "2026-09-24T00:00:00.000Z",
     dateModified: "2026-09-24T00:00:00.000Z",
     about: [
-      { "@type": "Thing", name: "ANSI/ASHRAE Standard 15-2024" },
+      { "@type": "Thing", name: "ANSI/ASHRAE Standard 15" },
+      { "@type": "Thing", name: "ANSI/ASHRAE Standard 15.2" },
       { "@type": "Thing", name: "ANSI/ASHRAE Standard 34-2022" },
-      { "@type": "Thing", name: "UL 60335-2-40 (4th Edition)" },
+      { "@type": "Thing", name: "UL/CSA 60335-2-40" },
       { "@type": "Thing", name: "EPA AIM Act 40 CFR Part 84" },
       { "@type": "Thing", name: "R-454B Refrigerant" },
       { "@type": "Thing", name: "R-32 Refrigerant" },
@@ -83,23 +98,23 @@ export default function A2LRefrigerantTransitionGuidePage() {
       <header style={{ marginBottom: "2rem" }}>
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "0.75rem" }}>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "9999px", background: "rgba(16, 185, 129, 0.15)", color: "#34d399" }}>
-            Field Diagnostics &amp; Thermodynamics
+            Refrigerant Thermodynamics
           </span>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "9999px", background: "rgba(59, 130, 246, 0.15)", color: "#60a5fa" }}>
-            ANSI/ASHRAE 15-2024
+            ASHRAE 15 / 15.2 Concepts
           </span>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "9999px", background: "rgba(245, 158, 11, 0.15)", color: "#fbbf24" }}>
-            UL 60335-2-40 (4th Ed)
+            UL/CSA 60335-2-40
           </span>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "9999px", background: "rgba(139, 92, 246, 0.15)", color: "#a78bfa" }}>
-            EPA AIM Act 40 CFR 84
+            EPA AIM Act Provisions
           </span>
         </div>
         <h1 style={{ fontSize: "2.1rem", fontWeight: 800, lineHeight: 1.25, color: "var(--ink)", marginBottom: "0.75rem" }}>
-          Low-GWP A2L Refrigerant Transition &amp; Charge Limit Sizing
+          Low-GWP A2L Refrigerant Transition &amp; Charge Limit Principles
         </h1>
         <p style={{ fontSize: "1.1rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-          A master engineering reference for transitioning to next-generation A2L refrigerants (R-454B and R-32). Details ASHRAE 15-2024 charge limit derivations ($m_1, m_2, m_3$), UL 60335-2-40 safety interlocks, and zeotropic temperature glide service physics.
+          A technical reference guide detailing lower-GWP A2L refrigerants (such as R-454B and R-32), safety classifications, charge-limit concepts under safety and product standards, and zeotropic temperature glide considerations.
         </p>
       </header>
 
@@ -122,7 +137,7 @@ export default function A2LRefrigerantTransitionGuidePage() {
         <div>
           <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>Interactive Sizing Tools &amp; Benchmark Data</div>
           <div style={{ fontSize: "0.85rem", color: "var(--ink-secondary)" }}>
-            Access live PT charts, superheat/subcooling calculators, and 200 open benchmark calculation vectors.
+            Explore digital PT charts, superheat/subcooling calculations, and open research benchmark data.
           </div>
         </div>
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
@@ -163,23 +178,23 @@ export default function A2LRefrigerantTransitionGuidePage() {
       {/* SECTION 1: THE REGULATORY LANDSCAPE & AIM ACT */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          1. The Regulatory Landscape: EPA AIM Act &amp; 700 GWP Limit
+          1. The Regulatory Context: EPA AIM Act Technology Transitions
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          Under the American Innovation and Manufacturing (AIM) Act of 2020 and EPA regulations codified in 40 CFR Part 84, the United States Environmental Protection Agency has mandated a phasedown of hydrofluorocarbons (HFCs) by 85% over a 15-year period.
+          Under the American Innovation and Manufacturing (AIM) Act of 2020 and EPA regulations codified in 40 CFR Part 84 (Technology Transitions Rule), the United States Environmental Protection Agency has established phasedown schedules and sector-specific GWP limits for HFC refrigerants.
         </p>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          For residential and light commercial stationary comfort cooling systems (central air conditioners and heat pumps), the EPA has established a hard <strong>Global Warming Potential (GWP) ceiling of 700</strong> for newly manufactured equipment. Legacy baseline refrigerant R-410A carries a 100-year GWP of 2,088 (IPCC AR4) / 1,924 (IPCC AR5), rendering it non-compliant for new unitary equipment production.
+          For residential and light-commercial stationary air conditioning and heat pump equipment, the rule establishes a 700 GWP limit for newly manufactured or imported equipment according to sector-specific compliance dates. Transition provisions allow defined periods for installing existing inventory. Because legacy baseline refrigerant R-410A carries a 100-year GWP of 2,088 (IPCC AR4) / 1,924 (IPCC AR5), manufacturers are transitioning new equipment lines to lower-GWP alternatives.
         </p>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          To satisfy the sub-700 GWP requirement while maintaining operating pressures and thermodynamic efficiencies close to R-410A, the HVAC industry has converged on two primary mildly flammable (ASHRAE Class A2L) fluids:
+          Across various equipment categories, major lower-GWP A2L refrigerants include:
         </p>
         <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.8, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
           <li>
-            <strong>R-454B (Opteon XL41 / Puron Advance / Solstice 454B):</strong> GWP 466 (78% lower than R-410A). Adopted by major manufacturers (Carrier, Johnson Controls, Trane, Lennox, Rheem) as the primary replacement for residential ducted split systems and packaged rooftop units.
+            <strong>R-454B:</strong> 100-year GWP of 466 (AR4). A zeotropic blend of 68.9% R-32 and 31.1% R-1234yf, adopted across many residential ducted split systems and packaged units.
           </li>
           <li>
-            <strong>R-32 (Difluoromethane):</strong> GWP 675 (67% lower than R-410A). Adopted extensively by Daikin, Goodman, and Amana, particularly in ductless mini-splits, multi-splits, and VRF systems.
+            <strong>R-32:</strong> 100-year GWP of 675 (AR4). A single-component HFC, adopted widely in ductless mini-splits, multi-splits, and VRF equipment categories.
           </li>
         </ul>
       </section>
@@ -187,16 +202,16 @@ export default function A2LRefrigerantTransitionGuidePage() {
       {/* SECTION 2: ASHRAE 34 SAFETY CLASSIFICATION */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          2. ASHRAE Standard 34 Classification: Toxicity &amp; Flammability Physics
+          2. ASHRAE Standard 34 Safety Classification &amp; Flammability Metrics
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          ANSI/ASHRAE Standard 34 assigns an alphanumeric safety classification to all refrigerants based on two distinct physical criteria: toxicity (capital letter A or B) and flammability (number 1, 2L, 2, or 3).
+          ANSI/ASHRAE Standard 34 establishes alphanumeric safety classifications for refrigerants based on toxicity (Class A or B) and flammability (Class 1, 2L, 2, or 3):
         </p>
         <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.8, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          <li><strong>Toxicity Class A (Lower Toxicity):</strong> Occupational Exposure Limit (OEL) &ge; 400 ppm volume threshold.</li>
-          <li><strong>Flammability Class 1 (No Flame Propagation):</strong> No flame propagation when tested at 60°C (140°F) and 101.3 kPa per ASTM E681 (e.g., R-410A, R-134a, R-22).</li>
-          <li><strong>Flammability Class 2L (Lower Flammability):</strong> Exhibits flame propagation but has a maximum laminar burning velocity S<sub>u</sub> &le; 10 cm/s (0.33 ft/s) and a heat of combustion HOC &lt; 19 MJ/kg (8,170 BTU/lb).</li>
-          <li><strong>Flammability Class 3 (Higher Flammability):</strong> Highly flammable hydrocarbons (e.g., R-290 Propane, R-600a Isobutane) with low LFL and burning velocity &gt; 10 cm/s.</li>
+          <li><strong>Toxicity Class A (Lower Toxicity):</strong> Occupational Exposure Limit (OEL) &ge; 400 ppm (volume).</li>
+          <li><strong>Flammability Class 1 (No Flame Propagation):</strong> No flame propagation under standard test conditions per ASTM E681 at 60°C and 101.3 kPa (e.g., R-410A, R-134a, R-22).</li>
+          <li><strong>Flammability Class 2L (Lower Flammability):</strong> Exhibits flame propagation with a maximum laminar burning velocity ($S_u$) &le; 10 cm/s and heat of combustion ($HOC$) &lt; 19 MJ/kg.</li>
+          <li><strong>Flammability Class 3 (Higher Flammability):</strong> Flammable hydrocarbons (e.g., R-290 propane) with lower LFL and higher burning velocity.</li>
         </ul>
 
         {/* COMPARISON TABLE */}
@@ -204,13 +219,13 @@ export default function A2LRefrigerantTransitionGuidePage() {
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem", textAlign: "left" }}>
             <thead>
               <tr style={{ background: "var(--surface)", borderBottom: "2px solid var(--border-color)" }}>
-                <th style={{ padding: "0.75rem 0.5rem" }}>Refrigerant</th>
-                <th style={{ padding: "0.75rem 0.5rem" }}>Safety Class</th>
-                <th style={{ padding: "0.75rem 0.5rem" }}>Composition</th>
-                <th style={{ padding: "0.75rem 0.5rem" }}>GWP (AR5)</th>
-                <th style={{ padding: "0.75rem 0.5rem" }}>LFL (lb/ft³)</th>
-                <th style={{ padding: "0.75rem 0.5rem" }}>Burning Velocity</th>
-                <th style={{ padding: "0.75rem 0.5rem" }}>Glide (°F)</th>
+                <th style={{ padding: "0.75rem 0.5rem" }}>Refrigerant Designation</th>
+                <th style={{ padding: "0.75rem 0.5rem" }}>ASHRAE 34 Safety Group</th>
+                <th style={{ padding: "0.75rem 0.5rem" }}>Composition (mass %)</th>
+                <th style={{ padding: "0.75rem 0.5rem" }}>100-Yr GWP (AR4 / AR5)</th>
+                <th style={{ padding: "0.75rem 0.5rem" }}>LFL (lb/ft³ reference)</th>
+                <th style={{ padding: "0.75rem 0.5rem" }}>Burning Velocity ($S_u$)</th>
+                <th style={{ padding: "0.75rem 0.5rem" }}>Approx. Glide (°F)</th>
               </tr>
             </thead>
             <tbody>
@@ -218,153 +233,138 @@ export default function A2LRefrigerantTransitionGuidePage() {
                 <td style={{ padding: "0.65rem 0.5rem", fontWeight: 700, color: "var(--accent-primary)" }}>R-454B</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}><span style={{ padding: "0.15rem 0.4rem", borderRadius: "4px", background: "rgba(16,185,129,0.15)", color: "#34d399", fontWeight: 700 }}>A2L</span></td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>68.9% R-32 / 31.1% R-1234yf</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>466</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>0.0189</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>5.2 cm/s</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>2.7°F</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>466 / 531</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~0.0189</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~5.2 cm/s</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~1.5°F–2.7°F</td>
               </tr>
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
                 <td style={{ padding: "0.65rem 0.5rem", fontWeight: 700, color: "var(--accent-primary)" }}>R-32</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}><span style={{ padding: "0.15rem 0.4rem", borderRadius: "4px", background: "rgba(16,185,129,0.15)", color: "#34d399", fontWeight: 700 }}>A2L</span></td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>100% R-32 (Pure)</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>675</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>0.0192</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>6.7 cm/s</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>100% R-32 (Pure fluid)</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>675 / 677</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~0.0192</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~6.7 cm/s</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>0.0°F</td>
               </tr>
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
                 <td style={{ padding: "0.65rem 0.5rem", fontWeight: 700 }}>R-454A</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}><span style={{ padding: "0.15rem 0.4rem", borderRadius: "4px", background: "rgba(16,185,129,0.15)", color: "#34d399", fontWeight: 700 }}>A2L</span></td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>35% R-32 / 65% R-1234yf</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>239</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>0.0174</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>1.6 cm/s</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>9.0°F</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>239 / 238</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~0.0174</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~1.6 cm/s</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~9.0°F</td>
               </tr>
               <tr style={{ borderBottom: "1px solid var(--border-color)" }}>
                 <td style={{ padding: "0.65rem 0.5rem", fontWeight: 700 }}>R-1234yf</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}><span style={{ padding: "0.15rem 0.4rem", borderRadius: "4px", background: "rgba(16,185,129,0.15)", color: "#34d399", fontWeight: 700 }}>A2L</span></td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>100% HFO-1234yf</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>&lt; 1</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>0.0180</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>1.5 cm/s</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~0.0180</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>~1.5 cm/s</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>0.0°F</td>
               </tr>
               <tr>
                 <td style={{ padding: "0.65rem 0.5rem", fontWeight: 700, color: "var(--ink-secondary)" }}>R-410A (Baseline)</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}><span style={{ padding: "0.15rem 0.4rem", borderRadius: "4px", background: "rgba(100,116,139,0.15)", color: "#94a3b8", fontWeight: 700 }}>A1</span></td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>50% R-32 / 50% R-125</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>1,924</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>None (Non-flam)</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>2,088 / 1,924</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>None</td>
                 <td style={{ padding: "0.65rem 0.5rem" }}>0 cm/s</td>
-                <td style={{ padding: "0.65rem 0.5rem" }}>0.2°F</td>
+                <td style={{ padding: "0.65rem 0.5rem" }}>&lt; 0.3°F</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", marginTop: "0.5rem" }}>
+          <em>Data Sources:</em> Safety classifications per ANSI/ASHRAE Standard 34. Thermophysical and glide data referenced from NIST REFPROP database models.
+        </p>
       </section>
 
-      {/* SECTION 3: ASHRAE 15 CHARGE LIMITS & SIZING EQUATIONS */}
+      {/* SECTION 3: CHARGE LIMITS & MITIGATION CONCEPTS */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          3. ASHRAE Standard 15-2024 &amp; UL 60335-2-40 Charge Limits
+          3. Charge Limits &amp; Mitigation Concepts (ASHRAE 15 / 15.2 &amp; UL 60335-2-40)
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1.5rem" }}>
-          Because A2L refrigerants possess mild flammability, equipment standards (UL 60335-2-40 4th Edition) and mechanical codes (ASHRAE Standard 15-2024 Section 7) govern the maximum refrigerant charge allowed in an occupied space without active safety mitigation.
+          Because A2L refrigerants exhibit lower flammability, installation safety is governed by safety standards (such as ANSI/ASHRAE Standard 15 for commercial/general systems and ANSI/ASHRAE Standard 15.2 for residential systems) in conjunction with product safety listing standards (such as UL/CSA 60335-2-40) and applicable mechanical codes.
         </p>
 
         <FormulaCard
-          title="ASHRAE 15 Passive Unmitigated Charge Limit (m1)"
-          formula="m_1 = 0.20 \times \text{LFL} \times V_{\text{eff}}"
+          title="Illustrative Unmitigated Charge Limit Concept"
+          formula="m_{\text{unmitigated}} \approx \text{Safety Factor} \times \text{LFL} \times V_{\text{dispersal}}"
           variables={[
-            { symbol: "m_1", label: "Maximum Unmitigated Charge", description: "Allowable system holding charge (factory + lineset) without requiring active mitigation", unit: "lb (or kg)" },
-            { symbol: "\\text{LFL}", label: "Lower Flammability Limit", description: "Standard ASHRAE 34 flammability threshold (0.018915 lb/ft³ for R-454B; 0.019165 lb/ft³ for R-32)", unit: "lb/ft³ (or kg/m³)" },
-            { symbol: "V_{\\text{eff}}", label: "Effective Connected Space Volume", description: "Net interior volume of the smallest occupied space connected to the duct distribution system", unit: "cu ft (or m³)" },
+            { symbol: "m_{\\text{unmitigated}}", label: "Allowable Unmitigated Charge", description: "Charge limit below which passive dilution is considered sufficient without active mitigation under the specific standard", unit: "lb (or kg)" },
+            { symbol: "\\text{LFL}", label: "Lower Flammability Limit", description: "Reference flammability limit per ASHRAE Standard 34", unit: "lb/ft³ (or kg/m³)" },
+            { symbol: "V_{\\text{dispersal}}", label: "Effective Dispersal Volume", description: "Calculated volume based on room geometry, duct connections, and applicable standard provisions", unit: "cu ft (or m³)" },
           ]}
-          notes="Derived from the 20% safety factor applied to the Lower Flammability Limit. If a complete catastrophic charge release occurs, the resulting refrigerant concentration remains strictly below 20% of the LFL."
-          sourceStandard="ANSI/ASHRAE Standard 15-2024 Section 7.2 & UL 60335-2-40 Annex GG"
+          notes="Illustrative conceptual formula. Actual charge limit calculations, safety factors, and room volume methodologies depend on the applicable standard (ASHRAE 15, ASHRAE 15.2, or UL/CSA 60335-2-40), system configuration, and equipment listing."
+          sourceStandard="ASHRAE 15 / ASHRAE 15.2 & UL/CSA 60335-2-40 Principles"
         />
 
-        <div style={{ marginTop: "1.5rem" }}>
-          <FormulaCard
-            title="Minimum Unmitigated Connected Room Volume & Floor Area"
-            formula="V_{\text{min}} = \frac{M_{\text{charge}}}{0.20 \times \text{LFL}} \quad | \quad A_{\text{min}} = \frac{V_{\text{min}}}{H_{\text{ceiling}}}"
-            variables={[
-              { symbol: "M_{\\text{charge}}", label: "Total System Holding Charge", description: "Combined outdoor factory pre-charge plus field line-set addition", unit: "lb" },
-              { symbol: "V_{\\text{min}}", label: "Minimum Required Space Volume", description: "Smallest room volume required to install equipment without active leak mitigation", unit: "cu ft" },
-              { symbol: "A_{\\text{min}}", label: "Minimum Usable Floor Area", description: "Minimum room square footage assuming clear floor-to-ceiling architectural height H", unit: "sq ft" },
-              { symbol: "H_{\\text{ceiling}}", label: "Ceiling Height", description: "Interior clear height from finished floor to finished ceiling (standard 8 ft default)", unit: "ft" },
-            ]}
-            notes="For ducted systems, V_eff can represent the aggregate volume of all supply-connected spaces provided there are no manual dampers capable of isolating individual rooms."
-            sourceStandard="ANSI/ASHRAE Standard 15-2024 Section 7.3"
-          />
-        </div>
-
         <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--ink)", marginTop: "2rem", marginBottom: "0.75rem" }}>
-          The Three Mitigation Tiers
+          Safety Standards &amp; Mitigation Architectures
         </h3>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          When the total system charge exceeds the passive limit $m_1$, UL 60335-2-40 establishes deterministic mitigation tiers to prevent flammable pocket formation:
+          Depending on equipment listing, total system charge, and connected space volume, standards define different mitigation strategies:
         </p>
         <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.8, color: "var(--ink-secondary)" }}>
           <li>
-            <strong>Tier 0 (System Charge &le; m₁):</strong> Zero mitigation required. Natural air leakage and room dilution keep concentration safely below 20% LFL.
+            <strong>Passive Installation:</strong> Where the system charge is below the applicable unmitigated charge threshold for the space volume, natural room air dispersion is evaluated.
           </li>
           <li>
-            <strong>Tier 1 (m₁ &lt; System Charge &le; m₂):</strong> Continuous circulation airflow. The indoor blower motor is interlocked to maintain minimum circulation velocity (typically 200–400 CFM) across ductwork to disperse any stratified refrigerant vapor.
+            <strong>Circulation Airflow Mitigation:</strong> For intermediate charge thresholds, standards and equipment listings may require continuous or leak-triggered air circulation to disperse potential refrigerant leaks. Airflow requirements and control sequences are specified by equipment listing and applicable standards.
           </li>
           <li>
-            <strong>Tier 2 (m₂ &lt; System Charge &le; m₃):</strong> Active Refrigerant Detection System (RDS). Factory-calibrated leak detection sensors in the evaporator drain pan or air handler cabinet trigger within 15 seconds of detecting approximately 25% of LFL, automatically de-energizing the compressor, closing motorized refrigerant shutoff valves, and activating high-speed emergency exhaust ventilation.
+            <strong>Refrigerant Detection Systems (RDS):</strong> When charges exceed higher thresholds, factory-integrated or listed field detection systems (commonly sensing at a threshold such as 25% LFL) may be required to initiate mitigation responses, such as shutting down compressor operation, isolating refrigerant circuits, or activating mechanical ventilation per the manufacturer&apos;s listing instructions.
           </li>
         </ul>
       </section>
 
-      {/* SECTION 4: ZEOTROPIC GLIDE & FIELD CHARGING */}
+      {/* SECTION 4: ZEOTROPIC GLIDE & CHARGING */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          4. Zeotropic Temperature Glide &amp; Thermodynamic Service Protocols
+          4. Zeotropic Temperature Glide &amp; Service Protocols
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1.5rem" }}>
-          Refrigerants are divided into pure fluids (single chemical compound), azeotropic blends (behave as a single fluid with zero boiling shift), and zeotropic blends (mixtures of fluids with different boiling points).
+          Refrigerants are categorized as pure single-component fluids, near-azeotropic blends (with minimal glide), or zeotropic blends.
         </p>
 
         <FormulaCard
-          title="Zeotropic Temperature Glide Equation"
+          title="Zeotropic Temperature Glide Relation"
           formula="\Delta T_{\text{glide}} = T_{\text{dew}}(P) - T_{\text{bubble}}(P)"
           variables={[
-            { symbol: "\\Delta T_{\\text{glide}}", label: "Temperature Glide", description: "Temperature span between initial boiling and final evaporation at constant pressure", unit: "°F (or K)" },
-            { symbol: "T_{\\text{dew}}(P)", label: "Saturated Dew Point", description: "Temperature at which 100% saturated vapor begins condensing into liquid at pressure P", unit: "°F" },
-            { symbol: "T_{\\text{bubble}}(P)", label: "Saturated Bubble Point", description: "Temperature at which 100% saturated liquid begins boiling into vapor at pressure P", unit: "°F" },
+            { symbol: "\\Delta T_{\\text{glide}}", label: "Temperature Glide", description: "Temperature differential between saturated dew point and bubble point at a specified pressure P", unit: "°F" },
+            { symbol: "T_{\\text{dew}}(P)", label: "Dew Point Temperature", description: "Temperature at which saturated vapor begins condensing at pressure P", unit: "°F" },
+            { symbol: "T_{\\text{bubble}}(P)", label: "Bubble Point Temperature", description: "Temperature at which saturated liquid begins boiling at pressure P", unit: "°F" },
           ]}
-          notes="Pure fluids (R-32) and near-azeotropic mixtures (R-410A) exhibit glide < 0.3°F. R-454B exhibits ~2.7°F glide, while commercial medium-temp blends (R-454A) exhibit up to 9.0°F glide."
-          sourceStandard="NIST REFPROP 10.0 Thermodynamic Reference Database"
+          notes="Evaluated at a specified pressure using thermophysical property models (such as NIST REFPROP). Single-component fluids (R-32) exhibit 0.0°F glide; blends like R-454B exhibit approximately 1.5°F to 2.7°F glide depending on operating pressure."
+          sourceStandard="NIST REFPROP Property Database Reference"
         />
 
         <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--ink)", marginTop: "2rem", marginBottom: "0.75rem" }}>
-          The Liquid-Charging Mandate &amp; Fractionation
+          Liquid-Phase Charging Considerations &amp; Fractionation
         </h3>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          In zeotropic blends, the lower-boiling component (R-32 in R-454B) evaporates preferentially into the vapor headspace of a charging cylinder. If a technician attempts to charge an A2L blend as a <em>vapor</em>, the cylinder experiences <strong>fractionation</strong>, altering the chemical ratio and leaving behind an off-ratio blend that compromises heat pump efficiency and pressure characteristics.
+          In zeotropic blends, components have different vapor-liquid equilibrium characteristics. Withdrawing vapor from a storage cylinder containing a zeotropic blend can alter the composition of the remaining liquid (fractionation). For this reason, manufacturers generally specify that zeotropic blends (such as R-454B) be charged in the <strong>liquid phase</strong>, throttling liquid through manifold gauges or charging adaptors according to manufacturer service instructions.
         </p>
-        <div style={{ background: "rgba(239, 68, 68, 0.1)", border: "1px solid rgba(239, 68, 68, 0.3)", borderRadius: "0.5rem", padding: "1rem", marginBottom: "1.5rem" }}>
-          <strong style={{ color: "#ef4444" }}>CRITICAL FIELD PROTOCOL:</strong> Always charge zeotropic A2L blends (R-454B, R-454A) strictly in the <strong>LIQUID PHASE</strong> from the cylinder. Invert cylinders without dip tubes or utilize liquid ports on dip-tube cylinders, metering liquid through a charging manifold into the low side with a throttle restriction.
-        </div>
 
         <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.75rem" }}>
-          Superheat vs. Subcooling Calculation Rules
+          Superheat and Subcooling Reference Conventions
         </h3>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          Because saturated pressure correlates to two different temperatures in a gliding refrigerant, technicians must apply the correct reference point:
+          When evaluating operating conditions for zeotropic blends:
         </p>
         <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.8, color: "var(--ink-secondary)" }}>
           <li>
-            <strong>Superheat (Evaporator Outlet):</strong> Must be calculated from the <strong>DEW POINT</strong>. Measuring suction pressure and reading the bubble point will produce an artificially high superheat calculation, causing severe over-charging.
+            <strong>Suction-Side Superheat:</strong> Evaluated using the saturated <strong>DEW POINT</strong> at the suction pressure:
             <div style={{ fontFamily: "monospace", padding: "0.4rem 0.6rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "4px", margin: "0.5rem 0", display: "inline-block" }}>
               Superheat = T_suction_pipe - T_dew(P_suction)
             </div>
           </li>
           <li>
-            <strong>Subcooling (Condenser Outlet):</strong> Must be calculated from the <strong>BUBBLE POINT</strong>. Measuring liquid pressure and reading the dew point will produce an artificially high subcooling calculation, causing severe under-charging.
+            <strong>Liquid-Side Subcooling:</strong> Evaluated using the saturated <strong>BUBBLE POINT</strong> at the liquid pressure:
             <div style={{ fontFamily: "monospace", padding: "0.4rem 0.6rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "4px", margin: "0.5rem 0", display: "inline-block" }}>
               Subcooling = T_bubble(P_liquid) - T_liquid_pipe
             </div>
@@ -372,67 +372,38 @@ export default function A2LRefrigerantTransitionGuidePage() {
         </ul>
       </section>
 
-      {/* SECTION 5: FIELD SERVICE, TOOLING, & SAFETY */}
+      {/* SECTION 5: FIELD SERVICE TOOLING & SAFETY GUIDANCE */}
       <section style={{ margin: "2.5rem 0" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, color: "var(--ink)", marginBottom: "1rem" }}>
-          5. Field Service Tooling &amp; Installation Safety Checklist
+          5. Field Service Tooling &amp; Installation Safety Guidelines
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-          Servicing A2L systems requires dedicated tooling rated for mildly flammable environments to eliminate electrical arc ignition sources:
+          Servicing A2L systems requires verifying that field service equipment is rated for use with mildly flammable refrigerants and that proper safety procedures are followed:
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem", margin: "1.5rem 0" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem" }}>
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem" }}>
-            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>🔧 Reverse Left-Hand Threads</div>
+            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>🔧 Cylinder Fitting Compatibility</div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-              A2L cylinders feature CGA 164 left-hand (LH) reverse threads. Requires dedicated LH hose fittings or brass reverse-thread adaptors to prevent accidental connection to non-flammable manifold sets.
+              A2L refrigerant cylinders in the North American market often utilize left-hand (LH) valve threads (such as CGA 164) to distinguish them from non-flammable cylinders. Verify fitting compatibility and utilize rated adapters where required.
             </p>
           </div>
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem" }}>
-            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>⚡ Spark-Proof Recovery Units</div>
+            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>⚡ Rated Recovery &amp; Vacuum Tools</div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-              Recovery machines and vacuum pumps must feature sealed, brushless DC motors or intrinsically safe solid-state relays meeting UL 121201 / CSA C22.2 ignition-proof standards.
+              Recovery units, vacuum pumps, and electronic leak detectors must be rated by their manufacturers for use with A2L refrigerants to prevent potential electrical ignition sources.
             </p>
           </div>
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem" }}>
-            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>🔥 Brazing Nitrogen Purge</div>
+            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>🔥 Brazing &amp; Hot-Work Safety</div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-              Prior to unbrazing or torch work, systems must be recovered to 0 psig, purged with dry nitrogen, and confirmed clear using a calibrated A2L combustible gas leak detector.
+              Before applying heat or unbrazing joints, recover refrigerant completely, purge the circuit with dry nitrogen, and verify that the work area is well-ventilated and free of combustible concentrations.
             </p>
           </div>
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "1.25rem" }}>
-            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>🛢️ Red Shoulder Recovery Tanks</div>
+            <div style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>🛢️ Dedicated Recovery Cylinders</div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-              DOT-approved recovery cylinders for A2L fluids must feature a distinct red shoulder ring band, pressure relief valves rated to 400+ psig, and left-hand valve ports.
+              Use DOT-rated recovery cylinders designated for A2L service with appropriate working pressure ratings and cylinder markings in accordance with applicable transportation and safety standards.
             </p>
-          </div>
-        </div>
-
-        <div style={{ marginTop: "1.25rem", padding: "1rem 1.25rem", background: "rgba(59, 130, 246, 0.08)", border: "1px solid rgba(59, 130, 246, 0.25)", borderRadius: "0.5rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.75rem" }}>
-            <div>
-              <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: "0.95rem" }}>
-                Deep Dive: R-454B vs. R-32 Field Service &amp; Recovery Monograph
-              </div>
-              <p style={{ margin: "0.25rem 0 0", fontSize: "0.85rem", color: "var(--ink-secondary)" }}>
-                Compare DOT 4BA cylinder recovery fill weights, spark-proof tooling standards, and 500-micron vacuum decay diagnostics.
-              </p>
-            </div>
-            <Link
-              href="/research/r454b-r32-field-handling-protocols"
-              style={{
-                display: "inline-block",
-                padding: "0.45rem 0.9rem",
-                fontSize: "0.82rem",
-                fontWeight: 700,
-                background: "var(--accent-primary)",
-                color: "#ffffff",
-                borderRadius: "0.375rem",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Read Field Protocol Monograph →
-            </Link>
           </div>
         </div>
       </section>
@@ -440,10 +411,10 @@ export default function A2LRefrigerantTransitionGuidePage() {
       {/* SECTION 6: OPEN DATASET CITATION */}
       <section style={{ margin: "2.5rem 0", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.5rem" }}>
         <h2 style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.75rem" }}>
-          Open Benchmark Dataset: 200 State Vectors
+          Reference Benchmark Dataset: 200 State Vectors
         </h2>
         <p style={{ lineHeight: 1.7, color: "var(--ink-secondary)", marginBottom: "1rem", fontSize: "0.95rem" }}>
-          To support mechanical consulting engineers, code compliance inspectors, and academic researchers, HVACLogic has released an open tabular research dataset evaluating 200 deterministic calculation vectors across R-454B, R-32, R-454A, R-1234yf, and R-410A under ASHRAE 15-2024 and UL 60335-2-40.
+          HVACLogic provides an open reference research dataset containing 200 benchmark calculation vectors across R-454B, R-32, R-454A, R-1234yf, and R-410A based on documented thermodynamic property models and reference calculation assumptions.
         </p>
         <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "center" }}>
           <Link
@@ -501,7 +472,7 @@ export default function A2LRefrigerantTransitionGuidePage() {
               Digital PT Chart Calculator →
             </div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
-              Interactive pressure slider from 0 to 650 psig with discrete bubble and dew point outputs for R-454B and R-32.
+              Pressure-temperature lookups with discrete bubble and dew point outputs for R-454B, R-32, and legacy refrigerants.
             </p>
           </Link>
 
@@ -521,7 +492,7 @@ export default function A2LRefrigerantTransitionGuidePage() {
               Superheat &amp; Subcooling Sizer →
             </div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
-              Field charging diagnostic engine isolating saturated bubble and dew points for accurate TXV and fixed orifice tuning.
+              Diagnostic tool incorporating saturated bubble and dew points for refrigerant circuit evaluation.
             </p>
           </Link>
 
@@ -541,7 +512,7 @@ export default function A2LRefrigerantTransitionGuidePage() {
               Field Handling Monograph (Report HL-TR-2026-A2L02) →
             </div>
             <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
-              DOT 4BA cylinder recovery limits, 80% liquid fill safety margins, spark-proof tooling, and vacuum decay tests.
+              Technical analysis of cylinder recovery fill limits, tooling specifications, and evacuation diagnostics.
             </p>
           </Link>
         </div>

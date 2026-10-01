@@ -8,14 +8,14 @@ import {
   GasAppliance,
   CombustionAirInput,
   CombustionAirOutput,
+  LOUVER_PRESETS,
 } from "@/lib/math/combustion-air";
 import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { CombustionAirVisualizer } from "@/components/calculator/visualizers/CombustionAirVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
-import { StandardsBadge } from "@/components/calculator/StandardsBadge";
+import { StandardsBadge } from "@/components/seo/StandardsBadge";
 
 const PRESETS = [
   {
@@ -27,6 +27,7 @@ const PRESETS = [
     width: 8,
     height: 8,
     louver: "metal" as LouverMaterial,
+    customLouverPct: 75,
   },
   {
     label: "🏡 Utility Room (60k Furnace + 36k Water Htr)",
@@ -37,6 +38,7 @@ const PRESETS = [
     width: 10,
     height: 8,
     louver: "metal" as LouverMaterial,
+    customLouverPct: 75,
   },
   {
     label: "🏢 Boiler Room (180k Boiler + 50k Water Htr)",
@@ -47,6 +49,7 @@ const PRESETS = [
     width: 14,
     height: 9,
     louver: "metal" as LouverMaterial,
+    customLouverPct: 75,
   },
   {
     label: "🔄 Open Basement (80k Furnace / Unconfined)",
@@ -57,6 +60,7 @@ const PRESETS = [
     width: 25,
     height: 8,
     louver: "metal" as LouverMaterial,
+    customLouverPct: 75,
   },
 ];
 
@@ -71,6 +75,7 @@ export function CombustionAirTool() {
   const [roomWidth, setRoomWidth] = useState<number>(8);
   const [roomHeight, setRoomHeight] = useState<number>(8);
   const [louverMaterial, setLouverMaterial] = useState<LouverMaterial>("metal");
+  const [customLouverPct, setCustomLouverPct] = useState<number>(75);
 
   // Hydrate from URL
   useEffect(() => {
@@ -81,6 +86,7 @@ export function CombustionAirTool() {
     const urlWidth = Number(getParam("width", "8"));
     const urlHeight = Number(getParam("height", "8"));
     const urlLouver = getParam("louver", "metal") as LouverMaterial;
+    const urlCustomPct = Number(getParam("louverPct", "75"));
 
     if (!isNaN(urlFurnace) && urlFurnace >= 0) setFurnaceBtu(urlFurnace);
     if (!isNaN(urlWaterHtr) && urlWaterHtr >= 0) setWaterHtrBtu(urlWaterHtr);
@@ -88,7 +94,8 @@ export function CombustionAirTool() {
     if (!isNaN(urlLen) && urlLen > 0) setRoomLength(urlLen);
     if (!isNaN(urlWidth) && urlWidth > 0) setRoomWidth(urlWidth);
     if (!isNaN(urlHeight) && urlHeight > 0) setRoomHeight(urlHeight);
-    if (["metal", "wood", "direct_screen"].includes(urlLouver)) setLouverMaterial(urlLouver);
+    if (["metal", "wood", "direct_screen", "custom"].includes(urlLouver)) setLouverMaterial(urlLouver);
+    if (!isNaN(urlCustomPct) && urlCustomPct > 0 && urlCustomPct <= 100) setCustomLouverPct(urlCustomPct);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -100,6 +107,15 @@ export function CombustionAirTool() {
     setRoomWidth(p.width);
     setRoomHeight(p.height);
     setLouverMaterial(p.louver);
+    setCustomLouverPct(p.customLouverPct);
+
+    updateParam("furnace", p.furnaceBtu);
+    updateParam("waterHtr", p.waterHtrBtu);
+    updateParam("boiler", p.boilerBtu);
+    updateParam("len", p.length);
+    updateParam("width", p.width);
+    updateParam("height", p.height);
+    updateParam("louver", p.louver);
   };
 
   // Perform Calculation
@@ -116,19 +132,34 @@ export function CombustionAirTool() {
       roomWidthFt: roomWidth,
       roomHeightFt: roomHeight,
       louverMaterial,
+      customLouverPercent: customLouverPct,
     };
 
     return calculateCombustionAir(input);
-  }, [furnaceBtu, waterHtrBtu, boilerBtu, roomLength, roomWidth, roomHeight, louverMaterial]);
+  }, [furnaceBtu, waterHtrBtu, boilerBtu, roomLength, roomWidth, roomHeight, louverMaterial, customLouverPct]);
 
   const handleExportCsv = () => {
-    const headers = "Parameter,Value,Unit\n";
-    const rows = `Total Combined Gas Input,${output.totalInputBtuHr},"BTU/hr"\nMechanical Room Dimensions,"${roomLength}' x ${roomWidth}' x ${roomHeight}'",""\nRoom Volume,${output.roomVolumeCuFt},"cu ft"\nRequired Unconfined Volume,${output.requiredUnconfinedVolumeCuFt},"cu ft"\nSpace Classification,"${output.isConfinedSpace ? "CONFINED SPACE" : "UNCONFINED SPACE"}",""\nLouver Material,"${louverMaterial}",""\n\n${output.methods.map((m) => `"${m.title}",${m.netFreeAreaSqIn} sq in Net,${m.grossLouverAreaSqIn} sq in Gross,Ø ${m.recommendedRoundDuctDiameterIn}" Round`).join("\n")}\n`;
+    const headers = "Parameter,Value,Unit,Engineering Notes\n";
+    const rows = [
+      `Total Combined Gas Input,${output.totalInputBtuHr},"BTU/hr","Sum of nameplate appliance input ratings"`,
+      `Mechanical Room Dimensions,"${roomLength}' x ${roomWidth}' x ${roomHeight}'","","Length x Width x Ceiling Height"`,
+      `Enclosed Room Volume,${output.roomVolumeCuFt},"cu ft","Calculated volume"`,
+      `Required Unconfined Volume,${output.requiredUnconfinedVolumeCuFt},"cu ft","NFPA 54 Standard Method (50 cu ft / 1,000 BTU/hr)"`,
+      `Space Classification,"${output.isConfinedSpace ? "CONFINED SPACE" : "UNCONFINED SPACE"}","","${output.volumePercentageOfRequired}% of required volume"`,
+      `Volume Deficit,${output.volumeDeficitCuFt},"cu ft","Volume short of unconfined threshold"`,
+      `Louver Specification,"${output.louverDescription}","","${output.louverFreeAreaPercentage}% assumed/specified free area"`,
+      `\n--- NFPA 54 / IFGC OPENING SIZING OPTIONS ---`,
+      ...output.methods.map(
+        (m) =>
+          `"${m.title}",${m.netFreeAreaSqIn} sq in Net Free Area,${m.grossLouverAreaSqIn} sq in Gross Louver,"Equivalent Ø ${m.calculatedRoundDiameterIn} in (Standard Trade Ø ${m.recommendedRoundDuctDiameterIn} in)"`
+      ),
+    ].join("\n");
+
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `combustion-air-${output.totalInputBtuHr}BTU.csv`;
+    a.download = `combustion-air-sizing-${output.totalInputBtuHr}BTU.csv`;
     a.click();
   };
 
@@ -174,6 +205,7 @@ export function CombustionAirTool() {
         {/* INPUT PANEL */}
         <div className="input-panel">
           <CalculatorTrustPill />
+
           {/* APPLIANCE BTU LOADS */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
@@ -236,7 +268,11 @@ export function CombustionAirTool() {
                 min={0}
                 max={1000000}
                 value={boilerBtu}
-                onChange={(e) => setBoilerBtu(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setBoilerBtu(val);
+                  updateParam("boiler", val);
+                }}
                 className="input-number"
               />
             </div>
@@ -257,12 +293,36 @@ export function CombustionAirTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value="metal">Metal Louvers (75% Free Area)</option>
-                <option value="wood">Wood Louvers (25% Free Area)</option>
-                <option value="direct_screen">Direct Duct / Screen (100%)</option>
+                <option value="metal">Metal Louvers (Assumed 75% Free Area)</option>
+                <option value="wood">Wood Louvers (Assumed 25% Free Area)</option>
+                <option value="direct_screen">Direct Screen / Duct (100% Free Area)</option>
+                <option value="custom">Custom Free Area Percentage...</option>
               </select>
             </div>
           </div>
+
+          {/* CUSTOM LOUVER FREE AREA INPUT IF SELECTED */}
+          {louverMaterial === "custom" && (
+            <div className="form-group" style={{ marginBottom: "0.5rem" }}>
+              <label htmlFor="custom-louver-pct">
+                <span>Specified Manufacturer Free Area</span>
+                <span className="unit-label">% Free Area</span>
+              </label>
+              <input
+                id="custom-louver-pct"
+                type="number"
+                min={10}
+                max={100}
+                value={customLouverPct}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setCustomLouverPct(val);
+                  updateParam("louverPct", val);
+                }}
+                className="input-number"
+              />
+            </div>
+          )}
 
           {/* ROOM DIMENSIONS */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.5rem" }}>
@@ -275,7 +335,11 @@ export function CombustionAirTool() {
                 min={3}
                 max={100}
                 value={roomLength}
-                onChange={(e) => setRoomLength(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setRoomLength(val);
+                  updateParam("len", val);
+                }}
                 className="input-number"
               />
             </div>
@@ -288,7 +352,11 @@ export function CombustionAirTool() {
                 min={3}
                 max={100}
                 value={roomWidth}
-                onChange={(e) => setRoomWidth(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setRoomWidth(val);
+                  updateParam("width", val);
+                }}
                 className="input-number"
               />
             </div>
@@ -301,7 +369,11 @@ export function CombustionAirTool() {
                 min={6}
                 max={25}
                 value={roomHeight}
-                onChange={(e) => setRoomHeight(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setRoomHeight(val);
+                  updateParam("height", val);
+                }}
                 className="input-number"
               />
             </div>
@@ -312,7 +384,7 @@ export function CombustionAirTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Combustion Air Sizing Result">
-            <div className="result-label">NFPA 54 Space Classification</div>
+            <div className="result-label">NFPA 54 / IFGC Space Classification</div>
             <div
               className="result-value"
               style={{
@@ -322,14 +394,13 @@ export function CombustionAirTool() {
               {output.isConfinedSpace ? "CONFINED SPACE" : "UNCONFINED SPACE"}
             </div>
             <div className="result-unit">
-              Enclosed Volume: <strong>{output.roomVolumeCuFt.toLocaleString()} cu ft</strong> (Requires: {output.requiredUnconfinedVolumeCuFt.toLocaleString()} cu ft)
+              Enclosed Volume: <strong>{output.roomVolumeCuFt.toLocaleString()} cu ft</strong> (Threshold: {output.requiredUnconfinedVolumeCuFt.toLocaleString()} cu ft)
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "0.35rem",
                   padding: "0.2rem 0.65rem",
                   borderRadius: "9999px",
                   fontSize: "0.72rem",
@@ -340,54 +411,54 @@ export function CombustionAirTool() {
                 }}
               >
                 {output.isConfinedSpace
-                  ? `Deficit: ${output.volumeDeficitCuFt.toLocaleString()} cu ft — Permanent Combustion Openings Required`
-                  : "Meets Standard Method Threshold (Requires Infiltration ACH ≥ 0.40)"}
+                  ? `Volume Deficit: ${output.volumeDeficitCuFt.toLocaleString()} cu ft — Permanent Openings Sized Below`
+                  : "Meets Standard Method (50 cu ft / 1k BTU). Infiltration rate must be ≥ 0.40 ACH"}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["NFPA 54 (National Fuel Gas)", "IFGC Section 304", "ASHRAE Standard 62.2"]} />
+          <StandardsBadge standards={["NFPA", "IFGC"]} />
 
           {/* REACTIVE VISUALIZER */}
           <CombustionAirVisualizer output={output} />
 
           {/* 4-METHOD NFPA 54 SIZING TABLE */}
           <div style={{ marginTop: "0.75rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.5rem", padding: "0.85rem" }}>
-            <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              NFPA 54 / IFGC Opening Sizing Options:
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+              <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--ink)" }}>
+                NFPA 54 / IFGC Opening Sizing Methods ({output.louverFreeAreaPercentage}% Louver Free Area):
+              </span>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.45rem", fontSize: "0.78rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.78rem" }}>
               {output.methods.map((m) => (
                 <div
                   key={m.methodId}
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "0.4rem 0.6rem",
+                    padding: "0.55rem 0.7rem",
                     background: "var(--bg-secondary)",
                     borderRadius: "4px",
+                    border: "1px solid var(--border-color)",
                   }}
                 >
-                  <div>
-                    <strong style={{ color: "var(--ink)" }}>{m.title}</strong>
-                    <div style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>{m.location}</div>
-                  </div>
-                  <div style={{ textAlign: "right" }}>
-                    <div style={{ fontWeight: 700, color: "var(--accent-cooling)" }}>
-                      {m.grossLouverAreaSqIn} sq in. ({m.netFreeAreaSqIn} sq in. Net)
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "0.5rem" }}>
+                    <div>
+                      <strong style={{ color: "var(--ink)", fontSize: "0.82rem" }}>{m.title}</strong>
+                      <div style={{ fontSize: "0.7rem", color: "var(--text-muted)", marginTop: "0.1rem" }}>{m.location}</div>
+                      <div style={{ fontSize: "0.68rem", color: "var(--accent-heating)", marginTop: "0.15rem" }}>{m.codeRule}</div>
                     </div>
-                    <div style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>
-                      Ø {m.recommendedRoundDuctDiameterIn}&quot; Round Duct
+                    <div style={{ textAlign: "right", whiteSpace: "nowrap" }}>
+                      <div style={{ fontWeight: 700, color: "var(--accent-cooling)", fontSize: "0.88rem" }}>
+                        {m.netFreeAreaSqIn} sq in. Net Free Area
+                      </div>
+                      <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.1rem" }}>
+                        Gross: <strong>{m.grossLouverAreaSqIn} sq in.</strong> (Ø {m.calculatedRoundDiameterIn}&quot; equiv / Ø {m.recommendedRoundDuctDiameterIn}&quot; trade)
+                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* GOOGLE PREFERRED SOURCE BANNER */}
-          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
@@ -415,7 +486,7 @@ export function CombustionAirTool() {
       <MobileResultBar
         label="Combustion Air"
         value={output.isConfinedSpace ? "Confined Space" : "Unconfined"}
-        unit={`(${output.methods[1]?.grossLouverAreaSqIn} sq in)`}
+        unit={`(${output.methods[1]?.grossLouverAreaSqIn} sq in gross)`}
       />
     </div>
   );

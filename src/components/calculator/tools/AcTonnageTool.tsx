@@ -117,8 +117,8 @@ export function AcTonnageTool() {
               let mappedClimate = "moderate";
               if (loc.summerDb04 >= 100) mappedClimate = "extreme_heat";
               else if (loc.summerDb04 >= 92 && loc.summerWb04 >= 75) mappedClimate = "hot_humid";
-              else if (loc.summerDb04 >= 90) mappedClimate = "warm";
-              else if (loc.summerDb04 <= 82) mappedClimate = "cool";
+              else if (loc.summerDb04 >= 90) mappedClimate = "moderate";
+              else if (loc.summerDb04 <= 82) mappedClimate = "mild";
 
               setClimate(mappedClimate);
               updateParam("climate", mappedClimate);
@@ -186,7 +186,7 @@ export function AcTonnageTool() {
               className="input-number"
               style={{ cursor: "pointer" }}
             >
-              <option value={8}>8 ft (Standard)</option>
+              <option value={8}>8 ft (Standard Baseline)</option>
               <option value={9}>9 ft (Modern 9-Foot)</option>
               <option value={10}>10 ft (High Ceiling)</option>
               <option value={12}>12 ft (Cathedral / Vaulted)</option>
@@ -257,7 +257,7 @@ export function AcTonnageTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="AC Tonnage Result">
-            <div className="result-label">Recommended AC Capacity</div>
+            <div className="result-label">Estimated AC Capacity (Preliminary)</div>
             <div className="result-value">{result.recommendedTonnage} Tons</div>
             <div className="result-unit">
               Nominal Rating: <strong>{result.recommendedBtu.toLocaleString()} BTU/hr</strong> ({result.exactTonnage} calculated)
@@ -277,21 +277,24 @@ export function AcTonnageTool() {
                   border: "1px solid rgba(16, 185, 129, 0.3)",
                 }}
               >
-                ✓ ACCA Manual S Sizing Zone: {(area / result.recommendedTonnage).toFixed(0)} sq ft / Ton
+                Estimated Area Coverage: {(area / result.recommendedTonnage).toFixed(0)} sq ft / Ton
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ACCA Manual J®", "ACCA Manual S®", "AHRI Standard 210/240"]} />
+          <StandardsBadge
+            label="Technical References:"
+            standards={["ACCA Manual J (Reference Methodology)", "ACCA Manual S (Equipment Selection)", "AHRI Standard 210/240"]}
+          />
 
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
-              <div className="item-label">Nominal Airflow</div>
+              <div className="item-label">Nominal Airflow Guideline</div>
               <div className="item-value">{result.nominalCfm} CFM</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Annual Cooling Cost</div>
+              <div className="item-label">Annual Cooling Cost (Est.)</div>
               <div className="item-value">${result.annualOperatingCost} / yr</div>
             </div>
             <div className="secondary-result-item">
@@ -299,7 +302,7 @@ export function AcTonnageTool() {
               <div className="item-value" style={{ color: "var(--accent-warning)" }}>${result.seer10OperatingCost} / yr</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Annual Energy Savings</div>
+              <div className="item-label">Estimated Annual Savings</div>
               <div className="item-value" style={{ color: "var(--accent-success)" }}>+${result.annualSavingsVsLegacy} / yr</div>
             </div>
           </div>
@@ -310,8 +313,8 @@ export function AcTonnageTool() {
               <thead>
                 <tr>
                   <th scope="col">SEER2 Rating</th>
-                  <th scope="col">Annual Operating Cost</th>
-                  <th scope="col">10-Year Total</th>
+                  <th scope="col">Annual Operating Cost (1,000 EFLH)</th>
+                  <th scope="col">10-Year Cumulative Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -349,7 +352,7 @@ export function AcTonnageTool() {
           <div className="handoff-card">
             <div className="handoff-title">Next Steps in HVAC Engineering</div>
             <Link href={`/calculators/ductulator?cfm=${result.nominalCfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
-              <span>Size Ductwork for {result.nominalCfm} CFM ({result.recommendedTonnage} Ton AC)</span>
+              <span>Size Ductwork for {result.nominalCfm} CFM ({result.recommendedTonnage} Ton AC Nominal)</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/ac-model-decoder">

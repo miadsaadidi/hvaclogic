@@ -125,7 +125,7 @@ export function PtChartTool() {
             type="button"
             style={r.safetyClass === "A2L" ? { borderColor: "rgba(16, 185, 129, 0.4)", fontWeight: 700 } : {}}
           >
-            {r.id.toUpperCase()} {r.safetyClass === "A2L" ? "⚡ (A2L)" : ""}
+            {r.name} {r.safetyClass === "A2L" ? "⚡ (A2L)" : ""}
           </button>
         ))}
       </div>
@@ -139,12 +139,12 @@ export function PtChartTool() {
             handleRefChange("r454b");
             setLookupMode("pressure_to_temp");
             setCurveType("dew");
-            handlePressureChange(115.5);
+            handlePressureChange(112.0);
           }}
           className="preset-chip-btn"
           style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
         >
-          ❄️ R-454B Evaporator (40°F / 115.5 psig)
+          ❄️ R-454B Evaporator (40°F / 112.0 psig)
         </button>
         <button
           type="button"
@@ -152,12 +152,12 @@ export function PtChartTool() {
             handleRefChange("r454b");
             setLookupMode("pressure_to_temp");
             setCurveType("bubble");
-            handlePressureChange(365.2);
+            handlePressureChange(361.8);
           }}
           className="preset-chip-btn"
           style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem" }}
         >
-          🔥 R-454B Condenser (110°F / 365.2 psig)
+          🔥 R-454B Condenser (110°F / 361.8 psig)
         </button>
         <button
           type="button"
@@ -321,8 +321,8 @@ export function PtChartTool() {
           {output.refrigerant.hasGlide && (
             <div className="form-group" style={{ marginTop: "0.25rem" }}>
               <label htmlFor="curve-select">
-                <span>Zeotropic Glide Curve</span>
-                <span className="unit-label">NIST REFPROP</span>
+                <span>Zeotropic Phase Curve</span>
+                <span className="unit-label">REFPROP Basis</span>
               </label>
               <select
                 id="curve-select"
@@ -335,7 +335,7 @@ export function PtChartTool() {
                 <option value="bubble">Bubble Point Curve (Liquid / Subcooling)</option>
               </select>
               <span style={{ fontSize: "0.72rem", color: "#94a3b8", marginTop: "0.25rem", display: "block" }}>
-                {output.refrigerant.name} has a <strong>{output.refrigerant.glideF}&deg;F temperature glide</strong>. Use Dew Point for Superheat and Bubble Point for Subcooling.
+                {output.refrigerant.name} has a <strong>~{output.refrigerant.glideF}&deg;F temperature glide</strong>. Reference Dew Point for suction superheat and Bubble Point for liquid subcooling.
               </span>
             </div>
           )}
@@ -387,7 +387,7 @@ export function PtChartTool() {
             </div>
           </div>
 
-          <StandardsBadge standards={["NIST REFPROP V10", "EPA Section 608", "ASHRAE Standard 34"]} />
+          <StandardsBadge label="Technical References:" standards={["NIST REFPROP Reference Data", "ASHRAE Standard 34", "AHRI Standard 700", "EPA Section 608"]} />
 
           {/* MANIFOLD GAUGE VISUALIZER */}
           <RefrigerantGaugeVisualizer output={output} />
@@ -428,7 +428,7 @@ export function PtChartTool() {
           <div className="handoff-card">
             <div className="handoff-title">Next Step in System Charging Diagnostics</div>
             <Link href={`/calculators/superheat-subcooling-calculator?ref=${output.refrigerant.id}`} style={{ marginBottom: "0.5rem" }}>
-              <span>Diagnose TXV Subcooling &amp; Fixed Orifice Superheat ({output.refrigerant.id.toUpperCase()})</span>
+              <span>Diagnose TXV Subcooling &amp; Fixed Orifice Superheat ({output.refrigerant.name})</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/refrigerant-charge-calculator" style={{ marginBottom: "0.5rem" }}>
@@ -451,7 +451,7 @@ export function PtChartTool() {
               📊 Complete {output.refrigerant.name} Pressure-Temperature Table
             </h3>
             <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-              High-precision saturation properties across standard operating temperatures. Click any row to load into gauge.
+              High-precision saturation property reference data across standard operating temperatures. Click any row to load into gauge.
             </span>
           </div>
           <button
@@ -467,10 +467,10 @@ export function PtChartTool() {
         <div style={{ marginTop: "1rem", marginBottom: "1.25rem", padding: "1rem 1.25rem", borderRadius: "0.65rem", background: "rgba(16, 185, 129, 0.08)", border: "1px solid rgba(16, 185, 129, 0.25)", fontSize: "0.82rem" }}>
           <div style={{ fontWeight: 700, color: "#10b981", display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.3rem" }}>
             <span>🔧</span>
-            <span>A2L EPA 608 Zeotropic Glide Diagnostic Notice:</span>
+            <span>Zeotropic Phase-Change Diagnostic Guidance:</span>
           </div>
           <p style={{ margin: 0, color: "var(--ink)", lineHeight: 1.5 }}>
-            For R-454B systems, always calculate <strong>Subcooling using the Bubble Point</strong> and <strong>Superheat using the Dew Point</strong> to avoid the 2.2°F diagnostic charging error. Read the comprehensive <Link href="/field-diagnostics" style={{ color: "#10b981", fontWeight: 700, textDecoration: "underline" }}>Field Diagnostics &amp; A2L Transition Master Guide →</Link>
+            For zeotropic blends such as {output.refrigerant.name}{output.refrigerant.hasGlide ? ` (~${output.refrigerant.glideF}°F glide)` : ""}, evaluate <strong>Subcooling using the Bubble Point</strong> (liquid line) and <strong>Superheat using the Dew Point</strong> (suction line) to account for phase-change temperature glide during field charging diagnostics. Read the <Link href="/guides/a2l-refrigerant-transition-guide" style={{ color: "#10b981", fontWeight: 700, textDecoration: "underline" }}>A2L Refrigerant Transition &amp; Field Diagnostics Guide →</Link>
           </p>
         </div>
 

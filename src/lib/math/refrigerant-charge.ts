@@ -196,7 +196,7 @@ export function calculateRefrigerantCharge(input: RefrigerantChargeInput): Refri
   if (Number.isFinite(input.actualLengthFt) && (input.actualLengthFt < profile.minimumLinearLengthFt || input.actualLengthFt > profile.maximumLinearLengthFt)) {
     errors.push({
       code: "length_out_of_range",
-      message: `This profile is validated from ${profile.minimumLinearLengthFt} ft through ${profile.maximumLinearLengthFt} ft.`,
+      message: `This OEM profile specifies a published linear range from ${profile.minimumLinearLengthFt} ft through ${profile.maximumLinearLengthFt} ft.`,
     });
   }
   const verticalLimit = profile.maximumVerticalSeparationFt[input.outdoorUnitPosition];

@@ -2,9 +2,9 @@ import { describe, it, expect } from "vitest";
 import { calculateFurnaceBtu } from "./furnace-btu";
 
 describe("Furnace BTU & Heating Sizing Engine", () => {
-  it("calculates baseline 2,000 sq ft furnace sizing in Zone 4 at 96% AFUE accurately", () => {
-    // 2000 sq ft * 50 BTU/sqft = 100,000 BTU net heat loss
-    // Output BTU = 100,000. Input BTU = 100,000 / 0.96 = ~104,167 BTU
+  it("calculates baseline 2,000 sq ft furnace sizing screening estimate in Zone 4 at 96% AFUE", () => {
+    // 2000 sq ft * 50 BTU/sqft = 100,000 BTU estimated load
+    // Approximate input = 100,000 / 0.96 ≈ 104,167 BTU
     const res = calculateFurnaceBtu({
       floorAreaSqFt: 2000,
       climateZone: 4,
@@ -14,17 +14,17 @@ describe("Furnace BTU & Heating Sizing Engine", () => {
       temperatureRiseF: 45,
     });
 
-    expect(res.netHeatLossBtu).toBe(100000);
-    expect(res.requiredOutputBtu).toBe(100000);
-    expect(res.requiredInputBtu).toBe(104167);
-    expect(res.nominalFurnaceModelBtu).toBe(120000);
+    expect(res.estimatedHeatingLoadBtu).toBe(100000);
+    expect(res.approximateInputRequirementBtu).toBe(104167);
+    expect(res.candidateNominalInputBtu).toBe(120000);
+    expect(res.candidateNominalRange).toContain("100k to 120k");
     expect(res.flueExhaustType).toBe("PVC / CPVC Direct Vent (Condensing)");
-    expect(res.requiredHeatingCfm).toBe(2058); // 100000 / (1.08 * 45) = ~2058 CFM
+    expect(res.theoreticalHeatingCfm).toBe(2058); // 100000 / (1.08 * 45) ≈ 2058 CFM
   });
 
   it("calculates 80% non-condensing furnace input and flue exhaust type correctly", () => {
-    // 1500 sq ft * 40 BTU/sqft (Zone 3) = 60,000 BTU net loss
-    // Input BTU @ 80% = 60,000 / 0.80 = 75,000 BTU
+    // 1500 sq ft * 40 BTU/sqft (Zone 3) = 60,000 BTU estimated load
+    // Approximate input @ 80% = 60,000 / 0.80 = 75,000 BTU
     const res = calculateFurnaceBtu({
       floorAreaSqFt: 1500,
       climateZone: 3,
@@ -32,15 +32,17 @@ describe("Furnace BTU & Heating Sizing Engine", () => {
       insulationGrade: "average",
     });
 
-    expect(res.netHeatLossBtu).toBe(60000);
-    expect(res.requiredInputBtu).toBe(75000);
-    expect(res.nominalFurnaceModelBtu).toBe(80000);
+    expect(res.estimatedHeatingLoadBtu).toBe(60000);
+    expect(res.approximateInputRequirementBtu).toBe(75000);
+    expect(res.candidateNominalInputBtu).toBe(80000);
     expect(res.flueExhaustType).toBe("Metal B-Vent Chimney");
   });
 
-  it("applies ceiling height and insulation grade multipliers accurately", () => {
-    // 2000 sq ft, Zone 4 (50 BTU), 10ft ceiling (10/8 = 1.25), good insulation (0.88)
-    // 2000 * 50 * 1.25 * 0.88 = 110,000 BTU
+  it("applies bounded ceiling height and documented insulation multipliers accurately", () => {
+    // 2000 sq ft, Zone 4 (50 BTU/sqft)
+    // 10ft ceiling: 1 + (10 - 8) * 0.04 = 1.08
+    // Good insulation: 0.85
+    // Net Load = 2000 * 50 * 1.08 * 0.85 = 91,800 BTU
     const res = calculateFurnaceBtu({
       floorAreaSqFt: 2000,
       climateZone: 4,
@@ -49,6 +51,7 @@ describe("Furnace BTU & Heating Sizing Engine", () => {
       afueRatingPercent: 96,
     });
 
-    expect(res.netHeatLossBtu).toBe(110000);
+    expect(res.estimatedHeatingLoadBtu).toBe(91800);
+    expect(res.approximateInputRequirementBtu).toBe(Math.round(91800 / 0.96));
   });
 });

@@ -23,10 +23,23 @@ describe("ASHRAE Moist Air Psychrometric Engine", () => {
     expect(res.wetBulbF).toBeLessThan(63.5);
     expect(res.specificEnthalpyBtuPerLb).toBeGreaterThan(27.5);
     expect(res.specificEnthalpyBtuPerLb).toBeLessThan(28.5);
-    expect(res.comfortZoneStatus).toBe("Ideal Comfort (ASHRAE 55)");
+    expect(res.comfortZoneStatus).toBe("Representative Comfort Condition (ASHRAE 55)");
     expect(res.seaLevelDivergencePercent).toBe(0);
     expect(res.lewisRelationFactor).toBe(1);
     expect(res.enhancementFactor).toBeCloseTo(1.0041, 3);
+  });
+
+  it("calculates state point from DB and Dew Point (DB 75°F, DP 55.1°F)", () => {
+    const res = calculatePsychrometrics({
+      dryBulbF: 75,
+      dewPointF: 55.1,
+      altitudeFeet: 0,
+    });
+
+    expect(res.dryBulbF).toBe(75);
+    expect(res.dewPointF).toBeCloseTo(55.1, 0);
+    expect(res.relativeHumidityPercent).toBeCloseTo(50.0, 0);
+    expect(res.wetBulbF).toBeCloseTo(62.5, 0);
   });
 
   it("calculates summer entering coil state (80°F DB, 67°F WB)", () => {

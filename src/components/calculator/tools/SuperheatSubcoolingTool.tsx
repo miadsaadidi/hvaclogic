@@ -463,7 +463,7 @@ export function SuperheatSubcoolingTool() {
             </div>
           </div>
 
-          <StandardsBadge standards={["EPA Section 608 Protocol", "AHRI 210/240", "NIST REFPROP V10"]} />
+          <StandardsBadge label="Technical References:" standards={["ACCA Field Charging Procedures", "NIST REFPROP Thermodynamic Data", "EPA Section 608 Safe Handling"]} />
 
           {/* DUAL GAUGE NUMERICAL RESULTS */}
           <div className="secondary-results-grid">
@@ -496,7 +496,7 @@ export function SuperheatSubcoolingTool() {
                 <div className="item-label">Target Subcooling</div>
                 <div className="item-value">{result.targetSubcoolingF}°F</div>
                 <div style={{ fontSize: "0.7rem", color: "var(--ink-secondary)", marginTop: "0.2rem" }}>
-                  Delta: {result.subcoolingDeltaF !== undefined && result.subcoolingDeltaF > 0 ? "+" : ""}${result.subcoolingDeltaF}°F
+                  Delta: {result.subcoolingDeltaF !== undefined && result.subcoolingDeltaF > 0 ? "+" : ""}{result.subcoolingDeltaF}°F
                 </div>
               </div>
             )}
@@ -531,7 +531,7 @@ export function SuperheatSubcoolingTool() {
           {/* ACTIONABLE FIELD CHECKLIST CARD */}
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.25rem", marginTop: "0.5rem" }}>
             <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
-              🛠️ Diagnostic Finding & Action Items
+              🛠️ Diagnostic Finding &amp; Field Checklist
             </h3>
             <p style={{ fontSize: "0.85rem", fontWeight: 600, color: statusBorder, marginBottom: "0.75rem" }}>
               {result.diagnostic.primaryDiagnosis}
@@ -548,19 +548,19 @@ export function SuperheatSubcoolingTool() {
               </div>
             )}
 
-            {/* EPA 15-MINUTE SYSTEM STABILIZATION TIMER */}
+            {/* SYSTEM STABILIZATION TIMER */}
             <div style={{ marginTop: "1rem", paddingTop: "0.75rem", borderTop: "1px solid var(--border-subtle)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", fontSize: "0.78rem", fontWeight: 700, color: "var(--ink)" }}>
                   <span>⏱️</span>
-                  <span>EPA Stabilization Timer</span>
+                  <span>System Stabilization Timer (Field Best Practice)</span>
                 </div>
                 <div style={{ fontFamily: "ui-monospace, monospace", fontSize: "0.95rem", fontWeight: 700, color: timerSeconds === 0 ? "var(--accent-success)" : "var(--accent-cooling)" }}>
                   {timerSeconds === 0 ? "✓ Stabilized (15m)" : `${Math.floor(timerSeconds / 60)}:${(timerSeconds % 60).toString().padStart(2, "0")}`}
                 </div>
               </div>
               <p style={{ fontSize: "0.72rem", color: "var(--text-muted)", margin: "0 0 0.5rem" }}>
-                EPA Section 608 protocol: Systems must run for 15 minutes before logging final manifold pressures.
+                Field Best Practice: Operating the system for 10–15 minutes allows refrigerant pressures and temperatures to reach steady-state before logging final diagnostic readings.
               </p>
               <div style={{ display: "flex", gap: "0.4rem" }}>
                 <button

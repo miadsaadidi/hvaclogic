@@ -12,16 +12,16 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
     designHeatLossBtu,
     heatPumpCapacityAtDesignBtu,
     netHeatingDeficitBtu,
+    theoreticalRequiredKw,
     selectedStandardKw,
     totalDeliveredBtu,
+    excessCapacityKw,
     totalFlaAmps,
     totalMcaAmps,
-    totalMopdBreakerAmps,
+    suggestedMopdBreakerAmps,
     isMultiCircuitRequired,
     circuitBranches,
-    systemAirflowCfm,
-    minRequiredAirflowCfm,
-    airflowStatus,
+    airflowScreeningStatus,
     estimatedTempRiseF,
     recommendedStages,
     stageBreakdownKw,
@@ -32,7 +32,6 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
   const maxCapacity = Math.max(designHeatLossBtu * 1.15, (heatPumpCapacityAtDesignBtu + totalDeliveredBtu) * 1.05, 50000);
   const hpWidthPercent = Math.min(100, Math.round((heatPumpCapacityAtDesignBtu / maxCapacity) * 100));
   const stripWidthPercent = Math.min(100 - hpWidthPercent, Math.round((totalDeliveredBtu / maxCapacity) * 100));
-  const deficitWidthPercent = Math.min(100, Math.round((netHeatingDeficitBtu / maxCapacity) * 100));
   const totalLossPercent = Math.min(100, Math.round((designHeatLossBtu / maxCapacity) * 100));
 
   return (
@@ -58,7 +57,7 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <span style={{ fontSize: "1.2rem" }}>⚡</span>
           <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#f59e0b", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-            Auxiliary Resistance Staging &amp; Deficit Visualizer
+            Auxiliary Resistance Deficit &amp; Staging Model
           </span>
         </div>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
@@ -67,13 +66,13 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
               fontSize: "0.75rem",
               padding: "0.2rem 0.6rem",
               borderRadius: "0.35rem",
-              background: airflowStatus === "Adequate" ? "rgba(16, 185, 129, 0.15)" : "rgba(239, 68, 68, 0.2)",
-              color: airflowStatus === "Adequate" ? "#34d399" : "#f87171",
-              border: `1px solid ${airflowStatus === "Adequate" ? "rgba(16, 185, 129, 0.3)" : "rgba(239, 68, 68, 0.4)"}`,
+              background: airflowScreeningStatus === "Adequate Airflow" ? "rgba(16, 185, 129, 0.15)" : "rgba(239, 68, 68, 0.2)",
+              color: airflowScreeningStatus === "Adequate Airflow" ? "#34d399" : "#f87171",
+              border: `1px solid ${airflowScreeningStatus === "Adequate Airflow" ? "rgba(16, 185, 129, 0.3)" : "rgba(239, 68, 68, 0.4)"}`,
               fontWeight: 600,
             }}
           >
-            Airflow: {airflowStatus} ({estimatedTempRiseF}°F Rise)
+            Airflow Screening: {airflowScreeningStatus} ({estimatedTempRiseF}°F Rise)
           </span>
           <span
             style={{
@@ -94,8 +93,8 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
       {/* SVG Thermodynamic Heating Balance Diagram */}
       <div style={{ marginBottom: "1.25rem", background: "rgba(15, 23, 42, 0.6)", borderRadius: "0.5rem", padding: "0.85rem", border: "1px solid rgba(255, 255, 255, 0.05)" }}>
         <div style={{ fontSize: "0.75rem", color: "var(--ink-secondary)", marginBottom: "0.5rem", display: "flex", justifyContent: "space-between" }}>
-          <span>Heating Load Distribution at Design Temperature</span>
-          <span>Target: {designHeatLossBtu.toLocaleString()} BTU/hr</span>
+          <span>Heating Load Distribution at Design Condition</span>
+          <span>Target Heat Loss: {designHeatLossBtu.toLocaleString()} BTU/hr</span>
         </div>
 
         {/* Stacked Capacity Bar */}
@@ -117,7 +116,7 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
                 borderRight: "2px solid #0f172a",
                 transition: "width 0.3s ease",
               }}
-              title={`Heat Pump Capacity: ${heatPumpCapacityAtDesignBtu.toLocaleString()} BTU/hr`}
+              title={`Heat Pump Delivered: ${heatPumpCapacityAtDesignBtu.toLocaleString()} BTU/hr`}
             >
               HP: {heatPumpCapacityAtDesignBtu.toLocaleString()} BTU
             </div>
@@ -155,7 +154,7 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
               boxShadow: "0 0 8px #ef4444",
               zIndex: 2,
             }}
-            title={`Total Heat Loss: ${designHeatLossBtu.toLocaleString()} BTU/hr`}
+            title={`Design Heat Loss: ${designHeatLossBtu.toLocaleString()} BTU/hr`}
           />
         </div>
 
@@ -163,11 +162,11 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
         <div style={{ display: "flex", gap: "1.25rem", marginTop: "0.6rem", fontSize: "0.75rem", flexWrap: "wrap" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
             <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#38bdf8" }} />
-            <span style={{ color: "#94a3b8" }}>Heat Pump ({heatPumpCapacityAtDesignBtu.toLocaleString()} BTU/hr)</span>
+            <span style={{ color: "#94a3b8" }}>Heat Pump Delivered ({heatPumpCapacityAtDesignBtu.toLocaleString()} BTU/hr)</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
             <span style={{ width: "10px", height: "10px", borderRadius: "2px", background: "#fbbf24" }} />
-            <span style={{ color: "#94a3b8" }}>Aux Electric Strip ({selectedStandardKw} kW / {totalDeliveredBtu.toLocaleString()} BTU/hr)</span>
+            <span style={{ color: "#94a3b8" }}>Selected Strip ({selectedStandardKw} kW / {totalDeliveredBtu.toLocaleString()} BTU/hr)</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
             <span style={{ width: "10px", height: "3px", background: "#ef4444" }} />
@@ -176,35 +175,35 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
         </div>
       </div>
 
-      {/* Electrical Specifications Panel (NEC Article 424) */}
+      {/* Electrical Specifications Panel */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "0.75rem", marginBottom: "1rem" }}>
         <div style={{ background: "rgba(15, 23, 42, 0.7)", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid rgba(255, 255, 255, 0.05)" }}>
-          <div style={{ fontSize: "0.7rem", color: "var(--ink-secondary)", textTransform: "uppercase" }}>Full Load Amps (FLA)</div>
+          <div style={{ fontSize: "0.7rem", color: "var(--ink-secondary)", textTransform: "uppercase" }}>Calculated Load Current (FLA)</div>
           <div style={{ fontSize: "1.25rem", fontWeight: 700, color: "#f8fafc", marginTop: "0.2rem" }}>
             {totalFlaAmps} A <span style={{ fontSize: "0.75rem", fontWeight: 400, color: "#94a3b8" }}>@ {voltage}V</span>
           </div>
           <div style={{ fontSize: "0.7rem", color: "#64748b", marginTop: "0.15rem" }}>
-            I = (kW × 1000) / {voltage}V
+            Theoretical required: {theoreticalRequiredKw} kW
           </div>
         </div>
 
         <div style={{ background: "rgba(15, 23, 42, 0.7)", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid rgba(255, 255, 255, 0.05)" }}>
-          <div style={{ fontSize: "0.7rem", color: "var(--ink-secondary)", textTransform: "uppercase" }}>Minimum Circuit Ampacity (MCA)</div>
+          <div style={{ fontSize: "0.7rem", color: "var(--ink-secondary)", textTransform: "uppercase" }}>Calculated MCA (125% Factor)</div>
           <div style={{ fontSize: "1.25rem", fontWeight: 700, color: "#38bdf8", marginTop: "0.2rem" }}>
-            {totalMcaAmps} A <span style={{ fontSize: "0.75rem", fontWeight: 400, color: "#94a3b8" }}>(125% Continuous)</span>
+            {totalMcaAmps} A <span style={{ fontSize: "0.75rem", fontWeight: 400, color: "#94a3b8" }}>(Continuous Load)</span>
           </div>
           <div style={{ fontSize: "0.7rem", color: "#64748b", marginTop: "0.15rem" }}>
-            NEC 424.3(B) continuous duty safety factor
+            Excess margin: +{excessCapacityKw} kW
           </div>
         </div>
 
         <div style={{ background: "rgba(15, 23, 42, 0.7)", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid rgba(255, 255, 255, 0.05)" }}>
-          <div style={{ fontSize: "0.7rem", color: "var(--ink-secondary)", textTransform: "uppercase" }}>Circuit Partitioning</div>
+          <div style={{ fontSize: "0.7rem", color: "var(--ink-secondary)", textTransform: "uppercase" }}>Circuit Partitioning Reference</div>
           <div style={{ fontSize: "1.25rem", fontWeight: 700, color: isMultiCircuitRequired ? "#f59e0b" : "#34d399", marginTop: "0.2rem" }}>
-            {isMultiCircuitRequired ? "Multi-Circuit (NEC 424.22)" : "Single Circuit"}
+            {isMultiCircuitRequired ? "Multi-Circuit (Load > 48A)" : "Single Branch Circuit"}
           </div>
           <div style={{ fontSize: "0.7rem", color: "#64748b", marginTop: "0.15rem" }}>
-            {isMultiCircuitRequired ? "Subdivided (elements > 48A FLA)" : "Total load ≤ 48A FLA"}
+            Verify with equipment nameplate
           </div>
         </div>
       </div>
@@ -212,18 +211,18 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
       {/* Branch Circuit Breakdown Table */}
       <div style={{ background: "rgba(15, 23, 42, 0.8)", borderRadius: "0.5rem", padding: "0.75rem", border: "1px solid rgba(255, 255, 255, 0.06)" }}>
         <div style={{ fontSize: "0.75rem", fontWeight: 600, color: "#cbd5e1", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.03em" }}>
-          NEC Article 424 Branch Circuit &amp; Conductor Schedule
+          Illustrative Circuit &amp; Conductor Reference
         </div>
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", fontSize: "0.75rem", textAlign: "left", borderCollapse: "collapse" }}>
             <thead>
               <tr style={{ borderBottom: "1px solid #334155", color: "#94a3b8" }}>
-                <th style={{ padding: "0.35rem" }}>Circuit #</th>
-                <th style={{ padding: "0.35rem" }}>Element kW</th>
-                <th style={{ padding: "0.35rem" }}>FLA</th>
-                <th style={{ padding: "0.35rem" }}>MCA (125%)</th>
-                <th style={{ padding: "0.35rem" }}>Breaker (MOPD)</th>
-                <th style={{ padding: "0.35rem" }}>Copper Conductor</th>
+                <th style={{ padding: "0.35rem" }}>Circuit</th>
+                <th style={{ padding: "0.35rem" }}>Nominal kW</th>
+                <th style={{ padding: "0.35rem" }}>Calculated FLA</th>
+                <th style={{ padding: "0.35rem" }}>Calculated MCA</th>
+                <th style={{ padding: "0.35rem" }}>Reference Breaker</th>
+                <th style={{ padding: "0.35rem" }}>Reference Conductor (75°C)</th>
               </tr>
             </thead>
             <tbody>
@@ -233,8 +232,8 @@ export function HeatStripVisualizer({ output }: HeatStripVisualizerProps) {
                   <td style={{ padding: "0.4rem 0.35rem" }}>{b.assignedKw} kW</td>
                   <td style={{ padding: "0.4rem 0.35rem" }}>{b.flaAmps} A</td>
                   <td style={{ padding: "0.4rem 0.35rem" }}>{b.mcaAmps} A</td>
-                  <td style={{ padding: "0.4rem 0.35rem", fontWeight: 700, color: "#f59e0b" }}>{b.breakerAmps} A 2-Pole</td>
-                  <td style={{ padding: "0.4rem 0.35rem", color: "#34d399", fontWeight: 600 }}>{b.wireGaugeAwg}</td>
+                  <td style={{ padding: "0.4rem 0.35rem", fontWeight: 700, color: "#f59e0b" }}>{b.suggestedBreakerAmps} A 2-Pole</td>
+                  <td style={{ padding: "0.4rem 0.35rem", color: "#34d399", fontWeight: 600 }}>{b.suggestedWireGaugeAwg}</td>
                 </tr>
               ))}
             </tbody>

@@ -5,8 +5,10 @@ import Link from "next/link";
 import {
   calculateAssemblyThermal,
   calculateLayerRValue,
+  getSurfaceAirFilms,
   MaterialLayer,
   STANDARD_BUILDING_MATERIALS,
+  ZONE_HDD_BASELINES,
   AssemblyInput,
   AssemblyOutput,
 } from "@/lib/math/r-value";
@@ -14,7 +16,6 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { RValueAssemblyVisualizer } from "@/components/calculator/visualizers/RValueAssemblyVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
@@ -33,6 +34,7 @@ export function RValueTool() {
   const [assemblyType, setAssemblyType] = useState<AssemblyInput["assemblyType"]>("exterior_wall");
   const [climateZone, setClimateZone] = useState<AssemblyInput["climateZone"]>(5);
   const [layers, setLayers] = useState<MaterialLayer[]>(DEFAULT_WALL_LAYERS);
+  const [includeAirFilms, setIncludeAirFilms] = useState<boolean>(true);
   const [selectedNewMaterial, setSelectedNewMaterial] = useState<string>("fiberglass_batt");
 
   // Hydrate from URL
@@ -40,15 +42,16 @@ export function RValueTool() {
     const urlZone = Number(getParam("zone", "5")) as AssemblyInput["climateZone"];
     const urlType = getParam("type", "exterior_wall") as AssemblyInput["assemblyType"];
 
-    if ([1, 2, 3, 4, 5, 6, 7].includes(urlZone)) setClimateZone(urlZone);
+    if ([1, 2, 3, 4, 5, 6, 7, 8].includes(urlZone)) setClimateZone(urlZone);
     if (["exterior_wall", "attic_ceiling", "floor_crawlspace", "basement_wall"].includes(urlType)) setAssemblyType(urlType);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handlePresetSelect = (presetKey: "2x6_hp_wall" | "r49_attic" | "2x4_builder_wall" | "spray_foam_roof") => {
+  const handlePresetSelect = (presetKey: "2x6_hp_wall" | "chicago_ci_wall" | "r49_attic" | "2x4_builder_wall") => {
     if (presetKey === "2x6_hp_wall") {
       setAssemblyType("exterior_wall");
       setClimateZone(5);
+      setIncludeAirFilms(true);
       setLayers([
         { id: "1", materialKey: "drywall_half_inch", name: "1/2\" Drywall", thicknessInches: 0.5, rValuePerInch: 0.9, calculatedRValue: 0.45 },
         { id: "2", materialKey: "rockwool_mineral_wool", name: "5.5\" Rockwool Batt", thicknessInches: 5.5, rValuePerInch: 4.0, calculatedRValue: 22.0 },
@@ -56,34 +59,40 @@ export function RValueTool() {
         { id: "4", materialKey: "polyiso_continuous", name: "1\" Polyiso (ci)", thicknessInches: 1.0, rValuePerInch: 6.0, calculatedRValue: 6.0 },
         { id: "5", materialKey: "vinyl_siding", name: "Vinyl Siding", thicknessInches: 0.6, rValuePerInch: 1.0, calculatedRValue: 0.60 },
       ]);
+    } else if (presetKey === "chicago_ci_wall") {
+      setAssemblyType("exterior_wall");
+      setClimateZone(5);
+      setIncludeAirFilms(true);
+      setLayers([
+        { id: "1", materialKey: "drywall_half_inch", name: "1/2\" Drywall", thicknessInches: 0.5, rValuePerInch: 0.9, calculatedRValue: 0.45 },
+        { id: "2", materialKey: "fiberglass_hd_batt", name: "5.5\" R-21 HD Cavity Batt", thicknessInches: 5.5, rValuePerInch: 3.82, calculatedRValue: 21.0 },
+        { id: "3", materialKey: "osb_sheathing", name: "7/16\" OSB Sheathing", thicknessInches: 0.44, rValuePerInch: 1.41, calculatedRValue: 0.62 },
+        { id: "4", materialKey: "polyiso_continuous", name: "3\" Polyiso Continuous (ci)", thicknessInches: 3.0, rValuePerInch: 6.0, calculatedRValue: 18.0 },
+        { id: "5", materialKey: "vinyl_siding", name: "Vinyl Siding", thicknessInches: 0.6, rValuePerInch: 1.0, calculatedRValue: 0.60 },
+      ]);
     } else if (presetKey === "r49_attic") {
       setAssemblyType("attic_ceiling");
       setClimateZone(5);
+      setIncludeAirFilms(true);
       setLayers([
         { id: "1", materialKey: "drywall_half_inch", name: "1/2\" Drywall", thicknessInches: 0.5, rValuePerInch: 0.9, calculatedRValue: 0.45 },
         { id: "2", materialKey: "cellulose_loose_fill", name: "14\" Cellulose Loose-Fill", thicknessInches: 14.0, rValuePerInch: 3.5, calculatedRValue: 49.0 },
       ]);
-    } else if (presetKey === "2x4_builder_wall") {
+    } else {
       setAssemblyType("exterior_wall");
       setClimateZone(3);
+      setIncludeAirFilms(true);
       setLayers([
         { id: "1", materialKey: "drywall_half_inch", name: "1/2\" Drywall", thicknessInches: 0.5, rValuePerInch: 0.9, calculatedRValue: 0.45 },
         { id: "2", materialKey: "fiberglass_batt", name: "3.5\" Fiberglass Batt (R-13)", thicknessInches: 3.5, rValuePerInch: 3.71, calculatedRValue: 13.0 },
         { id: "3", materialKey: "osb_sheathing", name: "7/16\" OSB Sheathing", thicknessInches: 0.44, rValuePerInch: 1.41, calculatedRValue: 0.62 },
         { id: "4", materialKey: "vinyl_siding", name: "Vinyl Siding", thicknessInches: 0.6, rValuePerInch: 1.0, calculatedRValue: 0.60 },
       ]);
-    } else {
-      setAssemblyType("attic_ceiling");
-      setClimateZone(4);
-      setLayers([
-        { id: "1", materialKey: "drywall_half_inch", name: "1/2\" Drywall", thicknessInches: 0.5, rValuePerInch: 0.9, calculatedRValue: 0.45 },
-        { id: "2", materialKey: "closed_cell_foam", name: "4.0\" Closed-Cell Spray Foam", thicknessInches: 4.0, rValuePerInch: 6.5, calculatedRValue: 26.0 },
-      ]);
     }
   };
 
   const handleAddLayer = () => {
-    if (layers.length >= 7) return;
+    if (layers.length >= 8) return;
     const meta = STANDARD_BUILDING_MATERIALS[selectedNewMaterial];
     if (!meta) return;
     const newId = String(Date.now());
@@ -120,21 +129,23 @@ export function RValueTool() {
       assemblyType,
       climateZone,
       layers,
-      includeAirFilms: true,
+      includeAirFilms,
     });
-  }, [assemblyType, climateZone, layers]);
+  }, [assemblyType, climateZone, layers, includeAirFilms]);
+
+  const airFilms = useMemo(() => getSurfaceAirFilms(assemblyType), [assemblyType]);
 
   const handleExportCsv = () => {
     const headers = "Layer Position,Material Name,Thickness (Inches),R-Value per Inch,Calculated R-Value\n";
     const rows = layers
       .map((l, idx) => `${idx + 1},"${l.name}",${l.thicknessInches},${l.rValuePerInch},${l.calculatedRValue}`)
       .join("\n");
-    const summaryRow = `\n"AIR FILMS (Interior + Exterior)",,,,"0.85"\n"TOTAL ASSEMBLY R-VALUE",,,,"${output.totalRValue}"\n"OVERALL U-FACTOR (BTU/hr·ft²·°F)",,,,"${output.overallUFactor}"\n"IECC ZONE ${climateZone} COMPLIANCE",,,,"${output.isIeccCompliant ? "COMPLIANT" : "NON-COMPLIANT"}"\n`;
+    const summaryRow = `\n"SURFACE AIR FILMS (Interior + Exterior)",,,,"${output.airFilmRValue}"\n"1-D LAYER STACK R-VALUE (hr·ft²·°F/BTU)",,,,"${output.totalRValue}"\n"1-D STACK U-FACTOR (BTU/hr·ft²·°F)",,,,"${output.overallUFactor}"\n"CLIMATE BASELINE (HDD65)",,,,"${output.hddBase65}"\n"ANNUAL HEAT TRANSMISSION (BTU/ft²·yr)",,,,"${output.annualHeatLossBtuPerSqFt}"\n"IECC ZONE ${climateZone} PRESCRIPTIVE REFERENCE",,,,"${output.ieccPrescriptiveTarget}"\n`;
     const blob = new Blob([headers + rows + summaryRow], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `assembly-R${output.totalRValue}-thermal-report.csv`;
+    a.download = `1d-stack-R${output.totalRValue}-thermal-report.csv`;
     a.click();
   };
 
@@ -143,7 +154,7 @@ export function RValueTool() {
       {/* PRESET CHIPS */}
       <div className="preset-chips-container" role="group" aria-label="Insulation Assembly Scenarios">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginBottom: "0.25rem" }}>
-          <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>Sample Assembly Configurations:</span>
+          <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>Standard 1-D Layer Presets:</span>
           <button
             type="button"
             onClick={() => handlePresetSelect("2x6_hp_wall")}
@@ -163,17 +174,17 @@ export function RValueTool() {
           </button>
         </div>
 
-        <button onClick={() => handlePresetSelect("2x6_hp_wall")} className={`preset-chip-btn ${assemblyType === "exterior_wall" && layers.length === 5 ? "active" : ""}`} type="button">
+        <button onClick={() => handlePresetSelect("2x6_hp_wall")} className={`preset-chip-btn ${layers.length === 5 && layers.some((l) => l.calculatedRValue === 22.0) ? "active" : ""}`} type="button">
           🏡 2x6 High-Perf Wall (R-30.5)
         </button>
-        <button onClick={() => handlePresetSelect("r49_attic")} className={`preset-chip-btn ${assemblyType === "attic_ceiling" && layers.length === 2 ? "active" : ""}`} type="button">
-          ❄️ R-49 Attic Cellulose
+        <button onClick={() => handlePresetSelect("chicago_ci_wall")} className={`preset-chip-btn ${layers.some((l) => l.thicknessInches === 3.0 && l.materialKey === "polyiso_continuous") ? "active" : ""}`} type="button">
+          ❄️ Chicago CI Wall (R-41.5)
         </button>
-        <button onClick={() => handlePresetSelect("2x4_builder_wall")} className={`preset-chip-btn ${assemblyType === "exterior_wall" && layers.length === 4 ? "active" : ""}`} type="button">
+        <button onClick={() => handlePresetSelect("r49_attic")} className={`preset-chip-btn ${assemblyType === "attic_ceiling" ? "active" : ""}`} type="button">
+          🏗️ R-49 Attic Cellulose (R-50.2)
+        </button>
+        <button onClick={() => handlePresetSelect("2x4_builder_wall")} className={`preset-chip-btn ${layers.length === 4 && layers.some((l) => l.calculatedRValue === 13.0) ? "active" : ""}`} type="button">
           🏠 2x4 Builder Wall (R-15.5)
-        </button>
-        <button onClick={() => handlePresetSelect("spray_foam_roof")} className={`preset-chip-btn ${layers.some((l) => l.materialKey === "closed_cell_foam") ? "active" : ""}`} type="button">
-          🏗️ Spray Foam Roof (R-27)
         </button>
       </div>
 
@@ -185,7 +196,7 @@ export function RValueTool() {
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem", marginBottom: "0.75rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="assembly-type-select">
-                <span>Assembly Type</span>
+                <span>Assembly Orientation</span>
                 <span className="unit-label">Element</span>
               </label>
               <select
@@ -199,17 +210,17 @@ export function RValueTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value="exterior_wall">Exterior Above-Grade Wall</option>
-                <option value="attic_ceiling">Attic / Roof Ceiling</option>
-                <option value="floor_crawlspace">Floor Over Crawlspace/Basement</option>
-                <option value="basement_wall">Basement Foundation Wall</option>
+                <option value="exterior_wall">Exterior Above-Grade Wall (Vertical)</option>
+                <option value="attic_ceiling">Attic / Roof Ceiling (Upward Heat Flow)</option>
+                <option value="floor_crawlspace">Floor Over Crawlspace (Downward Flow)</option>
+                <option value="basement_wall">Basement Wall (Vertical)</option>
               </select>
             </div>
 
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="climate-zone-select">
                 <span>IECC Climate Zone</span>
-                <span className="unit-label">Zones 1–7</span>
+                <span className="unit-label">HDD Baseline</span>
               </label>
               <select
                 id="climate-zone-select"
@@ -222,15 +233,34 @@ export function RValueTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value={1}>Zone 1 (Very Hot - Miami, HI)</option>
-                <option value={2}>Zone 2 (Hot - Houston, Phoenix)</option>
-                <option value={3}>Zone 3 (Warm - Atlanta, Dallas)</option>
-                <option value={4}>Zone 4 (Mixed - DC, Seattle, KC)</option>
-                <option value={5}>Zone 5 (Cold - Chicago, Boston)</option>
-                <option value={6}>Zone 6 (Very Cold - Minneapolis)</option>
-                <option value={7}>Zone 7 (Subarctic - Duluth, AK)</option>
+                <option value={1}>Zone 1: Miami / HI (500 HDD)</option>
+                <option value={2}>Zone 2: Houston / Phoenix (1,500 HDD)</option>
+                <option value={3}>Zone 3: Atlanta / Dallas (2,800 HDD)</option>
+                <option value={4}>Zone 4: DC / Seattle (4,500 HDD)</option>
+                <option value={5}>Zone 5: Chicago / Boston (6,000 HDD)</option>
+                <option value={6}>Zone 6: Minneapolis (7,500 HDD)</option>
+                <option value={7}>Zone 7: Duluth / Fargo (9,000 HDD)</option>
+                <option value={8}>Zone 8: Fairbanks AK (12,000 HDD)</option>
               </select>
             </div>
+          </div>
+
+          {/* SURFACE AIR FILM TOGGLE */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(0, 210, 255, 0.05)", border: "1px solid rgba(0, 210, 255, 0.15)", borderRadius: "0.375rem", padding: "0.45rem 0.75rem", marginBottom: "0.75rem", fontSize: "0.75rem" }}>
+            <div>
+              <span style={{ fontWeight: 600, color: "var(--ink)" }}>Surface Air Film Resistances:</span>
+              <span style={{ color: "var(--ink-secondary)", marginLeft: "0.4rem" }}>
+                R_in ({airFilms.rInterior}) + R_out ({airFilms.rExterior}) = <strong>R-{airFilms.totalAirFilmR}</strong>
+              </span>
+            </div>
+            <label style={{ display: "flex", alignItems: "center", gap: "0.35rem", cursor: "pointer", margin: 0 }}>
+              <input
+                type="checkbox"
+                checked={includeAirFilms}
+                onChange={(e) => setIncludeAirFilms(e.target.checked)}
+              />
+              <span>Include in 1-D Sum</span>
+            </label>
           </div>
 
           {/* ADD LAYER BAR */}
@@ -253,7 +283,7 @@ export function RValueTool() {
             <button
               type="button"
               onClick={handleAddLayer}
-              disabled={layers.length >= 7}
+              disabled={layers.length >= 8}
               style={{
                 background: "rgba(0, 210, 255, 0.12)",
                 border: "1px solid var(--accent-cooling)",
@@ -262,8 +292,8 @@ export function RValueTool() {
                 padding: "0.35rem 0.75rem",
                 fontSize: "0.75rem",
                 fontWeight: 600,
-                cursor: layers.length >= 7 ? "not-allowed" : "pointer",
-                opacity: layers.length >= 7 ? 0.5 : 1,
+                cursor: layers.length >= 8 ? "not-allowed" : "pointer",
+                opacity: layers.length >= 8 ? 0.5 : 1,
               }}
             >
               Add Layer
@@ -297,9 +327,9 @@ export function RValueTool() {
                       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                         <input
                           type="number"
-                          min={0.5}
-                          max={20}
-                          step={0.5}
+                          min={0.25}
+                          max={24}
+                          step={0.25}
                           value={layer.thicknessInches}
                           onChange={(e) => handleUpdateThickness(layer.id, Number(e.target.value))}
                           className="input-number"
@@ -327,7 +357,7 @@ export function RValueTool() {
                         textAlign: "right",
                       }}
                     >
-                      R-{layer.calculatedRValue}
+                      R-{layer.calculatedRValue.toFixed(2)}
                     </span>
                     {layers.length > 1 && (
                       <button
@@ -351,18 +381,22 @@ export function RValueTool() {
               );
             })}
           </div>
+
+          <div style={{ marginTop: "0.75rem", fontSize: "0.72rem", color: "var(--text-muted)", lineHeight: 1.4 }}>
+            * Note: 1-D series summation (R_stack = &Sigma; R_i + R_films) models heat flow perpendicular through continuous layers. For walls with wood or steel framing thermal bridging, use the <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Effective R-Value Calculator</Link>.
+          </div>
         </div>
 
         {/* OUTPUT PANEL */}
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
-          <div className="primary-result-card" role="region" aria-live="polite" aria-label="Assembly R-Value Result">
-            <div className="result-label">Total Assembly Thermal Resistance</div>
+          <div className="primary-result-card" role="region" aria-live="polite" aria-label="1-D Layer Stack R-Value Result">
+            <div className="result-label">1-D Layer Stack Thermal Resistance (R_stack)</div>
             <div className="result-value" style={{ color: "var(--accent-cooling)" }}>
-              R-{output.totalRValue.toFixed(1)}
+              R-{output.totalRValue.toFixed(2)}
             </div>
             <div className="result-unit">
-              Overall U-Factor: <strong>{output.overallUFactor.toFixed(3)} BTU/hr·ft²·°F</strong> (U = 1 / R)
+              1-D Stack U-Factor: <strong>{output.overallUFactor.toFixed(4)} BTU/hr·ft²·°F</strong> (U = 1 / R_stack)
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -374,17 +408,17 @@ export function RValueTool() {
                   borderRadius: "9999px",
                   fontSize: "0.72rem",
                   fontWeight: 600,
-                  background: output.isIeccCompliant ? "rgba(16, 185, 129, 0.12)" : "rgba(239, 68, 68, 0.12)",
-                  color: output.isIeccCompliant ? "var(--accent-success)" : "var(--accent-danger)",
+                  background: "rgba(0, 210, 255, 0.12)",
+                  color: "var(--accent-cooling)",
                   border: "1px solid currentColor",
                 }}
               >
-                {output.complianceStatusBadge}
+                1-D Series Model (Continuous Layers + Air Films)
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ASHRAE Fundamentals Ch. 25", "IECC 2021 / 2024", "DOE Building Technologies"]} />
+          <StandardsBadge standards={["ASHRAE Fundamentals Ch. 25 & 26", "IECC 2021 / 2024 Table R402.1.2"]} />
 
           {/* R-VALUE SVG CROSS SECTION VISUALIZER */}
           <RValueAssemblyVisualizer output={output} layers={layers} />
@@ -392,44 +426,45 @@ export function RValueTool() {
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
-              <div className="item-label">Overall U-Factor</div>
+              <div className="item-label">1-D Stack U-Factor</div>
               <div className="item-value" style={{ color: "var(--accent-cooling)" }}>
-                {output.overallUFactor.toFixed(3)} U-Value
+                {output.overallUFactor.toFixed(4)} U-Value
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">IECC Zone {climateZone} Code Min</div>
-              <div className="item-value">R-{output.ieccRequiredRValue} (U-{output.ieccMaxUFactor})</div>
+              <div className="item-label">IECC Zone {climateZone} Benchmark</div>
+              <div className="item-value" style={{ fontSize: "0.85rem" }}>{output.ieccPrescriptiveTarget}</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Active Layers</div>
-              <div className="item-value">{layers.length} Layers + Air Films</div>
+              <div className="item-label">Material Layers + Films</div>
+              <div className="item-value">R-{output.layerSumRValue.toFixed(2)} + R-{output.airFilmRValue.toFixed(2)}</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Annual Heat Transmission</div>
-              <div className="item-value">{output.annualHeatLossBtuPerSqFt.toLocaleString()} BTU/ft²</div>
+              <div className="item-label">Annual Heat Loss ({output.hddBase65.toLocaleString()} HDD)</div>
+              <div className="item-value">{output.annualHeatLossBtuPerSqFt.toLocaleString()} BTU/ft²·yr</div>
             </div>
           </div>
-
-          {/* GOOGLE PREFERRED SOURCE BANNER */}
-          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
             toolRoute="/calculators/r-value-calculator"
-            toolName="Insulation R-Value & U-Factor Calculator"
+            toolName="Insulation R-Value & U-Factor 1-D Stack Calculator"
             onExportCsv={handleExportCsv}
           />
 
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
-            <div className="handoff-title">Next Step in Building Science &amp; Sizing</div>
-            <Link href="/calculators/btu-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Calculate Whole-House Manual J Heating &amp; Cooling Load</span>
+            <div className="handoff-title">Next Steps in Envelope Sizing &amp; Thermal Bridging</div>
+            <Link href="/calculators/effective-r-value-calculator" style={{ marginBottom: "0.5rem" }}>
+              <span>Calculate 2D Parallel-Path &amp; Steel Framing Effective R-Value</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/furnace-size-calculator">
-              <span>Size Replacement Condensing Furnace for Insulated Envelope</span>
+            <Link href="/calculators/heat-loss-calculator" style={{ marginBottom: "0.5rem" }}>
+              <span>Calculate Building Envelope Heat Loss &amp; Infiltration CFM</span>
+              <span>→</span>
+            </Link>
+            <Link href="/calculators/btu-calculator">
+              <span>Calculate Whole-House Manual J Heating &amp; Cooling Load</span>
               <span>→</span>
             </Link>
           </div>
@@ -438,9 +473,9 @@ export function RValueTool() {
 
       {/* MOBILE STICKY RESULT BAR */}
       <MobileResultBar
-        label="Assembly R-Value"
-        value={`R-${output.totalRValue.toFixed(1)}`}
-        unit={`(U-${output.overallUFactor.toFixed(3)})`}
+        label="1-D Stack R-Value"
+        value={`R-${output.totalRValue.toFixed(2)}`}
+        unit={`(U-${output.overallUFactor.toFixed(4)})`}
       />
     </div>
   );
