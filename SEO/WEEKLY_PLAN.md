@@ -1,8 +1,8 @@
 # HVACLogic Research-Driven & Evidence-Driven Weekly SEO Operating Backlog
 
 **Domain**: [https://hvaclogic.org/](https://hvaclogic.org/)  
-**Document Version**: 4.4.0 (Research-Driven & Evidence-Driven SEO Production System)  
-**Last Updated**: 2026-09-18  
+**Document Version**: 4.5.0 (Research-Driven & Evidence-Driven SEO Production System)  
+**Last Updated**: 2026-10-01  
 **Operational Status**: ACTIVE / SSOT TACTICAL CANDIDATE BACKLOG  
 **Legacy Calendar Status**: RETIRED / NON-AUTHORITATIVE (Replaced by Evidence-Driven Execution Rhythm)  
 
@@ -40,112 +40,40 @@ Every execution decision, candidate asset, and proposed objective must answer:
 ## 2. Weekly Execution Rhythm & Operating Model
 
 ```text
-DAY 1: FULL SEO INTELLIGENCE + OPPORTUNITY MAPPING (Owned Site + SERP + Research Radar)
+DAY 1: FULL SEO INTELLIGENCE + OPPORTUNITY MAPPING (Owned Site + SERP + Research Radar) [COMPLETED]
   ↓
-DAY 2: CORE PRODUCTION + EXISTING ASSET EXECUTION (High-Value Core Assets + Quick-Wins)
+DAY 2: CORE ENGINE & INTERACTIVE CALCULATOR EXECUTION (Heat Strip Deficit Tool) [IN PROGRESS]
   ↓
-DAYS 3–6: CORE + LAYER 1 + CLUSTER + EXISTING ASSET EXECUTION (Continuous Research Radar Active)
+DAYS 3–6: LAYER 1 + CLUSTER WORKFLOW + QUICK WINS + EXTERNAL DISTRIBUTION (Guide, Handoffs, Dev.to)
   ↓
 DAY 7: VALIDATION + MEASUREMENT + OPPORTUNITY HARVESTING (Tests, Builds, Schema, Baseline Logs)
 ```
-
-### Day 1: Multi-Engine Intelligence & Search-Gap System
-
-Day 1 synthesizes intelligence across a **Multi-Engine Intelligence System** comprising four complementary discovery engines:
-
-1. **Engine A — Owned-Site Search Gap**:
-   - *Core Question*: What does HVACLogic's existing search data show that its current assets do not satisfy completely?
-   - *Evidence*: GSC queries, pages, impressions, clicks, CTR, average position, striking-distance queries (positions 4–40), emerging query families, declining assets, pages ranking for unintended queries, and incomplete intent coverage.
-   - *Output*: Owned-Site Search Gaps (directed to Category A Existing Asset Optimization or Category B Cluster Upgrades).
-
-2. **Engine B — SERP Search-Intent Gap**:
-   - *Core Question*: What are users searching for that the current competitive SERP does not fully solve?
-   - *10 SERP Gap Classifications*: Uncovered Intent, Partially Covered Intent, Fragmented Intent, Tool Gap, Data Gap, Technical-Depth Gap, Freshness Gap, Evidence Gap, Workflow Gap, Implementation Gap.
-   - *Analysis Dimensions*: Search Intent, Existing SERP Coverage, Missing Component, Coverage Level (Fully / Mostly / Partially / Poorly / Uncovered), HVACLogic Opportunity, Best Asset Type.
-   - *Output*: SERP Search-Intent Gaps.
-
-3. **Engine C — Research / Engineering Gap**:
-   - *Core Question*: What important technical problems could HVACLogic solve that are not currently represented well in search?
-   - *Evidence*: Continuous intelligence mining across national laboratories, research institutions, and standards organizations (**ASHRAE, ACCA, AHRI, SMACNA, DOE, NREL, PNNL, LBNL, ORNL, NIST, EIA, EPA, Figshare, Zenodo, Hugging Face**).
-   - *Output*: Research / Engineering Gaps (independent of pre-existing GSC impressions).
-
-4. **Engine D — Site Architecture / Product Gap**:
-   - *Core Question*: Where does the current HVACLogic product/content architecture fail to complete a user's task?
-   - *Evidence*: Internal routing graph, calculator registry (`src/lib/data/calculators-registry.ts`), guides registry (`src/lib/data/guides-registry.ts`), internal link graph, disconnected assets, missing workflow handoffs, and missing calculations.
-   - *Output*: Architecture / Product Gaps.
-
-### Strict 4-Gap Taxonomy & Evidence Separation
-- *Owned-Site Gap*: Users telling us through GSC what HVACLogic does not satisfy well.
-- *SERP Search Gap*: Users searching for an intent that competing results do not satisfy completely.
-- *Research / Engineering Gap*: Scientific/engineering sources reveal an important problem that search results do not yet address.
-- *Architecture / Product Gap*: HVACLogic's existing assets do not form the best workflow for solving an identified task.
-- *Strict Evidence Labeling*: Every candidate must explicitly state its evidence source (`GSC Evidence`, `GA4 Evidence`, `SERP Evidence`, `Research / Authority Evidence`, `External Search-Volume Evidence`, `Site Architecture Evidence`, or `Engineering Inference / Hypothesis`). Never conflate impressions with total search demand.
-
-### Additive Opportunity Rule
-**Newly discovered search gaps add opportunities to the backlog; they do NOT replace, delete, or reorder the existing weekly production plan.**
-- The existing weekly production schedule remains the authoritative baseline execution roadmap.
-- Newly discovered search gaps enter the **Additive Search-Gap Backlog** (Section 7 below).
-- The operating loop remains strictly: $\text{Discover} \longrightarrow \text{Classify} \longrightarrow \text{Prioritize} \longrightarrow \text{User Approval} \longrightarrow \text{Execute} \longrightarrow \text{Validate} \longrightarrow \text{Measure}$. Discovery does not equal execution authorization.
-
-### Day 1 Output: The Weekly Opportunity Map
-Day 1 produces an evidence-backed Opportunity Map containing 6 categories:
-- **A. Existing Asset Optimization**: Pages/calculators with existing search visibility that can be improved.
-- **B. Cluster Upgrade**: Interconnected groups of existing pages addressing the same search problem.
-- **C. Technical / Architecture Fixes**: Evidence-backed SEO, schema, canonical, or implementation issues.
-- **D. Core Publication Candidates**: Major new search assets (datasets, whitepapers, engineering research monographs, technical reference documents, major guides, calculator-backed research).
-- **E. Layer 1 Candidates**: Narrower supporting search intents that branch from and strengthen a Core asset.
-- **F. External Technical Distribution**: Technical articles (Dev.to / Hashnode) derived from original HVACLogic work to provide engineering methodology explanations and research interpretation.
-
-### Core → Layer 1 Search Architecture
-$$\begin{array}{c}
-\mathbf{CORE\ ASSET} \\
-\text{\small (Authoritative Technical Reference / Benchmark Dataset / Engineering Monograph / Whitepaper)} \\
-\Downarrow \\
-\mathbf{LAYER\ 1\ SUPPORTING\ ASSETS} \\
-\text{\small (Narrow, Specific Long-Tail Search Intents \& Domain Application Guides)} \\
-\Downarrow \\
-\mathbf{INTERACTIVE\ CALCULATORS\ \&\ DATASET\ ENGINES} \\
-\text{\small (100\% Client-Side Precision Interactive Computation Engines)} \\
-\Downarrow \\
-\mathbf{RADIAL\ INTERNAL\ LINK\ GRAPH} \\
-\text{\small (Bidirectional Semantic Connections Unifying the Knowledge Graph)}
-\end{array}$$
-
-### Continuous Research Radar (Days 2–7)
-Research is never confined to Day 1. The **Research Radar** operates continuously during Days 2–7. While executing existing-page upgrades or Core publications, new GSC opportunities, SERP gaps, lab datasets, and engineering questions are immediately logged to the backlog and prioritized when justified by evidence.
-
-### External Technical Distribution (Dev.to / Hashnode)
-- Dev.to and Hashnode are **technical distribution and research interpretation channels**, never substitutes for primary HVACLogic assets.
-- Content focuses on methodology explanations, algorithmic breakdowns, dataset creation protocols, and engineering lessons.
-- The authoritative Core asset always remains on HVACLogic (`hvaclogic.org`). External publications provide additional discovery, referral traffic, and engineering community exposure without duplicate copy.
-
-### 6-Tier Objective Priority Framework
-When prioritizing candidate opportunities, follow this evidence hierarchy (evidence can justify selecting any tier directly):
-1. **Tier 1: Existing Page with Clear GSC Opportunity** (Highest ROI; immediate strike-distance gains).
-2. **Tier 2: Existing Cluster with Multiple Related Opportunities** (Topical authority & internal circulation).
-3. **Tier 3: Evidence-Backed Technical Issue** (Indexability, crawl budget, canonical integrity).
-4. **Tier 4: Genuine Search / Content Gap** (Identified query intent unserved by existing assets).
-5. **Tier 5: Core Publication** (New major pillar guide, benchmark dataset, or calculation-backed research asset).
-6. **Tier 6: Layer 1 Supporting Publication** (Narrower intent spoke supporting a core pillar).
-
-### Content Quality & Anti-Spam Governance
-- The system produces **valuable, differentiated, technically useful search assets** — not volume-based commodity copy.
-- Zero keyword-volume quotas, zero arbitrary article counts, zero thin supporting pages, zero duplicate copy, and zero content created merely to satisfy a publishing calendar.
 
 ---
 
 ## 3. Current Program & Diagnostic State
 
 ```text
-HVACLOGIC: ACCA MANUAL D EQUIVALENT LENGTH (SG-01) + ASHRAE/ASME HYDRONIC EXPANSION TANK (SG-02) DEPLOYED & IN GSC MEASUREMENT
-ACTIVE OBJECTIVE: NONE — awaiting selection of next prioritized objective from Opportunity Map.
+HVACLOGIC: HEAT PUMP AUXILIARY ELECTRIC HEAT STRIP SIZING & DEFICIT CLUSTER (CORE-03 / CLU-04) ACTIVE
+ACTIVE OBJECTIVE: Heat Pump Auxiliary Electric Heat Strip Sizing & Deficit Cluster (ACCA Manual S Engine, Tool, Guide, Workflow Handoffs, Dev.to Distribution)
 ```
 
 ### Current Observed Evidence Baseline:
 
 | Signal Layer | Current Observed State | Evidence & Telemetry Source | Actionable Need |
 | :--- | :--- | :--- | :--- |
-| **Search Console Telemetry** | 4,191 impressions (2,475 US / 59%), 7 clicks (100% US). Top assets: PT Chart (529 imp / pos 14.09), AC Decoder (304 imp / pos 29.46), Flex Duct (292 imp / pos 26.03), Combustion Air (48 imp / pos 8.71), Duct Friction (22 imp / pos 18.73). | GSC 28-Day Export (2026-09-18) | Primary organic search KPI. PT Chart, AC Decoder, Airflow Cluster, Combustion Air, and Thermodynamic Cluster in **measurement mode**. |
+| **Search Console Telemetry** | 4,811 impressions (96%+ US / pos 23.17). Top assets: PT Chart (349 imp / pos 12.97), Flex Duct (136 imp / pos 12.24), AC Decoder (70 imp / pos 20.04), Garage Heater (42 imp / pos 16.36), Heat Pump Sizing (40 imp / pos 44.42), Combustion Air (36 imp / pos 7.75), Psychrometric (28 imp / pos 11.54), Duct Friction (10 imp / pos 5.3). Striking distance: `heat strip size calculator` (pos 9), `heat strip size in kw calculator` (pos 11). | GSC 28-Day Export (2026-10-01) | Primary organic search KPI. PT Chart, AC Decoder, Airflow Cluster, Combustion Air, and Heat Pump Cluster under **active measurement mode**. |
+| **Airflow Search Cluster** | 4-asset cluster deployed & interlinked (`flex-duct-cfm-chart`, `ductulator`, `cfm-calculator`, `duct-friction-loss-calculator`, `equivalent-length-calculator`). Emerging queries: `duct tel` (pos 10), `duct tel meaning` (pos 11). | Codebase & E2E Verification | 28-day GSC observation window active. |
+| **Combustion Air Sizing** | NFPA 54 / IFGC Confined Space calculation engine & reference tables deployed (`/calculators/combustion-air-calculator`). Ranking pos 7.75; `combustion air sizing chart` pos 5. | GSC 28-Day Telemetry | 28-day GSC observation window active (Achieved top-10 strike distance). |
+| **Thermodynamic Cluster** | Strict domain separation and cross-linking deployed for `/calculators/pt-chart` (refrigerant equilibrium) and `/calculators/psychrometric-calculator` (moist air thermodynamics). | Codebase & Unit Verification | 28-day GSC observation window active. |
+| **Building Envelope Thermal Bridging** | Core B-1 system deployed: `/guides/framing-thermal-bridging-effective-r-value`, `/calculators/effective-r-value-calculator`, and 48-row reference dataset per ASHRAE 90.1-2022 Appendix A. | Codebase, Unit Tests (143 passing), & Build Verification | 28-day GSC observation window active. |
+| **A2L Refrigerant Transition** | ANSI/ASHRAE 15-2024 & UL 60335-2-40 Core Guide (`/guides/a2l-refrigerant-transition-guide`), Dataset (`/datasets/a2l-refrigerant-flammability-glide-benchmark`), and Monograph (`/research/r454b-r32-field-handling-protocols`) live. | Codebase & DOI Verification (`10.6084/m9.figshare.33985834`) | 28-day GSC observation window active. |
+| **ANSI/ASHRAE 241-2023 Clean Airflow** | Core Monograph (`/research/ashrae-241-equivalent-clean-airflow`), Benchmark Dataset (`/datasets/ashrae-241-clean-airflow-benchmarks`), and Dev.to technical distribution article live. | Codebase, DOI & Live URL Verification | 28-day GSC observation window active. |
+| **Crawl & Indexation** | 11 Indexed / 92 Non-Indexed (49 crawled-not-indexed, 29 discovered-not-indexed, 11 redirect URLs, 3 duplicate/canonical). Diagnostic conclusion: `NO TECHNICAL INDEXATION BLOCKER FOUND — MONITOR & EXPAND INTERNAL LINKS`. | GSC Coverage Export & Live Header Audit | Maintain non-indexed strategic URLs in **INDEXATION WATCH**. |
+| **Host / Redirect Status** | Apex (`hvaclogic.org`) canonical, `www` 1-hop 308 permanent redirect, HTTPS clean, sitemaps verified. | Live HTTP diagnostic audit | Technically verified clean. |
+| **On-Site Core Assets** | 22 Calculators, 7 Research Papers, 7 Datasets, 6 Guides live | Codebase inventory | Core foundation complete and verified. |
+| **Structured Data** | 100% compliant JSON-LD (`WebApplication`, `ScholarlyArticle`, `Dataset`, `TechArticle`) | Route tests & schema validators | Validated; zero synthetic review markup. |
+| **External Backlink Ledger** | 33 verified live entries across Academia.edu, Figshare, SSRN, HF, MERLOT, OER Commons, DEV.to, Hashnode, BibSonomy | `SEO/BACKLINK_LOG.csv` | Active baseline established. |
 | **Airflow Search Cluster** | Complete 4-asset upgrade deployed (`flex-duct-cfm-chart`, `ductulator`, `cfm-calculator`, `duct-friction-loss-calculator`). | Codebase & E2E Verification | 28-day GSC observation window active. |
 | **Combustion Air Sizing** | NFPA 54 / IFGC Confined Space calculation engine & reference tables deployed (`/calculators/combustion-air-calculator`). | Codebase & Unit Verification | 28-day GSC observation window active (Target: top-5 strike distance). |
 | **Thermodynamic Cluster** | Strict domain separation and cross-linking deployed for `/calculators/pt-chart` (refrigerant equilibrium) and `/calculators/psychrometric-calculator` (moist air thermodynamics). | Codebase & Unit Verification | 28-day GSC observation window active. |
@@ -348,6 +276,15 @@ Reply "Approved" to execute.
   - **Validation**: 184/184 unit tests passing across 40 test suites, 0 TypeScript errors, 100% static routes pre-rendered successfully.
   - **Measurement Window**: 2026-09-27 to 2026-10-25 (28-day GSC tracking on long-tail A2L recovery, cylinder tare, and field handling query clusters).
   - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-09-27]`
+
+- **Step 15 — External Technical Distribution (`DIST-03`)**: *Dev.to Engineering Article: Modeling ANSI/ASHRAE Standard 241-2023 Pathogen Mitigation and Equivalent Clean Airflow in Pure TypeScript*
+  - **Class**: `EXTERNAL TECHNICAL DISTRIBUTION`
+  - **Scope / Target Platform**: Dev.to
+  - **Canonical URL**: [`/research/ashrae-241-equivalent-clean-airflow`](https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow)
+  - **Live URL**: [`https://dev.to/miad_ea7faef80e5125861119/modeling-ansiashrae-standard-241-2023-pathogen-mitigation-and-equivalent-clean-airflow-in-pure-1jj3`](https://dev.to/miad_ea7faef80e5125861119/modeling-ansiashrae-standard-241-2023-pathogen-mitigation-and-equivalent-clean-airflow-in-pure-1jj3)
+  - **Outcome**: Deployed developer-first technical engineering article translating HVACLogic's ANSI/ASHRAE Standard 241-2023 calculation engine (`src/lib/math/ashrae-241.ts`), Table 5-1 baseline rates, multi-source $ECA$ balance equations, and Vitest test suites. Verified live canonical tag pointing to `/research/ashrae-241-equivalent-clean-airflow` and contextual link equity.
+  - **Validation**: Live HTTP inspection & canonical tag verification complete.
+  - **Status**: `[COMPLETED / VERIFIED LIVE — 2026-09-28]`
 
 ---
 
