@@ -45,7 +45,7 @@ export interface ResearchPaper {
   publicationDate: string; // ISO format e.g. "2026-01-15"
   doi?: string;
   reportNumber: string;
-  pdfUrl: string;
+  pdfUrl?: string;
   repositories?: ResearchRepositoryLink[];
   companionCalculators: CompanionCalculator[];
   tables?: ResearchPaperTable[];
@@ -61,7 +61,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     seoTitle: "Heat Pump Derating & Cold-Climate COP",
     seoDescription: "Thermodynamic analysis of cold-climate heat pump COP derating, auxiliary electric resistance strip staging, and seasonal HSPF2 performance.",
     subtitle: "A thermodynamic evaluation of vapor-compression Carnot limits, refrigeration enthalpy drops, coefficient of performance (COP) nonlinear decline, and auxiliary resistance energy staging.",
-    abstract: "A rigorous thermodynamic evaluation of cold-climate air-source heat pump (ccASHP) performance across sub-freezing ambient temperature spectra (-20°C to +10°C / -4°F to +50°F). Models vapor-compression Carnot limits, refrigeration enthalpy drops, coefficient of performance (COP) nonlinear derating curves, defrost cycle parasitic loads, and the operational cost dynamics of staging auxiliary electric resistance strip heat (COP 1.0) versus dual-fuel configurations.",
+    abstract: "A computational thermodynamic evaluation of cold-climate air-source heat pump (ccASHP) performance across sub-freezing ambient temperature spectra (-20°C to +10°C / -4°F to +50°F). Models vapor-compression Carnot limits, refrigeration enthalpy drops, coefficient of performance (COP) nonlinear derating curves, defrost cycle parasitic loads, and the operational cost dynamics of staging auxiliary electric resistance strip heat (COP 1.0) versus dual-fuel configurations.",
     keyFindings: [
       "At 47°F (8.3°C), modern inverter vapor-injection heat pumps deliver COPs between 3.4 and 4.2; at -5°F (-20.5°C), COP derates nonlinearly to 1.75–2.10 while nominal heating capacity drops by 32% to 44%.",
       "Engaging 10 kW auxiliary electric resistance strip elements below the thermal balance point increases electrical power draw by 300%–400%, quadrupling marginal hourly heating operating expense.",
@@ -88,21 +88,12 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       {
         title: "Thermal Balance Point Equivalence",
         latex: "Q_{\\text{heat loss}}(T_{\\text{balance}}) = Q_{\\text{HP capacity}}(T_{\\text{balance}}) \\implies \\text{UA} \\cdot (T_{\\text{set}} - T_{\\text{balance}}) = Q_{\\text{rated}} \\cdot f_{\\text{derate}}(T_{\\text{balance}})",
-        explanation: "Calculates the exact outdoor ambient temperature threshold where building envelope heat loss exceeds primary heat pump compressor capacity, necessitating supplementary auxiliary heat."
+        explanation: "Calculates the outdoor ambient temperature threshold where building envelope heat loss exceeds primary heat pump compressor capacity, necessitating supplementary auxiliary heat."
       }
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-01-15",
     reportNumber: "HL-TR-2026-HP01",
-    pdfUrl: "/whitepapers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf",
-    repositories: [
-      {
-        platform: "academia",
-        label: "Read on Academia.edu",
-        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-        badge: "DA 93",
-      },
-    ],
     companionCalculators: [
       {
         name: "Heat Pump Sizing & Running Cost Calculator",
@@ -126,9 +117,9 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-HP01},
-  url = {https://hvaclogic.com/research/vapor-compression-kinetics-heat-pump-derating}
+  url = {https://hvaclogic.org/research/vapor-compression-kinetics-heat-pump-derating}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Thermal Degradation Kinetics, Auxiliary Electric Resistance Staging, and Seasonal HSPF2/COP Derating in Cold-Climate Air-Source Heat Pumps (Technical Report No. HL-TR-2026-HP01). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
+    apa: `HVACLogic Research Group, & S., M. (2026). Thermal Degradation Kinetics, Auxiliary Electric Resistance Staging, and Seasonal HSPF2/COP Derating in Cold-Climate Air-Source Heat Pumps (Technical Report No. HL-TR-2026-HP01). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/vapor-compression-kinetics-heat-pump-derating`
   },
   {
     slug: "non-linear-duct-friction-loss-fitting-penalties",
@@ -170,14 +161,6 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     publicationDate: "2026-01-28",
     reportNumber: "HL-TR-2026-DUCT02",
     pdfUrl: "/whitepapers/hvaclogic_un_tensioned_airflow_paper.pdf",
-    repositories: [
-      {
-        platform: "academia",
-        label: "Read on Academia.edu",
-        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-        badge: "DA 93",
-      },
-    ],
     companionCalculators: [
       {
         name: "Digital Ductulator Sizing Tool",
@@ -201,9 +184,9 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-DUCT02},
-  url = {https://hvaclogic.com/research/non-linear-duct-friction-loss-fitting-penalties}
+  url = {https://hvaclogic.org/research/non-linear-duct-friction-loss-fitting-penalties}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Non-Linear Friction Loss Dynamics, Equivalent Length Fitting Penalties, and Dynamic Pressure Drops in Residential Duct Systems (Technical Report No. HL-TR-2026-DUCT02). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
+    apa: `HVACLogic Research Group, & S., M. (2026). Non-Linear Friction Loss Dynamics, Equivalent Length Fitting Penalties, and Dynamic Pressure Drops in Residential Duct Systems (Technical Report No. HL-TR-2026-DUCT02). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/non-linear-duct-friction-loss-fitting-penalties`
   },
   {
     slug: "thermal-envelope-infiltration-building-heat-loss",
@@ -276,7 +259,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-ENV03},
-  url = {https://hvaclogic.com/research/thermal-envelope-infiltration-building-heat-loss}
+  url = {https://hvaclogic.org/research/thermal-envelope-infiltration-building-heat-loss}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Deterministic Building Science & Dynamic Enclosure Infiltration Modeling for Residential Space Heating and Decarbonization Sizing (Technical Report No. HL-TR-2026-ENV03). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
   },
@@ -286,7 +269,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     seoTitle: "IAQ Mass Balance & Dilution Ventilation",
     seoDescription: "Mass-balance analysis of mechanical ventilation rates, continuous infiltration credits, and ASHRAE 62.2 / 62.1 indoor air quality compliance.",
     subtitle: "A mass-balance analysis of residential mechanical ventilation rates, dwelling volume air changes, and continuous versus intermittent exhaust fan duty cycles.",
-    abstract: "Evaluates indoor air quality (IAQ) mechanical ventilation compliance under ASHRAE Standard 62.2-2022 and ASHRAE Standard 62.1. Examines total required ventilation rate equations ($Q_{\\text{tot}}$), continuous natural infiltration credits ($Q_{\\text{inf}}$), dwelling area square footage factors, bedroom occupancy allowances, and fan runtime efficacy adjustments for balanced ERV/HRV energy recovery ventilators.",
+    abstract: "Evaluates indoor air quality (IAQ) mechanical ventilation methods under ASHRAE Standard 62.2-2022 and ASHRAE Standard 62.1. Examines total required ventilation rate equations ($Q_{\\text{tot}}$), continuous natural infiltration credits ($Q_{\\text{inf}}$), dwelling area square footage factors, bedroom occupancy allowances, and fan runtime efficacy adjustments for balanced ERV/HRV energy recovery ventilators.",
     keyFindings: [
       "In tight modern enclosures ($<3.0\\text{ ACH}_{50}$), mechanical ventilation must deliver at least $45\\text{ to }75\\text{ CFM}$ of continuous fresh outdoor air to maintain steady-state indoor $\\text{CO}_2$ concentrations below $1,000\\text{ PPM}$.",
       "Energy Recovery Ventilators (ERVs) with sensible recovery effectiveness $\\ge 72\\%$ reduce winter ventilation thermal conditioning penalties by up to $65\\%$ while managing indoor winter relative humidity.",
@@ -319,15 +302,6 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-02-24",
     reportNumber: "HL-TR-2026-IAQ04",
-    pdfUrl: "/whitepapers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf",
-    repositories: [
-      {
-        platform: "academia",
-        label: "Read on Academia.edu",
-        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-        badge: "DA 93",
-      },
-    ],
     companionCalculators: [
       {
         name: "CFM Airflow & Duct Velocity Calculator",
@@ -351,17 +325,17 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-IAQ04},
-  url = {https://hvaclogic.com/research/effective-dilution-iaq-ventilation-mass-balance}
+  url = {https://hvaclogic.org/research/effective-dilution-iaq-ventilation-mass-balance}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). Effective Outdoor Air Dilution, Continuous Infiltration Credit, and Multi-Zone Mass-Balance Modeling under ASHRAE 62.2 (Technical Report No. HL-TR-2026-IAQ04). HVACLogic Open-Access Building Science. https://www.academia.edu/172310808`
+    apa: `HVACLogic Research Group, & S., M. (2026). Effective Outdoor Air Dilution, Continuous Infiltration Credit, and Multi-Zone Mass-Balance Modeling under ASHRAE 62.2 (Technical Report No. HL-TR-2026-IAQ04). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/effective-dilution-iaq-ventilation-mass-balance`
   },
   {
     slug: "thermodynamic-modeling-a2l-refrigerant-glide-r454b",
     title: "Thermodynamic Phase-Equilibrium and Non-Linear Temperature Glide Modeling of Next-Generation Zeotropic A2L Refrigerants (R-454B & R-32)",
     seoTitle: "A2L Refrigerant Glide Modeling & Diagnostics",
-    seoDescription: "Phase-equilibrium and temperature glide modeling for R-454B and R-32 systems, calibrated against NIST REFPROP formulations under the EPA AIM Act.",
+    seoDescription: "Phase-equilibrium and temperature glide modeling for R-454B and R-32 systems, benchmarked against NIST REFPROP formulations under the EPA AIM Act.",
     subtitle: "An applied thermodynamics study of vapor-liquid phase equilibrium, bubble and dew saturation boundaries, and systemic charging diagnostics under the EPA AIM Act.",
-    abstract: "Under global climate regulations, including the Kigali Amendment to the Montreal Protocol and the U.S. EPA American Innovation and Manufacturing (AIM) Act, the HVAC/R industry is undergoing a mandatory phase-down of legacy hydrofluorocarbons (HFCs), specifically R-410A. The dominant replacement refrigerants entering residential and commercial heat pump systems are ASHRAE Class A2L lower-flammability fluids: R-454B and R-32. This paper presents an exact thermodynamic phase-equilibrium modeling framework calibrated against NIST REFPROP 10.0 extended Helmholtz-energy formulations. We derive the discrete mathematical boundaries separating bubble-point liquidus curves from dew-point vaporus curves, formulate the exact differential governing equations for superheat and subcooling diagnostics, and quantify the empirical consequences of legacy trade heuristics.",
+    abstract: "Under global climate regulations, including the Kigali Amendment to the Montreal Protocol and the U.S. EPA American Innovation and Manufacturing (AIM) Act, the HVAC/R industry is undergoing a mandatory phase-down of legacy hydrofluorocarbons (HFCs), specifically R-410A. The dominant replacement refrigerants entering residential and commercial heat pump systems are ASHRAE Class A2L lower-flammability fluids: R-454B and R-32. This paper presents a thermodynamic phase-equilibrium modeling framework benchmarked against published NIST REFPROP 10.0 extended Helmholtz-energy formulations. We formulate mathematical boundaries separating bubble-point liquidus curves from dew-point vaporus curves, establish governing differential equations for superheat and subcooling diagnostics, and quantify the empirical consequences of legacy trade heuristics.",
     keyFindings: [
       "Evaluating liquid-line subcooling on R-454B systems using the saturated vapor (dew-point) curve introduces a systemic mathematical error of +2.2°F (+1.22°C), resulting in an 8.5% refrigerant undercharge.",
       "Operating undercharged zeotropic systems elevates compressor discharge temperatures by up to +14.2°F (+7.9°C), risking ester lubricant thermal breakdown and degrading seasonal COP by 5.4%.",
@@ -373,7 +347,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       "ASHRAE Standard 34-2022 (Designation and Safety Classification of Refrigerants)",
       "ASHRAE Standard 15-2022 (Safety Standard for Refrigeration Systems)",
       "AHRI Standard 210/240-2023",
-      "NIST Standard Reference Database 23 (REFPROP 10.0)"
+      "NIST Standard Reference Database 23 (REFPROP 10.0 Reference Data)"
     ],
     formulas: [
       {
@@ -399,10 +373,10 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     pdfUrl: "/whitepapers/Thermodynamic_Modeling_A2L_Refrigerant_Glide_R454B.pdf",
     repositories: [
       {
-        platform: "academia",
-        label: "Read on Academia.edu",
-        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-        badge: "DA 93",
+        platform: "dataverse",
+        label: "Harvard Dataverse Replication Data",
+        url: "https://doi.org/10.7910/DVN/SR1NZO",
+        badge: "DOI 10.7910/DVN/SR1NZO",
       },
     ],
     companionCalculators: [
@@ -429,7 +403,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   year = {2026},
   number = {HL-TR-2026-A2L05},
   doi = {10.7910/DVN/SR1NZO},
-  url = {https://hvaclogic.com/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b}
+  url = {https://hvaclogic.org/research/thermodynamic-modeling-a2l-refrigerant-glide-r454b}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Thermodynamic Phase-Equilibrium and Non-Linear Temperature Glide Modeling of Next-Generation Zeotropic A2L Refrigerants (R-454B and R-32) (Technical Report No. HL-TR-2026-A2L05). HVACLogic Open-Access Building Science. https://doi.org/10.7910/DVN/SR1NZO`
   },
@@ -777,14 +751,14 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     title: "ANSI/ASHRAE/IES Standard 90.1 Cold-Formed Steel Stud Framing Factors & Cavity Insulation Thermal Bridging Deratings",
     seoTitle: "Steel Stud Framing Factors & Cavity R-Value Deratings",
     seoDescription: "Empirical analysis of ASHRAE 90.1 Table A9.2-1 framing factors (Fc), cold-formed steel thermal bridging, and continuous exterior insulation requirements.",
-    subtitle: "A rigorous building science evaluation of two-dimensional thermal fin effects, empirical framing correction factors (Fc), and whole-wall assembly U-factor compliance under ANSI/ASHRAE/IES Standard 90.1 and IECC.",
-    abstract: "Evaluates the severe two-dimensional thermal bridging physics inherent to cold-formed steel (CFS) stud building envelopes. Because the thermal conductivity of structural carbon steel (k ≈ 45.0 W/m·K / 31.2 BTU/hr·ft·°F) is over 1,180 times greater than typical batt insulation (k ≈ 0.038 W/m·K / 0.026 BTU/hr·ft·°F), steel studs act as highly efficient heat sinks and thermal fins. This monograph examines the finite-difference modeling underlying ANSI/ASHRAE/IES Standard 90.1 Normative Appendix A (Table A9.2-1 and Table A3.3-1), derives the empirical framing correction factor (Fc), tabulates verified effective cavity R-values across 3.5-inch, 6.0-inch, and 8.0-inch depths at 16-inch and 24-inch on-center spacings, and demonstrates why continuous exterior insulation (ci) is mathematically required to achieve contemporary code compliance under IECC 2024.",
+    subtitle: "A building science evaluation of two-dimensional thermal fin effects, empirical framing correction factors (Fc), and whole-wall assembly U-factors under ANSI/ASHRAE/IES Standard 90.1 and IECC.",
+    abstract: "Evaluates the two-dimensional thermal bridging physics inherent to cold-formed steel (CFS) stud building envelopes. Because the thermal conductivity of structural carbon steel (k ≈ 45.0 W/m·K / 31.2 BTU/hr·ft·°F) is over 1,180 times greater than typical batt insulation (k ≈ 0.038 W/m·K / 0.026 BTU/hr·ft·°F), steel studs act as efficient thermal pathways. This monograph examines the finite-difference modeling underlying ANSI/ASHRAE/IES Standard 90.1 Normative Appendix A (Table A9.2-1 and Table A3.3-1), evaluates the empirical framing correction factor (Fc), tabulates normative effective cavity R-values across 3.5-inch, 6.0-inch, and 8.0-inch depths at 16-inch and 24-inch on-center spacings, and demonstrates why continuous exterior insulation (ci) is required to achieve prescriptive whole-wall U-factor limits under IECC 2024.",
     keyFindings: [
       "The thermal conductivity of cold-formed steel (k ≈ 45 W/m·K) exceeds glass fiber insulation by a factor of 1,184, inducing intensive two-dimensional heat flux pinching across stud flanges that violates one-dimensional Fourier assumptions.",
       "Per ASHRAE 90.1 Table A9.2-1, nominal R-13 cavity insulation in a 3.5-inch steel stud wall at 16-inch on-center spacing is derated by 53.8% to an effective cavity resistance of R-6.0 (framing factor Fc = 0.46).",
       "In 6.0-inch steel studs @ 16-inch on-center spacing, nominal R-19 fiberglass batt delivers an effective cavity resistance of only R-7.1 (a 62.6% thermal loss, Fc = 0.37), highlighting diminishing returns of cavity insulation without continuous exterior insulation.",
       "Continuous exterior insulation (ci) installed across the exterior sheathing plane is unaffected by stud thermal bridging, functioning in pure series and providing a 100% effective thermal barrier (effective R-value = nominal R-value).",
-      "Under IECC 2024 Table C402.1.4, meeting the Climate Zone 5-6 steel-framed wall prescriptive limit (U ≤ 0.064 BTU/hr·ft²·°F) requires at least R-13 cavity + R-7.5 ci or R-20 cavity + R-3.8 ci, proving that code compliance is physically unattainable with cavity insulation alone."
+      "Under IECC 2024 Table C402.1.4, meeting the Climate Zone 5-6 steel-framed wall prescriptive limit (U ≤ 0.064 BTU/hr·ft²·°F) requires at least R-13 cavity + R-7.5 ci or R-20 cavity + R-3.8 ci, showing that meeting prescriptive U-factors relies on continuous insulation."
     ],
     governingStandards: [
       "ANSI/ASHRAE/IES Standard 90.1-2022 (Normative Appendix A, Tables A3.3-1 & A9.2-1)",
@@ -812,15 +786,6 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-09-19",
     reportNumber: "HL-TR-2026-STEEL01",
-    pdfUrl: "/whitepapers/Student_Lab_02_Building_Envelope_Thermal_Transmission.pdf",
-    repositories: [
-      {
-        platform: "academia",
-        label: "HVACLogic Series on Academia.edu",
-        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-        badge: "DA 93"
-      }
-    ],
     companionCalculators: [
       {
         name: "Building Envelope Thermal Bridging & Effective R-Value Calculator",
@@ -891,12 +856,12 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     seoTitle: "ASHRAE 241 Equivalent Clean Airflow & Pathogen Mitigation",
     seoDescription: "Engineering monograph and normative calculation framework for ANSI/ASHRAE Standard 241-2023. Models Table 5-1 ECA baselines, MERV filtration, and in-room HEPA air cleaners.",
     subtitle: "A deterministic engineering framework for modeling multi-zone equivalent clean airflow (ECA_i), aerosol particle capture efficiency, and infection risk management in commercial, educational, and healthcare buildings.",
-    abstract: "ANSI/ASHRAE Standard 241-2023, Control of Infectious Aerosols, establishes the first consensus-based national standard for mitigating disease transmission via airborne pathogen droplet nuclei in the built environment. This engineering monograph articulates the core mathematical formulations governing Equivalent Clean Airflow (ECA) during Infection Risk Management Mode (IRMM). We model the normative Table 5-1 baseline clean airflow per person (ECA_p) and per unit floor area (ECA_a), quantify the single-pass removal efficiencies of central recirculation air filters (MERV 8 through MERV 16/HEPA) on 1–3 µm infectious bioaerosols, evaluate room air mixing effectiveness for in-room portable air cleaners (CADR), and formalize the equivalent clean airflow contribution of upper-room UV-C germicidal irradiation systems. An integrated open dataset benchmarks 12 common space archetypes across varying occupancy densities and filtration topologies, demonstrating how targeted filtration and supplemental air cleaning satisfy IRMM targets with 60% lower thermal energy penalties than 100% outdoor air dilution.",
+    abstract: "ANSI/ASHRAE Standard 241-2023, Control of Infectious Aerosols, establishes consensus-based requirements for mitigating disease transmission via airborne pathogen droplet nuclei in the built environment. This engineering monograph articulates the mathematical formulations governing Equivalent Clean Airflow (ECA) during Infection Risk Management Mode (IRMM). We model the normative Table 5-1 baseline clean airflow per person (ECA_p) and per unit floor area (ECA_a), evaluate single-pass removal efficiencies of central recirculation air filters (MERV 8 through MERV 16/HEPA) on 1–3 µm bioaerosols, evaluate room air mixing effectiveness for in-room portable air cleaners (CADR), and formalize the equivalent clean airflow contribution of upper-room UV-C germicidal irradiation systems.",
     keyFindings: [
-      "ASHRAE 241 Table 5-1 mandates 20–30 L/s/person (42.4–63.6 CFM/person) of equivalent clean airflow in schools, assembly spaces, and gyms during IRMM, representing a 2.5× to 4× increase over ASHRAE 62.1 baseline ventilation.",
+      "ASHRAE 241 Table 5-1 specifies 20–30 L/s/person (42.4–63.6 CFM/person) of equivalent clean airflow in schools, assembly spaces, and gyms during IRMM, representing a 2.5× to 4× increase over ASHRAE 62.1 baseline ventilation.",
       "Meeting IRMM targets solely through outdoor air dilution increases heating/cooling coil loads by 250%–400%, whereas upgrading central filtration to MERV 13 (85% bioaerosol efficiency) satisfies over 70% of required ECA without increasing outdoor air thermal penalties.",
       "Standard MERV 8 filters capture only ~20% of 1–3 µm infectious bioaerosol droplet nuclei, producing a critical compliance deficit in typical commercial and educational recirculation systems.",
-      "Supplemental in-room portable HEPA air cleaners deployed at a room mixing effectiveness of ε_mix = 0.9 provide cost-effective localized ECA delivery, bridging deficits in spaces with fixed central AHU duct static pressure constraints.",
+      "Supplemental in-room portable HEPA air cleaners deployed at a room mixing effectiveness of ε_mix = 0.9 provide localized ECA delivery, bridging deficits in spaces with fixed central AHU duct static pressure constraints.",
       "Upper-room UV-C germicidal irradiation provides high-equivalent clean air exchange rates (up to 15–20 ACH equivalent) in crowded public assembly and healthcare zones with minimal operating fan power."
     ],
     governingStandards: [
@@ -909,7 +874,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       {
         title: "Required Zone Equivalent Clean Airflow Rate (ECA_i)",
         latex: "ECA_i = P_z \\cdot ECA_p + A_z \\cdot ECA_a",
-        explanation: "Normative equation from ANSI/ASHRAE Standard 241-2023 Section 5 determining the mandatory clean airflow demand during Infection Risk Management Mode (IRMM) as a function of zone population (P_z) and floor area (A_z)."
+        explanation: "Normative equation from ANSI/ASHRAE Standard 241-2023 Section 5 determining the clean airflow demand during Infection Risk Management Mode (IRMM) as a function of zone population (P_z) and floor area (A_z)."
       },
       {
         title: "Central Recirculation Filter Pathogen Removal Rate",
@@ -924,20 +889,14 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       {
         title: "Equivalent Air Changes per Hour (ACH_equiv)",
         latex: "\\text{ACH}_{\\text{equiv}} = \\frac{ECA_{\\text{total}} \\times 60}{V_{\\text{room}}} = \\frac{ECA_{\\text{total}} \\times 60}{A_z \\times H_{\\text{ceiling}}}",
-        explanation: "Normalizes volumetric clean airflow delivery to room cubic volume to evaluate pathogen dilution and clearance kinetics against CDC and ASHRAE ventilation benchmarks."
+        explanation: "Normalizes volumetric clean airflow delivery to room cubic volume to evaluate pathogen dilution and clearance kinetics against ventilation benchmarks."
       }
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
     publicationDate: "2026-09-23",
+    doi: "10.6084/m9.figshare.33977425",
     reportNumber: "HL-TR-2026-AIR241",
-    pdfUrl: "/whitepapers/HVACLogic_ASHRAE_241_Clean_Airflow_Monograph.pdf",
     repositories: [
-      {
-        platform: "academia",
-        label: "HVACLogic Series on Academia.edu",
-        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-        badge: "DA 93"
-      },
       {
         platform: "figshare",
         label: "Figshare Benchmark Dataset",
@@ -1005,9 +964,10 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   institution = {HVACLogic Open-Access Building Science Monograph Series},
   year = {2026},
   number = {HL-TR-2026-AIR241},
+  doi = {10.6084/m9.figshare.33977425},
   url = {https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow}
 }`,
-    apa: `HVACLogic Research Group, & S., M. (2026). ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture (Technical Report No. HL-TR-2026-AIR241). HVACLogic Open-Access Building Science. https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow`
+    apa: `HVACLogic Research Group, & S., M. (2026). ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture (Technical Report No. HL-TR-2026-AIR241). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33977425`
   },
   {
     slug: "r454b-r32-field-handling-protocols",
@@ -1015,10 +975,10 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     seoTitle: "R-454B vs R-32 Field Service & Recovery Protocols",
     seoDescription: "Comparative technical evaluation of R-454B and R-32 field handling: DOT 4BA cylinder recovery fill limits, zeotropic glide compensation, and spark-proof tooling.",
     subtitle: "A field engineering framework for low-GWP A2L refrigerant recovery, bubble-versus-dew point superheat/subcooling charging, vacuum dehydration decay criteria, and ignition-proof instrumentation.",
-    abstract: "As the North American HVAC industry transitions away from high-GWP R-410A (GWP 2,088) to low-GWP A2L mildly flammable alternatives under the EPA AIM Act and UL 60335-2-40 (4th Edition), field service technicians and mechanical contractors encounter divergent thermodynamic behaviors and safety protocols between R-454B (Opteon XL41, GWP 465) and pure R-32 (Difluoromethane, GWP 675). This research monograph presents a rigorous comparative engineering analysis of field service workflows across four critical domains: (1) Recovery cylinder filling limits per DOT 4BA/4BW and AHRI Guideline K, accounting for specific gravity shifts at 130°F (0.88 for R-454B vs. 0.83 for R-32) and mandatory 400 psig pressure relief valve ratings; (2) Zeotropic temperature glide compensation, proving that R-454B's 1.5 K (2.7°F) glide mandates liquid-phase charging and explicit separation of dew-point suction superheat from bubble-point liquid subcooling to prevent charge errors exceeding 15%; (3) Micron vacuum decay criteria, defining dehydration vs. active leak thresholds; and (4) Tooling ignition-proofing under UL 121201 / Class I, Division 2, verifying brushless recovery machines, reverse-thread CGA-164/166 fittings, and A2L-certified electronic leak detection.",
+    abstract: "As the North American HVAC industry transitions away from high-GWP R-410A (GWP 2,088) to low-GWP A2L mildly flammable alternatives under the EPA AIM Act and UL 60335-2-40 (4th Edition), field service technicians and mechanical contractors encounter divergent thermodynamic behaviors and safety protocols between R-454B (Opteon XL41, GWP 465) and pure R-32 (Difluoromethane, GWP 675). This research monograph presents a comparative engineering analysis of field service workflows across four critical domains: (1) Recovery cylinder filling limits per DOT 4BA/4BW and AHRI Guideline K, accounting for specific gravity shifts at 130°F (0.88 for R-454B vs. 0.83 for R-32) and 400 psig pressure relief valve ratings; (2) Zeotropic temperature glide compensation, evaluating how R-454B's 1.5 K (2.7°F) glide requires liquid-phase charging and explicit separation of dew-point suction superheat from bubble-point liquid subcooling; (3) Micron vacuum decay criteria, defining dehydration vs. active leak thresholds; and (4) Tooling non-incendive standards under UL 121201 / Class I, Division 2, verifying brushless recovery machines, reverse-thread CGA-164/166 fittings, and A2L-certified electronic leak detection.",
     keyFindings: [
       "DOT 4BA and AHRI Guideline K mandate an 80% liquid fill limit based on liquid density at 130°F (54.4°C), yielding a maximum net recovery charge of 21.1 lb for R-454B (SG 0.88) and 19.9 lb for R-32 (SG 0.83) in a standard 30 lb water capacity (WC) recovery cylinder.",
-      "Legacy DOT-4BA350 cylinders are strictly prohibited for A2L service; cylinders must be rated DOT-4BA400 or DOT-4BW400 with pressure relief valves set to 400–450 psig to accommodate higher A2L saturation vapor pressures under direct solar thermal exposure.",
+      "Legacy DOT-4BA350 cylinders are prohibited for A2L service; cylinders must be rated DOT-4BA400 or DOT-4BW400 with pressure relief valves set to 400–450 psig to accommodate higher A2L saturation vapor pressures under direct solar thermal exposure.",
       "R-454B is a zeotropic blend (68.9% R-32 / 31.1% R-1234yf) exhibiting 2.7°F (1.5 K) temperature glide, requiring liquid-only charging and explicit measurement of superheat from dew point pressure and subcooling from bubble point pressure. Using midpoint saturation curves introduces an operational subcooling error of up to 1.4°F, causing systematic system undercharging.",
       "R-32 is a single-component pure substance exhibiting 0.0°F temperature glide, allowing either liquid or vapor phase charging and standard single-line saturation pressure-temperature correlation without fractionation risk.",
       "Field vacuum dehydration must achieve < 500 microns with a 10-minute isolated hold test. Vacuum rise stabilizing between 500 and 1,000 microns indicates residual moisture boiling off from hygroscopic POE lubricant, whereas continuous rise above 1,000 microns diagnoses an active hermetic leak.",
@@ -1065,12 +1025,6 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
         label: "Figshare Technical Monograph",
         url: "https://doi.org/10.6084/m9.figshare.34005498",
         badge: "DOI 10.6084/m9.figshare.34005498"
-      },
-      {
-        platform: "academia",
-        label: "HVACLogic Series on Academia.edu",
-        url: "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-        badge: "DA 93"
       }
     ],
     companionCalculators: [
@@ -1129,7 +1083,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
         content: [
           "Title 49 CFR Part 173 and AHRI Guideline K mandate that recovery vessels must never exceed 80% liquid volumetric capacity at 130°F (54.4°C) to prevent catastrophic vessel rupture driven by liquid thermal expansion. Because liquid refrigerant densities vary significantly across chemical compositions, technicians cannot apply uniform weight cutoffs across blends.",
           "At 130°F, R-454B exhibits a specific gravity of 0.88, while pure R-32 has a lower specific gravity of 0.83. In a standard 30 lb water capacity (WC) recovery cylinder, the maximum safe net charge is 21.1 lb for R-454B compared to only 19.9 lb for R-32. Filling a 30 lb cylinder with more than 19.9 lb of R-32 violates federal DOT ullage requirements.",
-          "Furthermore, legacy DOT-4BA350 cylinders (350 psig relief setting) are strictly prohibited for A2L refrigerants. At elevated summer design temperatures (130°F), R-454B saturation pressure reaches 446.5 psig, and R-32 reaches 490.7 psig. Service personnel must exclusively deploy DOT-4BA400 or DOT-4BW400 vessels equipped with pressure relief valves calibrated to 400–450 psig, labeled with red collar rings, and fitted with left-handed reverse threads (CGA 164 / CGA 166)."
+          "Furthermore, legacy DOT-4BA350 cylinders (350 psig relief setting) are prohibited for A2L refrigerants. At elevated summer design temperatures (130°F), R-454B saturation pressure reaches 446.5 psig, and R-32 reaches 490.7 psig. Service personnel must exclusively deploy DOT-4BA400 or DOT-4BW400 vessels equipped with pressure relief valves calibrated to 400–450 psig, labeled with red collar rings, and fitted with left-handed reverse threads (CGA 164 / CGA 166)."
         ]
       },
       {

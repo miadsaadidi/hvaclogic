@@ -47,7 +47,7 @@ export function BuildingHeatLossVisualizer({ output }: BuildingHeatLossVisualize
             border: "1px solid rgba(255, 107, 0, 0.3)",
           }}
         >
-          {output.heatLossPerSqFtBtu} BTU/ft² Intensity
+          {output.heatLossPerSqFtBtu} BTU/ft²·hr Intensity
         </span>
       </div>
 
@@ -57,7 +57,7 @@ export function BuildingHeatLossVisualizer({ output }: BuildingHeatLossVisualize
           {/* Ground Slab Foundation */}
           <rect x="70" y="130" width="320" height="15" fill="#334155" rx="2" />
           <text x="230" y="141" fill="#94a3b8" fontSize="7.5" fontWeight="600" textAnchor="middle">
-            Slab Foundation ({breakdownPercentages.foundationPercent}%) &bull; {output.breakdown.foundationBtu.toLocaleString()} BTU/hr
+            Foundation Perimeter ({breakdownPercentages.foundationPercent}%) &bull; {output.breakdown.foundationBtu.toLocaleString()} BTU/hr
           </text>
 
           {/* House Structure Outline */}
@@ -66,10 +66,10 @@ export function BuildingHeatLossVisualizer({ output }: BuildingHeatLossVisualize
           {/* Roof Triangle */}
           <polygon points="230,15 80,60 380,60" fill="rgba(30, 41, 59, 0.85)" stroke="#64748b" strokeWidth="1.5" />
           <text x="230" y="45" fill="#f59e0b" fontSize="7.5" fontWeight="700" textAnchor="middle">
-            Ceiling / Attic ({breakdownPercentages.ceilingPercent}%) &bull; {output.breakdown.ceilingBtu.toLocaleString()} BTU/hr
+            Ceiling &amp; Attic ({breakdownPercentages.ceilingPercent}%) &bull; {output.breakdown.ceilingBtu.toLocaleString()} BTU/hr
           </text>
           {/* Ceiling Escape Arrow */}
-          <path d="M 230 35 L 230 18" stroke="#ef4444" strokeWidth="2" strokeDasharray="3 2" markerEnd="url(#heat-arrow)" />
+          <path d="M 230 35 L 230 18" stroke="#ef4444" strokeWidth="2" strokeDasharray="3 2" />
 
           {/* Windows Left & Right */}
           <rect x="110" y="75" width="40" height="35" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" strokeWidth="1.2" rx="2" />
@@ -84,11 +84,14 @@ export function BuildingHeatLossVisualizer({ output }: BuildingHeatLossVisualize
 
           {/* Door Center */}
           <rect x="215" y="80" width="30" height="50" fill="#475569" stroke="#94a3b8" strokeWidth="1" rx="1" />
+          <text x="230" y="125" fill="#cbd5e1" fontSize="6" fontWeight="600" textAnchor="middle">
+            Door ({output.breakdown.doorsBtu} BTU)
+          </text>
 
           {/* Infiltration Air Gaps & Flow Vectors */}
           <path d="M 50 100 Q 80 95 105 105" fill="none" stroke="#00d2ff" strokeWidth="1.5" strokeDasharray="4 2" />
           <text x="45" y="95" fill="#00d2ff" fontSize="7" fontWeight="700">
-            Cold Drafts ({output.infiltrationCfm} CFM)
+            Air Leakage ({output.infiltrationCfm} CFM)
           </text>
           <text x="230" y="108" fill="#f43f5e" fontSize="7.5" fontWeight="700" textAnchor="middle">
             Infiltration: {breakdownPercentages.infiltrationPercent}% ({output.breakdown.infiltrationBtu.toLocaleString()} BTU)
@@ -115,10 +118,10 @@ export function BuildingHeatLossVisualizer({ output }: BuildingHeatLossVisualize
       {/* Summary Footer */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.4rem", fontSize: "0.72rem" }}>
         <span style={{ color: "var(--ink-secondary)" }}>
-          Recommended Furnace: <strong style={{ color: "var(--accent-heating)" }}>{output.recommendedFurnaceBtu.toLocaleString()} BTU/hr</strong>
+          Preliminary Peak Load: <strong style={{ color: "var(--accent-heating)" }}>{output.totalHeatLossBtu.toLocaleString()} BTU/hr ({output.totalHeatLossKw} kW)</strong>
         </span>
         <span style={{ color: "var(--ink-secondary)" }}>
-          Recommended Heat Pump: <strong style={{ color: "var(--accent-cooling)" }}>{output.recommendedHeatPumpTons} Tons</strong>
+          Estimated Infiltration: <strong style={{ color: "var(--accent-cooling)" }}>{output.infiltrationCfm} CFM ({output.naturalAch} ACHnat)</strong>
         </span>
       </div>
     </div>

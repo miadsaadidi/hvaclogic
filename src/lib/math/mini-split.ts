@@ -1,6 +1,18 @@
 /**
  * HVACLogic Mini-Split Multi-Zone Sizing Computational Engine
- * Implements ACCA Manual J Room Loads, AHRI Standard 1230, and Multi-Port Inverter Diversity.
+ *
+ * This computational engine implements a preliminary room cooling-load screening model
+ * and multi-zone candidate indoor head matching workflow.
+ *
+ * Technical References:
+ *   - ANSI/AHRI Standard 1230 (Performance Rating of Variable Refrigerant Flow Multi-Split Air-Conditioning and Heat Pump Equipment)
+ *   - ANSI/ACCA Manual J (Residential Load Calculation reference methodology)
+ *   - ANSI/ACCA Manual S (Residential Equipment Selection reference methodology)
+ *
+ * Important Engineering Note:
+ * This model provides preliminary load screening estimates. Final equipment selection,
+ * line-length allowances, and port combinations must be verified using the specific
+ * manufacturer's approved combination and capacity tables.
  */
 
 export interface MiniSplitRoom {
@@ -9,7 +21,7 @@ export interface MiniSplitRoom {
   sqft: number;
   sunExposure: "north" | "average" | "south" | "west";
   insulation: "good" | "average" | "poor";
-  ceilingHeight: "standard" | "high" | "vaulted"; // 8ft, 9-10ft, >10ft
+  ceilingHeight: "standard" | "high" | "vaulted"; // 8ft (1.0x), 9-10ft (1.1x), >10ft (1.2x)
 }
 
 export interface MatchedRoomOutput {
@@ -17,7 +29,7 @@ export interface MatchedRoomOutput {
   name: string;
   sqft: number;
   calculatedLoadBtu: number;
-  matchedIndoorHeadBtu: number; // 6000, 9000, 12000, 18000, 24000
+  matchedIndoorHeadBtu: number; // Candidate nominal sizes: 6000, 9000, 12000, 18000, 24000
   headTypeRecommendation: "Wall-Mount" | "Ceiling Cassette" | "Floor Console";
 }
 
@@ -29,7 +41,7 @@ export interface MiniSplitSystemOutput {
   recommendedOutdoorTonnage: number;
   numberOfPorts: number;
   connectedCapacityRatioPercent: number; // e.g. 100% to 130%
-  overSubscriptionStatus: "Optimal Match (100–130%)" | "Under-Utilized (<100%)" | "Over-Subscribed (>130% - Stagger Load)";
+  overSubscriptionStatus: "Preliminary Matched Range (100–130%)" | "Under-Connected (<100%)" | "High Connected Ratio (>130% - Verify Manufacturer Data)";
   summary: string;
 }
 
@@ -37,22 +49,23 @@ export const INDOOR_HEAD_SIZES_BTU = [6000, 9000, 12000, 18000, 24000];
 export const OUTDOOR_CONDENSER_SIZES_BTU = [18000, 24000, 30000, 36000, 42000, 48000];
 
 /**
- * Calculates individual room thermal load (BTU/hr)
+ * Calculates individual room preliminary screening cooling load (BTU/hr)
+ * Q_room = Area * 25 * F_sun * F_ins * F_ceiling
  */
 export function calculateRoomLoadBtu(room: MiniSplitRoom): number {
   const sqft = Math.max(50, Math.min(2500, room.sqft));
-  let btu = sqft * 25; // 25 BTU/sq ft baseline
+  let btu = sqft * 25; // 25 BTU/sq ft screening baseline
 
-  // Sun Exposure factor
+  // Sun Exposure factor (F_sun)
   if (room.sunExposure === "north") btu *= 0.95;
   else if (room.sunExposure === "south") btu *= 1.10;
   else if (room.sunExposure === "west") btu *= 1.15;
 
-  // Insulation factor
+  // Building Envelope Insulation factor (F_ins)
   if (room.insulation === "good") btu *= 0.90;
   else if (room.insulation === "poor") btu *= 1.15;
 
-  // Ceiling Height factor
+  // Ceiling Height factor (F_ceiling)
   if (room.ceilingHeight === "high") btu *= 1.10;
   else if (room.ceilingHeight === "vaulted") btu *= 1.20;
 
@@ -60,7 +73,8 @@ export function calculateRoomLoadBtu(room: MiniSplitRoom): number {
 }
 
 /**
- * Matches room thermal load to the nearest standard indoor head capacity
+ * Matches room screening load to candidate standard indoor head capacity.
+ * Note: Actual head selection must be verified against manufacturer model availability.
  */
 export function matchIndoorHeadBtu(loadBtu: number): number {
   for (const head of INDOOR_HEAD_SIZES_BTU) {
@@ -72,7 +86,8 @@ export function matchIndoorHeadBtu(loadBtu: number): number {
 }
 
 /**
- * Sizes the entire multi-zone mini-split system, including individual heads and outdoor condenser.
+ * Calculates candidate multi-zone mini-split system capacities, total indoor head load,
+ * and illustrative outdoor multi-port condenser preliminary sizing.
  */
 export function calculateMiniSplitSystem(rooms: MiniSplitRoom[]): MiniSplitSystemOutput {
   if (!rooms || rooms.length === 0) {
@@ -84,8 +99,8 @@ export function calculateMiniSplitSystem(rooms: MiniSplitRoom[]): MiniSplitSyste
       recommendedOutdoorTonnage: 1.5,
       numberOfPorts: 2,
       connectedCapacityRatioPercent: 100,
-      overSubscriptionStatus: "Optimal Match (100–130%)",
-      summary: "Add one or more rooms to calculate multi-zone mini-split system capacity.",
+      overSubscriptionStatus: "Preliminary Matched Range (100–130%)",
+      summary: "Add one or more rooms to estimate multi-zone mini-split system capacity.",
     };
   }
 
@@ -106,11 +121,10 @@ export function calculateMiniSplitSystem(rooms: MiniSplitRoom[]): MiniSplitSyste
   const totalIndoorConnectedBtu = matchedRooms.reduce((acc, r) => acc + r.matchedIndoorHeadBtu, 0);
   const portCount = matchedRooms.length;
 
-  // Size outdoor multi-port condenser
-  // Multi-split inverters allow 100% to 130% connected capacity ratio due to diversity
+  // Illustrative outdoor multi-port condenser preliminary sizing
+  // Multi-split inverter systems typically support 100% to 130% connected capacity ratios depending on manufacturer guidelines
   let recommendedOutdoorCondenserBtu = 18000;
   for (const cond of OUTDOOR_CONDENSER_SIZES_BTU) {
-    // Condition: condenser must handle at least totalIndoorConnectedBtu / 1.30
     if (cond * 1.30 >= totalIndoorConnectedBtu) {
       recommendedOutdoorCondenserBtu = cond;
       break;
@@ -121,14 +135,14 @@ export function calculateMiniSplitSystem(rooms: MiniSplitRoom[]): MiniSplitSyste
   const recommendedOutdoorTonnage = Number((recommendedOutdoorCondenserBtu / 12000).toFixed(1));
   const connectedCapacityRatioPercent = Math.round((totalIndoorConnectedBtu / recommendedOutdoorCondenserBtu) * 100);
 
-  let overSubscriptionStatus: MiniSplitSystemOutput["overSubscriptionStatus"] = "Optimal Match (100–130%)";
+  let overSubscriptionStatus: MiniSplitSystemOutput["overSubscriptionStatus"] = "Preliminary Matched Range (100–130%)";
   if (connectedCapacityRatioPercent < 100) {
-    overSubscriptionStatus = "Under-Utilized (<100%)";
+    overSubscriptionStatus = "Under-Connected (<100%)";
   } else if (connectedCapacityRatioPercent > 130) {
-    overSubscriptionStatus = "Over-Subscribed (>130% - Stagger Load)";
+    overSubscriptionStatus = "High Connected Ratio (>130% - Verify Manufacturer Data)";
   }
 
-  const summary = `A ${portCount}-zone system requiring ${totalIndoorConnectedBtu.toLocaleString()} BTU total indoor capacity paired with a ${recommendedOutdoorTonnage}-Ton (${recommendedOutdoorCondenserBtu.toLocaleString()} BTU) outdoor multi-port inverter condenser (${connectedCapacityRatioPercent}% connected ratio).`;
+  const summary = `A ${portCount}-zone system requiring ${totalIndoorConnectedBtu.toLocaleString()} BTU total candidate indoor capacity paired with an illustrative ${recommendedOutdoorTonnage}-Ton (${recommendedOutdoorCondenserBtu.toLocaleString()} BTU) outdoor multi-port condenser (${connectedCapacityRatioPercent}% connected ratio).`;
 
   return {
     rooms: matchedRooms,
@@ -142,3 +156,4 @@ export function calculateMiniSplitSystem(rooms: MiniSplitRoom[]): MiniSplitSyste
     summary,
   };
 }
+

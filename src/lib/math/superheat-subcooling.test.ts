@@ -15,7 +15,7 @@ describe("Refrigerant PT Saturation Engine (GOLD-PT-01)", () => {
     expect(getRefrigerantSaturationTemp("r410a", 335.0)).toBeCloseTo(103.5, 1);
 
     // R-32
-    expect(getRefrigerantSaturationTemp("r32", 120.0)).toBeCloseTo(38.6, 1);
+    expect(getRefrigerantSaturationTemp("r32", 119.0)).toBeCloseTo(40.0, 1);
     expect(getRefrigerantSaturationTemp("r32", 340.0)).toBeCloseTo(102.1, 1);
 
     // R-454B (Zeotropic Glide: Bubble for Liquid, Dew for Vapor)

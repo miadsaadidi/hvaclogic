@@ -14,6 +14,7 @@ const STANDARD_DESCRIPTIONS: Record<StandardId, string> = {
   HVI: "Home Ventilating Institute (HVI) 916 Standard",
   NFPA: "National Fuel Gas Code (NFPA 54 / ANSI Z223.1)",
   IFGC: "International Fuel Gas Code (IFGC Chapter 3)",
+  ASME: "ASME Boiler & Pressure Vessel Code (BPVC Section VIII)",
 };
 
 export function StandardsBadge({ standards }: { standards: StandardId[] }) {

@@ -13,7 +13,6 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { HydronicBoilerVisualizer } from "@/components/calculator/visualizers/HydronicBoilerVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
@@ -132,12 +131,12 @@ export function BoilerSizeTool() {
 
   const handleExportCsv = () => {
     const headers = "Parameter,Value,Unit\n";
-    const rows = `Sizing Method,"${mode}",""\nHeating Medium,"${medium}",""\nConnected Emitter Load,${output.connectedEmitterLoadBtu},"BTU/hr"\nDHW Indirect Pickup Allowance,${output.dhwPickupBtu},"BTU/hr"\nTotal Net AHRI Load,${output.totalNetAhriLoadBtu},"BTU/hr"\nI=B=R Piping & Pickup Factor,${output.pipingAndPickupFactor},"x"\nGross DOE Heating Capacity,${output.grossDoeCapacityBtu},"BTU/hr"\nRecommended Boiler Fuel Input,${output.recommendedBoilerInputBtu},"BTU/hr Gross"\nEquivalent Power,${output.recommendedBoilerInputKw},"kW"\nBoiler Efficiency,${output.boilerAfuePercent},"%"\n`;
+    const rows = `Sizing Method,"${mode}",""\nHeating Medium,"${medium}",""\nConnected Emitter Load,${output.connectedEmitterLoadBtu},"BTU/hr"\nDHW Indirect Pickup Allowance,${output.dhwPickupBtu},"BTU/hr"\nTotal Net AHRI Load,${output.totalNetAhriLoadBtu},"BTU/hr"\nI=B=R Piping & Pickup Factor,${output.pipingAndPickupFactor},"x"\nRequired DOE Heating Capacity,${output.grossDoeCapacityBtu},"BTU/hr"\nCandidate Boiler Input Range,"${output.candidateBoilerInputRange}",""\nEquivalent Power,${output.recommendedBoilerInputKw},"kW"\nBoiler Efficiency,${output.boilerAfuePercent},"%"\n`;
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `boiler-sizing-${output.recommendedBoilerInputBtu}btu.csv`;
+    a.download = `boiler-sizing-${output.grossDoeCapacityBtu}btu-doe.csv`;
     a.click();
   };
 
@@ -333,7 +332,7 @@ export function BoilerSizeTool() {
           {mode === "heat_loss" && (
             <div className="form-group">
               <label htmlFor="heat-loss-input">
-                <span>Calculated Peak Heat Loss</span>
+                <span>Whole-Building Design Heat Loss</span>
                 <span className="unit-label">BTU/hr</span>
               </label>
               <input
@@ -381,8 +380,8 @@ export function BoilerSizeTool() {
                 className="input-number"
                 style={{ cursor: hasDhw ? "pointer" : "not-allowed", opacity: hasDhw ? 1 : 0.5 }}
               >
-                <option value="yes">Priority ON (0 BTU adder)</option>
-                <option value="no">Priority OFF (+35k BTU)</option>
+                <option value="yes">Priority ON (0 BTU space adder)</option>
+                <option value="no">Priority OFF (+35k BTU recovery)</option>
               </select>
             </div>
           </div>
@@ -390,8 +389,8 @@ export function BoilerSizeTool() {
           {/* BOILER EFFICIENCY AFUE */}
           <div className="form-group">
             <label htmlFor="boiler-afue-input">
-              <span>Boiler AFUE Efficiency</span>
-              <span className="unit-label">% AFUE</span>
+              <span>Boiler AFUE Rating Tier</span>
+              <span className="unit-label">Seasonal Rating</span>
             </label>
             <select
               id="boiler-afue-input"
@@ -416,12 +415,12 @@ export function BoilerSizeTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Boiler Size Calculation Result">
-            <div className="result-label">Recommended Boiler Gross Input</div>
+            <div className="result-label">Required Minimum DOE Heating Capacity</div>
             <div className="result-value" style={{ color: "var(--accent-heating)" }}>
-              {output.recommendedBoilerInputBtu.toLocaleString()} BTU/hr
+              {output.grossDoeCapacityBtu.toLocaleString()} BTU/hr
             </div>
             <div className="result-unit">
-              DOE Heating Output: <strong>{output.grossDoeCapacityBtu.toLocaleString()} BTU/hr</strong> ({output.recommendedBoilerInputKw} kW)
+              Candidate Nominal Input: <strong>{output.candidateBoilerInputRange}</strong> ({output.boilerAfuePercent}% AFUE Tier)
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -438,12 +437,15 @@ export function BoilerSizeTool() {
                   border: "1px solid currentColor",
                 }}
               >
-                {output.isCondensingEligible ? "✓ Continuous Flue Condensing Mode (95%+ AFUE)" : "Standard Non-Condensing Operating Mode"}
+                {output.isCondensingEligible ? "✓ Continuous Flue Gas Condensing Mode (95%+ AFUE)" : "Standard Non-Condensing Operating Mode"}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["AHRI Hydronics (I=B=R)", "ASME Boiler Code", "ACCA Manual S®"]} />
+          <StandardsBadge
+            label="Calculation References:"
+            standards={["AHRI Residential Directory", "I=B=R Hydronic Standards", "ASME Section IV", "ACCA Manual S (Informational)"]}
+          />
 
           {/* HYDRONIC LOOP SVG VISUALIZER */}
           <HydronicBoilerVisualizer output={output} />
@@ -457,23 +459,20 @@ export function BoilerSizeTool() {
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Total AHRI Net Load</div>
+              <div className="item-label">Net AHRI Radiation</div>
               <div className="item-value">{output.totalNetAhriLoadBtu.toLocaleString()} BTU/hr</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">I=B=R Piping Factor</div>
-              <div className="item-value">{output.pipingAndPickupFactor}x Multiplier</div>
+              <div className="item-label">I=B=R Piping &amp; Pickup</div>
+              <div className="item-value">{output.pipingAndPickupFactor}x Factor</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">DOE Gross Output</div>
+              <div className="item-label">Required DOE Capacity</div>
               <div className="item-value" style={{ color: "var(--accent-heating)" }}>
                 {output.grossDoeCapacityBtu.toLocaleString()} BTU/hr
               </div>
             </div>
           </div>
-
-          {/* GOOGLE PREFERRED SOURCE BANNER */}
-          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
@@ -484,21 +483,17 @@ export function BoilerSizeTool() {
 
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
-            <div className="handoff-title">Next Step in Heating Systems Engineering</div>
+            <div className="handoff-title">Next Step in Hydronic System Engineering</div>
             <Link href="/calculators/expansion-tank-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Size ASME Section VIII Closed-Loop Hydronic Expansion Tank</span>
+              <span>Size ASME Closed-Loop Hydronic Expansion Tank</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/heat-loss-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Verify Boiler Sizing with Whole-Building Manual J Heat Loss</span>
+              <span>Compare Connected Radiation to ACCA Manual J Building Heat Loss</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/furnace-size-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Compare Hydronic Boilers vs Forced-Air Furnaces</span>
-              <span>→</span>
-            </Link>
-            <Link href="/calculators/ductulator">
-              <span>Size Air Ducts for Hydro-Air Fan Coils (Water-to-Air Coils)</span>
+            <Link href="/calculators/combustion-air-calculator">
+              <span>Size Mechanical Room Combustion Air Louvers</span>
               <span>→</span>
             </Link>
           </div>
@@ -507,9 +502,9 @@ export function BoilerSizeTool() {
 
       {/* MOBILE STICKY RESULT BAR */}
       <MobileResultBar
-        label="Boiler Size"
-        value={`${output.recommendedBoilerInputBtu.toLocaleString()} BTU`}
-        unit={`(${output.recommendedBoilerInputKw} kW)`}
+        label="Required DOE Capacity"
+        value={`${output.grossDoeCapacityBtu.toLocaleString()} BTU`}
+        unit={`(${output.candidateBoilerInputRange})`}
       />
     </div>
   );

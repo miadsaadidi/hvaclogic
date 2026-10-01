@@ -26,11 +26,15 @@ const PRESETS = [
     tesp: 0.50,
     coilDrop: 0.20,
     filterDrop: 0.10,
+    supplyRegDrop: 0.03,
+    returnGrilleDrop: 0.03,
+    plenumTakeoffs: 1,
     smoothElbows: 3,
     miteredElbows: 0,
     conicalTakeoffs: 4,
     boots: 4,
     returnDrops: 1,
+    returnGrilleBoots: 2,
   },
   {
     label: "🏢 2-Story Long Run (0.70\" TESP)",
@@ -39,11 +43,15 @@ const PRESETS = [
     tesp: 0.70,
     coilDrop: 0.22,
     filterDrop: 0.15,
+    supplyRegDrop: 0.03,
+    returnGrilleDrop: 0.03,
+    plenumTakeoffs: 1,
     smoothElbows: 5,
     miteredElbows: 0,
     conicalTakeoffs: 6,
     boots: 6,
     returnDrops: 2,
+    returnGrilleBoots: 2,
   },
   {
     label: "📉 High-Resistance Mitered (0.50\" TESP)",
@@ -52,11 +60,15 @@ const PRESETS = [
     tesp: 0.50,
     coilDrop: 0.20,
     filterDrop: 0.12,
+    supplyRegDrop: 0.03,
+    returnGrilleDrop: 0.03,
+    plenumTakeoffs: 1,
     smoothElbows: 0,
     miteredElbows: 4,
     conicalTakeoffs: 4,
     boots: 4,
     returnDrops: 1,
+    returnGrilleBoots: 2,
   },
   {
     label: "⚡ High-Static ECM (0.80\" TESP)",
@@ -65,11 +77,15 @@ const PRESETS = [
     tesp: 0.80,
     coilDrop: 0.24,
     filterDrop: 0.18,
+    supplyRegDrop: 0.03,
+    returnGrilleDrop: 0.03,
+    plenumTakeoffs: 1,
     smoothElbows: 4,
     miteredElbows: 0,
     conicalTakeoffs: 6,
     boots: 6,
     returnDrops: 2,
+    returnGrilleBoots: 2,
   },
 ];
 
@@ -85,12 +101,14 @@ export function DuctFrictionTool() {
   const [supplyRegDrop, setSupplyRegDrop] = useState<number>(0.03);
   const [returnGrilleDrop, setReturnGrilleDrop] = useState<number>(0.03);
 
-  // Common fitting counts
+  // Fitting counts along the design path
+  const [plenumTakeoffs, setPlenumTakeoffs] = useState<number>(1);
   const [smoothElbows, setSmoothElbows] = useState<number>(3);
   const [miteredElbows, setMiteredElbows] = useState<number>(0);
   const [conicalTakeoffs, setConicalTakeoffs] = useState<number>(4);
   const [boots, setBoots] = useState<number>(4);
   const [returnDrops, setReturnDrops] = useState<number>(1);
+  const [returnGrilleBoots, setReturnGrilleBoots] = useState<number>(2);
 
   // Hydrate from URL
   useEffect(() => {
@@ -110,11 +128,15 @@ export function DuctFrictionTool() {
     setTesp(p.tesp);
     setCoilDrop(p.coilDrop);
     setFilterDrop(p.filterDrop);
+    setSupplyRegDrop(p.supplyRegDrop);
+    setReturnGrilleDrop(p.returnGrilleDrop);
+    setPlenumTakeoffs(p.plenumTakeoffs);
     setSmoothElbows(p.smoothElbows);
     setMiteredElbows(p.miteredElbows);
     setConicalTakeoffs(p.conicalTakeoffs);
     setBoots(p.boots);
     setReturnDrops(p.returnDrops);
+    setReturnGrilleBoots(p.returnGrilleBoots);
 
     updateParam("supStr", p.supplyStraight);
     updateParam("retStr", p.returnStraight);
@@ -124,7 +146,7 @@ export function DuctFrictionTool() {
   // Perform Calculation
   const output: DuctFrictionLossOutput = useMemo(() => {
     const supplyFittings: SelectedFitting[] = [
-      { fittingId: "plenum_supply_straight", quantity: 1 },
+      { fittingId: "plenum_supply_straight", quantity: plenumTakeoffs },
       { fittingId: "elbow_90_smooth", quantity: smoothElbows },
       { fittingId: "elbow_90_mitered_novanes", quantity: miteredElbows },
       { fittingId: "branch_takeoff_conical", quantity: conicalTakeoffs },
@@ -133,7 +155,7 @@ export function DuctFrictionTool() {
 
     const returnFittings: SelectedFitting[] = [
       { fittingId: "return_air_drop_90", quantity: returnDrops },
-      { fittingId: "return_grille_boot", quantity: 1 },
+      { fittingId: "return_grille_boot", quantity: returnGrilleBoots },
     ];
 
     const input: DuctFrictionLossInput = {
@@ -157,16 +179,18 @@ export function DuctFrictionTool() {
     filterDrop,
     supplyRegDrop,
     returnGrilleDrop,
+    plenumTakeoffs,
     smoothElbows,
     miteredElbows,
     conicalTakeoffs,
     boots,
     returnDrops,
+    returnGrilleBoots,
   ]);
 
   const handleExportCsv = () => {
     const headers = "Parameter,Value,Unit\n";
-    const rows = `Blower Rated TESP,${tesp},"in. wg"\nEvaporator Coil Drop,${coilDrop},"in. wg"\nAir Filter Drop,${filterDrop},"in. wg"\nRegister & Grille Drops,${supplyRegDrop + returnGrilleDrop},"in. wg"\nTotal Component Losses,${output.totalComponentLossInWg},"in. wg"\n\nAVAILABLE STATIC PRESSURE (ASP),${output.availableStaticPressureAspInWg},"in. wg"\nSupply Straight Length,${output.supplyStraightLengthFt},"ft"\nSupply Fittings Length,${output.supplyFittingsLengthFt},"ft"\nTotal Supply TEL,${output.totalSupplyLengthFt},"ft"\nReturn Straight Length,${output.returnStraightLengthFt},"ft"\nReturn Fittings Length,${output.returnFittingsLengthFt},"ft"\nTotal Return TEL,${output.totalReturnLengthFt},"ft"\nTOTAL EQUIVALENT LENGTH (TEL),${output.totalEquivalentLengthTelFt},"ft"\n\nDESIGN FRICTION RATE (FR),${output.designFrictionRateFr},"in. wg / 100 ft"\nFRICTION RATE STATUS,"${output.frictionRateStatus}",""\n`;
+    const rows = `Blower Rated TESP,${tesp},"in. wg"\nEvaporator Coil Drop,${coilDrop},"in. wg"\nAir Filter Drop,${filterDrop},"in. wg"\nSupply Registers Drop,${supplyRegDrop},"in. wg"\nReturn Grilles Drop,${returnGrilleDrop},"in. wg"\nTotal Component Losses,${output.totalComponentLossInWg},"in. wg"\n\nAVAILABLE STATIC PRESSURE (ASP),${output.availableStaticPressureAspInWg},"in. wg"\nSupply Straight Length,${output.supplyStraightLengthFt},"ft"\nSupply Fittings Length,${output.supplyFittingsLengthFt},"ft"\nTotal Supply TEL,${output.totalSupplyLengthFt},"ft"\nReturn Straight Length,${output.returnStraightLengthFt},"ft"\nReturn Fittings Length,${output.returnFittingsLengthFt},"ft"\nTotal Return TEL,${output.totalReturnLengthFt},"ft"\nTOTAL EQUIVALENT LENGTH (TEL),${output.totalEquivalentLengthTelFt},"ft"\n\nDESIGN FRICTION RATE (FR),${output.designFrictionRateFr},"in. wg / 100 ft"\nFRICTION RATE STATUS,"${output.frictionRateStatus}",""\n`;
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -258,43 +282,54 @@ export function DuctFrictionTool() {
           </div>
 
           {/* FILTER & REGISTER DROPS */}
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "0.75rem", marginBottom: "0.5rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.5rem", marginBottom: "0.5rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
-              <label htmlFor="filter-select">
-                <span>Air Filter Type</span>
-                <span className="unit-label">Drop</span>
-              </label>
-              <select
-                id="filter-select"
-                value={filterDrop}
-                onChange={(e) => setFilterDrop(Number(e.target.value))}
-                className="input-number"
-                style={{ cursor: "pointer" }}
-              >
-                <option value={0.08}>4&quot; Deep Pleated Media (0.08&quot;)</option>
-                <option value={0.10}>Standard 1&quot; MERV 8 (0.10&quot;)</option>
-                <option value={0.15}>Standard 1&quot; MERV 11 (0.15&quot;)</option>
-                <option value={0.22}>High Efficiency MERV 13 (0.22&quot;)</option>
-              </select>
-            </div>
-
-            <div className="form-group" style={{ margin: 0 }}>
-              <label htmlFor="grille-input">
-                <span>Registers Drop</span>
+              <label htmlFor="filter-input">
+                <span>Air Filter</span>
                 <span className="unit-label">in. wg</span>
               </label>
               <input
-                id="grille-input"
+                id="filter-input"
+                type="number"
+                step={0.02}
+                min={0.02}
+                max={0.40}
+                value={filterDrop}
+                onChange={(e) => setFilterDrop(Number(e.target.value))}
+                className="input-number"
+              />
+            </div>
+
+            <div className="form-group" style={{ margin: 0 }}>
+              <label htmlFor="sup-reg-input">
+                <span>Supply Reg.</span>
+                <span className="unit-label">in. wg</span>
+              </label>
+              <input
+                id="sup-reg-input"
                 type="number"
                 step={0.01}
                 min={0.01}
                 max={0.10}
                 value={supplyRegDrop}
-                onChange={(e) => {
-                  const val = Number(e.target.value);
-                  setSupplyRegDrop(val);
-                  setReturnGrilleDrop(val);
-                }}
+                onChange={(e) => setSupplyRegDrop(Number(e.target.value))}
+                className="input-number"
+              />
+            </div>
+
+            <div className="form-group" style={{ margin: 0 }}>
+              <label htmlFor="ret-grille-input">
+                <span>Return Grille</span>
+                <span className="unit-label">in. wg</span>
+              </label>
+              <input
+                id="ret-grille-input"
+                type="number"
+                step={0.01}
+                min={0.01}
+                max={0.10}
+                value={returnGrilleDrop}
+                onChange={(e) => setReturnGrilleDrop(Number(e.target.value))}
                 className="input-number"
               />
             </div>
@@ -350,6 +385,19 @@ export function DuctFrictionTool() {
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
               <div className="form-group" style={{ margin: 0 }}>
+                <label htmlFor="plenum-takeoff">Supply Plenum (10ft ea)</label>
+                <input
+                  id="plenum-takeoff"
+                  type="number"
+                  min={0}
+                  max={5}
+                  value={plenumTakeoffs}
+                  onChange={(e) => setPlenumTakeoffs(Number(e.target.value))}
+                  className="input-number"
+                />
+              </div>
+
+              <div className="form-group" style={{ margin: 0 }}>
                 <label htmlFor="smooth-elbows">90° Smooth Elbows (10ft ea)</label>
                 <input
                   id="smooth-elbows"
@@ -400,6 +448,32 @@ export function DuctFrictionTool() {
                   className="input-number"
                 />
               </div>
+
+              <div className="form-group" style={{ margin: 0 }}>
+                <label htmlFor="return-drops">Return Drop 90° (30ft ea)</label>
+                <input
+                  id="return-drops"
+                  type="number"
+                  min={0}
+                  max={10}
+                  value={returnDrops}
+                  onChange={(e) => setReturnDrops(Number(e.target.value))}
+                  className="input-number"
+                />
+              </div>
+
+              <div className="form-group" style={{ margin: 0 }}>
+                <label htmlFor="return-grille-boots">Return Grille Boots (20ft ea)</label>
+                <input
+                  id="return-grille-boots"
+                  type="number"
+                  min={0}
+                  max={10}
+                  value={returnGrilleBoots}
+                  onChange={(e) => setReturnGrilleBoots(Number(e.target.value))}
+                  className="input-number"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -408,7 +482,7 @@ export function DuctFrictionTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="ACCA Manual D Friction Rate Result">
-            <div className="result-label">Design Friction Rate (FR)</div>
+            <div className="result-label">Calculated Design Friction Rate (FR)</div>
             <div
               className="result-value"
               style={{
@@ -451,15 +525,15 @@ export function DuctFrictionTool() {
                 }}
               >
                 {output.frictionRateStatus === "optimal"
-                  ? "✓ Optimal ACCA Manual D Friction Rate (0.06 to 0.12 in.wg)"
+                  ? "✓ Common Residential Reference Range (0.06 to 0.12 in.wg / 100 ft)"
                   : output.frictionRateStatus === "borderline_low"
-                  ? "⚠️ Low Friction Rate (<0.05): Requires Oversized Ducts"
-                  : "⚠️ High Friction Rate (>0.12): High Velocity & Noise Risk"}
+                  ? "⚠️ Low Friction Rate (<0.05): Requires Larger Duct Cross-Sections"
+                  : "⚠️ Higher Friction Rate (>0.12): May Increase Velocity & Noise Risk"}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ACCA Manual D®", "ASHRAE Fundamentals Ch. 21", "SMACNA"]} />
+          <StandardsBadge standards={["ACCA Manual D Reference Methodology", "ASHRAE Technical References", "SMACNA"]} />
 
           {/* REACTIVE VISUALIZER */}
           <DuctFrictionVisualizer output={output} />
@@ -467,13 +541,13 @@ export function DuctFrictionTool() {
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
-              <div className="item-label">Total Equivalent Length</div>
+              <div className="item-label">Total Equivalent Length (TEL)</div>
               <div className="item-value" style={{ color: "var(--accent-cooling)" }}>
                 {output.totalEquivalentLengthTelFt} Feet
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Component Drop Losses</div>
+              <div className="item-label">Total Component Losses</div>
               <div className="item-value">{output.totalComponentLossInWg.toFixed(3)}&quot; w.g.</div>
             </div>
             <div className="secondary-result-item">
@@ -488,16 +562,16 @@ export function DuctFrictionTool() {
 
           {/* STEP-BY-STEP MATHEMATICAL DERIVATION INSPECTOR */}
           <StepDerivationDrawer
-            toolName="Duct Friction Loss & ACCA Manual D Friction Rate Sizing"
-            governingStandard="ACCA Manual D (3rd Edition) & ASHRAE Fundamentals Ch. 21"
+            toolName="Duct Friction Loss & Friction Rate Calculation"
+            governingStandard="Calculation Method: ACCA Manual D Reference Model"
             steps={[
               {
                 stepNumber: 1,
                 title: "Calculate Available Static Pressure (ASP)",
-                formulaLatex: "\\text{ASP} = \\text{TESP} - (\\Delta P_{\\text{coil}} + \\Delta P_{\\text{filter}})",
-                substitutionLatex: `\\text{ASP} = ${tesp.toFixed(2)} - (${coilDrop.toFixed(2)} + ${filterDrop.toFixed(2)})`,
+                formulaLatex: "\\text{ASP} = \\text{TESP} - (\\Delta P_{\\text{coil}} + \\Delta P_{\\text{filter}} + \\Delta P_{\\text{supply\\_reg}} + \\Delta P_{\\text{return\\_grille}})",
+                substitutionLatex: `\\text{ASP} = ${tesp.toFixed(2)} - (${coilDrop.toFixed(2)} + ${filterDrop.toFixed(2)} + ${supplyRegDrop.toFixed(2)} + ${returnGrilleDrop.toFixed(2)})`,
                 resultText: `${output.availableStaticPressureAspInWg.toFixed(3)} in.wg`,
-                governingStandard: "ACCA Manual D Section 3",
+                governingStandard: "ACCA Manual D Reference Method",
               },
               {
                 stepNumber: 2,
@@ -525,11 +599,13 @@ export function DuctFrictionTool() {
           <ActionButtonBar
             toolRoute="/calculators/duct-friction-loss-calculator"
             toolName="Duct Friction Loss & Total Equivalent Length (TEL) Sizer"
-            governingStandard="ACCA Manual D (3rd Edition)"
+            governingStandard="Reference Method: ACCA Manual D"
             inputs={{
               "Blower TESP": `${tesp} in.wg`,
               "Coil Pressure Drop": `${coilDrop} in.wg`,
               "Filter Pressure Drop": `${filterDrop} in.wg`,
+              "Supply Register Drop": `${supplyRegDrop} in.wg`,
+              "Return Grille Drop": `${returnGrilleDrop} in.wg`,
               "Supply Straight Run": `${supplyStraight} ft`,
               "Return Straight Run": `${returnStraight} ft`,
               "Smooth 90° Elbows": smoothElbows,

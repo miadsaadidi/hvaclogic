@@ -14,7 +14,6 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { ExpansionTankVisualizer } from "@/components/calculator/visualizers/ExpansionTankVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
@@ -74,7 +73,7 @@ export function ExpansionTankTool() {
 
   // State
   const [selectedPreset, setSelectedPreset] = useState<string | null>("residential");
-  const [systemVolumeGallons, setSystemVolumeGallons] = useState<number>(80);
+  const [systemVolumeGallons, setSystemVolumeGallons] = useState<number>(60);
   const [initialFillTempF, setInitialFillTempF] = useState<number>(60);
   const [maxOperatingTempF, setMaxOperatingTempF] = useState<number>(180);
   const [initialFillPressurePsig, setInitialFillPressurePsig] = useState<number>(12);
@@ -91,7 +90,7 @@ export function ExpansionTankTool() {
 
   // Hydrate from URL
   useEffect(() => {
-    const urlVol = Number(getParam("vol", "80"));
+    const urlVol = Number(getParam("vol", "60"));
     const urlT1 = Number(getParam("t1", "60"));
     const urlT2 = Number(getParam("t2", "180"));
     const urlP1 = Number(getParam("p1", "12"));
@@ -127,10 +126,6 @@ export function ExpansionTankTool() {
   };
 
   const applyEstimatedVolume = () => {
-    // Standard rule of thumb:
-    // Copper finned-tube baseboard: ~1.5 gal / 10,000 BTU
-    // Cast iron radiators: ~3.0 gal / 10,000 BTU
-    // Radiant floor PEX: ~2.5 gal / 10,000 BTU
     let factor = 1.5;
     if (emitterStyle === "cast_iron") factor = 3.0;
     if (emitterStyle === "radiant_floor") factor = 2.5;
@@ -175,8 +170,8 @@ export function ExpansionTankTool() {
       "Fill Pressure (psig)",
       "Relief Valve (psig)",
       "Safety Buffer (psi)",
-      "Calculated Tank Volume (gal)",
-      "Recommended Commercial Size (gal)",
+      "Calculated Minimum Tank Volume (gal)",
+      "Recommended Commercial Tank Size (gal)",
       "Acceptance Volume (gal)",
       "Acceptance Ratio",
       "Glycol Sizing Penalty (%)",
@@ -212,7 +207,7 @@ export function ExpansionTankTool() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-      {/* 1. Primary Result Hero Card: Title + Value First */}
+      {/* 1. Primary Result Hero Card */}
       <div
         style={{
           background: "linear-gradient(145deg, #090e1a 0%, #0d1a2d 50%, #071f30 100%)",
@@ -229,7 +224,7 @@ export function ExpansionTankTool() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.75rem" }}>
           <div>
             <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              Recommended Commercial Tank Size (ASME-Rated)
+              Candidate Commercial Tank Size (ASME Standard Volume Tier)
             </div>
             <div style={{ fontSize: "2.5rem", fontWeight: 800, color: "#f8fafc", lineHeight: 1.1, marginTop: "0.25rem" }}>
               {output.recommendedCommercialTankSizeGallons}{" "}
@@ -238,7 +233,7 @@ export function ExpansionTankTool() {
               </span>
             </div>
             <div style={{ fontSize: "0.85rem", color: "#94a3b8", marginTop: "0.35rem" }}>
-              ASHRAE Minimum Sizing Requirement: <strong style={{ color: "#38bdf8" }}>{output.totalTankVolumeGallons} Gal</strong>
+              Calculated Minimum Gross Tank Volume (Vt): <strong style={{ color: "#38bdf8" }}>{output.totalTankVolumeGallons} Gal</strong>
             </div>
           </div>
 
@@ -285,7 +280,7 @@ export function ExpansionTankTool() {
             <strong style={{ color: "#34d399" }}>+{output.netFluidVolumetricExpansionPercent}%</strong>
           </div>
           <div>
-            <span style={{ color: "#94a3b8" }}>Operating Range: </span>
+            <span style={{ color: "#94a3b8" }}>Design Pressure Schedule: </span>
             <strong style={{ color: "#f8fafc" }}>
               {output.initialPressurePsig} ➔ {output.maxOperatingPressurePsig} psig
             </strong>
@@ -300,7 +295,7 @@ export function ExpansionTankTool() {
         </div>
       </div>
 
-      {/* 2. Preset Buttons with Standard System Classes and Distinct Active State */}
+      {/* 2. Preset Buttons */}
       <div className="preset-chips-container" role="group" aria-label="Hydronic System Archetypes">
         <label className="input-label" style={{ fontSize: "0.8rem", marginBottom: "0.4rem", display: "block" }}>
           Quick Engineering Presets
@@ -378,7 +373,7 @@ export function ExpansionTankTool() {
                 className="input-number"
               />
               <p className="input-help">
-                Total liquid content in boiler heat exchanger, piping mains, and radiant/baseboard zones.
+                Total liquid content in boiler heat exchanger, distribution piping, and radiant/baseboard zones.
               </p>
             </div>
 
@@ -562,7 +557,7 @@ export function ExpansionTankTool() {
               <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                 <span style={{ fontSize: "1.1rem" }}>⚖️</span>
                 <span style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--ink)" }}>
-                  3. ASME Pressure Schedule (P1 ➔ P2 ➔ Relief)
+                  3. Design Pressure Schedule (P1 ➔ P2 ➔ Relief)
                 </span>
               </div>
               <span className="metric-pill">
@@ -637,7 +632,7 @@ export function ExpansionTankTool() {
                 className="input-number"
               />
               <p className="input-help">
-                Protects relief valve from weeping at peak temperature: P2 = Prelief - Buffer ={" "}
+                Design limit protecting relief valve from weeping at peak temperature: P2 = Prelief - Buffer ={" "}
                 <strong>{reliefValvePressurePsig - safetyPressureBufferPsi} psig</strong> ({((reliefValvePressurePsig - safetyPressureBufferPsi) + 14.7).toFixed(1)} psia).
               </p>
             </div>
@@ -672,7 +667,10 @@ export function ExpansionTankTool() {
 
         {/* OUTPUT PANEL */}
         <div className="output-panel">
-          <StandardsBadge standards={["ASME BPVC Section VIII", "ASHRAE Systems Ch. 15", "Uniform Mechanical Code"]} />
+          <StandardsBadge
+            label="Calculation References:"
+            standards={["ASME BPVC Section VIII", "ASHRAE Systems Ch. 15"]}
+          />
 
           {/* DYNAMIC SVG TANK & PRESSURE VISUALIZER */}
           <ExpansionTankVisualizer output={output} />
@@ -762,15 +760,12 @@ export function ExpansionTankTool() {
                 <div style={{ fontFamily: "monospace", background: "#090d16", border: "1px solid #1e293b", color: "#f8fafc", padding: "0.6rem 0.8rem", borderRadius: "6px" }}>
                   Vt = Vacc / Ar = {output.acceptanceVolumeGallons} / {output.acceptanceRatio.toFixed(3)} ={" "}
                   <strong style={{ color: "#38bdf8" }}>{output.totalTankVolumeGallons} gal</strong><br />
-                  Selected Commercial ASME Standard Size:{" "}
+                  Candidate Commercial Standard Size Tier:{" "}
                   <strong style={{ color: "#34d399" }}>{output.recommendedCommercialTankSizeGallons} gal</strong>
                 </div>
               </div>
             )}
           </div>
-
-          {/* GOOGLE PREFERRED SOURCE BANNER - PLACED AFTER GRAPH/SCHEMAS */}
-          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
@@ -781,13 +776,13 @@ export function ExpansionTankTool() {
 
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
-            <div className="handoff-title">Upstream & Downstream Hydronic System Workflows</div>
+            <div className="handoff-title">Upstream &amp; Downstream Hydronic System Workflows</div>
             <Link href="/calculators/boiler-size-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Size Hydronic Boiler, Net AHRI Load & Baseboards</span>
+              <span>Size Hydronic Boiler, Net AHRI Load &amp; Baseboards</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/equivalent-length-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Calculate Hydronic Piping Equivalent Length & Friction Loss</span>
+              <span>Calculate Hydronic Piping Equivalent Length &amp; Friction Loss</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/heat-loss-calculator">
@@ -800,9 +795,9 @@ export function ExpansionTankTool() {
 
       {/* MOBILE STICKY RESULT BAR */}
       <MobileResultBar
-        label="Tank Volume"
+        label="Commercial Tank Tier"
         value={`${output.recommendedCommercialTankSizeGallons} Gal`}
-        unit={`(ASHRAE min: ${output.totalTankVolumeGallons} gal)`}
+        unit={`(Min: ${output.totalTankVolumeGallons} Gal)`}
       />
     </div>
   );

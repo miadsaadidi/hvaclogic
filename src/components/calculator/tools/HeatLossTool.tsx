@@ -9,12 +9,12 @@ import {
   WindowGlazingType,
   FoundationType,
   AirTightnessTier,
+  FOUNDATION_F_FACTORS,
 } from "@/lib/math/heat-loss";
 import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { BuildingHeatLossVisualizer } from "@/components/calculator/visualizers/BuildingHeatLossVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
@@ -70,6 +70,7 @@ export function HeatLossTool() {
   const [ceilingHeight, setCeilingHeight] = useState<number>(9);
   const [indoorTemp, setIndoorTemp] = useState<number>(70);
   const [outdoorTemp, setOutdoorTemp] = useState<number>(10);
+  const [isManualTemp, setIsManualTemp] = useState<boolean>(false);
   const [wallMode, setWallMode] = useState<"nominal_r" | "effective_u">("nominal_r");
   const [wallR, setWallR] = useState<number>(19);
   const [customWallU, setCustomWallU] = useState<number>(0.052);
@@ -88,7 +89,10 @@ export function HeatLossTool() {
     const urlWallU = Number(getParam("wallU", ""));
 
     if (!isNaN(urlArea) && urlArea >= 200) setFloorArea(urlArea);
-    if (!isNaN(urlOutdoor)) setOutdoorTemp(urlOutdoor);
+    if (!isNaN(urlOutdoor)) {
+      setOutdoorTemp(urlOutdoor);
+      setIsManualTemp(true);
+    }
     if (!isNaN(urlWallR) && urlWallR >= 0) setWallR(urlWallR);
     if (!isNaN(urlCeilingR) && urlCeilingR >= 0) setCeilingR(urlCeilingR);
 
@@ -104,6 +108,7 @@ export function HeatLossTool() {
   const handlePresetSelect = (preset: typeof PRESETS[0]) => {
     setFloorArea(preset.area);
     setOutdoorTemp(preset.outdoorTemp);
+    setIsManualTemp(false);
     setWallMode("nominal_r");
     setWallR(preset.wallR);
     setCeilingR(preset.ceilingR);
@@ -138,7 +143,7 @@ export function HeatLossTool() {
 
   const handleExportCsv = () => {
     const headers = "Component,Heat Loss (BTU/hr),Percentage (%)\n";
-    const rows = `Above-Grade Walls,${output.breakdown.wallsBtu},${output.breakdownPercentages.wallsPercent}%\nCeiling & Attic,${output.breakdown.ceilingBtu},${output.breakdownPercentages.ceilingPercent}%\nWindows & Glazing,${output.breakdown.windowsBtu},${output.breakdownPercentages.windowsPercent}%\nExterior Doors,${output.breakdown.doorsBtu},${output.breakdownPercentages.doorsPercent}%\nFoundation Slab/Basement,${output.breakdown.foundationBtu},${output.breakdownPercentages.foundationPercent}%\nAir Infiltration Leakage,${output.breakdown.infiltrationBtu},${output.breakdownPercentages.infiltrationPercent}%\n\nWALL CONDUCTION MODE,${output.wallAssemblyMode === "effective_u" ? "ASHRAE 90.1 Assembly U-Factor" : "Nominal Cavity R"},\nWALL TRANSMISSION R-VALUE,R-${output.effectiveWallR},\nWALL U-FACTOR,${output.wallUFactor} BTU/hr·ft²·°F,\nTOTAL PEAK HEAT LOSS,${output.totalHeatLossBtu} BTU/hr,100%\nPEAK POWER DEMAND,${output.totalHeatLossKw} kW,\nHEAT LOSS INTENSITY,${output.heatLossPerSqFtBtu} BTU/sq ft,\nRECOMMENDED FURNACE,${output.recommendedFurnaceBtu} BTU/hr,\nRECOMMENDED HEAT PUMP,${output.recommendedHeatPumpTons} Tons,\n`;
+    const rows = `Above-Grade Walls (${output.netWallAreaSqFt} sq ft @ U-${output.wallUFactor.toFixed(4)}),${output.breakdown.wallsBtu},${output.breakdownPercentages.wallsPercent}%\nCeiling & Attic (${output.ceilingAreaSqFt} sq ft @ U-${output.ceilingUFactor.toFixed(4)}),${output.breakdown.ceilingBtu},${output.breakdownPercentages.ceilingPercent}%\nWindows & Glazing (${output.windowAreaSqFt} sq ft @ U-${output.windowUFactor}),${output.breakdown.windowsBtu},${output.breakdownPercentages.windowsPercent}%\nExterior Doors (${output.doorAreaSqFt} sq ft @ U-${output.doorUFactor}),${output.breakdown.doorsBtu},${output.breakdownPercentages.doorsPercent}%\nFoundation (${output.perimeterFeet} ft perimeter @ F-${output.foundationFFactor}),${output.breakdown.foundationBtu},${output.breakdownPercentages.foundationPercent}%\nAir Infiltration (${output.infiltrationCfm} CFM @ ${output.naturalAch} ACHnat),${output.breakdown.infiltrationBtu},${output.breakdownPercentages.infiltrationPercent}%\n\nWALL MODE,${output.wallAssemblyMode === "effective_u" ? "Assembly U-Factor (Bridging Adjusted)" : "Nominal Cavity R"},\nINDOOR DESIGN TEMP,${indoorTemp}°F,\nOUTDOOR DESIGN TEMP,${outdoorTemp}°F,\nDESIGN DELTA T,${output.temperatureDifferenceDeltaT}°F,\nTOTAL PRELIMINARY HEAT LOSS,${output.totalHeatLossBtu} BTU/hr,100%\nTOTAL POWER DEMAND,${output.totalHeatLossKw} kW,\nHEAT LOSS INTENSITY,${output.heatLossPerSqFtBtu} BTU/sq ft·hr,\n`;
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -152,7 +157,7 @@ export function HeatLossTool() {
       {/* PRESET CHIPS */}
       <div className="preset-chips-container" role="group" aria-label="Building Vintage Presets">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginBottom: "0.25rem" }}>
-          <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>Sample Building Vintages:</span>
+          <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>Representative Building Vintages:</span>
           <button
             type="button"
             onClick={() => handlePresetSelect(PRESETS[0])}
@@ -192,6 +197,7 @@ export function HeatLossTool() {
             compact={true}
             onSelectLocation={(loc) => {
               setOutdoorTemp(loc.winterDb99);
+              setIsManualTemp(false);
               updateParam("outTemp", loc.winterDb99);
               updateParam("loc", loc.id);
             }}
@@ -222,7 +228,7 @@ export function HeatLossTool() {
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="outdoor-temp-input">
                 <span>Outdoor Design Temp</span>
-                <span className="unit-label">&deg;F (99% Winter)</span>
+                <span className="unit-label">{isManualTemp ? "Manual Override" : "99% Winter"}</span>
               </label>
               <input
                 id="outdoor-temp-input"
@@ -233,6 +239,7 @@ export function HeatLossTool() {
                 onChange={(e) => {
                   const val = Number(e.target.value);
                   setOutdoorTemp(val);
+                  setIsManualTemp(true);
                   updateParam("outTemp", val);
                 }}
                 className="input-number"
@@ -244,7 +251,7 @@ export function HeatLossTool() {
           <div style={{ marginBottom: "0.75rem", background: "var(--surface-subtle)", padding: "0.55rem 0.75rem", borderRadius: "0.5rem", border: "1px solid var(--border-color)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
               <span style={{ fontSize: "0.76rem", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", letterSpacing: "0.03em" }}>
-                Wall Conduction Mode
+                Wall Conduction Model
               </span>
               <Link
                 href="/calculators/effective-r-value-calculator"
@@ -275,7 +282,7 @@ export function HeatLossTool() {
                 className={`preset-chip-btn ${wallMode === "effective_u" ? "active" : ""}`}
                 style={{ margin: 0, padding: "0.35rem 0.5rem", fontSize: "0.75rem", textAlign: "center", width: "100%" }}
               >
-                ASHRAE 90.1 Assembly U
+                Assembly U-Factor (Bridging Adjusted)
               </button>
             </div>
           </div>
@@ -285,8 +292,8 @@ export function HeatLossTool() {
             {wallMode === "nominal_r" ? (
               <div className="form-group" style={{ margin: 0 }}>
                 <label htmlFor="wall-r-input">
-                  <span>Wall Insulation</span>
-                  <span className="unit-label">Nominal R</span>
+                  <span>Wall Cavity R</span>
+                  <span className="unit-label">Nominal</span>
                 </label>
                 <input
                   id="wall-r-input"
@@ -306,7 +313,7 @@ export function HeatLossTool() {
               <div className="form-group" style={{ margin: 0 }}>
                 <label htmlFor="custom-wall-u-input">
                   <span>Assembly U-Factor</span>
-                  <span className="unit-label">U (BTU/hr·ft²·°F)</span>
+                  <span className="unit-label">BTU/hr·ft²·°F</span>
                 </label>
                 <input
                   id="custom-wall-u-input"
@@ -331,7 +338,7 @@ export function HeatLossTool() {
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="ceiling-r-input">
                 <span>Ceiling Insulation</span>
-                <span className="unit-label">R-Value</span>
+                <span className="unit-label">Nominal R</span>
               </label>
               <input
                 id="ceiling-r-input"
@@ -373,8 +380,8 @@ export function HeatLossTool() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="tightness-select">
-                <span>Air Infiltration</span>
-                <span className="unit-label">Leakage</span>
+                <span>Air Infiltration Tier</span>
+                <span className="unit-label">ACH50 / ACHnat</span>
               </label>
               <select
                 id="tightness-select"
@@ -383,17 +390,17 @@ export function HeatLossTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value="tight_modern">Tight Modern (&lt;3 ACH50)</option>
-                <option value="average_code">Standard Code (3–5 ACH50)</option>
-                <option value="semi_leaky">Semi-Leaky (6–8 ACH50)</option>
-                <option value="very_leaky_historic">Historic Leaky (&gt;10 ACH50)</option>
+                <option value="tight_modern">Tight Modern (&lt;3 ACH50, ~0.20 ACHnat)</option>
+                <option value="average_code">Standard Code (3–5 ACH50, ~0.38 ACHnat)</option>
+                <option value="semi_leaky">Semi-Leaky (6–8 ACH50, ~0.65 ACHnat)</option>
+                <option value="very_leaky_historic">Historic Leaky (&gt;10 ACH50, ~1.10 ACHnat)</option>
               </select>
             </div>
 
             <div className="form-group" style={{ margin: 0 }}>
               <label htmlFor="foundation-select">
-                <span>Foundation Type</span>
-                <span className="unit-label">Subgrade</span>
+                <span>Foundation Model</span>
+                <span className="unit-label">F-Factor</span>
               </label>
               <select
                 id="foundation-select"
@@ -402,9 +409,9 @@ export function HeatLossTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value="slab_on_grade">Slab-on-Grade</option>
-                <option value="conditioned_basement">Conditioned Basement</option>
-                <option value="unconditioned_crawlspace">Crawlspace</option>
+                <option value="slab_on_grade">Slab-on-Grade (F-0.50)</option>
+                <option value="conditioned_basement">Conditioned Basement (F-0.25)</option>
+                <option value="unconditioned_crawlspace">Crawlspace (F-0.35)</option>
               </select>
             </div>
           </div>
@@ -414,12 +421,12 @@ export function HeatLossTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Building Heat Loss Result">
-            <div className="result-label">Peak Whole-Building Heat Loss</div>
+            <div className="result-label">Preliminary Peak Building Heat Loss</div>
             <div className="result-value" style={{ color: "var(--accent-heating)" }}>
               {output.totalHeatLossBtu.toLocaleString()} BTU/hr
             </div>
             <div className="result-unit">
-              Power Demand: <strong>{output.totalHeatLossKw} kW</strong> &bull; &Delta;T = {output.temperatureDifferenceDeltaT}&deg;F
+              Power Demand: <strong>{output.totalHeatLossKw} kW</strong> &bull; &Delta;T = {output.temperatureDifferenceDeltaT}&deg;F ({indoorTemp}&deg;F in / {outdoorTemp}&deg;F out)
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -436,12 +443,12 @@ export function HeatLossTool() {
                   border: "1px solid currentColor",
                 }}
               >
-                {output.heatLossPerSqFtBtu} BTU/sq ft Specific Loss
+                {output.heatLossPerSqFtBtu} BTU/sq ft·hr Specific Thermal Intensity
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ACCA Manual J® (8th Ed)", "ASHRAE Standard 90.1", "ASHRAE Standard 90.2"]} />
+          <StandardsBadge standards={["ASHRAE Handbook of Fundamentals", "ACCA Manual J Reference Physics"]} />
 
           {/* BUILDING HEAT LOSS SVG VISUALIZER */}
           <BuildingHeatLossVisualizer output={output} />
@@ -449,33 +456,30 @@ export function HeatLossTool() {
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
-              <div className="item-label">Air Infiltration</div>
+              <div className="item-label">Air Infiltration Loss</div>
               <div className="item-value" style={{ color: "#f43f5e" }}>
-                {output.infiltrationCfm} CFM ({output.breakdownPercentages.infiltrationPercent}%)
+                {output.breakdown.infiltrationBtu.toLocaleString()} BTU/hr ({output.breakdownPercentages.infiltrationPercent}%)
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Wall &amp; Window Loss</div>
+              <div className="item-label">Envelope Conduction</div>
               <div className="item-value">
-                {(output.breakdown.wallsBtu + output.breakdown.windowsBtu).toLocaleString()} BTU/hr
+                {(output.totalHeatLossBtu - output.breakdown.infiltrationBtu).toLocaleString()} BTU/hr ({100 - output.breakdownPercentages.infiltrationPercent}%)
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Recommended Furnace</div>
-              <div className="item-value" style={{ color: "var(--accent-heating)" }}>
-                {output.recommendedFurnaceBtu.toLocaleString()} BTU
-              </div>
-            </div>
-            <div className="secondary-result-item">
-              <div className="item-label">Heat Pump Tonnage</div>
+              <div className="item-label">Estimated Infiltration Airflow</div>
               <div className="item-value" style={{ color: "var(--accent-cooling)" }}>
-                {output.recommendedHeatPumpTons} Tons
+                {output.infiltrationCfm} CFM ({output.naturalAch} ACHnat)
+              </div>
+            </div>
+            <div className="secondary-result-item">
+              <div className="item-label">Foundation / Slab Conduction</div>
+              <div className="item-value">
+                {output.breakdown.foundationBtu.toLocaleString()} BTU/hr (F-{output.foundationFFactor})
               </div>
             </div>
           </div>
-
-          {/* GOOGLE PREFERRED SOURCE BANNER */}
-          <GooglePreferredBanner />
 
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
@@ -486,21 +490,21 @@ export function HeatLossTool() {
 
           {/* WORKFLOW HANDOFFS */}
           <div className="handoff-card">
-            <div className="handoff-title">Related Building Science &amp; Heating Sizing Tools</div>
+            <div className="handoff-title">Next Steps: Detailed Load Calculation &amp; Equipment Selection</div>
             <Link href="/calculators/effective-r-value-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Derive Exact Wall Assembly U-Factor with Stud Thermal Bridging (ASHRAE 90.1)</span>
+              <span>Derive Exact Wall Assembly U-Factor with Stud Thermal Bridging</span>
               <span>→</span>
             </Link>
-            <Link href="/guides/framing-thermal-bridging-effective-r-value" style={{ marginBottom: "0.5rem" }}>
-              <span>Read Engineering Guide: Framing Thermal Bridging &amp; Effective R-Value</span>
+            <Link href="/calculators/btu-calculator" style={{ marginBottom: "0.5rem" }}>
+              <span>Whole-House Room-by-Room Heating &amp; Cooling Load Screening</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/furnace-size-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Size 80% vs 96% AFUE Gas Furnace for {output.totalHeatLossBtu.toLocaleString()} BTU Heat Loss</span>
+              <span>Size Replacement Gas Furnace for {output.totalHeatLossBtu.toLocaleString()} BTU Heat Loss</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/heat-pump-size-calculator">
-              <span>Find Cold-Climate Heat Pump Thermal Balance Point &amp; Deficit</span>
+              <span>Find Cold-Climate Heat Pump Balance Point &amp; Backup Deficit</span>
               <span>→</span>
             </Link>
           </div>
@@ -509,8 +513,8 @@ export function HeatLossTool() {
 
       {/* MOBILE STICKY RESULT BAR */}
       <MobileResultBar
-        label="Total Heat Loss"
-        value={`${output.totalHeatLossBtu.toLocaleString()} BTU`}
+        label="Preliminary Heat Loss"
+        value={`${output.totalHeatLossBtu.toLocaleString()} BTU/hr`}
         unit={`(${output.totalHeatLossKw} kW)`}
       />
     </div>

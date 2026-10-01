@@ -138,7 +138,7 @@ export function CfmCalculatorTool() {
           { id: "duct-velocity", label: "📏 Duct & Velocity (FPM)" },
           { id: "thermal-load", label: "🔥 Thermal Load (BTU)" },
           { id: "room-ach", label: "🏠 Room Volume & ACH" },
-          { id: "tonnage", label: "❄️ AC Tonnage (400 CFM/ton)" },
+          { id: "tonnage", label: "❄️ AC Tonnage (Nominal Benchmark)" },
           { id: "electric-heat", label: "⚡ Electric Heat Strip" },
         ].map((tab) => (
           <button
@@ -297,9 +297,9 @@ export function CfmCalculatorTool() {
                 </div>
                 <div style={{ display: "flex", gap: "0.3rem", marginTop: "0.4rem", flexWrap: "wrap" }}>
                   {[
-                    { label: "Quiet Trunk (600 FPM)", val: 600 },
-                    { label: "Standard Branch (800 FPM)", val: 800 },
-                    { label: "Main Supply (1,000 FPM)", val: 1000 },
+                    { label: "Low-Velocity Guideline (600 FPM)", val: 600 },
+                    { label: "Branch Target (800 FPM)", val: 800 },
+                    { label: "Trunk Target (1,000 FPM)", val: 1000 },
                   ].map((preset) => (
                     <button
                       key={preset.label}
@@ -514,7 +514,7 @@ export function CfmCalculatorTool() {
 
               <div className="form-group">
                 <label htmlFor="cfm-rate-select">
-                  <span>Climate Airflow Standard</span>
+                  <span>Climate Airflow Benchmark</span>
                   <span className="unit-label">Rate</span>
                 </label>
                 <select
@@ -590,7 +590,9 @@ export function CfmCalculatorTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="CFM Airflow Sizing Result">
-            <div className="result-label">Required Airflow Volume</div>
+            <div className="result-label">
+              {mode === "duct-velocity" ? "Calculated Volumetric Airflow" : "Calculated Airflow"}
+            </div>
             <div className="result-value">{result.cfm.toLocaleString()} CFM</div>
             <div className="result-unit">
               Cubic Feet Per Minute ({(result.cfm * 1.699).toFixed(0)} m&sup3;/h metric)
@@ -610,12 +612,12 @@ export function CfmCalculatorTool() {
                   border: "1px solid rgba(0, 210, 255, 0.3)",
                 }}
               >
-                Equivalent Cooling: ~{(result.cfm / 400).toFixed(1)} Tons Capacity
+                Nominal Airflow Benchmark: ~{(result.cfm / 400).toFixed(1)} Tons (@ 400 CFM/ton)
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ASHRAE 62.1 / 62.2", "ACCA Manual D®", "California Title 24"]} />
+          <StandardsBadge standards={["Fluid Dynamics Fundamentals", "ACCA Manual D® Guidelines", "ASHRAE Handbook References"]} />
 
           {/* REACTIVE VISUALIZER */}
           <CfmAirflowVisualizer result={result} />
@@ -623,21 +625,21 @@ export function CfmCalculatorTool() {
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
-              <div className="item-label">Air Velocity Limit</div>
+              <div className="item-label">Air Velocity Target</div>
               <div className="item-value" style={{ fontSize: "1.05rem" }}>
-                {result.velocityFpm ? `${result.velocityFpm} FPM` : "Standard Branch"}
+                {result.velocityFpm ? `${result.velocityFpm} FPM` : "Design Target"}
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Acoustic Comfort</div>
+              <div className="item-label">Velocity Guideline</div>
               <div className="item-value" style={{ fontSize: "1.05rem" }}>
                 {result.velocityCategory === "whisper"
-                  ? "🟢 Whisper (<600)"
+                  ? "🟢 Low Velocity (<600)"
                   : result.velocityCategory === "noisy"
-                  ? "🟠 Moderate (900-1200)"
+                  ? "🟠 Trunk Range (900–1200)"
                   : result.velocityCategory === "excessive"
-                  ? "🔴 Excessive (>1200)"
-                  : "🟡 Standard (600-900)"}
+                  ? "🔴 Higher Velocity (>1200)"
+                  : "🟡 Branch Target (600–900)"}
               </div>
             </div>
             <div className="secondary-result-item">
@@ -681,9 +683,9 @@ export function CfmCalculatorTool() {
 
       {/* MOBILE RESULT BAR */}
       <MobileResultBar
-        label="Required Airflow"
+        label={mode === "duct-velocity" ? "Calculated Airflow" : "Calculated Airflow"}
         value={`${result.cfm.toLocaleString()} CFM`}
-        unit={`(~${(result.cfm / 400).toFixed(1)} Tons)`}
+        unit={`(~${(result.cfm / 400).toFixed(1)} Tons Nom.)`}
       />
     </div>
   );

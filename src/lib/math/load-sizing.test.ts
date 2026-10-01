@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { calculateHeatLoad } from "./load-sizing";
 
-describe("Whole-Home BTU & Load Sizing Math Engine", () => {
-  it("GOLD-LOAD-01: sizes a 2,000 sq ft home in Climate Zone 4", () => {
+describe("Whole-Home BTU & Load Sizing Screening Engine", () => {
+  it("GOLD-LOAD-01: sizes a 2,000 sq ft home in Climate Zone 4 (default inputs)", () => {
     const result = calculateHeatLoad({
       areaSqFt: 2000,
       ceilingHeightFt: 9,
@@ -12,11 +12,20 @@ describe("Whole-Home BTU & Load Sizing Math Engine", () => {
       occupants: 4,
     });
 
-    // Golden Reference Expected: Total Cooling ~34,200 BTU/hr (approx 2.85 to 3.0 Tons), Heating ~48,000 to 55,000 BTU/hr
-    expect(result.coolingTonnage).toBeGreaterThanOrEqual(2.5);
-    expect(result.coolingTonnage).toBeLessThanOrEqual(3.5);
-    expect(result.totalHeatingBtu).toBeGreaterThan(40000);
-    expect(result.totalHeatingBtu).toBeLessThan(70000);
+    // Exact Golden Reference for Screening Model:
+    // Base Cooling = 2000 * 14.25 * (9/8) * 1.0 * 0.95 = 30,459.375 BTU/hr
+    // Sensible = (30459.375 * 0.85 + 2120) * 1.15 = 32,212 BTU/hr
+    // Latent = (30459.375 * 0.15 + 800) * 1.15 = 6,174 BTU/hr
+    // Total Cooling = 38,386 BTU/hr (3.2 Tons)
+    // Total Heating = 2000 * 24 * (9/8) * 1.0 * 0.95 * 1.15 = 58,995 BTU/hr
+    // Recommended CFM = 32212 / (1.08 * 20) = ~1490 CFM
+    expect(result.sensibleCoolingBtu).toBe(32212);
+    expect(result.latentCoolingBtu).toBe(6174);
+    expect(result.totalCoolingBtu).toBe(38386);
+    expect(result.coolingTonnage).toBe(3.2);
+    expect(result.totalHeatingBtu).toBe(58995);
+    expect(result.recommendedCfm).toBe(1490);
+    expect(result.recommendedFurnaceBtu).toBe(80000);
     expect(result.breakdown.length).toBe(5);
   });
 

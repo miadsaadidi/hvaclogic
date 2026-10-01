@@ -27,7 +27,8 @@ export type StandardId =
   | "NIST"
   | "HVI"
   | "NFPA"
-  | "IFGC";
+  | "IFGC"
+  | "ASME";
 
 export interface SchemaFAQ {
   question: string;

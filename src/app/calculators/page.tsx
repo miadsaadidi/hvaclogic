@@ -6,16 +6,30 @@ import { HomeSearchFilter } from "@/components/home/HomeSearchFilter";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "HVAC Engineering Calculators Directory",
+  title: "HVAC Engineering Calculators Directory — 25 Interactive Tools",
   description:
-    "Free directory of 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
+    "Directory of 25 browser-based HVAC calculation tools for duct hydraulics, cooling loads, heating systems, psychrometrics, and field diagnostics.",
+  keywords: [
+    "HVAC calculators",
+    "HVAC engineering calculators",
+    "duct sizing calculator",
+    "HVAC load calculator",
+    "airflow calculator",
+    "heat pump calculator",
+    "furnace sizing calculator",
+    "boiler calculator",
+    "refrigerant calculator",
+    "psychrometric calculator",
+    "HVAC diagnostic tools",
+    "building science calculator",
+  ],
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/calculators`,
   },
   openGraph: {
-    title: "HVAC Engineering Calculators: All 24 Diagnostic Tools",
+    title: "HVAC Engineering Calculators: All 25 Calculation Tools",
     description:
-      "Free directory of 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
+      "Directory of 25 browser-based HVAC calculation tools for duct hydraulics, cooling loads, heating systems, psychrometrics, and field diagnostics.",
     url: `${siteConfig.canonicalDomain}/calculators`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -31,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HVAC Engineering Calculators: All 24 Diagnostic Tools",
+    title: "HVAC Engineering Calculators: All 25 Calculation Tools",
     description:
-      "Free directory of 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, psychrometrics, and diagnostics.",
+      "Directory of 25 browser-based HVAC calculation tools for duct hydraulics, cooling loads, heating systems, psychrometrics, and field diagnostics.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
@@ -47,9 +61,9 @@ export default function CalculatorsDirectoryPage() {
       {
         "@type": "CollectionPage",
         "@id": `${siteConfig.canonicalDomain}/calculators/#collection`,
-        name: "HVAC Engineering Calculators Directory — All 24 Calculation Tools",
+        name: "HVAC Engineering Calculators Directory — All 25 Calculation Tools",
         description:
-          "Comprehensive directory of all 24 deterministic HVAC engineering calculators for duct hydraulics, cooling loads, heating systems, combustion air, psychrometrics, and refrigerant diagnostics.",
+          "Comprehensive directory of 25 browser-based HVAC calculation tools for duct hydraulics, cooling loads, heating systems, combustion air, psychrometrics, and refrigerant diagnostics.",
         url: `${siteConfig.canonicalDomain}/calculators`,
         isPartOf: {
           "@type": "WebSite",
@@ -130,8 +144,8 @@ export default function CalculatorsDirectoryPage() {
           </h1>
 
           <p className="hero-lead-text">
-            Deterministic, peer-reviewed computational engines for building science, fluid dynamics,
-            heat loss, and refrigerant diagnostics. 100% client-side precision with zero database tracking.
+            Browser-based HVAC calculation tools for airflow, cooling loads, heating systems,
+            building science, psychrometrics, and field diagnostics. Client-side computation with local in-browser processing.
           </p>
 
           {/* QUICK CATEGORY JUMP PILLS */}
@@ -208,13 +222,13 @@ export default function CalculatorsDirectoryPage() {
         >
           <div style={{ textAlign: "center", marginBottom: "2rem" }}>
             <p className="eyebrow" style={{ marginBottom: "0.25rem" }}>
-              Governing Standards &amp; Physics
+              Engineering References &amp; Physics
             </p>
             <h2 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0.25rem 0" }}>
-              Built on First Principles &amp; Industry Standards
+              Built on First Principles &amp; Engineering References
             </h2>
             <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", maxWidth: "600px", margin: "0.5rem auto 0" }}>
-              Every tool in this directory executes strictly verified formulas from major engineering authorities:
+              Calculators in this directory reference recognized engineering methodologies and fluid mechanics principles:
             </p>
           </div>
 
@@ -238,7 +252,7 @@ export default function CalculatorsDirectoryPage() {
                 Airflow &amp; Hydraulics
               </h3>
               <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.5, margin: "0 0 1rem" }}>
-                Governed by Colebrook-White friction factors, Darcy-Weisbach head loss, SMACNA duct leakage classes, and ACCA Manual D sizing protocols.
+                Calculates duct sizing and friction losses referencing Colebrook-White equations, Darcy-Weisbach relations, SMACNA guidelines, and Manual D design concepts.
               </p>
               <Link
                 href="/airflow-ducts"
@@ -261,7 +275,7 @@ export default function CalculatorsDirectoryPage() {
                 Cooling &amp; Thermal Loads
               </h3>
               <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.5, margin: "0 0 1rem" }}>
-                Standardized on ACCA Manual J (8th Edition), Manual S equipment selection criteria, and AHRI 210/240 performance ratings.
+                Provides cooling load estimates and equipment sizing comparisons referencing ACCA Manual J/S principles and published AHRI performance data.
               </p>
               <Link
                 href="/cooling-loads"
@@ -284,7 +298,7 @@ export default function CalculatorsDirectoryPage() {
                 Heating &amp; Electrification
               </h3>
               <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.5, margin: "0 0 1rem" }}>
-                Inverter heat pump thermal balance point models, cold-climate COP deratings, NFPA 54 combustion air sizing, and Hydronics Institute baseboard EDR specs.
+                Models heat pump balance points, temperature-dependent capacity curves, combustion air sizing references (NFPA 54/IFGC), and hydronic heating estimates.
               </p>
               <Link
                 href="/heating-systems"
@@ -307,7 +321,7 @@ export default function CalculatorsDirectoryPage() {
                 Diagnostics &amp; Refrigerants
               </h3>
               <p style={{ fontSize: "0.85rem", color: "var(--text-muted)", lineHeight: 1.5, margin: "0 0 1rem" }}>
-                NIST REFPROP saturation curves, zeotropic A2L temperature glide evaluation (R-454B, R-32), and target subcooling/superheat charging charts.
+                References thermophysical property data (including NIST REFPROP models), zeotropic A2L temperature glide concepts, and field superheat/subcooling measurement conventions.
               </p>
               <Link
                 href="/field-diagnostics"
@@ -332,7 +346,7 @@ export default function CalculatorsDirectoryPage() {
         >
           <span style={{ fontSize: "2rem", display: "inline-block", marginBottom: "0.5rem" }}>🔒</span>
           <h2 style={{ fontSize: "1.35rem", fontWeight: 700, margin: "0 0 0.5rem" }}>
-            The 100% Client-Side Privacy Guarantee
+            Client-Side Calculation Architecture
           </h2>
           <p
             style={{
@@ -343,9 +357,9 @@ export default function CalculatorsDirectoryPage() {
               lineHeight: 1.6,
             }}
           >
-            Unlike traditional subscription software, all 21 HVACLogic calculators evaluate formulas directly in your
-            browser. Project numbers, room dimensions, equipment bids, and client data never leave your device. Zero tracking,
-            zero database storage, and instant offline PWA calculation speed.
+            Unlike cloud-hosted calculation platforms, all 25 HVACLogic calculators evaluate formulas directly in your
+            browser. Inputs and project figures remain on your local device without being stored in an external database.
+            Standard anonymous site analytics are collected for performance and traffic measurement.
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
             <Link

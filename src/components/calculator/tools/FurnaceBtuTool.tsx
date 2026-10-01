@@ -15,7 +15,6 @@ import { useHydrateParams } from "@/lib/hooks/useHydrateParams";
 import { FurnaceFlameVisualizer } from "@/components/calculator/visualizers/FurnaceFlameVisualizer";
 import { MobileResultBar } from "@/components/calculator/MobileResultBar";
 import { ActionButtonBar } from "@/components/calculator/ActionButtonBar";
-import { GooglePreferredBanner } from "@/components/calculator/GooglePreferredBanner";
 import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill";
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 import { AshraeClimateSelector } from "@/components/calculator/AshraeClimateSelector";
@@ -79,13 +78,13 @@ export function FurnaceBtuTool() {
   }, [sqft, climateZone, ceilingHeight, insulation, sunExposure, afue, tempRise]);
 
   const handleExportCsv = () => {
-    const headers = "Square Footage,Climate Zone,AFUE %,Input BTU,Output BTU,Nominal Model BTU,Cabinet Width,Heating CFM\n";
-    const row = `${output.floorAreaSqFt},${climateZone},${output.afueRatingPercent},${output.requiredInputBtu},${output.requiredOutputBtu},${output.nominalFurnaceModelBtu},"${output.recommendedCabinetWidth}",${output.requiredHeatingCfm}\n`;
+    const headers = "Square Footage,Climate Zone,AFUE %,Estimated Heating Load BTU/hr,Approximate Input BTU/hr,Candidate Nominal Range,Theoretical CFM\n";
+    const row = `${output.floorAreaSqFt},${climateZone},${output.afueRatingPercent},${output.estimatedHeatingLoadBtu},${output.approximateInputRequirementBtu},"${output.candidateNominalRange}",${output.theoreticalHeatingCfm}\n`;
     const blob = new Blob([headers + row], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `furnace-sizing-${output.nominalFurnaceModelBtu / 1000}k-btu.csv`;
+    a.download = `furnace-screening-${output.candidateNominalInputBtu / 1000}k-btu.csv`;
     a.click();
   };
 
@@ -94,7 +93,7 @@ export function FurnaceBtuTool() {
       {/* QUICK PRESET CHIPS */}
       <div className="preset-chips-container" role="group" aria-label="Popular Home Furnace Sizing Scenarios">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginBottom: "0.25rem" }}>
-          <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>Sample Home Profiles:</span>
+          <span className="preset-chips-label" style={{ margin: 0, width: "auto" }}>Sample Home Screening Profiles:</span>
           <button
             type="button"
             onClick={() => handlePresetSelect(FURNACE_PRESETS[1])}
@@ -187,7 +186,7 @@ export function FurnaceBtuTool() {
           <div className="form-group">
             <label htmlFor="zone-select">
               <span>Geographic Heating Zone</span>
-              <span className="unit-label">Climate Severity</span>
+              <span className="unit-label">Screening Baseline</span>
             </label>
             <select
               id="zone-select"
@@ -214,8 +213,8 @@ export function FurnaceBtuTool() {
           {/* AFUE EFFICIENCY SELECTOR */}
           <div className="form-group">
             <label htmlFor="afue-select">
-              <span>Furnace AFUE Efficiency</span>
-              <span className="unit-label">Gas Tier</span>
+              <span>Furnace AFUE Rating Tier</span>
+              <span className="unit-label">Seasonal Efficiency</span>
             </label>
             <select
               id="afue-select"
@@ -228,10 +227,10 @@ export function FurnaceBtuTool() {
               className="input-number"
               style={{ cursor: "pointer" }}
             >
-              <option value={80}>80% AFUE (Standard Non-Condensing, Metal Chimney)</option>
-              <option value={92}>92% AFUE (Condensing Single-Stage)</option>
-              <option value={96}>96% AFUE (Energy Star Condensing Two-Stage - Recommended)</option>
-              <option value={98}>98% AFUE (High-Efficiency Modulating Inverter)</option>
+              <option value={80}>80% AFUE (Standard Non-Condensing, Metal B-Vent Flue)</option>
+              <option value={92}>92% AFUE (Condensing Single-Stage, PVC Direct Vent)</option>
+              <option value={96}>96% AFUE (Energy Star Condensing Two-Stage / Modulating)</option>
+              <option value={98}>98% AFUE (Ultra-High Efficiency Modulating Condensing)</option>
             </select>
           </div>
 
@@ -239,8 +238,8 @@ export function FurnaceBtuTool() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "0.75rem" }}>
             <div className="form-group">
               <label htmlFor="ceiling-select">
-                <span>Ceiling</span>
-                <span className="unit-label">Height</span>
+                <span>Ceiling Height</span>
+                <span className="unit-label">Volume Adj</span>
               </label>
               <select
                 id="ceiling-select"
@@ -249,18 +248,18 @@ export function FurnaceBtuTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value={8}>8 Feet (Standard)</option>
-                <option value={9}>9 Feet (1.12x)</option>
-                <option value={10}>10 Feet (1.25x)</option>
-                <option value={12}>12 Feet (1.50x)</option>
-                <option value={14}>14 Feet (1.75x)</option>
-                <option value={18}>18 Feet Cathedral (2.25x)</option>
+                <option value={8}>8 Feet (Standard 1.00x)</option>
+                <option value={9}>9 Feet (+4% Volume)</option>
+                <option value={10}>10 Feet (+8% Volume)</option>
+                <option value={12}>12 Feet (+16% Volume)</option>
+                <option value={14}>14 Feet (+24% Volume)</option>
+                <option value={18}>18 Feet Cathedral (+40% Volume)</option>
               </select>
             </div>
 
             <div className="form-group">
               <label htmlFor="insulation-select">
-                <span>Insulation</span>
+                <span>Envelope Insulation</span>
                 <span className="unit-label">Quality</span>
               </label>
               <select
@@ -272,24 +271,44 @@ export function FurnaceBtuTool() {
               >
                 {(["poor", "average", "good", "spray_foam"] as InsulationGrade[]).map((k) => (
                   <option key={k} value={k}>
-                    {INSULATION_FACTORS[k].label.split(" (")[0]}
+                    {INSULATION_FACTORS[k].label.split(" (")[0]} ({INSULATION_FACTORS[k].multiplier}x)
                   </option>
                 ))}
               </select>
             </div>
+          </div>
+
+          {/* TEMPERATURE RISE SELECTOR */}
+          <div className="form-group">
+            <label htmlFor="temp-rise-select">
+              <span>Heat Exchanger Temperature Rise (ΔT)</span>
+              <span className="unit-label">Airflow Delta</span>
+            </label>
+            <select
+              id="temp-rise-select"
+              value={tempRise}
+              onChange={(e) => setTempRise(Number(e.target.value))}
+              className="input-number"
+              style={{ cursor: "pointer" }}
+            >
+              <option value={35}>35°F Rise (High Airflow)</option>
+              <option value={45}>45°F Rise (Representative Standard)</option>
+              <option value={55}>55°F Rise (Moderate Airflow)</option>
+              <option value={65}>65°F Rise (Low Airflow)</option>
+            </select>
           </div>
         </div>
 
         {/* OUTPUT PANEL */}
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
-          <div className="primary-result-card" role="region" aria-live="polite" aria-label="Recommended Furnace Sizing Result">
-            <div className="result-label">Recommended Nominal Furnace Rating</div>
+          <div className="primary-result-card" role="region" aria-live="polite" aria-label="Preliminary Furnace Sizing Estimate">
+            <div className="result-label">Preliminary Candidate Nominal Size Range</div>
             <div className="result-value" style={{ color: "var(--accent-heating)" }}>
-              {output.nominalFurnaceModelBtu.toLocaleString()} BTU/hr
+              {output.candidateNominalRange}
             </div>
             <div className="result-unit">
-              Standard <strong>{output.nominalFurnaceModelBtu / 1000}k BTU Input</strong> ({output.afueRatingPercent}% AFUE)
+              Screening estimate based on <strong>{output.afueRatingPercent}% AFUE</strong> rating tier
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -306,12 +325,15 @@ export function FurnaceBtuTool() {
                   border: "1px solid rgba(255, 107, 74, 0.3)",
                 }}
               >
-                Delivers {output.requiredOutputBtu.toLocaleString()} BTU/hr Output Heat into Living Space
+                Estimated Space Heating Load: {output.estimatedHeatingLoadBtu.toLocaleString()} BTU/hr
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ACCA Manual S®", "DOE 10 CFR 430", "AHRI Ratings"]} />
+          <StandardsBadge
+            label="Calculation References:"
+            standards={["ACCA Manual J / S", "DOE 10 CFR 430", "AHRI Ratings"]}
+          />
 
           {/* COMBUSTION FLAME VISUALIZER */}
           <FurnaceFlameVisualizer output={output} />
@@ -319,19 +341,19 @@ export function FurnaceBtuTool() {
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
-              <div className="item-label">Net Heat Loss (Output)</div>
+              <div className="item-label">Estimated Space Load</div>
               <div className="item-value" style={{ color: "var(--accent-heating)" }}>
-                {output.requiredOutputBtu.toLocaleString()} BTU
+                {output.estimatedHeatingLoadBtu.toLocaleString()} BTU/hr
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Blower Airflow CFM</div>
-              <div className="item-value">{output.requiredHeatingCfm} CFM</div>
+              <div className="item-label">Theoretical Airflow</div>
+              <div className="item-value">{output.theoreticalHeatingCfm} CFM</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Cabinet Chassis Width</div>
-              <div className="item-value" style={{ fontSize: "0.95rem" }}>
-                {output.recommendedCabinetWidth}
+              <div className="item-label">Typical Cabinet Width</div>
+              <div className="item-value" style={{ fontSize: "0.85rem" }}>
+                {output.typicalCabinetWidthRange}
               </div>
             </div>
             <div className="secondary-result-item">
@@ -342,9 +364,6 @@ export function FurnaceBtuTool() {
             </div>
           </div>
 
-          {/* GOOGLE PREFERRED SOURCE BANNER */}
-          <GooglePreferredBanner />
-
           {/* ACTION BUTTON BAR */}
           <ActionButtonBar
             toolRoute="/calculators/furnace-size-calculator"
@@ -354,13 +373,13 @@ export function FurnaceBtuTool() {
 
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
-            <div className="handoff-title">Next Step in Heating System Engineering</div>
-            <Link href={`/calculators/ductulator?cfm=${output.requiredHeatingCfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
-              <span>Size Furnace Supply Plenum &amp; Trunk ({output.requiredHeatingCfm} CFM)</span>
+            <div className="handoff-title">Next Step in Heating System Sizing</div>
+            <Link href={`/calculators/ductulator?cfm=${output.theoreticalHeatingCfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
+              <span>Size Furnace Supply Plenum &amp; Trunk ({output.theoreticalHeatingCfm} CFM)</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/btu-calculator">
-              <span>Cross-Check Whole-Home Summer Cooling Load</span>
+            <Link href="/calculators/heat-pump-size-calculator">
+              <span>Compare with Cold-Climate Heat Pump Sizing</span>
               <span>→</span>
             </Link>
           </div>
@@ -369,9 +388,9 @@ export function FurnaceBtuTool() {
 
       {/* MOBILE STICKY RESULT BAR */}
       <MobileResultBar
-        label="Recommended Furnace"
-        value={`${output.nominalFurnaceModelBtu / 1000}k BTU`}
-        unit={`(${output.afueRatingPercent}% AFUE)`}
+        label="Candidate Furnace Range"
+        value={output.candidateNominalRange}
+        unit={`(${output.afueRatingPercent}% AFUE Tier)`}
       />
     </div>
   );

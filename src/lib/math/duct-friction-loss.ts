@@ -1,6 +1,6 @@
 /**
  * HVACLogic Duct Total Equivalent Length (TEL) & Friction Rate Engine
- * Conforms to ACCA Manual D (3rd Edition, Appendix 3 Fitting Equivalent Lengths).
+ * Implements standard ACCA Manual D calculation relationships and representative Appendix 3 fitting equivalent lengths.
  */
 
 export interface DuctFittingItem {
@@ -10,6 +10,10 @@ export interface DuctFittingItem {
   category: "supply" | "return" | "branch";
 }
 
+/**
+ * Representative fitting equivalent length values referencing ACCA Manual D Appendix 3.
+ * Actual equivalent lengths vary with fitting dimensions, throat radius, and vane construction.
+ */
 export const ACCA_FITTING_DATABASE: DuctFittingItem[] = [
   { id: "plenum_supply_straight", name: "Supply Plenum (End Takeoff / Straight)", defaultEqLengthFt: 10, category: "supply" },
   { id: "plenum_supply_tee", name: "Supply Plenum (Bullhead Tee 90°)", defaultEqLengthFt: 35, category: "supply" },
@@ -36,12 +40,12 @@ export interface DuctFrictionLossInput {
   straightDuctReturnFt: number;
   supplyFittings: SelectedFitting[];
   returnFittings: SelectedFitting[];
-  blowerTespInWg: number; // Total External Static Pressure rating (e.g. 0.50 or 0.80)
+  blowerTespInWg: number; // Total External Static Pressure rating at design CFM (e.g. 0.50 or 0.80)
   evaporatorCoilDropInWg: number; // e.g. 0.20
   filterDropInWg: number; // e.g. 0.10 to 0.20
   supplyRegisterDropInWg: number; // e.g. 0.03
   returnGrilleDropInWg: number; // e.g. 0.03
-  otherDevicesDropInWg?: number; // e.g. 0.02
+  otherDevicesDropInWg?: number; // e.g. 0.00
 }
 
 export interface DuctFrictionLossOutput {
@@ -62,7 +66,7 @@ export interface DuctFrictionLossOutput {
 
 /**
  * Computes Total Equivalent Length (TEL), Available Static Pressure (ASP),
- * and ACCA Manual D Design Friction Rate (FR).
+ * and calculated Design Friction Rate (FR).
  */
 export function calculateDuctFrictionLoss(input: DuctFrictionLossInput): DuctFrictionLossOutput {
   const supplyStraight = Math.max(0, input.straightDuctSupplyFt);
@@ -101,21 +105,21 @@ export function calculateDuctFrictionLoss(input: DuctFrictionLossInput): DuctFri
   const rawAsp = input.blowerTespInWg - totalComponentLossInWg;
   const availableStaticPressureAspInWg = Math.max(0.01, Math.round(rawAsp * 1000) / 1000);
 
-  // ACCA Manual D Friction Rate Equation: FR = (ASP * 100) / TEL
+  // Design Friction Rate Equation: FR = (ASP * 100) / TEL
   const rawFr = (availableStaticPressureAspInWg * 100) / totalEquivalentLengthTelFt;
   const designFrictionRateFr = Math.round(rawFr * 1000) / 1000;
 
-  // Friction Rate Evaluation (Standard residential target: 0.06 to 0.12 in.wg / 100 ft)
+  // Friction Rate Reference Evaluation (Common residential design reference range: 0.06 to 0.12 in.wg / 100 ft)
   let frictionRateStatus: DuctFrictionLossOutput["frictionRateStatus"] = "optimal";
   if (designFrictionRateFr < 0.05) {
-    frictionRateStatus = "borderline_low"; // Requires huge duct cross-sections
+    frictionRateStatus = "borderline_low"; // Low FR requires larger duct cross-sections
   } else if (designFrictionRateFr > 0.18) {
-    frictionRateStatus = "critical_undersized"; // Severe duct velocity noise
+    frictionRateStatus = "critical_undersized"; // High FR increases velocity and noise risk
   } else if (designFrictionRateFr > 0.12) {
     frictionRateStatus = "borderline_high";
   }
 
-  const summary = `With a Total Equivalent Length (TEL) of ${totalEquivalentLengthTelFt} ft and Available Static Pressure (ASP) of ${availableStaticPressureAspInWg.toFixed(3)}" w.g., the ACCA Manual D Design Friction Rate is ${designFrictionRateFr.toFixed(3)}" w.g. per 100 ft (${frictionRateStatus.replace("_", " ")}).`;
+  const summary = `With a Total Equivalent Length (TEL) of ${totalEquivalentLengthTelFt} ft and Available Static Pressure (ASP) of ${availableStaticPressureAspInWg.toFixed(3)}" w.g., the calculated Design Friction Rate is ${designFrictionRateFr.toFixed(3)}" w.g. per 100 ft (${frictionRateStatus.replace("_", " ")}).`;
 
   return {
     supplyStraightLengthFt: supplyStraight,

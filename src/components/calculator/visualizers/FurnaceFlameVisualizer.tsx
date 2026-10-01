@@ -9,7 +9,7 @@ interface FurnaceFlameVisualizerProps {
 
 export function FurnaceFlameVisualizer({ output }: FurnaceFlameVisualizerProps) {
   const isCondensing = output.afueRatingPercent >= 90;
-  const flueLossPercent = 100 - output.afueRatingPercent;
+  const seasonalLossPercent = 100 - output.afueRatingPercent;
 
   return (
     <div
@@ -27,14 +27,14 @@ export function FurnaceFlameVisualizer({ output }: FurnaceFlameVisualizerProps) 
         margin: "0.75rem 0",
       }}
       role="region"
-      aria-label="Gas Furnace Combustion & Heat Exchanger Diagram"
+      aria-label="Gas Furnace Combustion & Heat Exchanger Illustrative Diagram"
     >
       {/* Top Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.65rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
           <span style={{ fontSize: "1.1rem" }}>🔥</span>
           <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--ink)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
-            Combustion &amp; Heat Exchanger Thermodynamics
+            Illustrative Heat Exchanger Flow (Screening Model)
           </span>
         </div>
         <span
@@ -81,7 +81,7 @@ export function FurnaceFlameVisualizer({ output }: FurnaceFlameVisualizerProps) 
             BLOWER FAN
           </text>
           <text x="80" y="136" fill="var(--text-muted)" fontSize="7.5" textAnchor="middle">
-            {output.requiredHeatingCfm} CFM
+            ~{output.theoreticalHeatingCfm} CFM
           </text>
 
           {/* 2. Gas Burner Manifold & Inshot Burners */}
@@ -93,7 +93,7 @@ export function FurnaceFlameVisualizer({ output }: FurnaceFlameVisualizerProps) 
             BURNERS
           </text>
           <text x="160" y="136" fill="var(--text-muted)" fontSize="7.5" textAnchor="middle">
-            {output.requiredInputBtu.toLocaleString()} Input
+            ~{output.approximateInputRequirementBtu.toLocaleString()} Input
           </text>
 
           {/* 3. Primary Heat Exchanger S-Curves */}
@@ -115,7 +115,7 @@ export function FurnaceFlameVisualizer({ output }: FurnaceFlameVisualizerProps) 
             PRIMARY HEAT EXCHANGER
           </text>
           <text x="280" y="118" fill="var(--accent-heating)" fontSize="10" fontWeight="700" textAnchor="middle">
-            {output.requiredOutputBtu.toLocaleString()} Output BTU
+            ~{output.estimatedHeatingLoadBtu.toLocaleString()} BTU/hr Load
           </text>
 
           {/* 4. Flue Vent Pipe (Right) */}
@@ -130,7 +130,7 @@ export function FurnaceFlameVisualizer({ output }: FurnaceFlameVisualizerProps) 
             FLUE LOSS
           </text>
           <text x="412" y="136" fill="var(--text-muted)" fontSize="7.5" textAnchor="middle">
-            {flueLossPercent}% Loss
+            ~{seasonalLossPercent}% (AFUE Basis)
           </text>
         </svg>
       </div>
@@ -139,16 +139,16 @@ export function FurnaceFlameVisualizer({ output }: FurnaceFlameVisualizerProps) 
       <div style={{ marginTop: "0.5rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.72rem", marginBottom: "0.25rem" }}>
           <span style={{ color: "var(--accent-heating)", fontWeight: 600 }}>
-            Delivered Heat: {output.afueRatingPercent}% ({output.requiredOutputBtu.toLocaleString()} BTU/hr)
+            Delivered Space Heating (Seasonal Basis): ~{output.afueRatingPercent}% (~{output.estimatedHeatingLoadBtu.toLocaleString()} BTU/hr)
           </span>
           <span style={{ color: "#94a3b8", fontWeight: 600 }}>
-            Flue Exhaust Loss: {flueLossPercent}% ({Math.round(output.requiredInputBtu * (flueLossPercent / 100)).toLocaleString()} BTU)
+            Seasonal Losses: ~{seasonalLossPercent}%
           </span>
         </div>
 
         <div style={{ width: "100%", height: "8px", background: "rgba(0,0,0,0.4)", borderRadius: "9999px", overflow: "hidden", display: "flex", border: "1px solid var(--border-color)" }}>
           <div style={{ width: `${output.afueRatingPercent}%`, background: "linear-gradient(90deg, #ff6b4a, #f59e0b)", borderRadius: "9999px 0 0 9999px" }} />
-          <div style={{ width: `${flueLossPercent}%`, background: "#475569" }} />
+          <div style={{ width: `${seasonalLossPercent}%`, background: "#475569" }} />
         </div>
       </div>
     </div>

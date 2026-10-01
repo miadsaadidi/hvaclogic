@@ -3,7 +3,7 @@ export const runtime = "edge";
 import { ImageResponse } from "next/og";
 import { getCalculatorById } from "@/lib/data/calculators-registry";
 
-export const alt = "Insulation R-Value Calculator & Assembly U-Factor (IECC 2021/2024) — HVACLogic";
+export const alt = "1-D Series Insulation R-Value & U-Factor Calculator (IECC 2021/2024 Benchmarks) — HVACLogic";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -70,11 +70,11 @@ export default async function Image() {
             lineHeight: 1.4,
           }}
         >
-          {calc?.metaDescription || "Build multi-layer wall, roof, and floor assemblies to calculate total R-value (R-total) and overall U-factor with IECC 2021/2024 climate zone compliance checks."}
+          {calc?.metaDescription || "Build multi-layer wall, roof, and floor assemblies to calculate 1-D series R-value (R_stack) and overall U-factor with IECC 2021/2024 prescriptive benchmarks."}
         </div>
 
         <div style={{ display: "flex", gap: "14px" }}>
-          {["Multi-Layer Stack Builder", "Total R-Value", "Overall U-Factor (U=1/R)", "IECC 2024 Zones 1–7"].map((item) => (
+          {["1-D Layer Stack Builder", "Surface Air Films", "Overall U-Factor (U=1/R)", "IECC Prescriptive Zones 1–8"].map((item) => (
             <div
               key={item}
               style={{

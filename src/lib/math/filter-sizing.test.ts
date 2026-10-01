@@ -4,7 +4,7 @@ import {
   FilterSizingInput,
 } from "./filter-sizing";
 
-describe("ASHRAE 52.2 / ACCA Manual D Filter Sizing Engine", () => {
+describe("Filter Sizing & Airflow Resistance Engine", () => {
   it("calculates standard 16x25x1 MERV 8 at 1,000 CFM", () => {
     const input: FilterSizingInput = {
       airflowCfm: 1000,
@@ -25,7 +25,7 @@ describe("ASHRAE 52.2 / ACCA Manual D Filter Sizing Engine", () => {
     expect(res.initialCleanPressureDropInWg).toBeLessThan(0.20);
   });
 
-  it("detects high resistance when installing 1-inch MERV 13 on 1,400 CFM (3.5 Ton) system", () => {
+  it("evaluates resistance when installing 1-inch MERV 13 on 1,400 CFM (3.5 Ton) system", () => {
     const input: FilterSizingInput = {
       airflowCfm: 1400,
       filterWidthInches: 16,
@@ -43,7 +43,7 @@ describe("ASHRAE 52.2 / ACCA Manual D Filter Sizing Engine", () => {
     expect(res.pressureDropStatus).toBe("severe_choke");
   });
 
-  it("proves 4-inch deep media drastically reduces MERV 13 static pressure drop", () => {
+  it("calculates lower static pressure drop for 4-inch deep media at equivalent airflow", () => {
     const input: FilterSizingInput = {
       airflowCfm: 1200,
       filterWidthInches: 20,
@@ -59,5 +59,21 @@ describe("ASHRAE 52.2 / ACCA Manual D Filter Sizing Engine", () => {
     // 4" depthFactor is 0.38 -> drop should be ~0.11" w.g. instead of ~0.30" w.g.
     expect(res.initialCleanPressureDropInWg).toBeLessThan(0.16);
     expect(res.pressureDropStatus).toBe("moderate");
+  });
+
+  it("models parallel filter grilles correctly", () => {
+    const input: FilterSizingInput = {
+      airflowCfm: 1400,
+      filterWidthInches: 16,
+      filterHeightInches: 20,
+      filterDepthInches: 1,
+      filterCount: 2, // 2 parallel grilles = 4.44 sq ft
+      mervRating: "merv_11",
+    };
+
+    const res = calculateFilterSizing(input);
+    expect(res.totalFaceAreaSqFt).toBe(4.44);
+    expect(res.faceVelocityFpm).toBeCloseTo(315, -1);
+    expect(res.initialCleanPressureDropInWg).toBeLessThan(0.25);
   });
 });

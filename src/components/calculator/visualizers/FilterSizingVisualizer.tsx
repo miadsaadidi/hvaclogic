@@ -35,6 +35,19 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
   const velColor = getVelocityColor();
   const presColor = getPressureColor();
 
+  const getStatusLabel = () => {
+    switch (output.pressureDropStatus) {
+      case "low_resistance":
+        return "Low Resistance";
+      case "moderate":
+        return "Moderate Resistance";
+      case "high_risk":
+        return "Elevated Resistance";
+      case "severe_choke":
+        return "High Resistance";
+    }
+  };
+
   return (
     <div
       style={{
@@ -51,7 +64,7 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
         margin: "0.75rem 0",
       }}
       role="region"
-      aria-label="ASHRAE 52.2 Filter Velocity & Static Pressure Visualizer"
+      aria-label="Filter Face Velocity & Static Pressure Visualizer"
     >
       {/* Top Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.65rem" }}>
@@ -72,7 +85,7 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
             border: "1px solid rgba(0, 210, 255, 0.3)",
           }}
         >
-          {output.totalFaceAreaSqFt} sq ft Face Area | Max: {output.recommendedMaxCfm} CFM
+          {output.totalFaceAreaSqFt} sq ft Face Area | Ref Max: {output.recommendedMaxCfm} CFM
         </span>
       </div>
 
@@ -82,7 +95,7 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
           {/* Intake Return Duct / Filter Housing */}
           <rect x="30" y="25" width="400" height="115" fill="rgba(15, 23, 42, 0.6)" stroke="#334155" strokeWidth="1.5" rx="3" />
           <text x="45" y="40" fill="#94a3b8" fontSize="7.5" fontWeight="600">
-            Return Air Intake Duct ({output.airflowCfm.toLocaleString()} CFM)
+            Return Air Intake ({output.airflowCfm.toLocaleString()} CFM)
           </text>
 
           {/* Incoming Airflow Streams */}
@@ -124,7 +137,7 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
             FPM
           </text>
           <text x="282" y="112" fill="#cbd5e1" fontSize="6" textAnchor="middle">
-            Target: &le; 300 FPM
+            Guideline: &le; 300 FPM (1&quot;)
           </text>
 
           {/* Static Pressure Drop Indicator (Far Right Box) */}
@@ -136,10 +149,10 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
             {output.initialCleanPressureDropInWg.toFixed(3)}&quot;
           </text>
           <text x="377" y="92" fill={presColor} fontSize="7" fontWeight="600" textAnchor="middle">
-            w.g. (Clean)
+            w.g. (Est. Clean)
           </text>
           <text x="377" y="112" fill="#94a3b8" fontSize="6" textAnchor="middle">
-            Loaded: ~{output.estimatedLoadedPressureDropInWg.toFixed(2)}&quot;
+            Est. Loaded: ~{output.estimatedLoadedPressureDropInWg.toFixed(2)}&quot;
           </text>
         </svg>
       </div>
@@ -150,7 +163,7 @@ export function FilterSizingVisualizer({ output }: FilterSizingVisualizerProps) 
           Face Velocity: <strong style={{ color: velColor }}>{output.faceVelocityFpm} FPM</strong>
         </span>
         <span style={{ color: "var(--ink-secondary)" }}>
-          Resistance: <strong style={{ color: presColor, textTransform: "capitalize" }}>{output.pressureDropStatus.replace("_", " ")}</strong>
+          Classification: <strong style={{ color: presColor }}>{getStatusLabel()}</strong>
         </span>
       </div>
     </div>

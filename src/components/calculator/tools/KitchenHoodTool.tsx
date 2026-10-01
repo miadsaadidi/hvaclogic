@@ -168,9 +168,9 @@ export function KitchenHoodTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value="wall">Wall Mount (Standard)</option>
-                <option value="under_cabinet">Under Cabinet</option>
-                <option value="island">Island Mount (1.30× Penalty)</option>
+                <option value="wall">Wall Mount (HVI: 100 CFM/ft)</option>
+                <option value="under_cabinet">Under Cabinet (HVI: 100 CFM/ft)</option>
+                <option value="island">Island Mount (HVI: 150 CFM/ft)</option>
               </select>
             </div>
           </div>
@@ -196,7 +196,7 @@ export function KitchenHoodTool() {
               <option value={30}>30 Inches (Standard Residential)</option>
               <option value={36}>36 Inches (Pro-Style 5–6 Burners)</option>
               <option value={42}>42 Inches (Large Pro-Style)</option>
-              <option value={48}>48 Inches (Commercial Double Oven Range)</option>
+              <option value={48}>48 Inches (Commercial-Style Double Oven Range)</option>
               <option value={60}>60 Inches (Custom Estate Range)</option>
             </select>
           </div>
@@ -239,7 +239,7 @@ export function KitchenHoodTool() {
                 />
               </div>
               <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginTop: "0.25rem", display: "block" }}>
-                HVI Rule: <strong>100 CFM per 10,000 BTU</strong> of total burner output.
+                Industry Rule of Thumb: <strong>100 CFM per 10,000 BTU/hr</strong> burner output. For pro ranges, verify manufacturer requirements.
               </span>
             </div>
           )}
@@ -296,7 +296,7 @@ export function KitchenHoodTool() {
               {output.recommendedCfm} CFM
             </div>
             <div className="result-unit">
-              Minimum rated blower capacity (HVI &amp; ASHRAE 62.2)
+              Rated blower capacity at design static pressure
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -313,12 +313,12 @@ export function KitchenHoodTool() {
                   border: "1px solid currentColor",
                 }}
               >
-                {output.isMakeUpAirRequired ? "⚠️ IRC M1503.6 Make-Up Air Damper Required" : "✓ IRC Code Compliant (≤400 CFM)"}
+                {output.isMakeUpAirRequired ? "⚠️ Make-Up Air Review Triggered (>400 CFM)" : "✓ ≤ 400 CFM (Check Local Code)"}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["IRC Section M1503.6", "HVI Standard 916", "ASHRAE Standard 62.2"]} />
+          <StandardsBadge standards={["HVI Sizing Guidelines", "IRC Section M1503.6 Review", "ASHRAE 62.2 Context"]} />
 
           {/* KITCHEN HOOD SVG VISUALIZER */}
           <KitchenHoodVisualizer output={output} cooktopType={cooktopType} mountingType={mountingType} />
@@ -326,9 +326,9 @@ export function KitchenHoodTool() {
           {/* SECONDARY RESULTS GRID */}
           <div className="secondary-results-grid">
             <div className="secondary-result-item">
-              <div className="item-label">Round Duct Diameter</div>
-              <div className="item-value" style={{ color: "var(--accent-cooling)" }}>
-                &Oslash; {output.recommendedDuctDiameterInches}&quot; Rigid Metal
+              <div className="item-label">Illustrative Duct Size</div>
+              <div className="item-value" style={{ color: "var(--accent-cooling)", fontSize: "1rem" }}>
+                &Oslash; {output.recommendedDuctDiameterInches}&quot; Rigid Metal ({output.ductAirVelocityFpm} FPM)
               </div>
             </div>
             <div className="secondary-result-item">
@@ -340,9 +340,9 @@ export function KitchenHoodTool() {
               <div className="item-value">{output.ductEquivalentLengthFeet} Eq. Feet</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Make-Up Air Flow Rate</div>
-              <div className="item-value" style={{ color: output.isMakeUpAirRequired ? "var(--accent-danger)" : "var(--ink)" }}>
-                {output.isMakeUpAirRequired ? `${output.makeUpAirCfmRequired} CFM` : "Exempt (≤400)"}
+              <div className="item-label">Estimated Duct Static Loss</div>
+              <div className="item-value" style={{ color: "var(--ink)" }}>
+                ~{output.estimatedStaticPressureLossInWg} in. wg
               </div>
             </div>
           </div>

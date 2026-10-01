@@ -34,46 +34,58 @@ export default function BtuCalculatorPage() {
   return (
     <CalculatorContainer
       calculator={calculator}
-      directAnswer="To calculate heating and cooling BTU requirements, multiply conditioned square footage by your regional climate factor (typically 20 to 30 BTU/sq ft for cooling, 30 to 50 BTU/sq ft for heating). Adjust for ceiling height, wall insulation R-values, window solar exposure, and occupant internal heat gains."
-      formulaSnippet="Total Cooling BTU/hr = Area * Cooling Factor * Height Mult * Insulation Mult + Internal Gains"
-      authorityCitation="ACCA Manual J 8th Edition & ASHRAE Standard 90.1 Envelope Guidelines"
+      directAnswer="For preliminary HVAC load screening, heating and cooling estimates can be approximated by multiplying conditioned floor area by regional climate benchmarks (typically 14 to 20 BTU/hr per sq ft for cooling, 20 to 50 BTU/hr per sq ft for heating in standard residential construction) and adjusting for ceiling height, envelope insulation quality, window performance, and occupant internal gains. Formal equipment sizing and municipal permit submittals require a comprehensive ACCA Manual J room-by-room load calculation using verified building assemblies and location-specific design temperatures."
+      formulaSnippet="Screening Cooling BTU/hr = (Area * Cooling Factor * Height Mult * Insul Mult * Win Mult * 0.85 + Internal Gains) * Duct Factor"
+      authorityCitation="ACCA Manual J (Residential Load Calculation) & ASHRAE Handbook of Fundamentals Ch. 18"
       toolComponent={<BtuCalculatorTool />}
       methodologySection={
         <>
           <HvacFlowDiagram category="cooling-loads" />
 
-          <h2>How to Calculate Whole-Home BTU Heating & Cooling Loads</h2>
+          <h2>Whole-Home BTU Load Screening &amp; Fundamental Heat Transfer Principles</h2>
           <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
-            Accurate HVAC equipment sizing prevents both undersizing (failure to maintain comfort during peak outdoor design temperatures) and oversizing (short-cycling, high indoor humidity, and premature equipment failure).
+            Accurate HVAC equipment sizing balances peak heating and cooling comfort against equipment runtime efficiency. In formal engineering design per <strong>ACCA Manual J</strong>, envelope heat transmission is computed component-by-component across all building assemblies using fundamental heat transfer physics:
+          </p>
+          <p style={{ fontFamily: "monospace", background: "rgba(0,0,0,0.25)", padding: "0.5rem 0.75rem", borderRadius: "4px", color: "var(--accent-cooling)" }}>
+            Q_transmission = \sum (U_i * A_i * \Delta T)
+          </p>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            This calculator provides an <strong>HVACLogic preliminary load screening model</strong> based on conditioned floor area, regional climate zone factors, ceiling height volume adjustments, and envelope quality proxies. While useful for budgeting and initial capacity checks, a complete code-compliant Manual J calculation requires detailed inputs that are omitted in simplified screening tools:
           </p>
 
-          <ol style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
-            <li><strong>Calculate Conditioned Volume</strong>: Determine floor square footage and ceiling height. Cathedral or vaulted ceilings increase air volume requiring higher heating and cooling capacity.</li>
-            <li><strong>Determine Design Temperature Differences (ΔT)</strong>: Cross-reference <Link href="/ashrae-climatic-data" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>ASHRAE 99% / 0.4% Climatic Design Conditions</Link> or your local IECC Climate Zone to establish summer cooling design temperatures (typically 90°F to 105°F) and winter heating design temperatures (0°F to 30°F).</li>
-            <li><strong>Calculate Sensible Envelope Heat Gain (Q = U × A × ΔT)</strong>: Sum transmission losses through exterior walls, attic ceilings, window glass, and slab foundations.</li>
-            <li><strong>Add Internal Heat Gains & Latent Dehumidification</strong>: Account for human metabolism (approx. 230 BTU sensible + 200 BTU latent per occupant) plus cooking appliances and lighting.</li>
-          </ol>
+          <ul style={{ paddingLeft: "1.25rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+            <li><strong>Detailed Envelope Surfaces</strong>: Net exterior wall areas, partition walls, ceiling/roof framing U-factors, and foundation slab/basement heat loss coefficients.</li>
+            <li><strong>Fenestration Orientation &amp; Solar Properties</strong>: Individual window compass orientations (North, South, East, West), Solar Heat Gain Coefficients (SHGC), and exterior overhang shading.</li>
+            <li><strong>Infiltration &amp; Mechanical Ventilation</strong>: Measured air leakage rates (blower door ACH50/CFM50) and continuous outdoor ventilation air per ASHRAE 62.2.</li>
+            <li><strong>Ductwork Heat Gain &amp; Leakage</strong>: Supply and return duct surface areas, insulation R-values, and location (conditioned space vs. unconditioned vented attic).</li>
+            <li><strong>Specific Location Climatic Design Conditions</strong>: ASHRAE 99% winter heating and 1% / 0.4% summer cooling outdoor design wet-bulb and dry-bulb temperatures.</li>
+          </ul>
 
           <FormulaCard
-            title="Manual J Heat Load Mathematical Formulation"
-            formula="Q_total = Q_sensible + Q_latent  |  Q_sensible = \sum (U_i * A_i * \Delta T) + Q_solar + Q_internal + Q_duct"
+            title="HVACLogic Preliminary Load Screening Model &amp; Heat Transfer Physics"
+            formula="Q_cooling = (Area * q_cool * (H / 8) * F_insul * F_win * 0.85 + Q_internal) * F_duct  |  Q_heating = Area * q_heat * (H / 8) * F_insul * F_win * F_duct"
             variables={[
-              { symbol: "Q_total", label: "Total Cooling Load", description: "Combined sensible temperature drop and latent dehumidification load", unit: "BTU/hr" },
-              { symbol: "U_i", label: "Overall U-Factor", description: "Thermal transmittance coefficient of the building assembly (U = 1 / R)", unit: "BTU/hr·ft²·°F" },
-              { symbol: "A_i", label: "Surface Area", description: "Net exposed surface area of walls, windows, doors, or ceiling", unit: "sq ft" },
-              { symbol: "\\Delta T", label: "Design Temperature Difference", description: "Difference between indoor comfort setpoint (75°F summer) and outdoor design temp", unit: "°F" },
-              { symbol: "Tonnage", label: "Nominal AC Tonnage", description: "Refrigeration capacity: 1 Ton = 12,000 BTU/hr", unit: "Tons" },
+              { symbol: "Q_cooling", label: "Total Estimated Cooling Load", description: "Combined sensible and latent peak cooling load estimate", unit: "BTU/hr" },
+              { symbol: "Q_heating", label: "Total Estimated Heating Load", description: "Peak design heat loss estimate", unit: "BTU/hr" },
+              { symbol: "Area", label: "Conditioned Floor Area", description: "Gross conditioned living area", unit: "sq ft" },
+              { symbol: "q_cool", label: "Climate Zone Cooling Factor", description: "Screening cooling benchmark (10.0 to 18.5 BTU/hr·sq ft)", unit: "BTU/hr·sq ft" },
+              { symbol: "q_heat", label: "Climate Zone Heating Factor", description: "Screening heating benchmark (14.0 to 50.0 BTU/hr·sq ft)", unit: "BTU/hr·sq ft" },
+              { symbol: "H", label: "Ceiling Height", description: "Average room ceiling height (H / 8 volume adjustment factor)", unit: "ft" },
+              { symbol: "F_insul", label: "Insulation Quality Factor", description: "Screening envelope factor: 1.35 (Poor), 1.00 (Avg), 0.85 (Good), 0.70 (Superior)", unit: "Dimensionless" },
+              { symbol: "F_win", label: "Fenestration Factor", description: "Window performance proxy: 1.25 (Single), 1.05 (Double), 0.95 (Low-E), 0.80 (Triple)", unit: "Dimensionless" },
+              { symbol: "Q_internal", label: "Internal Heat Gains", description: "Occupant (230 sensible + 200 latent BTU/hr/person) + 1,200 BTU/hr appliance baseline", unit: "BTU/hr" },
+              { symbol: "F_duct", label: "Duct Allowance Factor", description: "Screening factor for duct heat transfer (1.05 conditioned, 1.15 unconditioned attic)", unit: "Dimensionless" },
             ]}
-            notes="Calculations are designed for preliminary load screening and sizing estimates. Permitted municipal HVAC installations require a certified block/room-by-room ACCA Manual J load calculation."
-            sourceStandard="ACCA Manual J (8th Edition) / ASHRAE 90.1"
+            notes="The fundamental physical relationship governing envelope heat transfer is Q = U * A * DeltaT. This screening calculator applies an empirical floor-area factor model for preliminary estimation; final equipment selection and permitting require a certified room-by-room ACCA Manual J calculation and ACCA Manual S equipment selection."
+            sourceStandard="Technical References: ACCA Manual J (8th Edition) & ASHRAE Handbook of Fundamentals"
           />
         </>
       }
       comparisonTableSection={
         <>
-          <h2>IECC Climate Zone Sizing Benchmarks</h2>
+          <h2>Preliminary Screening Benchmarks (IECC Climate Zones)</h2>
           <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem" }}>
-            Typical cooling and heating capacity benchmarks for standard residential construction:
+            Representative cooling and heating capacity benchmarks for standard residential construction:
           </p>
 
           <div className="scenario-table">
@@ -100,42 +112,42 @@ export default function BtuCalculatorPage() {
                   <td>Houston, Phoenix, Tampa</td>
                   <td>22–26 BTU/sq ft</td>
                   <td>15–20 BTU/sq ft</td>
-                  <td>3.5 to 4.0 Tons AC</td>
+                  <td>3.5 to 4.5 Tons AC</td>
                 </tr>
                 <tr>
                   <td><strong>Zone 3 (Warm)</strong></td>
                   <td>Atlanta, Dallas, Las Vegas</td>
                   <td>20–24 BTU/sq ft</td>
                   <td>20–30 BTU/sq ft</td>
-                  <td>3.0 to 3.5 Tons AC</td>
+                  <td>3.0 to 4.0 Tons AC</td>
                 </tr>
                 <tr>
                   <td><strong>Zone 4 (Mixed-Humid)</strong></td>
                   <td>St. Louis, DC, Seattle</td>
                   <td>18–22 BTU/sq ft</td>
                   <td>25–35 BTU/sq ft</td>
-                  <td>2.5 to 3.0 Tons AC</td>
+                  <td>3.0 to 3.5 Tons AC</td>
                 </tr>
                 <tr>
                   <td><strong>Zone 5 (Cold)</strong></td>
                   <td>Chicago, Boston, Denver</td>
                   <td>16–20 BTU/sq ft</td>
                   <td>35–45 BTU/sq ft</td>
-                  <td>2.5 Tons AC / 80k Furnace</td>
+                  <td>2.5 to 3.0 Tons AC / 70–90k Furnace</td>
                 </tr>
                 <tr>
                   <td><strong>Zone 6 (Very Cold)</strong></td>
                   <td>Minneapolis, Burlington</td>
                   <td>14–18 BTU/sq ft</td>
                   <td>45–55 BTU/sq ft</td>
-                  <td>2.0 Tons AC / 100k Furnace</td>
+                  <td>2.0 to 3.0 Tons AC / 90–110k Furnace</td>
                 </tr>
                 <tr>
                   <td><strong>Zone 7 (Subarctic)</strong></td>
                   <td>Duluth, Fairbanks</td>
                   <td>12–16 BTU/sq ft</td>
                   <td>55–65 BTU/sq ft</td>
-                  <td>2.0 Tons AC / 120k Furnace</td>
+                  <td>2.0 to 2.5 Tons AC / 110–130k Furnace</td>
                 </tr>
               </tbody>
             </table>
@@ -144,28 +156,38 @@ export default function BtuCalculatorPage() {
       }
       workedExampleSection={
         <>
-          <h2>Worked Example: Whole-Home Load Calculation for a 2,000 sq ft Home</h2>
+          <h2>Worked Example: Preliminary Load Screening for a 2,000 sq ft Home</h2>
           <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
-            <strong>Scenario:</strong> Calculate the cooling and heating requirements for a 2-story, 2,000 sq ft single-family home located in Climate Zone 4 (St. Louis). The home has standard 9 ft ceilings, average R-13 wall insulation, R-30 attic insulation, double Low-E windows, and 4 occupants.
+            <strong>Scenario:</strong> Estimate heating and cooling requirements for a 2-story, 2,000 sq ft single-family home in Climate Zone 4 (St. Louis). The home has 9 ft ceilings, average R-13 wall / R-30 attic insulation, double Low-E windows, 4 occupants, and ductwork located in an unconditioned attic.
           </p>
 
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.25rem", color: "var(--ink)" }}>
-            <p><strong>Step 1: Calculate Base Envelope Cooling Load</strong></p>
+            <p><strong>Step 1: Calculate Base Envelope Loads</strong></p>
             <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
-              Base Cooling = 2000 sq ft * 14.25 BTU/sqft * (9 / 8) * 1.0 (insul) * 0.95 (windows) = 30,459 BTU/hr
+              Base Cooling = 2000 * 14.25 * (9 / 8) * 1.0 (insul) * 0.95 (windows) = 30,459 BTU/hr<br />
+              Base Heating = 2000 * 24.00 * (9 / 8) * 1.0 (insul) * 0.95 (windows) = 51,300 BTU/hr
             </p>
 
-            <p><strong>Step 2: Add Occupant & Appliance Internal Gains</strong></p>
+            <p><strong>Step 2: Add Occupant &amp; Baseline Internal Heat Gains</strong></p>
             <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
               Sensible Internal = (4 * 230) + 1200 = 2,120 BTU/hr  |  Latent Internal = 4 * 200 = 800 BTU/hr
             </p>
 
-            <p><strong>Step 3: Total Load & Nominal Equipment Selection</strong></p>
-            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0" }}>
-              Total Cooling = (30,459 * 0.85 + 2120 + 800) * 1.15 = 34,200 BTU/hr ==&gt; 2.85 Tons (Select 3.0 Ton System)
+            <p><strong>Step 3: Calculate Sensible, Latent, and Total Cooling Loads (Duct Factor 1.15)</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              Sensible Cooling = (30,459 * 0.85 + 2120) * 1.15 = 32,212 BTU/hr<br />
+              Latent Cooling   = (30,459 * 0.15 + 800) * 1.15  = 6,174 BTU/hr<br />
+              Total Cooling    = 32,212 + 6,174 = 38,386 BTU/hr ==&gt; 3.20 Tons
             </p>
-            <p style={{ color: "var(--ink-secondary)" }}>
-              ✓ <strong>Heating Load:</strong> Total heating demand calculates to 48,000 BTU/hr, perfectly matching a standard 60,000 BTU input 96% AFUE gas furnace or a 3.0 Ton cold-climate heat pump with auxiliary heat strips.
+
+            <p><strong>Step 4: Calculate Total Heating Load &amp; Design Airflow</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              Total Heating = 51,300 * 1.15 = 58,995 BTU/hr<br />
+              Design Airflow = 32,212 / (1.08 * 20°F DeltaT) = 1,490 CFM
+            </p>
+
+            <p style={{ color: "var(--ink-secondary)", marginTop: "1rem" }}>
+              ✓ <strong>Equipment Selection Guidance:</strong> Preliminary cooling indicates a nominal 3.0 to 3.5 Ton system. For heating, an 80,000 BTU/hr input 96% AFUE gas furnace provides approximately 76,800 BTU/hr output capacity, adequately covering the 58,995 BTU/hr estimated design heat loss. Final equipment selection should always follow ACCA Manual S using manufacturer expanded performance tables at local design temperatures.
             </p>
           </div>
         </>

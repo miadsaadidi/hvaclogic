@@ -15,9 +15,9 @@ import { CalculatorTrustPill } from "@/components/calculator/CalculatorTrustPill
 import { StandardsBadge } from "@/components/calculator/StandardsBadge";
 
 const DEFAULT_ROOMS: MiniSplitRoom[] = [
-  { id: "1", name: "Master Bedroom", sqft: 240, sunExposure: "south", insulation: "good", ceilingHeight: "standard" },
-  { id: "2", name: "Guest Bedroom", sqft: 160, sunExposure: "north", insulation: "average", ceilingHeight: "standard" },
-  { id: "3", name: "Living & Dining", sqft: 420, sunExposure: "west", insulation: "average", ceilingHeight: "standard" },
+  { id: "1", name: "Master Bedroom", sqft: 250, sunExposure: "south", insulation: "good", ceilingHeight: "standard" },
+  { id: "2", name: "Guest Bedroom", sqft: 180, sunExposure: "north", insulation: "average", ceilingHeight: "standard" },
+  { id: "3", name: "Living & Dining", sqft: 400, sunExposure: "west", insulation: "average", ceilingHeight: "standard" },
 ];
 
 export function MiniSplitTool() {
@@ -26,9 +26,9 @@ export function MiniSplitTool() {
   const handlePresetSelect = (presetType: "3-zone" | "2-zone" | "4-zone" | "garage" | "1-zone") => {
     if (presetType === "3-zone") {
       setRooms([
-        { id: "1", name: "Master Bedroom", sqft: 240, sunExposure: "south", insulation: "good", ceilingHeight: "standard" },
-        { id: "2", name: "Guest Bedroom", sqft: 160, sunExposure: "north", insulation: "average", ceilingHeight: "standard" },
-        { id: "3", name: "Living & Dining", sqft: 420, sunExposure: "west", insulation: "average", ceilingHeight: "standard" },
+        { id: "1", name: "Master Bedroom", sqft: 250, sunExposure: "south", insulation: "good", ceilingHeight: "standard" },
+        { id: "2", name: "Guest Bedroom", sqft: 180, sunExposure: "north", insulation: "average", ceilingHeight: "standard" },
+        { id: "3", name: "Living & Dining", sqft: 400, sunExposure: "west", insulation: "average", ceilingHeight: "standard" },
       ]);
     } else if (presetType === "2-zone") {
       setRooms([
@@ -86,14 +86,14 @@ export function MiniSplitTool() {
   }, [rooms]);
 
   const handleExportCsv = () => {
-    const headers = "Room Name,Area (Sq Ft),Sun Exposure,Insulation,Calculated Load (BTU),Matched Indoor Head (BTU)\n";
+    const headers = "Room Name,Area (Sq Ft),Sun Exposure,Insulation,Estimated Screening Load (BTU),Matched Candidate Head (BTU)\n";
     const rows = output.rooms
       .map(
         (r, idx) =>
           `"${r.name}",${r.sqft},"${rooms[idx]?.sunExposure || "average"}","${rooms[idx]?.insulation || "average"}",${r.calculatedLoadBtu},${r.matchedIndoorHeadBtu}`
       )
       .join("\n");
-    const summaryRow = `\n"TOTAL INDOOR CONNECTED",,,,${output.totalRoomLoadBtu},${output.totalIndoorConnectedBtu}\n"RECOMMENDED OUTDOOR CONDENSER",,,,,"${output.recommendedOutdoorTonnage} Tons (${output.recommendedOutdoorCondenserBtu} BTU)"\n`;
+    const summaryRow = `\n"TOTAL INDOOR CONNECTED",,,,${output.totalRoomLoadBtu},${output.totalIndoorConnectedBtu}\n"ILLUSTRATIVE OUTDOOR CONDENSER",,,,,"${output.recommendedOutdoorTonnage} Tons (${output.recommendedOutdoorCondenserBtu} BTU)"\n`;
     const blob = new Blob([headers + rows + summaryRow], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -212,7 +212,7 @@ export function MiniSplitTool() {
                         color: "var(--accent-cooling)",
                       }}
                     >
-                      {output.rooms[idx]?.matchedIndoorHeadBtu ? `${output.rooms[idx].matchedIndoorHeadBtu / 1000}k Head` : ""}
+                      {output.rooms[idx]?.matchedIndoorHeadBtu ? `${output.rooms[idx].matchedIndoorHeadBtu / 1000}k Candidate Head` : ""}
                     </span>
                     {rooms.length > 1 && (
                       <button
@@ -319,12 +319,12 @@ export function MiniSplitTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Mini-Split System Result">
-            <div className="result-label">Recommended Outdoor Condenser</div>
+            <div className="result-label">Preliminary Outdoor Condenser Estimate</div>
             <div className="result-value" style={{ color: "var(--accent-cooling)" }}>
               {output.recommendedOutdoorTonnage} Ton ({output.recommendedOutdoorCondenserBtu / 1000}k BTU)
             </div>
             <div className="result-unit">
-              Multi-Port Inverter Condenser ({output.numberOfPorts}-Port Minimum)
+              Multi-Port Condenser ({output.numberOfPorts}-Port Illustrative Benchmark)
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -341,12 +341,12 @@ export function MiniSplitTool() {
                   border: "1px solid currentColor",
                 }}
               >
-                {output.connectedCapacityRatioPercent}% Connected Capacity &bull; {output.overSubscriptionStatus}
+                {output.connectedCapacityRatioPercent}% Connected Ratio &bull; {output.overSubscriptionStatus}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["AHRI Standard 1230", "ACCA Manual S®", "ASHRAE Standard 90.1"]} />
+          <StandardsBadge label="Technical References:" standards={["ANSI/AHRI Standard 1230", "ACCA Manual S® (Selection References)"]} />
 
           {/* MULTI-ZONE SVG SCHEMATIC VISUALIZER */}
           <MiniSplitMultiZoneVisualizer output={output} />
@@ -360,7 +360,7 @@ export function MiniSplitTool() {
               </div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Total Room Thermal Load</div>
+              <div className="item-label">Total Screening Room Load</div>
               <div className="item-value">{output.totalRoomLoadBtu.toLocaleString()} BTU</div>
             </div>
             <div className="secondary-result-item">
@@ -368,7 +368,7 @@ export function MiniSplitTool() {
               <div className="item-value">{output.rooms.length} Active Zones</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Diversity Ratio</div>
+              <div className="item-label">Connected Ratio</div>
               <div className="item-value">{output.connectedCapacityRatioPercent}% Ratio</div>
             </div>
           </div>

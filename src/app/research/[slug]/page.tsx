@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const canonicalUrl = `${siteConfig.canonicalDomain}/research/${paper.slug}`;
-  const pdfFullUrl = `${siteConfig.canonicalDomain}${paper.pdfUrl}`;
+  const pdfFullUrl = paper.pdfUrl ? `${siteConfig.canonicalDomain}${paper.pdfUrl}` : undefined;
 
   const rawTitle = paper.seoTitle || paper.title;
   const metaTitle = rawTitle.length > 58 ? rawTitle.slice(0, 55) + "..." : rawTitle;
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       citation_title: paper.title,
       citation_author: paper.authors.join("; "),
       citation_publication_date: paper.publicationDate.replace(/-/g, "/"),
-      citation_pdf_url: pdfFullUrl,
+      ...(pdfFullUrl ? { citation_pdf_url: pdfFullUrl } : {}),
       ...(paper.doi ? { citation_doi: paper.doi } : {}),
       citation_technical_report_number: paper.reportNumber,
       citation_publisher: "HVACLogic Open-Access Building Science Monograph Series",
@@ -118,7 +118,10 @@ export default async function ResearchPaperPage({ params }: PageProps) {
             {paper.reportNumber}
           </span>
           {paper.doi && (
-            <span
+            <a
+              href={`https://doi.org/${paper.doi}`}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 background: "rgba(167, 139, 250, 0.1)",
                 color: "#a78bfa",
@@ -126,10 +129,11 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                 fontWeight: 600,
                 padding: "0.25rem 0.65rem",
                 borderRadius: "4px",
+                textDecoration: "none",
               }}
             >
-              DOI: {paper.doi}
-            </span>
+              DOI: {paper.doi} ↗
+            </a>
           )}
           <span style={{ fontSize: "0.82rem", color: "var(--text-muted)" }}>
             Published: {paper.publicationDate}
@@ -150,26 +154,28 @@ export default async function ResearchPaperPage({ params }: PageProps) {
           </div>
 
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.65rem" }}>
-            <a
-              href={paper.pdfUrl}
-              download
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.45rem",
-                background: "#0284c7",
-                color: "#ffffff",
-                fontWeight: 700,
-                fontSize: "0.88rem",
-                padding: "0.6rem 1.25rem",
-                borderRadius: "0.45rem",
-                textDecoration: "none",
-                boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
-              }}
-            >
-              <span>📄</span>
-              <span>Download Official PDF Whitepaper</span>
-            </a>
+            {paper.pdfUrl && (
+              <a
+                href={paper.pdfUrl}
+                download
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.45rem",
+                  background: "#0284c7",
+                  color: "#ffffff",
+                  fontWeight: 700,
+                  fontSize: "0.88rem",
+                  padding: "0.6rem 1.25rem",
+                  borderRadius: "0.45rem",
+                  textDecoration: "none",
+                  boxShadow: "0 2px 4px rgba(2, 132, 199, 0.3)",
+                }}
+              >
+                <span>📄</span>
+                <span>Download PDF Whitepaper</span>
+              </a>
+            )}
 
             {paper.repositories?.map((repo) => (
               <a
@@ -343,7 +349,7 @@ export default async function ResearchPaperPage({ params }: PageProps) {
               <CodeFormulaBlock
                 formula={f.latex}
                 title={`governing_model_eq_${idx + 1}.math`}
-                badge="PEER-REFERENCED"
+                badge="MATHEMATICAL MODEL"
               />
               <p style={{ fontSize: "0.88rem", color: "var(--text-muted)", marginTop: "0.75rem", marginBottom: 0, lineHeight: 1.5 }}>
                 💡 {f.explanation}
@@ -623,11 +629,15 @@ export default async function ResearchPaperPage({ params }: PageProps) {
                     url: `${siteConfig.canonicalDomain}/icon.svg`,
                   },
                 },
-                encoding: {
-                  "@type": "MediaObject",
-                  contentUrl: `${siteConfig.canonicalDomain}${paper.pdfUrl}`,
-                  encodingFormat: "application/pdf",
-                },
+                ...(paper.pdfUrl
+                  ? {
+                      encoding: {
+                        "@type": "MediaObject",
+                        contentUrl: `${siteConfig.canonicalDomain}${paper.pdfUrl}`,
+                        encodingFormat: "application/pdf",
+                      },
+                    }
+                  : {}),
                 image: [`${siteConfig.canonicalDomain}/opengraph-image`],
                 mainEntityOfPage: {
                   "@type": "WebPage",

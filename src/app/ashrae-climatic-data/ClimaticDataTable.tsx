@@ -105,7 +105,7 @@ export function ClimaticDataTable({ locations }: ClimaticDataTableProps) {
         </div>
 
         <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", alignSelf: "flex-end", paddingBottom: "0.4rem" }}>
-          Showing <strong>{filteredLocations.length}</strong> meteorological stations
+          Showing <strong>{filteredLocations.length}</strong> of {locations.length} representative stations
         </div>
       </div>
 
@@ -121,7 +121,7 @@ export function ClimaticDataTable({ locations }: ClimaticDataTableProps) {
               <th scope="col" style={{ textAlign: "center" }}>Summer 0.4% DB</th>
               <th scope="col" style={{ textAlign: "center" }}>Coincident WB</th>
               <th scope="col" style={{ textAlign: "center" }}>Elevation</th>
-              <th scope="col" style={{ textAlign: "right" }}>Direct Load Sizing Actions</th>
+              <th scope="col" style={{ textAlign: "right" }}>Load Sizing Inputs</th>
             </tr>
           </thead>
           <tbody>
@@ -175,9 +175,9 @@ export function ClimaticDataTable({ locations }: ClimaticDataTableProps) {
                         fontWeight: 600,
                         textDecoration: "none",
                       }}
-                      title={`Size AC cooling for ${loc.city} (${loc.summerDb04}°F)`}
+                      title={`Use ${loc.city} design temperature for cooling-load estimate (${loc.summerDb04}°F)`}
                     >
-                      ❄️ AC Sizing
+                      ❄️ Cooling Input
                     </Link>
                     <Link
                       href={`/calculators/heat-loss-calculator?loc=${loc.id}&outdoorTemp=${loc.winterDb99}`}
@@ -190,9 +190,9 @@ export function ClimaticDataTable({ locations }: ClimaticDataTableProps) {
                         fontWeight: 600,
                         textDecoration: "none",
                       }}
-                      title={`Calculate heat loss for ${loc.city} (${loc.winterDb99}°F)`}
+                      title={`Use ${loc.city} 99% design temperature for heat-loss estimate (${loc.winterDb99}°F)`}
                     >
-                      🔥 Heat Loss
+                      🔥 Heat Loss Input
                     </Link>
                   </div>
                 </td>

@@ -1,6 +1,7 @@
 /**
- * HVACLogic High-Precision Refrigerant Pressure-Temperature Saturation Engine
- * Complies with NIST REFPROP v10.0, Chemours Opteon XL41 (R-454B), and AHRI standards.
+ * HVACLogic Refrigerant Pressure-Temperature Saturation Reference Engine
+ * Derived from NIST Standard Reference Database 23 (REFPROP v10.0) reference property data,
+ * AHRI Standard 700 purity specifications, and ASHRAE Standard 34-2022 safety classifications.
  */
 
 import {

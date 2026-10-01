@@ -34,7 +34,7 @@ export function MiniSplitMultiZoneVisualizer({ output }: MiniSplitMultiZoneVisua
         <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
           <span style={{ fontSize: "1.1rem" }}>❄️</span>
           <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--ink)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
-            Multi-Port Inverter Distribution &amp; Diversity
+            Multi-Zone Connected Capacity &amp; Diversity
           </span>
         </div>
         <span
@@ -73,7 +73,7 @@ export function MiniSplitMultiZoneVisualizer({ output }: MiniSplitMultiZoneVisua
             <line x1="17" y1="45" x2="67" y2="45" stroke="#00d2ff" strokeWidth="2" />
 
             <text x="42" y="-6" fill="var(--ink)" fontSize="8" fontWeight="700" textAnchor="middle">
-              OUTDOOR UNIT
+              EST. OUTDOOR UNIT
             </text>
             <text x="42" y="100" fill="var(--accent-cooling)" fontSize="8" fontWeight="700" textAnchor="middle">
               {output.recommendedOutdoorTonnage}T ({output.recommendedOutdoorCondenserBtu / 1000}k BTU)
@@ -117,10 +117,10 @@ export function MiniSplitMultiZoneVisualizer({ output }: MiniSplitMultiZoneVisua
                     {room.name.length > 14 ? room.name.substring(0, 14) + "…" : room.name}
                   </text>
                   <text x="118" y="12" fill="#38bdf8" fontSize="7.5" fontWeight="700" textAnchor="end">
-                    {room.matchedIndoorHeadBtu / 1000}k BTU
+                    {room.matchedIndoorHeadBtu / 1000}k Head
                   </text>
                   <text x="8" y="20" fill="var(--ink-secondary)" fontSize="6.5">
-                    {room.sqft} sq ft &bull; {room.calculatedLoadBtu.toLocaleString()} BTU load
+                    {room.sqft} sq ft &bull; {room.calculatedLoadBtu.toLocaleString()} BTU est. load
                   </text>
                 </g>
               </g>
@@ -133,10 +133,10 @@ export function MiniSplitMultiZoneVisualizer({ output }: MiniSplitMultiZoneVisua
       <div style={{ marginTop: "0.5rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.72rem", marginBottom: "0.25rem" }}>
           <span style={{ color: "var(--ink-secondary)" }}>
-            Total Connected Indoor: <strong style={{ color: "var(--ink)" }}>{output.totalIndoorConnectedBtu.toLocaleString()} BTU</strong>
+            Total Candidate Indoor: <strong style={{ color: "var(--ink)" }}>{output.totalIndoorConnectedBtu.toLocaleString()} BTU</strong>
           </span>
           <span style={{ color: "var(--ink-secondary)" }}>
-            Outdoor Condenser: <strong style={{ color: "var(--accent-cooling)" }}>{output.recommendedOutdoorCondenserBtu.toLocaleString()} BTU</strong>
+            Illustrative Outdoor: <strong style={{ color: "var(--accent-cooling)" }}>{output.recommendedOutdoorCondenserBtu.toLocaleString()} BTU</strong>
           </span>
         </div>
         <div style={{ width: "100%", height: "6px", background: "rgba(255, 255, 255, 0.1)", borderRadius: "3px", overflow: "hidden" }}>

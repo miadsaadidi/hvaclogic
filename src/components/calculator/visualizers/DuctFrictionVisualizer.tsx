@@ -104,7 +104,7 @@ export function DuctFrictionVisualizer({ output }: DuctFrictionVisualizerProps) 
             AIR HANDLER
           </text>
           <text x="165" y="110" fill="#cbd5e1" fontSize="6" fontWeight="600" textAnchor="middle">
-            Coil + Filter Drop: {output.totalComponentLossInWg.toFixed(2)}&quot;
+            Components Drop: {output.totalComponentLossInWg.toFixed(3)}&quot;
           </text>
 
           {/* Supply Trunk & Boots (Right) */}
@@ -122,7 +122,7 @@ export function DuctFrictionVisualizer({ output }: DuctFrictionVisualizerProps) 
       {/* Summary Footer */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.4rem", fontSize: "0.72rem" }}>
         <span style={{ color: "var(--ink-secondary)" }}>
-          Design Friction Rate: <strong style={{ color: statusColor }}>{output.designFrictionRateFr.toFixed(3)}&quot; w.g. / 100 ft</strong>
+          Calculated Design Friction Rate: <strong style={{ color: statusColor }}>{output.designFrictionRateFr.toFixed(3)}&quot; w.g. / 100 ft</strong>
         </span>
         <span style={{ color: "var(--ink-secondary)" }}>
           Status: <strong style={{ color: statusColor, textTransform: "capitalize" }}>{output.frictionRateStatus.replace("_", " ")}</strong>

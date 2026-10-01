@@ -226,7 +226,7 @@ export function EquivalentLengthVisualizer({ output }: EquivalentLengthVisualize
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
           <span style={{ fontSize: "0.72rem", color: "var(--ink-secondary)", textTransform: "uppercase", letterSpacing: "0.03em" }}>
-            ACCA Manual D Friction Rate Target Scale (0.00 to 0.20 in. wg / 100 ft)
+            Design Friction Rate Reference Scale (0.00 to 0.20 in. wg / 100 ft)
           </span>
           <span style={{ fontSize: "0.75rem", fontWeight: 700, color: statusColor }}>
             {output.designFrictionRateFr.toFixed(3)}&quot; w.g. / 100&apos;
@@ -236,9 +236,9 @@ export function EquivalentLengthVisualizer({ output }: EquivalentLengthVisualize
         {/* Multi-Zone Color Track */}
         <div style={{ position: "relative", height: "10px", borderRadius: "5px", overflow: "hidden", background: "#334155", display: "flex" }}>
           <div style={{ width: "25%", background: "#f59e0b" }} title="Low (<0.05)" />
-          <div style={{ width: "35%", background: "#10b981" }} title="Optimal Target Range (0.06 - 0.12)" />
-          <div style={{ width: "30%", background: "#f97316" }} title="Borderline High (0.12 - 0.18)" />
-          <div style={{ width: "10%", background: "#ef4444" }} title="Critical High (>0.18)" />
+          <div style={{ width: "35%", background: "#10b981" }} title="Common Residential Reference Range (0.06 - 0.12)" />
+          <div style={{ width: "30%", background: "#f97316" }} title="Elevated (0.12 - 0.18)" />
+          <div style={{ width: "10%", background: "#ef4444" }} title="High (>0.18)" />
         </div>
 
         {/* Needle Marker */}
@@ -259,10 +259,10 @@ export function EquivalentLengthVisualizer({ output }: EquivalentLengthVisualize
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.65rem", color: "var(--ink-secondary)", marginTop: "0.15rem" }}>
-          <span>0.00 (Oversized)</span>
-          <span style={{ color: "#34d399", fontWeight: 600 }}>0.06 - 0.12 (Optimal Target)</span>
+          <span>0.00 (Requires Larger Ducts)</span>
+          <span style={{ color: "#34d399", fontWeight: 600 }}>0.06 - 0.12 (Typical Design Reference Range)</span>
           <span>0.15</span>
-          <span>0.20+ (Choked / Noisy)</span>
+          <span>0.20+ (High Static / Velocity)</span>
         </div>
       </div>
     </div>

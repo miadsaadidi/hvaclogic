@@ -47,23 +47,24 @@ export interface CfmCalculationResult {
 }
 
 export const ACH_PRESETS = [
-  { label: "Residential Living / Bedrooms (4-6 ACH)", ach: 5 },
-  { label: "Kitchen / Cooking Zone (7-8 ACH)", ach: 7.5 },
-  { label: "Bathroom / Exhaust (8-10 ACH)", ach: 8.5 },
-  { label: "Basement / Storage (3-4 ACH)", ach: 3.5 },
-  { label: "Commercial Office (6-8 ACH)", ach: 6 },
-  { label: "Classroom / Conference (8-12 ACH)", ach: 10 },
-  { label: "Cleanroom / Medical Lab (15-25 ACH)", ach: 20 },
+  { label: "Residential Living / Bedrooms (Typical 4–6 ACH guideline)", ach: 5 },
+  { label: "Kitchen / Cooking Zone (Typical 7–8 ACH guideline)", ach: 7.5 },
+  { label: "Bathroom / Exhaust (Typical 8–10 ACH guideline)", ach: 8.5 },
+  { label: "Basement / Storage (Typical 3–4 ACH guideline)", ach: 3.5 },
+  { label: "Commercial Office (Typical 6–8 ACH guideline)", ach: 6 },
+  { label: "Classroom / Conference (Typical 8–12 ACH guideline)", ach: 10 },
+  { label: "Cleanroom / Medical Lab (Typical 15–25 ACH guideline)", ach: 20 },
 ];
 
 export const CFM_PER_TON_PRESETS = [
-  { label: "Standard Residential (400 CFM/ton)", rate: 400 },
-  { label: "Humid Climate / High Latent (350 CFM/ton)", rate: 350 },
-  { label: "Dry Climate / High Sensible (450 CFM/ton)", rate: 450 },
+  { label: "Nominal Baseline (400 CFM/ton benchmark)", rate: 400 },
+  { label: "Humid / High-Latent Design (350 CFM/ton benchmark)", rate: 350 },
+  { label: "Dry Arid / High-Sensible Design (450 CFM/ton benchmark)", rate: 450 },
 ];
 
 /**
- * Categorizes duct air velocity based on residential/commercial acoustic comfort limits (SMACNA).
+ * Categorizes duct air velocity based on representative residential/commercial design guidelines.
+ * Actual acoustic performance depends on duct geometry, fittings, static pressure, and terminal devices.
  */
 export function categorizeVelocity(fpm: number): {
   category: "whisper" | "standard" | "noisy" | "excessive";
@@ -72,24 +73,24 @@ export function categorizeVelocity(fpm: number): {
   if (fpm < 600) {
     return {
       category: "whisper",
-      recommendation: "Whisper-quiet acoustic performance (<600 FPM), ideal for quiet residential master bedrooms.",
+      recommendation: "Low-velocity design range (<600 FPM), representative of sound-sensitive spaces like bedrooms.",
     };
   }
   if (fpm <= 900) {
     return {
       category: "standard",
-      recommendation: "Standard residential supply branch velocity (600–900 FPM), well within NC-30 noise limits.",
+      recommendation: "Representative residential supply branch target (600–900 FPM), commonly targeted in duct design guidelines.",
     };
   }
   if (fpm <= 1200) {
     return {
       category: "noisy",
-      recommendation: "Moderate velocity (900–1,200 FPM), suitable for main supply trunks or commercial spaces.",
+      recommendation: "Moderate velocity range (900–1,200 FPM), typical for main supply trunks or commercial applications when properly isolated.",
     };
   }
   return {
     category: "excessive",
-    recommendation: "High air velocity (>1,200 FPM). Warning: Noticeable turbulent airflow noise and register whistle.",
+    recommendation: "High air velocity (>1,200 FPM). Design note: Increases turbulence, aerodynamic resistance, and register noise risk.",
   };
 }
 

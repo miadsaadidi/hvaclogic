@@ -44,7 +44,6 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
   const sameAsAuthority = [
     "https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826",
     "https://www.academia.edu/172310808/Deterministic_Building_Science_and_Thermodynamic_Modeling_Framework_for_Real_Time_Field_Diagnostics_Air_Distribution_and_Decarbonization_Sizing",
-    "https://www.google.com/preferences/source?q=hvaclogic.org",
   ];
 
   const schemaGraph = {

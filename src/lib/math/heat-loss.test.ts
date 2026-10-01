@@ -5,7 +5,7 @@ import {
 } from "./heat-loss";
 
 describe("Building Heat Loss & Infiltration Engine", () => {
-  it("calculates standard 2,000 sq ft home heat loss at 10°F design temperature", () => {
+  it("calculates exact Denver 2,000 sq ft baseline (25,428 BTU/hr) with full component breakdown", () => {
     const input: BuildingHeatLossInput = {
       floorAreaSqFt: 2000,
       ceilingHeightFeet: 9,
@@ -20,11 +20,26 @@ describe("Building Heat Loss & Infiltration Engine", () => {
 
     const res = calculateBuildingHeatLoss(input);
     expect(res.temperatureDifferenceDeltaT).toBe(60);
-    expect(res.totalHeatLossBtu).toBeGreaterThan(25000);
-    expect(res.totalHeatLossBtu).toBeLessThan(45000);
-    expect(res.totalHeatLossKw).toBeGreaterThan(7);
-    expect(res.breakdownPercentages.infiltrationPercent).toBeGreaterThan(15);
-    expect(res.recommendedFurnaceBtu).toBeGreaterThanOrEqual(30000);
+    expect(res.grossWallAreaSqFt).toBe(1610);
+    expect(res.netWallAreaSqFt).toBe(1270);
+    expect(res.windowAreaSqFt).toBe(300);
+    expect(res.doorAreaSqFt).toBe(40);
+    expect(res.perimeterFeet).toBeCloseTo(178.9, 1);
+    expect(res.buildingVolumeCuFt).toBe(18000);
+    expect(res.infiltrationCfm).toBe(114);
+
+    // Exact component breakdown
+    expect(res.breakdown.wallsBtu).toBe(3717);
+    expect(res.breakdown.ceilingBtu).toBe(3077);
+    expect(res.breakdown.windowsBtu).toBe(5040);
+    expect(res.breakdown.doorsBtu).toBe(840);
+    expect(res.breakdown.foundationBtu).toBe(5367);
+    expect(res.breakdown.infiltrationBtu).toBe(7387);
+
+    // Total = 3717 + 3077 + 5040 + 840 + 5367 + 7387 = 25,428 BTU/hr
+    expect(res.totalHeatLossBtu).toBe(25428);
+    expect(res.totalHeatLossKw).toBe(7.5);
+    expect(res.heatLossPerSqFtBtu).toBe(12.7);
   });
 
   it("reflects dramatic heat loss reduction in high-efficiency tight homes", () => {
@@ -56,10 +71,6 @@ describe("Building Heat Loss & Infiltration Engine", () => {
   });
 
   it("calculates wall conduction using effective assembly U-factor when wallAssemblyMode is 'effective_u'", () => {
-    // 2,000 sq ft, perimeter = 4 * sqrt(2000) ≈ 178.885 ft
-    // gross wall area = 178.885 * 9 ≈ 1610 sq ft
-    // window area = 300 sq ft (15%), door = 40 sq ft -> net wall = 1270 sq ft
-    // Delta T = 60°F
     const customUInput: BuildingHeatLossInput = {
       floorAreaSqFt: 2000,
       ceilingHeightFeet: 9,
@@ -81,11 +92,10 @@ describe("Building Heat Loss & Infiltration Engine", () => {
 
     // Expected wall loss: round(0.052 * 1270 * 60) = 3962 BTU/hr
     expect(res.breakdown.wallsBtu).toBe(3962);
-    expect(res.summary).toContain("ASHRAE 90.1 assembly U-0.052");
+    expect(res.summary).toContain("Assembly U-0.0520");
   });
 
   it("distinguishes unmitigated steel stud assembly thermal bridging from nominal cavity R-value", () => {
-    // Baseline: uncorrected nominal R-13 cavity (assumed R-14.5 with films: U ≈ 0.069)
     const nominalInput: BuildingHeatLossInput = {
       floorAreaSqFt: 2000,
       outdoorDesignTempF: 10,
@@ -96,8 +106,7 @@ describe("Building Heat Loss & Infiltration Engine", () => {
       airTightness: "average_code",
     };
 
-    // Bridged steel stud wall: per ASHRAE 90.1 Table A9.2-1, R-13 cavity in 3.5" steel stud @ 16" OC
-    // derates to effective cavity R-6.0 + R-2.5 continuous layers = effective R-8.5 -> U = 1/8.5 ≈ 0.1176
+    // Bridged steel stud wall: e.g. U = 0.1176
     const bridgedSteelInput: BuildingHeatLossInput = {
       ...nominalInput,
       wallAssemblyMode: "effective_u",
@@ -107,7 +116,6 @@ describe("Building Heat Loss & Infiltration Engine", () => {
     const nominalRes = calculateBuildingHeatLoss(nominalInput);
     const steelRes = calculateBuildingHeatLoss(bridgedSteelInput);
 
-    // Steel stud thermal bridging increases wall transmission heat loss significantly
     expect(steelRes.breakdown.wallsBtu).toBeGreaterThan(nominalRes.breakdown.wallsBtu * 1.5);
     expect(steelRes.totalHeatLossBtu).toBeGreaterThan(nominalRes.totalHeatLossBtu);
   });

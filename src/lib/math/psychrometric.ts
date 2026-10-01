@@ -1,7 +1,10 @@
 /**
- * HVACLogic ASHRAE Fundamentals Moist Air Psychrometric Engine
- * Complies with ASHRAE Handbook of Fundamentals 2021 (Chapter 1, Psychrometrics)
- * and Hyland-Wexler thermodynamic formulations.
+ * HVACLogic Moist Air Psychrometric Calculation Engine
+ * Formulations derived from ASHRAE Handbook—Fundamentals 2021 (Chapter 1, Psychrometrics)
+ * - Saturation vapor pressure: Hyland-Wexler formulations over liquid (T >= 32°F) and ice (T < 32°F)
+ * - Humidity ratio: Dalton ideal-gas mixture relation W = 0.621945 * Pw / (Patm - Pw)
+ * - Specific enthalpy: h = 0.240 * Tdb + W * (1061 + 0.444 * Tdb)
+ * - Barometric pressure: Standard atmospheric altitude approximation
  */
 
 export interface PsychrometricInput {
@@ -9,7 +12,7 @@ export interface PsychrometricInput {
   relativeHumidityPercent?: number; // 0 to 100%
   wetBulbF?: number; // Wet bulb temperature in °F
   dewPointF?: number; // Dew point temperature in °F
-  altitudeFeet?: number; // Elevation above sea level (feet)
+  altitudeFeet?: number; // Elevation above sea level (feet, -1,000 to 15,000 ft)
 }
 
 export interface PsychrometricOutput {
@@ -25,7 +28,7 @@ export interface PsychrometricOutput {
   vaporPressurePsia: number;
   saturationPressurePsia: number;
   atmosphericPressurePsia: number;
-  comfortZoneStatus: "Ideal Comfort (ASHRAE 55)" | "Dry / Low Humidity" | "Humid / Sticky" | "Cold / Unconditioned" | "Hot / Overheating";
+  comfortZoneStatus: "Representative Comfort Condition (ASHRAE 55)" | "Dry / Low Humidity" | "Humid / Sticky" | "Cold / Unconditioned" | "Hot / Overheating";
   // Academic & Elevation Benchmark Outputs
   seaLevelHumidityRatioGrainsPerLb: number;
   seaLevelEnthalpyBtuPerLb: number;
@@ -209,7 +212,7 @@ export function calculatePsychrometrics(input: PsychrometricInput): Psychrometri
     Math.round(((1 + humidityRatioLbPerLb) / specificVolumeCuFtPerLb) * 1000) / 1000;
 
   // 7. Comfort Zone Classification (ASHRAE Standard 55)
-  let comfortZoneStatus: PsychrometricOutput["comfortZoneStatus"] = "Ideal Comfort (ASHRAE 55)";
+  let comfortZoneStatus: PsychrometricOutput["comfortZoneStatus"] = "Representative Comfort Condition (ASHRAE 55)";
   if (tdb < 68) {
     comfortZoneStatus = "Cold / Unconditioned";
   } else if (tdb > 78) {
