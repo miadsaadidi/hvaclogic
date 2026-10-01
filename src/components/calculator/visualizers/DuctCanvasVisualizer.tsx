@@ -147,7 +147,7 @@ export function DuctCanvasVisualizer({
         color: velocityCategory === "quiet" ? "var(--accent-success)" : velocityCategory === "moderate" ? "var(--accent-warning)" : "var(--accent-danger)",
         border: "1px solid currentColor",
       }}>
-        {velocityCategory === "quiet" ? "✓ Quiet (<700 FPM)" : velocityCategory === "moderate" ? "⚡ Moderate (700-1000 FPM)" : "⚠️ High Velocity (>1000 FPM)"}
+        {velocityCategory === "quiet" ? "✓ Quiet Target (<700 FPM)" : velocityCategory === "moderate" ? "⚡ Standard Range (700-1000 FPM)" : "⚠️ Elevated Velocity (>1000 FPM)"}
       </div>
     </div>
   );

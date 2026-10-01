@@ -13,18 +13,18 @@ export const calculatorRegistry: CalculatorMeta[] = [
     launchPhase: 1,
     riskLevel: "low",
     primaryKeyword: "ductulator",
-    secondaryKeywords: ["duct sizing calculator", "mcquay duct sizer", "air duct design calculator", "duct sizer"],
+    secondaryKeywords: ["duct sizing calculator", "air duct sizing tool", "air duct design calculator", "equal friction duct sizer", "round rectangular duct sizing"],
     primaryIntent: "Transactional / Professional Engineering",
     seoTitle: "Ductulator — HVAC Air Duct Sizing Tool",
-    metaDescription: "Free online ductulator for HVAC engineers. Size round, rectangular & oval ducts via equal friction (Colebrook-White). Real-time 2D visualizer.",
+    metaDescription: "Free online ductulator for HVAC duct sizing. Size round and rectangular air ducts via equal friction and Huebscher's formula. Real-time 2D visualizer.",
     categoryName: "Airflow & Ducts",
     categoryRoute: "/airflow-ducts",
     features: [
       "Equal friction round diameter and velocity calculation",
       "Huebscher rectangular duct equivalence with aspect ratio locking",
       "Flexible duct installation sag and compression derating (0% to 30%)",
-      "SMACNA acoustic noise limits and residential velocity alerts",
-      "Real-time 2D Canvas cross-section with velocity gradient visualization",
+      "Velocity range design targets and flow area indicators",
+      "Real-time 2D Canvas cross-section with dimension annotations",
     ],
     relatedCalculatorIds: ["duct-friction-loss-calculator", "equivalent-length-calculator", "flex-duct-cfm-chart", "cfm-calculator", "boiler-size-calculator"],
     researchSlug: "non-linear-duct-friction-loss-fitting-penalties",
@@ -35,19 +35,19 @@ export const calculatorRegistry: CalculatorMeta[] = [
     lastEngineeringReview: "2026-08-19",
     requiresReferenceDataset: false,
     offlineEligible: true,
-    testStatus: "validated",
+    testStatus: "unit-tested",
     faqs: [
       {
-        question: "What friction rate should I use to size residential ductwork?",
-        answer: "According to ACCA Manual D guidelines, standard residential supply ductwork is sized at a friction rate of 0.08 to 0.10 in. wg per 100 ft, while return trunks are typically sized at 0.05 to 0.08 in. wg for quieter airflow."
+        question: "What friction rate is commonly used to size residential ductwork?",
+        answer: "A friction rate of 0.08 to 0.10 in. wg per 100 ft is a common starting design range for residential supply trunks, while return trunks are often sized at 0.05 to 0.08 in. wg. Actual design friction rate depends on equipment available static pressure (ASP), total equivalent length (TEL), component pressure drops, and airflow requirements."
       },
       {
-        question: "How do you calculate rectangular duct size from round duct diameter?",
-        answer: "Huebscher's formula determines equivalent rectangular dimensions: De = 1.30 * (a * b)^0.625 / (a + b)^0.25, where 'a' and 'b' are rectangular duct width and height in inches."
+        question: "How do you calculate rectangular duct dimensions from equivalent round diameter?",
+        answer: "Huebscher's formula determines equivalent rectangular dimensions: De = 1.30 * (a * b)^0.625 / (a + b)^0.25, where 'a' and 'b' are rectangular duct width and height in inches carrying equivalent airflow at the same friction loss rate."
       },
       {
-        question: "Why does flexible duct have lower airflow capacity than sheet metal?",
-        answer: "Flexible duct has a corrugated inner core and often suffers from installation sag or compression. Sags of 4% to 15% increase friction drop by 15% to 60% compared to smooth galvanized sheet metal."
+        question: "Why does flexible duct airflow capacity differ from rigid sheet metal?",
+        answer: "Flexible duct has a helical wire and corrugated inner surface that exhibits higher friction than smooth sheet metal. Field conditions such as installation sag, bends, and longitudinal compression (e.g. 4% to 15% compression) significantly increase resistance and reduce delivered airflow."
       }
     ],
     analyticsEvents: ["calculator_started", "result_generated", "preset_selected", "share_clicked", "print_exported"]
@@ -81,19 +81,19 @@ export const calculatorRegistry: CalculatorMeta[] = [
     lastEngineeringReview: "2026-08-19",
     requiresReferenceDataset: false,
     offlineEligible: true,
-    testStatus: "validated",
+    testStatus: "unit-tested",
     faqs: [
       {
-        question: "How many CFM can a 6-inch flex duct handle?",
-        answer: "A standard 6-inch flexible duct carries approximately 75 to 85 CFM at a 0.08 to 0.10 in. wg friction rate under proper installation tension (4% compression)."
+        question: "How many CFM can a 6-inch flexible duct handle?",
+        answer: "Under a 4% modeled compression reference baseline, a standard 6-inch flexible duct carries approximately 84 CFM at 0.08 in. wg per 100 ft friction and 98 CFM at 0.10 in. wg per 100 ft (compared to ~90 CFM and 105 CFM when fully stretched)."
       },
       {
-        question: "How many CFM can an 8-inch flex duct handle?",
-        answer: "An 8-inch flexible duct carries approximately 150 to 160 CFM at a 0.10 in. wg friction rate, making it suitable for larger bedrooms or living room supply runs."
+        question: "How many CFM can an 8-inch flexible duct handle?",
+        answer: "Under a 4% modeled compression reference baseline, an 8-inch flexible duct carries approximately 177 CFM at 0.08 in. wg per 100 ft friction and 205 CFM at 0.10 in. wg per 100 ft (compared to ~190 CFM and 220 CFM when fully stretched)."
       },
       {
         question: "How does flexible duct installation sag impact air flow capacity?",
-        answer: "According to ASHRAE Research Project RP-1333, just 4% to 15% longitudinal compression or 2 inches of duct sag increases the fluid friction factor by over 170%, dropping airflow delivery by up to 50% compared to rigid metal ductwork."
+        answer: "According to laboratory test data from ASHRAE Research Project RP-1333, longitudinal compression and sag significantly increase internal friction loss (e.g. 1.15× at 4% compression, 1.60× at 15% sag, and 2.20× at 30% sag). Under constant available static pressure, 15% attic sag reduces delivered airflow capacity by approximately 22% compared to fully stretched manufacturer ratings."
       }
     ],
     analyticsEvents: ["calculator_started", "preset_selected", "print_exported", "csv_exported"]

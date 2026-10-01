@@ -6,7 +6,7 @@ export function HomeStatsBar() {
   const stats = [
     {
       label: "Engineering Calculators",
-      value: "21",
+      value: "25",
       icon: "🧮",
       detail: "Deterministic & Pure Math",
       color: "#00d2ff",
@@ -19,17 +19,17 @@ export function HomeStatsBar() {
       color: "#38bdf8",
     },
     {
-      label: "Client-Side Privacy",
+      label: "Browser Execution",
       value: "100%",
       icon: "⚡",
-      detail: "Zero Database Tracking",
+      detail: "No User/Project Database",
       color: "#10b981",
     },
     {
-      label: "Engineering Standards",
-      value: "ASHRAE",
+      label: "Engineering References",
+      value: "Standards-Based",
       icon: "📐",
-      detail: "ACCA • EPA • NIST • IECC",
+      detail: "ASHRAE • ACCA • NFPA • NIST",
       color: "#8b5cf6",
     },
   ];

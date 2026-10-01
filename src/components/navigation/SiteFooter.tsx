@@ -23,7 +23,7 @@ export function SiteFooter() {
               <Logo size="md" showTagline={true} />
             </div>
             <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.6, marginBottom: "1rem" }}>
-              Engineering-grade calculators, diagnostic tools, and technical references for HVAC design engineers, mechanical contractors, and building scientists.
+              Interactive calculators, sizing tools, and technical references for HVAC design engineers, mechanical contractors, and building scientists.
             </p>
             <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "1rem" }}>
               Standards: ASHRAE • ACCA • SMACNA • EPA
@@ -117,7 +117,7 @@ export function SiteFooter() {
               Standards &amp; Trust
             </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.8125rem" }}>
-              <li><Link href="/calculators" style={{ fontWeight: 700, color: "var(--accent-cooling)" }}>🧮 All 24 Calculators Directory</Link></li>
+              <li><Link href="/calculators" style={{ fontWeight: 700, color: "var(--accent-cooling)" }}>🧮 All 25 Calculators Directory</Link></li>
               <li><Link href="/guides" style={{ fontWeight: 600 }}>📚 Master Engineering Guides</Link></li>
               <li><Link href="/research" style={{ fontWeight: 600 }}>🎓 Research &amp; Whitepapers</Link></li>
               <li><Link href="/standards" style={{ fontWeight: 600 }}>📜 Standards &amp; Codes Matrix</Link></li>

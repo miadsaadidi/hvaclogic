@@ -15,7 +15,7 @@ export async function GET() {
       description: "Official OpenAPI 3.1 specification for HVACLogic deterministic calculation algorithms. Governed by ACCA (Manual J/S/D), ASHRAE (Fundamentals, 62.1, 90.1), AHRI (210/240), and SMACNA standards. Zero server telemetry, 100% verifiable physics formulations.",
       version: "1.0.0",
       contact: {
-        name: "HVACLogic Engineering Standards Committee",
+        name: "HVACLogic",
         url: siteConfig.canonicalDomain,
       },
       license: {

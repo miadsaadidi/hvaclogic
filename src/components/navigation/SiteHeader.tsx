@@ -60,7 +60,7 @@ export function SiteHeader() {
               alignItems: "center",
               gap: "0.3rem",
             }}
-            title="Browse all 21 HVAC engineering calculators"
+            title="Browse all 25 HVAC engineering calculators"
           >
             <span>🧮</span>
             <span>Calculators</span>
@@ -165,7 +165,7 @@ export function SiteHeader() {
             onClick={() => setMobileMenuOpen(false)}
             style={{ fontWeight: 700, color: "var(--accent-cooling)", display: "flex", alignItems: "center", gap: "0.5rem" }}
           >
-            <span>🧮</span> All 21 Calculators Directory
+            <span>🧮</span> All 25 Calculators Directory
           </Link>
           <Link
             href="/guides"

@@ -52,7 +52,7 @@ export default function AshraeClimaticDataPage() {
     isAccessibleForFree: true,
     creator: {
       "@type": "Organization",
-      name: "HVACLogic Engineering Standards Committee",
+      name: "HVACLogic",
       url: siteConfig.canonicalDomain,
       sameAs: [
         "https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826",

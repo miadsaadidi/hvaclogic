@@ -43,7 +43,7 @@ export function PrintJobSubmittal({
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
           <div>
             <div style={{ fontSize: "1.4rem", fontWeight: 700, margin: 0, textTransform: "uppercase", letterSpacing: "0.04em", color: "#000000" }}>
-              HVAC Mechanical Calculation Submittal
+              HVAC Mechanical Calculation Report
             </div>
             <p style={{ fontSize: "0.85rem", margin: "0.25rem 0 0", color: "#333333" }}>
               {meta?.companyName ? `${meta.companyName} • Generated via ` : ""}{siteConfig.name} ({siteConfig.canonicalDomain})
@@ -51,7 +51,7 @@ export function PrintJobSubmittal({
           </div>
           <div style={{ textAlign: "right" }}>
             <div style={{ fontSize: "0.85rem", fontWeight: 700 }}>DATE: {currentDate}</div>
-            <div style={{ fontSize: "0.75rem", color: "#555555" }}>CODE COMPLIANCE RECORD</div>
+            <div style={{ fontSize: "0.75rem", color: "#555555" }}>CALCULATION SUMMARY &amp; DESIGN AID</div>
           </div>
         </div>
 
@@ -100,6 +100,10 @@ export function PrintJobSubmittal({
             <strong>ENGINEERING NOTES:</strong> {meta.notes}
           </div>
         )}
+
+        <div style={{ marginTop: "0.75rem", fontSize: "0.72rem", color: "#666666", fontStyle: "italic", borderTop: "1px dashed #cccccc", paddingTop: "0.5rem" }}>
+          Notice: This calculation summary is provided as an engineering design aid and reference. It does not by itself constitute code approval, professional engineering certification, or an official authority-approved submittal.
+        </div>
       </div>
     </div>
   );

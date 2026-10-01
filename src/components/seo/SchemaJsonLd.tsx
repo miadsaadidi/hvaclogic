@@ -65,20 +65,9 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         dateModified: calculator.lastEngineeringReview || "2026-08-19",
         author: {
           "@type": "Organization",
-          name: "HVACLogic Engineering Standards Committee",
+          name: "HVACLogic",
           url: siteConfig.canonicalDomain,
           sameAs: sameAsAuthority,
-        },
-        reviewedBy: {
-          "@type": "Person",
-          name: "Senior Mechanical Engineer (PE)",
-          jobTitle: "Licensed Professional Engineer (HVAC / Thermal Fluids)",
-          worksFor: {
-            "@type": "Organization",
-            name: "HVACLogic Peer Review Board",
-            url: siteConfig.canonicalDomain,
-            sameAs: sameAsAuthority,
-          },
         },
         citation: citations,
         offers: {
@@ -113,7 +102,7 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         },
         author: {
           "@type": "Organization",
-          name: "HVACLogic Engineering Standards Committee",
+          name: "HVACLogic",
           url: siteConfig.canonicalDomain,
           sameAs: sameAsAuthority,
         },
@@ -199,17 +188,17 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
                 {
                   stepNumber: 1,
                   title: "Gather Building & Operating Parameters",
-                  instruction: `Input baseline physical and climatic measurements into the ${calculator.name} interface.`,
+                  instruction: `Input baseline physical and airflow measurements into the ${calculator.name} interface.`,
                 },
                 {
                   stepNumber: 2,
-                  title: `Apply Governing ${calculator.standards[0] || "ASHRAE"} Formulations`,
-                  instruction: `Execute deterministic thermodynamic modeling according to governing ${calculator.standards.join(" & ")} engineering standards.`,
+                  title: `Apply ${calculator.standards[0] || "Engineering"} Calculation Methods`,
+                  instruction: `Execute deterministic calculation models referencing ${calculator.standards.join(" & ")} engineering references.`,
                 },
                 {
                   stepNumber: 3,
-                  title: "Verify Equipment Sizing & Operating Margins",
-                  instruction: "Review sizing benchmarks, visualizer diagrams, and export official job submittals.",
+                  title: "Verify Sizing Calculations & Guidelines",
+                  instruction: "Review sizing results, visualizer diagrams, and export calculation summary reports.",
                 },
               ]
         ).map((s, idx) => ({

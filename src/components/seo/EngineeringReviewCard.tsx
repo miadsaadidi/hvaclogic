@@ -41,7 +41,7 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
               <span style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)" }}>
-                Engineering Verification &amp; E-E-A-T Quality Standards
+                Engineering Reference Verification &amp; Formula Testing
               </span>
               <span
                 style={{
@@ -55,11 +55,11 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
                   borderRadius: "9999px",
                 }}
               >
-                Peer-Reviewed
+                Formula Tested
               </span>
             </div>
             <p style={{ fontSize: "0.8125rem", color: "var(--ink-secondary)", margin: "0.2rem 0 0", lineHeight: 1.45 }}>
-              Calculations reviewed by licensed Mechanical Engineers (PE) adhering to ASHRAE Fundamentals, ACCA Manuals, and NIST thermodynamics.
+              Calculations implemented and unit-tested against published engineering equations from ASHRAE Fundamentals, ACCA Manuals, SMACNA, and NIST thermodynamic references.
             </p>
           </div>
         </div>
@@ -88,7 +88,7 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
               color: "var(--ink-secondary)",
             }}
           >
-            Reviewed: <strong>{calculator.lastEngineeringReview}</strong>
+            Verified: <strong>{calculator.lastEngineeringReview}</strong>
           </div>
           <div
             style={{
@@ -100,7 +100,7 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
               color: "var(--accent-cooling)",
             }}
           >
-            Status: <strong>Deterministic (Zero Heuristics)</strong>
+            Test Suite: <strong>Automated Reference Unit Tests</strong>
           </div>
         </div>
       </div>

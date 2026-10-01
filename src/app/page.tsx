@@ -41,10 +41,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
-  other: {
-    "article:published_time": "2026-08-15T08:00:00Z",
-    "article:modified_time": "2026-08-27T20:00:00Z",
-  },
 };
 
 export default function HomePage() {
@@ -134,7 +130,7 @@ export default function HomePage() {
           </h1>
 
           <p className="hero-lead-text">
-            Transparent thermodynamic and fluid mechanics formulas built on ASHRAE, ACCA, EPA, and IECC standards. 100% client-side precision.
+            Transparent thermodynamic and fluid mechanics formulas referenced from ASHRAE, ACCA, NFPA, and building energy codes. Client-side calculations.
           </p>
 
           {/* QUICK CATEGORY JUMP PILLS */}

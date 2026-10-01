@@ -99,9 +99,9 @@ export function FlexDuctChartTool() {
               textDecoration: "underline",
               textUnderlineOffset: "2px",
             }}
-            title="Reset to 4% Code Standard"
+            title="Reset to 4% Reference Installed Baseline"
           >
-            ↺ Reset Code Default (4%)
+            ↺ Reset 4% Reference Baseline
           </button>
         </div>
 
@@ -157,12 +157,12 @@ export function FlexDuctChartTool() {
             }}
           >
             <div style={{ fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", color: "var(--accent-cooling)", marginBottom: "0.5rem" }}>
-              🔍 Fast Flex Duct Sizer &amp; Room Matcher
+              🔍 Flex Duct Sizer &amp; Airflow Lookup
             </div>
 
             <div className="form-group" style={{ marginBottom: "0.75rem" }}>
               <label htmlFor="target-cfm-input">
-                <span>Required Room Airflow</span>
+                <span>Required Design Airflow</span>
                 <span className="unit-label">CFM Target</span>
               </label>
               <div className="input-with-slider">
@@ -205,10 +205,10 @@ export function FlexDuctChartTool() {
                 className="input-number"
                 style={{ cursor: "pointer" }}
               >
-                <option value={0.05}>0.05 in. wg / 100 ft (Quiet Trunks / High Latent)</option>
-                <option value={0.08}>0.08 in. wg / 100 ft (Standard Residential Supply)</option>
-                <option value={0.10}>0.10 in. wg / 100 ft (Commercial / Shorter Runs)</option>
-                <option value={0.15}>0.15 in. wg / 100 ft (High Velocity Systems)</option>
+                <option value={0.05}>0.05 in. wg / 100 ft (Low Resistance / Return Runs)</option>
+                <option value={0.08}>0.08 in. wg / 100 ft (Standard Supply Branch Range)</option>
+                <option value={0.10}>0.10 in. wg / 100 ft (High Velocity / Compact Runs)</option>
+                <option value={0.15}>0.15 in. wg / 100 ft (Elevated Static Pressure)</option>
               </select>
             </div>
 
@@ -222,7 +222,7 @@ export function FlexDuctChartTool() {
                 borderRadius: "6px",
               }}
             >
-              <div style={{ fontSize: "0.65rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.04em" }}>Recommended Size:</div>
+              <div style={{ fontSize: "0.65rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.04em" }}>Recommended Diameter:</div>
               <div style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--accent-cooling)", letterSpacing: "0.01em", marginTop: "0.1rem" }}>
                 &Oslash; {recommendation.recommendedDiameter}&quot; Flexible Duct
               </div>
@@ -257,16 +257,16 @@ export function FlexDuctChartTool() {
             </select>
           </div>
 
-          {/* SMACNA & ASHRAE RP-1333 Installation Rules */}
+          {/* Reference Installation Rules */}
           <div style={{ background: "var(--surface)", border: "1px solid var(--border-subtle)", borderRadius: "0.5rem", padding: "0.75rem" }}>
             <div style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", marginBottom: "0.3rem" }}>
-              📋 Installation Rules (SMACNA &amp; ASHRAE RP-1333):
+              📋 Reference Installation Standards &amp; Guidelines:
             </div>
             <ul style={{ paddingLeft: "1.1rem", margin: 0, fontSize: "0.72rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
-              <li>Support flexible duct with minimum 1.5&quot; wide hanger straps every <strong>4 feet</strong>.</li>
-              <li>Maximum allowable sag between supports is <strong>0.5 inches per foot</strong> of span.</li>
-              <li>Always pull flexible duct fully taut (4% code tension); never leave bunched or partly inside shipping bags.</li>
-              <li>Attic heat degrades standard tape adhesives; seal joints with UL 181-rated mastic and mechanical clamps to prevent attic leaks.</li>
+              <li><strong>IRC Section M1601.4.3</strong>: Support flexible ducts with straps at least 1.5&quot; wide at intervals not exceeding <strong>4 feet</strong>.</li>
+              <li><strong>ADC Standard (5th Ed)</strong>: Maximum allowable sag between supports shall not exceed <strong>0.5 inches per linear foot</strong> of span (~4.2% droop).</li>
+              <li><strong>ACCA Manual D Heuristic</strong>: Keep flexible duct runs short and straight (under 15–25 ft where feasible) to prevent excessive pressure drops.</li>
+              <li>Seal joints with UL 181-rated mastic/tape and mechanical clamps to ensure airtight assembly.</li>
             </ul>
           </div>
         </div>
@@ -278,7 +278,7 @@ export function FlexDuctChartTool() {
             <div className="result-label">&Oslash; {activeRow.diameterInches}&quot; Flex Duct Capacity</div>
             <div className="result-value">{activeRow.cfmAt008} CFM</div>
             <div className="result-unit">
-              At standard residential <strong>0.08 in. wg / 100 ft</strong> friction ({selectedSag}% sag)
+              At nominal <strong>0.08 in. wg / 100 ft</strong> friction ({selectedSag}% compression)
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span
@@ -300,7 +300,7 @@ export function FlexDuctChartTool() {
             </div>
           </div>
 
-          <StandardsBadge standards={["ASHRAE RP-1333 (Culp et al.)", "SMACNA Flexible Duct", "ADC 5th Ed"]} />
+          <StandardsBadge standards={["ASHRAE RP-1333 (Friction Multipliers)", "ADC 5th Ed Standards", "ACCA Manual D® References"]} />
 
           {/* CATENARY SAG VISUALIZER */}
           <FlexDuctSagVisualizer sagPercent={selectedSag} activeDiameter={activeRow.diameterInches} />

@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     "r value calculator",
     "hvac load calculator",
   ],
-  authors: [{ name: "HVACLogic Engineering Standards Committee" }],
+  authors: [{ name: "HVACLogic", url: siteConfig.canonicalDomain }],
   creator: "HVACLogic",
   publisher: "HVACLogic",
   robots: {

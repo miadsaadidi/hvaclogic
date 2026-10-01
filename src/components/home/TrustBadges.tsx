@@ -4,26 +4,26 @@ export function TrustBadges() {
   const badges = [
     {
       icon: "📐",
-      title: "ASHRAE & ACCA Validated",
-      description: "Colebrook equal friction duct equations and ACCA Manual J/S/D sizing compliance with zero ad-hoc heuristics.",
+      title: "ASHRAE & ACCA References",
+      description: "Implements Colebrook-White equal friction duct equations and equipment sizing methods based on ACCA Manual J, S, and D references.",
       accent: "#00d2ff",
     },
     {
       icon: "🔬",
-      title: "NIST REFPROP Thermodynamics",
-      description: "Precision saturation tables for next-gen A2L refrigerants (R-454B, R-32) with discrete bubble and dew temperature glide modeling.",
+      title: "NIST REFPROP Property Data",
+      description: "Refrigerant thermodynamic and saturation properties referenced from NIST REFPROP data models, including zeotropic glide curves.",
       accent: "#38bdf8",
     },
     {
       icon: "⚡",
-      title: "Zero Paywalls & No Lead-Gen",
-      description: "100% free, client-side engineering tools with instant permalink sharing, iframe embeds, and printable calculation submittals.",
+      title: "In-Browser Execution",
+      description: "Client-side calculation engines with zero required user accounts, instant permalink sharing, iframe embeds, and printable submittals.",
       accent: "#10b981",
     },
     {
       icon: "🏢",
-      title: "IECC Energy Code Compliance",
-      description: "Continuous exterior insulation and thermal bridging calculations conforming to 2021/2024 International Energy Conservation Codes.",
+      title: "IECC & ASHRAE 90.1 Criteria",
+      description: "Compares calculated wall and roof assembly R-values and thermal bridging deratings against configured IECC and ASHRAE 90.1 criteria.",
       accent: "#8b5cf6",
     },
   ];

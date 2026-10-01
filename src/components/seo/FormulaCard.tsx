@@ -26,9 +26,9 @@ export function FormulaCard({
   // Generate citation formats
   const latexSnippet = `\\begin{equation}\n  ${formula.replace(/\*/g, " \\times ")}\n\\end{equation}\n% Reference: ${sourceStandard}\n% Verified by HVACLogic (https://hvaclogic.org)`;
 
-  const bibtexSnippet = `@misc{hvaclogic_${title.toLowerCase().replace(/[^a-z0-9]/g, "_")},\n  author = {{HVACLogic Engineering Standards Committee}},\n  title = {${title}: Governing Thermodynamic Model},\n  year = {2026},\n  publisher = {HVAC Logic Open-Access Engineering},\n  url = {https://hvaclogic.org},\n  note = {Governed by ${sourceStandard}}\n}`;
+  const bibtexSnippet = `@misc{hvaclogic_${title.toLowerCase().replace(/[^a-z0-9]/g, "_")},\n  author = {{HVACLogic}},\n  title = {${title}: Governing Thermodynamic Model},\n  year = {2026},\n  publisher = {HVACLogic Engineering},\n  url = {https://hvaclogic.org},\n  note = {Referenced from ${sourceStandard}}\n}`;
 
-  const apaSnippet = `HVACLogic Engineering Standards Committee. (2026). ${title} [Mathematical Model & Physics Specification]. HVACLogic Open-Access Engineering Repository. Governed by ${sourceStandard}. https://hvaclogic.org`;
+  const apaSnippet = `HVACLogic. (2026). ${title} [Mathematical Model & Physics Specification]. HVACLogic Engineering Repository. Referenced from ${sourceStandard}. https://hvaclogic.org`;
 
   const getActiveText = () => {
     if (activeTab === "latex") return latexSnippet;

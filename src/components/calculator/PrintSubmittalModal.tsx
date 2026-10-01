@@ -87,7 +87,7 @@ export function PrintSubmittalModal({
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <span style={{ fontSize: "1.2rem" }}>🖨️</span>
             <h3 id="print-dialog-title" style={{ fontSize: "1.2rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
-              Customize Client Job Submittal
+              Export Calculation Summary Report
             </h3>
           </div>
           <button
@@ -107,7 +107,7 @@ export function PrintSubmittalModal({
         </div>
 
         <p id="print-dialog-description" style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "1.25rem" }}>
-          Add project identification details to be printed on the official 1-page engineering submittal for <strong>{calculatorName}</strong> (optional):
+          Add project identification details to be included on the 1-page calculation summary for <strong>{calculatorName}</strong> (optional):
         </p>
 
         <form onSubmit={handlePrintSubmit}>

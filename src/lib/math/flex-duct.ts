@@ -43,26 +43,26 @@ export const SAG_COMPRESSION_FACTORS: Record<SagCompressionLevel, { frictionMult
   0: {
     frictionMultiplier: 1.0,
     capacityFactor: 1.0,
-    label: "0% Compression (Fully Stretched Lab Tension)",
-    description: "Ideal test condition; maximum rated airflow with zero installation droop.",
+    label: "0% Compression (Fully Stretched Baseline)",
+    description: "Reference manufacturer baseline with duct pulled 100% straight and taut (zero installation sag).",
   },
   4: {
     frictionMultiplier: 1.15,
     capacityFactor: 0.93,
-    label: "4% Compression (Standard Code Installed Tension)",
-    description: "Properly hung with support straps every 4 feet; standard residential field baseline.",
+    label: "4% Compression (Reference Installed Baseline)",
+    description: "Reference installation condition representing taut field installation with proper support spacing.",
   },
   15: {
     frictionMultiplier: 1.60,
     capacityFactor: 0.78,
-    label: "15% Compression (Moderate Attic Sag)",
-    description: "Typical loose attic installation with 1.5\" to 2.5\" droop between joists.",
+    label: "15% Compression (Modeled Moderate Sag)",
+    description: "Modeled loose installation with moderate sag between supports, increasing friction and resistance.",
   },
   30: {
     frictionMultiplier: 2.20,
     capacityFactor: 0.65,
-    label: "30% Compression (Choked / Severe Sag)",
-    description: "Severe installation droop causing internal helix constriction and major airflow choking.",
+    label: "30% Compression (Modeled Severe Sag / Choked)",
+    description: "Modeled severe installation droop or compressed duct run causing internal helix bunching.",
   },
 };
 
@@ -86,18 +86,18 @@ const BASELINE_FLEX_CFM_STRETCHED: Record<number, Record<FrictionRate, number>> 
 };
 
 const RECOMMENDED_ROOM_TYPES: Record<number, string> = {
-  4: "Small Bathroom / Powder Room (<50 sq ft)",
-  5: "Standard Bathroom / Walk-in Closet (50–100 sq ft)",
-  6: "Small Bedroom / Home Office (100–160 sq ft)",
-  7: "Standard Bedroom / Guest Room (160–220 sq ft)",
-  8: "Master Bedroom / Open Dining (220–320 sq ft)",
-  9: "Large Living Room / Kitchen (320–420 sq ft)",
-  10: "Open Concept Great Room (420–550 sq ft)",
-  12: "Trunk Run / Multi-Branch Zone (2–3 rooms)",
-  14: "Main Supply Trunk (2.0 to 2.5 Tons AC)",
-  16: "Central Return Duct (3.0 to 3.5 Tons AC)",
-  18: "Main System Trunk (4.0 to 5.0 Tons AC)",
-  20: "Central Return Air Drop (5.0 Tons AC)",
+  4: "Small Exhaust / Low Airflow Branch (<35 CFM)",
+  5: "Small Supply Branch (40–60 CFM)",
+  6: "Standard Supply Branch (65–100 CFM)",
+  7: "Medium Supply Branch (100–145 CFM)",
+  8: "Medium-Large Supply Branch (145–205 CFM)",
+  9: "Large Supply Branch (200–280 CFM)",
+  10: "High Airflow Branch (280–370 CFM)",
+  12: "Zone Trunk / Branch Trunk (400–600 CFM)",
+  14: "Main Trunk / Return Run (600–900 CFM)",
+  16: "Central Return / Major Trunk (900–1,250 CFM)",
+  18: "Main Return Drop / System Trunk (1,250–1,700 CFM)",
+  20: "Large Central Return Drop (1,700–2,250 CFM)",
 };
 
 /**

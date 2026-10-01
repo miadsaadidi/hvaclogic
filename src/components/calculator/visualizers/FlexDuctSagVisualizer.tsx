@@ -52,7 +52,7 @@ export function FlexDuctSagVisualizer({ sagPercent, activeDiameter }: FlexDuctSa
             border: "1px solid currentColor",
           }}
         >
-          {lossPercent === 0 ? "✓ 100% Lab Baseline" : `⚠️ -${lossPercent}% CFM Capacity`}
+          {lossPercent === 0 ? "✓ Stretched Baseline" : `Modeled -${lossPercent}% Capacity`}
         </span>
       </div>
 
@@ -73,7 +73,7 @@ export function FlexDuctSagVisualizer({ sagPercent, activeDiameter }: FlexDuctSa
           {/* Ceiling Framing Joist Bar (Top) */}
           <line x1="30" y1="20" x2="470" y2="20" stroke="#334155" strokeWidth="4" strokeDasharray="6 4" />
           <text x="250" y="14" fill="#64748b" fontSize="8" fontWeight="600" textAnchor="middle">
-            CEILING JOISTS / ROOF TRUSS (4-FT HANGER SPACING)
+            CEILING JOISTS / TRUSS (MAX 4-FT HANGER SPACING PER IRC M1601.4.3)
           </text>
 
           {/* Hanger Support Straps */}
@@ -118,7 +118,7 @@ export function FlexDuctSagVisualizer({ sagPercent, activeDiameter }: FlexDuctSa
             <>
               <line x1="250" y1="75" x2="250" y2={75 + droopY} stroke="#ef4444" strokeWidth="1.5" strokeDasharray="2 2" />
               <text x="258" y={75 + droopY / 2 + 3} fill="#ef4444" fontSize="8.5" fontWeight="700">
-                {sagPercent}% Sag
+                {sagPercent}% Modeled Sag
               </text>
             </>
           )}
@@ -140,23 +140,23 @@ export function FlexDuctSagVisualizer({ sagPercent, activeDiameter }: FlexDuctSa
         </div>
 
         <div style={{ background: "rgba(0, 0, 0, 0.3)", padding: "0.45rem 0.6rem", borderRadius: "5px", border: "1px solid rgba(255, 255, 255, 0.06)" }}>
-          <div style={{ fontSize: "0.63rem", color: "#94a3b8" }}>Delivered Airflow</div>
+          <div style={{ fontSize: "0.63rem", color: "#94a3b8" }}>Modeled Airflow</div>
           <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--accent-success)", marginTop: "0.1rem" }}>
             {Math.round(config.capacityFactor * 100)}% Capacity
           </div>
         </div>
 
         <div style={{ background: "rgba(0, 0, 0, 0.3)", padding: "0.45rem 0.6rem", borderRadius: "5px", border: "1px solid rgba(255, 255, 255, 0.06)" }}>
-          <div style={{ fontSize: "0.63rem", color: "#94a3b8" }}>Hanger Rule</div>
+          <div style={{ fontSize: "0.63rem", color: "#94a3b8" }}>Hanger Standard</div>
           <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#f59e0b", marginTop: "0.15rem" }}>
-            Max 4-Ft Spacing
+            Max 4-Ft (IRC M1601)
           </div>
         </div>
       </div>
 
       {/* Description Callout */}
       <div style={{ fontSize: "0.75rem", color: "#cbd5e1", lineHeight: 1.45, background: "rgba(255, 255, 255, 0.03)", padding: "0.5rem 0.65rem", borderRadius: "5px", borderLeft: "3px solid var(--accent-cooling)", marginTop: "0.65rem" }}>
-        💡 <strong>Field Physics:</strong> {config.description}
+        💡 <strong>Modeled Condition:</strong> {config.description}
       </div>
     </div>
   );

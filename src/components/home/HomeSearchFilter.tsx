@@ -22,25 +22,42 @@ const CALCULATOR_METRICS: Record<string, { metric: string; icon: string }> = {
   "flex-duct-cfm-chart": { metric: "Sag Derating • Friction • SMACNA", icon: "📏" },
   "cfm-calculator": { metric: "Sensible Heat • 400 CFM/Ton • ACH", icon: "💨" },
   "kitchen-hood-cfm": { metric: "Cooktop BTU • Island Hood • Make-Up Air", icon: "🍳" },
+  "duct-friction-loss-calculator": { metric: "Darcy-Weisbach • Reynolds • Colebrook", icon: "📉" },
+  "equivalent-length-calculator": { metric: "ACCA Manual D • Fitting Accumulator • ASP", icon: "📐" },
+  "filter-sizing-calculator": { metric: "MERV Rating • Face Velocity • Static Drop", icon: "🛡️" },
   "btu-calculator": { metric: "Manual J • Sq Ft • Tonnage Sizing", icon: "🏠" },
   "ac-tonnage-calculator": { metric: "Manual S • SEER2 • Cost Modeling", icon: "❄️" },
   "ac-model-decoder": { metric: "Serial/Model • Nominal Tonnage", icon: "🔍" },
   "mini-split-sizing": { metric: "Multi-Zone • Inverter Diversity", icon: "⚡" },
-  "superheat-subcooling-calculator": { metric: "TXV / Piston • NIST REFPROP PT", icon: "🔧" },
+  "superheat-subcooling-calculator": { metric: "TXV / Piston • Saturation Curves", icon: "🔧" },
   "pt-chart": { metric: "Glide • Bubble/Dew • R-454B A2L", icon: "📊" },
   "psychrometric-calculator": { metric: "Enthalpy • Wet Bulb • Humidity", icon: "💧" },
+  "refrigerant-charge-calculator": { metric: "Liquid Line • Factory Charge • Trim", icon: "⚖️" },
   "furnace-size-calculator": { metric: "80% vs 96% AFUE • Blower CFM", icon: "🔥" },
   "heat-pump-size-calculator": { metric: "Balance Point • ccASHP • Backup kW", icon: "⚡" },
+  "heat-strip-size-calculator": { metric: "ACCA Manual S • Deficit kW • NEC 424", icon: "⚡" },
+  "combustion-air-calculator": { metric: "NFPA 54 / IFGC • Confined Space", icon: "🔥" },
   "boiler-size-calculator": { metric: "Baseboard Ft • Radiator EDR • DHW", icon: "♨️" },
   "expansion-tank-calculator": { metric: "ASME Section VIII • Bladder • Glycol", icon: "🛢️" },
   "garage-heater-sizing": { metric: "Slab Losses • Gas BTU • 240V Amps", icon: "🚗" },
-  "r-value-calculator": { metric: "Series/Parallel • U-Factor • IECC", icon: "🏢" },
+  "r-value-calculator": { metric: "Series/Parallel • U-Factor • Code Criteria", icon: "🏢" },
+  "effective-r-value-calculator": { metric: "ASHRAE 90.1 App A • Parallel Path", icon: "🧱" },
   "heat-loss-calculator": { metric: "Envelope Transmission • ACH Drafts", icon: "🏡" },
 };
 
 export function HomeSearchFilter({ calculators }: HomeSearchFilterProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get("q");
+      if (q) {
+        setSearchQuery(q);
+      }
+    }
+  }, []);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: calculators.length };

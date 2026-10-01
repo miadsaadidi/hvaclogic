@@ -52,8 +52,8 @@ const TRENDING_TOOLS: TrendingTool[] = [
   {
     id: "combustion-air-calculator",
     title: "Combustion Air Sizer",
-    subtitle: "Confined space indoor and outdoor combustion air sizing per NFPA 54 & IFGC Sec. 304.",
-    badge: "Code Compliant",
+    subtitle: "Confined space combustion air sizing referenced from NFPA 54 & IFGC Sec. 304 (jurisdiction dependent).",
+    badge: "NFPA 54 / IFGC",
     badgeColor: "#8b5cf6",
     icon: "🔥",
     route: "/calculators/combustion-air-calculator",
@@ -133,7 +133,7 @@ export function TrendingToolsRibbon() {
             margin: "0 auto",
           }}
         >
-          Instant 1-tap access to the most frequently cited HVAC sizing, airflow, and refrigerant diagnostic tools:
+          Instant 1-tap access to featured HVAC sizing, airflow, and refrigerant diagnostic tools:
         </p>
       </div>
 

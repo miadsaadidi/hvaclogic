@@ -245,8 +245,8 @@ export function DuctulatorTool() {
           {/* FLEX DUCT SAG DERATE SLIDER */}
           <div className="form-group">
             <label htmlFor="sag-select">
-              <span>Flexible Duct Sag & Compression</span>
-              <span className="unit-label">{sag === 0 ? "0% (Rigid Sheet Metal)" : `${sag * 100}% Compression`}</span>
+              <span>Flexible Duct Sag &amp; Compression</span>
+              <span className="unit-label">{sag === 0 ? "0% (Rigid Sheet Metal Baseline)" : `${sag * 100}% Modeled Compression`}</span>
             </label>
             <select
               id="sag-select"
@@ -255,10 +255,10 @@ export function DuctulatorTool() {
               className="input-number"
               style={{ cursor: "pointer" }}
             >
-              <option value={0}>0% — Rigid Galvanized Sheet Metal</option>
-              <option value={0.04}>4% — Flexible Duct (Properly Supported)</option>
-              <option value={0.15}>15% — Flexible Duct (Moderate Sag)</option>
-              <option value={0.30}>30% — Flexible Duct (Severe Sag / Compressed)</option>
+              <option value={0}>0% — Rigid Galvanized Sheet Metal Baseline</option>
+              <option value={0.04}>4% — Flexible Duct (Reference Supported Baseline)</option>
+              <option value={0.15}>15% — Flexible Duct (Modeled Moderate Sag / Compression)</option>
+              <option value={0.30}>30% — Flexible Duct (Modeled Severe Sag / Compressed)</option>
             </select>
           </div>
         </div>
@@ -267,7 +267,7 @@ export function DuctulatorTool() {
         <div className="output-panel">
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="Primary Sizing Results">
-            <div className="result-label">Recommended Round Diameter</div>
+            <div className="result-label">Calculated Round Diameter</div>
             <div className="result-value">{displayDiameter}</div>
             <div className="result-unit">
               Equivalent Rectangular: <strong>{displayRectWidth} × {displayRectHeight}</strong>
@@ -304,15 +304,15 @@ export function DuctulatorTool() {
                 }}
               >
                 {result.velocityCategory === "quiet"
-                  ? `🟢 Whisper Quiet (${displayVelocity})`
+                  ? `🟢 Quiet Target (${displayVelocity})`
                   : result.velocityCategory === "moderate"
-                  ? `🟡 Standard Supply (${displayVelocity})`
-                  : `🔴 High Velocity Noise Alert (${displayVelocity})`}
+                  ? `🟡 Standard Trunk Range (${displayVelocity})`
+                  : `🔴 Elevated Velocity (${displayVelocity})`}
               </span>
             </div>
           </div>
 
-          <StandardsBadge standards={["ASHRAE Fundamentals Ch. 21", "SMACNA 4th Ed", "ACCA Manual D®"]} />
+          <StandardsBadge standards={["ASHRAE Fundamentals Ch. 21", "SMACNA Duct Design", "ACCA Manual D® References"]} />
 
           {/* 2D CANVAS CROSS-SECTION */}
           <DuctCanvasVisualizer
@@ -330,12 +330,12 @@ export function DuctulatorTool() {
               <div className="item-value">{displayVelocity}</div>
             </div>
             <div className="secondary-result-item">
-              <div className="item-label">Acoustic Rating</div>
+              <div className="item-label">Velocity Guide</div>
               <div className="item-value" style={{
                 color: result.velocityCategory === "quiet" ? "var(--accent-success)" : result.velocityCategory === "moderate" ? "var(--accent-warning)" : "var(--accent-danger)",
                 textTransform: "capitalize",
               }}>
-                {result.velocityCategory}
+                {result.velocityCategory === "quiet" ? "Quiet Range" : result.velocityCategory === "moderate" ? "Standard Trunk" : "Elevated Velocity"}
               </div>
             </div>
             <div className="secondary-result-item">

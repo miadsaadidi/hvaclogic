@@ -15,7 +15,7 @@ export function CalculatorTrustPill({
     <div
       className={`calculator-trust-pill ${className}`.trim()}
       role="note"
-      aria-label="Privacy guarantee: 100% client-side calculation with zero data tracking"
+      aria-label="Privacy notice: Calculations execute locally in your browser with no account or input database required."
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -36,7 +36,7 @@ export function CalculatorTrustPill({
     >
       <span aria-hidden="true" style={{ fontSize: "0.82rem" }}>🔒</span>
       <span>
-        {customText || "100% Private & Ad-Free • No Sign-Up or Phone Required • Instant Local Math"}
+        {customText || "Client-Side Math • No Sign-Up or Database Required • Instant Local Execution"}
       </span>
     </div>
   );

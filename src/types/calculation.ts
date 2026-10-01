@@ -77,7 +77,7 @@ export interface CalculatorMeta {
 
   requiresReferenceDataset: boolean;
   offlineEligible: boolean;
-  testStatus: "not-started" | "partial" | "validated";
+  testStatus: "not-started" | "partial" | "unit-tested" | "reference-benchmarked" | "validated";
 
   faqs: SchemaFAQ[];
   howToSteps?: HowToStep[];
