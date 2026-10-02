@@ -126,6 +126,7 @@ export function SiteFooter() {
               <li><Link href="/sources" style={{ fontWeight: 600 }}>🏛️ Laboratory Sources &amp; Codes</Link></li>
               <li><Link href="/developers" style={{ fontWeight: 600 }}>🔌 API &amp; Embed Widgets</Link></li>
               <li><Link href="/about" style={{ fontWeight: 600 }}>ℹ️ About HVACLogic</Link></li>
+              <li><Link href="/authors/miad-s" style={{ fontWeight: 600 }}>👨‍💻 Author: Miad S.</Link></li>
               <li><Link href="/privacy" style={{ fontWeight: 600 }}>🔒 Privacy Policy</Link></li>
               <li>
                 <a
@@ -188,7 +189,7 @@ export function SiteFooter() {
           color: "var(--text-muted)",
         }}>
           <div>
-            <div>© {new Date().getFullYear()} HVAC Logic (hvaclogic.org). Open-access engineering calculators.</div>
+            <div>© {new Date().getFullYear()} HVAC Logic (hvaclogic.org). Open-access engineering calculators authored by Miad S.</div>
             <div style={{ marginTop: "0.4rem", display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
               <span style={{ color: "var(--text-secondary)", fontWeight: 600 }}>Open Ecosystem:</span>
               <a href="https://github.com/miadsaadidi/hvaclogic" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-cooling)", textDecoration: "none" }}>GitHub</a>
@@ -199,7 +200,7 @@ export function SiteFooter() {
             </div>
           </div>
           <div style={{ maxWidth: "600px", textAlign: "right" }}>
-            Disclaimer: Calculations are provided for engineering screening and estimating purposes. Consult governing local building codes (IRC, IBC, IMC, IECC) and licensed mechanical engineers for permitted construction designs.
+            Engineering Reference Notice: Calculations are provided for preliminary estimation and educational analysis. Final designs must be verified against local AHJ adopted codes and certified by licensed professionals where required.
           </div>
         </div>
       </div>

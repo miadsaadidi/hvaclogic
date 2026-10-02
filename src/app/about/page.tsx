@@ -182,6 +182,8 @@ export default function AboutPage() {
         {/* Supporting Links Footer Section */}
         <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", textAlign: "center" }}>
           <p style={{ fontSize: "0.9rem", color: "var(--ink-secondary)" }}>
+            <Link href="/authors/miad-s">Author: Miad S. →</Link>
+            <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
             <Link href="/methodology">View Engineering Methodology →</Link>
             <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
             <Link href="/sources">Laboratory Sources &amp; Standards →</Link>

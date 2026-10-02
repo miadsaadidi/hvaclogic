@@ -63,10 +63,10 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         softwareVersion: calculator.formulaVersion,
         dateModified: calculator.lastEngineeringReview || "2026-08-19",
         author: {
-          "@type": "Organization",
-          name: "HVACLogic",
-          url: siteConfig.canonicalDomain,
-          sameAs: sameAsAuthority,
+          "@type": "Person",
+          name: calculator.author || "Miad S.",
+          jobTitle: "Technical Author & Calculation Architect",
+          url: `${siteConfig.canonicalDomain}/authors/miad-s`,
         },
         citation: citations,
         offers: {
@@ -90,20 +90,11 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
         datePublished: "2026-01-15",
         dateModified: calculator.lastEngineeringReview || "2026-08-19",
         inLanguage: "en-US",
-        about: aboutEntities.map((ent) => ({
-          "@type": "Thing",
-          name: ent.name,
-          sameAs: ent.sameAs,
-        })),
-        speakable: {
-          "@type": "SpeakableSpecification",
-          cssSelector: [".speakable-definition", ".speakable-summary", "h1"],
-        },
         author: {
-          "@type": "Organization",
-          name: "HVACLogic",
-          url: siteConfig.canonicalDomain,
-          sameAs: sameAsAuthority,
+          "@type": "Person",
+          name: calculator.author || "Miad S.",
+          jobTitle: "Technical Author & Calculation Architect",
+          url: `${siteConfig.canonicalDomain}/authors/miad-s`,
         },
         publisher: {
           "@type": "Organization",
@@ -114,6 +105,15 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
             url: `${siteConfig.canonicalDomain}/icon.svg`,
           },
           sameAs: sameAsAuthority,
+        },
+        about: aboutEntities.map((ent) => ({
+          "@type": "Thing",
+          name: ent.name,
+          sameAs: ent.sameAs,
+        })),
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: [".speakable-definition", ".speakable-summary", "h1"],
         },
       },
       {

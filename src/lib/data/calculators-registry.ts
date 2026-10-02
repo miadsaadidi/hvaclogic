@@ -1720,11 +1720,24 @@ export const calculatorRegistry: CalculatorMeta[] = [
   }
 ];
 
-export const publishedCalculators = () =>
-  calculatorRegistry.filter((c) => c.status === "production" || c.status === "beta");
+const enrichCalculatorGovernance = (c: CalculatorMeta): CalculatorMeta => ({
+  ...c,
+  author: c.author || "Miad S.",
+  validationStatus:
+    c.validationStatus || (c.status === "production" ? "partially-verified" : "pending-validation"),
+  regulatoryJurisdictionScope: c.regulatoryJurisdictionScope || "Model (State Adopted)",
+});
 
-export const getCalculatorById = (id: string) =>
-  calculatorRegistry.find((c) => c.id === id);
+export const publishedCalculators = () =>
+  calculatorRegistry
+    .filter((c) => c.status === "production" || c.status === "beta")
+    .map(enrichCalculatorGovernance);
+
+export const getCalculatorById = (id: string) => {
+  const calc = calculatorRegistry.find((c) => c.id === id);
+  return calc ? enrichCalculatorGovernance(calc) : undefined;
+};
 
 export const getCalculatorsByPillar = (pillar: string) =>
   publishedCalculators().filter((c) => c.pillar === pillar);
+
