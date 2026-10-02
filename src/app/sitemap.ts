@@ -110,9 +110,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Authority & Policy Pages
   const authorityRoutes = [
+    "/about",
+    "/authors/miad-s",
     "/methodology",
     "/sources",
-    "/about",
     "/privacy",
     "/glossary",
     "/developers",

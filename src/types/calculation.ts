@@ -84,6 +84,14 @@ export interface CalculatorMeta {
   howToSteps?: HowToStep[];
   analyticsEvents: string[];
 
+  // Governance & Attribution Fields (Version 3.0 Master Governance Plan)
+  author?: string;
+  technicalReviewer?: string;
+  validationStatus?: "verified" | "partially-verified" | "pending-validation" | "educational" | "deprecated";
+  primaryFormulaSource?: string;
+  primaryStandardEdition?: string;
+  regulatoryJurisdictionScope?: "Federal (US)" | "Model (State Adopted)" | "International" | "Scientific";
+  
   // Genuine Scientific & Educational Artifact Links
   researchSlug?: string;
   oerModuleUrl?: string;

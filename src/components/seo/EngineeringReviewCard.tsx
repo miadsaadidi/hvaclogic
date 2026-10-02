@@ -76,6 +76,24 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
               color: "var(--ink-secondary)",
             }}
           >
+            Author:{" "}
+            <a
+              href="/authors/miad-s"
+              style={{ color: "var(--accent-cooling)", fontWeight: 600, textDecoration: "none" }}
+            >
+              {calculator.author || "Miad S."}
+            </a>
+          </div>
+          <div
+            style={{
+              fontSize: "0.72rem",
+              padding: "0.25rem 0.55rem",
+              background: "var(--surface-raised)",
+              border: "1px solid var(--border-color)",
+              borderRadius: "4px",
+              color: "var(--ink-secondary)",
+            }}
+          >
             Formula: <strong>v{calculator.formulaVersion}</strong>
           </div>
           <div
@@ -88,7 +106,7 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
               color: "var(--ink-secondary)",
             }}
           >
-            Verified: <strong>{calculator.lastEngineeringReview}</strong>
+            Audit: <strong>{calculator.lastEngineeringReview}</strong>
           </div>
           <div
             style={{
@@ -100,7 +118,14 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
               color: "var(--accent-cooling)",
             }}
           >
-            Test Suite: <strong>Automated Reference Unit Tests</strong>
+            Status:{" "}
+            <strong>
+              {calculator.validationStatus === "verified"
+                ? "Verified"
+                : calculator.validationStatus === "partially-verified"
+                ? "Partially Verified"
+                : "Unit-Tested"}
+            </strong>
           </div>
         </div>
       </div>

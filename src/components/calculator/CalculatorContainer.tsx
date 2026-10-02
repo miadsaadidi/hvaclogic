@@ -6,6 +6,7 @@ import { DirectAnswerCard } from "@/components/seo/DirectAnswerCard";
 import { PageJumpNav } from "@/components/seo/PageJumpNav";
 import { StandardsBadge } from "@/components/seo/StandardsBadge";
 import { EngineeringReviewCard } from "@/components/seo/EngineeringReviewCard";
+import { Disclaimers } from "@/components/calculator/Disclaimers";
 import { ResearchCitationCard } from "@/components/calculator/ResearchCitationCard";
 import { RelatedCalculatorsGrid } from "@/components/seo/RelatedCalculatorsGrid";
 import { PrintJobSubmittal } from "@/components/calculator/PrintJobSubmittal";
@@ -131,6 +132,9 @@ export function CalculatorContainer({
 
         {/* ENGINEERING E-E-A-T AUDIT CARD */}
         <EngineeringReviewCard calculator={calculator} />
+
+        {/* LAYERED REGULATORY & ENGINEERING DISCLAIMERS */}
+        <Disclaimers calculator={calculator} />
 
         {/* SECTION 7: CONTEXTUAL TOPIC SILO FOOTER & STANDARDS */}
         <section id="related-tools" aria-label="Related Engineering Calculators" style={{ margin: "2rem 0" }}>
