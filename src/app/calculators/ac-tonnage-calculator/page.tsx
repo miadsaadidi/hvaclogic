@@ -70,6 +70,33 @@ export default function AcTonnageCalculatorPage() {
             notes="This screening model provides preliminary capacity estimates. Final equipment selection per ACCA Manual S requires matching the calculated sensible and latent loads from Manual J to the manufacturer's expanded performance data at local outdoor and indoor design wet-bulb and dry-bulb temperatures."
             sourceStandard="Technical References: ACCA Manual J (8th Edition), ACCA Manual S & AHRI Standard 210/240"
           />
+
+          <div
+            style={{
+              padding: "1.25rem 1.5rem",
+              borderRadius: "0.75rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              marginTop: "1.5rem",
+              fontSize: "0.85rem",
+              lineHeight: 1.6,
+              color: "var(--ink-secondary)",
+            }}
+          >
+            <h3 style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)", margin: "0 0 0.5rem" }}>
+              🎯 Tool Scope, Intended Audience &amp; Workflow Relationship
+            </h3>
+            <ul style={{ paddingLeft: "1.25rem", margin: 0, display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+              <li><strong>Intended Audience</strong>: Homeowners, field estimators, and facility managers scoping preliminary residential cooling tonnage and comparative SEER2 operating costs.</li>
+              <li><strong>When to Use</strong>: Early-stage budget scoping and initial capacity screening prior to a detailed physical building survey.</li>
+              <li><strong>What It Does NOT Replace</strong>: Does not replace room-by-room ACCA Manual J heat gain calculations (solar radiation, window SHGC, internal gains, air infiltration) or ACCA Manual S equipment selection.</li>
+              <li><strong>Handoff to Specialized Tools</strong>:
+                {" "}For structural heat transfer through walls and ceilings, use the <Link href="/calculators/heat-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Building Heat Loss Sizer</Link>;
+                {" "}for low-ambient heating capacity curves and dual-fuel economic switchover, use the <Link href="/calculators/heat-pump-size-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Heat Pump Balance Point Sizer</Link>;
+                {" "}to look up existing equipment nameplate capacity and SEER from model numbers, use the <Link href="/calculators/ac-model-decoder" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>AC Model Decoder</Link>.
+              </li>
+            </ul>
+          </div>
         </>
       }
       comparisonTableSection={

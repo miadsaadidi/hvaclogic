@@ -364,6 +364,41 @@ export default function MethodologyPage() {
           </div>
         </section>
 
+        {/* Technical Feedback & Errata Policy */}
+        <section style={{ padding: "1.75rem", borderRadius: "0.85rem", background: "var(--surface)", border: "1px solid var(--border-color)", marginBottom: "3.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+            <span style={{ fontSize: "1.25rem" }}>🛠️</span>
+            <h2 style={{ fontSize: "1.25rem", fontWeight: 700, margin: 0, color: "var(--ink)" }}>
+              Technical Feedback &amp; Calculation Errata Policy
+            </h2>
+          </div>
+          <p style={{ fontSize: "0.875rem", color: "var(--ink-secondary)", lineHeight: 1.6, margin: "0 0 1rem" }}>
+            We maintain continuous formula validation against active ASHRAE, ACCA, and AHRI references. If you discover a calculation discrepancy, boundary condition error, or standard update in any tool, please submit a detailed issue report directly to our open-source tracking repository:
+          </p>
+          <div>
+            <a
+              href="https://github.com/miadsaadidi/hvaclogic/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                padding: "0.55rem 1rem",
+                borderRadius: "0.5rem",
+                background: "rgba(0, 210, 255, 0.08)",
+                border: "1px solid rgba(0, 210, 255, 0.25)",
+                color: "var(--accent-cooling)",
+                fontWeight: 600,
+                fontSize: "0.85rem",
+                textDecoration: "none",
+              }}
+            >
+              <span>Submit Issue or Errata on GitHub ↗</span>
+            </a>
+          </div>
+        </section>
+
         {/* Internal Navigation Handoff */}
         <footer style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.9rem" }}>
           <Link href="/sources" style={{ fontWeight: 600 }}>View Laboratory Sources &amp; Standards →</Link>

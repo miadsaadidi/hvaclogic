@@ -133,6 +133,7 @@ export default function AboutPage() {
             <li><strong>Automated Regression &amp; Unit Testing</strong>: Automated Vitest test suites verify calculations against documented reference cases and thermophysical property data points.</li>
             <li><strong>Documented Empirical Deratings</strong>: Selected empirical correction factors (such as flexible duct sag models and zeotropic refrigerant temperature glide) are incorporated using documented engineering references and stated assumptions.</li>
             <li><strong>Ongoing Standards &amp; Code Review</strong>: We review relevant standards, codes, and regulatory changes and update applicable calculation methods when appropriate.</li>
+            <li><strong>Peer Feedback &amp; Errata Tracking</strong>: Users and engineers can report calculation discrepancies, unit anomalies, or standards updates directly via our <a href="https://github.com/miadsaadidi/hvaclogic/issues" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>GitHub issue tracker ↗</a>.</li>
           </ol>
         </section>
 

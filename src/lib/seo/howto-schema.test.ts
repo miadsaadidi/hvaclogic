@@ -3,8 +3,8 @@ import React from "react";
 import { publishedCalculators } from "@/lib/data/calculators-registry";
 import { SchemaJsonLd } from "@/components/seo/SchemaJsonLd";
 
-describe("Schema.org HowTo & Structured Data Validation", () => {
-  it("renders valid Schema.org graph with HowTo for all 25 production calculators", () => {
+describe("Schema.org Structured Data Validation", () => {
+  it("renders valid Schema.org graph with WebApplication, TechArticle, BreadcrumbList, and SoftwareSourceCode for all production calculators", () => {
     const published = publishedCalculators();
     expect(published.length).toBe(25);
 
@@ -31,13 +31,10 @@ describe("Schema.org HowTo & Structured Data Validation", () => {
       expect(breadcrumbs).toBeDefined();
       expect(breadcrumbs.itemListElement.length).toBe(3);
 
-      // Check for HowTo schema
-      const howTo = parsed["@graph"].find((item: { "@type": string }) => item["@type"] === "HowTo");
-      expect(howTo).toBeDefined();
-      expect(howTo.name).toContain(calc.name);
-      expect(howTo.step.length).toBeGreaterThanOrEqual(3);
-      expect(howTo.tool.length).toBeGreaterThan(0);
-      expect(howTo.supply.length).toBeGreaterThan(0);
+      // Check for SoftwareSourceCode
+      const sourceCode = parsed["@graph"].find((item: { "@type": string }) => item["@type"] === "SoftwareSourceCode");
+      expect(sourceCode).toBeDefined();
+      expect(sourceCode.programmingLanguage).toBe("TypeScript");
     });
   });
 });
