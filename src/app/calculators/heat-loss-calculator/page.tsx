@@ -67,7 +67,7 @@ export default function HeatLossCalculatorPage() {
               A home loses heat through three primary physical pathways:
             </p>
             <ul>
-              <li><strong>Envelope Conduction (Q = U &times; A &times; &Delta;T):</strong> Heat transferring through solid above-grade walls, roof/ceiling, windows, and exterior doors. To account for framing thermal bridging across wood or steel studs, derive exact assembly U-factors with the <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Effective R-Value Calculator</Link>.</li>
+              <li><strong>Envelope Conduction (Q = U &times; A &times; &Delta;T):</strong> Heat transferring through solid above-grade walls, roof/ceiling, windows, and exterior doors. To account for framing thermal bridging across wood or steel studs, evaluate assembly U-factors with the <Link href="/calculators/effective-r-value-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Effective R-Value Calculator</Link>.</li>
               <li><strong>Foundation Perimeter Conduction (Q = F &times; P &times; &Delta;T):</strong> Slab-on-grade heat loss occurs predominantly at the exposed slab edge perimeter rather than uniformly through the slab floor. ACCA Manual J and ASHRAE characterize slab loss using linear F-factors (e.g., F-0.50 for uninsulated edge slabs).</li>
               <li><strong>Air Infiltration Leakage (Q = 1.08 &times; CFM &times; &Delta;T):</strong> Cold outdoor air entering through unsealed envelope penetrations. Natural air changes per hour (ACHnat) are derived from blower-door tightness tiers (ACH50 / N-factor) multiplied by building volume.</li>
             </ul>

@@ -7,15 +7,15 @@ export const revalidate = 86400; // 24 hours
 export async function GET() {
   const domain = siteConfig.canonicalDomain;
 
-  const content = `# HVACLogic — Engineering-Grade HVAC & Building Science Calculators
-> Verified deterministic thermodynamic formulas, air distribution physics, refrigerant cycle diagnostics, and heat transfer equations. Governed by ASHRAE, ACCA, SMACNA, and EPA engineering standards. 100% client-side, zero tracking, open-access.
+const content = `# HVACLogic — Engineering-Grade HVAC & Building Science Calculators
+> Deterministic thermodynamic formulas, air distribution physics, refrigerant cycle diagnostics, and heat transfer equations referencing ASHRAE, ACCA, SMACNA, and EPA engineering standards. Client-side execution, open-access.
 
 - Canonical Website: ${domain}
 - Full Mathematical Specifications: ${domain}/llms-full.txt
 - Climatic Design Conditions: ${domain}/ashrae-climatic-data
 - Calculation Methodology: ${domain}/methodology
-- Peer-Reviewed Sources & Codes: ${domain}/sources
-- Verified Monograph & DOI: https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826
+- Primary Standards, Codes & Technical References: ${domain}/sources
+- Technical Reference & Monograph: https://archive.org/details/power-lab-deterministic-clean-energy-modeling-framework-2026_20260826
 
 ## Engineering Pillars & Calculator Directory
 

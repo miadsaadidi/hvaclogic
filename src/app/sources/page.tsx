@@ -183,13 +183,13 @@ export default function SourcesPage() {
           }}
         >
           <span>🏛️</span>
-          <span>Verified Citations &amp; Technical Standards</span>
+          <span>Technical Standards &amp; Engineering References</span>
         </div>
         <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, lineHeight: 1.2, margin: "0 0 1rem" }}>
           Laboratory Sources &amp; Standards
         </h1>
         <p style={{ fontSize: "1.1rem", color: "var(--ink-secondary)", lineHeight: 1.6, maxWidth: "800px" }}>
-          HVACLogic mathematical equations, physical derating coefficients, and editable presets are maintained against verified peer-reviewed publications, national laboratories, and engineering safety standards.
+          HVACLogic mathematical equations, physical derating coefficients, and editable presets are developed referencing published technical literature, national laboratories, and engineering standards.
         </p>
         <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>
           Last Reviewed &amp; Audited: <strong>{REVIEW_DATE}</strong>
@@ -199,7 +199,7 @@ export default function SourcesPage() {
       {/* Standards Grid */}
       <section style={{ marginBottom: "3.5rem" }}>
         <h2 style={{ fontSize: "1.5rem", fontWeight: 700, margin: "0 0 1.25rem" }}>
-          Authoritative Engineering Standards
+          Primary Engineering References &amp; Standards
         </h2>
         <div
           style={{
@@ -226,7 +226,7 @@ export default function SourcesPage() {
                 <span style={{ fontSize: "0.72rem", fontWeight: 700, color: "var(--accent-cooling)", textTransform: "uppercase" }}>
                   {item.code}
                 </span>
-                <span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>Verified</span>
+                <span style={{ fontSize: "0.7rem", color: "var(--text-muted)" }}>Reference Standard</span>
               </div>
               <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", margin: "0.2rem 0" }}>
                 {item.title}

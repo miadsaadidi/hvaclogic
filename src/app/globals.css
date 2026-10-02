@@ -1844,7 +1844,7 @@ body.embed-mode {
 
   /* Running Watermark Header and Footer */
   body::before {
-    content: "HVACLogic Engineering Calculation Submittal • https://hvaclogic.org • Peer-Reviewed Physics";
+    content: "HVACLogic Engineering Calculation Submittal • https://hvaclogic.org • Technical Calculation Sheet";
     display: block;
     text-align: center;
     font-size: 8pt;
@@ -1858,7 +1858,7 @@ body.embed-mode {
   }
 
   body::after {
-    content: "Verified Calculation Record generated on https://hvaclogic.org • Free & Open-Access Client-Side Physics • Governed by ASHRAE / ACCA Standards";
+    content: "Calculation Record generated on https://hvaclogic.org • Client-Side Engineering Tool • Referencing ASHRAE & ACCA Standards";
     display: block;
     text-align: center;
     font-size: 8pt;
