@@ -82,7 +82,7 @@ const FLOW_CONFIGS: Record<HvacDomainCategory, FlowConfig> = {
       { icon: "📄", label: "Gypsum Drywall", sublabel: "Air barrier (R-0.45)", badge: "Interior", color: "#38bdf8" },
       { icon: "📐", label: "Assembly U-Factor", sublabel: "U = 1 / R_total", badge: "Total Assembly", color: "#00d2ff" },
     ],
-    efficiencyNote: "Continuous exterior insulation eliminates framing thermal bridging, increasing true whole-wall effective R-value by up to 25%.",
+    efficiencyNote: "Continuous exterior insulation interrupts framing thermal bridging, increasing overall effective assembly R-value depending on framing type and cladding details.",
   },
 };
 

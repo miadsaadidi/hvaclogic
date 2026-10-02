@@ -149,7 +149,7 @@ export default function DatasetsCatalogPage() {
           Open Benchmark Datasets &amp; Engineering Matrices
         </h1>
         <p style={{ fontSize: "1rem", color: "var(--text-muted)", maxWidth: "920px", lineHeight: 1.55, margin: 0 }}>
-          Deterministic tabular benchmark datasets, numerical simulation matrices, and empirical building physics records published by HVACLogic. All datasets are freely downloadable in standard CSV/JSON formats, licensed under Creative Commons CC BY 4.0, and indexed with persistent DataCite DOIs for academic research, university coursework, and CFD/BEM model validation.
+          Deterministic tabular benchmark datasets, numerical simulation matrices, and empirical building physics records published by HVACLogic. All datasets are freely downloadable in standard CSV/JSON formats, licensed under Creative Commons CC BY 4.0, and indexed with persistent DataCite DOIs for academic research, university coursework, and CFD/BEM model benchmarking and educational validation workflows.
         </p>
       </header>
 
@@ -385,7 +385,7 @@ export default function DatasetsCatalogPage() {
           All HVACLogic benchmark matrices are engineered to support reproducible building physics calculations, HVAC equipment sizing audits, and engineering education:
         </p>
         <ul style={{ fontSize: "0.9rem", color: "var(--ink-secondary)", lineHeight: 1.7, paddingLeft: "1.25rem", margin: 0 }}>
-          <li><strong>Zero Paywalls or Tracking:</strong> Direct HTTPS download links for all raw CSV/JSON matrices without login gates or analytical tracking.</li>
+          <li><strong>Direct Open Downloads:</strong> Direct HTTPS download links for all raw CSV/JSON matrices without login gates or paywalls.</li>
           <li><strong>Persistent DOIs:</strong> Primary datasets are archived on DataCite repositories (Figshare, Hugging Face) for persistent academic citations in thesis work and research papers.</li>
           <li><strong>Companion Tools:</strong> Every dataset links directly to its interactive client-side calculator and research methodology whitepaper.</li>
         </ul>

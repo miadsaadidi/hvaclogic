@@ -53,7 +53,7 @@ export default function DevelopersPage() {
           Developer API & AI Agent Tool Manifest
         </h1>
         <p style={{ color: "var(--ink-secondary, #9ca3af)", fontSize: "1.125rem", lineHeight: 1.6 }}>
-          HVACLogic is engineered with an open, deterministic mathematical architecture. Connect LLMs, Custom GPT Actions, Python simulation pipelines, or BIM software to our verified ASHRAE and ACCA algorithms.
+          HVACLogic is engineered with an open, deterministic mathematical architecture. Connect LLMs, Custom GPT Actions, Python simulation pipelines, or BIM software to our calculation models referencing ASHRAE and ACCA published standards.
         </p>
       </header>
 
@@ -70,7 +70,7 @@ export default function DevelopersPage() {
         >
           <div style={{ fontSize: "1.25rem", marginBottom: "0.5rem" }}>⚡ OpenAPI 3.1 Spec</div>
           <p style={{ fontSize: "0.875rem", color: "var(--ink-secondary, #9ca3af)", lineHeight: 1.5, marginBottom: "1rem" }}>
-            Complete machine-readable schema for all 21 calculation modules, query parameters, and validation bounds.
+            Complete machine-readable schema for published calculation modules, query parameters, and validation bounds.
           </p>
           <a
             href="/api/openapi.json"
@@ -112,7 +112,7 @@ export default function DevelopersPage() {
               display: "inline-block",
               padding: "0.4rem 0.85rem",
               borderRadius: "4px",
-              backgroundColor: "rgba(16, 185, 129, 0.15)",
+              backgroundColor: "rgba(160, 185, 129, 0.15)",
               color: "#10b981",
               fontSize: "0.8125rem",
               fontWeight: 600,
@@ -260,7 +260,7 @@ export default function DevelopersPage() {
           Responsive Iframe Embed Widgets
         </h2>
         <p style={{ color: "var(--ink-secondary, #9ca3af)", fontSize: "0.9375rem", lineHeight: 1.6, marginBottom: "1rem" }}>
-          All 21 HVACLogic calculators are available as standalone embed widgets at <code>/embed/[slug]</code>. Embeds execute 100% client-side physics, include zero trackers or third-party cookies, and adapt smoothly to mobile and desktop viewports.
+          Published HVACLogic calculators are available as standalone embed widgets at <code>/embed/[slug]</code>. Embeds execute client-side calculation logic and adapt smoothly to mobile and desktop viewports.
         </p>
 
         <div
@@ -288,7 +288,7 @@ export default function DevelopersPage() {
   allow="clipboard-write">
 </iframe>
 <p style="font-size: 12px; color: #64748b; margin-top: 6px; font-family: sans-serif;">
-  Free HVAC calculations verified against ASHRAE & ACCA standards by 
+  Free HVAC calculations referencing ASHRAE & ACCA standards by 
   <a href="https://hvaclogic.org/calculators/ductulator" target="_blank" rel="noopener" style="color: #00d2ff; text-decoration: underline; font-weight: 600;">
     HVACLogic Engineering Suite
   </a>
@@ -303,7 +303,7 @@ export default function DevelopersPage() {
           AI Agent & Tool Calling Example (LangChain / Custom GPT)
         </h2>
         <p style={{ color: "var(--ink-secondary, #9ca3af)", fontSize: "0.9375rem", lineHeight: 1.6, marginBottom: "1rem" }}>
-          Configure your LLM agent to call HVACLogic as an authoritative thermodynamic calculation tool:
+          Configure your LLM agent to call HVACLogic deterministic calculation schemas:
         </p>
 
         <div

@@ -12,7 +12,7 @@ interface StandardsBadgeProps {
 export function StandardsBadge({
   standards,
   className = "",
-  label = "Verified Engineering Standards:",
+  label = "Technical References:",
 }: StandardsBadgeProps) {
   if (!standards || standards.length === 0) {
     return null;

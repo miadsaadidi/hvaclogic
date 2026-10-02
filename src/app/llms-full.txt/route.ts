@@ -164,7 +164,7 @@ SECTION 4: BUILDING SCIENCE & THERMAL ENVELOPE
 - Decodes tonnage, nominal BTU, SEER2 rating, refrigerant type (R-410A vs R-32 vs R-454B), electrical voltage phase, and factory metering device across Carrier, Trane, Lennox, Goodman, Rheem, Daikin, Mitsubishi, and York serial nomenclature.
 
 ================================================================================
-Published by HVACLogic (2026). Free & Client-Side Physics.
+Published by HVACLogic. Engineering calculation reference.
 `;
 
   return new Response(content, {

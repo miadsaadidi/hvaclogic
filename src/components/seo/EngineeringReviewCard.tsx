@@ -41,7 +41,7 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
               <span style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--ink)" }}>
-                Engineering Reference Verification &amp; Formula Testing
+                Engineering Verification
               </span>
               <span
                 style={{
@@ -59,7 +59,7 @@ export function EngineeringReviewCard({ calculator }: EngineeringReviewCardProps
               </span>
             </div>
             <p style={{ fontSize: "0.8125rem", color: "var(--ink-secondary)", margin: "0.2rem 0 0", lineHeight: 1.45 }}>
-              Calculations implemented and unit-tested against published engineering equations from ASHRAE Fundamentals, ACCA Manuals, SMACNA, and NIST thermodynamic references.
+              Calculation engines undergo software-level verification against documented equations, reference values, boundary conditions, and automated tests referencing ASHRAE, ACCA, SMACNA, and NIST publications.
             </p>
           </div>
         </div>

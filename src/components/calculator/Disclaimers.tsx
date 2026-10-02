@@ -74,13 +74,17 @@ export function Disclaimers({ calculator }: DisclaimersProps) {
           }}
         >
           <strong style={{ color: "#b91c1c", display: "block", marginBottom: "0.25rem" }}>
-            ⚠️ Safety-Critical Engineering Notice:
+            ⚠️ Safety-Critical Engineering &amp; Screening Notice:
           </strong>
-          Inadequate combustion air supply creates severe life-safety hazards, including incomplete combustion, excessive
-          Carbon Monoxide (CO) generation, and fire. Calculations involving flammable or mildly flammable refrigerants
-          (A2L, A3) require strict adherence to ASHRAE Standard 15, manufacturer maximum charge limits, room volume
-          constraints, and electrical safety standards. On-site combustion testing, gas piping sizing, and refrigerant
-          servicing must be performed by certified, licensed trade professionals.
+          Calculations involving combustion air supply or mildly flammable/flammable refrigerants (such as A2L refrigerants R-454B and R-32, or A3 hydrocarbons) provide preliminary screening estimates only. These calculation outputs do NOT replace:
+          <ul style={{ margin: "0.4rem 0 0.4rem 1.25rem", padding: 0 }}>
+            <li>Manufacturer installation, operation, and service instructions;</li>
+            <li>Applicable refrigerant safety standards (ANSI/ASHRAE 15, ASHRAE 34, and UL 60335-2-40);</li>
+            <li>Required technician EPA Section 608 certifications and trade qualifications;</li>
+            <li>Applicable mechanical code, fuel gas code (NFPA 54/IFGC), and local Authority Having Jurisdiction (AHJ) requirements; or</li>
+            <li>Equipment-specific charging, pressure testing, evacuation, and ventilation procedures.</li>
+          </ul>
+          A2L charge limit and room volume calculations do not constitute an installation approval or safety guarantee.
         </div>
       )}
 
