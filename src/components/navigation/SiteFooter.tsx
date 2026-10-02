@@ -130,6 +130,17 @@ export function SiteFooter() {
               <li><Link href="/privacy" style={{ fontWeight: 600 }}>🔒 Privacy Policy</Link></li>
               <li>
                 <a
+                  href="https://github.com/miadsaadidi/hvaclogic/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontWeight: 600, color: "var(--accent-cooling)" }}
+                  title="Report calculation discrepancy, formula error, or submit technical feedback on GitHub"
+                >
+                  🛠️ Report Calculation Error / Feedback ↗
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://github.com/miadsaadidi/hvaclogic"
                   target="_blank"
                   rel="noopener noreferrer"

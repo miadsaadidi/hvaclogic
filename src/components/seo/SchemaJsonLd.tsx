@@ -111,10 +111,6 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
           name: ent.name,
           sameAs: ent.sameAs,
         })),
-        speakable: {
-          "@type": "SpeakableSpecification",
-          cssSelector: [".speakable-definition", ".speakable-summary", "h1"],
-        },
       },
       {
         "@type": "BreadcrumbList",
@@ -139,75 +135,6 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
             item: canonicalUrl,
           },
         ],
-      },
-      ...(calculator.faqs && calculator.faqs.length > 0
-        ? [
-            {
-              "@type": "FAQPage",
-              "@id": `${canonicalUrl}#faq`,
-              mainEntity: calculator.faqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.answer,
-                },
-              })),
-            },
-          ]
-        : []),
-      {
-        "@type": "HowTo",
-        "@id": `${canonicalUrl}#howto`,
-        name: `How to Calculate ${calculator.name}`,
-        description: `Step-by-step calculation and engineering sizing procedure for ${calculator.name} in accordance with ${calculator.standards.join(" / ")} standards.`,
-        image: `${siteConfig.canonicalDomain}/opengraph-image`,
-        totalTime: "PT2M",
-        estimatedCost: {
-          "@type": "MonetaryAmount",
-          currency: "USD",
-          value: "0",
-        },
-        supply: [
-          {
-            "@type": "HowToSupply",
-            name: "Building Architectural & Mechanical Design Data",
-          },
-        ],
-        tool: [
-          {
-            "@type": "HowToTool",
-            name: `HVACLogic ${calculator.name} Interactive Engine`,
-          },
-        ],
-        step: (
-          calculator.howToSteps && calculator.howToSteps.length > 0
-            ? calculator.howToSteps
-            : [
-                {
-                  stepNumber: 1,
-                  title: "Gather Building & Operating Parameters",
-                  instruction: `Input baseline physical and airflow measurements into the ${calculator.name} interface.`,
-                },
-                {
-                  stepNumber: 2,
-                  title: `Apply ${calculator.standards[0] || "Engineering"} Calculation Methods`,
-                  instruction: `Execute deterministic calculation models referencing ${calculator.standards.join(" & ")} engineering references.`,
-                },
-                {
-                  stepNumber: 3,
-                  title: "Verify Sizing Calculations & Guidelines",
-                  instruction: "Review sizing results, visualizer diagrams, and export calculation summary reports.",
-                },
-              ]
-        ).map((s, idx) => ({
-          "@type": "HowToStep",
-          position: s.stepNumber || idx + 1,
-          name: s.title,
-          text: s.instruction,
-          url: `${canonicalUrl}#step-${s.stepNumber || idx + 1}`,
-          image: `${siteConfig.canonicalDomain}/opengraph-image`,
-        })),
       },
       {
         "@type": "SoftwareSourceCode",
