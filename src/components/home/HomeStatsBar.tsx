@@ -20,7 +20,7 @@ export function HomeStatsBar() {
     },
     {
       label: "Browser Execution",
-      value: "100%",
+      value: "Client-Side",
       icon: "⚡",
       detail: "No User/Project Database",
       color: "#10b981",

@@ -38,7 +38,7 @@ export function StepDerivationDrawer({
             `\\begin{equation}\n  ${s.substitutionLatex} = ${s.resultText}\n\\end{equation}\n`
         )
         .join("\n") +
-      `\n% Grounded & Verified via HVACLogic (https://hvaclogic.com)`;
+      `\n% Grounded calculation via HVACLogic (https://hvaclogic.com)`;
 
     navigator.clipboard.writeText(fullProof);
     setCopied(true);
@@ -115,7 +115,7 @@ export function StepDerivationDrawer({
             }}
           >
             <div style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
-              🏛️ Verified Standard: <strong style={{ color: "var(--ink)" }}>{governingStandard}</strong>
+              🏛️ Technical Reference: <strong style={{ color: "var(--ink)" }}>{governingStandard}</strong>
             </div>
 
             <button

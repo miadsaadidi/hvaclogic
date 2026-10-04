@@ -75,7 +75,7 @@ ${rows}
 > 🔗 **Interactive Calculation Permalinks & Formulas:**  
 > [View Full Calculation on HVACLogic.org](${currentUrl})
 
-*Generated via HVACLogic Building Science & Thermodynamic Engine (100% Client-Side Free Tool)*`;
+*Generated via HVACLogic Building Science & Thermodynamic Engine (Client-Side Tool)*`;
   };
 
   // Generate BBCode (for traditional forums like HVAC-Talk, DIYChatroom, etc.)
@@ -96,7 +96,7 @@ ${rows}
 [b]Interactive Permalinks & Engineering Math:[/b]
 [url=${currentUrl}]Click here to view live calculation on HVACLogic.org[/url]
 
-[i]Deterministic calculation verified against ASHRAE & ACCA standards.[/i]`;
+[i]Deterministic calculation referenced from ASHRAE & ACCA technical methods.[/i]`;
   };
 
   // Generate Plain Text
@@ -115,7 +115,7 @@ ${rows}
 Interactive Link to this exact calculation:
 ${currentUrl}
 
-(Verified deterministic calculation via HVACLogic.org)`;
+(Deterministic calculation via HVACLogic.org)`;
   };
 
   const currentSnippet =

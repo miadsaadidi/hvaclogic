@@ -126,7 +126,7 @@ export function AcademicCitationModal({
             lineHeight: 1.5,
           }}
         >
-          Use these formal peer-reviewed citations when referencing HVACLogic calculations, fluid algorithms, or empirical derating models in academic papers, university syllabi, or technical reports.
+          Use these formal citation formats when referencing HVACLogic calculation models, fluid algorithms, or empirical derating models in academic papers, coursework, or technical reports.
         </p>
 
         {/* Citations List */}
