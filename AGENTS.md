@@ -189,7 +189,9 @@
     6. `#### 6. Canonical`: Standalone copyable code block containing the explicit canonical URL.
   - **Strict Invariants**:
     - **Single-Zone Body**: NEVER fragment the article body across multiple blocks. ALWAYS use four backticks (` ````markdown `) so inner 3-backtick code blocks do not prematurely close the container.
-    - **Native Unicode Only (NO RAW LATEX)**: DEV.to does not render MathJax/KaTeX. NEVER output `$$...$$`, `$..$`, `\frac`, `\Delta`, `\text{}`, or `\cdot`. Format formulas using clean native Unicode (`Δ`, `×`, `÷`, `≈`, `≤`, `≥`, `·`, `²`, `³`, `°F`, `W/(m·K)`, `BTU/hr`) or monospaced text blocks.
+    - **Zero LaTeX Math Syntax (ABSOLUTE PROHIBITION)**: DEV.to does NOT support MathJax, KaTeX, or LaTeX math blocks. NEVER output `$$...$$`, `$...$`, `\text{}`, `\max`, `\frac`, `\Delta`, `\cdot`, or any backslash LaTeX macros.
+      - For standalone equations, ALWAYS use fenced text code blocks: ````text\nQ_deficit = max(0, Q_loss - Q_hp)\n````.
+      - For inline formulas or variables, ALWAYS use inline monospace code (` `Q_loss` `, ` `kW_req = Q_deficit / 3412.142` `) or clean native Unicode (`Δ`, `×`, `÷`, `≈`, `≤`, `≥`, `·`, `²`, `³`, `°F`, `W/(m·K)`, `BTU/hr`).
     - **Zero Em-Dashes**: NEVER use em-dashes (`—`). Use standard hyphens (`-`), commas, or periods.
 - **Rule 17: Strict Standards Jurisdiction Separation (ASHRAE Sizing vs. ASME Construction)**:
   - **Thermodynamic Sizing & Physics**: Sizing equations, thermal volumetric expansion ($(\nu_2/\nu_1 - 1) - 3\alpha\Delta T$), acceptance volume ($V_{acc}$), and acceptance ratios ($A_r = 1 - P_1/P_2$) in closed hydronic systems are strictly governed by **ASHRAE** (*ASHRAE Handbook — HVAC Systems and Equipment*, Chapter 15: Sizing Expansion Tanks, Eq. 13 & 14).

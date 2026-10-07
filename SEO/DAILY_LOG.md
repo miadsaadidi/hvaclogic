@@ -27,6 +27,34 @@ Every daily autonomous session must record an entry using this exact format:
 
 ## Operational Execution Logs
 
+### [2026-10-04] — CLUSTER UPGRADE: Heat Pump & Auxiliary Heat Strip Cluster Workflow Integration (CLU-04)
+- **Autonomous Priority Selected**: Cluster Upgrade / Internal Linking / Workflow Continuity
+- **Evidence & Rationale**: Following the deployment of `CORE-03` (Heat Strip Deficit Tool), established bidirectional URL state transfer, shared parameter hydration, and contextual workflow handoffs across `/calculators/heat-loss-calculator`, `/calculators/heat-pump-size-calculator`, and `/calculators/heat-strip-size-calculator` to complete the heating load to electric deficit equipment selection pipeline.
+- **Target Assets**:
+  - `src/lib/data/calculators-registry.ts`
+  - `src/lib/data/calculators-registry.test.ts`
+  - `src/components/calculator/tools/HeatPumpSizeTool.tsx`
+  - `src/components/calculator/tools/HeatLossTool.tsx`
+  - `src/components/calculator/tools/HeatStripTool.tsx`
+- **Actions Executed**:
+  - Updated `calculators-registry.ts` to interlink `heat-strip-size-calculator`, `heat-pump-size-calculator`, `heat-loss-calculator`, and `furnace-size-calculator`.
+  - Added smart 1-click downstream handoff from `HeatPumpSizeTool.tsx` to `heat-strip-size-calculator` with dynamic URL hydration (`?loss=...&hp=...&tons=...&cfm=...`).
+  - Added smart 1-click downstream handoff from `HeatLossTool.tsx` to `heat-pump-size-calculator` and `heat-strip-size-calculator` with calculated peak loss state.
+  - Added Vitest regression suite verifying cluster link integrity across all heating calculators in `calculators-registry.test.ts`.
+  - Published and verified external technical distribution articles on DEV.to (`DEV-10`) and Hashnode (`HASH-05`).
+  - Deposited and verified interactive simulation workbench catalog entry on MERLOT Higher-Ed OER repository (`MER-07` / Material ID #824240398).
+- **Validation & Quality Checks**:
+  - 209/209 Vitest unit tests passing across 42 test suites (`npm test`).
+  - TypeScript typecheck passing with 0 errors (`npx tsc --noEmit`).
+  - Next.js static build verified with 100% static routes pre-rendered successfully (`npm run build`).
+  - Canonical link equity and live URLs verified for DEV.to, Hashnode, and MERLOT entries.
+- **Operational Files Updated**:
+  - `SEO/DAILY_LOG.md`
+  - `SEO/WEEKLY_PLAN.md`
+  - `SEO/BACKLINK_LOG.csv`
+  - `docs/outreach/VERIFIED_PUBLICATIONS_REGISTRY.md`
+- **Status / Follow-Up Date**: [COMPLETE / Measurement Window: 2026-10-04 to 2026-11-01]
+
 ### [2026-10-01] — CORE PUBLICATION / DAY 2: Heat Pump Auxiliary Electric Heat Strip Sizing & Deficit Engine (CORE-03 / CLU-04)
 - **Autonomous Priority Selected**: Content / Tool Engine / GSC Optimization
 - **Evidence & Rationale**: Fresh GSC telemetry showed 4,811 impressions with surging striking-distance queries on heat strips (`heat strip size calculator` pos 9, `heat strip size in kw calculator` pos 11). SERP inspection confirmed competitive gap in deterministic ACCA Manual S deficit sizing and NEC 424 branch circuit ampacity.

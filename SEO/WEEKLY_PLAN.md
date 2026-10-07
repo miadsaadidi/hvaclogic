@@ -283,8 +283,25 @@ Reply "Approved" to execute.
   - **Canonical URL**: [`/research/ashrae-241-equivalent-clean-airflow`](https://hvaclogic.org/research/ashrae-241-equivalent-clean-airflow)
   - **Live URL**: [`https://dev.to/miad_ea7faef80e5125861119/modeling-ansiashrae-standard-241-2023-pathogen-mitigation-and-equivalent-clean-airflow-in-pure-1jj3`](https://dev.to/miad_ea7faef80e5125861119/modeling-ansiashrae-standard-241-2023-pathogen-mitigation-and-equivalent-clean-airflow-in-pure-1jj3)
   - **Outcome**: Deployed developer-first technical engineering article translating HVACLogic's ANSI/ASHRAE Standard 241-2023 calculation engine (`src/lib/math/ashrae-241.ts`), Table 5-1 baseline rates, multi-source $ECA$ balance equations, and Vitest test suites. Verified live canonical tag pointing to `/research/ashrae-241-equivalent-clean-airflow` and contextual link equity.
-  - **Validation**: Live HTTP inspection & canonical tag verification complete.
-  - **Status**: `[COMPLETED / VERIFIED LIVE — 2026-09-28]`
+- **Step 16 — Core Publication (`CORE-03`)**: *Heat Pump Auxiliary Electric Heat Strip Sizing & Deficit Engine*
+  - **Class**: `CORE PUBLICATION`
+  - **Scope / Affected URLs**: [`/calculators/heat-strip-size-calculator`](https://hvaclogic.org/calculators/heat-strip-size-calculator)
+  - **Outcome**: Deployed deterministic ACCA Manual S auxiliary deficit engine (`src/lib/math/heat-strip.ts`), NEC Article 424 continuous load sizing (FLA, 125% MCA, MOPD breaker), multi-circuit partitioning (>48A FLA threshold), interactive SVG visualizer (`HeatStripVisualizer.tsx`), and structured JSON-LD `WebApplication` and `HowTo` schemas.
+  - **Validation**: 189/189 unit tests passing, 0 TypeScript errors, static build verified.
+  - **Measurement Window**: 2026-10-01 to 2026-10-29 (28-day GSC tracking on heat strip and auxiliary electric sizing query families).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-10-01]`
+
+- **Step 17 — Cluster Upgrade (`CLU-04`)**: *Heat Pump & Auxiliary Heat Strip Cluster Workflow Integration*
+  - **Class**: `CLUSTER UPGRADE`
+  - **Scope / Affected URLs**:
+    - [`/calculators/heat-strip-size-calculator`](https://hvaclogic.org/calculators/heat-strip-size-calculator)
+    - [`/calculators/heat-pump-size-calculator`](https://hvaclogic.org/calculators/heat-pump-size-calculator)
+    - [`/calculators/heat-loss-calculator`](https://hvaclogic.org/calculators/heat-loss-calculator)
+    - [`/calculators/furnace-size-calculator`](https://hvaclogic.org/calculators/furnace-size-calculator)
+  - **Outcome**: Established bidirectional URL state transfer, shared parameter hydration, and contextual workflow handoffs across building heat loss, heat pump sizing, and electric auxiliary heat strip sizing. Added automated regression assertions to `calculators-registry.test.ts`.
+  - **Validation**: 209/209 unit tests passing across 42 suites, 0 TypeScript errors, 100% static routes pre-rendered successfully.
+  - **Measurement Window**: 2026-10-04 to 2026-11-01 (28-day aggregate GSC tracking on heating systems cluster).
+  - **Status**: `[COMPLETED / MEASUREMENT MODE — 2026-10-04]`
 
 ---
 

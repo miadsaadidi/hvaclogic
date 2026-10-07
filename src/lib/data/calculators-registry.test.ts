@@ -60,4 +60,23 @@ describe("calculator registry publication state", () => {
     expect(expTank?.relatedCalculatorIds).toContain("boiler-size-calculator");
     expect(boiler?.relatedCalculatorIds).toContain("expansion-tank-calculator");
   });
+
+  it("publishes the heat strip calculator and verifies bidirectional cluster links with heat pump and heat loss tools", () => {
+    const heatStrip = getCalculatorById("heat-strip-size-calculator");
+    const heatPump = getCalculatorById("heat-pump-size-calculator");
+    const heatLoss = getCalculatorById("heat-loss-calculator");
+    const furnace = getCalculatorById("furnace-size-calculator");
+
+    expect(heatStrip).toBeDefined();
+    expect(heatStrip?.status).toBe("production");
+    expect(heatStrip?.testStatus).toBe("unit-tested");
+    expect(publishedCalculators().map((item) => item.id)).toContain("heat-strip-size-calculator");
+
+    // Bidirectional cluster links
+    expect(heatStrip?.relatedCalculatorIds).toContain("heat-pump-size-calculator");
+    expect(heatStrip?.relatedCalculatorIds).toContain("heat-loss-calculator");
+    expect(heatPump?.relatedCalculatorIds).toContain("heat-strip-size-calculator");
+    expect(heatLoss?.relatedCalculatorIds).toContain("heat-strip-size-calculator");
+    expect(furnace?.relatedCalculatorIds).toContain("heat-strip-size-calculator");
+  });
 });

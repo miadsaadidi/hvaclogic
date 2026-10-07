@@ -491,20 +491,24 @@ export function HeatLossTool() {
           {/* WORKFLOW HANDOFFS */}
           <div className="handoff-card">
             <div className="handoff-title">Next Steps: Detailed Load Calculation &amp; Equipment Selection</div>
+            <Link href={`/calculators/heat-pump-size-calculator?loss=${output.totalHeatLossBtu}&design=${outdoorTemp}`} style={{ marginBottom: "0.5rem" }}>
+              <span>Find Cold-Climate Heat Pump Balance Point &amp; Heating Deficit</span>
+              <span>→</span>
+            </Link>
+            <Link href={`/calculators/heat-strip-size-calculator?loss=${output.totalHeatLossBtu}`} style={{ marginBottom: "0.5rem" }}>
+              <span>Size Auxiliary Electric Heat Strip for {output.totalHeatLossBtu.toLocaleString()} BTU Heat Loss</span>
+              <span>→</span>
+            </Link>
             <Link href="/calculators/effective-r-value-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Derive Exact Wall Assembly U-Factor with Stud Thermal Bridging</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/btu-calculator" style={{ marginBottom: "0.5rem" }}>
-              <span>Whole-House Room-by-Room Heating &amp; Cooling Load Screening</span>
-              <span>→</span>
-            </Link>
-            <Link href="/calculators/furnace-size-calculator" style={{ marginBottom: "0.5rem" }}>
+            <Link href={`/calculators/furnace-size-calculator?sqft=${floorArea}`} style={{ marginBottom: "0.5rem" }}>
               <span>Size Replacement Gas Furnace for {output.totalHeatLossBtu.toLocaleString()} BTU Heat Loss</span>
               <span>→</span>
             </Link>
-            <Link href="/calculators/heat-pump-size-calculator">
-              <span>Find Cold-Climate Heat Pump Balance Point &amp; Backup Deficit</span>
+            <Link href="/calculators/btu-calculator">
+              <span>Whole-House Room-by-Room Heating &amp; Cooling Load Screening</span>
               <span>→</span>
             </Link>
           </div>
