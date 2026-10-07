@@ -115,6 +115,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/methodology",
     "/sources",
     "/privacy",
+    "/disclaimer",
     "/glossary",
     "/developers",
     "/ashrae-climatic-data",

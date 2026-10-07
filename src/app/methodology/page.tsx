@@ -4,6 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { CodeFormulaBlock } from "@/components/seo/CodeFormulaBlock";
 import { CitationExportButton } from "@/components/seo/CitationExportButton";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "Engineering Calculation Methodology & Physical Models",
@@ -127,9 +128,9 @@ export default function MethodologyPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
             <div style={{ padding: "1.35rem", borderRadius: "0.85rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderTop: "4px solid #00d2ff" }}>
               <div style={{ fontSize: "1.25rem", marginBottom: "0.35rem" }}>⚡</div>
-              <h3 style={{ fontSize: "1.05rem", fontWeight: 700, margin: "0 0 0.35rem" }}>1. Deterministic &amp; Reproducible</h3>
+              <h3 style={{ fontSize: "1.05rem", fontWeight: 700, margin: "0 0 0.35rem" }}>1. Transparent &amp; Reproducible</h3>
               <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5, margin: 0 }}>
-                Given identical aerodynamic, thermal, and dimensional parameters, the calculation engines evaluate mathematical formulations deterministically directly in your browser with transparent input-output relationships.
+                Given identical aerodynamic, thermal, and dimensional parameters, the calculation engines evaluate mathematical formulations directly and reproducibly in your browser with transparent input-output relationships.
               </p>
             </div>
 
@@ -399,9 +400,13 @@ export default function MethodologyPage() {
           </div>
         </section>
 
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer />
+
         {/* Internal Navigation Handoff */}
         <footer style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", fontSize: "0.9rem" }}>
           <Link href="/sources" style={{ fontWeight: 600 }}>View Laboratory Sources &amp; Standards →</Link>
+          <Link href="/disclaimer" style={{ fontWeight: 600, color: "var(--accent-cooling)" }}>Technical Disclaimer →</Link>
           <Link href="/about" style={{ fontWeight: 600 }}>About HVACLogic →</Link>
           <Link href="/privacy" style={{ fontWeight: 600 }}>Privacy Policy →</Link>
         </footer>

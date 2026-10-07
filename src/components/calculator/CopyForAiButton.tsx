@@ -37,10 +37,10 @@ export function CopyForAiButton({
         .map(([k, v]) => `- **${k}**: \`${v}\``)
         .join("\n") || "- *Standard nominal baseline conditions*",
       ``,
-      `#### 📤 Deterministic Physics Outputs:`,
+      `#### 📤 Calculated Physics Outputs:`,
       Object.entries(outputs)
         .map(([k, v]) => `- **${k}**: \`${v}\``)
-        .join("\n") || "- *Deterministic computation evaluated*",
+        .join("\n") || "- *Calculation model evaluated*",
       ``,
       `#### 🤖 LLM Prompt Request:`,
       `Please review this ${toolName} engineering calculation against ${governingStandard} criteria. Provide any design recommendations, code rule constraints, efficiency optimizations, or duct/equipment sizing considerations based on these exact input parameters.`

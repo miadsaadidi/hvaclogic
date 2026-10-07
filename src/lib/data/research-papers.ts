@@ -154,7 +154,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       {
         title: "Total Effective Length (TEL) & Friction Rate (FR) Sizing",
         latex: "\\text{TEL} = L_{\\text{measured}} + \\sum \\text{EL}_{\\text{fittings}}, \\quad \\text{FR} = \\frac{\\text{ASP} \\times 100}{\\text{TEL}}",
-        explanation: "ACCA Manual D deterministic sizing relationship computing allowable friction rate per 100 feet from measured blower available static pressure and equivalent fitting lengths."
+        explanation: "ACCA Manual D sizing relationship computing allowable friction rate per 100 feet from measured blower available static pressure and equivalent fitting lengths."
       }
     ],
     authors: ["HVACLogic Research Group", "Miad S."],
@@ -192,9 +192,9 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     slug: "thermal-envelope-infiltration-building-heat-loss",
     title: "Deterministic Building Science & Dynamic Enclosure Infiltration Modeling for Residential Space Heating and Decarbonization Sizing",
     seoTitle: "Envelope Infiltration & Building Heat Loss",
-    seoDescription: "Deterministic building science framework for residential heating loads, envelope infiltration modeling, and Manual J decarbonization sizing.",
+    seoDescription: "Building science framework for residential heating loads, envelope infiltration modeling, and Manual J decarbonization sizing.",
     subtitle: "A multi-component thermodynamic study of conduction, fenestration solar heat gain coefficients (SHGC), and pressure-driven envelope infiltration loads under ACCA Manual J.",
-    abstract: "Presents a deterministic building science modeling framework for residential peak heating and cooling loads under ACCA Manual J (8th Edition) and ASHRAE Fundamentals. Analyzes conductive transmission matrices across composite multi-layer wall assemblies, fenestration U-factor/SHGC ratings, stack-effect pressure infiltration, and ground-coupled sub-grade slab thermal losses.",
+    abstract: "Presents a building science modeling framework for residential peak heating and cooling loads under ACCA Manual J (8th Edition) and ASHRAE Fundamentals. Analyzes conductive transmission matrices across composite multi-layer wall assemblies, fenestration U-factor/SHGC ratings, stack-effect pressure infiltration, and ground-coupled sub-grade slab thermal losses.",
     keyFindings: [
       "Air leakage infiltration accounts for 28% to 42% of total peak design heat loss in pre-2000 residential enclosures, dwarfing window conductive losses.",
       "Oversizing residential heat pumps or furnaces by more than 25% over calculated Manual J peak design leads to short-cycling, 18% higher standby loss, and poor summer latent humidity extraction.",
@@ -240,7 +240,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
       {
         name: "Residential Heat Loss Calculator (Manual J)",
         route: "/calculators/heat-loss-calculator",
-        description: "Deterministic room-by-room and whole-house peak heating load calculations."
+        description: "Room-by-room and whole-house peak heating load calculations."
       },
       {
         name: "Furnace BTU & Sizing Calculator",
@@ -586,7 +586,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     seoTitle: "Refrigerant Mass Sizing & Liquid Line Displacement",
     seoDescription: "Closed-form mathematical formulations for split-system refrigerant mass charge addition, liquid line displacement, and hydrostatic lift penalties.",
     subtitle: "Closed-form governing equations for refrigerant line-set mass addition, ASTM B280 liquid line displacement, and hydrostatic elevation lift penalties under ASHRAE Standard 15.",
-    abstract: "With the global implementation of the AIM Act and Kigali Amendment, vapor-compression building systems are rapidly transitioning from legacy hydrofluorocarbons to mildly flammable lower-GWP A2L alternatives (R-454B and R-32). This paper derives the deterministic governing formulations for refrigerant line-set mass addition, liquid line volumetric displacement, and hydrostatic vertical column corrections across residential and commercial split installations.",
+    abstract: "With the global implementation of the AIM Act and Kigali Amendment, vapor-compression building systems are rapidly transitioning from legacy hydrofluorocarbons to mildly flammable lower-GWP A2L alternatives (R-454B and R-32). This paper derives governing formulations for refrigerant line-set mass addition, liquid line volumetric displacement, and hydrostatic vertical column corrections across residential and commercial split installations.",
     keyFindings: [
       "Liquid line volumetric displacement accounts for 85%–92% of required field charge additions beyond factory allowances, scaling linearly with ASTM B280 internal cross-sectional area.",
       "Vertical liquid risers over 20 ft impose a hydrostatic downward pressure drop of 0.433 * SG psi/ft, risking premature flash gas at the expansion device without mass compensation.",
@@ -661,7 +661,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     slug: "student-lab-building-envelope-thermal-transmission",
     title: "Student Laboratory Manual: Building Envelope Thermal Transmission, Fenestration SHGC Modeling, and Infiltration Sizing per ACCA Manual J",
     seoTitle: "Building Envelope Thermal Transmission Lab Manual",
-    seoDescription: "Undergraduate laboratory manual and deterministic calculations for building envelope U-factors, fenestration SHGC, and ACH50 infiltration sizing per Manual J.",
+    seoDescription: "Undergraduate laboratory manual and calculations for building envelope U-factors, fenestration SHGC, and ACH50 infiltration sizing per Manual J.",
     subtitle: "An interactive engineering laboratory curriculum contrasting 1975 versus 2025 IECC envelopes and demonstrating the physical failure of empirical 1-ton-per-500-sq-ft shortcuts.",
     abstract: "Accurate determination of residential peak cooling and heating thermal loads is fundamental to mechanical equipment selection, indoor humidity control, and decarbonization. This laboratory manual guides engineering and technology students through the quantitative formulation of multi-layer Fourier conduction, fenestration solar heat gains (SHGC), and pressure-driven blower door air leakage (ACH50) normalized via Sherman-Grimsrud LBL correlation factors. A comparative case study of a 2,500 sq ft home illustrates why legacy contractor heuristics oversize equipment by 80% to 120%, resulting in short-cycling and latent moisture extraction failure.",
     keyFindings: [
@@ -855,7 +855,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
     title: "ANSI/ASHRAE Standard 241-2023: Equivalent Clean Airflow (ECA), Infection Risk Management Mode (IRMM), and Pathogen Mitigation Architecture",
     seoTitle: "ASHRAE 241 Equivalent Clean Airflow & Pathogen Mitigation",
     seoDescription: "Engineering monograph and normative calculation framework for ANSI/ASHRAE Standard 241-2023. Models Table 5-1 ECA baselines, MERV filtration, and in-room HEPA air cleaners.",
-    subtitle: "A deterministic engineering framework for modeling multi-zone equivalent clean airflow (ECA_i), aerosol particle capture efficiency, and infection risk management in commercial, educational, and healthcare buildings.",
+    subtitle: "An engineering framework for modeling multi-zone equivalent clean airflow (ECA_i), aerosol particle capture efficiency, and infection risk management in commercial, educational, and healthcare buildings.",
     abstract: "ANSI/ASHRAE Standard 241-2023, Control of Infectious Aerosols, establishes consensus-based requirements for mitigating disease transmission via airborne pathogen droplet nuclei in the built environment. This engineering monograph articulates the mathematical formulations governing Equivalent Clean Airflow (ECA) during Infection Risk Management Mode (IRMM). We model the normative Table 5-1 baseline clean airflow per person (ECA_p) and per unit floor area (ECA_a), evaluate single-pass removal efficiencies of central recirculation air filters (MERV 8 through MERV 16/HEPA) on 1–3 µm bioaerosols, evaluate room air mixing effectiveness for in-room portable air cleaners (CADR), and formalize the equivalent clean airflow contribution of upper-room UV-C germicidal irradiation systems.",
     keyFindings: [
       "ASHRAE 241 Table 5-1 specifies 20–30 L/s/person (42.4–63.6 CFM/person) of equivalent clean airflow in schools, assembly spaces, and gyms during IRMM, representing a 2.5× to 4× increase over ASHRAE 62.1 baseline ventilation.",
@@ -1156,7 +1156,7 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
   {
     slug: "cold-climate-heat-pump-cop-balance-point-dataset",
     title: "Cold-Climate Heat Pump COP Derating & Heating Load Balance Point Dataset",
-    subtitle: "240 deterministic simulation points across variable ambient temperatures (-15°F to 55°F).",
+    subtitle: "240 reference simulation points across variable ambient temperatures (-15°F to 55°F).",
     description: "Multi-parameter performance matrix modeling variable-speed compressor capacity retention, COP degradation, latent defrost penalties, thermal balance point intersections, and supplemental electric resistance heating strip requirements.",
     doi: "10.6084/m9.figshare.33477430",
     repository: "Figshare",
@@ -1180,7 +1180,7 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
   {
     slug: "next-generation-low-gwp-refrigerant-charge-benchmark-dataset",
     title: "Next-Generation Low-GWP Refrigerant Line-Set Mass Addition & Velocity Gradient Benchmark Dataset",
-    subtitle: "816 deterministic calculation points modeling liquid refrigerant mass addition and hydrostatic elevation lift penalties.",
+    subtitle: "816 reference calculation points modeling liquid refrigerant mass addition and hydrostatic elevation lift penalties.",
     description: "Multi-parameter engineering benchmark evaluating low-GWP A2L blends (R-454B, R-32) and legacy R-410A across standardized ASTM B280 liquid line diameters (1/4\", 5/16\", 3/8\", 1/2\"), line-set lengths from 15 ft to 150 ft, and vertical elevation risers up to 45 ft with oil trap flags.",
     doi: "10.6084/m9.figshare.33640444",
     repository: "Figshare",
@@ -1193,7 +1193,7 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
   {
     slug: "building-envelope-thermal-transmission-benchmark-dataset",
     title: "Building Envelope Thermal Transmission, Fenestration SHGC & Infiltration Benchmark Matrix (Figshare)",
-    subtitle: "540 deterministic state vectors across ASHRAE Climate Zones 2–6 evaluating conduction, solar gains, and ACH50 infiltration.",
+    subtitle: "540 reference state vectors across ASHRAE Climate Zones 2–6 evaluating conduction, solar gains, and ACH50 infiltration.",
     description: "Multi-parameter residential building science benchmark calculating Fourier conductive transmission across composite wall and roof assemblies, fenestration Solar Heat Gain Coefficients (SHGC), and pressure-driven envelope infiltration per ACCA Manual J (8th Edition).",
     doi: "10.6084/m9.figshare.33702643",
     repository: "Figshare",
@@ -1206,8 +1206,8 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
   {
     slug: "building-envelope-thermal-transmission-huggingface-dataset",
     title: "Building Envelope Thermal Transmission & Infiltration Benchmark Matrix (Hugging Face)",
-    subtitle: "540 deterministic state vectors across ASHRAE Climate Zones 2–6 on Hugging Face Datasets.",
-    description: "Hugging Face Open Dataset repository containing 540 deterministic engineering vectors evaluating Fourier conduction, solar SHGC, and ACH50 infiltration sizing under ACCA Manual J (8th Edition). Includes complete dataset card, column dictionary, and automated Python / Pandas loading scripts.",
+    subtitle: "540 reference state vectors across ASHRAE Climate Zones 2–6 on Hugging Face Datasets.",
+    description: "Hugging Face Open Dataset repository containing 540 reference engineering vectors evaluating Fourier conduction, solar SHGC, and ACH50 infiltration sizing under ACCA Manual J (8th Edition). Includes complete dataset card, column dictionary, and automated Python / Pandas loading scripts.",
     doi: "10.57967/hf/10401",
     repository: "Hugging Face",
     repositoryUrl: "https://huggingface.co/datasets/miadinside/building-envelope-thermal-transmission-benchmark-2026",
@@ -1219,7 +1219,7 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
   {
     slug: "ashrae-241-clean-airflow-benchmark-dataset",
     title: "ANSI/ASHRAE Standard 241-2023 Equivalent Clean Airflow (ECA) Benchmark Dataset",
-    subtitle: "178 deterministic infection risk management state vectors across 11 commercial, educational, and healthcare space archetypes.",
+    subtitle: "178 reference infection risk management state vectors across 11 commercial, educational, and healthcare space archetypes.",
     description: "Multi-parameter pathogen mitigation benchmark evaluating Table 5-1 ECA baseline demand, mechanical filter bioaerosol capture across MERV 8–16/HEPA, in-room air cleaners, and upper-room UV-C irradiation under ANSI/ASHRAE Standard 241-2023.",
     doi: "10.6084/m9.figshare.33977425",
     repository: "Figshare",
@@ -1232,7 +1232,7 @@ export const RESEARCH_DATASETS: ResearchDataset[] = [
   {
     slug: "a2l-refrigerant-flammability-glide-benchmark-dataset",
     title: "ANSI/ASHRAE Standard 15-2024 & UL 60335-2-40 Low-GWP A2L Refrigerant Flammability, Charge Limits, & Temperature Glide Benchmark Dataset",
-    subtitle: "200 deterministic thermodynamic state points evaluating ASHRAE 15-2024, ASHRAE 34, UL 60335-2-40, and EPA AIM Act transition limits across R-454B, R-32, R-454A, and R-1234yf.",
+    subtitle: "200 reference thermodynamic state points evaluating ASHRAE 15-2024, ASHRAE 34, UL 60335-2-40, and EPA AIM Act transition limits across R-454B, R-32, R-454A, and R-1234yf.",
     description: "Multi-parameter low-GWP refrigerant flammability and charge limit benchmark evaluating unmitigated charge limits (m1 = 0.20 × LFL × V), room volume constraints, mitigation tiers (continuous circulation and active RDS detection), and zeotropic temperature glide superheat/subcooling reference points.",
     doi: "10.6084/m9.figshare.33985834",
     repository: "Figshare",

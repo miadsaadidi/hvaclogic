@@ -6,12 +6,12 @@ import { Logo } from "@/components/brand/Logo";
 export const metadata: Metadata = {
   title: "Miad S. — Technical Author & Calculation Architect",
   description:
-    "Author profile for Miad S., creator of HVACLogic's deterministic HVAC calculation engines, psychrometric models, and technical reference tools.",
+    "Author profile for Miad S., creator of HVACLogic's HVAC calculation engines, psychrometric models, and technical reference tools.",
   alternates: { canonical: `${siteConfig.canonicalDomain}/authors/miad-s` },
   openGraph: {
     title: "Miad S. — Technical Author & Calculation Architect | HVACLogic",
     description:
-      "Author profile for Miad S., creator of HVACLogic's deterministic HVAC calculation engines, psychrometric models, and technical reference tools.",
+      "Author profile for Miad S., creator of HVACLogic's HVAC calculation engines, psychrometric models, and technical reference tools.",
     url: `${siteConfig.canonicalDomain}/authors/miad-s`,
     siteName: siteConfig.name,
     type: "profile",
@@ -42,7 +42,7 @@ export default function AuthorProfilePage() {
         "Thermodynamics",
         "Psychrometrics",
         "Fluid Mechanics & Duct Sizing",
-        "Deterministic Physics Modeling",
+        "Applied Building Physics Modeling",
         "Building Energy Standards",
       ],
     },
@@ -168,7 +168,7 @@ export default function AuthorProfilePage() {
             }}
           >
             <p style={{ margin: "0 0 1rem" }}>
-              <strong>Calculation Architecture:</strong> Formulates deterministic mathematical models derived from
+              <strong>Calculation Architecture:</strong> Formulates mathematical calculation models derived from
               public consensus standards (including ASHRAE Handbooks, ACCA Manuals, SMACNA Duct Construction Standards,
               and NIST thermophysical equations of state).
             </p>

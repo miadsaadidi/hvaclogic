@@ -8,7 +8,7 @@ export async function GET() {
   const domain = siteConfig.canonicalDomain;
 
 const content = `# HVACLogic — Engineering-Grade HVAC & Building Science Calculators
-> Deterministic thermodynamic formulas, air distribution physics, refrigerant cycle diagnostics, and heat transfer equations referencing ASHRAE, ACCA, SMACNA, and EPA engineering standards. Client-side execution, open-access.
+> Open thermodynamic calculation formulas, air distribution physics, refrigerant cycle diagnostics, and heat transfer equations referencing ASHRAE, ACCA, SMACNA, and EPA engineering standards. Client-side execution, open-access.
 
 - Canonical Website: ${domain}
 - Full Mathematical Specifications: ${domain}/llms-full.txt

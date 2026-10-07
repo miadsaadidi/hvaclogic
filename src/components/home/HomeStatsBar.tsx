@@ -8,7 +8,7 @@ export function HomeStatsBar() {
       label: "Engineering Calculators",
       value: "25",
       icon: "🧮",
-      detail: "Deterministic & Pure Math",
+      detail: "Direct Physics & Pure Math",
       color: "#00d2ff",
     },
     {

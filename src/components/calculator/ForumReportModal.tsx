@@ -96,7 +96,7 @@ ${rows}
 [b]Interactive Permalinks & Engineering Math:[/b]
 [url=${currentUrl}]Click here to view live calculation on HVACLogic.org[/url]
 
-[i]Deterministic calculation referenced from ASHRAE & ACCA technical methods.[/i]`;
+[i]Calculation referenced from ASHRAE & ACCA technical methods.[/i]`;
   };
 
   // Generate Plain Text
@@ -115,7 +115,7 @@ ${rows}
 Interactive Link to this exact calculation:
 ${currentUrl}
 
-(Deterministic calculation via HVACLogic.org)`;
+(Calculation via HVACLogic.org)`;
   };
 
   const currentSnippet =

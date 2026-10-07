@@ -1,6 +1,6 @@
-# HVACLogic: Deterministic HVAC & Building Science Suite
+# HVACLogic: HVAC & Building Science Engineering Suite
 
-> HVACLogic (https://hvaclogic.org) provides open-access, client-side engineering calculation tools, physical models, and reference data for mechanical engineers, HVAC contractors, and building science researchers. All algorithms are grounded in deterministic formulas from ASHRAE, ACCA, SMACNA, NFPA, and EPA standards. Zero telemetry data leakage, 100% client-side precision.
+> HVACLogic (https://hvaclogic.org) provides open-access, client-side engineering calculation tools, physical models, and reference data for mechanical engineers, HVAC contractors, and building science researchers. All algorithms are grounded in physical formulas and engineering equations from ASHRAE, ACCA, SMACNA, NFPA, and EPA standards. Zero telemetry data leakage, 100% client-side precision.
 
 ## Core Pillars & Calculator Directory
 

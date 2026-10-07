@@ -149,7 +149,7 @@ export default function DatasetsCatalogPage() {
           Open Benchmark Datasets &amp; Engineering Matrices
         </h1>
         <p style={{ fontSize: "1rem", color: "var(--text-muted)", maxWidth: "920px", lineHeight: 1.55, margin: 0 }}>
-          Deterministic tabular benchmark datasets, numerical simulation matrices, and empirical building physics records published by HVACLogic. All datasets are freely downloadable in standard CSV/JSON formats, licensed under Creative Commons CC BY 4.0, and indexed with persistent DataCite DOIs for academic research, university coursework, and CFD/BEM model benchmarking and educational validation workflows.
+          Tabular benchmark datasets, numerical simulation matrices, and empirical building physics records published by HVACLogic. All datasets are freely downloadable in standard CSV/JSON formats, licensed under Creative Commons CC BY 4.0, and indexed with persistent DataCite DOIs for academic research, university coursework, and CFD/BEM model benchmarking and educational validation workflows.
         </p>
       </header>
 

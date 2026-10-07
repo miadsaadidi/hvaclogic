@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "Building Science & Insulation Calculators — HVACLogic",
@@ -734,6 +735,9 @@ export default function BuildingScienceHub() {
             </ul>
           </div>
         </section>
+
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer />
       </main>
     </>
   );

@@ -128,6 +128,7 @@ export function SiteFooter() {
               <li><Link href="/about" style={{ fontWeight: 600 }}>ℹ️ About HVACLogic</Link></li>
               <li><Link href="/authors/miad-s" style={{ fontWeight: 600 }}>👨‍💻 Author: Miad S.</Link></li>
               <li><Link href="/privacy" style={{ fontWeight: 600 }}>🔒 Privacy Policy</Link></li>
+              <li><Link href="/disclaimer" style={{ fontWeight: 600, color: "var(--accent-cooling)" }}>⚖️ Technical Disclaimer</Link></li>
               <li>
                 <a
                   href="https://github.com/miadsaadidi/hvaclogic/issues"
@@ -210,8 +211,11 @@ export function SiteFooter() {
               <a href="https://www.saashub.com/hvac-logic" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-cooling)", textDecoration: "none" }}>SaaSHub</a>
             </div>
           </div>
-          <div style={{ maxWidth: "600px", textAlign: "right" }}>
-            Engineering Reference Notice: Calculations are provided for preliminary estimation and educational analysis. Final designs must be verified against local AHJ adopted codes and certified by licensed professionals where required.
+          <div style={{ maxWidth: "620px", textAlign: "right", lineHeight: 1.55 }}>
+            HVACLogic provides educational, engineering, and reference information. Calculations, formulas, data, and technical guidance do not replace applicable codes, standards, manufacturer documentation, project-specific engineering requirements, or professional judgment.{" "}
+            <Link href="/disclaimer" style={{ color: "var(--accent-cooling)", textDecoration: "underline", textUnderlineOffset: "2px" }}>
+              Full Technical Disclaimer →
+            </Link>
           </div>
         </div>
       </div>

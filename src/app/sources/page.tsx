@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "Laboratory Sources & Engineering Standards",
-  description: "Official standards powering HVACLogic: ASHRAE Handbook, ACCA Manuals J/S/D, SMACNA, EPA Section 608, AHRI 210/240, and NIST REFPROP.",
+  description: "Consensus standards and reference sources informing HVACLogic: ASHRAE Handbook, ACCA Manuals J/S/D, SMACNA, EPA Section 608, AHRI 210/240, and NIST REFPROP.",
   alternates: { canonical: `${siteConfig.canonicalDomain}/sources` },
   openGraph: {
     title: "Laboratory Sources & Standards",
-    description: "Scientific and industry references informing HVACLogic deterministic calculation engines.",
+    description: "Scientific and industry references informing HVACLogic engineering calculation models.",
     url: `${siteConfig.canonicalDomain}/sources`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Laboratory Sources & Standards — HVACLogic",
-    description: "Scientific and industry references informing HVACLogic deterministic calculation engines.",
+    description: "Scientific and industry references informing HVACLogic engineering calculation models.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
@@ -121,7 +122,7 @@ export default function SourcesPage() {
         "@type": "ItemPage",
         "@id": `${siteConfig.canonicalDomain}/sources#page`,
         name: "Laboratory Sources & Engineering Standards",
-        description: "Official standards powering HVACLogic: ASHRAE Handbook, ACCA Manuals J/S/D, SMACNA, EPA Section 608, AHRI 210/240, and NIST REFPROP.",
+        description: "Consensus standards and reference sources informing HVACLogic: ASHRAE Handbook, ACCA Manuals J/S/D, SMACNA, EPA Section 608, AHRI 210/240, and NIST REFPROP.",
         url: `${siteConfig.canonicalDomain}/sources`,
         isPartOf: {
           "@type": "WebSite",
@@ -404,6 +405,9 @@ export default function SourcesPage() {
         </div>
       </section>
 
+      {/* REGULATORY & ENGINEERING DISCLAIMER */}
+      <Disclaimer />
+
       {/* Supporting Links Footer Section */}
       <section style={{ borderTop: "1px solid var(--border-color)", paddingTop: "2rem", textAlign: "center" }}>
         <p style={{ fontSize: "0.9rem", color: "var(--ink-secondary)" }}>
@@ -412,6 +416,8 @@ export default function SourcesPage() {
           <Link href="/standards">Standards Matrix →</Link>
           <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
           <Link href="/methodology">View Engineering Methodology →</Link>
+          <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
+          <Link href="/disclaimer" style={{ color: "var(--accent-cooling)", fontWeight: 600 }}>Technical Disclaimer →</Link>
           <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>
           <Link href="/about">About HVACLogic →</Link>
           <span aria-hidden="true" style={{ margin: "0 0.75rem", opacity: 0.4 }}>•</span>

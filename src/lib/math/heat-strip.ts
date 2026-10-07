@@ -125,7 +125,7 @@ export function selectStandardHeatStripKw(targetKw: number): number {
 }
 
 /**
- * Computes deterministic heat strip thermal sizing, calculated electrical parameters, and airflow screening.
+ * Computes heat strip thermal sizing, calculated electrical parameters, and airflow screening.
  */
 export function calculateHeatStripSizing(input: HeatStripInput): HeatStripOutput {
   const designLoss = Math.max(0, input.designHeatLossBtu);

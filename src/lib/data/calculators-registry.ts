@@ -1397,7 +1397,7 @@ export const calculatorRegistry: CalculatorMeta[] = [
       },
       {
         stepNumber: 4,
-        title: "Select Code-Approved Combustion Air Method",
+        title: "Select Recognized Combustion Air Method (NFPA 54 / IFGC)",
         instruction: "Choose between Indoor Air (2 openings to communicating space), Outdoor Vertical Ducts (2 openings), Outdoor Horizontal Ducts (2 openings), or Outdoor Single Opening.",
       },
       {

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "Cooling Load & AC Tonnage Calculators — HVACLogic",
@@ -702,12 +703,15 @@ export default function CoolingLoadsHub() {
                   Can connected indoor unit capacity exceed outdoor unit capacity on multi-zone mini-splits?
                 </h4>
                 <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.6, margin: 0 }}>
-                  In multi-zone systems, manufacturers often allow total connected indoor head capacity to exceed nominal outdoor capacity due to load diversity across zones that peak at different times. However, allowable combination ratios and actual delivered capacities must always be verified using the manufacturer's official combination and performance tables.
+                  In multi-zone systems, manufacturers often allow total connected indoor head capacity to exceed nominal outdoor capacity due to load diversity across zones that peak at different times. However, allowable combination ratios and actual delivered capacities must always be verified using the manufacturer's published combination and performance tables.
                 </p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer />
       </main>
     </>
   );

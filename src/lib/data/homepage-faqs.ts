@@ -1,7 +1,7 @@
 export const HOMEPAGE_FAQS = [
   {
     question: "How do HVACLogic calculators compare to traditional rule-of-thumb charts?",
-    answer: "Traditional thumb rules often result in oversized equipment, poor dehumidification, noisy air ducts, and high utility bills. HVACLogic uses deterministic formulas derived from cited engineering standards and manufacturer data.",
+    answer: "Traditional thumb rules often result in oversized equipment, poor dehumidification, noisy air ducts, and high utility bills. HVACLogic uses transparent, documented physical formulations derived from cited engineering standards and manufacturer data.",
   },
   {
     question: "How are my calculation inputs processed and stored?",

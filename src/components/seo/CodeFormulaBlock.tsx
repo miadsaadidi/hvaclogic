@@ -8,7 +8,7 @@ interface CodeFormulaBlockProps {
   badge?: string;
 }
 
-export function CodeFormulaBlock({ formula, title = "physics_equation.math", badge = "DETERMINISTIC" }: CodeFormulaBlockProps) {
+export function CodeFormulaBlock({ formula, title = "physics_equation.math", badge = "FORMULA" }: CodeFormulaBlockProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {

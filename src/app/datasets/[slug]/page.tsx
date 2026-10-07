@@ -8,6 +8,7 @@ import {
   getDatasetBySlug,
   getAllDatasetSlugs,
 } from "@/lib/data/datasets";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 interface Props {
   params: Promise<{
@@ -616,6 +617,12 @@ export default async function DatasetDetailPage({ params }: Props) {
             {bibtexCitation}
           </pre>
         </section>
+
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer
+          isLifeSafety={dataset.slug.includes("a2l") || dataset.slug.includes("refrigerant")}
+          safetyTopic={dataset.slug.includes("a2l") || dataset.slug.includes("refrigerant") ? "a2l" : "general"}
+        />
 
       </div>
     </div>

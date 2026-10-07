@@ -4,6 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { ENGINEERING_STANDARDS } from "@/lib/data/standards-matrix";
 import { CodeFormulaBlock } from "@/components/seo/CodeFormulaBlock";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "HVAC Engineering Standards Cross-Reference",
@@ -276,6 +277,9 @@ export default function StandardsMatrixPage() {
             </section>
           ))}
         </div>
+
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer />
       </div>
     </>
   );

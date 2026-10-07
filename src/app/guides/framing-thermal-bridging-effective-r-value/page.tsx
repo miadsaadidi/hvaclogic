@@ -4,6 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { FormulaCard } from "@/components/seo/FormulaCard";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "Framing Thermal Bridging & Effective R-Value: Engineering Reference Guide",
@@ -381,6 +382,9 @@ export default function FramingThermalBridgingGuidePage() {
           </li>
         </ul>
       </footer>
+
+      {/* REGULATORY & ENGINEERING DISCLAIMER */}
+      <Disclaimer />
     </article>
   );
 }
