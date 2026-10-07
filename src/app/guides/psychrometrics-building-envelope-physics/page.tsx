@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { FormulaCard } from "@/components/seo/FormulaCard";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 import {
   evaluateAssemblyCondensation,
   STANDARD_WALL_ASSEMBLIES,
@@ -521,6 +522,9 @@ export default function PsychrometricsBuildingEnvelopeGuidePage() {
           </Link>
         </div>
       </section>
+
+      {/* REGULATORY & ENGINEERING DISCLAIMER */}
+      <Disclaimer />
     </article>
   );
 }

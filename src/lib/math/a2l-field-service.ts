@@ -2,7 +2,7 @@
  * ANSI/ASHRAE Standard 15-2024, UL 60335-2-40 (4th Ed), AHRI Guideline K, and DOT 4BA/4BW
  * R-454B vs. R-32 Field Service, Recovery Protocols, and Tooling Requirements Calculation Engine.
  *
- * Implements deterministic formulations for:
+ * Implements calculation formulations for:
  * 1. DOT / AHRI Guideline K recovery cylinder maximum fill weight limits and tare accounting.
  * 2. Zeotropic temperature glide compensation for superheat (dew point) and subcooling (bubble point).
  * 3. Technician diagnostic glide error quantification when using single-line saturation assumptions.

@@ -59,7 +59,7 @@ export function StandardsBadge({
           <Link
             key={standard}
             href="/sources"
-            title={`View official engineering documentation for ${standard} on HVACLogic`}
+            title={`View engineering standard references for ${standard} on HVACLogic`}
             style={{
               display: "inline-flex",
               alignItems: "center",

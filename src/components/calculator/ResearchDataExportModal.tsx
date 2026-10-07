@@ -46,14 +46,14 @@ export function ResearchDataExportModal({
   const jsonDataset = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    name: `${toolName} Deterministic Calculation Dataset`,
-    description: `Deterministic thermodynamic and building science calculation run for ${toolName} under ${governingStandard}.`,
+    name: `${toolName} Calculation Dataset`,
+    description: `Thermodynamic and building science calculation run for ${toolName} under ${governingStandard}.`,
     url: currentUrl,
     license: "https://creativecommons.org/licenses/by/4.0/",
     creator: {
       "@type": "Organization",
       name: "HVACLogic Open-Access Building Science Research Group",
-      url: "https://hvaclogic.com",
+      url: "https://hvaclogic.org",
     },
     datePublished: timestamp,
     governingStandard,

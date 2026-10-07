@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
 import { getResearchPaperBySlug, getAllResearchPaperSlugs } from "@/lib/data/research-papers";
 import { CodeFormulaBlock } from "@/components/seo/CodeFormulaBlock";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -593,6 +594,12 @@ export default async function ResearchPaperPage({ params }: PageProps) {
           </pre>
         </div>
       </section>
+
+      {/* REGULATORY & ENGINEERING DISCLAIMER */}
+      <Disclaimer
+        isLifeSafety={paper.slug.includes("a2l") || paper.slug.includes("refrigerant") || paper.slug.includes("combustion")}
+        safetyTopic={paper.slug.includes("a2l") || paper.slug.includes("refrigerant") ? "a2l" : "general"}
+      />
 
       {/* Structured Data JSON-LD */}
       <script

@@ -76,7 +76,7 @@ export default function BtuCalculatorPage() {
               { symbol: "Q_internal", label: "Internal Heat Gains", description: "Occupant (230 sensible + 200 latent BTU/hr/person) + 1,200 BTU/hr appliance baseline", unit: "BTU/hr" },
               { symbol: "F_duct", label: "Duct Allowance Factor", description: "Screening factor for duct heat transfer (1.05 conditioned, 1.15 unconditioned attic)", unit: "Dimensionless" },
             ]}
-            notes="The fundamental physical relationship governing envelope heat transfer is Q = U * A * DeltaT. This screening calculator applies an empirical floor-area factor model for preliminary estimation; final equipment selection and permitting require a certified room-by-room ACCA Manual J calculation and ACCA Manual S equipment selection."
+            notes="The fundamental physical relationship governing envelope heat transfer is Q = U * A * DeltaT. This screening calculator applies an empirical floor-area factor model for preliminary estimation; final equipment selection and permitting require a comprehensive room-by-room ACCA Manual J calculation and ACCA Manual S equipment selection."
             sourceStandard="Technical References: ACCA Manual J (8th Edition) & ASHRAE Handbook of Fundamentals"
           />
         </>

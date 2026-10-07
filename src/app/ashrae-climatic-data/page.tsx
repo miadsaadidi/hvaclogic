@@ -4,6 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { ashraeClimaticDataset } from "@/lib/data/ashrae-climatic-data";
 import { ClimaticDataTable } from "./ClimaticDataTable";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "ASHRAE-Based Climatic Design Conditions: 50 US States & Canada",
@@ -333,6 +334,9 @@ export default function AshraeClimaticDataPage() {
             </Link>
           </div>
         </section>
+
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer />
       </div>
     </>
   );

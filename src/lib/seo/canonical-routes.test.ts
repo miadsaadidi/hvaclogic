@@ -13,12 +13,12 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
     const sitemapEntries = sitemap();
     const urls = sitemapEntries.map((e) => e.url);
 
-    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 25 Calculators + 1 Guides Hub + 1 Research Hub + 12 Research Papers + 1 Datasets Hub + 8 Datasets + 8 Academic PDF Whitepapers + 3 OER Modules + 1 Standards + 8 Authority/Author/Resource/Policy Pages = 75
-    expect(urls.length).toBe(75);
+    // 1 Homepage + 5 Pillar Hubs + 1 Calculators Hub + 25 Calculators + 1 Guides Hub + 1 Research Hub + 12 Research Papers + 1 Datasets Hub + 8 Datasets + 8 Academic PDF Whitepapers + 3 OER Modules + 1 Standards + 9 Authority/Author/Resource/Policy/Disclaimer Pages = 76
+    expect(urls.length).toBe(76);
 
     // Ensure zero duplicates
     const uniqueUrls = new Set(urls);
-    expect(uniqueUrls.size).toBe(75);
+    expect(uniqueUrls.size).toBe(76);
 
     // Ensure all URLs start with the canonical domain https://hvaclogic.org
     urls.forEach((url) => {
@@ -77,7 +77,7 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
   });
 
   it("verifies the authority, guides hub, and policy pages are present in the site config", () => {
-    const authorityPaths = ["/guides", "/methodology", "/sources", "/about", "/privacy"];
+    const authorityPaths = ["/guides", "/methodology", "/sources", "/about", "/privacy", "/disclaimer"];
     const sitemapUrls = sitemap().map((e) => e.url);
 
     authorityPaths.forEach((path) => {

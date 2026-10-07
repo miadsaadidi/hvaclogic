@@ -255,7 +255,7 @@ async function generatePdf() {
     <div class="equation">&rho; = (1 + W) / v &nbsp; [lb/ft<sup>3</sup>]</div>
 
     <h2>7. Experimental Validation Matrix</h2>
-    <p>Below is the empirical benchmark matrix solved by the HVACLogic deterministic engine compared against ASHRAE Fundamentals Chapter 1 standard tables:</p>
+    <p>Below is the empirical benchmark matrix solved by the HVACLogic calculation engine compared against ASHRAE Fundamentals Chapter 1 standard tables:</p>
 
     <table>
       <thead>

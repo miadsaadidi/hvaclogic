@@ -179,7 +179,7 @@ export default function GuidesHubPage() {
                 borderRadius: "6px",
               }}
             >
-              ⚡ 100% Deterministic &amp; Zero-Database
+              ⚡ Pure Client-Side Math &amp; Zero-Database
             </span>
           </div>
         </header>

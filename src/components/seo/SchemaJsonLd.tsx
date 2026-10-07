@@ -139,7 +139,7 @@ export function SchemaJsonLd({ calculator }: SchemaJsonLdProps) {
       {
         "@type": "SoftwareSourceCode",
         "@id": `${canonicalUrl}#sourcecode`,
-        name: `${calculator.name} Deterministic Engine`,
+        name: `${calculator.name} Calculation Engine`,
         programmingLanguage: "TypeScript",
         runtimePlatform: "Modern Web Browsers (ECMAScript 2022+)",
         codeRepository: "https://github.com/miadsaadidi/hvaclogic",

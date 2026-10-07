@@ -101,7 +101,7 @@ export function GlossaryModal() {
                     HVAC Engineering Field Glossary
                   </h2>
                   <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", margin: 0 }}>
-                    Official technical definitions, formulas, and rules of thumb (ASHRAE, ACCA, EPA, AHRI).
+                    Consensus technical definitions, formulas, and screening rules of thumb (ASHRAE, ACCA, EPA, AHRI).
                   </p>
                 </div>
               </div>
@@ -278,7 +278,7 @@ export function GlossaryModal() {
                 color: "var(--ink-secondary)",
               }}
             >
-              <span>ASHRAE / ACCA Deterministic Standards</span>
+              <span>ASHRAE / ACCA Standards &amp; Formulations</span>
               <Link
                 href="/glossary"
                 onClick={() => setIsOpen(false)}

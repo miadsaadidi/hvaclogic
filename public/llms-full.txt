@@ -1,4 +1,4 @@
-# HVACLogic: Complete Deterministic Engineering Formulation Directory
+# HVACLogic: Complete Engineering Formulation Directory
 
 > HVACLogic (https://hvaclogic.org) is an open thermodynamic and building science computing suite. This document details the mathematical formulations, physical equations, and empirical constants utilized across the platform.
 

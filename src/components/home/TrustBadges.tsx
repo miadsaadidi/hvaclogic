@@ -36,7 +36,7 @@ export function TrustBadges() {
           Built on Open Engineering Standards
         </h2>
         <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", maxWidth: "620px", margin: "0 auto" }}>
-          Deterministic thermodynamic and fluid mechanics formulas with transparent physical assumptions:
+          Standard thermodynamic and fluid mechanics formulas with transparent physical assumptions:
         </p>
       </div>
 

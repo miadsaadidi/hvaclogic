@@ -2,7 +2,7 @@
  * ANSI/ASHRAE Standard 15-2024, ANSI/ASHRAE Standard 34-2022, and UL 60335-2-40 (4th Ed)
  * Low-GWP A2L Refrigerant Safety Classification, Charge Limit Sizing, and Temperature Glide Engine.
  *
- * Implements deterministic calculations for:
+ * Implements standard calculations for:
  * 1. ASHRAE 34 flammability classification, chemical composition, and GWP (AR4 & AR5).
  * 2. Lower Flammability Limit (LFL) conversions between metric (kg/m³) and imperial (lb/ft³, lb/1000 ft³).
  * 3. ASHRAE 15-2024 / UL 60335-2-40 unmitigated maximum allowable charge (m1 = 0.2 × LFL × V).

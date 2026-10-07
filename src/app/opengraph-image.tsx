@@ -92,7 +92,7 @@ export default async function Image() {
             lineHeight: 1.4,
           }}
         >
-          Deterministic Engineering Physics • ASHRAE • ACCA Manuals J/S/D • EPA 608 • IECC
+          Engineering Physics &amp; Calculation Models • ASHRAE • ACCA Manuals J/S/D • EPA 608 • IECC
         </div>
 
         {/* 5 Domains Pill Badges */}

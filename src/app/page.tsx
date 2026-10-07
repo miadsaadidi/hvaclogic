@@ -125,7 +125,7 @@ export default function HomePage() {
 
           {/* Main Title (Refined font weight, balanced wrap, gradient accent) */}
           <h1 className="hero-main-heading">
-            Deterministic Engineering Calculators{" "}
+            Engineering-Grade HVAC Calculators{" "}
             <span className="hero-gradient-highlight">for Ductwork, Loads &amp; Diagnostics</span>
           </h1>
 

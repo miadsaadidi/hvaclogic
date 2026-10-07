@@ -4,6 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { FormulaCard } from "@/components/seo/FormulaCard";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "A2L Refrigerant Transition & Charge Limit Principles: Engineering Guide",
@@ -517,6 +518,9 @@ export default function A2LRefrigerantTransitionGuidePage() {
           </Link>
         </div>
       </section>
+
+      {/* REGULATORY & ENGINEERING DISCLAIMER */}
+      <Disclaimer isLifeSafety={true} safetyTopic="a2l" />
     </article>
   );
 }

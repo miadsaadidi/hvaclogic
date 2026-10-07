@@ -4,6 +4,7 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { GLOSSARY_TERMS } from "@/lib/data/glossary-terms";
 import { GlossaryExplorer } from "./GlossaryExplorer";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "HVAC & Building Science Engineering Glossary",
@@ -104,11 +105,14 @@ export default function GlossaryPage() {
             HVAC & Building Science Engineering Glossary
           </h1>
           <p style={{ color: "var(--ink-secondary, #9ca3af)", fontSize: "1.125rem", lineHeight: 1.6, maxWidth: "800px" }}>
-            Deterministic definitions, thermodynamic formulas, field rules-of-thumb, and governing standard citations for air distribution, refrigeration, and energy efficiency.
+            Technical definitions, thermodynamic formulas, field screening rules-of-thumb, and governing standard citations for air distribution, refrigeration, and energy efficiency.
           </p>
         </header>
 
         <GlossaryExplorer terms={GLOSSARY_TERMS} />
+
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer variant="compact" />
       </main>
     </>
   );

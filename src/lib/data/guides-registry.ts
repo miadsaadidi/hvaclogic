@@ -110,7 +110,7 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
     title: "Cooling Load Calculations & Equipment Sizing: ACCA Manual J & S Engineering Guide",
     shortTitle: "ACCA Manual J & S Cooling Load Guide",
     summary:
-      "Deterministic methodology for calculating peak residential sensible and latent cooling loads, evaluating Sensible Heat Ratios (SHR), and selecting equipment matching expanded manufacturer performance tables.",
+      "Methodology for calculating peak residential sensible and latent cooling loads, evaluating Sensible Heat Ratios (SHR), and selecting equipment matching expanded manufacturer performance tables.",
     category: "Cooling Loads",
     pillar: "cooling-loads",
     targetRoute: "/cooling-loads",
@@ -534,7 +534,7 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
       {
         name: "A2L Flammability & Glide Benchmark Dataset",
         route: "/datasets/a2l-refrigerant-flammability-glide-benchmark",
-        description: "200 deterministic state points evaluating ASHRAE 15/34 and UL 60335-2-40 charge limits.",
+        description: "200 reference state points evaluating ASHRAE 15/34 and UL 60335-2-40 charge limits.",
       },
     ],
     status: "published",

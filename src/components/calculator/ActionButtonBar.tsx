@@ -112,7 +112,7 @@ export function ActionButtonBar({
           ref={printTriggerRef}
           onClick={() => setPrintOpen(true)}
           className="action-btn"
-          title="Print official calculation job submittal card"
+          title="Print calculation job submittal summary sheet"
           type="button"
         >
           🖨️ Print Spec

@@ -73,7 +73,7 @@ export default function CombustionAirPage() {
                 <strong>Confined vs. Unconfined Space Determination:</strong> Apply the Standard Method threshold: 50 cu ft per 1,000 BTU/hr total input. If room volume is less than this threshold, the space is classified as <em>Confined</em>.
               </li>
               <li style={{ marginBottom: "0.35rem" }}>
-                <strong>Select Code-Approved Combustion Air Method:</strong> Choose among Indoor Air (2 openings to communicating spaces), Outdoor Air Vertical Ducts (2 openings), Outdoor Air Horizontal Ducts (2 openings), or Outdoor Air Single Opening.
+                <strong>Select Standard Combustion Air Method (NFPA 54 / IFGC):</strong> Choose among Indoor Air (2 openings to communicating spaces), Outdoor Air Vertical Ducts (2 openings), Outdoor Air Horizontal Ducts (2 openings), or Outdoor Air Single Opening.
               </li>
               <li style={{ marginBottom: "0.35rem" }}>
                 <strong>Compute Required Net Free Area:</strong> Calculate the minimum net free unobstructed area (sq in.) for each opening per the code ratio.

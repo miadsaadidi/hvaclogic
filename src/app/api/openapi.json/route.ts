@@ -11,8 +11,8 @@ export async function GET() {
     openapi: "3.1.0",
     info: {
       title: "HVACLogic Building Science & Thermodynamic Calculation API",
-      summary: "Deterministic HVAC, psychrometric, and building physics calculation specification for AI agents and engineering software.",
-      description: "Official OpenAPI 3.1 specification for HVACLogic deterministic calculation algorithms referencing ACCA (Manual J/S/D), ASHRAE (Fundamentals, 62.1, 90.1), AHRI (210/240), and SMACNA standards. Deterministic client-side calculation execution referencing standard physics formulations.",
+      summary: "Repeatable HVAC, psychrometric, and building physics calculation specification for AI agents and engineering software.",
+      description: "OpenAPI 3.1 specification for HVACLogic calculation algorithms referencing ACCA (Manual J/S/D), ASHRAE (Fundamentals, 62.1, 90.1), AHRI (210/240), and SMACNA standards. Repeatable client-side calculation execution referencing standard physics formulations.",
       version: "1.0.0",
       contact: {
         name: "HVACLogic",
@@ -56,7 +56,7 @@ export async function GET() {
             ],
             responses: {
               "200": {
-                description: `Successful deterministic computation for ${calc.name}`,
+                description: `Successful calculation response for ${calc.name}`,
                 content: {
                   "text/html": {
                     schema: {

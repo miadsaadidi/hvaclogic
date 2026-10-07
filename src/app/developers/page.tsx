@@ -6,13 +6,13 @@ import { publishedCalculators } from "@/lib/data/calculators-registry";
 
 export const metadata: Metadata = {
   title: "Developer API & AI Agent Integration",
-  description: "OpenAPI 3.1 specification, deterministic thermodynamic formulas, and tool manifest for AI agents, Custom GPTs, and building engineering software.",
+  description: "OpenAPI 3.1 specification, thermodynamic calculation formulas, and tool manifest for AI agents, Custom GPTs, and building engineering software.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/developers`,
   },
   openGraph: {
     title: "Developer API & AI Tool Manifest",
-    description: "Connect AI agents and HVAC calculation tools to HVACLogic's deterministic building science algorithms.",
+    description: "Connect AI agents and HVAC calculation tools to HVACLogic's building science calculation algorithms.",
     url: `${siteConfig.canonicalDomain}/developers`,
     siteName: siteConfig.name,
     locale: "en_US",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Developer API & AI Tool Manifest",
-    description: "Deterministic HVAC engineering API & AI agent tool manifests.",
+    description: "HVAC engineering calculation API & AI agent tool manifests.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
@@ -53,7 +53,7 @@ export default function DevelopersPage() {
           Developer API & AI Agent Tool Manifest
         </h1>
         <p style={{ color: "var(--ink-secondary, #9ca3af)", fontSize: "1.125rem", lineHeight: 1.6 }}>
-          HVACLogic is engineered with an open, deterministic mathematical architecture. Connect LLMs, Custom GPT Actions, Python simulation pipelines, or BIM software to our calculation models referencing ASHRAE and ACCA published standards.
+          HVACLogic is engineered with an open, transparent mathematical architecture. Connect LLMs, Custom GPT Actions, Python simulation pipelines, or BIM software to our calculation models referencing ASHRAE and ACCA published standards.
         </p>
       </header>
 
@@ -303,7 +303,7 @@ export default function DevelopersPage() {
           AI Agent & Tool Calling Example (LangChain / Custom GPT)
         </h2>
         <p style={{ color: "var(--ink-secondary, #9ca3af)", fontSize: "0.9375rem", lineHeight: 1.6, marginBottom: "1rem" }}>
-          Configure your LLM agent to call HVACLogic deterministic calculation schemas:
+          Configure your LLM agent to call HVACLogic calculation schemas:
         </p>
 
         <div
@@ -341,7 +341,7 @@ export default function DevelopersPage() {
       {/* Published Calculation Algorithms Matrix */}
       <section>
         <h2 style={{ fontSize: "1.5rem", color: "var(--ink-primary, #f9fafb)", marginBottom: "1rem" }}>
-          Registered Deterministic Calculation Endpoints ({published.length})
+          Registered Calculation Endpoints ({published.length})
         </h2>
         <div className="scenario-table">
           <table>

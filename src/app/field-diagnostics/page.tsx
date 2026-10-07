@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { calculatorRegistry } from "@/lib/data/calculators-registry";
 import { HvacFlowDiagram } from "@/components/diagrams/HvacFlowDiagram";
 import { siteConfig } from "@/lib/site-config";
+import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
   title: "Field Diagnostics & Refrigerant Calculators — HVACLogic",
@@ -733,6 +734,9 @@ export default function FieldDiagnosticsHub() {
             </div>
           </div>
         </section>
+
+        {/* REGULATORY & ENGINEERING DISCLAIMER */}
+        <Disclaimer isLifeSafety={true} safetyTopic="a2l" />
       </main>
     </>
   );
