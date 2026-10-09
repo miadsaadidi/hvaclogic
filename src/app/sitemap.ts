@@ -54,13 +54,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: calc.status === "production" ? 0.85 : 0.6,
   }));
 
-  // Guides Hub
+  // Guides Hub & Dedicated Engineering Guides
   const guidesHubEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/guides`,
     lastModified: RELEASE_MILESTONES.GUIDES_HUB,
     changeFrequency: "weekly",
     priority: 0.9,
   };
+
+  const standaloneGuideRoutes = [
+    { route: "/guides/a2l-refrigerant-transition-guide", lastModified: new Date("2026-09-24T00:00:00.000Z") },
+    { route: "/guides/framing-thermal-bridging-effective-r-value", lastModified: new Date("2026-09-18T00:00:00.000Z") },
+    { route: "/guides/psychrometrics-building-envelope-physics", lastModified: new Date("2026-09-07T00:00:00.000Z") },
+  ];
+
+  const guideEntries: MetadataRoute.Sitemap = standaloneGuideRoutes.map((guide) => ({
+    url: `${baseUrl}${guide.route}`,
+    lastModified: guide.lastModified,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
 
   // Calculators Directory Hub
   const calculatorsHubEntry: MetadataRoute.Sitemap[0] = {
@@ -171,6 +184,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     calculatorsHubEntry,
     ...calculatorEntries,
     guidesHubEntry,
+    ...guideEntries,
     researchHubEntry,
     ...researchPaperEntries,
     datasetsHubEntry,
