@@ -153,7 +153,7 @@ export default function AboutPage() {
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", fontSize: "0.85rem" }}>
             <a
-              href="/papers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf"
+              href="/whitepapers/HVACLogic_Deterministic_Building_Science_Whitepaper.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", color: "var(--accent-cooling)", fontWeight: 600, textDecoration: "none" }}

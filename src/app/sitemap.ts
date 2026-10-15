@@ -143,27 +143,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Academic PDF Whitepapers & Monographs (Dynamically derived from unique research paper pdfUrls)
-  const uniquePdfs = new Map<string, Date>();
-  RESEARCH_PAPERS.forEach((paper) => {
-    if (paper.pdfUrl) {
-      const existingDate = uniquePdfs.get(paper.pdfUrl);
-      const paperDate = new Date(`${paper.publicationDate}T00:00:00.000Z`);
-      if (!existingDate || paperDate > existingDate) {
-        uniquePdfs.set(paper.pdfUrl, paperDate);
-      }
-    }
-  });
-
-  const paperPdfEntries: MetadataRoute.Sitemap = Array.from(uniquePdfs.entries()).map(
-    ([pdfUrl, lastMod]) => ({
-      url: `${baseUrl}${pdfUrl}`,
-      lastModified: lastMod,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    })
-  );
-
   // Open Educational Resource (OER) Lab Modules
   const oerRoutes = [
     "/oer-modules/duct-aerodynamics-lab.html",
@@ -189,7 +168,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...researchPaperEntries,
     datasetsHubEntry,
     ...datasetEntries,
-    ...paperPdfEntries,
     ...oerEntries,
     standardsEntry,
     ...authorityEntries,

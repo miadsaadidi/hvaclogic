@@ -86,6 +86,46 @@ export function SiteHeader() {
             <span>Guides</span>
           </Link>
 
+          {/* RESEARCH HUB LINK */}
+          <Link
+            href="/research"
+            className="action-btn header-extra-util"
+            style={{
+              height: "36px",
+              padding: "0 0.65rem",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              textDecoration: "none",
+              color: "var(--ink)",
+              alignItems: "center",
+              gap: "0.3rem",
+            }}
+            title="Browse all 12 HVAC engineering research papers & whitepapers"
+          >
+            <span>🎓</span>
+            <span>Research</span>
+          </Link>
+
+          {/* DATASETS HUB LINK */}
+          <Link
+            href="/datasets"
+            className="action-btn header-extra-util"
+            style={{
+              height: "36px",
+              padding: "0 0.65rem",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              textDecoration: "none",
+              color: "var(--ink)",
+              alignItems: "center",
+              gap: "0.3rem",
+            }}
+            title="Browse open HVAC benchmark datasets"
+          >
+            <span>📊</span>
+            <span>Datasets</span>
+          </Link>
+
           {/* UNIT CONVERTER POPUP (Desktop & Tablet) */}
           <div className="header-extra-util">
             <UnitConverterModal />
@@ -173,6 +213,20 @@ export function SiteHeader() {
             style={{ fontWeight: 700, color: "var(--accent-cooling)", display: "flex", alignItems: "center", gap: "0.5rem" }}
           >
             <span>📚</span> Master Engineering Guides
+          </Link>
+          <Link
+            href="/research"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{ fontWeight: 700, color: "var(--accent-cooling)", display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <span>🎓</span> Research &amp; Whitepapers
+          </Link>
+          <Link
+            href="/datasets"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{ fontWeight: 700, color: "var(--accent-cooling)", display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <span>📊</span> Open Benchmark Datasets
           </Link>
           <Link
             href="/airflow-ducts"

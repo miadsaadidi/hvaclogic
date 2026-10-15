@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         destination: "https://hvaclogic.org/:path*",
         permanent: true,
       },
+      {
+        source: "/papers/:path*",
+        destination: "/whitepapers/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {
