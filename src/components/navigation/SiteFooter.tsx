@@ -72,6 +72,7 @@ export function SiteFooter() {
               <li><Link href="/calculators/flex-duct-cfm-chart">Flex Duct CFM Chart</Link></li>
               <li><Link href="/calculators/cfm-calculator">HVAC CFM Sizer</Link></li>
               <li><Link href="/calculators/duct-friction-loss-calculator">Duct Friction Loss (TEL)</Link></li>
+              <li><Link href="/calculators/equivalent-length-calculator">Fitting Equivalent Length (EL)</Link></li>
               <li><Link href="/calculators/filter-sizing-calculator">MERV Filter Pressure Drop</Link></li>
               <li><Link href="/calculators/kitchen-hood-cfm">Kitchen Hood CFM Sizer</Link></li>
             </ul>
@@ -101,12 +102,14 @@ export function SiteFooter() {
             </p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.45rem", fontSize: "0.8125rem" }}>
               <li><Link href="/calculators/heat-pump-size-calculator">Heat Pump Sizer</Link></li>
+              <li><Link href="/calculators/heat-strip-size-calculator">Heat Strip Auxiliary Deficit</Link></li>
               <li><Link href="/calculators/furnace-size-calculator">Furnace AFUE Sizer</Link></li>
               <li><Link href="/calculators/boiler-size-calculator">Boiler &amp; EDR Sizer</Link></li>
               <li><Link href="/calculators/expansion-tank-calculator">ASME Expansion Tank</Link></li>
               <li><Link href="/calculators/garage-heater-sizing">Garage Heater Sizer</Link></li>
               <li><Link href="/calculators/combustion-air-calculator">Combustion Air Sizer</Link></li>
               <li><Link href="/calculators/r-value-calculator">Insulation R-Value</Link></li>
+              <li><Link href="/calculators/effective-r-value-calculator">Effective Assembly R-Value</Link></li>
               <li><Link href="/calculators/heat-loss-calculator">Heat Loss Calculator</Link></li>
             </ul>
           </div>
@@ -120,6 +123,7 @@ export function SiteFooter() {
               <li><Link href="/calculators" style={{ fontWeight: 700, color: "var(--accent-cooling)" }}>🧮 All 25 Calculators Directory</Link></li>
               <li><Link href="/guides" style={{ fontWeight: 600 }}>📚 Master Engineering Guides</Link></li>
               <li><Link href="/research" style={{ fontWeight: 600 }}>🎓 Research &amp; Whitepapers</Link></li>
+              <li><Link href="/datasets" style={{ fontWeight: 600 }}>📊 Open Benchmark Datasets</Link></li>
               <li><Link href="/standards" style={{ fontWeight: 600 }}>📜 Standards &amp; Codes Matrix</Link></li>
               <li><Link href="/ashrae-climatic-data" style={{ fontWeight: 600 }}>📍 ASHRAE Climatic Design Data</Link></li>
               <li><Link href="/methodology" style={{ fontWeight: 600 }}>📐 Calculation Methodology</Link></li>

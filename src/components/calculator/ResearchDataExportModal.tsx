@@ -25,7 +25,7 @@ export function ResearchDataExportModal({
   if (!isOpen) return null;
 
   const timestamp = new Date().toISOString();
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "https://hvaclogic.com";
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "https://hvaclogic.org";
 
   // Build CSV payload
   const csvHeaders = ["Parameter_Type", "Variable_Name", "Value", "Standard_Reference", "Timestamp"];

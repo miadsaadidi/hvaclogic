@@ -26,7 +26,7 @@ export function CopyForAiButton({
     const timestamp = new Date().toISOString();
 
     const formattedPrompt = [
-      `### ⚡ HVAC Engineering Scenario Context (via HVACLogic.com)`,
+      `### ⚡ HVAC Engineering Scenario Context (via HVACLogic.org)`,
       `**System Analysis**: ${toolName}`,
       `**Governing Engineering Standard**: ${governingStandard}`,
       `**Timestamp**: ${timestamp}`,

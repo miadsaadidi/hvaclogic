@@ -492,7 +492,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   year = {2026},
   number = {HL-TR-2026-PSY04},
   doi = {10.2139/ssrn.7430738},
-  url = {https://hvaclogic.com/research/ashrae-hyland-wexler-moist-air-psychrometrics},
+  url = {https://hvaclogic.org/research/ashrae-hyland-wexler-moist-air-psychrometrics},
   note = {Available at SSRN: https://ssrn.com/abstract=7430738}
 }`,
     apa: `HVACLogic Research Group, & Saadidi, M. (2026). Thermodynamic Formulations of ASHRAE Hyland-Wexler Moist Air Psychrometrics and Numerical Energy-Balance Solvers for Building Sizing and Field Diagnostics (Technical Report No. HL-TR-2026-PSY04). HVACLogic Open-Access Building Science. SSRN Electronic Journal. https://doi.org/10.2139/ssrn.7430738`
@@ -576,7 +576,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   year = {2026},
   number = {HL-TR-2026-HP02},
   doi = {10.6084/m9.figshare.33477430},
-  url = {https://hvaclogic.com/research/cold-climate-heat-pump-balance-point-lab}
+  url = {https://hvaclogic.org/research/cold-climate-heat-pump-balance-point-lab}
 }`,
     apa: `HVACLogic Research Group, & S., M. (2026). Interactive Engineering Lab: Thermodynamic Modeling of Cold-Climate Heat Pump Balance Points, Inverter COP Deratings, and Supplemental Electric Resistance Loads (Technical Report No. HL-TR-2026-HP02). HVACLogic Open-Access Building Science. https://doi.org/10.6084/m9.figshare.33477430`
   },

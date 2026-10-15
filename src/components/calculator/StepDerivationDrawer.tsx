@@ -38,7 +38,7 @@ export function StepDerivationDrawer({
             `\\begin{equation}\n  ${s.substitutionLatex} = ${s.resultText}\n\\end{equation}\n`
         )
         .join("\n") +
-      `\n% Grounded calculation via HVACLogic (https://hvaclogic.com)`;
+      `\n% Grounded calculation via HVACLogic (https://hvaclogic.org)`;
 
     navigator.clipboard.writeText(fullProof);
     setCopied(true);

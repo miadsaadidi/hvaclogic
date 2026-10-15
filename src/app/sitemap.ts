@@ -54,13 +54,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: calc.status === "production" ? 0.85 : 0.6,
   }));
 
-  // Guides Hub
+  // Guides Hub & Dedicated Engineering Guides
   const guidesHubEntry: MetadataRoute.Sitemap[0] = {
     url: `${baseUrl}/guides`,
     lastModified: RELEASE_MILESTONES.GUIDES_HUB,
     changeFrequency: "weekly",
     priority: 0.9,
   };
+
+  const standaloneGuideRoutes = [
+    { route: "/guides/a2l-refrigerant-transition-guide", lastModified: new Date("2026-09-24T00:00:00.000Z") },
+    { route: "/guides/framing-thermal-bridging-effective-r-value", lastModified: new Date("2026-09-18T00:00:00.000Z") },
+    { route: "/guides/psychrometrics-building-envelope-physics", lastModified: new Date("2026-09-07T00:00:00.000Z") },
+  ];
+
+  const guideEntries: MetadataRoute.Sitemap = standaloneGuideRoutes.map((guide) => ({
+    url: `${baseUrl}${guide.route}`,
+    lastModified: guide.lastModified,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
 
   // Calculators Directory Hub
   const calculatorsHubEntry: MetadataRoute.Sitemap[0] = {
@@ -130,27 +143,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Academic PDF Whitepapers & Monographs (Dynamically derived from unique research paper pdfUrls)
-  const uniquePdfs = new Map<string, Date>();
-  RESEARCH_PAPERS.forEach((paper) => {
-    if (paper.pdfUrl) {
-      const existingDate = uniquePdfs.get(paper.pdfUrl);
-      const paperDate = new Date(`${paper.publicationDate}T00:00:00.000Z`);
-      if (!existingDate || paperDate > existingDate) {
-        uniquePdfs.set(paper.pdfUrl, paperDate);
-      }
-    }
-  });
-
-  const paperPdfEntries: MetadataRoute.Sitemap = Array.from(uniquePdfs.entries()).map(
-    ([pdfUrl, lastMod]) => ({
-      url: `${baseUrl}${pdfUrl}`,
-      lastModified: lastMod,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    })
-  );
-
   // Open Educational Resource (OER) Lab Modules
   const oerRoutes = [
     "/oer-modules/duct-aerodynamics-lab.html",
@@ -171,11 +163,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     calculatorsHubEntry,
     ...calculatorEntries,
     guidesHubEntry,
+    ...guideEntries,
     researchHubEntry,
     ...researchPaperEntries,
     datasetsHubEntry,
     ...datasetEntries,
-    ...paperPdfEntries,
     ...oerEntries,
     standardsEntry,
     ...authorityEntries,

@@ -469,7 +469,7 @@ export const ENGINEERING_GUIDES: EngineeringGuide[] = [
     companionDatasets: [
       {
         name: "Framing Thermal Bridging Benchmark Matrix",
-        route: "/datasets/framing-thermal-bridging-assembly-factors",
+        route: "/datasets/framing-thermal-bridging-assembly-factors.csv",
         description: "48 assembly configurations across wood and steel studs.",
       },
     ],
