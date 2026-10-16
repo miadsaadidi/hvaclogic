@@ -583,7 +583,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "deterministic-vapor-compression-refrigerant-mass-sizing",
     title: "Deterministic Vapor-Compression Refrigerant Mass Sizing and Liquid Line Displacement Mechanics for Next-Generation Low-GWP Split Systems",
-    seoTitle: "Refrigerant Mass Sizing & Liquid Line Displacement",
+    seoTitle: "Refrigerant Mass Sizing & Charge Kinetics",
     seoDescription: "Closed-form mathematical formulations for split-system refrigerant mass charge addition, liquid line displacement, and hydrostatic lift penalties.",
     subtitle: "Closed-form governing equations for refrigerant line-set mass addition, ASTM B280 liquid line displacement, and hydrostatic elevation lift penalties under ASHRAE Standard 15.",
     abstract: "With the global implementation of the AIM Act and Kigali Amendment, vapor-compression building systems are rapidly transitioning from legacy hydrofluorocarbons to mildly flammable lower-GWP A2L alternatives (R-454B and R-32). This paper derives governing formulations for refrigerant line-set mass addition, liquid line volumetric displacement, and hydrostatic vertical column corrections across residential and commercial split installations.",
@@ -660,7 +660,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "student-lab-building-envelope-thermal-transmission",
     title: "Student Laboratory Manual: Building Envelope Thermal Transmission, Fenestration SHGC Modeling, and Infiltration Sizing per ACCA Manual J",
-    seoTitle: "Building Envelope Thermal Transmission Lab Manual",
+    seoTitle: "Envelope Thermal Transmission Lab Manual",
     seoDescription: "Undergraduate laboratory manual and calculations for building envelope U-factors, fenestration SHGC, and ACH50 infiltration sizing per Manual J.",
     subtitle: "An interactive engineering laboratory curriculum contrasting 1975 versus 2025 IECC envelopes and demonstrating the physical failure of empirical 1-ton-per-500-sq-ft shortcuts.",
     abstract: "Accurate determination of residential peak cooling and heating thermal loads is fundamental to mechanical equipment selection, indoor humidity control, and decarbonization. This laboratory manual guides engineering and technology students through the quantitative formulation of multi-layer Fourier conduction, fenestration solar heat gains (SHGC), and pressure-driven blower door air leakage (ACH50) normalized via Sherman-Grimsrud LBL correlation factors. A comparative case study of a 2,500 sq ft home illustrates why legacy contractor heuristics oversize equipment by 80% to 120%, resulting in short-cycling and latent moisture extraction failure.",
@@ -749,7 +749,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "cold-formed-steel-framing-thermal-factors",
     title: "ANSI/ASHRAE/IES Standard 90.1 Cold-Formed Steel Stud Framing Factors & Cavity Insulation Thermal Bridging Deratings",
-    seoTitle: "Steel Stud Framing Factors & Cavity R-Value Deratings",
+    seoTitle: "Steel Stud Framing Factors & R-Value",
     seoDescription: "Empirical analysis of ASHRAE 90.1 Table A9.2-1 framing factors (Fc), cold-formed steel thermal bridging, and continuous exterior insulation requirements.",
     subtitle: "A building science evaluation of two-dimensional thermal fin effects, empirical framing correction factors (Fc), and whole-wall assembly U-factors under ANSI/ASHRAE/IES Standard 90.1 and IECC.",
     abstract: "Evaluates the two-dimensional thermal bridging physics inherent to cold-formed steel (CFS) stud building envelopes. Because the thermal conductivity of structural carbon steel (k ≈ 45.0 W/m·K / 31.2 BTU/hr·ft·°F) is over 1,180 times greater than typical batt insulation (k ≈ 0.038 W/m·K / 0.026 BTU/hr·ft·°F), steel studs act as efficient thermal pathways. This monograph examines the finite-difference modeling underlying ANSI/ASHRAE/IES Standard 90.1 Normative Appendix A (Table A9.2-1 and Table A3.3-1), evaluates the empirical framing correction factor (Fc), tabulates normative effective cavity R-values across 3.5-inch, 6.0-inch, and 8.0-inch depths at 16-inch and 24-inch on-center spacings, and demonstrates why continuous exterior insulation (ci) is required to achieve prescriptive whole-wall U-factor limits under IECC 2024.",
@@ -972,7 +972,7 @@ export const RESEARCH_PAPERS: ResearchPaper[] = [
   {
     slug: "r454b-r32-field-handling-protocols",
     title: "R-454B vs. R-32 Field Service Protocols: Recovery Cylinder Sizing, Temperature Glide Compensation, and Tooling Requirements Under ASHRAE Standard 15 and UL 60335-2-40",
-    seoTitle: "R-454B vs R-32 Field Service & Recovery Protocols",
+    seoTitle: "R-454B & R-32 Field Service Protocols",
     seoDescription: "Comparative technical evaluation of R-454B and R-32 field handling: DOT 4BA cylinder recovery fill limits, zeotropic glide compensation, and spark-proof tooling.",
     subtitle: "A field engineering framework for low-GWP A2L refrigerant recovery, bubble-versus-dew point superheat/subcooling charging, vacuum dehydration decay criteria, and ignition-proof instrumentation.",
     abstract: "As the North American HVAC industry transitions away from high-GWP R-410A (GWP 2,088) to low-GWP A2L mildly flammable alternatives under the EPA AIM Act and UL 60335-2-40 (4th Edition), field service technicians and mechanical contractors encounter divergent thermodynamic behaviors and safety protocols between R-454B (Opteon XL41, GWP 465) and pure R-32 (Difluoromethane, GWP 675). This research monograph presents a comparative engineering analysis of field service workflows across four critical domains: (1) Recovery cylinder filling limits per DOT 4BA/4BW and AHRI Guideline K, accounting for specific gravity shifts at 130°F (0.88 for R-454B vs. 0.83 for R-32) and 400 psig pressure relief valve ratings; (2) Zeotropic temperature glide compensation, evaluating how R-454B's 1.5 K (2.7°F) glide requires liquid-phase charging and explicit separation of dew-point suction superheat from bubble-point liquid subcooling; (3) Micron vacuum decay criteria, defining dehydration vs. active leak thresholds; and (4) Tooling non-incendive standards under UL 121201 / Class I, Division 2, verifying brushless recovery machines, reverse-thread CGA-164/166 fittings, and A2L-certified electronic leak detection.",

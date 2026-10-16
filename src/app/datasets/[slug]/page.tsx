@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `${siteConfig.canonicalDomain}/datasets/${dataset.slug}`;
 
   return {
-    title: `${dataset.seoTitle} | HVACLogic Open Data`,
+    title: dataset.seoTitle,
     description: dataset.seoDescription,
     alternates: {
       canonical: canonicalUrl,

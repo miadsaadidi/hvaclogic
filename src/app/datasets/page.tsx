@@ -5,13 +5,13 @@ import { siteConfig } from "@/lib/site-config";
 import { BENCHMARK_DATASETS } from "@/lib/data/datasets";
 
 export const metadata: Metadata = {
-  title: "Open Benchmark Datasets & Engineering Matrices",
+  title: "Open Benchmark Datasets & Engineering Data",
   description: "Open-access tabular datasets, thermodynamic psychrometric matrices, heat pump COP derating benchmarks, and Manual J building science vectors.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/datasets`,
   },
   openGraph: {
-    title: "Open Benchmark Datasets & Engineering Matrices | HVACLogic",
+    title: "Open Benchmark Datasets & Engineering Data | HVACLogic",
     description: "Open-access tabular datasets, thermodynamic psychrometric matrices, heat pump COP derating benchmarks, and Manual J building science vectors.",
     url: `${siteConfig.canonicalDomain}/datasets`,
     siteName: "HVACLogic",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Open Benchmark Datasets & Engineering Matrices | HVACLogic",
+    title: "Open Benchmark Datasets & Engineering Data | HVACLogic",
     description: "Open-access tabular datasets, thermodynamic psychrometric matrices, heat pump COP derating benchmarks, and Manual J building science vectors.",
     images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },

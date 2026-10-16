@@ -9,7 +9,7 @@ import { Disclaimer } from "@/components/shared/Disclaimer";
 export const metadata: Metadata = {
   title: "A2L Refrigerant Transition & Charge Limit Principles: Engineering Guide",
   description:
-    "Technical guide to lower-GWP A2L refrigerants (R-454B, R-32), safety classifications, charge-limit concepts under ASHRAE and UL standards, temperature glide, and field service principles.",
+    "Engineering guide to lower-GWP A2L refrigerants (R-454B, R-32), ASHRAE/UL charge limits, temperature glide thermodynamics, and field service safety rules.",
   keywords: [
     "A2L refrigerants",
     "R-454B",
@@ -30,17 +30,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "A2L Refrigerant Transition & Charge Limit Principles: Engineering Guide",
     description:
-      "Technical guide to lower-GWP A2L refrigerants (R-454B, R-32), safety classifications, charge-limit concepts under ASHRAE and UL standards, temperature glide, and field service principles.",
+      "Engineering guide to lower-GWP A2L refrigerants (R-454B, R-32), ASHRAE/UL charge limits, temperature glide thermodynamics, and field service safety rules.",
     url: `${siteConfig.canonicalDomain}/guides/a2l-refrigerant-transition-guide`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "article",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "A2L Refrigerant Transition & Charge Limit Principles - HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "A2L Refrigerant Transition & Charge Limit Guide",
     description:
       "Technical guide to A2L refrigerant properties, charge limit concepts, UL 60335-2-40 detection, and zeotropic temperature glide.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 

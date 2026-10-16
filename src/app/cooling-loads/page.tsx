@@ -7,8 +7,8 @@ import { siteConfig } from "@/lib/site-config";
 import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
-  title: "Cooling Load & AC Tonnage Calculators — HVACLogic",
-  description: "Educational screening tools and engineering guides for residential cooling loads, AC tonnage estimation, and mini-split sizing based on ACCA Manual J and Manual S concepts.",
+  title: "Cooling Load & AC Sizing Calculators",
+  description: "Engineering calculators and guides for residential cooling loads, AC tonnage estimation, and heat pump sizing based on ACCA Manual J and Manual S.",
   keywords: [
     "cooling load calculator",
     "HVAC cooling load",
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     canonical: `${siteConfig.canonicalDomain}/cooling-loads`,
   },
   openGraph: {
-    title: "Cooling Load & AC Tonnage Calculators — HVACLogic",
-    description: "Educational screening tools and engineering guides for residential cooling loads, AC tonnage estimation, and mini-split sizing based on ACCA Manual J and Manual S concepts.",
+    title: "Cooling Load & AC Sizing Calculators | HVACLogic",
+    description: "Engineering calculators and guides for residential cooling loads, AC tonnage estimation, and heat pump sizing based on ACCA Manual J and Manual S.",
     url: `${siteConfig.canonicalDomain}/cooling-loads`,
     siteName: siteConfig.name,
     locale: "en_US",

@@ -7,7 +7,7 @@ import { RESEARCH_PAPERS } from "@/lib/data/research-papers";
 export const metadata: Metadata = {
   title: "Engineering Research & Technical Whitepapers",
   description:
-    "Open-access technical monographs, mathematical modeling frameworks, and building science preprints covering heat pump thermodynamics, air distribution, psychrometrics, and low-GWP refrigerants.",
+    "Open-access technical monographs and engineering preprints covering heat pump thermodynamics, air distribution, psychrometrics, and low-GWP refrigerants.",
   alternates: {
     canonical: `${siteConfig.canonicalDomain}/research`,
   },

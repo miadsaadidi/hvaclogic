@@ -7,9 +7,9 @@ import { siteConfig } from "@/lib/site-config";
 import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
-  title: "Heating Load & Heat Pump Sizing Calculators — HVACLogic",
+  title: "Heating Load & Heat Pump Calculators",
   description:
-    "Technical references and screening calculators for residential heating load calculation, heat pump balance point estimation, furnace sizing, and hydronic heating.",
+    "Engineering references and calculators for residential heating loads, heat pump balance point analysis, furnace sizing, and hydronic heat loss.",
   keywords: [
     "heating load calculator",
     "heat pump sizing",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     canonical: `${siteConfig.canonicalDomain}/heating-systems`,
   },
   openGraph: {
-    title: "Heating Load & Heat Pump Sizing Calculators — HVACLogic",
+    title: "Heating Load & Heat Pump Calculators | HVACLogic",
     description:
-      "Technical references and screening calculators for residential heating load calculation, heat pump balance point estimation, furnace sizing, and hydronic heating.",
+      "Engineering references and calculators for residential heating loads, heat pump balance point analysis, furnace sizing, and hydronic heat loss.",
     url: `${siteConfig.canonicalDomain}/heating-systems`,
     siteName: siteConfig.name,
     locale: "en_US",

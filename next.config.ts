@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
         destination: "/whitepapers/:path*",
         permanent: true,
       },
+      {
+        source: "/datasets/framing-thermal-bridging-assembly-factors",
+        destination: "/datasets/framing-thermal-bridging-assembly-factors.csv",
+        permanent: true,
+      },
     ];
   },
   async headers() {

@@ -7,9 +7,9 @@ import { CitationExportButton } from "@/components/seo/CitationExportButton";
 import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
-  title: "Engineering Calculation Methodology & Physical Models",
+  title: "Engineering Calculation Methodology & Models",
   description:
-    "Technical documentation of HVACLogic calculation engines: fluid mechanics, ASHRAE/ACCA thermal load models, building science, and thermophysical property baselines.",
+    "Technical documentation of HVACLogic calculation engines: fluid mechanics, ASHRAE/ACCA thermal loads, building science, and thermodynamic baselines.",
   keywords: [
     "HVAC calculation methodology",
     "duct sizing equations",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     canonical: `${siteConfig.canonicalDomain}/methodology`,
   },
   openGraph: {
-    title: "Engineering Calculation Methodology & Physical Models",
+    title: "Engineering Calculation Methodology & Models",
     description:
-      "Technical documentation of HVACLogic calculation engines: fluid mechanics, ASHRAE/ACCA thermal load models, building science, and thermophysical property baselines.",
+      "Technical documentation of HVACLogic calculation engines: fluid mechanics, ASHRAE/ACCA thermal loads, building science, and thermodynamic baselines.",
     url: `${siteConfig.canonicalDomain}/methodology`,
     siteName: siteConfig.name,
     locale: "en_US",

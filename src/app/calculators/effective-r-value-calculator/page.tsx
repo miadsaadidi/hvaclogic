@@ -21,11 +21,20 @@ export const metadata: Metadata = {
     siteName: "HVACLogic",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://hvaclogic.org/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: calculator.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: calculator.seoTitle,
     description: calculator.metaDescription,
+    images: ["https://hvaclogic.org/opengraph-image"],
   },
 };
 

@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: "Psychrometrics & Building Envelope Physics: Condensation Dynamics Guide",
   description:
-    "Technical reference connecting moist air psychrometrics, vapor pressure diffusion gradients, 1-D thermal transmission, Glaser method condensation planes, and building assembly vapor retarders.",
+    "Engineering reference connecting moist air psychrometrics, vapor diffusion gradients, Glaser method condensation planes, and assembly vapor retarders.",
   keywords: [
     "psychrometrics",
     "building envelope",
@@ -33,17 +33,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Psychrometrics & Building Envelope Physics: Condensation Dynamics Guide",
     description:
-      "Technical reference connecting moist air psychrometrics, vapor pressure diffusion gradients, 1-D thermal transmission, Glaser method condensation planes, and building assembly vapor retarders.",
+      "Engineering reference connecting moist air psychrometrics, vapor diffusion gradients, Glaser method condensation planes, and assembly vapor retarders.",
     url: `${siteConfig.canonicalDomain}/guides/psychrometrics-building-envelope-physics`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "article",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Psychrometrics & Building Envelope Physics - HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Psychrometrics & Building Envelope Physics: Condensation Dynamics Guide",
     description:
       "Technical reference on moist air psychrometrics, vapor diffusion resistance, Glaser condensation modeling, and building assembly vapor retarders.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
   other: {
     "citation_title": "Psychrometrics & Building Envelope Physics: Hydrothermal Gradients and Interstitial Condensation Modeling",

@@ -4,17 +4,25 @@ import { siteConfig } from "@/lib/site-config";
 import { Logo } from "@/components/brand/Logo";
 
 export const metadata: Metadata = {
-  title: "Miad S. — Technical Author & Calculation Architect",
+  title: "Miad S. — Author & Calculation Architect",
   description:
     "Author profile for Miad S., creator of HVACLogic's HVAC calculation engines, psychrometric models, and technical reference tools.",
   alternates: { canonical: `${siteConfig.canonicalDomain}/authors/miad-s` },
   openGraph: {
-    title: "Miad S. — Technical Author & Calculation Architect | HVACLogic",
+    title: "Miad S. — Author & Calculation Architect | HVACLogic",
     description:
       "Author profile for Miad S., creator of HVACLogic's HVAC calculation engines, psychrometric models, and technical reference tools.",
     url: `${siteConfig.canonicalDomain}/authors/miad-s`,
     siteName: siteConfig.name,
     type: "profile",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Miad S. — Author & Calculation Architect - HVACLogic",
+      },
+    ],
   },
 };
 

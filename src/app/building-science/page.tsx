@@ -7,9 +7,9 @@ import { siteConfig } from "@/lib/site-config";
 import { Disclaimer } from "@/components/shared/Disclaimer";
 
 export const metadata: Metadata = {
-  title: "Building Science & Insulation Calculators — HVACLogic",
+  title: "Building Science & Envelope Calculators",
   description:
-    "Technical references and calculation models for moist air psychrometrics, parallel-path assembly U-factors, thermal bridging derating, and infiltration modeling.",
+    "Engineering references and calculation models for moist air psychrometrics, parallel-path assembly U-factors, thermal bridging, and infiltration.",
   keywords: [
     "building science",
     "psychrometrics",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     canonical: `${siteConfig.canonicalDomain}/building-science`,
   },
   openGraph: {
-    title: "Building Science & Insulation Calculators — HVACLogic",
+    title: "Building Science & Envelope Calculators | HVACLogic",
     description:
-      "Technical references and calculation models for moist air psychrometrics, parallel-path assembly U-factors, thermal bridging derating, and infiltration modeling.",
+      "Engineering references and calculation models for moist air psychrometrics, parallel-path assembly U-factors, thermal bridging, and infiltration.",
     url: `${siteConfig.canonicalDomain}/building-science`,
     siteName: siteConfig.name,
     locale: "en_US",

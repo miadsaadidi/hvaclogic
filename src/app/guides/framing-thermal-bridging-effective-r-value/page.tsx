@@ -9,7 +9,7 @@ import { Disclaimer } from "@/components/shared/Disclaimer";
 export const metadata: Metadata = {
   title: "Framing Thermal Bridging & Effective R-Value: Engineering Reference Guide",
   description:
-    "Technical guide to building envelope thermal bridging, parallel-path heat transfer, cold-formed steel effective cavity values, and assembly U-factor calculations.",
+    "Technical guide to building thermal bridging, parallel-path heat transfer, cold-formed steel cavity derating, and assembly U-factor calculations.",
   keywords: [
     "thermal bridging",
     "effective R-value",
@@ -30,17 +30,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Framing Thermal Bridging & Effective R-Value: Engineering Reference Guide",
     description:
-      "Technical guide to building envelope thermal bridging, parallel-path heat transfer, cold-formed steel effective cavity values, and assembly U-factor calculations.",
+      "Technical guide to building thermal bridging, parallel-path heat transfer, cold-formed steel cavity derating, and assembly U-factor calculations.",
     url: `${siteConfig.canonicalDomain}/guides/framing-thermal-bridging-effective-r-value`,
     siteName: siteConfig.name,
     locale: "en_US",
     type: "article",
+    images: [
+      {
+        url: `${siteConfig.canonicalDomain}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Building Envelope Thermal Bridging & Effective Assembly U-Factor - HVACLogic",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Framing Thermal Bridging & Effective R-Value Guide",
     description:
       "Technical guide to building envelope thermal bridging, parallel-path heat transfer, and assembly U-factor calculations.",
+    images: [`${siteConfig.canonicalDomain}/opengraph-image`],
   },
 };
 
