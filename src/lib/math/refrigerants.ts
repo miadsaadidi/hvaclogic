@@ -55,7 +55,7 @@ export const REFRIGERANTS: Record<string, RefrigerantMeta> = {
     chemicalName: "HFC-32 / HFO-1234yf (68.9/31.1 wt%)",
     safetyClass: "A2L",
     gwp: 466,
-    glideF: 1.5,
+    glideF: 1.5, // Operating glide at representative AC evaporating conditions (~112 psig; widens to 2.7°F / 1.5 K at 1 atm)
     hasGlide: true,
     minPressurePsig: 10,
     maxPressurePsig: 600,
