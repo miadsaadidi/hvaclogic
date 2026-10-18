@@ -26,23 +26,23 @@ describe("Garage & Workshop Heater Sizing Engine", () => {
     expect(res.overheadDoorLossBtu).toBe(1120); // 112 sq ft * 0.20 * 50
     expect(res.wallLossBtu).toBe(1750); // 500 sq ft net * 0.07 * 50
     expect(res.ceilingLossBtu).toBe(1188); // 528 sq ft * 0.045 * 50
-    expect(res.slabEdgeLossBtu).toBe(2300); // 92 ft * 0.50 * 50
+    expect(res.slabEdgeLossBtu).toBe(1700); // Exposed perimeter: 68 ft (92 - 24 attached) * 0.50 * 50
     expect(res.infiltrationLossBtu).toBe(1925); // 1.08 * 35.64 CFM * 50 = 1924.56 -> 1925
 
     // Base steady state and margin
-    expect(res.baseSteadyStateLossBtu).toBe(8283);
-    expect(res.warmupMarginBtu).toBe(828); // 8283 * 0.10 = 828.3 -> 828
-    expect(res.totalPeakHeatLossBtu).toBe(9111);
+    expect(res.baseSteadyStateLossBtu).toBe(7683);
+    expect(res.warmupMarginBtu).toBe(768); // 7683 * 0.10 = 768.3 -> 768
+    expect(res.totalPeakHeatLossBtu).toBe(8451);
 
     // Equipment selection
-    expect(res.requiredElectricKw).toBe(2.67);
+    expect(res.requiredElectricKw).toBe(2.48);
     expect(res.recommendedElectricHeaterKw).toBe(3.0);
     expect(res.recommendedElectricAmps240V).toBe(12.5); // 3000W / 240V
     expect(res.minimumCircuitAmpacity).toBe(15.6); // 12.5A * 1.25
     expect(res.recommendedCircuitBreakerAmps).toBe(20);
 
-    expect(res.requiredGasOutputBtu).toBe(9111);
-    expect(res.requiredGasInputBtu).toBe(11111); // 9111 / 0.82
+    expect(res.requiredGasOutputBtu).toBe(8451);
+    expect(res.requiredGasInputBtu).toBe(10306); // 8451 / 0.82
     expect(res.recommendedGasHeaterBtu).toBe(30000); // Smallest standard gas unit heater tier
     expect(res.deliveredGasOutputBtu).toBe(24600); // 30000 * 0.82
   });
@@ -61,7 +61,25 @@ describe("Garage & Workshop Heater Sizing Engine", () => {
     const res = calculateGarageHeater(input);
     expect(res.warmupMarginBtu).toBe(0);
     expect(res.totalPeakHeatLossBtu).toBe(res.baseSteadyStateLossBtu);
-    expect(res.totalPeakHeatLossBtu).toBe(8283);
+    expect(res.totalPeakHeatLossBtu).toBe(7683);
+  });
+
+  it("calculates full perimeter slab edge loss for detached garages", () => {
+    const input: GarageHeaterInput = {
+      preset: "2_car",
+      ceilingHeightFt: 9,
+      isAttached: false, // Detached garage: all 4 walls and full perimeter exposed
+      insulationLevel: "average",
+      targetIndoorTempF: 60,
+      outdoorDesignTempF: 10,
+      warmupMarginPercent: 0,
+    };
+
+    const res = calculateGarageHeater(input);
+    expect(res.exposedPerimeterFt).toBe(92);
+    expect(res.slabEdgeLossBtu).toBe(2300); // 92 ft * 0.50 * 50
+    expect(res.wallLossBtu).toBe(2506); // (92 * 9 - 112) * 0.07 * 50 = 716 * 3.5 = 2506
+    expect(res.totalPeakHeatLossBtu).toBe(9039);
   });
 
   it("handles large uninsulated pole barn shop with high ceiling (14ft) and recommends radiant tube", () => {

@@ -148,8 +148,9 @@ export function calculateGarageHeater(input: GarageHeaterInput): GarageHeaterOut
   // 3. Ceiling Conduction Loss
   const ceilingLossBtu = Math.round(specs.uCeiling * floorAreaSqFt * deltaT);
 
-  // 4. Concrete Slab Edge Conduction Loss (ASHRAE perimeter method: Q = F_p * P * Delta T)
-  const slabEdgeLossBtu = Math.round(specs.fSlab * totalPerimeterFt * deltaT);
+  // 4. Concrete Slab Edge Conduction Loss (ASHRAE perimeter method: Q = F_p * P_exposed * Delta T)
+  // For attached structures, only exterior exposed perimeter loses heat to outdoor design ambient
+  const slabEdgeLossBtu = Math.round(specs.fSlab * exposedPerimeterFt * deltaT);
 
   // 5. Infiltration Draft Loss: Q = 1.08 * CFM * Delta T
   const infiltrationCfm = Math.round(((volumeCuFt * ach) / 60) * 100) / 100;
