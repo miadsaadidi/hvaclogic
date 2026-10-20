@@ -165,7 +165,7 @@ export function ClimaticDataTable({ locations }: ClimaticDataTableProps) {
                 <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>
                   <div style={{ display: "inline-flex", gap: "0.4rem" }}>
                     <Link
-                      href={`/calculators/ac-tonnage-calculator?loc=${loc.id}&outdoorTemp=${loc.summerDb04}`}
+                      href="/calculators/ac-tonnage-calculator"
                       style={{
                         padding: "0.25rem 0.55rem",
                         borderRadius: "0.35rem",
@@ -175,12 +175,12 @@ export function ClimaticDataTable({ locations }: ClimaticDataTableProps) {
                         fontWeight: 600,
                         textDecoration: "none",
                       }}
-                      title={`Use ${loc.city} design temperature for cooling-load estimate (${loc.summerDb04}°F)`}
+                      title={`Open AC Tonnage Calculator for ${loc.city} (${loc.summerDb04}°F)`}
                     >
                       ❄️ Cooling Input
                     </Link>
                     <Link
-                      href={`/calculators/heat-loss-calculator?loc=${loc.id}&outdoorTemp=${loc.winterDb99}`}
+                      href="/calculators/heat-loss-calculator"
                       style={{
                         padding: "0.25rem 0.55rem",
                         borderRadius: "0.35rem",
@@ -190,7 +190,7 @@ export function ClimaticDataTable({ locations }: ClimaticDataTableProps) {
                         fontWeight: 600,
                         textDecoration: "none",
                       }}
-                      title={`Use ${loc.city} 99% design temperature for heat-loss estimate (${loc.winterDb99}°F)`}
+                      title={`Open Heat Loss Calculator for ${loc.city} (${loc.winterDb99}°F)`}
                     >
                       🔥 Heat Loss Input
                     </Link>

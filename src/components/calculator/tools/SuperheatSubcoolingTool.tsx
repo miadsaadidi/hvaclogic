@@ -614,7 +614,7 @@ export function SuperheatSubcoolingTool() {
           {/* PT CHART HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Need Exact PT Saturation Curves?</div>
-            <Link href={`/calculators/pt-chart?refrig=${refrig}`}>
+            <Link href="/calculators/pt-chart">
               <span>Open Interactive Digital PT Chart for {currentRefrigMeta.name}</span>
               <span>→</span>
             </Link>

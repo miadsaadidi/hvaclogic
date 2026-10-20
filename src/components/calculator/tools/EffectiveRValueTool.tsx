@@ -546,7 +546,7 @@ export function EffectiveRValueTool() {
           </div>
         </div>
         <Link
-          href={`/calculators/heat-loss-calculator?wallMode=effective_u&wallU=${output.totalAssemblyUFactor.toFixed(4)}`}
+          href="/calculators/heat-loss-calculator"
           style={{
             display: "inline-flex",
             alignItems: "center",

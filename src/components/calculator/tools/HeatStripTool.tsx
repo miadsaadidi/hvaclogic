@@ -380,21 +380,21 @@ export function HeatStripTool() {
         </div>
         <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", fontSize: "0.85rem" }}>
           <Link
-            href={`/calculators/heat-pump-size-calculator?loss=${heatLoss}&tons=${tonnage}`}
+            href="/calculators/heat-pump-size-calculator"
             className="btn btn-outline"
             style={{ fontSize: "0.8rem", padding: "0.4rem 0.75rem" }}
           >
             ← Verify Heat Pump Balance Point
           </Link>
           <Link
-            href={`/calculators/heat-loss-calculator?loss=${heatLoss}`}
+            href="/calculators/heat-loss-calculator"
             className="btn btn-outline"
             style={{ fontSize: "0.8rem", padding: "0.4rem 0.75rem" }}
           >
             ← Recalculate Building Heat Loss
           </Link>
           <Link
-            href={`/calculators/cfm-calculator?tons=${tonnage}`}
+            href="/calculators/cfm-calculator"
             className="btn btn-outline"
             style={{ fontSize: "0.8rem", padding: "0.4rem 0.75rem" }}
           >

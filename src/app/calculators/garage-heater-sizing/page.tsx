@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { getCalculatorById } from "@/lib/data/calculators-registry";
 import { CalculatorContainer } from "@/components/calculator/CalculatorContainer";
@@ -163,6 +164,16 @@ export default function GarageHeaterSizingPage() {
                 </ul>
               </li>
             </ol>
+          </div>
+          <div style={{ marginTop: "1.5rem", padding: "1.25rem", background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem" }}>
+            <h4 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink)", marginBottom: "0.5rem" }}>
+              Related Envelope &amp; Heating Plant Workflows
+            </h4>
+            <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+              • Whole-House Heating Load: <Link href="/calculators/heat-loss-calculator" style={{ color: "var(--accent-heating)", textDecoration: "underline" }}>Heat Loss Calculator</Link> — calculate room-by-room Manual J transmission and infiltration loads across living spaces.<br />
+              • Hydronic In-Slab Sizing: <Link href="/calculators/boiler-size-calculator" style={{ color: "var(--accent-heating)", textDecoration: "underline" }}>Boiler Size Calculator</Link> — size condensing hydronic boilers for radiant floor slab heating in attached garages and workshops.<br />
+              • Combustion Air Codes: <Link href="/calculators/combustion-air-calculator" style={{ color: "var(--accent-heating)", textDecoration: "underline" }}>Combustion Air Calculator</Link> — verify NFPA 54 / IFGC indoor and outdoor louvre free-area sizing for gas unit heaters installed in confined spaces.
+            </p>
           </div>
         </div>
       }

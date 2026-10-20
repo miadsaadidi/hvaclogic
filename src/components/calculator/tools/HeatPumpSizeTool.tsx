@@ -484,18 +484,18 @@ export function HeatPumpSizeTool() {
             <div className="handoff-title">Next Step in System Sizing &amp; Design</div>
             {output.auxiliaryHeatDeficitBtu > 0 && (
               <Link
-                href={`/calculators/heat-strip-size-calculator?loss=${heatLoss}&hp=${output.heatingCapacityAtDesignBtu}&tons=${tons}&cfm=${Math.round(tons * 400)}`}
+                href="/calculators/heat-strip-size-calculator"
                 style={{ marginBottom: "0.5rem" }}
               >
                 <span>Size Auxiliary Electric Heat Strip ({output.recommendedAuxHeatStripKw} kW Deficit @ {outdoorDesign}°F)</span>
                 <span>→</span>
               </Link>
             )}
-            <Link href={`/calculators/furnace-size-calculator?sqft=${Math.round(heatLoss / 40)}`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/furnace-size-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Compare with Gas Furnace Dual-Fuel Alternative</span>
               <span>→</span>
             </Link>
-            <Link href={`/calculators/heat-loss-calculator?loss=${heatLoss}`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/heat-loss-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Recalculate Building Peak Heat Loss &amp; Infiltration</span>
               <span>→</span>
             </Link>

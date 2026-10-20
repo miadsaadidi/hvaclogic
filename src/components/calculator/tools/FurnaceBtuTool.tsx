@@ -374,8 +374,8 @@ export function FurnaceBtuTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in Heating System Sizing</div>
-            <Link href={`/calculators/ductulator?cfm=${output.theoreticalHeatingCfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
-              <span>Size Furnace Supply Plenum &amp; Trunk ({output.theoreticalHeatingCfm} CFM)</span>
+            <Link href="/calculators/ductulator" style={{ marginBottom: "0.5rem" }}>
+              <span>Size Furnace Supply Plenum &amp; Trunk in Digital Ductulator</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/heat-pump-size-calculator">

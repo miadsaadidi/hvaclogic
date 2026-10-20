@@ -333,11 +333,11 @@ export function BtuCalculatorTool() {
           {/* WORKFLOW HANDOFF TO CFM & DUCT CALCULATOR */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step: Airflow &amp; Duct Sizing Workflow</div>
-            <Link href={`/calculators/cfm-calculator?btu=${result.sensibleCoolingBtu}`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/cfm-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Size Airflow for {result.sensibleCoolingBtu.toLocaleString()} BTU Load</span>
               <span>→</span>
             </Link>
-            <Link href={`/calculators/ductulator?cfm=${result.recommendedCfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/ductulator" style={{ marginBottom: "0.5rem" }}>
               <span>Size Supply &amp; Return Trunks for {result.recommendedCfm} CFM</span>
               <span>→</span>
             </Link>

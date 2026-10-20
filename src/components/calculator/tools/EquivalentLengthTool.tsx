@@ -1137,7 +1137,7 @@ export function EquivalentLengthTool() {
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
           <Link
-            href={`/calculators/ductulator?frictionRate=${output.designFrictionRateFr.toFixed(3)}`}
+            href="/calculators/ductulator"
             style={{
               flex: 1,
               minWidth: "240px",
@@ -1161,7 +1161,7 @@ export function EquivalentLengthTool() {
           </Link>
 
           <Link
-            href={`/calculators/duct-friction-loss-calculator?blowerTesp=${output.blowerTespInWg}&straightSupply=${output.straightSupplyFt}&straightReturn=${output.straightReturnFt}`}
+            href="/calculators/duct-friction-loss-calculator"
             style={{
               flex: 1,
               minWidth: "240px",

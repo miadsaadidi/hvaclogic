@@ -106,6 +106,9 @@ export default function AcModelDecoderPage() {
             </h3>
             <p style={{ color: "var(--ink-secondary)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
               • Verify Existing Equipment Sizing: <Link href="/calculators/ac-tonnage-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>AC Tonnage &amp; Room Sizer</Link> — check whether your decoded tonnage matches conditioned home square footage and regional climate demands.<br />
+              • Field Refrigerant Diagnostics: <Link href="/calculators/superheat-subcooling-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Superheat &amp; Subcooling Calculator</Link> — verify operating charge and expansion valve setting against decoded nameplate tonnage.<br />
+              • Ductless Inverter Sizing: <Link href="/calculators/mini-split-sizing" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Mini-Split Sizing Calculator</Link> — decode multi-zone or ductless heat pump model codes and verify individual zone head allocations.<br />
+              • Heating Balance &amp; Envelope Load: <Link href="/calculators/heat-loss-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Heat Loss Calculator</Link> — cross-check decoded cooling capacity against winter heat loss and auxiliary strip requirements.<br />
               • Calculate Heat Gain Loads: <Link href="/calculators/btu-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>BTU Heating &amp; Cooling Load Calculator</Link> — perform whole-home Manual J load estimations for replacement equipment sizing.<br />
               • Explore Cooling Pillar: <Link href="/cooling-loads" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Cooling Loads, AC Tonnage &amp; Sizing Hub</Link> — access the full suite of cooling calculation tools.
             </p>
