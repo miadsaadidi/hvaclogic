@@ -237,7 +237,7 @@ export default function DevelopersPage() {
           <a
             href="/embed/ductulator"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer nofollow"
             style={{
               display: "inline-block",
               padding: "0.4rem 0.85rem",

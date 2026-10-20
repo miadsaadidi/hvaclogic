@@ -338,11 +338,11 @@ export function FlexDuctChartTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in System Sizing &amp; Design</div>
-            <Link href={`/calculators/ductulator?cfm=${activeRow.cfmAt008}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
-              <span>Compare with Sheet Metal Ductulator ({activeRow.cfmAt008} CFM)</span>
+            <Link href="/calculators/ductulator" style={{ marginBottom: "0.5rem" }}>
+              <span>Compare with Sheet Metal Ductulator</span>
               <span>→</span>
             </Link>
-            <Link href={`/calculators/cfm-calculator?diameter=${activeRow.diameterInches}`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/cfm-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Calculate Room Air Changes &amp; Sensible Airflow</span>
               <span>→</span>
             </Link>

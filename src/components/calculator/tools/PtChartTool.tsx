@@ -427,7 +427,7 @@ export function PtChartTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in System Charging Diagnostics</div>
-            <Link href={`/calculators/superheat-subcooling-calculator?ref=${output.refrigerant.id}`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/superheat-subcooling-calculator" style={{ marginBottom: "0.5rem" }}>
               <span>Diagnose TXV Subcooling &amp; Fixed Orifice Superheat ({output.refrigerant.name})</span>
               <span>→</span>
             </Link>

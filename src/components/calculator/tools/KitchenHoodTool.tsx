@@ -360,8 +360,8 @@ export function KitchenHoodTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in Exhaust Ventilation Design</div>
-            <Link href={`/calculators/ductulator?cfm=${output.recommendedCfm}&diameter=${output.recommendedDuctDiameterInches}`} style={{ marginBottom: "0.5rem" }}>
-              <span>Verify Range Hood Duct Friction Drop in Ductulator ({output.recommendedCfm} CFM)</span>
+            <Link href="/calculators/ductulator" style={{ marginBottom: "0.5rem" }}>
+              <span>Verify Range Hood Duct Friction Drop in Digital Ductulator</span>
               <span>→</span>
             </Link>
             <Link href="/calculators/cfm-calculator">

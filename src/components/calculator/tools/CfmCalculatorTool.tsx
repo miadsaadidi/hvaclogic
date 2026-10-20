@@ -669,11 +669,11 @@ export function CfmCalculatorTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in System Sizing &amp; Design</div>
-            <Link href={`/calculators/ductulator?cfm=${result.cfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/ductulator" style={{ marginBottom: "0.5rem" }}>
               <span>Size Ductwork for {result.cfm.toLocaleString()} CFM (Digital Ductulator)</span>
               <span>→</span>
             </Link>
-            <Link href={`/calculators/ac-tonnage-calculator?tons=${(result.cfm / 400).toFixed(1)}`}>
+            <Link href="/calculators/ac-tonnage-calculator">
               <span>Calculate Required AC Equipment Tonnage</span>
               <span>→</span>
             </Link>

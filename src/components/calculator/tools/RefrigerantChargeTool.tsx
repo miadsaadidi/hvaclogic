@@ -399,8 +399,8 @@ export function RefrigerantChargeTool() {
                 <strong>Required final step</strong>
                 <p>{result.output.finalChargeProcedure}</p>
                 <div className="handoff-card">
-                  <Link href={`/calculators/superheat-subcooling-calculator?refrig=${result.output.refrigerant.toLowerCase()}`}>Verify final superheat / subcooling</Link>
-                  <Link href={`/calculators/pt-chart?refrig=${result.output.refrigerant.toLowerCase()}`}>Open refrigerant PT chart</Link>
+                  <Link href="/calculators/superheat-subcooling-calculator">Verify final superheat / subcooling</Link>
+                  <Link href="/calculators/pt-chart">Open refrigerant PT chart</Link>
                 </div>
               </div>
             </>

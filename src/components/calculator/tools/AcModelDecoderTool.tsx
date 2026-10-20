@@ -306,7 +306,7 @@ export function AcModelDecoderTool() {
           {/* DOWNSTREAM WORKFLOW HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Step in System Sizing &amp; Verification</div>
-            <Link href={`/calculators/ductulator?cfm=${decoded.nominalAirflowCfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/ductulator" style={{ marginBottom: "0.5rem" }}>
               <span>Size Ductwork for Decoded Airflow ({decoded.nominalAirflowCfm} CFM)</span>
               <span>→</span>
             </Link>

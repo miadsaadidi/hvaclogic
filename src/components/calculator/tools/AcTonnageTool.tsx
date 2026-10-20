@@ -351,7 +351,7 @@ export function AcTonnageTool() {
           {/* DECODER WORKFLOW & DUCT SIZING HANDOFF */}
           <div className="handoff-card">
             <div className="handoff-title">Next Steps in HVAC Engineering</div>
-            <Link href={`/calculators/ductulator?cfm=${result.nominalCfm}&friction=0.08`} style={{ marginBottom: "0.5rem" }}>
+            <Link href="/calculators/ductulator" style={{ marginBottom: "0.5rem" }}>
               <span>Size Ductwork for {result.nominalCfm} CFM ({result.recommendedTonnage} Ton AC Nominal)</span>
               <span>→</span>
             </Link>
