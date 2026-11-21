@@ -9,6 +9,7 @@ import {
   calculateCfmFromRoomAch,
   calculateCfmFromTonnage,
   calculateCfmFromElectricHeat,
+  calculateAcfmToScfm,
   ACH_PRESETS,
   CFM_PER_TON_PRESETS,
   CfmCalculationResult,
@@ -51,6 +52,11 @@ export function CfmCalculatorTool() {
   // Mode 5: Electric Heat
   const [heatKw, setHeatKw] = useState<number>(10);
   const [heatDeltaT, setHeatDeltaT] = useState<number>(40);
+
+  // Mode 6: ACFM to SCFM Altitude & Density Conversion
+  const [acfmInput, setAcfmInput] = useState<number>(1000);
+  const [actualTempF, setActualTempF] = useState<number>(70);
+  const [altitudeFt, setAltitudeFt] = useState<number>(0);
 
   // Hydrate from URL
   useEffect(() => {
@@ -103,10 +109,22 @@ export function CfmCalculatorTool() {
           kilowatts: heatKw,
           temperatureDeltaF: heatDeltaT,
         });
+      case "acfm-scfm": {
+        const res = calculateAcfmToScfm({
+          acfm: acfmInput,
+          actualTempF,
+          altitudeFt,
+        });
+        return {
+          mode: "acfm-scfm",
+          cfm: res.scfm,
+          explanation: res.explanation,
+        };
+      }
       default:
         return calculateCfmFromDuctVelocity({ shape: "round", diameterInches: 8, velocityFpm: 800 });
     }
-  }, [mode, shape, diameter, width, height, velocityFpm, sensibleBtu, deltaT, roomLength, roomWidth, roomHeight, ach, tonnage, cfmPerTon, heatKw, heatDeltaT]);
+  }, [mode, shape, diameter, width, height, velocityFpm, sensibleBtu, deltaT, roomLength, roomWidth, roomHeight, ach, tonnage, cfmPerTon, heatKw, heatDeltaT, acfmInput, actualTempF, altitudeFt]);
 
   const handleExportCsv = () => {
     const headers = "Mode,Calculated CFM,Acoustic Rating,Explanation\n";
@@ -140,6 +158,7 @@ export function CfmCalculatorTool() {
           { id: "room-ach", label: "🏠 Room Volume & ACH" },
           { id: "tonnage", label: "❄️ AC Tonnage (Nominal Benchmark)" },
           { id: "electric-heat", label: "⚡ Electric Heat Strip" },
+          { id: "acfm-scfm", label: "⛰️ ACFM ↔ SCFM (Altitude & Density)" },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -584,6 +603,80 @@ export function CfmCalculatorTool() {
               </div>
             </>
           )}
+
+          {/* MODE 6: ACFM TO SCFM DENSITY & ALTITUDE */}
+          {mode === "acfm-scfm" && (
+            <>
+              <div className="form-group">
+                <label htmlFor="acfm-input">
+                  <span>Actual Measured Airflow (ACFM)</span>
+                  <span className="unit-label">ACFM</span>
+                </label>
+                <div className="input-with-slider">
+                  <input
+                    id="acfm-input"
+                    type="number"
+                    min={50}
+                    max={20000}
+                    step={50}
+                    value={acfmInput}
+                    onChange={(e) => setAcfmInput(Math.max(10, Number(e.target.value)))}
+                    className="input-number"
+                  />
+                  <input
+                    type="range"
+                    min={100}
+                    max={5000}
+                    step={50}
+                    value={acfmInput}
+                    onChange={(e) => setAcfmInput(Number(e.target.value))}
+                    className="input-range"
+                    aria-label="ACFM airflow slider"
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                <div className="form-group">
+                  <label htmlFor="actual-temp-input">
+                    <span>Operating Air Temp</span>
+                    <span className="unit-label">&deg;F</span>
+                  </label>
+                  <input
+                    id="actual-temp-input"
+                    type="number"
+                    min={-40}
+                    max={250}
+                    step={1}
+                    value={actualTempF}
+                    onChange={(e) => setActualTempF(Number(e.target.value))}
+                    className="input-number"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="altitude-input">
+                    <span>Site Altitude</span>
+                    <span className="unit-label">Ft</span>
+                  </label>
+                  <input
+                    id="altitude-input"
+                    type="number"
+                    min={0}
+                    max={15000}
+                    step={250}
+                    value={altitudeFt}
+                    onChange={(e) => setAltitudeFt(Number(e.target.value))}
+                    className="input-number"
+                  />
+                </div>
+              </div>
+
+              <div style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", background: "var(--surface-raised)", padding: "0.6rem", borderRadius: "6px", lineHeight: 1.5 }}>
+                💡 <strong>SCFM Benchmark:</strong> Standard air conditions per ASHRAE are 70&deg;F, 14.696 psia (sea level), and 0.075 lb/cu ft. Higher elevation and warmer air decrease air density, causing actual volumetric flow (ACFM) to deliver fewer standard mass flow units (SCFM).
+              </div>
+            </>
+          )}
         </div>
 
         {/* OUTPUT PANEL */}
@@ -591,11 +684,19 @@ export function CfmCalculatorTool() {
           {/* PRIMARY RESULT CARD */}
           <div className="primary-result-card" role="region" aria-live="polite" aria-label="CFM Airflow Sizing Result">
             <div className="result-label">
-              {mode === "duct-velocity" ? "Calculated Volumetric Airflow" : "Calculated Airflow"}
+              {mode === "duct-velocity"
+                ? "Calculated Volumetric Airflow"
+                : mode === "acfm-scfm"
+                ? "Standard Airflow (SCFM Mass Equivalent)"
+                : "Calculated Airflow"}
             </div>
-            <div className="result-value">{result.cfm.toLocaleString()} CFM</div>
+            <div className="result-value">
+              {result.cfm.toLocaleString()} {mode === "acfm-scfm" ? "SCFM" : "CFM"}
+            </div>
             <div className="result-unit">
-              Cubic Feet Per Minute ({(result.cfm * 1.699).toFixed(0)} m&sup3;/h metric)
+              {mode === "acfm-scfm"
+                ? `Standard Cubic Feet Per Minute (${(result.cfm * 60).toLocaleString()} SCFH | ${(result.cfm * 1.699).toFixed(0)} Nm³/h)`
+                : `Cubic Feet Per Minute (${(result.cfm * 1.699).toFixed(0)} m³/h metric)`}
             </div>
             <div style={{ marginTop: "0.4rem" }}>
               <span

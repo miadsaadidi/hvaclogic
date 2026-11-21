@@ -152,8 +152,9 @@ export const ashraeClimaticDataset: AshraeLocationData[] = [
   { id: "wi-madison", state: "WI", stateName: "Wisconsin", city: "Madison", climateZone: "6A", winterDb99: -6, winterDb996: -12, summerDb04: 88, summerDb10: 85, summerWb04: 73, elevationFt: 863 },
   // WYOMING
   { id: "wy-cheyenne", state: "WY", stateName: "Wyoming", city: "Cheyenne", climateZone: "6B", winterDb99: -4, winterDb996: -11, summerDb04: 88, summerDb10: 85, summerWb04: 58, elevationFt: 6156 },
-  // CANADA (Top Metros)
+  // CANADA (Top Metros & Key Climate Regions)
   { id: "ca-toronto", state: "ON", stateName: "Ontario (CA)", city: "Toronto (Pearson)", climateZone: "5A", winterDb99: 1, winterDb996: -4, summerDb04: 88, summerDb10: 85, summerWb04: 72, elevationFt: 568 },
+  { id: "ca-collingwood", state: "ON", stateName: "Ontario (CA)", city: "Collingwood (Simcoe / Georgian Bay)", climateZone: "6A", winterDb99: 0, winterDb996: -8, summerDb04: 84, summerDb10: 81, summerWb04: 70, elevationFt: 590 },
   { id: "ca-montreal", state: "QC", stateName: "Quebec (CA)", city: "Montreal (Trudeau)", climateZone: "6A", winterDb99: -7, winterDb996: -13, summerDb04: 86, summerDb10: 83, summerWb04: 71, elevationFt: 118 },
   { id: "ca-vancouver", state: "BC", stateName: "British Columbia (CA)", city: "Vancouver (YVR)", climateZone: "4C", winterDb99: 25, winterDb996: 20, summerDb04: 79, summerDb10: 76, summerWb04: 64, elevationFt: 14 },
   { id: "ca-calgary", state: "AB", stateName: "Alberta (CA)", city: "Calgary", climateZone: "7", winterDb99: -18, winterDb996: -25, summerDb04: 84, summerDb10: 80, summerWb04: 59, elevationFt: 3556 },

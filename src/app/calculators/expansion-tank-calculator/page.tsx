@@ -309,6 +309,80 @@ export default function ExpansionTankCalculatorPage() {
               </li>
             </ol>
           </div>
+
+          {/* LOW-LOSS HEADER & HYDRONIC DECOUPLING MODULE */}
+          <div
+            style={{
+              marginTop: "2rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderRadius: "0.75rem",
+              padding: "1.5rem",
+            }}
+          >
+            <h3 style={{ fontSize: "1.25rem", fontWeight: 700, margin: "0 0 0.75rem", color: "var(--ink)" }}>
+              Hydronic System Decoupling: Low-Loss Header Sizing &amp; Low Head Load Guidelines
+            </h3>
+            <p style={{ fontSize: "0.9rem", color: "var(--ink-secondary)", lineHeight: 1.6, margin: "0 0 1rem" }}>
+              In modern hydronic heating systems combining condensing boilers or air-to-water heat pumps with multi-zone secondary distribution, a <strong>Low-Loss Header (Hydraulic Separator)</strong> establishes hydraulic independence between the primary generator loop and secondary emitter loops.
+            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem", marginBottom: "1.25rem" }}>
+              <div style={{ padding: "1rem", borderRadius: "0.5rem", background: "var(--surface-raised)", border: "1px solid var(--border-subtle)" }}>
+                <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--accent-cooling)", marginBottom: "0.35rem" }}>
+                  1. The "Low Head Load" Decoupling Rule
+                </div>
+                <div style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
+                  Because high-efficiency modulating boilers and circulators operate on different flow schedules, connecting them directly in series creates pump conflict, flow starvation, or short-cycling. A low-loss header creates a point of near-zero pressure differential (ΔP ≈ 0), eliminating head interference between primary and secondary circulator pumps.
+                </div>
+              </div>
+
+              <div style={{ padding: "1rem", borderRadius: "0.5rem", background: "var(--surface-raised)", border: "1px solid var(--border-subtle)" }}>
+                <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--accent-cooling)", marginBottom: "0.35rem" }}>
+                  2. Sizing by Internal Water Velocity (&le; 1.5 ft/s)
+                </div>
+                <div style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
+                  The body diameter of the hydraulic separator must be sized so maximum flow velocity does not exceed <strong>1.5 ft/s (0.45 m/s)</strong>. Under standard hydronic practice, the header diameter should be at least <strong>3 times the diameter</strong> of the largest supply/return connection nozzle (the 3D Rule).
+                </div>
+              </div>
+            </div>
+
+            <div style={{ background: "#090d16", border: "1px solid #1e293b", padding: "1rem", borderRadius: "0.5rem" }}>
+              <p style={{ fontWeight: 700, margin: "0 0 0.5rem", color: "#38bdf8", fontSize: "0.9rem" }}>
+                Low-Loss Header Sizing Flow Matrix (Standard 20°F ΔT Hydronic Loop):
+              </p>
+              <table style={{ width: "100%", fontSize: "0.82rem", color: "#e2e8f0", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ borderBottom: "1px solid #334155", textAlign: "left" }}>
+                    <th style={{ padding: "0.4rem" }}>Boiler Output (BTU/hr)</th>
+                    <th style={{ padding: "0.4rem" }}>Design Flow Rate (GPM @ 20°F ΔT)</th>
+                    <th style={{ padding: "0.4rem" }}>Nozzle Diameter</th>
+                    <th style={{ padding: "0.4rem" }}>Recommended Header Body Size</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid #1e293b" }}>
+                    <td style={{ padding: "0.4rem" }}>50,000 to 100,000 BTU/hr</td>
+                    <td style={{ padding: "0.4rem" }}>5.0 to 10.0 GPM</td>
+                    <td style={{ padding: "0.4rem" }}>1&quot; NPT</td>
+                    <td style={{ padding: "0.4rem" }}>3&quot; to 4&quot; Body (Low Head Loss)</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid #1e293b" }}>
+                    <td style={{ padding: "0.4rem" }}>100,000 to 200,000 BTU/hr</td>
+                    <td style={{ padding: "0.4rem" }}>10.0 to 20.0 GPM</td>
+                    <td style={{ padding: "0.4rem" }}>1-1/4&quot; to 1-1/2&quot;</td>
+                    <td style={{ padding: "0.4rem" }}>4&quot; to 5&quot; Body (&lt; 1.5 FTS)</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: "0.4rem" }}>200,000 to 400,000 BTU/hr</td>
+                    <td style={{ padding: "0.4rem" }}>20.0 to 40.0 GPM</td>
+                    <td style={{ padding: "0.4rem" }}>2&quot; Flanged</td>
+                    <td style={{ padding: "0.4rem" }}>6&quot; Flanged Body (Air &amp; Dirt Separation)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       }
     />

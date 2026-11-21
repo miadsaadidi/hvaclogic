@@ -3,7 +3,7 @@
  * Implements ASHRAE Fundamentals, ACCA Manual D, and SMACNA fluid standards.
  */
 
-export type CfmCalculationMode = "duct-velocity" | "thermal-load" | "room-ach" | "tonnage" | "electric-heat";
+export type CfmCalculationMode = "duct-velocity" | "thermal-load" | "room-ach" | "tonnage" | "electric-heat" | "acfm-scfm";
 
 export interface DuctVelocityCfmInput {
   shape: "round" | "rectangular";
@@ -196,5 +196,62 @@ export function calculateCfmFromElectricHeat(input: ElectricHeatCfmInput): CfmCa
     mode: "electric-heat",
     cfm,
     explanation: `${kw} kW electric strip element (${Math.round(btu).toLocaleString()} BTU/hr) at ${deltaT}°F temperature rise requires ${cfm.toLocaleString()} CFM.`,
+  };
+}
+
+export interface AcfmScfmInput {
+  acfm: number;
+  actualTempF: number;
+  altitudeFt?: number;
+  actualPressurePsia?: number;
+}
+
+export interface AcfmScfmResult {
+  mode: "acfm-scfm";
+  acfm: number;
+  scfm: number;
+  acfh: number;
+  scfh: number;
+  densityActualLbPerCuFt: number;
+  pressurePsia: number;
+  densityRatio: number;
+  explanation: string;
+}
+
+/**
+ * 6. Calculates ACFM (Actual CFM) to SCFM (Standard CFM) Conversion
+ * SCFM = ACFM × (P_actual / 14.696) × (529.67 / (T_actual + 459.67))
+ * References ASHRAE Fundamentals Chapter 1 (Psychrometrics & Standard Atmosphere).
+ */
+export function calculateAcfmToScfm(input: AcfmScfmInput): AcfmScfmResult {
+  const acfm = Math.max(0, input.acfm);
+  const tempF = input.actualTempF;
+  const altitude = input.altitudeFt ?? 0;
+
+  // Barometric pressure calculation from altitude if not directly specified
+  const pressurePsia =
+    input.actualPressurePsia !== undefined
+      ? input.actualPressurePsia
+      : 14.696 * Math.pow(1 - 6.8754e-6 * altitude, 5.2559);
+
+  const absTempRankine = tempF + 459.67;
+  // Standard conditions: 14.696 psia, 70°F (529.67°R), density 0.075 lb/ft³
+  const densityRatio = (pressurePsia / 14.696) * (529.67 / absTempRankine);
+  const densityActual = 0.075 * densityRatio;
+
+  const scfm = Math.round(acfm * densityRatio);
+  const acfh = Math.round(acfm * 60);
+  const scfh = Math.round(scfm * 60);
+
+  return {
+    mode: "acfm-scfm",
+    acfm,
+    scfm,
+    acfh,
+    scfh,
+    densityActualLbPerCuFt: Number(densityActual.toFixed(4)),
+    pressurePsia: Number(pressurePsia.toFixed(3)),
+    densityRatio: Number(densityRatio.toFixed(4)),
+    explanation: `${acfm.toLocaleString()} ACFM at ${tempF}°F, ${altitude.toLocaleString()} ft elevation (${pressurePsia.toFixed(2)} psia, air density ${densityActual.toFixed(4)} lb/ft³) converts to ${scfm.toLocaleString()} SCFM (${scfh.toLocaleString()} SCFH) under standard conditions (70°F, 14.7 psia, 0.075 lb/ft³).`,
   };
 }

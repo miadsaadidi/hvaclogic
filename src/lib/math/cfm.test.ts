@@ -5,6 +5,7 @@ import {
   calculateCfmFromRoomAch,
   calculateCfmFromTonnage,
   calculateCfmFromElectricHeat,
+  calculateAcfmToScfm,
   categorizeVelocity,
 } from "./cfm";
 
@@ -78,5 +79,28 @@ describe("HVAC CFM & Airflow Computational Engine", () => {
     expect(categorizeVelocity(750).category).toBe("standard");
     expect(categorizeVelocity(1100).category).toBe("noisy");
     expect(categorizeVelocity(1400).category).toBe("excessive");
+  });
+
+  it("calculates ACFM to SCFM density conversion correctly at standard conditions and altitude", () => {
+    // Sea level, 70°F -> ACFM equals SCFM exactly
+    const std = calculateAcfmToScfm({
+      acfm: 1000,
+      actualTempF: 70,
+      altitudeFt: 0,
+    });
+    expect(std.scfm).toBe(1000);
+    expect(std.acfh).toBe(60000);
+    expect(std.scfh).toBe(60000);
+    expect(std.densityActualLbPerCuFt).toBe(0.075);
+
+    // Mile-high Denver (5280 ft) @ 70°F -> air density drops by ~17%
+    const denver = calculateAcfmToScfm({
+      acfm: 1000,
+      actualTempF: 70,
+      altitudeFt: 5280,
+    });
+    expect(denver.scfm).toBeLessThan(1000);
+    expect(denver.scfm).toBeGreaterThan(800);
+    expect(denver.densityActualLbPerCuFt).toBeLessThan(0.075);
   });
 });
