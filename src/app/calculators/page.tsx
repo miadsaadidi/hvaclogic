@@ -331,6 +331,68 @@ export default function CalculatorsDirectoryPage() {
               </Link>
             </div>
           </div>
+
+          {/* STANDARDS & CALCULATION METHODOLOGY MATRIX */}
+          <div
+            style={{
+              marginTop: "2.5rem",
+              background: "var(--surface)",
+              border: "1px solid var(--border-color)",
+              borderRadius: "8px",
+              padding: "1.5rem",
+            }}
+          >
+            <h3 style={{ fontSize: "1.2rem", fontWeight: 700, margin: "0 0 0.5rem", color: "var(--ink)" }}>
+              Governing Standards &amp; Engineering Consensus Reference Matrix
+            </h3>
+            <p style={{ fontSize: "0.88rem", color: "var(--text-muted)", margin: "0 0 1rem", lineHeight: 1.5 }}>
+              Each computational module in the HVACLogic suite is pinned directly to peer-reviewed thermodynamic equations and voluntary consensus engineering standards:
+            </p>
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", fontSize: "0.83rem", color: "var(--ink-secondary)", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ borderBottom: "1px solid var(--border-color)", textAlign: "left" }}>
+                    <th style={{ padding: "0.5rem" }}>Domain</th>
+                    <th style={{ padding: "0.5rem" }}>Governing Standard / Code</th>
+                    <th style={{ padding: "0.5rem" }}>Mathematical Foundation</th>
+                    <th style={{ padding: "0.5rem" }}>Target Engineering Tools</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                    <td style={{ padding: "0.5rem", fontWeight: 600, color: "var(--ink)" }}>Duct Aerodynamics</td>
+                    <td style={{ padding: "0.5rem" }}>ASHRAE Fundamentals Ch. 21 &amp; ACCA Manual D</td>
+                    <td style={{ padding: "0.5rem" }}>Colebrook-White friction factor, Darcy-Weisbach loss</td>
+                    <td style={{ padding: "0.5rem" }}>Ductulator, Duct Friction Loss, Flex Duct Chart</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                    <td style={{ padding: "0.5rem", fontWeight: 600, color: "var(--ink)" }}>Thermal Load Sizing</td>
+                    <td style={{ padding: "0.5rem" }}>ACCA Manual J® 8th Ed. &amp; Manual S®</td>
+                    <td style={{ padding: "0.5rem" }}>Sensible heat transfer Q = 1.08×CFM×ΔT, CLTD method</td>
+                    <td style={{ padding: "0.5rem" }}>Cooling Loads, BTU Load Sizer, AC Tonnage</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                    <td style={{ padding: "0.5rem", fontWeight: 600, color: "var(--ink)" }}>Hydronics &amp; Heating</td>
+                    <td style={{ padding: "0.5rem" }}>ASHRAE Systems &amp; Eq. Ch. 15, ASME Sec. VIII</td>
+                    <td style={{ padding: "0.5rem" }}>Thermal expansion acceptance volume, ΔP decoupling</td>
+                    <td style={{ padding: "0.5rem" }}>Boiler Sizing, Expansion Tank, Low-Loss Header</td>
+                  </tr>
+                  <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                    <td style={{ padding: "0.5rem", fontWeight: 600, color: "var(--ink)" }}>A2L Refrigerants</td>
+                    <td style={{ padding: "0.5rem" }}>ASHRAE Standard 15 &amp; 34, EPA Section 608</td>
+                    <td style={{ padding: "0.5rem" }}>Zeotropic dew/bubble temperature glide, weigh-in kinetics</td>
+                    <td style={{ padding: "0.5rem" }}>Refrigerant Charge, PT Chart, Superheat/Subcooling</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: "0.5rem", fontWeight: 600, color: "var(--ink)" }}>Building Envelope</td>
+                    <td style={{ padding: "0.5rem" }}>ASHRAE 90.1, ACCA Manual J Table 4A</td>
+                    <td style={{ padding: "0.5rem" }}>Parallel-path framing factors, condensation psychrometrics</td>
+                    <td style={{ padding: "0.5rem" }}>Effective R-Value, Heat Loss, Building Science Hub</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </section>
 
         {/* ARCHITECTURAL GUARANTEE CARD */}

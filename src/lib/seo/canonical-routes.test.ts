@@ -40,7 +40,7 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
 
     expect(mainRule?.userAgent).toBe("*");
     expect(mainRule?.allow).toBe("/");
-    expect(mainRule?.disallow).toEqual(["/api/"]);
+    expect(mainRule?.disallow).toEqual(["/api/", "/_next/static/media/", "/*?*"]);
   });
 
   it("verifies all 24 production calculators have valid SEO metadata and standards", () => {
@@ -262,6 +262,6 @@ describe("Day 1 & Day 2 SEO Technical Crawl & Canonical Verification", () => {
     // Check homepage deterministic timestamp
     const homepage = sitemapEntries.find((e) => e.url === siteConfig.canonicalDomain);
     expect(homepage).toBeDefined();
-    expect((homepage?.lastModified as Date).toISOString()).toBe("2026-08-28T00:00:00.000Z");
+    expect((homepage?.lastModified as Date).toISOString()).toBe("2026-11-21T00:00:00.000Z");
   });
 });

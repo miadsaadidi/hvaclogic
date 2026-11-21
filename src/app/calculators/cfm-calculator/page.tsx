@@ -158,6 +158,13 @@ export default function CfmCalculatorPage() {
                   <td>2,250 CFM</td>
                   <td>18&quot; Round / 24&quot; × 10&quot; Rect</td>
                 </tr>
+                <tr>
+                  <td><strong>15.0 Tons (180,000 BTU/hr Light Commercial)</strong></td>
+                  <td>6,000 CFM</td>
+                  <td>5,250 CFM</td>
+                  <td>6,750 CFM</td>
+                  <td>28&quot; Round / 36&quot; × 16&quot; Rect</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -243,6 +250,33 @@ export default function CfmCalculatorPage() {
             </p>
             <p style={{ color: "var(--ink-secondary)", marginTop: "0.5rem" }}>
               ✓ <strong>Summary:</strong> The sensible load requires approximately 1,111 CFM, aligning closely with the nominal 1,200 CFM blower setting. Size and verify return air paths using the <Link href="/calculators/filter-sizing-calculator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Filter Sizing Calculator</Link> and <Link href="/calculators/ductulator" style={{ color: "var(--accent-cooling)", textDecoration: "underline" }}>Ductulator</Link>.
+            </p>
+          </div>
+
+          <h3 style={{ marginTop: "2rem", fontSize: "1.2rem", fontWeight: 700 }}>
+            Worked Example 2: Converting ACFM to SCFM at High Altitude (5,280 ft Elevation)
+          </h3>
+          <p style={{ color: "var(--ink-secondary)", marginBottom: "1rem", lineHeight: 1.6 }}>
+            <strong>Scenario:</strong> Convert <strong>1,200 ACFM</strong> (Actual CFM measured at duct conditions) at <strong>85°F</strong> and <strong>5,280 ft elevation</strong> (Denver, CO barometric pressure = 12.15 psia) to Standard CFM (SCFM) and Standard Cubic Feet per Hour (SCFH).
+          </p>
+
+          <div style={{ background: "var(--surface)", border: "1px solid var(--border-color)", borderRadius: "0.75rem", padding: "1.25rem", color: "var(--ink)" }}>
+            <p><strong>Step 1: Calculate Actual Air Density (Ideal Gas Law at Altitude)</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              ρ_act = 0.075 × (P_act / 14.696) × (529.67 / (T_act + 459.67)) = 0.075 × (12.15 / 14.696) × (529.67 / 544.67) = 0.0603 lb/ft³
+            </p>
+
+            <p><strong>Step 2: Apply the ACFM to SCFM Conversion Formula</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0 1rem" }}>
+              SCFM = ACFM × (ρ_act / 0.075) = 1,200 × (0.0603 / 0.075) = 965 SCFM
+            </p>
+
+            <p><strong>Step 3: Convert ACFM to ACFH and SCFH (Hourly Flow Rate)</strong></p>
+            <p style={{ fontFamily: "monospace", color: "var(--accent-cooling)", margin: "0.5rem 0" }}>
+              ACFH = 1,200 ACFM × 60 min/hr = 72,000 ACFH | SCFH = 965 SCFM × 60 min/hr = 57,900 SCFH
+            </p>
+            <p style={{ color: "var(--ink-secondary)", marginTop: "0.5rem" }}>
+              ✓ <strong>Engineering Rule:</strong> At 5,280 ft, air is ~19.6% less dense than at sea level. A blower moving 1,200 actual volumetric CFM is only delivering the oxygen/mass equivalent of 965 standard CFM, requiring a blower speed or duct diameter increase to satisfy identical mass-flow cooling requirements.
             </p>
           </div>
         </>

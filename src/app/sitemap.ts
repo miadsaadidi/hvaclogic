@@ -6,15 +6,15 @@ import { BENCHMARK_DATASETS } from "@/lib/data/datasets";
 
 // Deterministic content release & revision milestones (prevents volatile daily jitter while signaling crawl priority)
 const RELEASE_MILESTONES = {
-  HOMEPAGE: new Date("2026-08-28T00:00:00.000Z"),
-  CALCULATORS_HUB: new Date("2026-08-28T00:00:00.000Z"),
-  PILLAR_HUBS: new Date("2026-08-26T00:00:00.000Z"),
-  GUIDES_HUB: new Date("2026-08-26T00:00:00.000Z"),
-  RESEARCH_HUB: new Date("2026-08-26T00:00:00.000Z"),
-  DATASETS_HUB: new Date("2026-09-15T00:00:00.000Z"),
-  STANDARDS_COMPLIANCE: new Date("2026-08-25T00:00:00.000Z"),
-  AUTHORITY_PAGES: new Date("2026-08-24T00:00:00.000Z"),
-  CALCULATOR_BASELINE: new Date("2026-08-20T00:00:00.000Z"),
+  HOMEPAGE: new Date("2026-11-21T00:00:00.000Z"),
+  CALCULATORS_HUB: new Date("2026-11-21T00:00:00.000Z"),
+  PILLAR_HUBS: new Date("2026-11-21T00:00:00.000Z"),
+  GUIDES_HUB: new Date("2026-11-21T00:00:00.000Z"),
+  RESEARCH_HUB: new Date("2026-11-21T00:00:00.000Z"),
+  DATASETS_HUB: new Date("2026-11-21T00:00:00.000Z"),
+  STANDARDS_COMPLIANCE: new Date("2026-11-21T00:00:00.000Z"),
+  AUTHORITY_PAGES: new Date("2026-11-21T00:00:00.000Z"),
+  CALCULATOR_BASELINE: new Date("2026-11-21T00:00:00.000Z"),
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
